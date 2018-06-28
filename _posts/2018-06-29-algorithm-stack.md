@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Stack(스택)
-category: Algorithm
+author: greeksharifa
+categories: Algorithm
 tags: [Algorithm, stack]
 ---
 
@@ -10,7 +11,6 @@ tags: [Algorithm, stack]
 ### Stack (스택)
 
 스택([stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)))의 사전적 의미는 더미(무더기)이다.
-
 
 * Complete Jekyll setup included (layouts, config, [404](/404), [RSS feed](/atom.xml), posts, and [example page](/about))
 * Mobile friendly design and development
