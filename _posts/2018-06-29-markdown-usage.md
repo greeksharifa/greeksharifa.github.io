@@ -2,17 +2,15 @@
 layout: post
 title: Markdown 사용법
 author: greeksharifa
-categories: Markdown
-tags: [markdown, usage]
+categories: References
+tags: [Markdown, usage]
 ---
 
-md 파일의 헤더는 위와 같이 작성하라.
+마크다운을 쓸 때는 메모장으로도 되지만 JetBrains의 Webstorm에 Markdown support plugins을 설치하는 것이 도움이 된다.
 
-마크다운을 쓸 때는 적당히 써도 되지만 JetBrains의 Webstorm에 Markdown support plugins을 설치하는 것이 도움이 된다.
+참조: [simhyejin.github.io](https://simhyejin.github.io/2016/06/30/Markdown-syntax/)
 
-참조:
-[Markdown](https://simhyejin.github.io/2016/06/30/Markdown-syntax/#unordered-list),
-[복사해서 쓰기(greeksharifa's blog)](https://greeksharifa.github.io/markdown/2018/06/29/markdown/)
+---
 
 위의 글에 잘 설명되어 있지만,
 복사해 놓고 쓰기 편하도록 본 글에 정리해 두었다.
@@ -24,7 +22,6 @@ md 파일의 헤더는 위와 같이 작성하라.
 그러나 여러 줄을 띄워도 효과는 똑같다.
 공백 문자                   (스페이스바)            도 마찬가지이다.
 
-제목 사용법부터 적는다.
 # 가장 큰 제목
 
 ### 적당한 제목
@@ -34,13 +31,13 @@ md 파일의 헤더는 위와 같이 작성하라.
 
 [참조 링크][1]
 
-[1]:  https://greeksharifa.github.io/markdown/2018/06/29/markdown/ "greeksharifa's blog - Markdown"
+[1]:  https://greeksharifa.github.io/references/2018/06/29/markdown-usage/ "greeksharifa's blog: markdown-usage"
 
 빈 줄을 넣는 것을 추천한다.
 
 url 링크: <https://google.com/>
 
-어쩐지 처음으로 돌아가고 싶은가? [가장 큰 제목](#가장-큰-제목)
+어쩐지 처음으로 돌아가고 싶은가? 내부 링크는 이렇게 사용한다. [가장 큰 제목](#가장-큰-제목)
 
 > 인용하려면 이와 같이 한다.
 >> 인용을 안에 또 하고 싶으면 이렇게 한다.

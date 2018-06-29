@@ -3,7 +3,7 @@ layout: post
 title: Stack(스택)
 author: greeksharifa
 categories: Algorithm
-tags: [Algorithm, stack]
+tags: [Stack]
 ---
 
 스택은 매우 유용하다. 여러분의 실생활에서도 자주 볼 수 있다. 그리고 알고리즘으로 적용하기에도 쉽다. 그럼 스택은 무엇인가?
