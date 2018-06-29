@@ -16,7 +16,7 @@ Insert Image    | [nachoi.github.io](https://nachoi.github.io/studynote/2017/11/
 
 ---
 
-아래는 YY & YW's blog의 reference 글들을 정리한 것이다.
+아래는 YW & YY's blog의 reference 글들을 정리한 것이다.
 
 | 참조            | 소분류            | URL
 | ---------       | ---------        | --------
