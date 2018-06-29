@@ -1,21 +1,15 @@
 ---
 layout: post
-title: GitHub 사용법 - 01. 소개
+title: GitHub 사용법 - 02. 프로젝트와 repository 생성
 author: YouWon
 categories: GitHub
 tags: [GitHub, usage]
 ---
 
-- [Git이란?](#git이란)
-- [GitHub이란?](#github이란)
-- [Git에서 사용되는 개념](#git에서-사용되는-개념)
-  - [Repository(저장소)](#repository-저장소)
-  - [Init, Clone](#init-clone)
-  - [Add, Commit, Push](#add-commit-push)
-  - [Branch(브랜치)](#branch-브랜치)
-  - [Issue](#issue)
-- [Git 명령어](#git-명령어)
-
+- [Create Repository](#create-repository)
+- [](#)
+- [](#)
+- [](#)
 
 ## Git이란?
 
@@ -32,7 +26,7 @@ Git을 사용하는 이유까지 설명하지는 않도록 하겠다.
 
 ## Git에서 사용되는 개념
 
-### Repository 저장소
+### Repository(저장소)
 
 저장소는 당연히, 프로젝트 파일을 모아둔 곳이다. 하나의 root directory와 비슷한 개념이다.
 
@@ -88,7 +82,7 @@ Commit에는 단지 수정사항을 정리하는 것 외에 해주어야 하는 
   Commit message란 이 commit이 어떤 수정사항을 담고 있는지를 알려주는 것이다. 자세히 쓸수록 좋다.
 - Tag: 여러분이 생각하는 그 태그 맞다. 블로그의 글에 달려 있는 태그랑 같은 기능을 한다. 포스팅 대신 commit을 참조하는 것이 다를 뿐이다.
 
-### Branch 브랜치
+### Branch(브랜치)
 
 새로운 기능을 개발하거나 테스트를 할 때 사용하는 독립적인 commit history이다. 나무에서 메인 줄기가 아닌 옆으로 빠져나온 나뭇가지를 생각하면 된다.
 
@@ -115,9 +109,6 @@ branch 간 통신은 꽤 종류가 많지만, 여기서는 몇 가지만 간략�
 - todoList로 활용한다.
 
 협업할 때는 당연히 필요하고, 혼자 할 때도 bugList와 todoList로 쓰면 유용하다.
-
-
----
 
 ## Git 명령어
 
