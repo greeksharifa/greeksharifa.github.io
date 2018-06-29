@@ -15,8 +15,20 @@ tags: [GitHub, usage]
 
 ## Create Repository
 
-Git은 버전 관리 시스템으로, 파일의 변경 내용을 계속 추적하도록 개발된 것이다.
-즉 Git은 분산 버전 관리 시스템으로, 모든 사람이 프로젝트의 현재와 과거 모두의 전체 history를 갖고 있는 것이다.
+우선 <https://www.github.com/>에 접속하여 로그인한다(회원가입은 되어 있어야 한다). 그러면 다음과 비슷한 화면이 보인다.
+
+![01_new_repository](/public/img/GitHub/2018_06_29_github_usage_02_create_project/01_new_repository.png)
+
+**New repository**를 클릭한 후, 프로젝트 이름을 **git_tutorial**으로 입력한다. 원하는 이름으로 해도 상관없다. 또 Description을 성심성의껏 잘 작성한다.
+
+그리고 `Initialize this repository with a README` 체크박스에 체크한다.
+체크하지 않는다면 git repository를 처음 만들고, 로컬 repository와 연결하는 방법을 알려주는 안내 글이 뜬다. 이를 읽어 봐도 괜찮다.
+
+![02_create_a_new_repository](/public/img/GitHub/2018_06_29_github_usage_02_create_project/02_create_a_new_repository.PNG)
+
+마지막으로 **Create repository**를 누른다.
+
+그러면 이제 여러분의 GitHub 계정에 **git_tutorial**이란 이름의 원격(온라인) repository가 생성된 것이다.
 
 ## GitHub이란?
 

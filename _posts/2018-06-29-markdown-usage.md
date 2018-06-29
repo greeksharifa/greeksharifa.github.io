@@ -116,3 +116,15 @@ Content 2 | Content 4
 ![alt text][1]
 [1]: /test3.png
 
+예시:
+
+<center><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" width="50%"></center>
+
+![01_new_repository](/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg)
+
+편하게 하려면,
+
+- /public/img directory 안에 /categories_name/post_file_name directory를 만든다.
+- 만든 directory 안에 이미지를 붙여 넣는다.
+- WebStorm에 보이는 이미지에서 Ctrl + Shift + Alt + C 를 눌러 상대 경로를 복사한다.
+- 그리고 위의 예시의 src 항목에다 붙여넣기 하면 된다. 이때 반드시 `/public/img/`으로 시작해야 한다.
