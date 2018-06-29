@@ -53,8 +53,8 @@ tag_page: '/blog/tags/'
 category_page: '/blog/categories/'
 
 hero:
-  image: /public/img/we_will_be_giants_by_yalestewart.jpg
-  caption: Original Artwork &copy; <a href="http://yalestewart.deviantart.com/art/We-Will-Be-Giants-370176475">Yale Stewart</a>
+  image: /public/img/Andre_Derain_Fishing_Boats_Collioure.jpg
+  caption: Andre Derain, Fishing Boats Collioure, 1905. France.
 
 # Puglins
 mathjax: true # whether support mathjax

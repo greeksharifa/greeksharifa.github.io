@@ -1,9 +1,9 @@
 ---
 layout: post
-title: GitHub 사용법 01: 소개
+title: GitHub 사용법 - 01. 소개
 author: greeksharifa
 categories: GitHub
-tags: [usage]
+tags: [GitHub, usage]
 ---
 
 ## Git이란?
@@ -13,7 +13,7 @@ Git은 버전 관리 시스템으로, 파일의 변경 내용을 계속 추적�
 
 ## GitHub이란?
 
-GitHub은 Git repository를 업로드하는 웹사이트이다. 여러분이 알고 있는 그 [깃헙](www.github.com) 맞다.
+GitHub은 Git repository를 업로드하는 웹사이트이다. 여러분이 알고 있는 그 [깃헙](https://www.github.com) 맞다.
 
 Git을 사용하는 이유까지 설명하지는 않도록 하겠다.
 
@@ -30,7 +30,8 @@ Git을 사용하는 이유까지 설명하지는 않도록 하겠다.
 1. 나의 온라인 repository
 2. 다른 사람의 온라인 repository
 3. 나의 로컬 repository
-  4. 다른 사람의 로컬 repository
+
+<small>4. 다른 사람의 로컬 repository</small>
 
 물론 4번은 여러분이 신경쓸 부분은 아니다. 따라서 세 가지만 생각하면 된다.
 
