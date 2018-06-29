@@ -6,12 +6,14 @@ categories: GitHub
 tags: [GitHub, usage]
 ---
 
+프로젝트는 다음과 같은 과정을 거치면 만들 수 있다.
+
 - [Create Repository](#create-repository)
 - [](#)
 - [](#)
 - [](#)
 
-## Git이란?
+## Create Repository
 
 Git은 버전 관리 시스템으로, 파일의 변경 내용을 계속 추적하도록 개발된 것이다.
 즉 Git은 분산 버전 관리 시스템으로, 모든 사람이 프로젝트의 현재와 과거 모두의 전체 history를 갖고 있는 것이다.

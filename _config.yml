@@ -4,7 +4,7 @@ tagline: "YY & YW's blog"
 description: "YY & YW's blog powered by jekyll theme"
 baseurl: ""
 url: http://greeksharifa.github.io
-logo: '/public/logo.png'
+logo: '/public/img/logo.png'
 
 # Site configurations
 gems:
