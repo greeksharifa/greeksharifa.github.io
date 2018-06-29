@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Stack(스택)
-author: greeksharifa
+author: YouWon
 categories: Algorithm
 tags: [Stack]
 ---

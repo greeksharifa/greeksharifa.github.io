@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Github blog 수식 입력 방법
-author: greeksharifa
+author: YouWon
 categories: References
 tags: [Equation, usage]
 ---

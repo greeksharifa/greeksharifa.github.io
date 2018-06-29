@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GitHub 사용법 - 01. 소개
-author: greeksharifa
+author: YouWon
 categories: GitHub
 tags: [GitHub, usage]
 ---

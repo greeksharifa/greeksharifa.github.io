@@ -1,7 +1,7 @@
 ---
 layout: post
 title: example-title
-author: greeksharifa
+author: YouWon
 categories: References
 tags: [usage]
 ---
@@ -39,7 +39,7 @@ title, author, categories, tags를 각각 원하는 대로 바꿔준다.
 
 참조: [stackexchange.com](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 
-표로 정리한 글: [greeksharifa's blog](https://greeksharifa.github.io/references/2018/06/29/equation-usage/)
+표로 정리한 글: [YW & YY's blog](https://greeksharifa.github.io/references/2018/06/29/equation-usage/)
 
 수식 입력은
 

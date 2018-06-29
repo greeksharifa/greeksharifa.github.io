@@ -1,7 +1,7 @@
 ---
 layout: post
 title: References
-author: greeksharifa
+author: YouWon
 categories: References
 tags: [GitHub, Markdown, Equation]
 ---
@@ -15,7 +15,7 @@ LaTex(Equation) | [stackexchange.com](https://math.meta.stackexchange.com/questi
 
 ---
 
-아래는 greeksharifa's blog의 reference 글들을 정리한 것이다.
+아래는 YY & YW's blog의 reference 글들을 정리한 것이다.
 
 | 참조            | 소분류            | URL
 | ---------       | ---------        | --------

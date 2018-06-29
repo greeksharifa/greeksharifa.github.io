@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Markdown 사용법
-author: greeksharifa
+author: YouWon
 categories: References
 tags: [Markdown, usage]
 ---
@@ -31,7 +31,7 @@ tags: [Markdown, usage]
 
 [참조 링크][1]
 
-[1]:  https://greeksharifa.github.io/references/2018/06/29/markdown-usage/ "greeksharifa's blog: markdown-usage"
+[1]:  https://greeksharifa.github.io/references/2018/06/29/markdown-usage/ "YW & YY's blog: markdown-usage"
 
 빈 줄을 넣는 것을 추천한다.
 
