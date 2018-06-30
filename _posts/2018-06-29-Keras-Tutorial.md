@@ -9,11 +9,11 @@ tags: [usage, Keras]
 ## 케라스 Basic
 
 #### [1] 케라스의 모델은 다음과 같이 정의한다.
-'''{.python}
+```{.python}
 model = Sequential([
   Dense(input_dim=2, units=1), Activation=('sigmoid')
 ])
-'''
+```
 
 >여기서 Dense는 layer를 생성하며
 input_dim은 입력 차원을, units는 출력 차원을 정의한다.
