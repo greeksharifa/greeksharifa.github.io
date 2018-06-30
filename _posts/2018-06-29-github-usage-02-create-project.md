@@ -1,26 +1,34 @@
 ---
 layout: post
-title: GitHub 사용법 - 01. 소개
+title: GitHub 사용법 - 02. 프로젝트와 repository 생성
 author: YouWon
 categories: GitHub
 tags: [GitHub, usage]
 ---
 
-- [Git이란?](#git이란)
-- [GitHub이란?](#github이란)
-- [Git에서 사용되는 개념](#git에서-사용되는-개념)
-  - [Repository(저장소)](#repository-저장소)
-  - [Init, Clone](#init-clone)
-  - [Add, Commit, Push](#add-commit-push)
-  - [Branch(브랜치)](#branch-브랜치)
-  - [Issue](#issue)
-- [Git 명령어](#git-명령어)
+프로젝트는 다음과 같은 과정을 거치면 만들 수 있다.
 
+- [Create Repository](#create-repository)
+- [](#)
+- [](#)
+- [](#)
 
-## Git이란?
+## Create Repository
 
-Git은 버전 관리 시스템으로, 파일의 변경 내용을 계속 추적하도록 개발된 것이다.
-즉 Git은 분산 버전 관리 시스템으로, 모든 사람이 프로젝트의 현재와 과거 모두의 전체 history를 갖고 있는 것이다.
+우선 <https://www.github.com/>에 접속하여 로그인한다(회원가입은 되어 있어야 한다). 그러면 다음과 비슷한 화면이 보인다.
+
+![01_new_repository](/public/img/GitHub/2018_06_29_github_usage_02_create_project/01_new_repository.png)
+
+**New repository**를 클릭한 후, 프로젝트 이름을 **git_tutorial**으로 입력한다. 원하는 이름으로 해도 상관없다. 또 Description을 성심성의껏 잘 작성한다.
+
+그리고 `Initialize this repository with a README` 체크박스에 체크한다.
+체크하지 않는다면 git repository를 처음 만들고, 로컬 repository와 연결하는 방법을 알려주는 안내 글이 뜬다. 이를 읽어 봐도 괜찮다.
+
+![02_create_a_new_repository](/public/img/GitHub/2018_06_29_github_usage_02_create_project/02_create_a_new_repository.PNG)
+
+마지막으로 **Create repository**를 누른다.
+
+그러면 이제 여러분의 GitHub 계정에 **git_tutorial**이란 이름의 원격(온라인) repository가 생성된 것이다.
 
 ## GitHub이란?
 
@@ -32,7 +40,7 @@ Git을 사용하는 이유까지 설명하지는 않도록 하겠다.
 
 ## Git에서 사용되는 개념
 
-### Repository 저장소
+### Repository(저장소)
 
 저장소는 당연히, 프로젝트 파일을 모아둔 곳이다. 하나의 root directory와 비슷한 개념이다.
 
@@ -88,7 +96,7 @@ Commit에는 단지 수정사항을 정리하는 것 외에 해주어야 하는 
   Commit message란 이 commit이 어떤 수정사항을 담고 있는지를 알려주는 것이다. 자세히 쓸수록 좋다.
 - Tag: 여러분이 생각하는 그 태그 맞다. 블로그의 글에 달려 있는 태그랑 같은 기능을 한다. 포스팅 대신 commit을 참조하는 것이 다를 뿐이다.
 
-### Branch 브랜치
+### Branch(브랜치)
 
 새로운 기능을 개발하거나 테스트를 할 때 사용하는 독립적인 commit history이다. 나무에서 메인 줄기가 아닌 옆으로 빠져나온 나뭇가지를 생각하면 된다.
 
@@ -115,9 +123,6 @@ branch 간 상호작용은 꽤 종류가 많지만, 여기서는 몇 가지만 �
 - todoList로 활용한다.
 
 협업할 때는 당연히 필요하고, 혼자 할 때도 bugList와 todoList로 쓰면 유용하다.
-
-
----
 
 ## Git 명령어
 

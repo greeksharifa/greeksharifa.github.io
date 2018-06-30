@@ -1,10 +1,10 @@
 # Site Info
-title: greeksharifa
-tagline: "greeksharifa's blog"
-description: "greeksharifa's blog powered by jekyll theme"
+title: YW & YY
+tagline: "YW & YY's blog"
+description: "YW & YY's blog powered by jekyll theme"
 baseurl: ""
 url: http://greeksharifa.github.io
-logo: '/public/logo.png'
+logo: '/public/img/logo.png'
 
 # Site configurations
 gems:
@@ -24,8 +24,8 @@ version: 1.0.0
 
 # About/contact
 author:
-  name: greeksharifa
-  description: <strong>Developer and researcher</strong>, greeksharifa.
+  name: YW & YY
+  description: <strong>Developer and researcher</strong>, YW & YY.
   gravatar: 3c2986ad7ac1f2230ea3596f44563328 # md5 hash of your email address
   contact:
     # linkedin:  <hide>

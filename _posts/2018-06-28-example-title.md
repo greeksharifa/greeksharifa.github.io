@@ -1,7 +1,7 @@
 ---
 layout: post
 title: example-title
-author: greeksharifa
+author: YouWon
 categories: References
 tags: [usage]
 ---
@@ -35,11 +35,24 @@ title, author, categories, tags를 각각 원하는 대로 바꿔준다.
 
 ---
 
+글을 다 썼다면, 다음 과정을 따른다.
+
+1. 먼저 `git pull ... ` 명령을 통해 원격 repository의 update 내용을 받아온다.
+2. `git add .`
+3. `git commit -m "commit-message"
+4. `git push ...`
+
+위의 ...은 아무것도 입력하지 않아도 될 수도 있다. 그러나 앞으로 branch를 통해 작업을 하거나 force push를 할 경우에는 조금 달라진다.
+
+별다른 문제가 없으면 아무것도 입력하지 않아도 된다.
+
+---
+
 ### 수식 입력
 
 참조: [stackexchange.com](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 
-표로 정리한 글: [greeksharifa's blog](https://greeksharifa.github.io/references/2018/06/29/equation-usage/)
+표로 정리한 글: [YW & YY's blog](https://greeksharifa.github.io/references/2018/06/29/equation-usage/)
 
 수식 입력은
 

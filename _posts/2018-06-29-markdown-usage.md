@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Markdown 사용법
-author: greeksharifa
+author: YouWon
 categories: References
 tags: [Markdown, usage]
 ---
@@ -31,13 +31,22 @@ tags: [Markdown, usage]
 
 [참조 링크][1]
 
-[1]:  https://greeksharifa.github.io/references/2018/06/29/markdown-usage/ "greeksharifa's blog: markdown-usage"
+[1]:  https://greeksharifa.github.io/references/2018/06/29/markdown-usage/ "YW & YY's blog: markdown-usage"
 
 빈 줄을 넣는 것을 추천한다.
 
 url 링크: <https://google.com/>
 
 어쩐지 처음으로 돌아가고 싶은가? 내부 링크는 이렇게 사용한다. [가장 큰 제목](#가장-큰-제목)
+
+내부 링크의 #id 규칙은 다음과 같다.
+
+0. 가능하면 괄호는 쓰지 않는다. 제대로 작동하지 않는다.
+1. 영문자는 lowercase로, 한글은 그대로 둔다.
+2. 문자/숫자/space/하이픈 외의 문자는 모두 제거한다.
+3. space는 하이픈으로 대체한다.
+4. 만약 제목이 유일한 이름이 아니라면, `-1` `-2` `-3` 등을 붙인다.
+
 
 > 인용하려면 이와 같이 한다.
 >> 인용을 안에 또 하고 싶으면 이렇게 한다.
@@ -107,3 +116,15 @@ Content 2 | Content 4
 ![alt text][1]
 [1]: /test3.png
 
+예시:
+
+<center><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" width="50%"></center>
+
+![01_new_repository](/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg)
+
+편하게 하려면,
+
+- /public/img directory 안에 /categories_name/post_file_name directory를 만든다.
+- 만든 directory 안에 이미지를 붙여 넣는다.
+- WebStorm에 보이는 이미지에서 Ctrl + Shift + Alt + C 를 눌러 상대 경로를 복사한다.
+- 그리고 위의 예시의 src 항목에다 붙여넣기 하면 된다. 이때 반드시 `/public/img/`으로 시작해야 한다.

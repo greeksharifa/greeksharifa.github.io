@@ -1,7 +1,7 @@
 ---
 layout: post
 title: References
-author: greeksharifa
+author: YouWon
 categories: References
 tags: [GitHub, Markdown, Equation]
 ---
@@ -12,10 +12,11 @@ tags: [GitHub, Markdown, Equation]
 ---------       | ---------
 Markdown        | [simhyejin.github.io](https://simhyejin.github.io/2016/06/30/Markdown-syntax/)
 LaTex(Equation) | [stackexchange.com](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
+Insert Image    | [nachoi.github.io](https://nachoi.github.io/studynote/2017/11/23/Github-resize-image.html)
 
 ---
 
-아래는 greeksharifa's blog의 reference 글들을 정리한 것이다.
+아래는 YW & YY's blog의 reference 글들을 정리한 것이다.
 
 | 참조            | 소분류            | URL
 | ---------       | ---------        | --------
