@@ -12,6 +12,48 @@ tags: [Stack]
 
 스택([stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)))의 사전적 의미는 더미(무더기)이다.
 
+```python
+print(1)
+c = input()
+print(2*c + 1)
+def pp(c):
+    print('what?')
+    print(c)
+pp(c+5)
+```
+
+```.python
+print(1)
+c = input()
+print(2*c + 1)
+def pp(c):
+    print('what?')
+    print(c)
+pp(c+5)
+```
+
+```{python}
+print(1)
+c = input()
+print(2*c + 1)
+def pp(c):
+    print('what?')
+    print(c)
+pp(c+5)
+```
+
+
+```{.python}
+print(1)
+c = input()
+print(2*c + 1)
+def pp(c):
+    print('what?')
+    print(c)
+pp(c+5)
+```
+
+
 * Complete Jekyll setup included (layouts, config, [404](/404), [RSS feed](/atom.xml), posts, and [example page](/about))
 * Mobile friendly design and development
 * Easily scalable text and component sizing with `rem` units in the CSS

@@ -24,7 +24,7 @@ Git은 버전 관리 시스템으로, 파일의 변경 내용을 계속 추적�
 
 ## GitHub이란?
 
-GitHub은 Git repository를 업로드하는 웹사이트이다. 여러분이 알고 있는 그 [깃헙](https://www.github.com) 맞다.
+GitHub은 Git repository를 업로드하는 웹사이트이다. 여러분이 알고 있는 그 [깃헙](https://github.com) 맞다.
 
 Git을 사용하는 이유까지 설명하지는 않도록 하겠다.
 
