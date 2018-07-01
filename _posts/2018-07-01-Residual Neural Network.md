@@ -17,17 +17,17 @@ Andrew Ng의 Deep Learning Specialization 강좌의 Programmin Assignment 코드
 <center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res01.jpg" width="50%"></center>
 
 본 Resnet은 Identity Block과 Convolutional Block을 사용하는데 그 구조는 아래와 같다.
-<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res02.jpg" width="50%"></center>
+<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res02.JPG" width="50%"></center>
 
-<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res03.jpg" width="50%"></center>
+<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res03.JPG" width="50%"></center>
 
-<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res04.jpg" width="50%"></center>
+<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res04.JPG" width="50%"></center>
 
-<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res05.jpg" width="50%"></center>
+<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res05.JPG" width="50%"></center>
 
-<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res06.jpg" width="50%"></center>
+<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res06.JPG" width="50%"></center>
 
-<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res07.jpg" width="50%"></center>
+<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res07.JPG" width="50%"></center>
 
 
 #### [2] 데이터셋 로딩
@@ -281,6 +281,7 @@ plot_model(model, to_file='resnet.png', show_shapes=True, show_layer_names=True)
 ```
 
 다음은 본 모델 구조의 최하단부를 나타낸다.
-<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res08.jpg" width="50%"></center>
+
+<center><img src="/public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res08.JPG" width="50%"></center>
 
 
