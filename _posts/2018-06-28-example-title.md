@@ -37,7 +37,7 @@ title, author, categories, tags를 각각 원하는 대로 바꿔준다.
 
 글을 다 썼다면, 다음 과정을 따른다.
 
-1. 먼저 `git pull ... ` 명령을 통해 원격 repository의 update 내용을 받아온다.
+1. 먼저 `git pull ... ` 명령을 통해 remote(원격) repository의 update 내용을 받아온다.
 2. `git add .`
 3. `git commit -m "commit-message"
 4. `git push ...`

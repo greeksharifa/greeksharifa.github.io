@@ -6,7 +6,7 @@ categories: References
 tags: [GitHub, Markdown, Equation]
 ---
 
-유용한 참조 사이트를 정리한다.
+### 참조한 사이트
 
 참조            | URL
 ---------       | ---------
@@ -16,7 +16,7 @@ Insert Image    | [nachoi.github.io](https://nachoi.github.io/studynote/2017/11/
 
 ---
 
-아래는 YW & YY's blog의 reference 글들을 정리한 것이다.
+### YW & YY's blog의 글
 
 | 참조            | 소분류            | URL
 | ---------       | ---------        | --------
@@ -24,4 +24,16 @@ Insert Image    | [nachoi.github.io](https://nachoi.github.io/studynote/2017/11/
 | Github          | 01. Introduction | [GitHub 사용법 - 01. 소개](https://greeksharifa.github.io/github/2018/06/29/github-usage-01-introduction/)
 |                 | 02. Init, Clone  | [GitHub 사용법 - 02. 프로젝트와 repository 생성](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/)
 | Markdown        |                  | [Markdown 사용법](https://greeksharifa.github.io/references/2018/06/29/markdown-usage/)
+
+### Download Site
+
+참조            | URL
+---------       | ---------
+Git Window      | [git-scm.com](https://git-scm.com/download/win)
+
+### 유용한 사이트
+
+참조            | URL
+---------       | ---------
+Text Diff Check | [diffchecker](https://www.diffchecker.com/diff)
 
