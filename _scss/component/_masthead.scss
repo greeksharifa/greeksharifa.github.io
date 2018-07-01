@@ -17,6 +17,7 @@
     width: 100%;
   }
   .masthead-title {
+    width: 100%;
     margin-top: 0;
     margin-bottom: 0;
     color: $theme-color;
@@ -35,6 +36,11 @@
       small {
         display: none;
       }
+    }
+    #search-icon {
+      text-align: right;
+      alignment: right;
+      float: right;
     }
   }
   .masthead-logo {
