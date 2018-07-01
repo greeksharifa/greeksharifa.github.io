@@ -13,6 +13,12 @@
  * Source: http://css-tricks.com/off-canvas-menu-with-css-target/#comment-207504
  */
 
+@import "../config";
+@import "../bourbon/css3/_background-image";
+@import "../bourbon/css3/_transform";
+@import "../bourbon/css3/_transition";
+@import "../bourbon/addons/_prefixer";
+
 /* Style and "hide" the sidebar */
 .sidebar {
   position: fixed;

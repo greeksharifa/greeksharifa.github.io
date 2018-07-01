@@ -1,3 +1,5 @@
+@import "../config";
+
 .post {
   margin-bottom: 4em;
 
@@ -9,9 +11,9 @@
     font-size: .8rem;
 
     h1 { font-size: 1.6rem; }
-    h2 { 
+    h2 {
       margin: 2em 0 1em 0;
-      font-size: 1.0rem; 
+      font-size: 1.0rem;
     }
     h3, h4, h5, h6 {
       margin: 2em 0 1em 0;
@@ -48,7 +50,7 @@
 .related {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  border-top: 1px solid $lightgrey;
+  border-top: 1px solid $light-grey;
 }
 .related-posts {
   padding-left: 0;

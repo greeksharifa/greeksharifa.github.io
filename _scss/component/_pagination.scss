@@ -5,6 +5,8 @@
  * there are no more previous or next posts to show.
  */
 
+@import "../config";
+
 .pagination {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
@@ -18,7 +20,7 @@
 .pagination-item {
   display: block;
   padding: 1rem;
-  border: 1px solid $lightgrey;
+  border: 1px solid $light-grey;
 }
 .pagination-item:first-child {
   margin-bottom: -1px;

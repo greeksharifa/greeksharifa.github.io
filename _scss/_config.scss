@@ -1,4 +1,4 @@
-/* Colors 
+/* Colors
  * Based on colors from Base16: http://chriskempson.github.io/base16/#default.
  */
 $red:      #ac4142;
@@ -11,11 +11,13 @@ $magenta:  #aa759f;
 $brown:    #8f5536;
 $default:  #505050;
 
+$maple:    #e11584;
+
 $white:      #fff;
-$lightgrey:  #eee;
+$light-grey:  #eee;
 $black:      #000;
 
-$theme-color: $blue;
+$theme-color: $maple;
 $theme-color-dark: darken($theme-color, 10%);
 
 $post-date-color: #9a9a9a;

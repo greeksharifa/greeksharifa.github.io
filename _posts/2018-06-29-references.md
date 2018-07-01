@@ -22,6 +22,6 @@ Insert Image    | [nachoi.github.io](https://nachoi.github.io/studynote/2017/11/
 | ---------       | ---------        | --------
 | Equation        |                  | [Github blog 수식 입력 방법](https://greeksharifa.github.io/references/2018/06/29/equation-usage/)
 | Github          | 01. Introduction | [GitHub 사용법 - 01. 소개](https://greeksharifa.github.io/github/2018/06/29/github-usage-01-introduction/)
-|                 | 02. Init, Clone  |
+|                 | 02. Init, Clone  | [GitHub 사용법 - 02. 프로젝트와 repository 생성](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/)
 | Markdown        |                  | [Markdown 사용법](https://greeksharifa.github.io/references/2018/06/29/markdown-usage/)
 

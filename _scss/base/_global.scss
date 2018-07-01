@@ -1,21 +1,22 @@
+@import "../config";
+@import "../bourbon/css3/_selection";
+
 @include selection {
   background: $theme-color;
   color: $white;
 }
 
-html,
-body {
+html, body {
   overflow-x: hidden;
 }
 
 html {
   font-family: $font-sans;
   text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust:100%;
-  -ms-text-size-adjust:100%;
-  text-rendering:optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {

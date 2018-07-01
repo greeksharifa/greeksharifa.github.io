@@ -4,11 +4,13 @@
  * Super small header above the content for site name and short description.
  */
 
+@import "../config";
+
 .masthead {
   padding-top:    1rem;
   padding-bottom: 1rem;
   margin-bottom: 3rem;
-  border-bottom: 1px solid $lightgrey;
+  border-bottom: 1px solid $light-grey;
   background-color: rgba(255,255,255,0.75);
   @media (min-width: 30rem) {
     position: fixed;

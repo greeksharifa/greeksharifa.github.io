@@ -48,6 +48,15 @@ title, author, categories, tags를 각각 원하는 대로 바꿔준다.
 
 ---
 
+### 코드 입력
+
+```python
+def p_print(c):
+    print('hi %s!' % c)
+
+p_print('Gorio')
+```
+
 ### 수식 입력
 
 참조: [stackexchange.com](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
