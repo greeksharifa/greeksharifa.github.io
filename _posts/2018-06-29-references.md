@@ -14,6 +14,7 @@ Markdown        | [simhyejin.github.io](https://simhyejin.github.io/2016/06/30/M
 LaTex(Equation) | [stackexchange.com](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference)
 Insert Image    | [nachoi.github.io](https://nachoi.github.io/studynote/2017/11/23/Github-resize-image.html)
 TOC Plugin      | [allejo](https://github.com/allejo/jekyll-toc)
+Commit Message  | [item4.github.io](https://item4.github.io/2016-11-01/How-to-Write-a-Git-Commit-Message/)
 
 ---
 
