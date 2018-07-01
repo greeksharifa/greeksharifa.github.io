@@ -6,16 +6,6 @@ categories: GitHub
 tags: [GitHub, usage]
 ---
 
-- [Git이란?](#git이란)
-- [GitHub이란?](#github이란)
-- [Git에서 사용되는 개념](#git에서-사용되는-개념)
-  - [Repository(저장소)](#repository-저장소)
-  - [Init, Clone](#init-clone)
-  - [Add, Commit, Push](#add-commit-push)
-  - [Branch(브랜치)](#branch-브랜치)
-  - [Issue](#issue)
-- [Git 명령어](#git-명령어)
-
 ## Git이란?
 
 Git은 버전 관리 시스템으로, 파일의 변경 내용을 계속 추적하도록 개발된 것이다.

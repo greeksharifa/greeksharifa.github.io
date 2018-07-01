@@ -6,16 +6,6 @@ categories: GitHub
 tags: [GitHub, usage]
 ---
 
-프로젝트는 다음과 같은 과정을 거치면 만들 수 있다.
-
-- [Remote Repository 생성](#rreate-repository-생성)
-- [Local Repository 생성](#local-repository-생성)
-- [프로젝트 수정](#프로젝트-수정)
-  - [파일 생성하고 수정하기](#파일-생성하고-수정하기)
-  - [git add](#git-add)
-  - [git commit](#git-commit)
-- [Remote & Local Repository 연결](#remote--local-repository-연결)
-- [](#)
 
 ***주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 당부한다. 눈으로만 보면 100% 잊어버린다.***
 
@@ -94,13 +84,13 @@ print("Hello, git!") # instead of "Hello, World!"
 
 위에서부터 하나씩 살펴보면 아래 표와 같다.
 
-Message | Descrption
--------- |--------
-On branch master | 지금 작업하는 [branch](https://greeksharifa.github.io/github/2018/06/29/github-usage-01-introduction/#branch-%EB%B8%8C%EB%9E%9C%EC%B9%98)가 master라는 의미이다. 본인이 어떤 branch에서 작업 중인지 확인하는 습관을 반드시 가지도록 한다. branch를 잘못 옮긴 줄 모르고 작업을 이어갔다가는 큰일 날 수 있다.
-No commits yet   | 아직 생성한 [commit](https://greeksharifa.github.io/github/2018/06/29/github-usage-01-introduction/#add-commit-push)이 없다는 뜻이다. 이후에 commit을 추가하면, 이 부분이 다르게 보일 것이다.
-Untracked files:  (use "git add <file>..." to include in what will be committed) | 여러분이 수정하긴 했지만 cache에 올라가지 않은 파일의 목록이다. cache에 올라갔다는 말은 track한다는 말과 같다.
-first.py         | 여러분은 아직 `git add` 명령을 사용하지 않았기 때문에 수정/생성/삭제한 유일한 파일인 `first.py`가 tracking되지 않고 있다.
-nothing added to commit but untracked files present (use "git add" to track) | tracking하려면 `git add`를 쓰라고 한다. 메시지에는 도움이 되는 내용이 많다.
+| Message | Description |
+| ------------ | ------------ |
+| On branch master | 지금 작업하는 [branch](https://greeksharifa.github.io/github/2018/06/29/github-usage-01-introduction/#branch-%EB%B8%8C%EB%9E%9C%EC%B9%98)가 master라는 의미이다. 본인이 어떤 branch에서 작업 중인지 확인하는 습관을 반드시 가지도록 한다. branch를 잘못 옮긴 줄 모르고 작업을 이어갔다가는 큰일 날 수 있다. |
+| No commits yet   | 아직 생성한 [commit](https://greeksharifa.github.io/github/2018/06/29/github-usage-01-introduction/#add-commit-push)이 없다는 뜻이다. 이후에 commit을 추가하면, 이 부분이 다르게 보일 것이다. |
+| Untracked files:  (use "git add <file>..." to include in what will be committed) | 여러분이 수정하긴 했지만 cache에 올라가지 않은 파일의 목록이다. cache에 올라갔다는 말은 track한다는 말과 같다. |
+| first.py         | 여러분은 아직 `git add` 명령을 사용하지 않았기 때문에 수정/생성/삭제한 유일한 파일인 `first.py`가 tracking되지 않고 있다. |
+| nothing added to commit but untracked files present (use "git add" to track) | tracking하려면 `git add`를 쓰라고 한다. 메시지에는 도움이 되는 내용이 많다. |
 
 조금 더 자세히 설명하기 위해, `second.py` 파일을 생성한다.
 ```python

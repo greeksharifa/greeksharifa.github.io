@@ -11,6 +11,8 @@ layout: default
   {% endfor %}
   {% endif %}
   <article>
+    <p><strong>목차</strong></p>
+    {% include toc.html html=content %}
     {{ content }}
   </article>
   <script type="text/javascript" async

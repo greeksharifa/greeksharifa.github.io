@@ -35,6 +35,10 @@ title, author, categories, tags를 각각 원하는 대로 바꿔준다.
 
 ---
 
+#### 목차는 자동으로 추가된다.
+
+---
+
 글을 다 썼다면, 다음 과정을 따른다.
 
 1. 먼저 `git pull ... ` 명령을 통해 remote(원격) repository의 update 내용을 받아온다.
@@ -74,6 +78,18 @@ display style: `$$ a^2 + b^2 = c^2 $$`
 $$ a^2 + b^2 = c^2 $$
 
 로 한다.
+
+---
+
+### 이미지 추가
+
+반드시 /로 시작해야 함.
+
+예시:
+
+<center><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" width="50%"></center>
+
+![01_new_repository](/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg)
 
 ---
 
