@@ -14,15 +14,15 @@ Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun - Deep Residual Learning for I
 Andrew Ng의 Deep Learning Specialization 강좌의 Programmin Assignment 코드를 대부분 이용한 것임을 밝힌다.
 
 #### [1] 원리 설명
-![원리1](C:/Users/YY/Desktop/File/14. Gitblog/image/Res01.jpg)
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res01.jpg" width="50%"></center>
 
 본 Resnet은 Identity Block과 Convolutional Block을 사용하는데 그 구조는 아래와 같다.
-![원리2](C:/Users/YY/Desktop/File/14. Gitblog/image/Res02.jpg)
-![원리3](C:/Users/YY/Desktop/File/14. Gitblog/image/Res03.jpg)
-![원리4](C:/Users/YY/Desktop/File/14. Gitblog/image/Res04.jpg)
-![원리5](C:/Users/YY/Desktop/File/14. Gitblog/image/Res05.jpg)
-![원리6](C:/Users/YY/Desktop/File/14. Gitblog/image/Res06.jpg)
-![원리7](C:/Users/YY/Desktop/File/14. Gitblog/image/Res07.jpg)
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res02.jpg" width="50%"></center>
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res03.jpg" width="50%"></center>
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res04.jpg" width="50%"></center>
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res05.jpg" width="50%"></center>
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res06.jpg" width="50%"></center>
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res07.jpg" width="50%"></center>
 
 
 #### [2] 데이터셋 로딩
@@ -276,5 +276,6 @@ plot_model(model, to_file='resnet.png', show_shapes=True, show_layer_names=True)
 ```
 
 다음은 본 모델 구조의 최하단부를 나타낸다.
-![모델구조](C:/Users/YY/Desktop/File/14. Gitblog/image/Res08.jpg)
+<center><img src="public/img/Deep_Learning/2018-07-01-Residual Neural Network/Res08.jpg" width="50%"></center>
+
 
