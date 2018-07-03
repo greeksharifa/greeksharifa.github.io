@@ -1,1 +1,6 @@
 .idea/
+algorithm/.vs/
+algorithm/algorithm/Debug/
+algorithm/Debug/
+algorithm/algorithm.sln
+*vcxproj*
