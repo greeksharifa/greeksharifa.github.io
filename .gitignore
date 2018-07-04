@@ -1,6 +1,14 @@
 .idea/
+<<<<<<< HEAD
 algorithm/.vs/
 algorithm/algorithm/Debug/
 algorithm/Debug/
 algorithm/algorithm.sln
+=======
+algorithm/algorithm.sln
+algorithm/.vs/
+algorithm/Debug/
+algorithm/algorithm/Debug/
+algorithm/algorithm/.vs/
+>>>>>>> ae5572efedc32bcc84006d82790dcd80c2e2bc2e
 *vcxproj*
