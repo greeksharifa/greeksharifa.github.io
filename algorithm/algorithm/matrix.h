@@ -4,49 +4,42 @@
 #include "bit_library.h"
 
 
-class Matrix {
-public:
-    int size, mod;
-    vvi element, origin;
-
-    Matrix(int size, int* arr, int _mod) :size(size), mod(_mod) {
-        origin = element = vvi(size, vi(size, 0));
-        for (int i = 0; i < size; i++)
-            element[i][i] = 1;
-        for (int i = 0; i < size; i++)
-            for (int j = 0; j < size; j++)
-                origin[i][j] = arr[i*size+j];
-    }
-
-    void multiply(vvi other) {
-        vvi ret(size, vi(size, 0));
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                for (int k = 0; k < size; k++) {
-                    ret[i][j] += ((ll)element[i][k] * other[k][j]) % mod;
-                    ret[i][j] %= mod;
-                }
+vvi mat_mul(vvi matrix_A, vvi matrix_B, int mod) {
+    int m = matrix_A.size();
+    vvi ret(m, vi(m));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < m; j++) {
+            for (int k = 0; k < m; k++) {
+              ret[i][j] += ((ll)matrix_A[i][k] * matrix_B[k][j]) % mod;
+              ret[i][j] %= mod;
             }
         }
-        element = ret;
     }
+    return ret;
+    
+}
 
-    void power_K(int K) {
-        K = bit_reverse(K);
-        while (K) {
-            multiply(element);
-            if (K & 1) {
-                multiply(origin);
-            }
-            K >>= 1;
+vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
+    int m = matrix.size(), cnt;
+    vvi original = matrix;
+    vvi ret = vvi(m, vi(m));
+    for (int i = 0; i < m; i++)
+        ret[i][i] = 1;
+    pi tmp = bit_reverse(N);
+    N = tmp.first, cnt = tmp.second;
+    while (cnt--) {
+        ret = mat_mul(ret, ret, mod);
+        if (N & 1) {
+            ret = mat_mul(ret, original, mod);
         }
+        N >>= 1;
     }
-
-    void print() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++)
-                printf("%d ", element[i][j]);
+    if (print) {
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++)
+                printf("%d ", ret[i][j]);
             puts("");
         }
     }
-};
+    return ret;
+}
