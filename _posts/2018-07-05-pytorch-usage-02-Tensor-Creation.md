@@ -8,7 +8,8 @@ tags: [PyTorch, TensorFlow]
 
 ## 참조
 
-<https://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#sphx-glr-beginner-blitz-tensor-tutorial-py>
+[Pytorch.org Tutorials](https://pytorch.org/tutorials/beginner/blitz/tensor_tutorial.html#sphx-glr-beginner-blitz-tensor-tutorial-py)
+<https://pytorch.org/docs/stable/tensors.html>
 
 ## Tensors
 
@@ -243,6 +244,40 @@ print(numpy_x)
  [3 4]]
 ```
 
+## 텐서 생성 옵션
+
+### dtype
+
+모든 텐서는 기본적으로 dtype을 갖고 있다. 데이터 타입(dtype)이란 데이터가 정수형인지, 실수형인지, 얼마나 큰 범위를 가질 수 있는지 등을 나타낸다. 종류는 아래 표와 같다.
+
+| Data type | dtype | CPU tensor | GPU tensor
+| -------- | -------- | -------- | -------- 
+| 32-bit floating point | torch.float32 or torch.float | torch.FloatTensor | torch.cuda.FloatTensor
+| 64-bit floating point | torch.float64 or torch.double | torch.DoubleTensor | torch.cuda.DoubleTensor
+| 16-bit floating point | torch.float16 or torch.half | torch.HalfTensor | torch.cuda.HalfTensor
+| 8-bit integer (unsigned) | torch.uint8 | torch.ByteTensor | torch.cuda.ByteTensor
+| 8-bit integer (signed) | torch.int8 | torch.CharTensor | torch.cuda.CharTensor
+| 16-bit integer (signed) | torch.int16 or torch.short | torch.ShortTensor | torch.cuda.ShortTensor
+| 32-bit integer (signed) | torch.int32 or torch.int | torch.IntTensor | torch.cuda.IntTensor
+| 64-bit integer (signed) | torch.int64 or torch.long | torch.LongTensor | torch.cuda.LongTensor
+
+사용법은 어렵지 않다. 텐서 생성시 `dtype=` 옵션을 붙여 주기만 하면 된다.
+
+```python
+# Code
+x = torch.linspace(2, 10, steps=5, dtype=torch.float)
+y = torch.zeros((2, 3), dtype=torch.long) # 단순 수열 대신 tuple을 size로 전달해도 된다.
+z = torch.ones([2, 3], dtype=torch.int8)  # 단순 수열 대신 list를 size로 전달해도 된다.
+print(x, y, z, sep='\n')
+
+# Results
+tensor([  2.,   4.,   6.,   8.,  10.])
+tensor([[ 0,  0,  0],
+        [ 0,  0,  0]])
+tensor([[ 1,  1,  1],
+        [ 1,  1,  1]], dtype=torch.int8)
+```
+
 ## 그 외
 
 ### Tensor.cuda() - GPU연산용으로 변환
@@ -255,7 +290,7 @@ print(numpy_x)
 
 ```python
 # Code
-x = torch.Tensor(2,3)
+x = torch.Tensor(2, 3)
 if torch.cuda.is_available():
     x = x.cuda()
 else: 
