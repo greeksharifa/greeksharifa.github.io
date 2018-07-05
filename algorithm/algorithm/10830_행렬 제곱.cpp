@@ -3,7 +3,7 @@
 
 #define mod 1000
 
-int main() {
+int main_10830() {
     int m, N;
     scanf("%d%d", &m, &N);
 
