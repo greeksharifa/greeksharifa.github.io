@@ -1,0 +1,18 @@
+
+### 
+
+| 분류 | 설명
+| -------- | --------
+| input | 
+| output | 
+| Initialization | 
+| Description | 
+
+```python
+# Code
+
+print(x)
+
+# Results
+
+```
