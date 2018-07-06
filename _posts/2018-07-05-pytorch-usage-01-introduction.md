@@ -38,6 +38,6 @@ x = torch.randn(3,5)
 print(x)
 ```
 
-결과가 대략 다음과 같이 나오면 설치가 완료되었다.
+결과가 대략 다음과 같이 나오면 설치가 완료되었다. 숫자가 다른 것은 랜덤이니 신경 쓰지 말자.
 
 ![01_run_pytorch.PNG](/public/img/PyTorch/2018-07-05-pytorch-usage-01-introduction/01_run_pytorch.PNG)
