@@ -12,14 +12,15 @@ tags: [Matrix, C++]
 -------- | --------
 문제 | [행렬 제곱](https://www.acmicpc.net/problem/10830)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/2749)
-참조 라이브러리 | [re_define.h](https://github.com/greeksharifa/greeksharifa.github.io/blob/master/algorithm/algorithm/re_define.h), [bit_library.h](https://github.com/greeksharifa/greeksharifa.github.io/blob/master/algorithm/algorithm/bit_library.h)
-이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/greeksharifa.github.io/blob/master/algorithm/algorithm/matrix.h)
+참조 라이브러리 | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
 
 --- 
 
 ## 개요
 
-### 시간복잡도: $ O(M^2 log N) $
+### 시간복잡도: $ O(M^3 log N) $
+### 공간복잡도: $ O(M^2) $
 - M은 행렬의 크기, N은 거듭제곱할 수를 나타낸다. 물론 행렬은 정사각행렬이다.
 
 이 글에서는 행렬의 N 거듭제곱을 빠르게 구하는 방법을 설명한다. 사실 행렬의 N승은 [어떤 정수의 N승](#)을 구하는 것과 근본적으로 동일하다.  
@@ -66,20 +67,18 @@ $A^2$는 생략하겠다. 예시는 이 정도면 충분할 것이다.
   - 가장 끝자리 비트(LSB)부터 고려하여 위의 거듭제곱 알고리즘을 따른다.
   - 가장 앞자리 비트(MSB)부터 고려하여 위의 거듭제곱 알고리즘을 따른다.
   - 답은 MSB부터 고려하는 것이다. N=11로 놓고 종이에 써보면, MSB를 고려하는 것은 $A^{11}$을 구하지만, LSB를 고려하는 것은 $A^{13}$을 구하게 될 것이다. 
-  - 이것이 바로 [matrix.h](https://github.com/greeksharifa/greeksharifa.github.io/blob/master/algorithm/algorithm/matrix.h)에서 `bit_reverse` 함수를 사용하는 이유이다.
+  - 이것이 바로 [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)에서 `bit_reverse` 함수를 사용하는 이유이다.
+  - 한 가지 더 주의할 점은, 비트 반전만 해서는 안된다. 100이 001로 바뀌어 그냥 1이 되기 때문이다. 따라서 자리수를 기억해 두어야 한다.
 
 행렬의 거듭제곱은 아주 복잡하지는 않다. 헷갈린다면 [정수의 N 거듭제곱 빠르게 구하기](#)을 참조하라.
 
 ## 구현
 
-거듭제곱이 구현된 행렬 클래스는 다음과 같다. 필자의 편의를 위해, "re-define.h"에 #define을 활용할 많은 단축 선언들을 사용했다. 
+거듭제곱이 구현된 행렬 클래스는 다음과 같다. 필자의 편의를 위해, `re-define.h`에 `#define`을 활용할 많은 단축 선언들을 사용했다. 
 
 ```cpp
-#include <vector>
-
 #include "re_define.h"
 #include "bit_library.h"
-
 
 vvi mat_mul(vvi matrix_A, vvi matrix_B, int mod) {
     int m = matrix_A.size();
@@ -93,6 +92,7 @@ vvi mat_mul(vvi matrix_A, vvi matrix_B, int mod) {
         }
     }
     return ret;
+
 }
 
 vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
@@ -119,20 +119,20 @@ vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
     }
     return ret;
 }
+
 ```
 
 ## 문제 풀이
 
 사용법은 어렵지 않다. 행렬을 2차원 벡터로 만든다.  
-그리고 행렬을 N승을 취한 후, print 옵션을 true로 주어 matrix_power_N 함수를 호출하면 문제는 풀린다.
+그리고 행렬을 N승을 취한 후, `print` 인자를 `true`로 주어 `matrix_power_N` 함수를 호출하면 문제는 풀린다.
 
 ```cpp
-#include <cstdio>
 #include "matrix.h"
 
 #define mod 1000
 
-int main() {
+int main_10830() {
     int m, N;
     scanf("%d%d", &m, &N);
 
