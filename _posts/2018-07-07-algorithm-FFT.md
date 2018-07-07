@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 고속 푸리에 변환(Fast Fourier Theorem, FFT): 큰 수의 곱셈
+title: 고속 푸리에 변환(Fast Fourier Theorem, FFT). 큰 수의 곱셈
 author: YouWon
 categories: Algorithm
 tags: [FFT, C++]
@@ -48,7 +48,7 @@ vvi | vector\<vector\<int\> \>
 - N은 두 수열의 길이의 max이다. 
 - FFT는 convolution을 빠르게 해 주는 것이지만, PS에서는 거의 대부분 곱셈을 빠르게 하기 위해 쓰인다.
 
-이 글에서는 FFT(고속 푸리에 변환)을 설명한다.   
+이 글에서는 FFT(고속 푸리에 변환)을 설명한다.  
 이론적인 부분에 대한 자세한 설명은 [topology-blog](http://topology-blog.tistory.com/6)에 잘 되어 있으므로 생략한다.
 
 ---
