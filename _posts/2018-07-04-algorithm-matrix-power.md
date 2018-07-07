@@ -15,6 +15,25 @@ tags: [Matrix, C++]
 참조 라이브러리 | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
 
+### re_define.h
+필자가 만든 라이브러리...라고 하기는 좀 그렇고, 그냥 재정의한 것들을 모아 놓은 헤더 파일이다.  
+필자의 코드에서 처음 보는 토큰들이 좀 있을 텐데, 잘 모르겠다면 [여기](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h)를 참조하면 된다.
+
+대표적으로 다음과 같은 것들이 있다.
+
+re_defined | original
+-------- | --------
+ll | long long
+all(A) | A.begin(), A.end()
+pi | pair\<int,int\>
+mp(x,y) | make_pair(x,y)
+vi | vector\<int\>
+vvi | vector\<vector\<int\> \>
+
+### bit_library.h
+
+비트 관련 사용자 정의 함수를 모아 놓았다.
+
 --- 
 
 ## 개요
@@ -96,14 +115,14 @@ vvi mat_mul(vvi matrix_A, vvi matrix_B, int mod) {
 }
 
 vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
-    int m = matrix.size(), cnt;
+    int m = matrix.size(), len = binary_len(N);
     vvi original = matrix;
     vvi ret = vvi(m, vi(m));
     for (int i = 0; i < m; i++)
         ret[i][i] = 1;
-    pi tmp = bit_reverse(N);
-    N = tmp.first, cnt = tmp.second;
-    while (cnt--) {
+    
+	N = bit_reverse(N);
+    while (len--) {
         ret = mat_mul(ret, ret, mod);
         if (N & 1) {
             ret = mat_mul(ret, original, mod);
@@ -119,7 +138,6 @@ vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
     }
     return ret;
 }
-
 ```
 
 ## 문제 풀이
@@ -146,4 +164,4 @@ int main_10830() {
 }
 ```
 
-***주의: 이 코드를 그대로 복붙하여 문제를 내면 당연히 틀린다. 못 믿겠다면, 저런 헤더 파일이 채점 사이트에 있을 것이라 생각하는가?***
+***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 못 믿겠다면, 저런 헤더 파일이 채점 사이트에 있을 것이라 생각하는가?***
