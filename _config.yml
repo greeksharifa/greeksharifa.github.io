@@ -33,7 +33,7 @@ author:
     # facebook:  <hide>
     # twitter:   <hide> https://twitter.com/Li_Zhihao
     # weibo:     <hide> http://weibo.com/41173780
-    # email:     <hide> http://www.google.com/recaptcha/mailhide/d?k=01I3lZFiZYng9N3QxYEtsDaQ==&c=31wAnZkuKqcG0ATAqJN8Z3ln5kkYLA9TwkGc-IbygpM=
+    email:     mailto:sharifa@snu.ac.kr
 
 # Navigation (2nd level links supported)
 nav:
@@ -56,8 +56,8 @@ hero:
   image: /public/img/Andre_Derain_Fishing_Boats_Collioure.jpg
   caption: Andre Derain, Fishing Boats Collioure, 1905. France.
 
-# Puglins
+# Plugins
 mathjax: true # whether support mathjax
 google_analytics_token: 'UA-00000000-1' # leave blank if you don't want google analytics
-disqus_short_name: 'your_short_name' # leave blank if you don't want disqus
+disqus_short_name: 'greeksharifa-github-io' # leave blank if you don't want disqus
 
