@@ -12,27 +12,9 @@ tags: [Matrix, C++]
 -------- | --------
 문제 | [행렬 제곱](https://www.acmicpc.net/problem/10830)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/2749)
-참조 라이브러리 | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+[참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
 
-### re_define.h
-필자가 만든 라이브러리...라고 하기는 좀 그렇고, 그냥 재정의한 것들을 모아 놓은 헤더 파일이다.  
-필자의 코드에서 처음 보는 토큰들이 좀 있을 텐데, 잘 모르겠다면 [여기](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h)를 참조하면 된다.
-
-대표적으로 다음과 같은 것들이 있다.
-
-re_defined | original
--------- | --------
-ll | long long
-all(A) | A.begin(), A.end()
-pi | pair\<int,int\>
-mp(x,y) | make_pair(x,y)
-vi | vector\<int\>
-vvi | vector\<vector\<int\> \>
-
-### bit_library.h
-
-비트 관련 사용자 정의 함수를 모아 놓았다.
 
 --- 
 
