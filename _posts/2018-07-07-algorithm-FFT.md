@@ -12,7 +12,7 @@ tags: [FFT, C++]
 -------- | --------
 문제 | [큰 수 곱셈](https://www.acmicpc.net/problem/13277)
 응용 문제 | [koosaga BOJ FFT 문제집](https://www.acmicpc.net/workbook/view/824)
-참조 라이브러리 | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+[참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [fft.h](https://github.com/greeksharifa/ps_code/blob/master/library/fft.h)
 
 ### re_define.h

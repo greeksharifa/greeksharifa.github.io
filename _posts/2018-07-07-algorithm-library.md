@@ -37,4 +37,4 @@ bit 연산을 안다면 코드를 보고 이해할 수 있으므로 따로 설�
 [코드](https://github.com/greeksharifa/ps_code/blob/master/library/conversion_library.h)
 
 어떤 데이터 타입 변수를 다른 데이터 타입 변수로 바꾸는 함수들을 모아 놓았다.  
-예를 들어 string_to_vi 함수는 "1236"과 같은 string을 vi(vector\<int\>)로 변환한다.
+예를 들어 string_to_vi 함수는 "1236"과 같은 string을 vector\<int\>로 변환한다.
