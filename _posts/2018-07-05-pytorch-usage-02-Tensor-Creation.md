@@ -206,6 +206,54 @@ tensor(1.00000e-31 *
         [ 0.0000,  0.0000]])
 ```
 
+### torch.*_like() - 입력받은 텐서와 동일한 성격의 텐서 생성
+
+종류는 다음과 같은 것들이 있다.  
+torch.empty_like, torch.full_like, torch.ones_like, torch.rand_like,  
+torch.randint_like, torch.randn_like, torch.zeros_like 
+
+| 분류 | 설명
+| -------- | --------
+| input | 텐서
+| output | 같은 크기의 텐서
+| Initialization | 넘겨준 텐서와 같음. dtype은 새로 지정 가능
+
+```python
+# Code
+x = torch.randn(3, dtype=torch.float64)
+torch.zeros_like(x)
+torch.ones_like(x, dtype=torch.int)
+
+
+# Results
+tensor([ 0.,  0.,  0.], dtype=torch.float64)
+
+tensor([ 1,  1,  1], dtype=torch.int32)
+```
+
+### torch.Tensor.new_*() - 입력받은 텐서와 동일한 성격의 텐서 생성
+
+종류는 다음과 같은 것들이 있다.  
+new_empty(size, dtype=None, device=None, requires_grad=False) → Tensor  
+new_full(size, fill_value, dtype=None, device=None, requires_grad=False) → Tensor  
+new_ones(size, dtype=None, device=None, requires_grad=False) → Tensor  
+new_tensor(data, dtype=None, device=None, requires_grad=False) → Tensor  
+new_zeros(size, dtype=None, device=None, requires_grad=False) → Tensor  
+
+```python
+# Code
+x = torch.randn(3, dtype=torch.float64)
+torch.zeros_like(x)
+torch.ones_like(x, dtype=torch.int)
+
+
+# Results
+tensor([ 0.,  0.,  0.], dtype=torch.float64)
+
+tensor([ 1,  1,  1], dtype=torch.int32)
+```
+
+
 ## NumPy 변환
 
 ### torch.from_numpy(x) - NumPy를 torch.Tensor로 변환
@@ -226,7 +274,7 @@ tensor([[ 1,  2],
         [ 3,  4]], dtype=torch.int32)
 ```
 
-### Tensor.numpy() - torch.Tensor를 NunPy로 변환
+### torch.Tensor.numpy() - torch.Tensor를 NunPy로 변환
 
 | 분류 | 설명
 | -------- | --------

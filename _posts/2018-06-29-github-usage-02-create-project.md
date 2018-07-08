@@ -7,7 +7,7 @@ tags: [GitHub, usage]
 ---
 
 
-***주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 당부한다. 눈으로만 보면 100% 잊어버린다.***
+***주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.***
 
 ## Remote Repository 생성
 
@@ -262,6 +262,11 @@ vi 편집기에서는, 입력 모드와 명령 모드가 있다.
     
 전역 설정과 repo별 설정의 차이를 굳이 설명할 필요는 없을 것이다.
 
+일단은 global 설정부터 시작하자. Your name/email은 여러분 스스로 입력하길 바란다.
+
+> git config --global user.name "Your name"
+> git config --global user.email "Your email"
+
 추가로 해야만 하는 것은 없지만, 등록된 사용자를 확인하는 방법도 알아야 하지 않겠는가?
 
 | 명령어 | Description
@@ -327,4 +332,4 @@ url은 여기서 확인할 수 있다.
 
 ## Git 명령어
 
-다음 글에서 원하는 기능을 찾아 볼 수 있다. [GitHub 명령 List](https://google.com/)
+다음 글에서 원하는 기능을 찾아 볼 수 있다. [GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)
