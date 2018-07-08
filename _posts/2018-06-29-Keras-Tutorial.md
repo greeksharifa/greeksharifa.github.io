@@ -6,7 +6,7 @@ categories: Keras
 tags: [usage, Keras]
 ---
 
-## 케라스 Basic
+### 케라스 Basic
 
 #### [1] 케라스의 모델 정의 방법은 크게 2가지가 있다.
 먼저 아래와 같이 정해진 형식으로 심플한 모델을 만들 수 있다.  
@@ -244,6 +244,11 @@ MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid')
 AveragePooling2D(pool_size=(2,2), strides=(2,2), padding='valid'
 ```
 
+#### [7] Channel 설정
+```python
+from keras import backend as K
+K.set_image_data_format('channels_first')
+```
 
 ---
 
