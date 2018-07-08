@@ -12,8 +12,14 @@ tags: [Matrix, C++]
 -------- | --------
 문제 | [행렬 제곱](https://www.acmicpc.net/problem/10830)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/2749)
+<<<<<<< HEAD
 참조 라이브러리 | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
+=======
+[참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
+
+>>>>>>> c7815bdf83641c01bc7a3171541c06b8f8d46995
 
 --- 
 
@@ -54,7 +60,7 @@ $$ A^{11} = (A^5)^2 \cdot A $$
 
 $$ A^5 = (A^2)^2 \cdot A $$
 
-$A^2$는 생략하겠다. 예시는 이 정도면 충분할 것이다.
+$$ A^2 = (A)^2 $$
 
 그러면 이것을 어떻게 코드로 옮길 것인가?  
 고려할 것이 몇 가지 있다. 하나씩 살펴보자.
@@ -69,12 +75,43 @@ $A^2$는 생략하겠다. 예시는 이 정도면 충분할 것이다.
   - 답은 MSB부터 고려하는 것이다. N=11로 놓고 종이에 써보면, MSB를 고려하는 것은 $A^{11}$을 구하지만, LSB를 고려하는 것은 $A^{13}$을 구하게 될 것이다. 
   - 이것이 바로 [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)에서 `bit_reverse` 함수를 사용하는 이유이다.
   - 한 가지 더 주의할 점은, 비트 반전만 해서는 안된다. 100이 001로 바뀌어 그냥 1이 되기 때문이다. 따라서 자리수를 기억해 두어야 한다.
+<<<<<<< HEAD
+=======
+
+이제 $A^{11}$는 다음과 같은 순서로 구하면 된다는 것을 알 수 있을 것이다. 11=$1011_2$임을 기억하라.  
+물론 $A^0 = 1$이다.
+
+이진수 | 식
+-------- | :--------
+1 | $ (A^0)^2 \cdot A = A^1 $
+0 | $ (A^1)^2 = A^2 $
+1 | $ (A^2)^2 \cdot A = A^5 $
+1 | $ (A^5)^2 \cdot A = A^{11} $
+
+
+조금 더 복잡한 예를 들어보겠다. 46=$101110_2$이다.
+
+이진수 | 식
+-------- | :--------
+1 | $ (A^0)^2 \cdot A = A^1 $
+0 | $ (A^1)^2 = A^2 $
+1 | $ (A^2)^2 \cdot A = A^5 $
+1 | $ (A^5)^2 \cdot A = A^{11} $
+1 | $ (A^{11})^2 \cdot A = A^{23} $
+0 | $ (A^{23})^2 = A^{46} $
+
+이진수로 나타냈을 때 해당 자리가 1이면 제곱한 후 A를 추가로 곱하고, 0이면 그냥 제곱만 하면 된다.
+>>>>>>> c7815bdf83641c01bc7a3171541c06b8f8d46995
 
 행렬의 거듭제곱은 아주 복잡하지는 않다. 헷갈린다면 [정수의 N 거듭제곱 빠르게 구하기](#)을 참조하라.
 
 ## 구현
 
+<<<<<<< HEAD
 거듭제곱이 구현된 행렬 클래스는 다음과 같다. 필자의 편의를 위해, `re-define.h`에 `#define`을 활용할 많은 단축 선언들을 사용했다. 
+=======
+거듭제곱이 구현된 행렬 클래스는 다음과 같다. 필자의 편의를 위해, `re_define.h`에 `#define`을 활용한 많은 단축 선언들을 사용했다. 
+>>>>>>> c7815bdf83641c01bc7a3171541c06b8f8d46995
 
 ```cpp
 #include "re_define.h"
@@ -96,14 +133,14 @@ vvi mat_mul(vvi matrix_A, vvi matrix_B, int mod) {
 }
 
 vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
-    int m = matrix.size(), cnt;
+    int m = matrix.size(), len = binary_len(N);
     vvi original = matrix;
     vvi ret = vvi(m, vi(m));
     for (int i = 0; i < m; i++)
         ret[i][i] = 1;
-    pi tmp = bit_reverse(N);
-    N = tmp.first, cnt = tmp.second;
-    while (cnt--) {
+    
+	N = bit_reverse(N);
+    while (len--) {
         ret = mat_mul(ret, ret, mod);
         if (N & 1) {
             ret = mat_mul(ret, original, mod);
@@ -146,4 +183,4 @@ int main_10830() {
 }
 ```
 
-***주의: 이 코드를 그대로 복붙하여 문제를 내면 당연히 틀린다. 못 믿겠다면, 저런 헤더 파일이 채점 사이트에 있을 것이라 생각하는가?***
+***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 못 믿겠다면, 저런 헤더 파일이 채점 사이트에 있을 것이라 생각하는가?***

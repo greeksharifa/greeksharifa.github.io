@@ -147,12 +147,102 @@ layer.get_output_at(node_index)
 layer.get_input_shape_at(node_index)  
 layer.get_output_shape_at(node_index)  
 
+#### [5] 간단한 Convolutional Model 만들기
+아래와 같은 데이터셋이 있다고 해보자.  
+여기서 input_shape은 (32,32,3)이 될 것이다. 이는 32X32의 Color Image shape과 일치한다. (# channel = 3)  
+```python
+x_train = np.random.normal(loc=20, scale=3, size=3072000).reshape((1000,32,32,3))
+y_train = keras.utils.to_categorical(np.random.randint(10, size=(1000, 1)), num_classes=10)
+x_test = np.random.normal(loc=20, scale=3, size=307200).reshape((100,32,32,3))
+y_test = keras.utils.to_categorical(np.random.randint(10, size=(100, 1)), num_classes=10)
+```
+
+간단한 합성곱 신경망 모델을 다음과 같이 만들 수 있다.  
+```python
+def convmodel(input_shape=(32,32,3), classes=10):
+     X_input_tensor = Input(input_shape)
+     X = ZeroPadding2D((3,3))(X_input_tensor)
+     X = Conv2D(filters=32, kernel_size=(3,3), strides=(1,1), padding='valid',
+                kernel_initializer=glorot_uniform(seed=0), name='conv1')(X)
+     X = BatchNormalization(axis=3, name='bn_conv1')(X)
+     X = Activation('relu')(X)
+     X = MaxPooling2D((3, 3), strides=(2, 2))(X)
+ 
+     X = Conv2D(filters=64, kernel_size=(3,3), strides=(1,1), padding='valid',
+                kernel_initializer=glorot_uniform(seed=0), name='conv2')(X)
+     X = BatchNormalization(axis=3, name='bn_conv2')(X)
+     X = Activation('relu')(X)
+     X = MaxPooling2D((3, 3), strides=(2, 2))(X)
+ 
+     X = Flatten()(X)
+     X = Dense(units=classes, activation='softmax',
+               name='fc' + str(classes), kernel_initializer=glorot_uniform(seed=0))(X)
+ 
+     model = Model(inputs=X_input_tensor, outputs=X, name='convmodel')
+     return model
+```
+
+함수 옵션으로 정의한 input_shape을 이용하여 첫 줄에서 X_input_tensor를 만들고  
+계속해서 이를 이용하여 마지막 output X까지 정의하는 방식으로 구성된다.  
+
+```python
+model = convmodel(input_shape=(32,32,3), classes=10)
+model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
+model.fit(x_train, y_train, batch_size=50, epochs=5)
+score = model.evaluate(x_test, y_test, batch_size=50)
+```
+
+#### [6] 케라스 Layer
+##### (1) Core Layer
+
+```python
+from keras.layers import Dense, Activation, Dropout, Flatten, Input, Reshape
+```
+
+```python
+Dense(units=32, input_shape=(16,), activation=None, kernel_initializer='glorot_uniform')
+```
+
+```python
+Activation(activation='relu')
+```
+
+```python
+Dropout(rate=0.5, noise_shape=None, seed=None)
+```
+여기서 rate은 drop시킬 비율을 나타냄. 텐서플로의 keep_prob과 반대
+
+```python
+Flatten(data_format=None)
+
+# example
+model = Sequential()
+model.add(Dense(input_shape=(32,32,3), outputs=16))
+
+# 현재 model.output_shape = (None, 32,32,16)
+model.add(Flatten())
+# model.output_shape = (None, 32*32*16)
+```
+
+```python
+Reshape(target_shape)
+```
+
+##### (2) Convolutional Layer
+```python
+Conv2D(filters, kernel_size=(3,3), strides=(1,1), padding='valid',
+       use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros')
+
+Cropping2D(cropping=((0, 0), (0, 0)), data_format=None)
+```
 
 
+##### (3) Pooling Layer
+```python
+MaxPooling2D(pool_size=(2,2), strides=(2,2), padding='valid')
 
-
-
-
+AveragePooling2D(pool_size=(2,2), strides=(2,2), padding='valid'
+```
 
 
 ---
