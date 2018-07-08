@@ -3,7 +3,7 @@ layout: post
 title: 
 author: YouWon
 categories: Algorithm
-tags: [, C++]
+tags: []
 ---
 
 ## 참조

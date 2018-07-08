@@ -3,7 +3,7 @@ layout: post
 title: 행렬의 N 거듭제곱 빠르게 구하기
 author: YouWon
 categories: Algorithm
-tags: [Matrix, C++]
+tags: [Matrix]
 ---
 
 ## 참조
@@ -12,14 +12,8 @@ tags: [Matrix, C++]
 -------- | --------
 문제 | [행렬 제곱](https://www.acmicpc.net/problem/10830)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/2749)
-<<<<<<< HEAD
-참조 라이브러리 | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
-이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
-=======
 [참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
-
->>>>>>> c7815bdf83641c01bc7a3171541c06b8f8d46995
 
 --- 
 
@@ -75,8 +69,6 @@ $$ A^2 = (A)^2 $$
   - 답은 MSB부터 고려하는 것이다. N=11로 놓고 종이에 써보면, MSB를 고려하는 것은 $A^{11}$을 구하지만, LSB를 고려하는 것은 $A^{13}$을 구하게 될 것이다. 
   - 이것이 바로 [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)에서 `bit_reverse` 함수를 사용하는 이유이다.
   - 한 가지 더 주의할 점은, 비트 반전만 해서는 안된다. 100이 001로 바뀌어 그냥 1이 되기 때문이다. 따라서 자리수를 기억해 두어야 한다.
-<<<<<<< HEAD
-=======
 
 이제 $A^{11}$는 다음과 같은 순서로 구하면 된다는 것을 알 수 있을 것이다. 11=$1011_2$임을 기억하라.  
 물론 $A^0 = 1$이다.
@@ -101,17 +93,12 @@ $$ A^2 = (A)^2 $$
 0 | $ (A^{23})^2 = A^{46} $
 
 이진수로 나타냈을 때 해당 자리가 1이면 제곱한 후 A를 추가로 곱하고, 0이면 그냥 제곱만 하면 된다.
->>>>>>> c7815bdf83641c01bc7a3171541c06b8f8d46995
 
 행렬의 거듭제곱은 아주 복잡하지는 않다. 헷갈린다면 [정수의 N 거듭제곱 빠르게 구하기](#)을 참조하라.
 
 ## 구현
 
-<<<<<<< HEAD
-거듭제곱이 구현된 행렬 클래스는 다음과 같다. 필자의 편의를 위해, `re-define.h`에 `#define`을 활용할 많은 단축 선언들을 사용했다. 
-=======
 거듭제곱이 구현된 행렬 클래스는 다음과 같다. 필자의 편의를 위해, `re_define.h`에 `#define`을 활용한 많은 단축 선언들을 사용했다. 
->>>>>>> c7815bdf83641c01bc7a3171541c06b8f8d46995
 
 ```cpp
 #include "re_define.h"

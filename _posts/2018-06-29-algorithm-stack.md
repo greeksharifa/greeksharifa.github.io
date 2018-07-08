@@ -3,7 +3,7 @@ layout: post
 title: Stack(스택)
 author: YouWon
 categories: [Data Structure]
-tags: [Stack, C++]
+tags: [Stack]
 ---
 
 ## 참조
@@ -11,7 +11,7 @@ tags: [Stack, C++]
 분류 | URL
 -------- | --------
 문제 | [스택](https://www.acmicpc.net/problem/10828), [괄호](https://www.acmicpc.net/problem/9012)
-응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/6549)
+응용 문제 | [스포일러 문제](https://www.acmicpc.net/problem/6549)
 이 글에서 설명하는 라이브러리 | [std::stack](http://www.cplusplus.com/reference/stack/stack/)
 
 
@@ -159,105 +159,21 @@ if (st.empty())
 
 ## 문제 풀이
 
-### [스택](https://www.acmicpc.net/problem/10828)
+### BOJ 10828(스택)
 
-이 문제는 말 그대로 스택 그 자체이다. 위에서 설명한 연산 5가지 연산만 수행하면 끝이다.  
-문제에서 주어진 5가지 명령에 쓰인 그대로 코딩하면 그만이니, 
-바로 [코드](https://github.com/greeksharifa/ps_code/blob/master/BOJ/10828_%EC%8A%A4%ED%83%9D.cpp)로 넘어가도록 하겠다.
+문제: [스택](https://www.acmicpc.net/problem/10828)
 
-```cpp
-int main_10828() {
-    freopen("input.txt", "r", stdin);
-    /*
-        문제의 입력을 일일이 치기 귀찮을 때 쓰는 방법이다.
-        잘 모르겠다면 [여기]()를 참조하면 된다.
-    */
-    ios::sync_with_stdio(false);    cin.tie(NULL);
+풀이: [BOJ 10828(스택) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/08/PS-10828/)
 
-    int n;
-    stack<int> st;
 
-    cin >> n;
+### BOJ 09012(괄호)
 
-    while (n--) {
-        string order;
-        cin >> order;
-        if (order == "push") {            // push 명령 처리
-            int e;
-            cin >> e;
-            st.push(e);
-        }
-        else if (order == "pop") {        // pop 명령 처리
-            if (st.empty())
-                cout << -1 << '\n';
-            else {
-                cout << st.top() << '\n';
-                st.pop();
-            }
-        }
-        else if (order == "size") {       // size 명령 처리
-            cout << st.size() << '\n';
-        }
-        else if (order == "empty") {      // empty 명령 처리
-            cout << int(st.empty()) << '\n';
-        }
-        else {                            // top 명령 처리
-            if (st.empty())
-                cout << -1 << '\n';
-            else
-                cout << st.top() << '\n';
-        }
-    }
-    return 0;
-}
-```
+문제: [괄호](https://www.acmicpc.net/problem/9012)
 
-***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 틀린다. 그대로 제출하지 말라는 뜻이다. 무언가를 바꿔 주어야 한다.***
+풀이: [BOJ 09012(괄호) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/08/PS-09012/)
 
-### [괄호](https://www.acmicpc.net/problem/9012)
+### 스포일러 문제
 
-괄호 짝 맞추기는 스택 문제의 단골손님이다.  
-이 문제의 핵심 아이디어는 다음과 같다.
+문제: [스포일러 문제](https://www.acmicpc.net/problem/6549)
 
-- 문자열을 하나씩 읽는다.
-  - 여는 괄호 `(` 가 나오면 스택에 집어넣는다.
-  - 닫는 괄호가 나오면 괄호 하나를 빼낸다.
-    -  이때 스택이 비어 있으면 잘못된 것이다. NO를 출력한다.
-- 문자열을 다 읽고 나서 스택이 비어 있어야만 제대로 된 Parenthesis String이다. YES를 출력한다. 
-  - 스택에 뭔가 들어 있으면 NO를 출력한다. 이 부분이 실수가 가장 많이 나오는 부분이다.
-  
-그리고 이 문제에 적용 가능한 트릭이 더 있다. 코딩을 간단하게 만드는.
-- 이 문제는 스택에 집어넣는 것이 오직 `(` 하나 뿐이다. 그럼 굳이 스택을 쓸 것도 없이, 쌓인 여는 괄호의 수를 세어 줄 변수 n 하나만 있으면 된다.
-- 각 문자마다 검사할 때, `)` 이 나오면 일단 n을 감소시킨다. 그리고 n이 0보다 작아지면, 바로 중단한다.
-  - 그러면 마지막에서 n이 0인지만 보면 YES / NO 를 판별할 수 있다. 
-
-문제 풀이는 다 끝났으니, [코드](https://github.com/greeksharifa/ps_code/blob/master/BOJ/09012_%EA%B4%84%ED%98%B8.cpp)를 보도록 하겠다.
-
-```cpp
-int main_09012() {
-    //freopen("input.txt", "r", stdin);
-    ios::sync_with_stdio(false);    cin.tie(NULL);
-
-    int TC;
-
-    cin >> TC;
-    while (TC--) {
-        int n = 0;
-        string str;
-        cin >> str;
-        for (auto s : str) {
-            if (s == '(')
-                ++n;
-            else 
-                --n;
-            if (n < 0)break;
-        }
-        cout << (n ? "NO" : "YES") << '\n';
-    }
-    return 0;
-}
-```
-
-***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 틀린다. 그대로 제출하지 말라는 뜻이다. 무언가를 바꿔 주어야 한다.***
-
-스포일러 문제에 대한 풀이는 [여기](https://greeksharifa.github.io/ps/2018/07/07/PS-06549/)에서 확인할 수 있다.
+풀이: [스포일러 풀이            ](https://greeksharifa.github.io/ps/2018/07/07/PS-06549/)

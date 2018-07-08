@@ -3,7 +3,7 @@ layout: post
 title: 고속 푸리에 변환(Fast Fourier Theorem, FFT). 큰 수의 곱셈
 author: YouWon
 categories: Algorithm
-tags: [FFT, C++]
+tags: [FFT]
 ---
 
 ## 참조
@@ -15,29 +15,6 @@ tags: [FFT, C++]
 [참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [fft.h](https://github.com/greeksharifa/ps_code/blob/master/library/fft.h)
 
-### re_define.h
-필자가 만든 라이브러리...라고 하기는 좀 그렇고, 그냥 재정의한 것들을 모아 놓은 헤더 파일이다.  
-필자의 코드에서 처음 보는 토큰들이 좀 있을 텐데, 잘 모르겠다면 [여기](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h)를 참조하면 된다.
-
-대표적으로 다음과 같은 것들이 있다.
-
-re_defined | original
--------- | --------
-ll | long long
-all(A) | A.begin(), A.end()
-pi | pair\<int,int\>
-mp(x,y) | make_pair(x,y)
-vi | vector\<int\>
-vvi | vector\<vector\<int\> \>
-
-### bit_library.h
-
-비트 관련 사용자 정의 함수를 모아 놓았다.
-
-### conversion_library.h
-
-어떤 데이터 타입 변수를 다른 데이터 타입 변수로 바꾸는 함수들을 모아 놓았다.  
-예를 들어 숫자로 이루어진 string을 vi(vector\<int\>)로 바꾸는 식이다.
 
 --- 
 
@@ -45,7 +22,7 @@ vvi | vector\<vector\<int\> \>
 
 ### 시간복잡도: $ O(N log N) $
 ### 공간복잡도: $ O(N) $
-- N은 두 수열의 길이의 max이다. 
+- N은 두 수열의 길이의 max값이다. 
 - FFT는 convolution을 빠르게 해 주는 것이지만, PS에서는 거의 대부분 곱셈을 빠르게 하기 위해 쓰인다.
 
 이 글에서는 FFT(고속 푸리에 변환)을 설명한다.  
@@ -151,30 +128,8 @@ void decimal_print(vi &A) {
 }
 ```
 
-## 문제 풀이
+## BOJ 13277(큰 수 곱셈) 문제 풀이
 
-사용법은 어렵지 않다. 입출력이 조금 많으므로, string과 cin을 사용할 것이라면 `ios::sync_with_stdio(false);`를 해주자.  
-문제 자체가 데이터에 대한 별다른 처리를 할 필요가 없으므로 설명은 생략한다.  
-입력받고, FFT를 적용하고, 출력하면 끝이다.
+문제: [BOJ 13277(큰 수 곱셈)](https://www.acmicpc.net/problem/13277)
 
-```cpp
-#include "../library/bit_library.h"
-#include "../library/conversion_library.h"
-#include "../library/fft.h"
-
-int main_13277() {
-    ios::sync_with_stdio(false);
-    string a, b;
-    cin >> a >> b;
-    vi A = string_to_vi(a);
-    vi B = string_to_vi(b);
-    reverse(all(A));	reverse(all(B));
-
-    vi ret = multiply(A, B);
-    decimal_print(ret);
-
-    return 0;
-}
-```
-
-***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 못 믿겠다면, 저런 헤더 파일이 채점 사이트에 있을 것이라 생각하는가?***
+풀이: [BOJ 13277(큰 수 곱셈) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/08/PS-13277/) 
