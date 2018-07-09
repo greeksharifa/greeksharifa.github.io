@@ -2,7 +2,7 @@
 layout: post
 title: 고속 푸리에 변환(Fast Fourier Theorem, FFT). 큰 수의 곱셈
 author: YouWon
-categories: Algorithm
+categories: [Algorithm & Data Structure]
 tags: [FFT]
 ---
 

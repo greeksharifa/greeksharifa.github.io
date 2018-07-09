@@ -2,7 +2,7 @@
 layout: post
 title: Stack(스택)
 author: YouWon
-categories: [Data Structure]
+categories: [Algorithm & Data Structure]
 tags: [Stack]
 ---
 

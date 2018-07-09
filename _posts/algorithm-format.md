@@ -2,7 +2,7 @@
 layout: post
 title: 
 author: YouWon
-categories: Algorithm
+categories: [Algorithm & Data Structure]
 tags: []
 ---
 

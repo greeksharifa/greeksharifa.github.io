@@ -2,7 +2,7 @@
 layout: post
 title: greeksharifa's Library
 author: YouWon
-categories: Algorithm
+categories: [Algorithm & Data Structure]
 tags: [C++]
 ---
 
