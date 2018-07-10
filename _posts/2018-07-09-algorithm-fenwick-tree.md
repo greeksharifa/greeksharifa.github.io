@@ -3,7 +3,7 @@ layout: post
 title: 펜윅 트리(Fenwick Tree, Binary Indexed Tree, BIT)
 author: YouWon
 categories: [Algorithm & Data Structure]
-tags: [Stack]
+tags: [Fenwick Tree, BIT]
 ---
 
 ## 참조
@@ -12,7 +12,7 @@ tags: [Stack]
 -------- | --------
 문제 | [구간 합 구하기](https://www.acmicpc.net/problem/2042), [구간 합 구하기 3](https://www.acmicpc.net/problem/11658)
 응용 문제 | [나무 심기](https://www.acmicpc.net/problem/1280)
-이 글에서 설명하는 라이브러리 | []()
+이 글에서 설명하는 라이브러리 | [fenwick_tree_BIT.h](https://github.com/greeksharifa/ps_code/blob/master/library/fenwick_tree_BIT.h)
 
 
 --- 
@@ -50,7 +50,7 @@ tags: [Stack]
 - 부분 합을 8만 개를 업데이트해야 하는 여러분은 화가 나기 시작했다.
 
 ...물론 이런 상황이 실제로 일어나지는 않겠지만, PS의 세계에서는 자주 있는 일이다. 
-누군가 무슨 숫자를 구해야 하고 그걸 여러분에게 자주 맡기지 않는가?
+누군가 무슨 숫자를 구해야 하고 그걸 여러분에게 자주 시키지 않는가?
 
 이런 상황에서 펜윅 트리를 쓸 수 있다. 즉 수시로 바뀌는 수열의 구간 합을 $O(log N)$만에 구할 수 있다.
 
@@ -59,134 +59,125 @@ tags: [Stack]
 2. 비트 연산을 이해하고 있다면 구현이 굉장히 쉬운 편이다.
 3. 속도도 빠르다(Big-O 표기법에서 생략된 상수가 작음).
 
+그럼 펜윅 트리의 구조를 살펴보자.
+
+## 펜윅 트리(BIT)의 구조
 
 
-## std::stack 사용법
+앞의 예를 조금 축소시켜서, 길이 10짜리 수열을 하나 생각하자. arr[]이라고 부르도록 하겠다.
 
-### Include
+![01_부분합1](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/01_부분합1.jpg)
 
-우선 include를 해야 한다. 특별히 큰 프로젝트에서 쓰는 것이 아니라면, `std::`를 매번 쓰기 귀찮으니 namespace도 써 주자.
+펜윅 트리는 개념상 트리이지만, 구현할 때는 길이 $2^n$짜리 배열로 구현한다. 여기서 $2^n$은 데이터의 개수(N) 이상인 최소의 $2^k$꼴 자연수이다. 예를 들어 N=10이라면 $2^n=2^4=16$이다.  
+정확히는 앞에 하나를 비워 두기 때문에 배열 자체의 크기는 $2^n+1$이고, 사용하는 인덱스는 1이상 $2^n$ 이하이다.  
+앞으로 이 배열을 data[]라고 부르도록 하겠다. 필자의 코드에서 FenwickTree 클래스의 vector\<int\> data로 구현되어 있다.
+
+![02_FenwickTree1](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/02_FenwickTree1.jpg)
+
+이제 배열로 구현된 펜윅 트리의, data의 각 원소가 갖는 값을 살펴보자.
+
+![03_FenwickTree2](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/03_FenwickTree2.jpg)
+
+위 그림에 모든 것이 설명되어 있긴 하지만, 자세히 살펴보자. i는 0 이상인 정수이다.
+1. 인덱스가 홀수인 원소는 수열의 해당 인덱스의 값을 그대로 가진다. 
+    1. $data[2i+1] = arr[2i+1]$
+    2. data[1] = arr[1], data[3] = arr[3], ...
+2. 인덱스가 2의 배수이면서 4의 배수가 아닌 원소(2, 6, 10, 14, ...)는 직전 두 arr 원소의 합을 보존한다.
+    1. $data[4i+2] = arr[4i+1] + arr[4i+2]$
+    2. data[2] = arr[1] + arr[2], data[6] = arr[5] + arr[6], ...
+3. 인덱스가 $2^k$의 배수이면서 $2^{k+1}$의 배수가 아닌 원소는 직전 arr의 $2^k$개의 값의 합을 보존한다.
+    1. $data[2^{k+1} \cdot i + 2^k] = \Sigma_{j=1}^{2^k}{arr[2^{k+1} \cdot i + j]}$
+    2. data[12] = arr[9] + arr[10] + arr[11] + arr[12], ...
+4. $data[2^n] = \Sigma_{j=1}^{2^n}{arr[j]}$이다. 즉, 펜윅 트리의 마지막 원소는 모든 arr 원소의 합을 보존한다.
+
+수식이 조금 복잡할 수는 있지만 그림을 보면 바로 이해될 것이다.
+
+
+### 구간 합($O(log N)$)
+
+이제 이 data[]로 구간 합을 어떻게 빠르게 구하는지 알아보자. 예를 들어서 arr[1...7]의 합을 구한다고 하자.
+
+![04_FenwickTree3](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/04_FenwickTree3.jpg)
+
+$$ \Sigma_{j=1}^7{arr[j]} = \Sigma_{j=1}^4{arr[j]} + \Sigma_{j=5}^6{arr[j]} + \Sigma_{j=7}^7{arr[j]} $$
+
+여기서  
+$\Sigma_{j=1}^4{arr[j]} = data[4]$,  
+$\Sigma_{j=5}^6{arr[j]} = data[6]$,  
+$\Sigma_{j=7}^7{arr[j]} = data[7]$  
+임을 알았으면 여러분은 구간 합을 구하는 방법을 이해한 것이다.
+
+N=10이라서 감이 잘 안 올 수는 있지만, 이렇게 구하는 방법이 $O(log N)$ 시간에 완료된다는 것도 알 수 있을 것이다.
+
+아직 의문점이 좀 있을 것이다.
+1. 그럼 arr[4...12]의 합은 어떻게 구하는가?
+    1. arr[1...12] - arr[1...3]을 구하면 된다. 즉, sum 연산을 두 번 실행하고, 작은 쪽을 빼 주면 끝.
+2. 눈으로 보면 arr[1...7] = data[4] + data[6] + data[7]인 것을 알 수 있지만, 구현은 어떻게 쉽게 하는가?
+    1. 비트 연산을 이해한다면 구현도 굉장히 쉽다. 구체적인 예(arr[1...43])를 보자.
+        1. arr[1...43] = data[32] + data[40] + data[42] + data[43]이다.
+        2. 43을 이진법으로 나타내면 $101011_2$이다.
+        3. 43의 LSB(1인 비트 중 끝자리)를 하나 뗀다. $101010_2 = 42$이다.
+        4. 하나 더 떼 본다. $101000_2 = 40$이다.
+        5. 하나 더 떼 본다. $100000_2 = 32$이다.
+    2. 그럼 LSB를 어떻게 쉽게 구하는가?
+        1. idx = 43으로 두고, idx &= idx – 1 연산을 idx가 0이 될 때까지 수행한다.
+        2. 이게 왜 되는지 이해가 안 된다면 idx와 idx - 1을 이진법으로 나타내고, and 연산을 수행해보면 이해가 될 것이라 장담한다.
+3. 위와 같이 이진법으로 접근해보면, 시간복잡도가 $O(log N)$인 것을 알 수 있다.
+
+### 값 업데이트($O(log N)$)
+
+arr[7]을 업데이트했다고 가정해보자. 좀 전에 봤던 그림을 다시 가져왔다.
+
+![04_FenwickTree3](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/04_FenwickTree3.jpg)
+
+arr[7]을 업데이트했다면, data[i]는 arr[j]들의 합으로 이루어져 있고, 그 값을 프로그램이 끝날 때까지 유지해야 한다. 그러면 arr[7]이 계산식에 포함되어 있는 모든 data[i]들을 업데이트해야 한다.
+
+그럼 문제는 다음으로 연결된다.
+> arr[7]을 계산식에 포함하는 data[i]들은 어떤 것이 있는가?
+
+일단 답을 보자. data[7], data[8], data[16]이 있다.  
+이는 위 그림에서 7 위쪽으로 화살표를 쭉 그려보면 알 수 있다. data[7]은 당연히 업데이트해야 하고, 화살표와 만나는 data[8]과 data[16]을 업데이트해야 한다.
+
+각 숫자들을 이진법으로 나타내보자. $00111_2, 01000_2, 10000_2$이다.  
+규칙성이 보이는가? 조금은 어려울 것이다. 답은, LSB를 더하면 다음 수가 된다는 것이다.
+
+다른 예를 들어보겠다. arr[3]을 업데이트하면, data[3], data[4], data[8], data[16]을 업데이트한다.
+1. $3 = 00011_2$
+2. $4 = 00011_2 + 00001_2 = 00100_2$
+3. $8 = 00100_2 + 00100_2 = 01000_2$
+4. $16 = 01000_2 + 01000_2 = 10000_2$
+
+조금 전에 구간 합을 구할 때는 LSB를 빼 주었다. 업데이트를 할 때는 LSB를 더해 준다.  
+이것이 가능한 이유는 역시 손으로 몇 개 정도 그려 보면 이해할 수 있다.
+
+
+## 구현
+
+코드의 가독성을 위해 그리고 N이 작을 때 메모리를 아끼기 위해 동적으로 data를 vector\<int\>로 선언하여 `FenwickTree class` 안에 넣었다.  
+하지만, 실제 PS 문제를 풀 때는 그냥 `2*MAX_N + 1` 크기만큼 배열을 전역 변수로 설정해버리는 것이 실행 시간이 더 빠르다.
 
 ```cpp
-#include <stack>
-
-using namespace std;
+둥!
 ```
-
-### 선언
-
-stack은 generic으로 구현된 template이다. 즉, stack에 들어갈 데이터 타입을 정해야 한다.  
-보통 int나 char 등을 사용하게 될 것이다. 물론 기본형 뿐만 아니라 사용자 정의 타입도 가능하다.
-
-```cpp
-stack<int> st; // 현재 비어 있다.
-// stack<char> st_c;
-// stack<dot_2d> st_person; // dot_2d는 알아서 정의하시길...
-```
-
-### push(e)
-
-스택에 무언가를 집어넣는(push) 연산이다. e는 집어넣을 원소이다.
-
-```cpp
-st.push(10);  // 10
-st.push(20);  // 10 20
-st.push(30);  // 10 20 30
-st.push(777); // 10 20 30 777
-``` 
-
-### size()
-
-스택의 현재 size를 반환한다. 몇 개나 들어 있는지 알고 싶을 때 쓰면 된다.
-
-```cpp
-printf("size: %d\n", st.size());  // size: 4
-st.push(999);
-printf("size: %d\n", st.size());  // size: 5
-```
-
-### top()
-
-스택의 맨 위 원소를 반환한다. 스택에서는 맨 위의 것만 빼낼 수 있다. 다른 원소에는 접근이 불가능하다.  
-물론 스택을 직접 구현한다면 접근 가능하게 할 수도 있지만, 스택을 쓰는 데 그렇게 할 이유가..?
-
-```cpp
-int e = st.top();
-printf("top: %d\n", e);   // top: 999
-```
-
-### pop()
-
-스택의 맨 위 원소를 제거한다. 책을 하나 가져갔다고 생각하면 된다.  
-반환값이 `void`이므로 리턴값으로 top 값을 알아낼 수는 없다.  
-또, 비어 있는데 pop을 수행하려고 하면 런타임 에러를 발생시킨다.
-
-```cpp
-st.pop(); // 999가 제거됨
-for (int i = 0; i < 3; i++)
-    st.pop(); 
-// 777, 30, 20이 차례로 제거됨
-```
-
-### empty()
-
-스택이 비었는지를 검사한다. `size() == 0` 구문으로 체크할 수도 있지만, 이쪽이 더 직관적이다. 그리고 생각보다 자주 쓰게 된다.
-
-```cpp
-if (st.empty())
-    printf("stack is empty, 1\n");
-st.pop();   // 10이 제거됨
-if (st.empty())
-    printf("stack is empty, 2\n");
-
-// stack is empty, 2
-```
-
-### emplace(e)
-
-STL에서 emplace는 생성자를 호출하면서 `push`(혹은 `push_back`)하는 것과 동일하다.  
-이 기능은 stack에 기본형 말고 `dot_2d`와 같은 사용자 정의 함수나 생성자 호출이 필요한 데이터 타입을 넣었을 때 필요하다.  
-int와 같은 기본형을 넣을 때는 별 차이가 없다.
-
-```cpp
-st.emplace(-3);
-printf("top: %d\n", st.top());  // top: -3
-```
-
-### swap(another_stack)
-
-같은 데이터 타입을 담고 있는 다른 스택과 원소 전체를 swap한다.
-
-```cpp
-stack<int> another_st;
-st.swap(another_st);
-if (st.empty())
-    printf("stack is empty, 3\n");
-// stack is empty, 3
-```
-
-스택은 사실상 이게 전부이다. 그리고 생각보다 많은 문제를 풀 수 있다.  
-물론 대부분은 너무 뻔히 풀이가 스택이라는 것이 보이지만, 안 그런 것도 있다(스포일러 문제 참조)  
-
 
 
 ## 문제 풀이
 
-### BOJ 10828(스택)
+### BOJ 02042(구간 합 구하기)
 
-문제: [스택](https://www.acmicpc.net/problem/10828)
+문제: [구간 합 구하기](https://www.acmicpc.net/problem/2042)
 
-풀이: [BOJ 10828(스택) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/08/PS-10828/)
+풀이: []()
 
+### BOJ 11658(구간 합 구하기 3)
 
-### BOJ 09012(괄호)
+문제: [구간 합 구하기 3](https://www.acmicpc.net/problem/11658)
 
-문제: [괄호](https://www.acmicpc.net/problem/9012)
+풀이: []()
 
-풀이: [BOJ 09012(괄호) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/08/PS-09012/)
+### BOJ 01280(나무 심기)
 
-### 스포일러 문제
+문제: [나무 심기](https://www.acmicpc.net/problem/1280)
 
-문제: [스포일러 문제](https://www.acmicpc.net/problem/6549)
+풀이: []()
 
-풀이: [스포일러 풀이            ](https://greeksharifa.github.io/ps/2018/07/07/PS-06549/)
