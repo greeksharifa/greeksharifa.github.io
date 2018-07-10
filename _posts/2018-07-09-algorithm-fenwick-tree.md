@@ -154,10 +154,50 @@ arr[7]을 업데이트했다면, data[i]는 arr[j]들의 합으로 이루어져 
 ## 구현
 
 코드의 가독성을 위해 그리고 N이 작을 때 메모리를 아끼기 위해 동적으로 data를 vector\<int\>로 선언하여 `FenwickTree class` 안에 넣었다.  
-하지만, 실제 PS 문제를 풀 때는 그냥 `2*MAX_N + 1` 크기만큼 배열을 전역 변수로 설정해버리는 것이 실행 시간이 더 빠르다.
+
+- 하지만, 실제 PS 문제를 풀 때는 그냥 $2^n + 1$ 크기만큼 배열을 전역 변수로 설정해버리는 것이 실행 시간이 더 빠르다.
+- arr[i] = sum[i] - sum[i-1]임을 이용하면 arr배열을 유지할 필요가 없다.
+- 사실 이 클래스의 경우 long long을 많이 사용하기 때문에 template을 사용하는 이유가 별로 없긴 하다.
 
 ```cpp
-둥!
+#include "sharifa_header.h"
+#include "bit_library.h"
+
+template <typename T>
+class FenwickTree {
+public:
+    int size;
+    vector<T> arr;
+    vector<ll> data;
+
+    FenwickTree<T>(int _N) {
+        size = _N;
+        arr.resize(_N + 1);
+        size = power_of_2_eg_than(_N);
+        data.resize(size + 1);
+    }
+
+    void update(int x, T val, bool u) {
+        T delta_val = u ? val - arr[x] : val;
+        arr[x] = val;
+
+        while (x <= size) {
+            data[x] += delta_val;
+            x += (x&-x);
+        }
+    }
+    ll sum(int x) {
+        ll ret = 0;
+        while (x) {
+            ret += data[x];
+            x -= (x&-x);
+        }
+        return ret;
+    }
+    ll sum(int x, int y) {
+        return sum(y) - sum(x - 1);
+    }
+};
 ```
 
 

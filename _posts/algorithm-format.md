@@ -12,7 +12,7 @@ tags: []
 -------- | --------
 문제 | []()
 응용 문제 | [스포일러 1]()
-[참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+[참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [sharifa_header.h](https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | []()
 
 
@@ -37,9 +37,6 @@ tags: []
 다음과 같다.
 
 ```cpp
-#include "re_define.h"
-#include "bit_library.h"
-
 
 ```
 
@@ -48,7 +45,6 @@ tags: []
 사용법은 어렵지 않다. 
 
 ```cpp
-
 
 ```
 

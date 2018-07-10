@@ -12,7 +12,7 @@ tags: [FFT]
 -------- | --------
 문제 | [큰 수 곱셈](https://www.acmicpc.net/problem/13277)
 응용 문제 | [koosaga BOJ FFT 문제집](https://www.acmicpc.net/workbook/view/824)
-[참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+[참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [sharifa_header.h](https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [fft.h](https://github.com/greeksharifa/ps_code/blob/master/library/fft.h)
 
 
@@ -56,7 +56,7 @@ fft 함수는 http://topology-blog.tistory.com/6 블로그를 참조한 것입�
 
 #pragma once
 
-#include "re_define.h"
+#include "sharifa_header.h"
 #include "bit_library.h"
 
 typedef complex<double> base;
@@ -86,9 +86,9 @@ void fft(vector<base> &a, bool inv) {
     }
 }
 
-vi multiply(vi &A, vi &B) {
-    vector<base> a(all(A));
-    vector<base> b(all(B));
+vector<int> multiply(vector<int> &A, vector<int> &B) {
+    vector<base> a(A.begin(), A.end());
+    vector<base> b(B.begin(), B.end());
     int n = power_of_2_eg_than(max(a.size(), b.size())) * 2;
 
     a.resize(n);	b.resize(n);
@@ -98,33 +98,10 @@ vi multiply(vi &A, vi &B) {
         a[i] *= b[i];
     fft(a, true);
 
-    vi ret(n);
+    vector<int> ret(n);
     for (int i = 0; i < n; i++)
         ret[i] = (int)round(a[i].real());
     return ret;
-}
-
-void decimal_print(vi &A) {
-    int i = 0;
-    while (i < A.size()) {
-        if (A[i] >= 10) {
-            if (i == A.size() - 1)
-                A.push_back(A[i] / 10);
-            else
-                A[i + 1] += A[i] / 10;
-            A[i] %= 10;
-        }
-        ++i;
-    }
-
-    reverse(all(A));
-
-    bool start = false;
-    for (auto elem : A) {
-        if (elem)start = true;
-        if (start)cout << elem;
-    }
-    if (!start)cout << '0';
 }
 ```
 

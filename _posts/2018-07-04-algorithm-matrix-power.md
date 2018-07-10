@@ -12,7 +12,7 @@ tags: [Matrix]
 -------- | --------
 문제 | [행렬 제곱](https://www.acmicpc.net/problem/10830)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/2749)
-[참조 라이브러리](https://greeksharifa.github.io/algorithm/2018/07/07/algorithm-library) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+[참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
 
 --- 
