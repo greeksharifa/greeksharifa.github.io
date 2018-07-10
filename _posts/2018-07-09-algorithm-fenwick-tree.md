@@ -177,8 +177,8 @@ public:
         data.resize(size + 1);
     }
 
-    void update(int x, T val, bool u) {
-        T delta_val = u ? val - arr[x] : val;
+    void update(int x, T val) {
+        T delta_val = val - arr[x];
         arr[x] = val;
 
         while (x <= size) {
@@ -207,7 +207,7 @@ public:
 
 문제: [구간 합 구하기](https://www.acmicpc.net/problem/2042)
 
-풀이: []()
+풀이: [BOJ 02042(구간 합 구하기) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/10/PS-02042/)
 
 ### BOJ 11658(구간 합 구하기 3)
 

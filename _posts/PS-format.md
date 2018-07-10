@@ -11,7 +11,7 @@ tags: [PS]
 분류 | URL
 -------- | --------
 문제 | []()
-[참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [fft.h](https://github.com/greeksharifa/ps_code/blob/master/library/fft.h), [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+[참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [](), [sharifa_header.h](https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 코드 | []()
 
 --- 
@@ -31,10 +31,7 @@ tags: [PS]
 다음과 같다.
 
 ```cpp
-#include "re_define.h"
-#include "bit_library.h"
-
 
 ```
 
-***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 못 믿겠다면, 저런 헤더 파일이 채점 사이트에 있을 것이라 생각하는가?***
+***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 저런 헤더 파일이 채점 사이트에 있을까?***

@@ -3,7 +3,7 @@ layout: post
 title: 행렬의 N 거듭제곱 빠르게 구하기
 author: YouWon
 categories: [Algorithm & Data Structure]
-tags: [Matrix]
+tags: [Matrix Power]
 ---
 
 ## 참조
@@ -12,7 +12,7 @@ tags: [Matrix]
 -------- | --------
 문제 | [행렬 제곱](https://www.acmicpc.net/problem/10830)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/2749)
-[참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [re_define.h](https://github.com/greeksharifa/ps_code/blob/master/library/re_define.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+[참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [sharifa_header.h](https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
 이 글에서 설명하는 라이브러리 | [matrix.h](https://github.com/greeksharifa/ps_code/blob/master/library/matrix.h)
 
 --- 
@@ -102,12 +102,12 @@ $$ A^2 = (A)^2 $$
 거듭제곱이 구현된 행렬 클래스는 다음과 같다. 필자의 편의를 위해, `re_define.h`에 `#define`을 활용한 많은 단축 선언들을 사용했다. 
 
 ```cpp
-#include "re_define.h"
+#include "sharifa_header.h"
 #include "bit_library.h"
 
-vvi mat_mul(vvi matrix_A, vvi matrix_B, int mod) {
+vector<vector<int> > mat_mul(vector<vector<int> > matrix_A, vector<vector<int> > matrix_B, int mod) {
     int m = matrix_A.size();
-    vvi ret(m, vi(m));
+    vector<vector<int> > ret(m, vector<int>(m));
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < m; j++) {
             for (int k = 0; k < m; k++) {
@@ -120,10 +120,10 @@ vvi mat_mul(vvi matrix_A, vvi matrix_B, int mod) {
 
 }
 
-vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
+vector<vector<int> > matrix_power_N(vector<vector<int> > matrix, int N, int mod, bool print) {
     int m = matrix.size(), len = binary_len(N);
-    vvi original = matrix;
-    vvi ret = vvi(m, vi(m));
+    vector<vector<int> > original = matrix;
+    vector<vector<int> > ret = vector<vector<int> >(m, vector<int>(m));
     for (int i = 0; i < m; i++)
         ret[i][i] = 1;
     
@@ -144,7 +144,6 @@ vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
     }
     return ret;
 }
-
 ```
 
 ## 문제 풀이
@@ -153,7 +152,7 @@ vvi matrix_power_N(vvi matrix, int N, int mod, bool print) {
 그리고 행렬을 N승을 취한 후, `print` 인자를 `true`로 주어 `matrix_power_N` 함수를 호출하면 문제는 풀린다.
 
 ```cpp
-#include "matrix.h"
+#include "../library/matrix.h"
 
 #define mod 1000
 
@@ -161,7 +160,7 @@ int main_10830() {
     int m, N;
     scanf("%d%d", &m, &N);
 
-    vvi original = vvi(m, vi(m));
+    vector<vector<int> > original = vector<vector<int> >(m, vector<int>(m));
     for (int i = 0; i < m; i++)
         for (int j = 0; j < m; j++)
             scanf("%d", &original[i][j]);
