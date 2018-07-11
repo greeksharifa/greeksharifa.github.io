@@ -171,7 +171,6 @@ public:
     vector<ll> data;
 
     FenwickTree<T>(int _N) {
-        size = _N;
         arr.resize(_N + 1);
         size = power_of_2_eg_than(_N);
         data.resize(size + 1);
@@ -213,7 +212,7 @@ public:
 
 문제: [구간 합 구하기 3](https://www.acmicpc.net/problem/11658)
 
-풀이: []()
+풀이: [BOJ 11658(구간 합 구하기 3) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/11/PS-11658/)
 
 ### BOJ 01280(나무 심기)
 
