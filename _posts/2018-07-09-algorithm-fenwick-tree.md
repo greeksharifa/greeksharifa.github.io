@@ -15,11 +15,11 @@ tags: [Fenwick Tree, BIT]
 이 글에서 설명하는 라이브러리 | [fenwick_tree_BIT.h](https://github.com/greeksharifa/ps_code/blob/master/library/fenwick_tree_BIT.h)
 
 
---- 
+---
 
 ## 개요
 
-### 시간복잡도: $ O(M log N) $ 
+### 시간복잡도: $ O(M log N) $
 #### 구간 합 구하기: $ O(log N) $
 #### 값 업데이트하기: $ O(log N) $
 
@@ -38,7 +38,7 @@ tags: [Fenwick Tree, BIT]
 
 ## 펜윅 트리(Fenwick Tree, Binary Indexed Tree, BIT)
 
-흔히 BIT라고 불리는 [펜윅 트리(Fenwick Tree)](https://en.wikipedia.org/wiki/Fenwick_tree)는 
+흔히 BIT라고 불리는 [펜윅 트리(Fenwick Tree)](https://en.wikipedia.org/wiki/Fenwick_tree)는
 '수시로 바뀌는 수열의 구간 합'을 빠르게 구할 수 있도록 고안된 자료 구조이다.
 
 ### 다음 상황을 살펴보자.
@@ -49,12 +49,12 @@ tags: [Fenwick Tree, BIT]
 - 이번엔 20000번째 수와 55555번째 수를 업데이트하라고 했다.
 - 부분 합을 8만 개를 업데이트해야 하는 여러분은 화가 나기 시작했다.
 
-...물론 이런 상황이 실제로 일어나지는 않겠지만, PS의 세계에서는 자주 있는 일이다. 
+...물론 이런 상황이 실제로 일어나지는 않겠지만, PS의 세계에서는 자주 있는 일이다.
 누군가 무슨 숫자를 구해야 하고 그걸 여러분에게 자주 시키지 않는가?
 
 이런 상황에서 펜윅 트리를 쓸 수 있다. 즉 수시로 바뀌는 수열의 구간 합을 $O(log N)$만에 구할 수 있다.
 
-펜윅 트리는 다음과 같은 장점을 갖고 있다. 
+펜윅 트리는 다음과 같은 장점을 갖고 있다.
 1. 방금 말했듯이 업데이트가 하나씩 되는 수열의 구간 합을 $O(log N)$만에 구할 수 있다.
 2. 비트 연산을 이해하고 있다면 구현이 굉장히 쉬운 편이다.
 3. 속도도 빠르다(Big-O 표기법에서 생략된 상수가 작음).
@@ -68,8 +68,8 @@ tags: [Fenwick Tree, BIT]
 
 ![01_부분합1](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/01_부분합1.jpg)
 
-펜윅 트리는 개념상 트리이지만, 구현할 때는 길이 $2^n$짜리 배열로 구현한다. 여기서 $2^n$은 데이터의 개수(N) 이상인 최소의 $2^k$꼴 자연수이다. 예를 들어 N=10이라면 $2^n=2^4=16$이다.  
-정확히는 앞에 하나를 비워 두기 때문에 배열 자체의 크기는 $2^n+1$이고, 사용하는 인덱스는 1이상 $2^n$ 이하이다.  
+펜윅 트리는 개념상 트리이지만, 구현할 때는 길이 $2^n$짜리 배열로 구현한다. 여기서 $2^n$은 데이터의 개수(N) 이상인 최소의 $2^k$꼴 자연수이다. 예를 들어 N=10이라면 $2^n=2^4=16$이다.
+정확히는 앞에 하나를 비워 두기 때문에 배열 자체의 크기는 $2^n+1$이고, 사용하는 인덱스는 1이상 $2^n$ 이하이다.
 앞으로 이 배열을 data[]라고 부르도록 하겠다. 필자의 코드에서 FenwickTree 클래스의 vector\<int\> data로 구현되어 있다.
 
 ![02_FenwickTree1](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/02_FenwickTree1.jpg)
@@ -79,7 +79,7 @@ tags: [Fenwick Tree, BIT]
 ![03_FenwickTree2](/public/img/Algorithm_and_Data_Structure/2018-07-09-algorithm-fenwick-tree/03_FenwickTree2.jpg)
 
 위 그림에 모든 것이 설명되어 있긴 하지만, 자세히 살펴보자. i는 0 이상인 정수이다.
-1. 인덱스가 홀수인 원소는 수열의 해당 인덱스의 값을 그대로 가진다. 
+1. 인덱스가 홀수인 원소는 수열의 해당 인덱스의 값을 그대로 가진다.
     1. $data[2i+1] = arr[2i+1]$
     2. data[1] = arr[1], data[3] = arr[3], ...
 2. 인덱스가 2의 배수이면서 4의 배수가 아닌 원소(2, 6, 10, 14, ...)는 직전 두 arr 원소의 합을 보존한다.
@@ -101,10 +101,10 @@ tags: [Fenwick Tree, BIT]
 
 $$ \Sigma_{j=1}^7{arr[j]} = \Sigma_{j=1}^4{arr[j]} + \Sigma_{j=5}^6{arr[j]} + \Sigma_{j=7}^7{arr[j]} $$
 
-여기서  
-$\Sigma_{j=1}^4{arr[j]} = data[4]$,  
-$\Sigma_{j=5}^6{arr[j]} = data[6]$,  
-$\Sigma_{j=7}^7{arr[j]} = data[7]$  
+여기서
+$\Sigma_{j=1}^4{arr[j]} = data[4]$,
+$\Sigma_{j=5}^6{arr[j]} = data[6]$,
+$\Sigma_{j=7}^7{arr[j]} = data[7]$
 임을 알았으면 여러분은 구간 합을 구하는 방법을 이해한 것이다.
 
 N=10이라서 감이 잘 안 올 수는 있지만, 이렇게 구하는 방법이 $O(log N)$ 시간에 완료된다는 것도 알 수 있을 것이다.
@@ -135,10 +135,10 @@ arr[7]을 업데이트했다면, data[i]는 arr[j]들의 합으로 이루어져 
 그럼 문제는 다음으로 연결된다.
 > arr[7]을 계산식에 포함하는 data[i]들은 어떤 것이 있는가?
 
-일단 답을 보자. data[7], data[8], data[16]이 있다.  
+일단 답을 보자. data[7], data[8], data[16]이 있다.
 이는 위 그림에서 7 위쪽으로 화살표를 쭉 그려보면 알 수 있다. data[7]은 당연히 업데이트해야 하고, 화살표와 만나는 data[8]과 data[16]을 업데이트해야 한다.
 
-각 숫자들을 이진법으로 나타내보자. $00111_2, 01000_2, 10000_2$이다.  
+각 숫자들을 이진법으로 나타내보자. $00111_2, 01000_2, 10000_2$이다.
 규칙성이 보이는가? 조금은 어려울 것이다. 답은, LSB를 더하면 다음 수가 된다는 것이다.
 
 다른 예를 들어보겠다. arr[3]을 업데이트하면, data[3], data[4], data[8], data[16]을 업데이트한다.
@@ -147,13 +147,13 @@ arr[7]을 업데이트했다면, data[i]는 arr[j]들의 합으로 이루어져 
 3. $8 = 00100_2 + 00100_2 = 01000_2$
 4. $16 = 01000_2 + 01000_2 = 10000_2$
 
-조금 전에 구간 합을 구할 때는 LSB를 빼 주었다. 업데이트를 할 때는 LSB를 더해 준다.  
+조금 전에 구간 합을 구할 때는 LSB를 빼 주었다. 업데이트를 할 때는 LSB를 더해 준다.
 이것이 가능한 이유는 역시 손으로 몇 개 정도 그려 보면 이해할 수 있다.
 
 
 ## 구현
 
-코드의 가독성을 위해 그리고 N이 작을 때 메모리를 아끼기 위해 동적으로 data를 vector\<int\>로 선언하여 `FenwickTree class` 안에 넣었다.  
+코드의 가독성을 위해 그리고 N이 작을 때 메모리를 아끼기 위해 동적으로 data를 vector\<int\>로 선언하여 `FenwickTree class` 안에 넣었다.
 
 - 하지만, 실제 PS 문제를 풀 때는 그냥 $2^n + 1$ 크기만큼 배열을 전역 변수로 설정해버리는 것이 실행 시간이 더 빠르다.
 - arr[i] = sum[i] - sum[i-1]임을 이용하면 arr배열을 유지할 필요가 없다.
@@ -161,7 +161,6 @@ arr[7]을 업데이트했다면, data[i]는 arr[j]들의 합으로 이루어져 
 
 ```cpp
 #include "sharifa_header.h"
-#include "bit_library.h"
 
 template <typename T>
 class FenwickTree {
@@ -171,8 +170,8 @@ public:
     vector<ll> data;
 
     FenwickTree<T>(int _N) {
-        arr.resize(_N + 1);
-        size = power_of_2_eg_than(_N);
+        size = _N;
+        arr.resize(size + 1);
         data.resize(size + 1);
     }
 
@@ -189,12 +188,58 @@ public:
         ll ret = 0;
         while (x) {
             ret += data[x];
-            x -= (x&-x);
+            x &= x - 1;
         }
         return ret;
     }
     ll sum(int x, int y) {
         return sum(y) - sum(x - 1);
+    }
+};
+```
+
+## 2차원 펜윅 트리 구현
+
+```cpp
+#include "sharifa_header.h"
+
+class FenwickTree2D {
+public:
+    int size;
+    vector<vector<long long> > data;
+
+    FenwickTree2D(int _N) {
+        size = _N;
+        data = vector<vector<long long> >(size + 1, vector<long long>(size + 1));
+    }
+
+    void update(int x, int y, int val) {
+        ll dval = val - sum(x, y, x, y);
+        int yy;
+        while (x <= size) {
+            yy = y;
+            while (yy <= size) {
+                data[x][yy] += dval;
+                yy += yy & -yy;
+            }
+            x += x & -x;
+        }
+    }
+    ll sum(int x, int y) {
+        ll ret = 0;
+        int yy;
+        while (x) {
+            yy = y;
+            while (yy) {
+                ret += data[x][yy];
+                yy -= yy & -yy;
+            }
+            x -= (x&-x);
+        }
+        return ret;
+    }
+    inline ll sum(int x1, int y1, int x2, int y2) {
+        return sum(x2, y2) - sum(x1 - 1, y2) - sum(x2, y1 - 1) + sum(x1 - 1, y1 - 1);
     }
 };
 ```
@@ -218,5 +263,5 @@ public:
 
 문제: [나무 심기](https://www.acmicpc.net/problem/1280)
 
-풀이: []()
+풀이: [BOJ 01280(나무 심기) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/11/PS-01280/)
 
