@@ -89,7 +89,7 @@ void fft(vector<base> &a, bool inv) {
 vector<int> multiply(vector<int> &A, vector<int> &B) {
     vector<base> a(A.begin(), A.end());
     vector<base> b(B.begin(), B.end());
-    int n = power_of_2_eg_than(max(a.size(), b.size())) * 2;
+    int n = power_of_2_ge_than(max(a.size(), b.size())) * 2;
 
     a.resize(n);	b.resize(n);
     fft(a, false);	fft(b, false);
