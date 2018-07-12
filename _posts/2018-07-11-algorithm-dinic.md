@@ -191,7 +191,7 @@ public:
 
 문제: [최대 유량](https://www.acmicpc.net/problem/6086)
 
-풀이: []()
+풀이: [BOJ 06086(최대 유량) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/12/PS-06086/)
 
 
 ### 스포일러 문제
