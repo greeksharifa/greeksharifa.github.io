@@ -13,7 +13,11 @@ tags: [Dinic, Network Flow, Maximum Flow]
 문제 | [최대 유량](https://www.acmicpc.net/problem/6086)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/11495)
 [참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [sharifa_header.h](https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+<<<<<<< HEAD
 이 글에서 설명하는 라이브러리 | []()
+=======
+이 글에서 설명하는 라이브러리 | [dinic.h](https://github.com/greeksharifa/ps_code/blob/master/library/dinic.h)
+>>>>>>> ea2928b6cf420c33e027cb99efab88b746056954
 
 
 --- 
@@ -85,7 +89,7 @@ sink에 도달할 때까지 탐색하는 과정을 반복한다.
 
 ### 반복
 
-BFS 1번 그리고 DFS 여러 번 하면 알고리즘이 끝나는 것이 아니다. 다만 복잡한 것은 아니고, 위의 과정을 반복해주면 된다.
+BFS 1번 그리고 DFS를 한번씩 해서는 최대 유량이 찾아지지 않는다. 다만 복잡한 것은 아니고, 위의 과정을 반복해주면 된다.
 
 다시 BFS를 돌려 레벨 그래프를 새로 생성한다.
 
@@ -105,15 +109,97 @@ BFS 1번 그리고 DFS 여러 번 하면 알고리즘이 끝나는 것이 아니
 다음과 같다.
 
 ```cpp
-ㅣㅣ
+#pragma once
+
+#include "sharifa_header.h"
+
+#define MAX_V 52
+#define S 0     // source
+#define T 25    // sink
+#define INF 1000000009
+
+struct Edge {   // u -> v
+    int v, cap, ref;
+    Edge(int v, int cap, int ref) :v(v), cap(cap), ref(ref) {}
+};
+
+class Dinic {
+    vector<vector<Edge> > edges;    // graph
+    // level: 레벨 그래프, next_v: DFS에서 flow 계산 시 역추적에 사용
+    vector<int> level, next_v;
+
+public:
+    void init() {
+        edges.resize(MAX_V);
+        level.resize(MAX_V);
+        next_v.resize(MAX_V);
+    }
+
+    void addEdge(int u, int v, int cap) {
+        edges[u].emplace_back(v, cap, (int)edges[v].size());
+        edges[v].emplace_back(u, 0, (int)edges[u].size() - 1);
+    }
+
+    bool bfs() {
+        fill(level.begin(), level.end(), -1);
+        //level = vector<int>(MAX_V, -1);
+
+        queue<int> q;
+        level[S] = 0;
+        q.push(S);
+
+        while (!q.empty()) {
+            int u = q.front();   q.pop();
+            for (auto edge : edges[u]) {
+                int v = edge.v, cap = edge.cap;
+
+                if (level[v] == -1 && cap > 0) {
+                    level[v] = level[u] + 1;
+                    q.push(v);
+                }
+            }
+        }
+        return level[T] != -1;
+    }
+
+    void reset_next_v() {
+        fill(next_v.begin(), next_v.end(), 0);
+        //next_v = vector<int>(MAX_V, 0);
+    }
+
+    int dfs(int u, int max_flow) {
+        if (u == T)
+            return max_flow;
+
+        for (int &i = next_v[u]; i < edges[u].size(); i++) {
+            int v = edges[u][i].v, cap = edges[u][i].cap;
+
+            if (level[u] + 1 == level[v] && cap > 0) {
+                int flow = dfs(v, min(max_flow, cap));
+
+                if (flow > 0) {
+                    edges[u][i].cap -= flow;
+                    edges[v][edges[u][i].ref].cap += flow;
+                    return flow;
+                }
+            }
+        }
+        return 0;
+    }
+};
 ```
 
 ## 문제 풀이
 
-사용법은 어렵지 않다. 
+### BOJ 06086(최대 유량)
 
-```cpp
+문제: [최대 유량](https://www.acmicpc.net/problem/6086)
 
-```
+풀이: [BOJ 06086(최대 유량) 문제 풀이](https://greeksharifa.github.io/ps/2018/07/12/PS-06086/)
 
-***주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 못 믿겠다면, 저런 헤더 파일이 채점 사이트에 있을 것이라 생각하는가?***
+
+### 스포일러 문제
+
+문제: [스포일러 문제](https://www.acmicpc.net/problem/11495)
+
+풀이: [스포일러 풀이]()
