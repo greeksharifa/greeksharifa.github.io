@@ -13,7 +13,11 @@ tags: [Dinic, Network Flow, Maximum Flow]
 문제 | [최대 유량](https://www.acmicpc.net/problem/6086)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/11495)
 [참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [sharifa_header.h](https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
+<<<<<<< HEAD
+이 글에서 설명하는 라이브러리 | []()
+=======
 이 글에서 설명하는 라이브러리 | [dinic.h](https://github.com/greeksharifa/ps_code/blob/master/library/dinic.h)
+>>>>>>> ea2928b6cf420c33e027cb99efab88b746056954
 
 
 ---
@@ -201,4 +205,3 @@ public:
 문제: [스포일러 문제](https://www.acmicpc.net/problem/11495)
 
 풀이: [스포일러 풀이]()
-
