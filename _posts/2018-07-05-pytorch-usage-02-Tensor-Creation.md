@@ -345,4 +345,4 @@ else:
     print('cuda is not availabile')
 ```
 
-텐서의 attribute와 method는 [다음](#)에서 알아보도록 한다.
+텐서의 attribute와 method는 [다음](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서 알아보도록 한다.

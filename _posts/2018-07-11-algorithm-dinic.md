@@ -56,8 +56,8 @@ source에서 sink방향으로 물이 흐를 때, 물이 흐를 수 있는 최대
 
 디닉 알고리즘은 크게 두 단계로 이루어진다.
 
-1. BFS를 써서 레벨 그래프(Level Graph)를 생성하는 것
-2. DFS를 써서, 레벨 그래프에 기초한 차단 유량(Blocking Flow)의 규칙을 지키면서, 최대 유량을 흘려주는 것
+1. [BFS](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)를 써서 레벨 그래프(Level Graph)를 생성하는 것
+2. [DFS](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)를 써서, 레벨 그래프에 기초한 차단 유량(Blocking Flow)의 규칙을 지키면서, 최대 유량을 흘려주는 것
 
 ### 레벨 그래프(Level Graph)
 
@@ -106,11 +106,47 @@ BFS는 어려운 부분이 아니기 때문에 설명은 생략하도록 하겠�
 
 DFS의 구현은 조금 까다롭다.
 
-다음과 같다.
+1. 우선 sink(T)에 도달하면 종료한다.
+2. 종료할 때 `max_flow`라는 것을 리턴한다. 이는 Network Flow에서 수송량은 경로에 포함된 파이프 최대 유량의 최솟값이기 때문이다. `flow`의 계산식을 잘 보면 최대 유량과 min 연산을 취하는 것을 볼 수 있다.
+3. 레벨 차이가 1 나는지를 먼저 검사한다. 그리고 그 정점의 잔여 용량이 0보다 큰지 또한 검사한다.
+4. 만약 그런 정점을 찾았으면, 재귀적으로 DFS를 수행한다.
+5. DFS가 리턴되어 반환한 flow 값이 0보다 크면, 아직 DFS로 탐색할 수 있는 경로가 남아 있다는 뜻이다.
+6. 경로를 찾았으므로, 해당 경로를 따라서(스택에 재귀 호출로 쌓인 함수에 의해 자동으로 역추적됨) 잔여 용량을 줄여준다.
+7. 만약 어떤 flow도 0이라면, 경로를 찾지 못한 것이므로 종료한다.
+8. next_v라는 배열(벡터)이 있다. 이는 DFS에서 다음 경로를 효율적으로 찾기 위해 존재하는 배열이다.
+    1. DFS로 경로를 탐색할 떄 정점 번호가 낮은 정점부터 탐색한다.
+    2. 만약 처음에 1번 정점으로 가는 경로를 모두 찾았다면, 더 이상 1번 정점으로는 갈 필요가 없다. 이때 next_v[u]를 1 증가시켜, 다음부터는 2번 정점부터 탐색을 시작하도록 한다.
+    3. 2번도 끝났으면 또 next_v[u]를 증가시킨다. 이를 반복한다.
+    4. 코드 상으로는 `int &i`로 되어 있다. i가 레퍼런스로 선언되어 있기 때문에 for loop의 `i++` 구문에 따라 같이 증가한다(i는 next_v[u]와 값을 공유한다)
+
+
+```cpp
+    int dfs(int u, int max_flow) {
+        if (u == T)
+            return max_flow;
+
+        for (int &i = next_v[u]; i < edges[u].size(); i++) {
+            int v = edges[u][i].v, cap = edges[u][i].cap;
+
+            if (level[u] + 1 == level[v] && cap > 0) {
+                int flow = dfs(v, min(max_flow, cap));
+
+                if (flow > 0) {
+                    edges[u][i].cap -= flow;
+                    edges[v][edges[u][i].ref].cap += flow;
+                    return flow;
+                }
+            }
+        }
+        return 0;
+    }
+```
 
 addEdge 함수의 inv는 각 간선이 양방향 수송이 가능하면 `true`로 지정하면 된다.
 sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않고 대신 역방향 간선에 대한 참조를 저장하고 있다.
 이러면 정점이 많을 경우에도 메모리 사용량을 줄일 수 있다.
+
+구현은 다음과 같다.
 
 ```cpp
 #pragma once

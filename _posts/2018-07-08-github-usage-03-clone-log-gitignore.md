@@ -210,7 +210,7 @@ print('This file is useless!')
 - dependency 파일. 누구나 웹에서 다운받아 설치할 수 있는 용량 큰 파일을 굳이 git repo에 넣지 않는다.
   - 대신 따로 dependency 목록을 만들어 관리한다. 
 
-이제 git의 프로젝트에 대한 설명은 대략 다 끝났다. [다음 글]()에서는 branch에 대해서 알아본다.
+이제 git의 프로젝트에 대한 설명은 대략 다 끝났다. [다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서는 branch에 대해서 알아본다.
 
 
 ## Git 명령어
