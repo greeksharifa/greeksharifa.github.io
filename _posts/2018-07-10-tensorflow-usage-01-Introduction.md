@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Markdown 사용법
+title: TensorFlow 사용법 - 01. 소개 및 설치
 author: YouWon
 categories: References
-tags: [Markdown, usage]
+tags: [TensorFlow]
 ---
 
-## 텐서플로란?
+## 텐서플로(TensorFlow)란?
 
 텐서플로(TensorFlow)는 원애 머신러닝(ML)과 심층 신경망(Deep Neural Network) 연구를 수행하는 구글 브레인 팀에서 개발되었다.  
 텐서플로는 Tensor(텐서, 텐서플로의 기본 자료구조. 우선 다차원 배열이라고 생각하면 편하다)를 Data Flow Graph에 따라 수치 연산을 하는 라이브러리이기 때문에 그런 이름이 붙었다.
