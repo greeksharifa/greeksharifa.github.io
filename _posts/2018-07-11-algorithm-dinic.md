@@ -13,11 +13,9 @@ tags: [Dinic, Network Flow, Maximum Flow]
 문제 | [최대 유량](https://www.acmicpc.net/problem/6086)
 응용 문제 | [스포일러 1](https://www.acmicpc.net/problem/11495)
 [참조 라이브러리](https://greeksharifa.github.io/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/) | [sharifa_header.h](https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h), [bit_library.h](https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h)
-<<<<<<< HEAD
-이 글에서 설명하는 라이브러리 | []()
-=======
 이 글에서 설명하는 라이브러리 | [dinic.h](https://github.com/greeksharifa/ps_code/blob/master/library/dinic.h)
->>>>>>> ea2928b6cf420c33e027cb99efab88b746056954
+
+`그림 출처: wikipedia`
 
 
 ---
@@ -44,8 +42,6 @@ Maximum Flow를 구하는 다른 대표적인 알고리즘으로
 source에서 sink방향으로 물이 흐를 때, 물이 흐를 수 있는 최대 양을 구하는 것이라고 보면 된다.
 
 ![01_network_flow](/public/img/Algorithm_and_Data_Structure/2018-07-11-algorithm-dinic/01_network_flow.png)
-
-`출처: wikipedia`
 
 - s는 source를 의미한다. 물이 나오는 원천이라고 생각하면 된다.
 - t는 sink를 의미한다. 물이 최종적으로 들어가는 곳이라 생각하면 된다. 모든 물(유량)은 source에서 sink로 흐른다.
