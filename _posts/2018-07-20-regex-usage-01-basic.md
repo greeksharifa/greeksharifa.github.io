@@ -6,18 +6,22 @@ categories: [정규표현식(re)]
 tags: [Regex, re]
 ---
 
+---
+
 이 글에서는 정규표현식 기초와 python library인 `re` 패키지 사용법에 대해서 설명한다.
 
 본 글에서 정규표현식은 `regex`와 같이, 일반 문자열은 'regex'와 같이 표시하도록 한다.
 
-## 정규표현식의 기초
+---
 
-### 일대일 매칭되는 문자
+# 정규표현식의 기초
+
+## 일대일 매칭되는 문자
 
 정규표현식 안에서, 바로 다음 절에서 설명하는 메타문자를 제외한 모든 문자 하나는 일반 문자열 하나와 매칭된다. 예를 들어, `a`는 a와 매칭되고, `가`는 '가'와 매칭되는 식이다.  
-`a`가 'b'와 매칭(매칭되거나) `a`가 '가'와 매칭되지는 않는다.
+당연히 `a`가 'b' 또는 '가'와 매칭되지는 않는다.
 
-### 메타문자
+## 메타문자
 
 어떤 프로그래밍 언어의 정규표현식이든 메타문자라는 것이 존재한다.  
 이는 특수한 기능을 하는 문자로, `import` 등 파이썬의 예약어와 비슷한 역할을 맡는 문자라고 생각하면 된다.
@@ -35,21 +39,22 @@ tags: [Regex, re]
 
 이들의 사용법은 차차 알아보도록 하자.
 
-### semi-메타문자
+## semi-메타문자
 
 사실 이건 필자가 붙인 이름이지만... 이들 문자는 평소에는 메타문자가 아니지만, 특수한 상황에서는 메타문자 역할을 하는 문자들이다.  
 `]`, `-`, `)` 가 있다.
 
 닫는 괄호야 당연히 여는 괄호에 대응된다는 것은 알 수 있을 것이다. `-`는 이후에 설명한다.
 
+---
 
-## re 패키지 기본 method
+# re 패키지 기본 method
 
-### import
+## import
 
 물론 `py` 파일에서는 `import re`를 해주어야 쓸 수 있다.
 
-### re.match(pattern, string, flags)
+## re.match(pattern, string, flags)
 
 ![01_match](/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/01_match.PNG)
 
@@ -84,7 +89,7 @@ None
 **re.match** 함수는 인자로 1)pattern 2)string 3)flags를 받는다. 3번은 필수 인자는 아닌데, 어떤 옵션이 있는지는 뒤에서 설명한다.  
 각 인자는 각각 1)패턴 2)패턴을 찾을 문자열 3)옵션을 의미한다.
 
-### re.search(pattern, string, flags)
+## re.search(pattern, string, flags)
 
 ![02_search](/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/02_search.PNG)
 
@@ -116,7 +121,7 @@ None
 이는 0번째 문자부터 1번째 문자 전까지(즉, 0번째 문자 하나인 'a')가 패턴과 매치되었음을 뜻한다.  
 `span=(1, 2)`의 경우 1번째 문자('baa' 의 첫 번째 'a'이다)가 패턴과 매치되었음을 볼 수 있다.
 
-### re.findall(pattern, string, flags)
+## re.findall(pattern, string, flags)
 
 ![03_findall](/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/03_findall.PNG)
 
@@ -145,7 +150,7 @@ print(re.findall('aaa', 'aaaa'))
 
 함수 설명을 잘 보면, "non-overlapping" 이라고 되어 있다. 즉 반환된 리스트는 서로 겹치지 않는다는 뜻이다.  마지막 예시가 이를 말해주고 있다. 겹치는 것을 포함한다면 두 개가 반환되어야 했다.
 
-### re.finditer(pattern, string, flags)
+## re.finditer(pattern, string, flags)
 
 ![04_finditer](/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/04_finditer.PNG)
 
@@ -168,7 +173,7 @@ for matchObj in matchObj_iter:
 
 iterator 객체 안에 matchObj가 여러 개 들어 있음을 확인할 수 있다.
 
-### re.fullmatch(pattern, string, flags)
+## re.fullmatch(pattern, string, flags)
 
 ![05_fullmatch](/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/05_fullmatch.PNG)
 
@@ -196,4 +201,4 @@ None
 맨 위의 예시만 문자열이 남는 부분 없이 정확하게 일치하므로 매칭 결과를 반환했다. 나머지 예시는 문자열이 뒤에 남기 때문에 매치되는 결과 없이 None을 반환했다.
 
 
-[다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서는 정규표현식의 기초를 더 살펴보도록 한다.
+[다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/)에서는 정규표현식의 기초를 더 살펴보도록 한다.
