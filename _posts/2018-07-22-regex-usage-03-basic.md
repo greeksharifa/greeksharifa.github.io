@@ -55,9 +55,96 @@ print(matchObj)
 
 이 문제의 해결 방법은 두 가지다.
 
-1. 당연하게도 더 긴 `oneself`를 `one` 앞에다 둬 버리면 해결된다.
+1. 당연하게도 더 긴 `oneself`를 `one` 앞에다 두면 해결된다.
 2. 아니면 단어 경계를 활용한다. `\bone\b|\boneself\b`로 쓰면 된다.
 
 
 ### * : 0회 이상 반복
+
+어떤 문자나 기호 뒤에 *(asterisk)를 붙이면 그 문자가 일치되는 만큼 일치된다. 예를 들어 `a*`의 경우 'a'나 'aaa' 혹은 ''(빈 문자열)과도 일치된다.
+
+예시를 보자. 
+```python
+print(re.match('a*', ''))
+print(re.match('a*', 'a'))
+print(re.search('a*', 'aaaa'))
+print(re.fullmatch('a*', 'aaaaaa'))
+print(re.findall('a*', 'aaabaaa aa  '))
+
+matchObj = re.search('<p>.*</p>', '<p> Lorem ipsum... is boring. </p>')
+print(matchObj)
+```
+결과
+```
+<_sre.SRE_Match object; span=(0, 0), match=''>
+<_sre.SRE_Match object; span=(0, 1), match='a'>
+<_sre.SRE_Match object; span=(0, 4), match='aaaa'>
+<_sre.SRE_Match object; span=(0, 6), match='aaaaaa'>
+['aaa', '', 'aaa', '', 'aa', '', '', '']
+<_sre.SRE_Match object; span=(0, 34), match='<p> Lorem ipsum... is boring. </p>'>
+```
+
+여섯 번째 결과의 경우, 파이썬 버전에 따라 **None**이 반환될 수도 있다.
+
+그런데 한 가지 이상한 결과가 보인다. 다섯 번째 실행문이다.
+
+```python
+print(re.findall('a*', 'aaabaaa aa  '))
+# ['aaa', '', 'aaa', '', 'aa', '', '', '']
+```
+
+빈 문자열이 이상하리만큼 많이 매칭되었다. 굉장히 비직관적인 결과이지만, 빈 문자열에도 일치된다는 것을 생각했을 때 아예 틀린 것은 분명히 아니다.  
+매칭되는 빈 문자열들은 a가 아닌 다른 문자들과의 경계에서 발생한다고 생각하면 될 듯하다. 하지만, 아마 대부분 이것은 원하는 결과가 아닐 것이기 때문에, 'a' 덩어리를 찾고 싶다면 다음 메타문자를 보자.
+
+### + : 1회 이상 반복
+
+`*`과 비슷하지만 무조건 한 번이라도 등장해야 한다. 위와 거의 같은 예시를 보자.
+
+```python
+print(re.match('a+', ''))
+print(re.match('a+', 'a'))
+print(re.search('a+', 'aaaa'))
+print(re.fullmatch('a+', 'aaaaaa'))
+print(re.findall('a+', 'aaabaaa aa  '))
+
+matchObj = re.search('<p>.+</p>', '<p> Lorem ipsum... is boring. </p>')
+print(matchObj)
+```
+결과
+```
+None
+<_sre.SRE_Match object; span=(0, 1), match='a'>
+<_sre.SRE_Match object; span=(0, 4), match='aaaa'>
+<_sre.SRE_Match object; span=(0, 6), match='aaaaaa'>
+['aaa', 'aaa', 'aa']
+<_sre.SRE_Match object; span=(0, 34), match='<p> Lorem ipsum... is boring. </p>'>
+```
+
+아마 이것이 여러분이 원하는 'a' 덩어리를 찾은 결과일 것이다.  
+빈 문자열이 일치되지 않은 것을 기억하자.
+
+### {n, m} : 지정 횟수만큼 반복
+
+중괄호는 쓰임새가 여러 개인데, 그 중 하나는 지정한 횟수만큼 정규식을 반복시키는 것이다. 이 쓰임으로 중괄호를 쓸 때 쓰는 방법은 세 가지가 있다.
+
+1. {n} : 정확히 n회만큼 반복
+2. {n, m} : n회 이상 m회 이하 반복
+3. {n, } : n회 이상 반복. 무한히 일치될 수 있다.
+
+물론 n은 자연수, m은 n보다 큰 정수이다.
+그리 어렵지 않으므로 바로 예시를 보자.
+
+```python
+print(re.search('a{3}', 'aaaaa'))
+print(re.findall('a{3}', 'aaaaaaaa'))
+print(re.findall('a{2,4}', 'a aa aaa aaaa aaaaa'))
+print(re.findall('a{2,}', 'a aa aaa aaaa aaaaa'))
+```
+결과
+```
+<_sre.SRE_Match object; span=(0, 3), match='aaa'>
+['aaa', 'aaa']
+['aa', 'aaa', 'aaaa', 'aaaa']
+['aa', 'aaa', 'aaaa', 'aaaaa']
+```
 
