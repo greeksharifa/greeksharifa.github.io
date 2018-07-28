@@ -201,4 +201,38 @@ None
 맨 위의 예시만 문자열이 남는 부분 없이 정확하게 일치하므로 매칭 결과를 반환했다. 나머지 예시는 문자열이 뒤에 남기 때문에 매치되는 결과 없이 None을 반환했다.
 
 
+### match Object의 메서드들
+
+match Object를 그대로 출력해서 쓰고 싶은 사람은 별로 없을 것이다. **re.match** 등의 결과로 얻은 matchObj를 활용하는 방법을 정리하면 다음과 같다.
+
+Method | Descrption
+------ | ----------
+group() | 일치된 문자열을 반환한다.
+start() | 일치된 문자열의 시작 위치를 반환한다.
+end()   | 일치된 문자열의 끝 위치를 반환한다.
+span()  | 일치된 문자열의 (시작 위치, 끝 위치) 튜플을 반환한다.
+
+```python
+matchObj = re.search('match', "'matchObj' is a good name, but 'm' is convenient.")
+print(matchObj)
+
+print(matchObj.group())
+print(matchObj.start())
+print(matchObj.end())
+print(matchObj.span())
+```
+결과
+```
+<_sre.SRE_Match object; span=(1, 6), match='match'>
+match
+1
+6
+(1, 6)
+```
+
+잘 세어보면 'match'가 1번째 문자부터 6번째 문자 직전까지임을 알 수 있다. 인덱스는 0부터이다.
+
+
+
+
 [다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/)에서는 정규표현식의 기초를 더 살펴보도록 한다.
