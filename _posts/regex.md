@@ -28,4 +28,5 @@ re.X    |	re.VERBOSE      |	정규표현식에 주석을 달 수 있음
 
 
 
-
+page 106
+print(re.search('(?<=<p>)\w+(?=</p>)', 'Kakao <p>ryan</p> keep a straight face.'))
