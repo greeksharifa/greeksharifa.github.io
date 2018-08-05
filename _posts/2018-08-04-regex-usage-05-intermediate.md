@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 파이썬 정규표현식(re) 사용법 - 05. 주석, 치환
+title: 파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리
 author: YouWon
 categories: [정규표현식(re)]
 tags: [Regex, re]
@@ -182,6 +182,40 @@ print(re.sub('(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})',
 
 ---
 
+## 정규표현식 중급: split
+
+**re.sub** 말고도 유용한 함수는 **re.split**이다. 이 메서드는 파이썬 문자열의 기본 메서드인 split과 매우 유사하나, 정규식을 처리할 수 있다.
+
+이 역시 어려운 함수는 아니기 때문에, 예시 하나를 바로 보도록 하겠다.  
+html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
+
+```python
+print(re.split('<[^<>]*>',
+               '<html> Wow <head> header </head> <body> Hey </body> </html>'))
+```
+결과
+```
+['', ' Wow ', ' header ', ' ', ' Hey ', ' ', '']
+```
+
+물론 이렇게만 하면 빈 문자열 등도 많이 나온다. 이는 정규식으로 따로 처리하거나, 다음과 같이 쓰면 된다.
+```python
+result = re.split('<[^<>]*>',
+                  '<html> Wow <head> header </head> <body> Hey </body> </html>')
+
+result = list(map(lambda x: x.strip(), result))
+result = list(filter(lambda x: x != '', result))
+print(result)
+```
+결과
+```
+['Wow', 'header', 'Hey']
+```
+정규식이 깔끔하긴 하지만, 한 번에 모든 것을 처리하려고 하면 힘들 수 있다. 파이썬 기본 기능도 잘 활용하자.
+
+
+---
+
 ## 정규표현식 초급: re.compile
 
 여기서는 **re.compile** 메서드를 알아볼 것이다.
@@ -233,5 +267,4 @@ re.compile('\\d+')
 ```
 
 '\'를 구분하기 위해는 '\' 도 `\`에 의해 이스케이프 처리되어야 하므로 '\'가 두 개 있다는 점을 주의하라.
-
 
