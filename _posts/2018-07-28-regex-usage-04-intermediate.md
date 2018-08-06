@@ -400,4 +400,6 @@ for matchObj in matchObj_iter:
 
 stackoverflow에서 찾은 답변 중에는 패턴을 expand하거나 일치하는 부분만 잘라낸 다음 추가 처리를 하라는 답변이 있었는데, 그런 것보다는 위의 방법이 더 깔끔한 것 같다. 
 
+---
+
 [다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/)에서는 주석, 치환, 컴파일 등을 살펴보도록 한다.

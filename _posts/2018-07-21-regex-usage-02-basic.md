@@ -483,3 +483,8 @@ print(re.findall('\u18ff\d', '0᣿1頶᣿2䅄ሲ᣿3456'))
 ```
 
 참고로 '\u18ff'는 '᣿'이다.
+
+---
+
+
+[다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/)에서는 다자택일(OR), 반복 등을 다루도록 하겠다.

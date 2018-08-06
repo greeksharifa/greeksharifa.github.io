@@ -171,6 +171,8 @@ print(re.findall('ab?a', 'aa aba aaaa'))
 
 참고로, 앞에서 말한 반복 메타문자들(`*`, `+`, `{n, m}`, `?` 등)을 정량자 또는 수량자라고 부른다.
 
+---
+
 
 ### Advanced: 탐욕 정량자 vs 나태 정량자
 
@@ -232,6 +234,8 @@ print(matchObj.group())
 역행에 관해서는 [나중](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에 조금 더 자세히 다루도록 하겠다.
 
 
+---
+
 
 ### 응용 문제
 
@@ -262,6 +266,8 @@ print(matchObj.group())
 <br>
 
 파이썬 버전 3.6 기준으로, `\b`를 쓰려면 **r prefix**를 붙여 주어야 한다고 했었다.
+
+---
 
 문제 3의 정답에 아직 설명하지 않은 소괄호 `( )`가 있다. 이는 [다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/)에서 설명한다.
 

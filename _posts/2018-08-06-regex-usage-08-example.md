@@ -165,6 +165,23 @@ Yei!
 4. 나머지 부분은 3번과 같다.
 
 
----
 
-[다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/)에서는 에 관한 예제를 다루도록 하겠다.
+문제 : 
+<details>
+    <summary>문제  정답보기</summary>
+    <p>r''</p>
+</details>
+
+<br>
+
+
+
+문제 : 
+<details>
+    <summary>문제  정답보기</summary>
+    <p>r''</p>
+</details>
+
+<br>
+
+---

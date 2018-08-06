@@ -236,6 +236,6 @@ match
 잘 세어보면 'match'가 1번째 문자부터 6번째 문자 직전까지임을 알 수 있다. 인덱스는 0부터이다.
 
 
-
+---
 
 [다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/)에서는 정규표현식의 기초를 더 살펴보도록 한다.

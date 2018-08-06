@@ -271,4 +271,6 @@ re.compile('\\d+')
 
 '\'를 구분하기 위해는 '\' 도 `\`에 의해 이스케이프 처리되어야 하므로 '\'가 두 개 있다는 점을 주의하라.
 
+---
+
 [다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/)에서는 정규표현식 고급 기술을 다루도록 하겠다.
