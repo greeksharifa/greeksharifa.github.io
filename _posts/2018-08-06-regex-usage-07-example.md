@@ -167,4 +167,4 @@ Yei!
 
 ---
 
-[다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/)에서는 에 관한 예제를 다루도록 하겠다.
+[다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/)에서는 단어와 행 처리에 관한 예제를 다루도록 하겠다.
