@@ -9,6 +9,8 @@ tags: [GitHub, usage]
 
 ***주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.***
 
+---
+
 ## Remote Repository 생성
 
 우선 <https://github.com/>에 접속하여 로그인한다(회원가입은 되어 있어야 한다). 그러면 다음과 비슷한 화면이 보인다.
@@ -32,6 +34,8 @@ tags: [GitHub, usage]
 ![02_create_a_new_repository](/public/img/GitHub/2018_06_29_github_usage_02_create_project/03_created_remote_repository.PNG)
 
 
+
+---
 
 ## Local Repository 생성
 
@@ -58,6 +62,8 @@ tags: [GitHub, usage]
 오류가 뜬다면, 복잡해 보이는 에러 메시지를 그대로 복붙하여 [구글링](https://google.com/)하면 된다.  
 여러분이 겪는 문제는 다른 사람들도 겪어 본 문제라는 것을 해결법과 함께 알 수 있다.
 
+
+---
 
 
 ## 프로젝트 수정
@@ -242,6 +248,8 @@ vi 편집기에서는, 입력 모드와 명령 모드가 있다.
 이제 commit에 대한 간단한 설명이 끝났다.
 
 
+---
+
 
 ## Remote & Local Repository 연결
 
@@ -329,6 +337,8 @@ url은 여기서 확인할 수 있다.
 ![02_create_a_new_repository](/public/img/GitHub/2018_06_29_github_usage_02_create_project/19_complete.PNG)
 
 끝났다!
+
+---
 
 ## Git 명령어
 
