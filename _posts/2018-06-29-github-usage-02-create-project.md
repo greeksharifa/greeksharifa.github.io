@@ -338,6 +338,11 @@ url은 여기서 확인할 수 있다.
 
 끝났다!
 
+
+---
+
+[다음 글](https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/)에서는 프로젝트 clone, status, .gitignore에 대해서 알아본다.
+
 ---
 
 ## Git 명령어

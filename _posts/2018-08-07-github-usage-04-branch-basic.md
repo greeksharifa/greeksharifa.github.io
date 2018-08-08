@@ -64,9 +64,165 @@ tags: [GitHub, usage]
 앞으로 위와 비슷한 그림이 자주 나올 텐데, 각각의 의미를 정확히 알고 있는 것이 앞으로 git을 이해하는 데 큰 도움이 될 것이다.
 
 1. 저번 글에서 간략히 언급했는데, 앞의 복잡한 숫자는 16진수 숫자로서 각 커밋의 고유한 코드이다. 유일한 값이므로 어떤 커밋인지 분간할 때 도움이 될 것이다.
+    1. 여러분이 커밋 메시지를 간략하게 작성할수록 16진수 코드를 봐야 하는 상황이 많아진다.
+2. 16진수 코드 다음에는 여러분이 입력한 커밋 메시지가 나온다.
+3. (HEAD -> master, origin/master) 메시지는 이전 글에서 설명했다. 사실 1, 2번도 전부 설명했다.
+
+그런데 origin이 무엇인지 궁금하지 않은가?
+
+---
+
+### 옵션: origin
+
+저번 글에서는 일반적으로 remote repo의 이름은 origin으로 둔다고 하였다. 그러나 이는 사용자 마음이다.
+
+dummy repo를 하나 만들자.
+
+![08_dummy](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/08_dummy.PNG)
+
+dummy local repo도 만들어 올려보자. 이때 origin 대신 dummy_origin으로 입력해 보자.
+
+![10_dummy](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/10_dummy.PNG)
+
+그리고 파일을 수정하고 추가한 뒤 git push origin master를 입력하면 오류가 뜬다.  
+dummy_origin으로 입력하면 잘 되는 것을 확인할 수 있다.
+
+![12_dummy](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/12_dummy.PNG)
+
+참고로 `git status -s`는 `git status`보다 간략한 버전이다.
+
+이제 dummy는 dummy니까 갖다 버리면 된다. Settings 탭의 맨 아래로 가보면 다음과 같은 부분이 있다.
+
+![14_dummy](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/14_dummy.PNG)
+
+삭제하면 된다.
+
+![15_dummy](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/15_dummy.PNG)
+
+---
 
 
-![](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/.PNG)
+local repo 말고 remote repo의 브랜치도 알고 싶다면 다음 중 하나를 입력한다.
+
+> git branch -r
+> git branch --remote
+
+local이랑 remote 전부 보고 싶으면 다음을 입력한다.
+
+> git branch -a
+> git branch --all
+    
+
+![07_branch_op](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/07_branch_op.PNG)
+
+`-r` 옵션과 `-a` 옵션의 remote repo 표기가 조금 다르다.  
+`-a` 옵션은 local repo와 remote repo를 구분하기 위해 'remotes/'를 remote repo 앞에 붙인다.  
+`-r` 옵션은 remote repo만 보여주기 때문에 'remotes/' 표시가 필요 없다.
+
+이제 local repo와 remote repo에 무엇이 있는지 알았으니, 브랜치를 새로 만들어 보자.  
+원래는 서브 브랜치를 새로 생성할 메인 브랜치(master일 필요는 없다)로 이동하는 과정이 우선되어야 하지만, 지금은 master branch 하나뿐이므로 그럴 이유가 없다.
+
+> git branch 1st-branch
+> git branch -a
+
+![16_create_branch](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/16_create_branch.PNG)
+
+현재 있는 브랜치 앞에는 '*'이 있다. 여러분의 컴퓨터 환경에 따라 다를 수는 있으나, Windows cmd 기준으로는 현재 있는 브랜치는 초록색, remote repo의 브랜치는 빨간색으로 표시된다.
+
+이제 새로운 브랜치로 이동해 보자.
+
+> git checkout 1st-branch
+
+![17_checkout](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/17_checkout.PNG)
+
+`first.py`에 다음을 추가한다. 이제부터 여러분은 `first.py`를 수정한 다음, 커밋을 만들고, master branch에 병합하는 과정을 거칠 것이다.  
+앞서 설명했듯 서브 브랜치를 만들어서 그곳에서 작업한 후 master branch에 병합하는 것이 정석적인 방법이다.
+
+```python
+print("This is the 1st sentence written in 1st-branch.")
+```
+
+그리고 3종 세트를 입력한다. 싫으면 [옵션](https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/#%EC%98%B5%EC%85%98-3%EC%A2%85-%EC%84%B8%ED%8A%B8-%EA%B0%84%ED%8E%B8-%EC%9E%85%EB%A0%A5%EC%9C%88%EB%8F%84%EC%9A%B0-%EA%B8%B0%EC%A4%80)에서 다루었던 `push.bat`을 입력해도 상관없다.
+
+![18_1st_commit](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/18_1st_commit.PNG)
+
+사실 그냥은 안 된다. remote repo 기준에서 여러분이 로컬에 만든 1st-branch라는 브랜치는 전혀 알 수 없는 것(정확히는 local repo에 upstream branch가 없는 것이다)이며, 연결 작업이 필요하다.  
+다행히 upstream branch(local branch와 연결할 remote branch)를 설정하는 방법을 명령창에서 친절히 알려 준다.
+
+> git push --set-upstream origin 1st-branch
+
+remote repo 이름이 origin이고 current branch의 이름이 1st-branch이기 때문에 저렇게 입력해주면 된다.
+
+![19_upstream](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/19_upstream.PNG)
+
+브라우저를 확인해보자.
+
+![20_push](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/20_push.PNG)
+
+브랜치가 2개가 되었음을 확인할 수 있다.
+
+이제 다음과 같은 상태가 되었다.
+
+![21_log](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/21_log.PNG)
+
+![22_branch](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/22_branch.png)
+
+참고로 1st-branch의 커밋들의 16진수 코드는 master branch의 같은 커밋의 16진수 코드와 똑같다.  
+master branch로부터 생성했으니 당연한 말이다.
+
+방금 수정했기 때문에, `first.py`의 현재 상태는 다음과 같을 것이다.
+
+```python
+print("Hello, git!") # instead of "Hello, World!"
+print("Hi, git!!")
+
+print("This is the 1st sentence written in 1st-branch.")
+```
+
+그럼 이제 master branch로 다시 돌아가 본다. 
+
+> git checkout master
+
+그리고 `first.py`를 다시 확인해 보라.
+
+```python
+print("Hello, git!") # instead of "Hello, World!"
+print("Hi, git!!")
+```
+
+마지막 문장이 사라졌을 것이다. 편집기를 사용하고 있었다면 '다시 로드'를 클릭하라.
+
+여러분은 1st-branch에서 작업했을 뿐이다. master branch로부터 서브 브랜치를 생성하는 순간부터, 어떤 새로운 상호작용을 하기 전까지 1st-branch는 master branch와는 '거의' 독립적인 공간에 가깝다. 따라서 branch를 checkout하는 순간 1st-branch에서 수정했던 사항이 보이지 않게 되는 것이다.
+
+물론 진짜로 사라진 것은 아니다. 다시 1st-branch로 checkout하면 내용이 돌아올 것이다.  
+아무튼 다시 master branch로 이동하자.
+
+글의 윗부분에서 프로젝트 진행 과정을 설명하면서 다음과 비슷한 말을 했었다.
+
+1. 서브 브랜치를 만들어 작업한다.
+2. 메인 브랜치(master branch)로 이동한다.
+3. 서브 브랜치의 내용을 메인 브랜치에 병합한다.
+
+위 과정 중 여러분은 1, 2번을 완료했다. 이제 3번을 하기만 하면 된다.  
+현재 브랜치가 master branch인지 꼭 확인한 후 다음을 진행해야 한다.
+
+> git merge 1st-branch
+
+![23_merge](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/23_merge.PNG)
+
+그리고 `first.py`를 확인하면 1st-branch에서 추가했던 문장이 들어 있는 것을 확인할 수 있다.  
+또한 커밋의 16진수 코드도 1st-branch의 것과 같음을 확인할 수 있다.
+
+![24_log](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/24_log.PNG)
+
+
+
+
+
+
+
+
+
 
 ![](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/.PNG)
 
