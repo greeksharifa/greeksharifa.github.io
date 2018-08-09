@@ -13,7 +13,7 @@ tags: [GitHub, usage]
 
 ## Branch
 
-[저번 글](https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/)에서 작업하던 것을 이어서 한다. 저번 글에서는 master branch란 말을 잠깐 언급했었다.
+[저번 글](https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/)에서 작업하던 것을 이어서 한다. 그때 master branch란 말을 잠깐 언급했었다.
 
 여러분은 별다른 설정을 하지 않았지만 master branch에서 계속 작업을 하고 있었다.  
 **master branch**란 모든 repository의 기본 혹은 메인이라고 보면 된다. 일반적으로 repo의 모든 것은 master branch를 중심으로 행해진다.  
@@ -85,7 +85,8 @@ dummy local repo도 만들어 올려보자. 이때 origin 대신 dummy_origin으
 ![10_dummy](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/10_dummy.PNG)
 
 그리고 파일을 수정하고 추가한 뒤 git push origin master를 입력하면 오류가 뜬다.  
-dummy_origin으로 입력하면 잘 되는 것을 확인할 수 있다.
+dummy_origin으로 입력하면 잘 되는 것을 확인할 수 있다.  
+즉 origin은 add나 commit 명령처럼 정해져 있는 것이 아니라 사용자가 마음대로 정하는 것이지만, 별다른 이유가 없다면 origin으로 두는 것이 괜찮다.
 
 ![12_dummy](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/12_dummy.PNG)
 
@@ -101,15 +102,16 @@ dummy_origin으로 입력하면 잘 되는 것을 확인할 수 있다.
 
 ---
 
+이제 dummy repo는 잊어버리고, 원래 하던 것으로 돌아오자.
 
-local repo 말고 remote repo의 브랜치도 알고 싶다면 다음 중 하나를 입력한다.
+local repo 말고 remote repo의 브랜치를 알고 싶다면 다음 중 하나를 입력한다.
 
-> git branch -r
+> git branch -r  
 > git branch --remote
 
 local이랑 remote 전부 보고 싶으면 다음을 입력한다.
 
-> git branch -a
+> git branch -a  
 > git branch --all
     
 
@@ -122,7 +124,7 @@ local이랑 remote 전부 보고 싶으면 다음을 입력한다.
 이제 local repo와 remote repo에 무엇이 있는지 알았으니, 브랜치를 새로 만들어 보자.  
 원래는 서브 브랜치를 새로 생성할 메인 브랜치(master일 필요는 없다)로 이동하는 과정이 우선되어야 하지만, 지금은 master branch 하나뿐이므로 그럴 이유가 없다.
 
-> git branch 1st-branch
+> git branch 1st-branch  
 > git branch -a
 
 ![16_create_branch](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/16_create_branch.PNG)
