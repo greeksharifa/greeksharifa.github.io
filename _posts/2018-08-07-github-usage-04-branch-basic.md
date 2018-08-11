@@ -101,6 +101,7 @@ dummy_origin으로 입력하면 잘 되는 것을 확인할 수 있다.
 
 ---
 
+### 원격 branch 목록 보기
 
 local repo 말고 remote repo의 브랜치도 알고 싶다면 다음 중 하나를 입력한다.
 
@@ -128,6 +129,8 @@ local이랑 remote 전부 보고 싶으면 다음을 입력한다.
 ![16_create_branch](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/16_create_branch.PNG)
 
 현재 있는 브랜치 앞에는 '*'이 있다. 여러분의 컴퓨터 환경에 따라 다를 수는 있으나, Windows cmd 기준으로는 현재 있는 브랜치는 초록색, remote repo의 브랜치는 빨간색으로 표시된다.
+
+### branch 이동: checkout
 
 이제 새로운 브랜치로 이동해 보자.
 
@@ -197,6 +200,8 @@ print("Hi, git!!")
 물론 진짜로 사라진 것은 아니다. 다시 1st-branch로 checkout하면 내용이 돌아올 것이다.  
 아무튼 다시 master branch로 이동하자.
 
+### 브랜치 병합: merge
+
 글의 윗부분에서 프로젝트 진행 과정을 설명하면서 다음과 비슷한 말을 했었다.
 
 1. 서브 브랜치를 만들어 작업한다.
@@ -206,7 +211,10 @@ print("Hi, git!!")
 위 과정 중 여러분은 1, 2번을 완료했다. 이제 3번을 하기만 하면 된다.  
 현재 브랜치가 master branch인지 꼭 확인한 후 다음을 진행해야 한다.
 
-> git merge 1st-branch
+> git merge 1st-branch  
+> git push
+
+참고로 merge한다고 remote repo에 절대로 자동으로 올라가지 않는다. 따라서 push를 해 주어야 한다. 이
 
 ![23_merge](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/23_merge.PNG)
 
@@ -215,25 +223,39 @@ print("Hi, git!!")
 
 ![24_log](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/24_log.PNG)
 
+즉 다음과 같은 상태이다.
+
+![25_branch](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/25_branch.png)
+
+위와 같이 병합하는 것을 fast-forward라 한다. fast-forward는 master branch에서 서브 브랜치(1st-branch)를 하나 만든 뒤 master에는 별다른 수정 사항이 없을 때 위 그림처럼 master branch에는 같은 코드의 커밋이 적용되며, 빨리감기하듯 따라간다는 점에서 이러한 이름이 붙었다.
 
 
+### branch 삭제, 목록 업데이트
+
+그런데 그림을 보면 master와 1st-branch는 모두 살아 있는 branch이다. 실제로 1st-branch에 커밋을 만들고 push하면 1st-branch만 업데이트된다.  
+그러나 bugfix같이 잠시 만들었다가 없앨 목적으로 만든 branch라면, 이 브랜치를 없앨 필요가 있다.  
+물론 이 예제의 경우 bugfix는 아니지만, 몇 줄짜리 코드에 bug가 있으면... 흠.
+
+브랜치를 제거할 때는 두 가지를 확인해야 한다. local branch와 remote branch이다.
+
+> git branch -d 1st-branch  
+> git push -d origin 1st-branch  
+> git fetch  
+
+당연히 -d 대신 --delete도 가능하다.
+
+세 번째 명령 **git fetch**는 원격 브랜치 목록을 업데이트하는 것이다. 원격 브랜치 목록도 자동으로 업데이트되지 않기 때문이다.
+
+![26_delete](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/26_delete.PNG)
+
+![27_1](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/27_1.PNG)
+
+remote repo에도 master branch 하나만 남은 것을 확인할 수 있다.
 
 
+---
 
-
-
-
-
-![](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/.PNG)
-
-![](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/.PNG)
-
-![](/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/.PNG)
-
-
-
-
-이제 git의 프로젝트에 대한 설명은 대략 다 끝났다. [다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서는 branch에 대해서 알아본다.
+이제 git의 프로젝트에 대한 설명은 대략 다 끝났다. [다음 글](https://greeksharifa.github.io/github/2018/08/11/github-usage-05-branch-basic/)에서는 branch에 대해서 더 알아본다.
 
 ---
 
