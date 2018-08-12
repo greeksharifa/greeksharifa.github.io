@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GitHub 사용법 - 04. branch 기본
+title: GitHub 사용법 - 04. branch 기본 1
 author: YouWon
 categories: GitHub
 tags: [GitHub, usage]
@@ -9,11 +9,11 @@ tags: [GitHub, usage]
 
 ***주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.***
 
+[저번 글](https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/)에서 작업하던 것을 이어서 한다. 그때 master branch란 말을 잠깐 언급했었다.
+
 ---
 
 ## Branch
-
-[저번 글](https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/)에서 작업하던 것을 이어서 한다. 그때 master branch란 말을 잠깐 언급했었다.
 
 여러분은 별다른 설정을 하지 않았지만 master branch에서 계속 작업을 하고 있었다.  
 **master branch**란 모든 repository의 기본 혹은 메인이라고 보면 된다. 일반적으로 repo의 모든 것은 master branch를 중심으로 행해진다.  
@@ -236,6 +236,8 @@ print("Hi, git!!")
 ### branch 삭제, 목록 업데이트
 
 그런데 그림을 보면 master와 1st-branch는 모두 살아 있는 branch이다. 실제로 1st-branch에 커밋을 만들고 push하면 1st-branch만 업데이트된다.  
+이는 Merge 명령은 non-destructive operation으로, master branch에서 1st-branch의 내용을 가져간다 해도 1st-branch는 전혀 변경되지 않는다.  
+다른 블로그들에서는 완전히 같은 곳을 가리키는 것처럼 말하지만, 실제로는 "정말로" 같은 레퍼런스인 것은 아니다. git은 모든 걸 자동으로 해주지는 않기 때문이다.  
 그러나 bugfix같이 잠시 만들었다가 없앨 목적으로 만든 branch라면, 이 브랜치를 없앨 필요가 있다.  
 물론 이 예제의 경우 bugfix는 아니지만, 몇 줄짜리 코드에 bug가 있으면... 흠.
 
@@ -264,4 +266,4 @@ remote repo에도 master branch 하나만 남은 것을 확인할 수 있다.
 
 ## Git 명령어
 
-다음 글에서 원하는 기능을 찾아 볼 수 있다. [GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)
+[GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)에서 원하는 명령어를 찾아 볼 수 있다.

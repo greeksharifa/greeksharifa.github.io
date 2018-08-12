@@ -9,23 +9,26 @@ tags: [GitHub, usage]
 명령어 | 설명
 -------- | --------
 git init | local repo를 생성한다.
-git status | 현재 local repo의 git 상태를 확인한다(수정 파일, cache, commit 등)
-git status \-s | 간략하게 local repo의 상태를 확인한다.
+git status \[\-s] | 현재 local branch의 git 상태를 확인한다(수정 파일, cache, commit 등) `-s` 옵션은 간략히 표시한다.
 git add \<file \| directory\> | cache에 파일이나 디렉토리 혹은 전체(*)를 올린다.
 git rm \-\-cached \<file \| directory\> | 파일이나 디렉토리를 cache에서 제거한다.
 git commit \[-m "commit message"\ | 수정사항들을 하나의 커밋으로 묶고 커밋 메시지를 작성한다.
-git remote add origin \<remote repo 주소\> | local repo를 remote repo와 연결시킨다.
+git remote add origin \<remote repo 주소\> | local branch를 remote branch와 연결시킨다.
 git clone \<remote repo 주소\> | remote repo의 파일 복제본을 local로 가져온다. local repo가 생성된다.
  | 
-git log \[\-\-oneline] | 현재 local repo의 commit log를 표시한다. \-\-oneline 옵션은 한줄로 간략히 표시한다.
+git log \[\-\-oneline] | 현재 브랜치의 commit log를 표시한다. \-\-oneline 옵션은 한줄로 간략히 표시한다.
 git log origin/master..\[HEAD] | remote repo에는 없고 HEAD에는 있는 커밋을 표시한다. 
+git log \-\-graph | 현재 브랜치의 commit log를 그래프 형태로 보여준다.
  | 
 git branch \[\-\-list \| \-r \-a] | local/remote/전체 repo의 branch 목록 조회
 git checkout \[\-b] \<branch\> | 선택한 branch로 이동. -b 옵션은 브랜치를 생성하면서 이동
 git branch \-d\[\-D] \<branch\> | 선택한 local branch 삭제, -D 옵션은 강제 삭제
 git push -d origin \<branch\> | remote branch 삭제
 git fetch | remote branch 목록 업데이트
-
+ | 
+git merge \<branch\> | 현재 브랜치에서 해당 브랜치의 수정사항을 가져온다.
+git merge \<branch1\> \<branch2\> | branch2의 변경사항을 branch1로 가져온다.
+git rebase \<branch\> | 현재 브랜치의 base를 해당 브랜치의 tip으로 설정하여, 해당 브랜치의 변경사항을 가져온다.
 
 ---
 

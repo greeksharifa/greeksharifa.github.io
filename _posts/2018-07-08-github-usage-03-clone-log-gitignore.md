@@ -9,12 +9,13 @@ tags: [GitHub, usage]
 
 ***주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.***
 
+[저번 글](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/)에서 작업하던 것을 이어서 한다. 저번 글에서는 git_tutorial 디렉토리를 생성하는 것까지 했었다.
+
 ---
 
 ## Local Directory 생성
 
-[저번 글](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/)에서
-git_tutorial 디렉토리를 생성했을 것이다. 이제 git_tutorial 옆에 새로운 디렉토리를 생성한다. 
+이제 git_tutorial 옆에 새로운 디렉토리를 생성한다. 
 이름은 자유지만 필자는 `git_tutorial_clone`으로 정했다.
 
 이 상황은, git으로 협력할 때 다른 사람이 프로젝트 repo를 clone하거나, 
@@ -225,4 +226,4 @@ print('This file is useless!')
 
 ## Git 명령어
 
-다음 글에서 원하는 기능을 찾아 볼 수 있다. [GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)
+[GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)에서 원하는 명령어를 찾아 볼 수 있다.
