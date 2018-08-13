@@ -9,10 +9,13 @@ tags: [GitHub, usage]
 
 ***주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.***
 
+[저번 글](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/)에서 작업하던 것을 이어서 한다. 저번 글에서는 git_tutorial 디렉토리를 생성하는 것까지 했었다.
+
+---
+
 ## Local Directory 생성
 
-[저번 글](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/)에서
-git_tutorial 디렉토리를 생성했을 것이다. 이제 git_tutorial 옆에 새로운 디렉토리를 생성한다. 
+이제 git_tutorial 옆에 새로운 디렉토리를 생성한다. 
 이름은 자유지만 필자는 `git_tutorial_clone`으로 정했다.
 
 이 상황은, git으로 협력할 때 다른 사람이 프로젝트 repo를 clone하거나, 
@@ -60,6 +63,8 @@ git_tutorial 디렉토리를 생성했을 것이다. 이제 git_tutorial 옆에 
 [저번 글](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/)에서 했던
 `git status`, `git add`, `git commit`, `git push`, `git pull` 등을 사용해 볼 것이다.
 
+---
+
 ## 프로젝트 파일 수정하고 3종 세트 입력하기
 
 아무거나 수정해보자. `git_tutorial_clone/git_tutorial/first.py`를 수정한다. 다음과 같은 내용으로 하자.
@@ -74,6 +79,8 @@ git_tutorial 디렉토리를 생성했을 것이다. 이제 git_tutorial 옆에 
 이제 `git add .`와 `git commit -m "Edit first.py"`와 `git push origin master` 3종 세트를 입력하자.
 
 ![04_3set](/public/img/GitHub/2018_07_08_github_usage_03_clone_log_gitignore/04_3set.PNG)
+
+---
 
 ## 옵션: 3종 세트 간편 입력(윈도우 기준)
 
@@ -100,6 +107,8 @@ git push
 그러면 3종 세트가 하는 모든 것이 완료된다.
 
 ![05_push_bat](/public/img/GitHub/2018_07_08_github_usage_03_clone_log_gitignore/05_push_bat.PNG)
+
+---
 
 ## local repo 상태 확인하고 git pull로 local repo 업데이트하기
 
@@ -161,6 +170,7 @@ git push
 
 이제 local repo가 최신으로 업데이트되었다.
 
+---
 
 ## .gitignore 추가
 
@@ -183,7 +193,7 @@ print('This file is useless!')
 
 엔터 한번 쳐 준 다음에, `Ctrl + C`를 누른다. 그럼 파일 입력을 종료하고 다시 터미널로 빠져나온다.
 
-![09_git_pull](/public/img/GitHub/2018_07_08_github_usage_03_clone_log_gitignore/09_git_pull.PNG)
+![09_create_gitignore](/public/img/GitHub/2018_07_08_github_usage_03_clone_log_gitignore/09_create_gitignore.PNG)
 
 이제 `git status`를 입력해보자. 
 
@@ -210,9 +220,10 @@ print('This file is useless!')
 - dependency 파일. 누구나 웹에서 다운받아 설치할 수 있는 용량 큰 파일을 굳이 git repo에 넣지 않는다.
   - 대신 따로 dependency 목록을 만들어 관리한다. 
 
-이제 git의 프로젝트에 대한 설명은 대략 다 끝났다. [다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서는 branch에 대해서 알아본다.
+이제 git의 프로젝트에 대한 설명은 대략 다 끝났다. [다음 글](https://greeksharifa.github.io/github/2018/08/07/github-usage-04-branch-basic/)에서는 branch에 대해서 알아본다.
 
+---
 
 ## Git 명령어
 
-다음 글에서 원하는 기능을 찾아 볼 수 있다. [GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)
+[GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)에서 원하는 명령어를 찾아 볼 수 있다.

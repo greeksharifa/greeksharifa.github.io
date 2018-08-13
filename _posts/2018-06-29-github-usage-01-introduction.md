@@ -110,4 +110,4 @@ branch 간 상호작용은 꽤 종류가 많지만, 여기서는 몇 가지만 �
 
 ## Git 명령어
 
-다음 글에서 원하는 기능을 찾아 볼 수 있다. [GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)
+[GitHub 사용법 - 00. Command List](https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/)에서 원하는 명령어를 찾아 볼 수 있다.

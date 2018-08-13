@@ -135,14 +135,15 @@ print(matchObj)
 
 여기서 flags는 다음과 같은 종류들이 있다.
 
-syntax  |    long syntax    |   meaning
-------- | ----------------- | ----------
-re.I    |	re.IGNORECASE   |	대소문자 구분 없이 일치
-re.M    |	re.MULTILINE    |	^와 $는 개행문자 위치에서 일치
-re.S    |	re.DOTALL       |	마침표는 개행문자와 일치
-re.U    |	re.UNICODE      |	{\w, \W, \b, \B}는 Unicode dependent
-re.L    |	re.LOCALE       |	{\w, \W, \b, \B}는 locale dependent
-re.X    |	re.VERBOSE      |	정규표현식에 주석을 달 수 있음
+syntax  |    long syntax    |   inline flag | meaning
+------- | ----------------- | :-----------: | --------
+re.I    |	re.IGNORECASE   |   (?i)        |	대소문자 구분 없이 일치
+re.M    |	re.MULTILINE    |   (?m)        |	^와 $는 개행문자 위치에서 일치
+re.S    |	re.DOTALL       |	(?s)        |   마침표는 개행문자와 일치
+re.A    |   re.ASCII        |   (?a)        |   {\w, \W, \b, \B}는 ascii에만 일치
+re.U    |	re.UNICODE      |	(?u)        |   {\w, \W, \b, \B}는 Unicode에 일치
+re.L    |	re.LOCALE       |	(?L)        |   {\w, \W, \b, \B}는 locale dependent
+re.X    |	re.VERBOSE      |	(?x)        |   정규표현식에 주석을 달 수 있음
 
 우선 다른 것들은 나중에 살펴보고, 마침표 옵션만을 보자.
 
@@ -379,10 +380,16 @@ SyntaxError: EOL while scanning string literal
 
 파이썬3은 기본적으로 한글도 "단어 문자"에 포함되기 때문에 쓸 일이 있을지는 모르지만, 이 옵션들도 소개해 본다.
 
-syntax  |    long syntax    |   meaning
-------- | ----------------- | ----------
-re.U    |	re.UNICODE      |	{\w, \W, \b, \B}는 Unicode dependent
-re.L    |	re.LOCALE       |	{\w, \W, \b, \B}는 locale dependent
+syntax  |    long syntax    |   inline flag | meaning
+------- | ----------------- | :-----------: | --------
+re.A    |   re.ASCII        |   (?a)        |   {\w, \W, \b, \B}는 ascii에만 일치
+re.U    |	re.UNICODE      |	(?u)        |   {\w, \W, \b, \B}는 Unicode에 일치
+re.L    |	re.LOCALE       |	(?L)        |   {\w, \W, \b, \B}는 locale dependent
+
+파이썬3은 기본적으로 Unicode를 기준으로 처리되기 때문에 `re.U`는 쓸모가 없다. 그러나 호환성을 위해 아직까지는 살아 있는 옵션이다.  
+아스키에만 일치하는 옵션을 쓰고 싶으면 `re.ASCII` 옵션을 사용하면 된다.  
+
+조금 더 자세한 설명은 [여기](https://docs.python.org/3/library/re.html#module-contents)를 참조하라.
 
 다른 flags 사용법과 똑같으므로 생략하도록 하겠다.
 
@@ -450,6 +457,19 @@ print(re.findall('(?m)^$', '\n'))
 ['', '']
 ```
 
+참고로, 옵션을 여러 개 쓰려면 `|`로 OR 연산을 시켜주면 된다.
+
+```python
+print(re.findall('^ ryan\d\s$', ' ryan1 \n Ryan2 \n rain1 \n RYAN3 ', re.M | re.IGNORECASE))
+```
+결과
+```
+[' ryan1 ', ' Ryan2 ', ' RYAN3 ']
+``` 
+
+위의 예시처럼 full-name과 약자를 같이 써도 되지만, 가독성을 생각한다면 굳이 그렇게 할 이유는 없다.
+
+
 ## 유니코드 번호
 
 한 글자 일치와 사용법은 같다.
@@ -463,3 +483,8 @@ print(re.findall('\u18ff\d', '0᣿1頶᣿2䅄ሲ᣿3456'))
 ```
 
 참고로 '\u18ff'는 '᣿'이다.
+
+---
+
+
+[다음 글](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/)에서는 다자택일(OR), 반복 등을 다루도록 하겠다.
