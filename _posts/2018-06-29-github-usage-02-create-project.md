@@ -95,7 +95,7 @@ print("Hello, git!") # instead of "Hello, World!"
 - No commits yet
   - 아직 생성한 [commit](https://greeksharifa.github.io/github/2018/06/29/github-usage-01-introduction/#add-commit-push)이 없다는 뜻이다. 이후에 commit을 추가하면, 이 부분이 다르게 보일 것이다.
 - Untracked files:  (use "git add <file>..." to include in what will be committed)
-  - 여러분이 수정하긴 했지만 cache에 올라가지 않은 파일의 목록이다. cache에 올라갔다는 말은 track한다는 말과 같다.
+  - 여러분이 수정하긴 했지만 stage에 올라가지 않은 파일의 목록이다. stage에 올라갔다는 말은 track한다는 말과 같다.
 - first.py
   - 여러분은 아직 `git add` 명령을 사용하지 않았기 때문에 수정/생성/삭제한 유일한 파일인 `first.py`가 tracking되지 않고 있다.
 - nothing added to commit but untracked files present (use "git add" to track)
@@ -124,15 +124,15 @@ print("Why don't you answer me, git?")
 ![02_create_a_new_repository](/public/img/GitHub/2018_06_29_github_usage_02_create_project/11_git_add_all.PNG)
 
 `.`의 의미는 **모든 파일과 디렉토리**이다.
-즉, 여러분은 프로젝트에 존재하는 모든 파일(`first.py`와 `second.py`)를 cache에 추가한 것이다.
+즉, 여러분은 프로젝트에 존재하는 모든 파일(`first.py`와 `second.py`)를 stage에 추가한 것이다.
 
 옵션으로, `git add`의 다양한 버전을 표로 정리해 두었다.
 
 | 명령어 | Description
 | -------- | --------
-| git add first.py | first.py 파일 하나를 cache에 추가한다.
-| git add my_directory/ | my_directory라는 이름의 디렉토리와 그 디렉토리 안의 모든 파일과 디렉토리를 cache에 추가한다.
-| git add . | 현재 폴더의 모든 파일과 디렉토리, 하위 디렉토리에 든 전부를 cache에 추가한다. 규모가 큰 프로젝트라면 써서는 안 된다.
+| git add first.py | first.py 파일 하나를 stage에 추가한다.
+| git add my_directory/  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  | my_directory라는 이름의 디렉토리와 그 디렉토리 안의 모든 파일과 디렉토리를 stage에 추가한다.
+| git add . | 현재 폴더의 모든 파일과 디렉토리, 하위 디렉토리에 든 전부를 stage에 추가한다. 규모가 큰 프로젝트라면 써서는 안 된다.
 | git add -p [\<파일\>] | 파일의 일부를 staging하기
 | git add -i | Git 대화 모드를 사용하여 파일 추가하기
 | git add -u [\<경로\>] | 수정되고 추적되는 파일의 변경 사항 staging하기 
@@ -155,7 +155,7 @@ print("Don't you hear me, git?")
 여러분이 한 것을 되짚어 보면 다음과 같다.
 
 1. `first.py`를 생성 및 수정하였다.
-2. `first.py`를 `git add` 명령으로 cache에 추가하였다.
+2. `first.py`를 `git add` 명령으로 stage에 추가하였다.
 3. `first.py`를 또 수정하였다.
 4. 다른 명령(`git add`나 `git commit` 등)을 하지 않는 채로 `git status`로 상태를 확인하였다.
 
@@ -164,7 +164,7 @@ print("Don't you hear me, git?")
 즉, 이는 오류가 아니라,
 
 - 이미 `git add`로 추가한 적이 있으니 *changes to be committed*에 있는 것이고
-- 그 이후에 수정한 사항은 cache에 올라가지 않았으니 *Untracked files*에도 있는 것이다.
+- 그 이후에 수정한 사항은 cache(stage)에 올라가지 않았으니 *Untracked files*에도 있는 것이다.
 
 어렵지 않게 이해할 수 있을 것이다.
 
@@ -175,7 +175,7 @@ print("Don't you hear me, git?")
 
 > (use "git rm --cached <file>..." to unstage)
 
-이는 cache에 올라간 파일을 unstage하겠다는 뜻으로, git add를 취소하는 것과 같은 효과를 가진다.
+이는 stage에 올라간 파일을 unstage하겠다는 뜻으로, git add를 취소하는 것과 같은 효과를 가진다.
 즉 *cached*된 `<file>`을 (cache에서) rm(remove)하겠다는 의미이다.
 
 무슨 일을 하는지 알았으니, `git rm --cached first.py`를 명령창에 입력한다. 그리고 `git status`를 쳐보자.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GitHub 사용법 - 06. branch 관리, 파일 일부만 추가
+title: GitHub 사용법 - 06. branch 관리
 author: YouWon
 categories: GitHub
 tags: [GitHub, usage]
@@ -97,57 +97,9 @@ remote branch를 local branch로 가져오는 방법은 다음과 같다.
 
 ![06_detached](/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/06_detached.PNG)
 
-지금까지 remote branch를 가져오는 법을 알아보았다.
-
 ---
 
-## git add: 중급
-
-다시 git_tutorial_clone 디렉토리 밖으로 빠져 나와서, 원래 git_tutorial repository로 돌아가자. 그리고 업데이트를 한다.
-
-> cd ../../git_tutorial  
-> git pull  
-
-[여기](https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/#git-add)에서 `git add` 명령의 다양한 옵션을 설명했었다.  
-페이지를 옮겨다니기 귀찮을 것이므로 다시 한번 가져왔다.
-
-
------------ ------- --------------- -------------------------
-   First    row                12.0 Example of a row that
-                                    spans multiple lines.
-
-  Second    row                 5.0 Here's another one. Note
-                                    the blank line between
-                                    rows.
------------ ------- --------------- -------------------------
-
-
-| 명령어| Description
-| -------- | --------
-| git add first.py | first.py 파일 하나를 cache에 추가한다.
-| git add my_directory/  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| my_directory라는 이름의 디렉토리와 그 디렉토리 안의 모든 파일과 디렉토리를 cache에 추가한다.
-| git add . | 현재 폴더의 모든 파일과 디렉토리, 하위 디렉토리에 든 전부를 cache에 추가한다. 규모가 큰 프로젝트라면 써서는 안 된다.
-| git add -p [\<파일\>] | 파일의 일부를 staging하기
-| git add -i | Git 대화 모드를 사용하여 파일 추가하기
-| git add -u [\<경로\>] | 수정되고 추적되는 파일의 변경 사항 staging하기 
-
-
----
-
-
-
-
-![](/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/.PNG)
-
-![](/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/.PNG)
-
-![](/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/.PNG)
-
-![](/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/.PNG)
-
----
-
-이제 git의 branch에 대한 기본적인 설명을 알아보았으니, [다음 글](https://greeksharifa.github.io/github/2018/08/11/github-usage-05-branch-basic/)에서는 branch에 대해서 알아본다.
+지금까지 remote branch를 가져오는 법을 알아보았다. [다음 글](https://greeksharifa.github.io/github/2018/08/15/github-usage-07-add-commit-gitignore-intermediate/)에서는 `git add`, `git commit`, `.gitignore`의 더 자세한 사용 방법을 알아본다.
 
 ---
 

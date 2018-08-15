@@ -260,7 +260,7 @@ remote repo에도 master branch 하나만 남은 것을 확인할 수 있다.
 
 ---
 
-이제 git의 프로젝트에 대한 설명은 대략 다 끝났다. [다음 글](https://greeksharifa.github.io/github/2018/08/11/github-usage-05-branch-basic/)에서는 branch에 대해서 더 알아본다.
+[다음 글](https://greeksharifa.github.io/github/2018/08/11/github-usage-05-branch-basic/)에서는 branch에 대해서 더 알아본다.
 
 ---
 
