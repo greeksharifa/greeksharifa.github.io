@@ -176,7 +176,7 @@ git push
 
 이제 `.gitignore` 파일을 추가해 보자.  
 `.gitignore` 파일은 remote repo에 올리지 않을 파일이나 디렉토리를 지정하는 파일이다.  
-즉, 여러분이 `git add *`를 아무리 시도해도, `.gitignore`파일에 명시된 파일 혹은 디렉토리는 절대 cache에 올라가지 않는다.
+즉, 여러분이 `git add *`를 아무리 시도해도, `.gitignore`파일에 명시된 파일 혹은 디렉토리는 절대 staging area에 올라가지 않는다.
 
 올라가지 않겠지만 파일을 하나 추가하자. `third.py`로 하면 좋을 것 같다.
 
@@ -201,7 +201,7 @@ print('This file is useless!')
 
 상태창에 `third.py`는 없고 `.gitignore` 파일만 있다. 
 - `.gitignore` 파일이야 방금 추가했으니 목록에 뜨는 것이 맞다.
-- `third.py`는 `.gitignore` 파일에 지정되어 cache에 올라갈 수 없다. 즉, `git add` 명령을 써도 cache에 올라가지 않는다.
+- `third.py`는 `.gitignore` 파일에 지정되어 staging area에 올라갈 수 없다. 즉, `git add` 명령을 써도 staging area에 올라가지 않는다.
 
 이제 3종 세트를 입력하거나, 옵션에서 했던 `push.bat` 파일을 실행시킨다. 여기서는 3종 세트를 입력하겠다.
 

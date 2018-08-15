@@ -10,19 +10,32 @@ tags: [GitHub, usage]
 -------- | --------
 git init | local repo를 생성한다.
 git status \[\-s] | 현재 local branch의 git 상태를 확인한다(수정 파일, cache, commit 등) `-s` 옵션은 간략히 표시한다.
-git add \<file \| directory\> | cache에 파일이나 디렉토리 혹은 전체(*)를 올린다.
+ | 
+git add \<file \| directory\> | stage에 파일이나 디렉토리 혹은 전체(*)를 올린다.
+git add \-p\|\-i\|\-u | 각각 부분/대화형/수정 사항을 stage에 추가
 git rm \-\-cached \<file \| directory\> | 파일이나 디렉토리를 cache에서 제거한다.
 git commit \[-m "commit message"\ | 수정사항들을 하나의 커밋으로 묶고 커밋 메시지를 작성한다.
+git commit \-v | git diff 명령을 포함하는 커밋 메시지 편집창을 열어 커밋한다.
+git diff \[HEAD] | 마지막 커밋과 현재 수정사항 사이의 차이를 보여준다.
+git diff \[\<branch1\>] \<branch2\> | 다른 브랜치와의 차이를 보여준다.
+git diff \[\<commit1\>] \<commit1\> | 다른 커밋과의 차이를 보여준다.
+ | 
+git tag \<tag\> \[\-a \[\-m] ]  | 마지막 커밋에 태그를 붙인다. `-a` 옵션은 Annotated 태그를 가리킨다. `-m` 옵션은 메시지를 작성한다.
+git tag \<tag\> \<commit\> | 지정한 코드에 해당하는 커밋에 태그를 붙인다.
+git tag | 태그 목록을 보여준다.
+git show \<tag\> | 해당 태그에 대한 자세한 설명을 보여준다.
+ | 
 git remote add origin \<remote repo 주소\> | local branch를 remote branch와 연결시킨다.
 git clone \<remote repo 주소\> | remote repo의 파일 복제본을 local로 가져온다. local repo가 생성된다.
  | 
-git log \[\-\-oneline] | 현재 브랜치의 commit log를 표시한다. \-\-oneline 옵션은 한줄로 간략히 표시한다.
+git log \[\-\-oneline] | 현재 브랜치의 commit log를 표시한다. `--oneline` 옵션은 한줄로 간략히 표시한다.
 git log origin/master..\[HEAD] | remote repo에는 없고 HEAD에는 있는 커밋을 표시한다. 
 git log \-\-graph | 현재 브랜치의 commit log를 그래프 형태로 보여준다.
  | 
 git branch \[\-\-list \| \-r \-a] | local/remote/전체 repo의 branch 목록 조회
-git checkout \[\-b] \<branch\> | 선택한 branch로 이동. -b 옵션은 브랜치를 생성하면서 이동
-git branch \-d\[\-D] \<branch\> | 선택한 local branch 삭제, -D 옵션은 강제 삭제
+git checkout \[\-b] \<branch\> | 선택한 branch로 이동. `-b` 옵션은 브랜치를 생성하면서 이동
+git checkout -t \[\-b] \<origin\/branch\> | 선택한 remote branch의 파일을 다운로드하면서 checkout
+git branch \-d\[\-D] \<branch\> | 선택한 local branch 삭제, `-D` 옵션은 강제 삭제
 git push -d origin \<branch\> | remote branch 삭제
 git fetch | remote branch 목록 업데이트
  | 

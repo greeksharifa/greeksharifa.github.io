@@ -99,7 +99,7 @@ remote branch를 local branch로 가져오는 방법은 다음과 같다.
 
 ---
 
-지금까지 remote branch를 가져오는 법을 알아보았다. [다음 글](https://greeksharifa.github.io/github/2018/08/15/github-usage-07-add-commit-gitignore-intermediate/)에서는 `git add`, `git commit`, `.gitignore`의 더 자세한 사용 방법을 알아본다.
+지금까지 remote branch를 가져오는 법을 알아보았다. [다음 글](https://greeksharifa.github.io/github/2018/08/15/github-usage-07-diff-add-commit-gitignore-intermediate/)에서는 `git diff`, `git add`, `git commit`, `.gitignore`의 더 자세한 사용 방법을 알아본다.
 
 ---
 
