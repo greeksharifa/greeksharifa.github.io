@@ -359,7 +359,7 @@ PyCharm 기준으로는 구글링을 하면 적당히 쓸 만한 설정 파일�
 
 ---
 
-[다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서는 대망의 conflict에 대해서 알아본다. 여러 사람이 작업 분할을 충실하게 하지 않는다면 필히 만나게 될 것이다.  
+[다음 글](https://greeksharifa.github.io/github/2018/08/19/github-usage-08-conflict)에서는 대망의 conflict에 대해서 알아본다. 여러 사람이 작업 분할을 충실하게 하지 않는다면 필히 만나게 될 것이다.  
 물론 혼자서도 만들 수도 있다. 
 
 ---
