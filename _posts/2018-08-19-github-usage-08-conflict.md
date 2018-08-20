@@ -207,7 +207,7 @@ print("Desired sentence in 2nd-branch")
 
 ---
 
-[다음 글](https://greeksharifa.github.io/github/2018/08/20/github-usage-09-rollback/)에서는 작업을 취소하는 여러 방법에 대해 자세히 알아보겠다.
+[다음 글](https://greeksharifa.github.io/github/2018/08/20/github-usage-09-fork-pull-request/)에서는 작업을 취소하는 여러 방법에 대해 자세히 알아보겠다.
 
 ---
 
