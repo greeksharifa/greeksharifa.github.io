@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 케라스 튜토리얼(1)
+title: 케라스 튜토리얼
 author: Youyoung
 categories: Keras
 tags: [usage, Keras]
