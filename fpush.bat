@@ -3,10 +3,7 @@
 git add .
 git status
 
-set str=
-set /p str=enter commit message :
-
-git commit -m "%str%"
+git commit -m "If you need, edit me!"
 
 git rebase -i HEAD~2
 
