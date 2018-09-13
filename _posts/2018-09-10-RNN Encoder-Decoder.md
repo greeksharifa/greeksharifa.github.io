@@ -46,7 +46,11 @@ $$h_{<t>} = f(h_{<t-1>}, x_t)$$
 
 <center><img src="/public/img/Paper_Review/2018-09-10-RNN-Encoder-Decoder/r1.jpg" width="50%"></center>  
 
-Decoder는 주어진 hidden state $h_{<t-1>}$을 바탕으로 다음 symbol $y_{<t>}$를 예측함으로써 output sequence를 생성하도록 학습된다. 다만 여기서 주목할 점은, 기본 RNN과 달리 새로운 hidden state는 summary **c**와 이전 output symbol $y_{t-1}$에도 conditioned 되어 있다는 것이다.  
+Decoder는 주어진 hidden state $h_{<t-1>}$을 바탕으로  
+다음 symbol $ y_{<t>} $를 예측함으로써 output sequence를 생성하도록 학습된다.  
+  
+다만 여기서 주목할 점은, 기본 RNN과 달리 새로운 hidden state는 summary **c**와  
+이전 output symbol $ y_{t-1} $에도 conditioned 되어 있다는 것이다.  
 즉 아래와 같이 표현될 수 있다.  
   
 $$ h_{<t>} = f(h_{<t-1>}, y_{t-1}, c) $$
@@ -127,7 +131,7 @@ $$ \tilde{h}^{<t>} = tanh(W e(x_t) + U(r \odot h_{<t-1>} )) $$
   
 
 4. Hidden State  
-$$ h_t^{<t>} = z h^{<t-1>} + (1-z) \tilde{h}^{<t>}$$  
+$$ h^{<t>} = z h^{<t-1>} + (1-z) \tilde{h}^{<t>}$$  
   
 
 5. Representatino of the source phrase: 농축된 정보  
