@@ -13,7 +13,8 @@ tags: [RNN, Paper_Review]
 **Abstract**  
 Encoder의 역할은 a sequence of symbols를 고정된 길이의 vector representation으로 나타내는 것이고, Decoder의 역할은 그 representation을 다시 sequence of symbols로 나타내는 것이다.  
   
-두 모델은 jointly train되는데, 그 목적은 source sequence가 주어졌을 때, target sequence가 나타날 조건부 확률을 최대화하는 것이다.  
+두 모델은 jointly train되는데, 그 목적은 source sequence가 주어졌을 때,  
+target sequence가 나타날 조건부 확률을 최대화하는 것이다.  
 = (Maximize the conditional probability of a target sequence given a source sequence.)
 
   
@@ -28,27 +29,36 @@ Encoder의 역할은 a sequence of symbols를 고정된 길이의 vector represe
 기본적인 RNN은 sequence에서 다음 symbol을 예측하는 방향으로 학습됨으로써 sequence의 확률 분포를 학습한다.  
 이 때 시간t에 대한 output은 $ p(x_t | x_{t-1}, ..., x_1) $와 같은 조건부 확률로 표현된다.  
 따라서 sequence **x**의 확률은 아래와 같이 표현할 수 있다.  
-$$ p(x) = \prod_{t=1}^T p(x_t | x_{t-1}, ..., x_1) $$
+
+$$ p(x) = \prod_{t=1}^T p(x_t | x_{t-1}, ..., x_1) $$  
+
 (위 $p(x)$의 x는 **x** vector이며, 위와 같은 식으로 표현되는 이유는 곱셈정리에 의한 것임)  
 이전의 symbol들에 근거하여 다음 symbol을 예측한다고 볼 수 있다.  
   
 본 논문에서 제안하는 RNN Encoder-Decoder 모델은 다소 새로운 구조를 갖고 있다. Encoder는 input sequence **x**의 원소 symbol들을 연속적으로 읽어 들인다.  
 (reads each symbol of an input sequence **x** sequentially)  
+  
 이 과정 속에서 시간 t의 hidden state는 아래와 같이 업데이트 된다.
-$$h_{<t>} = f(h_{<t-1>}, x_t)$$
+  
+$$h_{<t>} = f(h_{<t-1>}, x_t)$$  
+  
 즉, 이전 hidden state와 시간t의 새로운 input $x_t$에 의해 업데이트 되는 것이다. 모든 reading이 끝나고 나서 나면 RNN의 hidden state는 모든 input sequence에 대한 summary **c**이다.  
 
 <center><img src="/public/img/Paper_Review/2018-09-10-RNN-Encoder-Decoder/r1.jpg" width="50%"></center>  
 
 Decoder는 주어진 hidden state $h_{<t-1>}$을 바탕으로 다음 symbol $y_{<t>}$를 예측함으로써 output sequence를 생성하도록 학습된다. 다만 여기서 주목할 점은, 기본 RNN과 달리 새로운 hidden state는 summary **c**와 이전 output symbol $y_{t-1}$에도 conditioned 되어 있다는 것이다.  
 즉 아래와 같이 표현될 수 있다.  
-$$h_{<t>} = f(h_{<t-1>}, y_{t-1}, c)$$
+  
+$$ h_{<t>} = f(h_{<t-1>}, y_{t-1}, c) $$
   
 다음 symbol의 조건부 확률 분포는 아래와 같이 나타낼 수 있다.  
-$$ P(y_t | y_{t-1}, ..., y_1, c) = g(h_{<t>}, y_{t-1}, c)$$
-
+  
+$$ P(y_t | y_{t-1}, ..., y_1, c) = g(h_{<t>}, y_{t-1}, c)$$  
+  
 정리하자면, RNN Encoder-Decoder의 두 성분은 아래의 조건부 로그 가능도를 최대화하도록 결합하여 학습된다.  
-$$ \max_{\theta} {1 \over N} \sum_{n=1}^N log p_{\theta} (y_n|x_n) $$
+  
+$$ \max_{\theta} {1 \over N} \sum_{n=1}^N log p_{\theta} (y_n|x_n) $$  
+  
 여기서 $\theta$는 모델 parameter의 집합을 의미하며,  
 $y_n$은 output sequence를 $x_n$은 input sequence를 의미한다.  
   
@@ -89,8 +99,11 @@ RNN Encoder-Decoder를 학습시킬 때, 기존 말뭉치들에서 각각의 phr
 
 **Structure of Encoder**  
 source phrase X와 Y의 형태는 아래와 같다.  
-$$ X = (x_1, x_2, ... , x_N), Y = (y_1, y_2, ... , y_N) $$
+  
+$$ X = (x_1, x_2, ... , x_N), Y = (y_1, y_2, ... , y_N) $$  
+  
 X.shape = (N, K), Y.shape = (N, K)  
+  
 물론 여기서 각 세로 벡터는 one-hot vector이다.  
 source phrase의 각 단어는 500차원의 벡터로 임베딩된다.  
 Encoder의 Hidden state는 1000개의 unit을 갖고 있다.  
@@ -98,20 +111,24 @@ Encoder의 Hidden state는 1000개의 unit을 갖고 있다.
   
 위 hidden state가 계산되는 과정을 살펴보면,  
 1. Reset Gate  
-$$ r = \sigma(W_r e(x_t) + U_r h_{<t-1>}) $$
+$$ r = \sigma(W_r e(x_t) + U_r h_{<t-1>}) $$  
+  
 (1000, 1) = (1000, 500) X (500, 1) + (1000, 1000) X (1000, 1)  
   
 2. Update Gate  
-$$ z = \sigma(W_z e(x_t) + U_z h_{<t-1>}) $$
+$$ z = \sigma(W_z e(x_t) + U_z h_{<t-1>}) $$  
+  
 shape은 위와 같다.
   
 3. Candidate  
-$$ \tilde{h}^{<t>} = tanh(W e(x_t) + U(r \odot h_{<t-1>} )) $$
+$$ \tilde{h}^{<t>} = tanh(W e(x_t) + U(r \odot h_{<t-1>} )) $$  
+  
 (1000, 1) = (1000, 500)X(500, 1) + (1000, 1000)X(1000, 1)$\odot$(1000, 1)  
   
 
 4. Hidden State  
-$$ h_t^{<t>} = z h^{<t-1>} + (1-z) \tilde{h}^{<t>}$$
+$$ h_t^{<t>} = z h^{<t-1>} + (1-z) \tilde{h}^{<t>}$$  
+  
 
 5. Representatino of the source phrase: 농축된 정보  
 $$ c = tanh(V h^{<t>}) $$
