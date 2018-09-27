@@ -42,7 +42,8 @@ $$ p(x) = \prod_{t=1}^T p(x_t | x_{t-1}, ..., x_1) $$
   
 $$h_{<t>} = f(h_{<t-1>}, x_t)$$  
   
-즉, 이전 hidden state와 시간t의 새로운 input $x_t$에 의해 업데이트 되는 것이다. 모든 reading이 끝나고 나서 나면 RNN의 hidden state는 모든 input sequence에 대한 summary **c**이다.  
+즉, 이전 hidden state와 시간t의 새로운 input $x_t$에 의해 업데이트 되는 것이다.  
+모든 reading이 끝나고 나서 나면 RNN의 hidden state는 모든 input sequence에 대한 summary **c**이다.  
 
 <center><img src="/public/img/Paper_Review/2018-09-10-RNN-Encoder-Decoder/r1.jpg" width="50%"></center>  
 
