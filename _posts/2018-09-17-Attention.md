@@ -137,9 +137,11 @@ source language의 vocab_size를 의미한다.
 (Bias항은 잠시 삭제한다.)  
   
 $$ h_j = (1 - z_i) \odot h_{j-1} + z_i \odot \tilde{h_j} $$  
+
 위에서 $z_i$가 Update Gate이며, 각 Hidden State가 이전 activation을 유지하느냐 마느냐를 결정한다.  
 
 $$ \tilde{h_j} = tanh(W*Ex_j + U[r_j \odot h_{j-1}]) $$  
+
 위에서 $r_j$가 Reset Gate이며, 이전 State의 정보를 얼마나 Reset할지 결정한다.  
 
 $$ z_j = \sigma(W_z * Ex_j + U_z * h_{j-1}) $$  
@@ -188,12 +190,11 @@ $$ \tilde{t_i} = U_o * s_{i-1} + V_o * Ey_{i-1} + C_oc_i $$
 차원을 맞춰보면 위 벡터는 크기가 ($2l$, 1)인 것을 알 수 있을 것이다.  
 이제 이 벡터에서 아래와 같은 maxout과정을 거치면,  
 
+<center><img src="/public/img/Paper_Review/2018-09-27-Attention/a1.png" width="50%"></center>
 
 $t_i$는 아래와 같이 정의된다.  
 
 $$ t_i = [ max(\tilde{t_{i, 2j-1}}, \tilde{t_{i, 2j}}) ]_{j=1, ..., l}^T $$  
   
 아주 멋지다.  
-
 **The End**  
-
