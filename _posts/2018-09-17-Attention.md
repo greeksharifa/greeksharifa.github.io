@@ -192,8 +192,6 @@ $$ \tilde{t_i} = U_o * s_{i-1} + V_o * Ey_{i-1} + C_oc_i $$
 
 <center><img src="/public/img/Paper_Review/2018-09-27-Attention/a1.png" width="50%"></center>
 
-![Img](../public/img/Paper_Review/2018-09-27-Attention/a1.png)
-
 $t_i$는 아래와 같이 정의된다.  
 
 $$ t_i = [ max(\tilde{t_{i, 2j-1}}, \tilde{t_{i, 2j}}) ]_{j=1, ..., l}^T $$  
