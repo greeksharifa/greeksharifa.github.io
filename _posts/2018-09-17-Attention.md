@@ -45,14 +45,17 @@ $f, g$ = 비선형 함수
   
 이제 모델의 구성 요소를 살펴볼 것이다.  
 먼거 타겟 word $y_i$를 예측하기 위한 조건부 확률은 아래와 같이 정의된다.  
+
 $$ p(y_i|y_1, ..., y_{i-1}, \vec{x}) = g(y_{i-1}, s_i, c_i) $$  
   
 이 중 디코더의 i time Hidden State인 $s_i$를 먼저 살펴보면,  
+
 $$ s_i = f(s_{i-1}, y_{i-1}, c_i) $$  
   
 Basic Encoder-Decoder 모델과 달리 target word를 예측하기 위한 조건부 확률은 분리된 context vector $c_i$에 의존한다.  
   
 **Context Vector** $c_i$는 annotations $h_j$의 가중합이다.  
+
 $$ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j $$  
   
 여기서 $h_j$는 j time annotation으로, input sequence의 i번째 단어 주위 부분에 강하게 집중하여 input sequence에 대한 정보를 담게 된다.  
@@ -60,16 +63,19 @@ $$ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j $$
 
 *Bidirectional RNN*  
 이 $h_j$는 forward RNN의 Hidden States와 backward RNN의 Hidden States를 세로로 합친 열벡터이다.  
+
 $$ h_j = [\overrightarrow{h_j}^T | \overleftarrow{h_j}^T]^T $$  
   
 이러한 방식으로 $h_j$는 두 방향 모두로 words들을 요약한 정보를 담게 된다.  
 
 이제 **attention weight** $a_{ij}$가 어떻게 계산되는지 살펴보겠다.  
+
 $$ a_{ij} = \frac{ exp(e_{ij}) } {\sum_{k=1}^{T_x} exp(e_{ik}) } $$  
   
 이 $a_{ij}$는 **Normalized Score**라고 할 수 도 있다. 왜냐하면 softmax함수의 확률로서 계산되기 때문이다.  
   
 **Unnormalized Score**인 $e_{ij}$는 아래와 같이 계산된다.  
+
 $$ e_{ij} = a(s_{i-1}, h_j) $$  
   
 여기서 a함수는 **alignment model**이다. 이 a를 다른 component와 함께 학습되는 순전파 신경망으로서 모수화한다.  
@@ -135,7 +141,9 @@ $$ h_j = (1 - z_i) \odot h_{j-1} + z_i \odot \tilde{h_j} $$
 
 $$ \tilde{h_j} = tanh(W*Ex_j + U[r_j \odot h_{j-1}]) $$  
 위에서 $r_j$가 Reset Gate이며, 이전 State의 정보를 얼마나 Reset할지 결정한다.  
+
 $$ z_j = \sigma(W_z * Ex_j + U_z * h_{j-1}) $$  
+
 $$ r_j = \sigma(W_r * Er_j + U_x * h_{j-1}) $$  
   
 위에서 계산한 식은 $\overrightarrow{h_j}$, $\overleftarrow{h_j}$ 모두에게 통용되며,  
@@ -149,16 +157,43 @@ $$ r_j = \sigma(W_r * Er_j + U_x * h_{j-1}) $$
 $$ s_i = (1 - z_i) \odot s_{i-1} + z_i \odot \tilde{s_i} $$  
 
 $$ \tilde{s_i} = tanh(W*Ex_i + U[r_i \odot s_{i-1}] + C*c_i) $$  
+
 $$ z_i = \sigma(W_z * Ex_i + U_z * s_{i-1} + C_zc_i) $$  
+
 $$ r_i = \sigma(W_r * Er_j + U_x * s_{i-1} + C_rc_i) $$  
   
 $$ c_i = \sum_{j=1}^{T_x}a_{ij}h_j $$  
+
 $$ a_{ij} = \frac{ exp(e_{ij}) } {\sum_{k=1}^{T_x} exp(e_{ik}) } $$  
   
 $$ e_{ij} = v_a^T tanh(W_a * s_{i-1} + U_a * h_j) $$  
+  
+최종적으로 Decoder State $s_{i-1}$, Context Vector $c_i$, 마지막 generated word $y_{i-1}$을 기반으로, target word $y_i$의 확률을 아래와 같이 정의한다.  
+  
+$$ p(y_i|s_i, y_{i-1}, c_i) \propto exp(y_i^T W_o t_i) $$  
+
+즉 오른쪽 편에 있는 스칼라값에 정비례한다는 뜻이다.  
+잠시 행렬의 차원을 정의하고 진행하겠다.  
+
+$W_o$: ($K_y$, $l$)  
+$U_o$: ($2l$, n)  
+$V_o$: ($2l$, m)  
+$C_o$: ($2l$, 2n)  
+이들은 모두 Parameter이다.  
+
+이제 $t_i$를 정의할 것인데, 그 전에 두 배 크기인 candidate $\tilde{t_i}$를 먼저 정의하겠다.  
+
+$$ \tilde{t_i} = U_o * s_{i-1} + V_o * Ey_{i-1} + C_oc_i $$  
+  
+차원을 맞춰보면 위 벡터는 크기가 ($2l$, 1)인 것을 알 수 있을 것이다.  
+이제 이 벡터에서 아래와 같은 maxout과정을 거치면,  
 
 
+$t_i$는 아래와 같이 정의된다.  
 
+$$ t_i = [ max(\tilde{t_{i, 2j-1}}, \tilde{t_{i, 2j}}) ]_{j=1, ..., l}^T $$  
+  
+아주 멋지다.  
 
-
+**The End**  
 
