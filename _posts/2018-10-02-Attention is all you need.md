@@ -19,10 +19,11 @@ sub-layer는 Multi-Head Attention과 Feed-forward Network로 이루어져있고,
 이전 단계의 output(Residual Connection)과 결합하여 **Add & Normalization** layer를 거치게 된다.  
 
 Decoder 역시 이와 구조가 비슷하지만, 다만 인코더와 달리 순차적으로 결과를 만들어내야 하므로,  
-**Masking** 기법을 사용한다. 이 기법을 통해 position i보다 이후에 있는 position에 attention을 주지 않게 된다.  
+**Masking** 기법을 사용한다.  
+이 기법을 통해 position i보다 이후에 있는 position에 attention을 주지 않게 된다.  
 즉, position i에 대한 예측은 이전 output들에게만 의존하는 것이다.  
 
-Attention Function은 query와 key-value paris를 output에 mapping하는 기능으로 이해할 수 있는데,  
+Attention Function은 query와 key-value pairs를 output에 mapping하는 기능으로 이해할 수 있는데,  
 이 output은 일종의 value의 가중합으로 생각할 수 있다. 왜냐하면 각 value에 해당하는 weight이 query와 key의
 compatibility(호환) function으로 계산되기 때문이다. 이 function은 query와 key의 유사도(Similiarity)를 계산한다.  
 
