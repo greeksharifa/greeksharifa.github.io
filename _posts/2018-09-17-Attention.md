@@ -84,14 +84,14 @@ $$ e_{ij} = a(s_{i-1}, h_j) $$
 계산 방법은 마지막 부분에서 설명하도록 하겠다.  
   
 
-위 설명을 보면, 결국 i번째 **Contet Vector**인 $c_i$는 expected annotation over all the annotations with probabilities $\alpha_{ij}$라고 할 수 있다.  
+위 설명을 보면, 결국 i번째 **Context Vector**인 $c_i$는 expected annotation over all the annotations with probabilities $\alpha_{ij}$라고 할 수 있다.  
 이 $\alpha_{ij}$는 다음 Hidden State인 $s_i$를 결정하고 target word $y_i$를 generate하는 데에 있어 $h_j$의 중요성을 결정하는 역할을 하게 된다.  
   
 즉 이는 일종의 **attention**이라는 개념으로 설명될 수 있다.  
 디코더는 source sentence의 어떤 부분에 **집중**해야 하는지 결정하게 되는 것이다.  
   
 
-### Conclustion  
+### Conclusion  
 제안된 모델은 다음 target word를 generate하는 데에 관련이 있는 정보에만 집중하며 이 때문에 source sentence의 길이에 상당히 robust하다.  
 다만 unknown or rare words를 다루는 데 있어서는 좀 더 보완이 필요하다.  
   
