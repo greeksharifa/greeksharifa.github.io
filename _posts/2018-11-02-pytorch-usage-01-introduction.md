@@ -41,3 +41,42 @@ print(x)
 결과가 대략 다음과 같이 나오면 설치가 완료되었다. 숫자가 다른 것은 랜덤이니 신경 쓰지 말자.
 
 ![01_run_pytorch.PNG](/public/img/PyTorch/2018-07-05-pytorch-usage-01-introduction/01_run_pytorch.PNG)
+
+
+---
+
+## PyTorch Project 구조
+
+프로젝트의 구조는 코딩하는 사람 마음대로이긴 하나, 기본적으로는 다음과 같은 구조를 따른다.
+
+1. Load 'preprocessed Data'
+2. Load Model
+3. Set Loss function(creterion) and Optimizer
+4. Train
+5. Display output (and graph) and save results
+
+PyTorch는 각 단계에서 다음의 장점을 갖는다.
+1. 데이터 로드 시 `DataLoader`라는 클래스를 제공한다. `DataLoader`를 통해 데이터를 불러오면, 이 안에서 데이터 처리에 대한 거의 모든 것을 쉽게 수행할 수 있다. 
+    - 이를테면 Data Augmentation 같은 것도 전부 제공된다.
+2. 일반적인 모델을 불러올 때는 다른 Deep Learning Framework도 대체로 간결하지만, PyTorch는 `torchvision`이라는 패키지에서 따로 pretrain까지 된 모델들을 제공하므로 다른 곳에서 모델을 다운로드할 필요 없이 이를 바로 쓸 수 있다.
+3. 이 부분은 다른 Deep Learning Framework와 비슷하다.
+4. Tensorflow와는 달리 Session을 설정할 필요가 없다.
+5. 이 부분도 역시 비슷하다.
+
+---
+
+## 게시글
+
+각 프로젝트의 구조를 설명한 게시글들을 소개하도록 하겠다.
+
+- [Linear Regression Model](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/)
+- NonLinear Regression Model
+- Classfication Model
+
+---
+
+## References
+
+- [Reference](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/)
+
+PyTorch에서 자주 사용되는 함수들을 정리한 글이다. 
