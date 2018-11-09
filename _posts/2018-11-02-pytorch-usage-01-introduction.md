@@ -40,7 +40,7 @@ print(x)
 
 결과가 대략 다음과 같이 나오면 설치가 완료되었다. 숫자가 다른 것은 랜덤이니 신경 쓰지 말자.
 
-![01_run_pytorch.PNG](/public/img/PyTorch/2018-07-05-pytorch-usage-01-introduction/01_run_pytorch.PNG)
+![01_run_pytorch.PNG](/public/img/PyTorch/2018-11-02-pytorch-usage-01-Introduction/01_run_pytorch.PNG)
 
 
 ---
@@ -52,7 +52,7 @@ print(x)
 1. Load 'preprocessed Data'
 2. Load Model
 3. Set Loss function(creterion) and Optimizer
-4. Train
+4. Train Model
 5. Display output (and graph) and save results
 
 PyTorch는 각 단계에서 다음의 장점을 갖는다.
