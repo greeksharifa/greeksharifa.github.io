@@ -40,7 +40,7 @@ import matplotlib.pyplot as plt
 
 다음 파일을 다운로드하여 data/ 디렉토리에 넣는다.
 
-[02_Linear_Regression_Model_Data.csv]()
+[02_Linear_Regression_Model_Data.csv](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/data/02_Linear_Regression_Model_Data.csv)
 
 ---
 
@@ -204,4 +204,4 @@ display_results(loaded_model, x, y)
 
 ---
 
-전체 코드는 [여기]()에서 살펴볼 수 있다.
+전체 코드는 [여기](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model.py)에서 살펴볼 수 있다.
