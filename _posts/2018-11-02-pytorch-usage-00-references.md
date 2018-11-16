@@ -34,24 +34,48 @@ tags: [PyTorch, usage]
 
 ### [torch.arange](https://pytorch.org/docs/stable/torch.html?highlight=arange#torch.arange)
 
+```python
+# torch.arange(start=0, end, step=1, out=None, dtype=None, 
+#              layout=torch.strided, device=None, requires_grad=False) → Tensor
+```
+
 start 이상 end 미만까지 step 간격으로 dtype 타입인 1차원 텐서를 **생성**한다.  
 
 `out` parameter로 결과 텐서를 저장할 변수(텐서)를 지정할 수 있다.  
 
 ```python
-# torch.arange(start=0, end, step=1, out=None, dtype=None, 
-#              layout=torch.strided, device=None, requires_grad=False) → Tensor
 >>> torch.arange(start=1, end=9, step=2)
 tensor([1, 3, 5, 7])
 ```
 
+### [torch.linspace](https://pytorch.org/docs/stable/torch.html?highlight=linspace#torch.linspace)
+
+```python
+# torch.linspace(start, end, steps=100, out=None, dtype=None, 
+#                layout=torch.strided, device=None, requires_grad=False) → Tensor
+```
+
+start 이상 end 미만까지 총 steps 개수의 dtype 타입인 1차원 텐서를 **생성**한다.  
+**torch.arange**에서 step은 간격을, **torch.linspace**에서 steps는 개수를 의미한다.
+
+```python
+>>> torch.linspace(-10, 10, steps=5)
+tensor([-10.,  -5.,   0.,   5.,  10.])
+>>> torch.linspace(0, 10, steps=10)
+tensor([ 0.0000,  1.1111,  2.2222,  3.3333,  4.4444,  
+         5.5556,  6.6667,  7.7778,  8.8889, 10.0000])
+```
+
 ### [torch.from_numpy](https://pytorch.org/docs/stable/torch.html?highlight=from_numpy#torch.from_numpy)
+
+```python
+# torch.from_numpy(ndarray) → Tensor
+```
 
 numpy array인 ndarray로부터 텐서를 만든다. 이 함수는 데이터를 **복사가 아닌 참조**를 한다.  
 `from_numpy`로 만들어진 텐서는 해당 ndarray와 메모리를 공유하며, 어느 한쪽의 데이터를 변경 시 둘 다 변경된다.
 
 ```python
-# torch.from_numpy(ndarray) → Tensor
 >>> a = numpy.array([1, 2, 3])
 >>> t = torch.from_numpy(a)
 >>> print(t)
@@ -64,11 +88,14 @@ array([-1,  2,  3])
 
 ### [torch.randn](https://pytorch.org/docs/stable/torch.html?highlight=randn#torch.randn)
 
-N(0, 1) 정규분포를 따르는 sizes 크기의 텐서를 **생성**한다.
-
 ```python
 # torch.randn(*sizes, out=None, dtype=None, 
 #             layout=torch.strided, device=None, requires_grad=False) → Tensor
+```
+
+N(0, 1) 정규분포를 따르는 sizes 크기의 텐서를 **생성**한다.
+
+```python
 >>> torch.randn(2, 3)
 tensor([[ 1.5954,  2.8929, -1.0923],
         [ 1.1719, -0.4709, -0.1996]])
@@ -80,13 +107,16 @@ tensor([[ 1.5954,  2.8929, -1.0923],
 
 ### [torch.unsqueeze(Tensor.unsqueeze)](https://pytorch.org/docs/stable/torch.html#torch.unsqueeze)
 
+```python
+# torch.unsqueeze(input, dim, out=None) → Tensor
+```
+
 `dim` parameter 위치에 길이 1짜리 차원을 추가한 텐서를 만든다. 이 함수는 데이터를 **복사가 아닌 참조**를 한다. 원본 텐서와 메모리를 공유하며, 어느 한쪽의 데이터를 변경 시 둘 다 변경된다.
 
 `dim`은 [ -input.dim() - 1, input.dim() + 1] 범위를 갖는다. 음수 dim은 dim + input.dim() + 1과 같다.  
 원본 텐서의 size가 (2, 3, 4)라면, unsqueeze(1) 버전은 (2, 1, 3, 4), unsqueeze(2) 버전은 (2, 3, 1, 4)이다.
 
 ```python
-# torch.unsqueeze(input, dim, out=None) → Tensor
 >>> x = torch.tensor([1, 2, 3])
 >>> x
 tensor([1, 2, 3])
@@ -111,11 +141,14 @@ tensor([-1,  2,  3])
 
 ### [torch.cat](https://pytorch.org/docs/stable/torch.html?highlight=cat#torch.cat)
 
+```python
+# torch.cat(seq, dim=0, out=None) → Tensor
+```
+
 두 텐서를 이어 붙인다(concatenate). 데이터를 **복사**한다.  
 concatenate하는 차원을 제외하고는 size가 같거나 empty여야 한다. 즉 shape=(2, 3, 4)인 텐서는 shape=(2, 1, 4)와는 `dim=1`일 때만 concatenate가 가능하다.
 
 ```python
-# torch.cat(seq, dim=0, out=None) → Tensor
 >>> x = torch.arange(0, 6).reshape(2, 3)
 >>> y = torch.arange(100, 104).reshape(2, 2)
 >>> x
@@ -138,11 +171,14 @@ tensor([[  0,   1,   2, 100, 101],
 
 ### [torch.nn.Linear](https://pytorch.org/docs/stable/nn.html?highlight=linear#torch.nn.Linear)
 
+```python
+# class torch.nn.Linear(in_features, out_features, bias=True)
+```
+
 Linear 모델 클래스를 생성한다.  
 `in_features` 길이의 데이터를 Linear Transformation을 통해 `out_features` 길이의 데이터로 변환할 수 있다.
 
 ```python
-# class torch.nn.Linear(in_features, out_features, bias=True)
 >>> from torch import nn
 >>> model = nn.Linear(in_features=3, out_features=2, bias=True)
 
@@ -168,6 +204,7 @@ tensor([-0.0965,  0.5427], requires_grad=True)
 
 ### [torch.optim.Optimizer.zero_grad](https://pytorch.org/docs/stable/optim.html?highlight=zero_grad#torch.optim.Optimizer.zero_grad)
 
+### [torch.optim.Optimizer.step](https://pytorch.org/docs/stable/optim.html?highlight=optimizer%20step#torch.optim.Optimizer.step)
 
 ---
 
@@ -186,13 +223,3 @@ tensor([-0.0965,  0.5427], requires_grad=True)
 ![01_new_repository](/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg)
 
 ---
-
-### Markdown
-
-다음 글을 참조한다. <https://greeksharifa.github.io/references/2018/06/29/markdown-usage/>
-
----
-
-### References
-
-다음의 글에 정리한다. <https://greeksharifa.github.io/references/2018/06/29/references/>

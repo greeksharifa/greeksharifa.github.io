@@ -22,7 +22,8 @@ tags: [PyTorch]
 1. 일반적으로 데이터는 data/ 디렉토리에 넣는다. 
 2. 코드는 git에 두고, data/는 `.gitignore` 파일에 추가하여 데이터는 git에 올리지 않는다. 파일은 다른 서버에 두고 필요할 때 다운로드한다.
 
-물론 이 예제 프로젝트는 너무 간단하여 그냥 data/ 디렉토리 없이 해도 상관없다.
+물론 이 예제 프로젝트는 너무 간단하여 그냥 data/ 디렉토리 없이 해도 상관없다.  
+output/ 디렉토리 등을 만드는 것이 정석이지만 일단은 없이 진행하도록 하겠다.
 
 ---
 
@@ -33,7 +34,6 @@ import pandas as pd
 
 import torch
 from torch import nn
-from torch.autograd import Variable
 
 import matplotlib.pyplot as plt
 ```
@@ -42,19 +42,34 @@ import matplotlib.pyplot as plt
 
 [02_Linear_Regression_Model_Data.csv](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/data/02_Linear_Regression_Model_Data.csv)
 
+1. [torch](https://pytorch.org/): 설명이 필요없다.
+2. [from torch import nn](https://pytorch.org/docs/stable/nn.html): nn은 Neural Network의 약자이다. torch의 nn 라이브러리는 Neural Network의 모든 것을 포괄하며, Deep-Learning의 가장 기본이 되는 1-Layer Linear Model도 `nn.Linear` 클래스를 사용한다. 이 예제에서도 **nn.Linear**를 쓴다.
+    - **nn.Module**은 모든 Neural Network Model의 Base Class이다. 모든 Neural Network Model(흔히 Net이라고 쓴다)은 **nn.Module**의 subclass이다. nn.Module을 상속한 어떤 subclass가 Neural Network Model로 사용되려면 다음 두 메서드를 override해야 한다.
+        - `__init__(self)`: Model에 사용될 구성 요소들을 정의한다. 대개 다음과 같이 사용된다.
+            - self.conv1 = nn.Conv2d(1, 20, 5)
+            - self.conv2 = nn.Conv2d(20, 20, 5)
+        - `forward(self, x)`: `__init__`에서 정의된 요소들로 모델을 구성한다. Nested Tree Structure가 될 수도 있다. 주로 다음처럼 사용된다.
+            - x = F.relu(self.conv1(x))
+            - return F.relu(self.conv2(x))
+    - 다른 말로는 위의 두 메서드를 override하기만 하면 손쉽게 Custom net을 구현할 수 있다는 뜻이기도 하다.
+3. 참고: **torch.autograd.Variable**은 이전에는 auto gradient 계산을 위해 텐서에 필수적으로 씌워 주어야 했으나, 0.4.0 버전 이후로 `torch.Tensor`와 `torch.autograd.Variable` 클래스가 통합되었다. 따라서 PyTorch 구버전을 사용 중이 아니라면 Variable은 쓸 필요가 전혀 없다.
+    - https://pytorch.org/docs/stable/autograd.html#variable-deprecated/
+    - https://pytorch.org/blog/pytorch-0_4_0-migration-guide/
+
 ---
 
 ## Load preprocessed Data
 
 ### 데이터 준비
 
-지금의 경우는 전처리할 필요가 없으므로 그냥 데이터를 불러오기만 하면 된다. 데이터가 어떻게 생겼는지도 확인해 보자.
+지금의 경우는 전처리할 필요가 없으므로 그냥 데이터를 불러오기만 하면 된다. 데이터가 어떻게 생겼는지도 확인해 보자.  
+데이터가 어떤지 살펴보는 것은 모델을 결정하는 데 있어 매우 중요하다.
 
 ```python
 data = pd.read_csv('data/02_Linear_Regression_Model_Data.csv')
 # Avoid copy data, just refer
-x = Variable(torch.from_numpy(data['x'].values).unsqueeze(1).float())
-y = Variable(torch.from_numpy(data['y'].values).unsqueeze(1).float())
+x = torch.from_numpy(data['x'].values).unsqueeze(dim=1).float()
+y = torch.from_numpy(data['y'].values).unsqueeze(dim=1).float()
 
 plt.xlim(0, 11);    plt.ylim(0, 8)
 plt.title('02_Linear_Regression_Model_Data')
@@ -64,13 +79,16 @@ plt.show()
 ```
 
 ![02_Linear_Regression_Model_Data](/public/img/PyTorch/2018-11-02-pytorch-usage-02-Linear-Regression-Model/02_Linear_Regression_Model_Data.png)
+
+**from_numpy**로 불러오는 이유는 데이터를 복사하여 새로 텐서를 생성하는 대신 원 데이터와 메모리를 공유하는 텐서를 쓰기 위함이다. 지금은 상관없지만 대용량의 데이터를 다룰 때에는 어떤 함수가 데이터를 복사하는지 아닌지를 확실하게 알아둘 필요가 있다.  
+물론, 정말 대용량의 데이터의 경우는 read_csv로 한번에 불러오지 못한다. 이는 데이터를 *batch*로 조금씩 가져오는 것으로 해결하는데, 이에 대해서는 나중에 살펴보자.
  
  
 참고: 이 데이터는 다음 코드를 통해 생성되었다.
 
 ```python
-x = torch.arange(1, 11, dtype=torch.float).unsqueeze(1)
-y = x / 2 + 1 + torch.randn(10).unsqueeze(1) / 5
+x = torch.arange(1, 11, dtype=torch.float).unsqueeze(dim=1)
+y = x / 2 + 1 + torch.randn(10).unsqueeze(dim=1) / 5
 
 data = torch.cat((x, y), dim=1)
 data = pd.DataFrame(data.numpy())
@@ -83,9 +101,10 @@ data.to_csv('data/02_Linear_Regression_Model_Data.csv', header=['x', 'y'])
 ## Load Model
 
 매우 간단한 모델이므로 코드도 짧다.  
-여기서는 편의를 위해 parameter 이름을 명시하도록 한다.
+여기서는 여러분의 편의를 위해 parameter 이름을 명시하도록 한다.
 
-PyTorch에서 Linear 모델은 `torch.nn.Linear` 클래스를 사용한다. 여기서는 x를 단지 y로 mapping하는 일차원 직선($ y = wx + b $)을 찾고 싶은 것이므로, `in_features`와 `out_features`는 모두 1이다.
+PyTorch에서 Linear 모델은 `torch.nn.Linear` 클래스를 사용한다. 여기서는 단지 x를 y로 mapping하는 일차원 직선($ y = wx + b $)을 찾고 싶은 것이므로, `in_features`와 `out_features`는 모두 1이다.  
+**nn.Linear**은 **nn.Module**의 subclass로 in_features개의 input을 선형변환을 거쳐 out_features개의 output으로 변환한다. parameter 개수는 $ (in\_features \times out\_features + out\_features) $ 개이다. 마지막 항은 **bias**이다.
 
 ```python
 from torch import nn
@@ -109,11 +128,11 @@ tensor([0.7960], requires_grad=True)
 ## Set Loss function(creterion) and Optimizer
 
 적절한 모델을 선정할 때와 마찬가지로 loss function과 optimizer를 결정하는 것은 학습 속도와 성능을 결정짓는 중요한 부분이다.  
-그러나 지금과 같이 간단한 Linear Regression Model에서는 어느 것을 사용해도 학습이 잘 된다. 하지만, 일반적으로 성능이 좋은 `AdamOptimizer`를 사용하도록 하겠다.
+지금과 같이 간단한 Linear Regression Model에서는 어느 것을 사용해도 학습이 잘 된다. 하지만, 일반적으로 성능이 좋은 `AdamOptimizer`를 사용하도록 하겠다.
 
 ```python
 criterion = nn.MSELoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+optimizer = torch.optim.Adam(params=model.parameters(), lr=0.01)
 
 print(model(x))
 
@@ -137,19 +156,17 @@ tensor([[-0.1399],
 
 ## Train Model
 
-Train은 다음과 같이 이루어진다.
+Train은 다음과 같이 이루어진다. 
 
-1. `prediction`: 모델에 데이터(x)를 집어넣었을 때 예측값(y). 여기서는 $ y = wx + b $의 결과들이다.
-2. `loss`: criterion이 MSELoss로 설정되어 있으므로, prediction과 y의 평균제곱오차를 계산한다.
-3. `optimizer.zero_grad()`: optimizer의 grad를 0으로 설정한다. PyTorch는 parameter들의 gradient를 계산해줄 때 grad는 계속 누적되도록 되어 있다. 따라서 gradient를 다시 계산할 때에는 0으로 세팅해주어야 한다.
-4. `loss.backward()`: gradient 계산을 역전파(backpropagation)한다.
-5. `optimizer.step()`: 계산한 gradient를 토대로 parameter를 업데이트한다($ w \leftarrow w - \alpha \Delta w, b \leftarrow b - \alpha \Delta b $)
-6. 학습 결과를 중도에 확인하고 싶으면 그래프를 중간에 계속 그려주는 것도 한 방법이다.
+1. 현재 모델의 weights로 prediction을 낸 뒤
+2. 실제 정답과 loss를 비교하여 
+3. gradient를 계산한다.
+4. 이 값을 통해 weights를 업데이트한다.
 
 ```python
 for step in range(500):
     prediction = model(x)
-    loss = criterion(prediction, y)
+    loss = criterion(input=prediction, target=y)
 
     optimizer.zero_grad()
     loss.backward()
@@ -162,6 +179,15 @@ for step in range(500):
         pass
 ```
 
+코드의 각 라인을 설명하면 다음과 같다.
+
+1. `prediction`: 모델에 데이터(x)를 집어넣었을 때 예측값(y). 여기서는 $ y = wx + b $의 결과들이다.
+2. `loss`: criterion이 MSELoss로 설정되어 있으므로, prediction과 y의 평균제곱오차를 계산한다.
+3. `optimizer.zero_grad()`: optimizer의 grad를 0으로 설정한다. PyTorch는 parameter들의 gradient를 계산해줄 때 grad는 계속 누적되도록 되어 있다. 따라서 gradient를 다시 계산할 때에는 0으로 세팅해주어야 한다.
+4. `loss.backward()`: gradient 계산을 역전파(backpropagation)한다.
+5. `optimizer.step()`: 계산한 gradient를 토대로 parameter를 업데이트한다($ w \leftarrow w - \alpha \Delta w, b \leftarrow b - \alpha \Delta b $)
+6. 학습 결과를 중도에 확인하고 싶으면 그래프를 중간에 계속 그려주는 것도 한 방법이다.
+
 ---
 
 ## Display output (and graph) and save results
@@ -171,7 +197,7 @@ for step in range(500):
 ```python
 def display_results(model, x, y):
     prediction = model(x)
-    loss = criterion(prediction, y)
+    loss = criterion(input=prediction, target=y)
     
     plt.clf()
     plt.xlim(0, 11);    plt.ylim(0, 8)
@@ -192,7 +218,7 @@ display_results(model, x, y)
 torch.save(obj=model, f='02_Linear_Regression_Model.pt')
 ```
 
-참고: `.pt` 파일로 저장한 PyTorch 모델을 load해서 사용하려면 다음과 같이 한다. 이는 나중에 자세히 다루도록 하겠다.
+참고: `.pt` 파일로 저장한 PyTorch 모델을 load해서 사용하려면 다음과 같이 한다. 이는 나중에 **Transfer Learning**과 함께 자세히 다루도록 하겠다.
 
 ```python
 loaded_model = torch.load(f='02_Linear_Regression_Model.pt')
@@ -204,4 +230,4 @@ display_results(loaded_model, x, y)
 
 ---
 
-전체 코드는 [여기](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model.py)에서 살펴볼 수 있다.
+전체 코드는 [여기](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model/02_Linear_Regression_Model.py)에서 살펴볼 수 있다.
