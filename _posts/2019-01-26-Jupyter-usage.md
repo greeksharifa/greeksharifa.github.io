@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jupyter Notebook(Python) 사용법
+title: Jupyter Notebook 사용법
 author: YouWon
 categories: References
 tags: [usage]
@@ -8,14 +8,10 @@ tags: [usage]
 
 ## 설치 및 실행
 
-<<<<<<< HEAD
-두 가지 
-=======
 ### 설치
 
 설치는 두 가지 방법이 있는데, 첫 번째는 [Anaconda](https://www.anaconda.com/distribution/)와 함께 설치하는 방법이 있다. Anaconda를 설치할 때 Jupyter Notebook도 같이 설치하면 된다.  
 아나콘다 사용법은 [여기](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)를 참조하도록 한다. 
->>>>>>> b78e1b0711bc22d1f55fb1f0fd95fea4e0f43e3d
 
 Anadonda를 설치하는 방법 외에 기본적으로 pip은 Jupyter 패키지 설치를 지원한다. 설치 방법은 다른 패키지 설치 방법과 똑같다.
 
@@ -48,11 +44,7 @@ Jupyter의 실행을 종료하려면 명령창에서 `Ctrl + C`를 입력한다.
 jupyter notebook --help
 ```
 
-<<<<<<< HEAD
-실행 속도 상승을 위해 MathJax를 무효화할 수 있다. MathJax는 수식 입력을 위해 추가되는 JavaScript 라이브러리이다.
-=======
 실행 속도 상승을 위해 MathJax를 무효화할 수 있다. MathJax는 수식 입력을 위해 필요한 JavaScript 라이브러리이다.
->>>>>>> b78e1b0711bc22d1f55fb1f0fd95fea4e0f43e3d
 ```
 jupyter notebook --no-mathjax
 ```
