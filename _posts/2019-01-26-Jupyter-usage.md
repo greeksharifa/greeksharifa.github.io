@@ -44,7 +44,7 @@ Jupyter의 실행을 종료하려면 명령창에서 `Ctrl + C`를 입력한다.
 jupyter notebook --help
 ```
 
-실행 속도 상승을 위해 MathJax를 무효화할 수 있다.
+실행 속도 상승을 위해 MathJax를 무효화할 수 있다. MathJax는 수식 입력을 위해 필요한 JavaScript 라이브러리이다.
 ```
 jupyter notebook --no-mathjax
 ```
