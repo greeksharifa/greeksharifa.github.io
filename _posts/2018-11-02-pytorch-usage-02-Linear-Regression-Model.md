@@ -53,8 +53,8 @@ import matplotlib.pyplot as plt
             - return F.relu(self.conv2(x))
     - 다른 말로는 위의 두 메서드를 override하기만 하면 손쉽게 Custom net을 구현할 수 있다는 뜻이기도 하다.
 3. 참고: **torch.autograd.Variable**은 이전에는 auto gradient 계산을 위해 텐서에 필수적으로 씌워 주어야 했으나, 0.4.0 버전 이후로 `torch.Tensor`와 `torch.autograd.Variable` 클래스가 통합되었다. 따라서 PyTorch 구버전을 사용 중이 아니라면 Variable은 쓸 필요가 전혀 없다.
-    - https://pytorch.org/docs/stable/autograd.html#variable-deprecated/
-    - https://pytorch.org/blog/pytorch-0_4_0-migration-guide/
+    - [https://pytorch.org/docs/stable/autograd.html#variable-deprecated/](https://pytorch.org/docs/stable/autograd.html#variable-deprecated/)
+    - [https://pytorch.org/blog/pytorch-0_4_0-migration-guide/](https://pytorch.org/blog/pytorch-0_4_0-migration-guide/)
 
 ---
 
