@@ -6,12 +6,15 @@ categories: References
 tags: [usage]
 ---
 
+Jupyter notebook은 대화형 파이썬 인터프리터(Interpreter)로서 웹 브라우저 환경에서 파이썬 코드를 작성 및 실행할 수 있는 툴이다.  
+서버에 Jupyter notebook을 설치하여 포트를 개방한 후 해당 url에 접속하여 원격으로 사용하거나, 로컬 환경에서 브라우저를 띄워 대화형 환경에서 코드를 작성 및 실행할 수 있다.
+
 ## 설치 및 실행
 
 ### 설치
 
 설치는 두 가지 방법이 있는데, 첫 번째는 [Anaconda](https://www.anaconda.com/distribution/)와 함께 설치하는 방법이 있다. Anaconda를 설치할 때 Jupyter Notebook도 같이 설치하면 된다.  
-아나콘다 사용법은 [여기](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)를 참조하도록 한다. 
+Anaconda와 같은 역할을 하는 Miniconda 사용법은 [여기](https://greeksharifa.github.io/references/2019/02/01/Miniconda-usage/)를 참조하도록 한다. 
 
 Anadonda를 설치하는 방법 외에 기본적으로 pip은 Jupyter 패키지 설치를 지원한다. 설치 방법은 다른 패키지 설치 방법과 똑같다.
 
