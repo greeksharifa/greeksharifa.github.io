@@ -16,6 +16,7 @@ Anaconda는 Continuum Analytics라는 곳에서 만든 파이썬 배포판으로
 [Anaconda](https://www.anaconda.com/distribution/#download-section)를 설치하거나, [Miniconda](https://conda.io/en/latest/miniconda.html)를 설치한다. 설치하고 싶을 운영체제와 버전에 맞는 것을 골라 설치한다. 설치 방법은 공식 홈페이지에 따로 설명되어 있다.
 
 ![01_install](/public/img/conda/2019-02-01-Miniconda-usage/01.PNG)
+Not recommended라고 되어 있는 옵션이지만 체크하면 PATH에 등록하지 않아도 된다(이건 환경마다 조금 다르다).
 ![02_install](/public/img/conda/2019-02-01-Miniconda-usage/02.PNG)
 
 설치 후 다음 명령을 명령창(cmd / 터미널)에 입력해본다.
@@ -53,7 +54,7 @@ conda info --envs
 
 다음 명령을 통해 새 가상환경을 하나 생성한다.
 ```python
-# -n 옵션은 --name과 같은 것으로, 가상환경 이름을 condatorch로 지정한다.
+# -n 옵션은 --name과 같은 것으로, 가상환경 이름을 myenv로 지정한다.
 conda create -n myenv
 # python=3.6 옵션은 가상환경 생성 시 파이썬 버전을 지정한다.
 # 지정하지 않으면 conda에 기본 포함된 파이썬 버전으로 생성된다.
@@ -95,18 +96,23 @@ conda remove --name myenv --all
 
 ### Requirements.txt로 가상환경 생성하기
 
+아래 명령들은 가독성을 위해 두 줄로 펼쳐 놓았다.
+
+Windows 환경이라면 명령창에 다음과 같이 쓰는 것이 가능하다.
+```
+FOR /F "delims=~" %f in (requirements.txt) 
+DO conda install --yes "%f" || pip install "%f"
+```
+
 Unix 환경이라면 다음과 같이 쓸 수 있다.
 ```
-$ while read requirement; do conda install --yes $requirement; done < requirements.txt 2>error.log
+while read requirement; do conda install --yes $requirement; 
+done < requirements.txt 2>error.log
 ```
 conda로는 설치가 안 되고 pip으로는 설치가 되는 패키지가 있다면 다음과 같이 쓸 수 있다.
 ```
-$ while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt 2>error.log
-```
-
-Windows 환경이라면 다음과 같이 쓰는 것이 가능하다.
-```
-$ FOR /F "delims=~" %f in (requirements.txt) DO conda install --yes "%f" || pip install "%f"
+while read requirement; do conda install --yes $requirement 
+|| pip install $requirement; done < requirements.txt 2>error.log
 ```
 
 다음을 참조하였다: [github 글](https://gist.github.com/luiscape/19d2d73a8c7b59411a2fb73a697f5ed4), [stackoverflow 글](https://stackoverflow.com/questions/35802939/install-only-available-packages-using-conda-install-yes-file-requirements-t)
