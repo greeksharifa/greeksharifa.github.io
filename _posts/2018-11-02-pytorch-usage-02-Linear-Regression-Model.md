@@ -18,12 +18,13 @@ tags: [PyTorch]
     - main.py
     - data/
         - 02_Linear_Regression_Model_Data.csv
+    - results/
 
-1. 일반적으로 데이터는 data/ 디렉토리에 넣는다. 
-2. 코드는 git에 두고, data/는 `.gitignore` 파일에 추가하여 데이터는 git에 올리지 않는다. 파일은 다른 서버에 두고 필요할 때 다운로드한다.
+1. 일반적으로 데이터는 `data/` 디렉토리에 넣는다. 
+2. 코드는 git에 두고, `data/`는 `.gitignore` 파일에 추가하여 데이터는 git에 올리지 않는다. 파일은 다른 서버에 두고 필요할 때 다운로드한다. 일반적으로 dataset은 그 크기가 수 GB 혹은 그 이상도 될 수 있기 때문에 upload/download 시간이 굉장히 길어지기도 하고, [Git](https://github.com/)이 100MB 이상의 큰 파일은 업로드를 지원하지 않기 때문이기도 하다.
 
-물론 이 예제 프로젝트는 너무 간단하여 그냥 data/ 디렉토리 없이 해도 상관없다.  
-output/ 디렉토리 등을 만드는 것이 정석이지만 일단은 없이 진행하도록 하겠다.
+물론 이 예제 프로젝트는 너무 간단하여 그냥 `data/` 디렉토리 없이 해도 상관없다.  
+그리고 `output/` 또는 `results/` 디렉토리를 만들도록 한다.
 
 ---
 
@@ -38,9 +39,9 @@ from torch import nn
 import matplotlib.pyplot as plt
 ```
 
-다음 파일을 다운로드하여 data/ 디렉토리에 넣는다.
+다음 파일을 다운로드하여 `data/` 디렉토리에 넣는다.
 
-[02_Linear_Regression_Model_Data.csv](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/data/02_Linear_Regression_Model_Data.csv)
+[02_Linear_Regression_Model_Data.csv](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model/data/02_Linear_Regression_Model_Data.csv)
 
 1. [torch](https://pytorch.org/): 설명이 필요없다.
 2. [from torch import nn](https://pytorch.org/docs/stable/nn.html): nn은 Neural Network의 약자이다. torch의 nn 라이브러리는 Neural Network의 모든 것을 포괄하며, Deep-Learning의 가장 기본이 되는 1-Layer Linear Model도 `nn.Linear` 클래스를 사용한다. 이 예제에서도 **nn.Linear**를 쓴다.
@@ -52,7 +53,8 @@ import matplotlib.pyplot as plt
             - x = F.relu(self.conv1(x))
             - return F.relu(self.conv2(x))
     - 다른 말로는 위의 두 메서드를 override하기만 하면 손쉽게 Custom net을 구현할 수 있다는 뜻이기도 하다.
-3. 참고: **torch.autograd.Variable**은 이전에는 auto gradient 계산을 위해 텐서에 필수적으로 씌워 주어야 했으나, 0.4.0 버전 이후로 `torch.Tensor`와 `torch.autograd.Variable` 클래스가 통합되었다. 따라서 PyTorch 구버전을 사용 중이 아니라면 Variable은 쓸 필요가 전혀 없다.
+3. 참고: **torch.autograd.Variable**은 이전에는 auto gradient 계산을 위해 tensor에 필수적으로 씌워 주어야 했으나, PyTorch 0.4.0 버전 이후로 `torch.Tensor`와 `torch.autograd.Variable` 클래스가 통합되었다. 따라서 PyTorch 구버전을 사용할 예정이 아니라면 Variable은 쓸 필요가 전혀 없다.
+    - 인터넷에 돌아다니는 수많은 코드의 Variable Class는 0.4.0 버전 이전에 PyTorch를 시작한 사람들이 쓴 것이다.
     - [https://pytorch.org/docs/stable/autograd.html#variable-deprecated/](https://pytorch.org/docs/stable/autograd.html#variable-deprecated/)
     - [https://pytorch.org/blog/pytorch-0_4_0-migration-guide/](https://pytorch.org/blog/pytorch-0_4_0-migration-guide/)
 
@@ -98,13 +100,13 @@ data.to_csv('data/02_Linear_Regression_Model_Data.csv', header=['x', 'y'])
 
 ---
 
-## Load Model
+## Define and Load Model
 
 매우 간단한 모델이므로 코드도 짧다.  
-여기서는 여러분의 편의를 위해 parameter 이름을 명시하도록 한다.
+여기서는 여러분의 편의를 위해 함수들의 parameter 이름을 명시하도록 한다.
 
 PyTorch에서 Linear 모델은 `torch.nn.Linear` 클래스를 사용한다. 여기서는 단지 x를 y로 mapping하는 일차원 직선($ y = wx + b $)을 찾고 싶은 것이므로, `in_features`와 `out_features`는 모두 1이다.  
-**nn.Linear**은 **nn.Module**의 subclass로 in_features개의 input을 선형변환을 거쳐 out_features개의 output으로 변환한다. parameter 개수는 $ (in\_features \times out\_features + out\_features) $ 개이다. 마지막 항은 **bias**이다.
+**nn.Linear**은 **nn.Module**의 subclass로 in_features개의 input을 선형변환을 거쳐 out_features개의 output으로 변환한다. parameter 개수는 $ (in\_features \times out\_features [ + out\_features]) $ 개이다. 마지막 항은 **bias**이다.
 
 ```python
 from torch import nn
@@ -122,6 +124,8 @@ Parameter containing:
 tensor([0.7960], requires_grad=True)
 """
 ```
+
+별다른 utility 함수가 필요 없으므로 따로 `utils.py`는 만들지 않는다. 
 
 ---
 
@@ -158,10 +162,10 @@ tensor([[-0.1399],
 
 Train은 다음과 같이 이루어진다. 
 
-1. 현재 모델의 weights로 prediction을 낸 뒤
-2. 실제 정답과 loss를 비교하여 
+1. 모델에 데이터를 통과시켜 예측값(현재 모델의 weights로 prediction)을 얻은 뒤
+2. 실제 정답과 loss를 비교하고
 3. gradient를 계산한다.
-4. 이 값을 통해 weights를 업데이트한다.
+4. 이 값을 통해 weights를 업데이트한다(backpropagation).
 
 ```python
 for step in range(500):
@@ -205,14 +209,14 @@ def display_results(model, x, y):
     plt.plot(x.data.numpy(), prediction.data.numpy(), 'b--')
     plt.title('loss={:.4}, w={:.4}, b={:.4}'.format(loss.data.item(), model.weight.data.item(), model.bias.data.item()))
     plt.show()
-    # plt.savefig('02_Linear_Regression_Model_trained.png')
+    # plt.savefig('results/02_Linear_Regression_Model_trained.png')
 
 display_results(model, x, y)
 ```
 
 ![02_Linear_Regression_Model_Trained](/public/img/PyTorch/2018-11-02-pytorch-usage-02-Linear-Regression-Model/02_Linear_Regression_Model_trained.png)
 
-모델을 저장하려면 `torch.save` 함수를 이용한다.
+모델을 저장하려면 `torch.save` 함수를 이용한다. 저장할 모델은 대개 `.pt` 확장자를 사용한다.
 
 ```python
 torch.save(obj=model, f='02_Linear_Regression_Model.pt')
@@ -230,4 +234,4 @@ display_results(loaded_model, x, y)
 
 ---
 
-전체 코드는 [여기](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model/02_Linear_Regression_Model.py)에서 살펴볼 수 있다.
+전체 코드는 [여기](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model/main.py)에서 살펴볼 수 있다.

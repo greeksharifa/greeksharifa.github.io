@@ -3,7 +3,7 @@ layout: post
 title: Miniconda(Anaconda) 사용법
 author: YouWon
 categories: References
-tags: [usage]
+tags: [Miniconda, usage]
 ---
 
 Anaconda는 Continuum Analytics라는 곳에서 만든 파이썬 배포판으로 수백 개의 파이썬 패키지를 포함하는 환경을 구성한다. Anaconda로는 virtualenv와 같은 여러 개의 가상환경을 만들어 각각의 환경을 따로 관리할 수 있다.  

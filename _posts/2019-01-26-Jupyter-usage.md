@@ -3,7 +3,7 @@ layout: post
 title: Jupyter Notebook 사용법
 author: YouWon
 categories: References
-tags: [usage]
+tags: [Jupyter, Miniconda, usage]
 ---
 
 Jupyter notebook은 대화형 파이썬 인터프리터(Interpreter)로서 웹 브라우저 환경에서 파이썬 코드를 작성 및 실행할 수 있는 툴이다.  
