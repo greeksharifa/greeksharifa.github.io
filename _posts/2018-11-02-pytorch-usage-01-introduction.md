@@ -51,18 +51,17 @@ print(x)
 
 프로젝트의 구조는 코딩하는 사람 마음대로이긴 하나, 기본적으로는 다음과 같은 구조를 따른다.
 
-1. Load 'preprocessed Data'
+1. Load Data
 2. Define and Load Models
 2-1. Define util functions
 3. Set Loss function(creterion) and Optimizer
 4. Train Model
-5. Display output (and graph) and save results
+5. Visualize and save results
 
 PyTorch는 각 단계에서 다음의 장점을 갖는다.
 1. 데이터 로드 시 `DataLoader`라는 클래스를 제공한다. `DataLoader`를 통해 데이터를 불러오면, 이 안에서 데이터 처리에 대한 거의 모든 것을 쉽게 수행할 수 있다. 
     - 이를테면 Data Augmentation 같은 것도 전부 제공된다.
     - 여러 종류의 Data Transformation이 지원된다.
-    - Image의 경우 `ImageLoader`라는 클래스가 따로 지원되며, 데이터 형식에 맞는 여러 DataLoader가 있다.
 2. 일반적인 모델을 불러올 때는 다른 Deep Learning Framework도 대체로 간결하지만, PyTorch는 `torchvision`이라는 패키지에서 따로 pretrain까지 된 모델들을 제공하므로 다른 곳에서 모델을 다운로드할 필요 없이 이를 바로 쓸 수 있다.
 2-1. 많은 프로그래머들이 `utils.py`에 유틸리티 함수(예를 들면 [YOLO](https://greeksharifa.github.io/paper_review/2018/10/26/YOLOv2/)에서 [IoU](https://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/)를 구하는 함수)를 따로 빼내어 여러 가지를 한번에 정의한다. 프로젝트에서 부가적인 부분은 따로 관리하는 것이 가독성이 좋다.
 3. 이 부분은 다른 Deep Learning Framework와 비슷하다.

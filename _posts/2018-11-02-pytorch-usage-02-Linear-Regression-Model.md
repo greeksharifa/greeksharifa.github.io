@@ -28,7 +28,7 @@ tags: [PyTorch]
 
 ---
 
-## import
+## Import
 
 ```python
 import pandas as pd
@@ -46,10 +46,11 @@ import matplotlib.pyplot as plt
 1. [torch](https://pytorch.org/): 설명이 필요없다.
 2. [from torch import nn](https://pytorch.org/docs/stable/nn.html): nn은 Neural Network의 약자이다. torch의 nn 라이브러리는 Neural Network의 모든 것을 포괄하며, Deep-Learning의 가장 기본이 되는 1-Layer Linear Model도 `nn.Linear` 클래스를 사용한다. 이 예제에서도 **nn.Linear**를 쓴다.
     - **nn.Module**은 모든 Neural Network Model의 Base Class이다. 모든 Neural Network Model(흔히 Net이라고 쓴다)은 **nn.Module**의 subclass이다. nn.Module을 상속한 어떤 subclass가 Neural Network Model로 사용되려면 다음 두 메서드를 override해야 한다.
-        - `__init__(self)`: Model에 사용될 구성 요소들을 정의한다. 대개 다음과 같이 사용된다.
+        - `__init__(self)`: ***Initialize.*** 여러분이 사용하고 싶은, Model에 사용될 구성 요소들을 정의 및 초기화한다. 대개 다음과 같이 사용된다.
             - self.conv1 = nn.Conv2d(1, 20, 5)
             - self.conv2 = nn.Conv2d(20, 20, 5)
-        - `forward(self, x)`: `__init__`에서 정의된 요소들로 모델을 구성한다. Nested Tree Structure가 될 수도 있다. 주로 다음처럼 사용된다.
+            - self.linear1 = nn.Linear(1, 20, bias=True)
+        - `forward(self, x)`: ***Specify the connections.*** `__init__`에서 정의된 요소들을 잘 연결하여 모델을 구성한다. Nested Tree Structure가 될 수도 있다. 주로 다음처럼 사용된다.
             - x = F.relu(self.conv1(x))
             - return F.relu(self.conv2(x))
     - 다른 말로는 위의 두 메서드를 override하기만 하면 손쉽게 Custom net을 구현할 수 있다는 뜻이기도 하다.
@@ -60,7 +61,7 @@ import matplotlib.pyplot as plt
 
 ---
 
-## Load preprocessed Data
+## Load Data
 
 ### 데이터 준비
 
@@ -194,7 +195,7 @@ for step in range(500):
 
 ---
 
-## Display output (and graph) and save results
+## Visualize and save results
 
 결과를 그래프로 보여주는 부분은 `matplotlib.pyplot`에 대한 내용이므로 여기서는 넘어가도록 하겠다.
 
