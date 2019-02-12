@@ -236,3 +236,5 @@ display_results(loaded_model, x, y)
 ---
 
 전체 코드는 [여기](https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model/main.py)에서 살펴볼 수 있다.
+
+--- 

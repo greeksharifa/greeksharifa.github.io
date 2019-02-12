@@ -1,25 +1,31 @@
 ---
 layout: post
-title: PyTorch 사용법 - 03. Building Model
+title: PyTorch 사용법 - 03. How to Use PyTorch
 author: YouWon
 categories: PyTorch
 tags: [PyTorch]
 ---
 
-이 글에서는 PyTorch 모델을 만드는 방법에 대해서 알아본다.
+이 글에서는 PyTorch 프로젝트를 만드는 방법에 대해서 알아본다.
 
 사용되는 torch 함수들의 사용법은 [여기](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/)에서 확인할 수 있다.
+
+*주의: 이 글은 좀 길다. ㅎ*
 
 ---
 
 # Import
 
 ```python
-# basic
-import pandas as pd
+# preprocess, set hyperparameter
+import argparse
+import os
 
-# pytorch
-import torch
+# load data
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+
+# train
 from torch import nn
 from torch.nn import functional as F
 
@@ -29,14 +35,175 @@ import matplotlib.pyplot as plt
 
 ---
 
+# argparse
+
+
+---
+
 # Load Data
 
 전처리하는 과정을 설명할 수는 없다. 데이터가 어떻게 생겼는지는 직접 봐야 알 수 있다.  
-다만 한 번 쓰고 말 것이 아니라면, 데이터가 추가되거나 변경점이 있더라도 전처리 코드의 대대적인 수정이 발생하도록 짜는 것은 금물이다.
+다만 한 번 쓰고 말 것이 아니라면, 데이터가 추가되거나 변경점이 있더라도 전처리 코드의 대대적인 수정이 발생하도록 짜는 것은 본인 손해이다.
 
-## 
+## 단순한 방법
 
+```python
+data = pd.read_csv('data/02_Linear_Regression_Model_Data.csv')
+# Avoid copy data, just refer
+x = torch.from_numpy(data['x'].values).unsqueeze(dim=1).float()
+y = torch.from_numpy(data['y'].values).unsqueeze(dim=1).float()
+```
+`pandas`나 `csv` 패키지 등으로 그냥 불러오는 방법이다. 데이터가 복잡하지 않은 형태라면 단순하고 유용하게 쓸 수 있다. 그러나 이 글에서 중요한 부분은 아니다.
 
+## [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader)
+
+Pytorch는 `DataLoader`라고 하는 괜찮은 utility를 제공한다. DataLoader 객체는 학습에 쓰일 데이터를 batch size에 맞춰 잘라서 저장해 놓고, train 함수가 batch 하나를 요구하면 하나씩 꺼내서 준다고 보면 된다.  
+실제 DataLoader를 쓸 때는 다음과 같이 쓰기만 하면 된다.
+```python
+for idx, (data, label) in enumerate(self.data_loader):
+    ...
+```
+
+DataLoader 안에 데이터가 어떻게 들어있는지 확인하기 위해, MNIST 데이터를 가져와 보자. DataLoader는 `torchvision.datasets` 및 `torchvision.transforms`와 함께 자주 쓰이는데, 각각 Pytorch가 공식적으로 지원하는 [dataset](https://pytorch.org/docs/stable/torchvision/datasets.html), [데이터 transformation 및 augmentation 함수들](https://pytorch.org/docs/stable/torchvision/transforms.html?highlight=torchvision%20transforms)(주로 이미지 데이터에 사용)를 포함한다.  
+각각의 사용법은 아래 절을 참조한다.
+
+```python
+transform = transforms.Compose([transforms.Resize((input_size, input_size)),
+                                transforms.ToTensor(),
+                                transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
+data_loader = DataLoader(
+    datasets.MNIST('data/mnist', train=True, download=True, transform=transform),
+    batch_size=batch_size,
+    shuffle=True)
+
+print('type:', type(data_loader))
+print(type(type(data_loader)))
+
+first_batch = data_loader.__iter__().__next__()
+print('{:15s} | {:<25s} | {}'.format('name', 'type', 'size'))
+print('{:15s} | {:<25s} | {}'.format('first_batch', str(type(first_batch)), len(first_batch)))
+print('{:15s} | {:<25s} | {}'.format('first_batch[0]', str(type(first_batch[0])), first_batch[0].shape))
+print('{:15s} | {:<25s} | {}'.format('first_batch[1]', str(type(first_batch[1])), first_batch[1].shape))
+
+"""
+type: <class 'torch.utils.data.dataloader.DataLoader'>
+<class 'type'>
+name            | type                      | size
+first_batch     | <class 'list'>            | 2
+first_batch[0]  | <class 'torch.Tensor'>    | torch.Size([64, 1, 28, 28])
+first_batch[1]  | <class 'torch.Tensor'>    | torch.Size([64])
+"""
+```
+
+### Custom DataLoader 만들기
+
+**nn.Module**을 상속하는 Custom Model처럼, Custom DataLoader는 `torch.utils.data.Dataset`를 상속해야 한다. 또한 override해야 하는 것은 다음 두 가지다. `python dunder`를 모른다면 먼저 구글링해보도록 한다.
+- `__len__(self)`: dataset의 전체 개수를 알려준다.
+- `__getitem__(self, idx)`: parameter로 idx를 넘겨주면 idx번째의 데이터를 반환한다.
+
+위의 두 가지만 기억하면 된다. 전체 데이터 개수와, i번째 데이터를 반환하는 함수만 구현하면 Custom DataLoader가 완성된다.
+
+완전 필수는 아니지만 `__init__()`도 구현하는 것이 좋다.
+
+[Pytorch Tutorial](https://pytorch.org/tutorials/beginner/data_loading_tutorial.html?highlight=dataloader)의 예시는 다음과 같다.
+```python
+class FaceLandmarksDataset(Dataset):
+    """Face Landmarks dataset."""
+
+    def __init__(self, csv_file, root_dir, transform=None):
+        """
+        Args:
+            csv_file (string): Path to the csv file with annotations.
+            root_dir (string): Directory with all the images.
+            transform (callable, optional): Optional transform to be applied
+                on a sample.
+        """
+        self.landmarks_frame = pd.read_csv(csv_file)
+        self.root_dir = root_dir
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.landmarks_frame)
+
+    def __getitem__(self, idx):
+        img_name = os.path.join(self.root_dir,
+                                self.landmarks_frame.iloc[idx, 0])
+        image = io.imread(img_name)
+        landmarks = self.landmarks_frame.iloc[idx, 1:].as_matrix()
+        landmarks = landmarks.astype('float').reshape(-1, 2)
+        sample = {'image': image, 'landmarks': landmarks}
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
+
+face_dataset = FaceLandmarksDataset(csv_file='data/faces/face_landmarks.csv',
+                                    root_dir='data/faces/')
+```
+
+## [torchvision.datasets](https://pytorch.org/docs/stable/torchvision/datasets.html)
+
+Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이다. 2019.02.12 기준 dataset 목록은 다음과 같다.
+
+- MNIST, Fashion-MNIST, KMNIST, EMNIST,  
+- COCO, Captions, Detection,  
+- LSUN,  
+- *ImageFolder*, *DatasetFolder*,  
+- Imagenet-12, CIFAR, STL10, SVHN, PhotoTour, SBU, Flickr, VOC, Cityscapes
+
+각각의 dataset마다 필요한 parameter가 조금씩 다르기 때문에, [MNIST](https://pytorch.org/docs/stable/torchvision/datasets.html#mnist)만 간단히 설명하도록 하겠다. 사실 공식 홈페이지를 참조하면 어렵지 않게 사용 가능하다.
+
+![01_MNIST](/public/img/PyTorch/2018-11-10-pytorch-usage-03-Building-Model/01.PNG)
+
+- root: 데이터를 저장할 루트 폴더이다. 보통 `data/`나 `data/mnist/`를 많이 쓰는 것 같지만, 상관없다.
+- train: 학습 데이터를 받을지, 테스트 데이터를 받을지를 결정한다.
+- download: true로 지정하면 알아서 다운로드해 준다. 이미 다운로드했다면 재실행해도 다시 받지 않는다.
+- transform: 지정하면 이미지 데이터에 어떤 변형을 가할지를 transform function의 묶음(Compose)로 전달한다.
+- target_transform: 보통 위의 transform까지만 쓰는 것 같다. 쓰고 싶다면 이것도 쓰자.
+
+## [torchvision.transforms](https://pytorch.org/docs/stable/torchvision/transforms.html?highlight=torchvision%20transforms)
+
+1. 이미지 변환 함수들을 포함한다. 상대적으로 자주 쓰이는 함수는 다음과 같은 것들이 있다. 더 많은 목록은 홈페이지를 참조하면 된다. 참고로 parameter 중 `transforms`는 변환 함수들의 list 또는 tuple이다.
+
+- transforms.CenterCrop(size): 이미지의 중앙 부분을 크롭하여 [size, size] 크기로 만든다.
+- transforms.Resize(size, interpolation=2): 이미지를 지정한 크기로 변환한다. 직사각형으로 자를 수 있다.
+    - 참고: transforms.Scale는 Resize에 의해 deprecated되었다.
+- transforms.RandomCrop(size, padding=None, pad_if_needed=False, fill=0, padding_mode='constant'): 이미지의 랜덤한 부분을 [size, size] 크기로 잘라낸다. input 이미지가 output 크기보다 작으면 padding을 추가할 수 있다.
+- transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 3/4), interpolation=2): 이미지를 랜덤한 크기 및 비율로 자른다.
+    - 참고: transforms.RandomSizedCrop는 RandomResizedCrop에 의해 deprecated되었다.
+- transforms.RandomRotation(degrees, resample=False, expand=False, center=None): 이미지를 랜덤한 각도로 회전시킨다.
+- transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0): brightness, contrast 등을 변화시킨다.
+
+2. 이미지를 torch.Tensor 또는 PILImage로 변환시킬 수 있다. 사용자 정의 변환도 가능하다.
+- transforms.ToPILImage(mode=None): PILImage로 변환시킨다.
+- transforms.ToTensor(): torch.Tensor로 변환시킨다.
+- transforms.Lambda(lambd): 사용자 정의 lambda function을 적용시킨다.
+
+3. torch.Tensor에 적용해야 하는 변환 함수들도 있다.
+- transforms.LinearTransformation(transformation_matrix): tensor로 표현된 이미지에 선형 변환을 시킨다.
+- transforms.Normalize(mean, std, inplace=False): tensor의 데이터 수치(또는 범위)를 정규화한다.
+
+4. brightness나 contrast 등을 바꿀 수도 있다.
+- transforms.functional.adjust_contrast(img, contrast_factor) 등
+
+5. 위의 변환 함수들을 랜덤으로 적용할지 말지 결정할 수도 있다.
+
+- transforms.RandomChoice(transforms): `transforms` 리스트에 포함된 변환 함수 중 랜덤으로 1개 적용한다.
+- transforms.RandomApply(transforms, p=0.5): `transforms` 리스트에 포함된 변환 함수들을 p의 확률로 적용한다.
+
+6. 위의 모든 변환 함수들을 하나로 조합하는 함수는 다음과 같다. 이 함수를 `dataloader`에 넘기면 이미지 변환 작업이 간단하게 완료된다.
+
+- transforms.Compose(transforms)
+```python
+transforms.Compose([
+    transforms.CenterCrop(14),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))
+])
+```
+
+변환 순서는 보통 resize/crop, toTensor, Normalize 순서를 거친다. Normalize는 tensor에만 사용 가능하므로 이 부분은 순서를 지켜야 한다.
 
 ---
 
