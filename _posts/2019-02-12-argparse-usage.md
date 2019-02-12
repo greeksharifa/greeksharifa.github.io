@@ -16,6 +16,8 @@ tags: [PyTorch, Argparse, usage]
 import argparse
 ```
 
+---
+
 # argparse
 
 ```
@@ -255,3 +257,11 @@ invalid choice: '5' (choose from 1, 2, 3, 4)
 
 ## metavar: 이름 재지정
  metavar은 `help=`에서 도움말 메시지를 생성할 때 표시되는 이름을 변경할 수 있다(직접 값을 참조하는  `args.foo` 같은 경우 기본 이름 또는 `dest=`에 의해 재지정된 이름을 써야 한다).
+
+
+---
+
+# References
+
+- [원문](https://docs.python.org/3/library/argparse.html)
+- [번역본](https://docs.python.org/ko/3.7/library/argparse.html)
