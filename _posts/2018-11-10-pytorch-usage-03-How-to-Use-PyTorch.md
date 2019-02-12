@@ -172,35 +172,35 @@ Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이�
 
 1. 이미지 변환 함수들을 포함한다. 상대적으로 자주 쓰이는 함수는 다음과 같은 것들이 있다. 더 많은 목록은 홈페이지를 참조하면 된다. 참고로 parameter 중 `transforms`는 변환 함수들의 list 또는 tuple이다.
 
-- transforms.CenterCrop(size): 이미지의 중앙 부분을 크롭하여 [size, size] 크기로 만든다.
-- transforms.Resize(size, interpolation=2): 이미지를 지정한 크기로 변환한다. 직사각형으로 자를 수 있다.
-    - 참고: transforms.Scale는 Resize에 의해 deprecated되었다.
-- transforms.RandomCrop(size, padding=None, pad_if_needed=False, fill=0, padding_mode='constant'): 이미지의 랜덤한 부분을 [size, size] 크기로 잘라낸다. input 이미지가 output 크기보다 작으면 padding을 추가할 수 있다.
-- transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 3/4), interpolation=2): 이미지를 랜덤한 크기 및 비율로 자른다.
-    - 참고: transforms.RandomSizedCrop는 RandomResizedCrop에 의해 deprecated되었다.
-- transforms.RandomRotation(degrees, resample=False, expand=False, center=None): 이미지를 랜덤한 각도로 회전시킨다.
-- transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0): brightness, contrast 등을 변화시킨다.
+    - transforms.CenterCrop(size): 이미지의 중앙 부분을 크롭하여 [size, size] 크기로 만든다.
+    - transforms.Resize(size, interpolation=2): 이미지를 지정한 크기로 변환한다. 직사각형으로 자를 수 있다.
+        - 참고: transforms.Scale는 Resize에 의해 deprecated되었다.
+    - transforms.RandomCrop(size, padding=None, pad_if_needed=False, fill=0, padding_mode='constant'): 이미지의 랜덤한 부분을 [size, size] 크기로 잘라낸다. input 이미지가 output 크기보다 작으면 padding을 추가할 수 있다.
+    - transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 3/4), interpolation=2): 이미지를 랜덤한 크기 및 비율로 자른다.
+        - 참고: transforms.RandomSizedCrop는 RandomResizedCrop에 의해 deprecated되었다.
+    - transforms.RandomRotation(degrees, resample=False, expand=False, center=None): 이미지를 랜덤한 각도로 회전시킨다.
+    - transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0): brightness, contrast 등을 변화시킨다.
 
 2. 이미지를 torch.Tensor 또는 PILImage로 변환시킬 수 있다. 사용자 정의 변환도 가능하다.
-- transforms.ToPILImage(mode=None): PILImage로 변환시킨다.
-- transforms.ToTensor(): torch.Tensor로 변환시킨다.
-- transforms.Lambda(lambd): 사용자 정의 lambda function을 적용시킨다.
+    - transforms.ToPILImage(mode=None): PILImage로 변환시킨다.
+    - transforms.ToTensor(): torch.Tensor로 변환시킨다.
+    - transforms.Lambda(lambd): 사용자 정의 lambda function을 적용시킨다.
 
 3. torch.Tensor에 적용해야 하는 변환 함수들도 있다.
-- transforms.LinearTransformation(transformation_matrix): tensor로 표현된 이미지에 선형 변환을 시킨다.
-- transforms.Normalize(mean, std, inplace=False): tensor의 데이터 수치(또는 범위)를 정규화한다.
+    - transforms.LinearTransformation(transformation_matrix): tensor로 표현된 이미지에 선형 변환을 시킨다.
+    - transforms.Normalize(mean, std, inplace=False): tensor의 데이터 수치(또는 범위)를 정규화한다.
 
 4. brightness나 contrast 등을 바꿀 수도 있다.
-- transforms.functional.adjust_contrast(img, contrast_factor) 등
+    - transforms.functional.adjust_contrast(img, contrast_factor) 등
 
 5. 위의 변환 함수들을 랜덤으로 적용할지 말지 결정할 수도 있다.
 
-- transforms.RandomChoice(transforms): `transforms` 리스트에 포함된 변환 함수 중 랜덤으로 1개 적용한다.
-- transforms.RandomApply(transforms, p=0.5): `transforms` 리스트에 포함된 변환 함수들을 p의 확률로 적용한다.
+    - transforms.RandomChoice(transforms): `transforms` 리스트에 포함된 변환 함수 중 랜덤으로 1개 적용한다.
+    - transforms.RandomApply(transforms, p=0.5): `transforms` 리스트에 포함된 변환 함수들을 p의 확률로 적용한다.
 
 6. 위의 모든 변환 함수들을 하나로 조합하는 함수는 다음과 같다. 이 함수를 `dataloader`에 넘기면 이미지 변환 작업이 간단하게 완료된다.
 
-- transforms.Compose(transforms)
+    - transforms.Compose(transforms)
 ```python
 transforms.Compose([
     transforms.CenterCrop(14),
@@ -217,9 +217,11 @@ transforms.Compose([
 
 ## Pytorch Model
 
+Pytorch에서 쓰는 용어는 Module 하나에 가깝지만, 많은 경우 layer나 model 등의 용어도 같이 사용되므로 굳이 구분하여 적어 보았다.
+
 **Layer** : Model 또는 Module을 구성하는 한 개의 층, Convolutional Layer, Linear Layer 등이 있다.  
 **Module** : 1개 이상의 Layer가 모여서 구성된 것. Module이 모여 새로운 Module을 만들 수도 있다.  
-**Model** : 여러분이 최종적으로 원하는 것. 한 개의 Module일 수도 있다. 
+**Model** : 여러분이 최종적으로 원하는 것. 당연히 한 개의 Module일 수도 있다. 
 
 예를 들어 **nn.Linear**는 한 개의 layer이기도 하며, 이것 하나만으로도 module이나 Model을 구성할 수 있다. 단순 Linear Model이 필요하다면, `model = nn.Linear(1, 1, True)`처럼 사용해도 무방하다.
 
@@ -273,11 +275,65 @@ PyTorch 모델로 쓰기 위해서는 다음 조건을 따라야 한다. 내장�
 
 [여기](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import)를 참고한다. 요약하면 **nn.Module**은 모든 PyTorch 모델의 base class이다.
 
+### nn.Module 내장 함수
+
+[nn.Module](https://pytorch.org/docs/stable/nn.html#module)에 내장된 method들은 모델을 추가 구성/설정하거나, train/eval(test) 모드 변경, cpu/gpu 변경, 포함된 module 목록을 얻는 등의 활동에 초점이 맞춰져 있다.
+
+모델을 추가로 구성하려면,
+- `add_module(name, module)`: 현재 module에 새로운 module을 추가한다.
+- `apply(fn)`: 현재 module의 모든 submodule에 해당 함수(fn)을 적용한다. 주로 model parameter를 초기화할 때 자주 쓴다.
+
+모델이 어떻게 생겼는지 보려면, 
+- `children()`, `modules()`: 자식 또는 모델 전체의 모든 module에 대한 iterator를 반환한다.
+- `named_buffers(), named_children(), named_modules(), named_parameters()`: 위 함수와 비슷하지만 이름도 같이 반환한다.
+
+모델을 통째로 저장 혹은 불러오려면, 
+- `state_dict(destination=None, prefix='', keep_vars=False)`: 모델의 모든 상태(parameter, running averages 등 buffer)를 딕셔너리 형태로 반환한다. 
+- `load_state_dict(state_dict, strict=True)`: parameter와 buffer 등 모델의 상태를 현 모델로 복사한다. `strict=True`이면 모든 module의 이름이 *정확히* 같아야 한다.
+
+학습 시에 필요한 함수들을 살펴보면, 
+- `cuda(device=None)`: 모든 model parameter를 GPU 버퍼에 옮기는 것으로 GPU를 쓰고 싶다면 이를 활성화해주어야 한다. 
+    - GPU를 쓰려면 두 가지에 대해서만 `.cuda()`를 call하면 된다. 그 두 개는 모든 input batch 또는 tensor, 그리고 모델이다.
+    - `.cuda()`는 optimizer를 설정하기 전에 실행되어야 한다. 잊어버리지 않으려면 모델을 생성하자마자 쓰는 것이 좋다.
+- `eval()`, `train()`: 모델을 train mode 또는 eval(test) mode로 변경한다. Dropout이나 BatchNormalization을 쓰는 모델은 학습시킬 때와 평가할 때 구조/역할이 다르기 때문에 반드시 이를 명시하도록 한다. 
+- `parameters(recurse=True)`: module parameter에 대한 iterator를 반환한다. 보통 optimizer에 넘겨줄 때 말고는 쓰지 않는다.
+- `zero_grad()`: 모든 model parameter들을 0으로 설정한다.
+
+사용하는 법은 매우 간단히 나타내었다. Optimizer에 대한 설명은 [여기](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#set-loss-functioncreterion-and-optimizer)를 참조하면 된다.
+
+```python
+import torchvision
+from torch import nn
+
+def user_defined_initialize_function(m):
+    pass
+
+model = torchvision.models.vgg16(pretrained=True)
+# 예시는 예시일 뿐
+last_module = nn.Linear(1000, 32, bias=True)
+model.add_module('last_module', last_module)
+last_module.apply(user_defined_initialize_function)
+model.cuda()
+
+# set optimizer. model.parameter를 넘겨준다.
+optimizer = optim.Adam(model.parameters(), lr=0.0001, betas=(0.5, 0.999))
+
+# train
+model.train()
+for idx, (data, label) in dataloader['train']:
+    ...
+
+# test
+model.eval()
+for idx, (data, label) in dataloader['test']:
+    ...
+```
+
 ---
 
 ## [Pytorch Layer의 종류](https://pytorch.org/docs/stable/nn.html#module)
 
-참고만 하도록 한다. 좀 많다.
+참고만 하도록 한다. 좀 많다. 쓰고자 하는 것과 이름이 비슷하다 싶으면 홈페이지를 참조해서 쓰면 된다.
 
 1. Linear layers
     - nn.Linear
@@ -318,7 +374,7 @@ PyTorch 모델로 쓰기 위해서는 다음 조건을 따라야 한다. 내장�
 
 ---
 
-## [PyTorch Activation function](https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity)의 종류
+## [Pytorch Activation function](https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity)의 종류
 
 1. Non-linear activations
     - nn.ELU, nn.SELU
@@ -377,7 +433,7 @@ model = nn.Sequential(OrderedDict([
 
 ## 모델 구성 방법
 
-크게 5가지 정도의 방법이 있다.
+크게 6가지 정도의 방법이 있다. **nn** 라이브러리를 잘 써서 직접 만들거나, 함수 또는 클래스로 정의, cfg파일 정의 또는 [torchvision.models](https://pytorch.org/docs/stable/torchvision/models.html)에 미리 정의된 모델을 쓰는 방법이 있다.
 
 ### 단순한 방법
 
@@ -579,13 +635,62 @@ def parse_cfg(cfgfile):
 
 이 방법의 경우 대개 depth가 수십~수백에 이르는 아주 거대한 모델을 구성할 때 사용되는 방법이다. 많은 수의 github 코드들이 이런 방식을 사용하고 있는데, 그러면 그 모델은 굉장히 복잡하게 생겼다는 뜻이 된다.
 
+### torchvision.models의 모델을 사용하는 방법
+
+[torchvision.models](https://pytorch.org/docs/stable/torchvision/models.html)에서는 미리 정의되어 있는 모델들을 사용할 수 있다. 이 모델들은 그 구조뿐 아니라 `pretrained=True` 인자를 넘김으로써 pretrained weights를 가져올 수도 있다. 
+
+2019.02.12 시점에서 사용 가능한 모델 종류는 다음과 같다.
+- AlexNet
+- VGG-11, VGG-13, VGG-16, VGG-19
+- VGG-11, VGG-13, VGG-16, VGG-19 (with batch normalization)
+- ResNet-18, ResNet-34, ResNet-50, ResNet-101, ResNet-152
+- SqueezeNet 1.0, SqueezeNet 1.1
+- Densenet-121, Densenet-169, Densenet-201, Densenet-161
+- Inception v3
+
+모델에 따라 train mode와 eval mode가 정해진 경우가 있으므로 이는 주의해서 사용하도록 한다. 
+
+모든 pretrained model을 쓸 때 이미지 데이터는 [3, W, H] 형식이어야 하고, W, H는 224 이상이어야 한다. 또 아래 코드처럼 정규화된 이미지 데이터로 학습된 것이기 때문에, 이 모델들을 사용할 때에는 데이터셋을 이와 같이 정규화시켜주어야 한다.
+```python
+transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                     std=[0.229, 0.224, 0.225])
+```
+
+사용법은 대략 다음과 같다. 사실 이게 거의 끝이고, 나머지는 다른 일반 모델처럼 사용하면 된다.  
+
+```python
+import torchvision.models as models
+
+# model load
+alexnet = models.alexnet()
+vgg16 = models.vgg16()
+vgg16_bn = models.vgg16_bn()
+resnet18 = models.resnet18()
+squeezenet = models.squeezenet1_0()
+densenet = models.densenet161()
+inception = models.inception_v3()
+
+# pretrained model load
+resnet18 = models.resnet18(pretrained=True)
+vgg16 = models.vgg16(pretrained=True)
+...
+```
+
+
 ---
 
 # Set Loss function(creterion) and Optimizer
 
+## [Pytorch Loss function](https://pytorch.org/docs/stable/nn.html#loss-functions)의 종류
+
+## [Pytorch Optimizer](https://pytorch.org/docs/stable/optim.html)의 종류
+
 ---
 
 # Train Model
+
+https://pytorch.org/docs/stable/cuda.html
+https://pytorch.org/docs/stable/tensor_attributes.html#torch-device
 
 
 ---
@@ -593,3 +698,7 @@ def parse_cfg(cfgfile):
 # Visualize and save results
 
 ---
+
+# Q & A
+
+https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615
