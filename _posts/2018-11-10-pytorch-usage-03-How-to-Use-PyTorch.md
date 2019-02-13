@@ -217,6 +217,8 @@ transforms.Compose([
 
 ## Pytorch Model
 
+gradient 계산 방식 등 Pytorch model의 작동 방식은 [Set Loss function(creterion) and Optimizer 절](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#set-loss-functioncreterion-and-optimizer)을 보면 된다.
+
 Pytorch에서 쓰는 용어는 Module 하나에 가깝지만, 많은 경우 layer나 model 등의 용어도 같이 사용되므로 굳이 구분하여 적어 보았다.
 
 **Layer** : Model 또는 Module을 구성하는 한 개의 층, Convolutional Layer, Linear Layer 등이 있다.  
@@ -297,7 +299,7 @@ PyTorch 모델로 쓰기 위해서는 다음 조건을 따라야 한다. 내장�
     - `.cuda()`는 optimizer를 설정하기 전에 실행되어야 한다. 잊어버리지 않으려면 모델을 생성하자마자 쓰는 것이 좋다.
 - `eval()`, `train()`: 모델을 train mode 또는 eval(test) mode로 변경한다. Dropout이나 BatchNormalization을 쓰는 모델은 학습시킬 때와 평가할 때 구조/역할이 다르기 때문에 반드시 이를 명시하도록 한다. 
 - `parameters(recurse=True)`: module parameter에 대한 iterator를 반환한다. 보통 optimizer에 넘겨줄 때 말고는 쓰지 않는다.
-- `zero_grad()`: 모든 model parameter들을 0으로 설정한다.
+- `zero_grad()`: 모든 model parameter의 gradient를 0으로 설정한다.
 
 사용하는 법은 매우 간단히 나타내었다. Optimizer에 대한 설명은 [여기](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#set-loss-functioncreterion-and-optimizer)를 참조하면 된다.
 
@@ -676,12 +678,13 @@ vgg16 = models.vgg16(pretrained=True)
 ...
 ```
 
-
 ---
 
 # Set Loss function(creterion) and Optimizer
 
 ## [Pytorch Loss function](https://pytorch.org/docs/stable/nn.html#loss-functions)의 종류
+
+
 
 ## [Pytorch Optimizer](https://pytorch.org/docs/stable/optim.html)의 종류
 

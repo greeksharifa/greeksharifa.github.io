@@ -91,10 +91,10 @@ parser.add_argument('--print-number', '-p', help='an integer for printing repeat
 
 ## type 지정
 기본적으로 `parse_args()`가 주어진 인자들을 파싱할 때는 모든 문자를 숫자 등이 아닌 문자열 취급한다. 따라서 데이터 타입을 지정하고 싶으면 `add_argument()`에서 `type=`을 지정해 주어야 한다. default는 말한 대로 `str`이다.
-    - ex) `parser.add_argument('--print-number', '-p', type=int, ...)`
-    - type으로 사용 가능한 것은 한 개의 문자열을 받아들여 return 문이 있는 모든 callable 객체이다.
-    - Common built-in types과 functions이 사용 가능한데, `str`, `int`, `float`, `bool`과 `open` 등이 있다. `list`와 같은 것은 불가능하다. list처럼 쓰고 싶으면 아래쪽에서 설명할 `action=append`를 이용한다.
-    - `argparse.FileType()` 함수도 `type=`에 사용 가능한데, `mode=`, `bufsize=`, `encoding=`, `errors=` parameter를 취하는 함수로서 다양한 파일을 여러 옵션으로 지정할 수 있다. 예를 들어 `argparse.FileType('w')`는 쓰기 가능한 파일을 만든다. 자세한 것은 [여기](https://docs.python.org/3/library/argparse.html?highlight=argparse#type)를 참조한다.
+- ex) `parser.add_argument('--print-number', '-p', type=int, ...)`
+- type으로 사용 가능한 것은 한 개의 문자열을 받아들여 return 문이 있는 모든 callable 객체이다.
+- Common built-in types과 functions이 사용 가능한데, `str`, `int`, `float`, `bool`과 `open` 등이 있다. `list`와 같은 것은 불가능하다. list처럼 쓰고 싶으면 아래쪽에서 설명할 `action=append`를 이용한다.
+- `argparse.FileType()` 함수도 `type=`에 사용 가능한데, `mode=`, `bufsize=`, `encoding=`, `errors=` parameter를 취하는 함수로서 다양한 파일을 여러 옵션으로 지정할 수 있다. 예를 들어 `argparse.FileType('w')`는 쓰기 가능한 파일을 만든다. 자세한 것은 [여기](https://docs.python.org/3/library/argparse.html?highlight=argparse#type)를 참조한다.
     
 
 ## positional / optional 인자
@@ -157,14 +157,14 @@ argparseTest.py: error: argument --foo/-f: expected one argument
 ```
 ## action의 종류 지정
 인자를 정의(`add_argument()`에 의해)할 때 action을 지정할 수 있다. 액션에는 다음과 같은 것들이 있으며, 기본값은 `store`이다.
-    - `store`: action을 지정하지 않으면 `store`이 된다. 인자 이름 바로 뒤의 값을 해당 인자에 대입(저장)시킨다. 
-    - `store_const`: `add_argument()`에서 미리 지정되어 있는 `const=`에 해당하는 값이 저장된다. `const=`는 반드시 써 주어야 한다.
-    - `store_true`, `store_false`: 인자를 적으면(값은 주지 않는다) 해당 인자에 `True`나 `False`가 저장된다.
-    - `append`: 값을 하나가 아닌 여러 개를 저장하고 싶을 때 쓴다. 인자를 여러 번 호출하면 같이 주는 값이 계속 append된다.
-    - `append_const`: append와 비슷하지만 사전에 지정한 const 값이 저장된다.
-    - `count`: 인자를 적은 횟수만큼 값이 올라간다. 보통 `verbose` 옵션에 많이 쓴다.
-    - `help`: 도움말 메시지를 출력하게 하고 종료하여 코드는 실행시키지 않는다. `--help` 역할을 대신한다.
-    - `version`: `version` 인자에 사용가능하다. 버전 정보를 출력하고 종료한다.
+- `store`: action을 지정하지 않으면 `store`이 된다. 인자 이름 바로 뒤의 값을 해당 인자에 대입(저장)시킨다. 
+- `store_const`: `add_argument()`에서 미리 지정되어 있는 `const=`에 해당하는 값이 저장된다. `const=`는 반드시 써 주어야 한다.
+- `store_true`, `store_false`: 인자를 적으면(값은 주지 않는다) 해당 인자에 `True`나 `False`가 저장된다.
+- `append`: 값을 하나가 아닌 여러 개를 저장하고 싶을 때 쓴다. 인자를 여러 번 호출하면 같이 주는 값이 계속 append된다.
+- `append_const`: append와 비슷하지만 사전에 지정한 const 값이 저장된다.
+- `count`: 인자를 적은 횟수만큼 값이 올라간다. 보통 `verbose` 옵션에 많이 쓴다.
+- `help`: 도움말 메시지를 출력하게 하고 종료하여 코드는 실행시키지 않는다. `--help` 역할을 대신한다.
+- `version`: `version` 인자에 사용가능하다. 버전 정보를 출력하고 종료한다.
 ```
 parser.add_argument('--foo', action='store_const', const=10)
 > python argparseTest.py --foo
@@ -206,8 +206,8 @@ args.foo: ['1', '123', 'xyz']
 
 ## attribute name: -, _ 구분
 인자의 이름에는 `-`와 `_`을 쓸 수 있다. 단, python 기본 문법은 변수명에 `-`를 허용하지 않기 때문에, 인자의 이름에 `-`가 들어갔다면 `args.인자`로 접근하려면 `-`를 `_`로 바꿔 주어야 한다.
-    - `--print-number`의 경우 `args.print_number`로 접근할 수 있다.
-    - `--print_number`의 경우 `args.print_number`로 동일하다.
+- `--print-number`의 경우 `args.print_number`로 접근할 수 있다.
+- `--print_number`의 경우 `args.print_number`로 동일하다.
 
 ## dest: 적용 위치 지정
 argument를 지정할 때 store나 action의 저장 또는 적용 위치를 바꿔서 지정할 수 있다. 예를 들어 `--foo`의 `dest=` 옵션을 `--foo-list`로 지정하면, `args.foo_list`에 값이 저장되는 식이다.
@@ -234,14 +234,14 @@ Where are you gone? 'Namespace' object has no attribute 'foo'
 
 ## nargs: 값 개수 지정
 argparse는 일반적으로 1개의 값을 추가로 받거나, `action=store_true`의 경우는 값을 추가로 받지 않는다. 이를 바꿔 주는 것이 `nargs=` 이다.
-    - `N`: N개의 값을 읽어들인다.
-    - `?`: 0개 또는 1개의 값을 읽어들인다. 
-        - 인자와 값을 모두 적은 경우 해당 값이 저장된다.
-        - 인자만 적은 경우 const 값이 저장된다.
-        - 아무것도 적지 않았으면 default 값이 저장된다.
-    - `*`: 0개 이상의 값을 전부 읽어들인다.
-    - `+`: 1개 이상의 값을 전부 읽어들인다. 정규표현식의 것과 매우 비슷하다.
-    - `argparse.REMAINDER`: 남은 값을 개수 상관없이 전부 읽어들인다.
+- `N`: N개의 값을 읽어들인다.
+- `?`: 0개 또는 1개의 값을 읽어들인다. 
+    - 인자와 값을 모두 적은 경우 해당 값이 저장된다.
+    - 인자만 적은 경우 const 값이 저장된다.
+    - 아무것도 적지 않았으면 default 값이 저장된다.
+- `*`: 0개 이상의 값을 전부 읽어들인다.
+- `+`: 1개 이상의 값을 전부 읽어들인다. 정규표현식의 것과 매우 비슷하다.
+- `argparse.REMAINDER`: 남은 값을 개수 상관없이 전부 읽어들인다.
 
 예제는 [원문](https://docs.python.org/3/library/argparse.html?highlight=argparse#nargs)이나 [번역본](https://docs.python.org/ko/3.7/library/argparse.html#nargs)을 참조한다.
 
