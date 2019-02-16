@@ -61,7 +61,9 @@ y = torch.from_numpy(data['y'].values).unsqueeze(dim=1).float()
 ```
 `pandas`나 `csv` 패키지 등으로 그냥 불러오는 방법이다. 데이터가 복잡하지 않은 형태라면 단순하고 유용하게 쓸 수 있다. 그러나 이 글에서 중요한 부분은 아니다.
 
-## [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader)
+## torch.utils.data.DataLoader
+
+참조: [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader)
 
 Pytorch는 `DataLoader`라고 하는 괜찮은 utility를 제공한다. DataLoader 객체는 학습에 쓰일 데이터를 batch size에 맞춰 잘라서 저장해 놓고, train 함수가 batch 하나를 요구하면 하나씩 꺼내서 준다고 보면 된다.  
 실제 DataLoader를 쓸 때는 다음과 같이 쓰기만 하면 된다.
@@ -148,7 +150,9 @@ face_dataset = FaceLandmarksDataset(csv_file='data/faces/face_landmarks.csv',
                                     root_dir='data/faces/')
 ```
 
-## [torchvision.datasets](https://pytorch.org/docs/stable/torchvision/datasets.html)
+## torchvision.datasets
+
+참조: [torchvision.datasets](https://pytorch.org/docs/stable/torchvision/datasets.html)
 
 Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이다. 2019.02.12 기준 dataset 목록은 다음과 같다.
 
@@ -168,7 +172,9 @@ Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이�
 - transform: 지정하면 이미지 데이터에 어떤 변형을 가할지를 transform function의 묶음(Compose)로 전달한다.
 - target_transform: 보통 위의 transform까지만 쓰는 것 같다. 쓰고 싶다면 이것도 쓰자.
 
-## [torchvision.transforms](https://pytorch.org/docs/stable/torchvision/transforms.html?highlight=torchvision%20transforms)
+## torchvision.transforms
+
+참조: [torchvision.transforms](https://pytorch.org/docs/stable/torchvision/transforms.html?highlight=torchvision%20transforms)
 
 1. 이미지 변환 함수들을 포함한다. 상대적으로 자주 쓰이는 함수는 다음과 같은 것들이 있다. 더 많은 목록은 홈페이지를 참조하면 된다. 참고로 parameter 중 `transforms`는 변환 함수들의 list 또는 tuple이다.
 
@@ -333,7 +339,9 @@ for idx, (data, label) in dataloader['test']:
 
 ---
 
-## [Pytorch Layer의 종류](https://pytorch.org/docs/stable/nn.html#module)
+## Pytorch Layer의 종류
+
+참조: [nn.module](https://pytorch.org/docs/stable/nn.html#module)
 
 참고만 하도록 한다. 좀 많다. 쓰고자 하는 것과 이름이 비슷하다 싶으면 홈페이지를 참조해서 쓰면 된다.
 
@@ -376,7 +384,9 @@ for idx, (data, label) in dataloader['test']:
 
 ---
 
-## [Pytorch Activation function](https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity)의 종류
+## Pytorch Activation function의 종류
+
+참조: [Activation functions](https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity)
 
 1. Non-linear activations
     - nn.ELU, nn.SELU
@@ -393,7 +403,9 @@ for idx, (data, label) in dataloader['test']:
 
 ---
  
-## [Containers](https://pytorch.org/docs/stable/nn.html#containers)
+## Containers
+
+참조: [Containers](https://pytorch.org/docs/stable/nn.html#containers)
 
 여러 layer들을 하나로 묶는 데 쓰인다.  
 종류는 다음과 같은 것들이 있는데, Module 설계 시 자주 쓰는 것으로 **nn.Sequential**이 있다.
@@ -404,7 +416,9 @@ for idx, (data, label) in dataloader['test']:
 - nn.ParameterList
 - nn.ParameterDict
 
-### [nn.Sequential](https://pytorch.org/docs/stable/nn.html#sequential)
+### nn.Sequential
+
+참조: [nn.Sequential](https://pytorch.org/docs/stable/nn.html#sequential)
 
 이름에서 알 수 있듯 여러 module들을 연속적으로 연결하는 모델이다. 
 
@@ -519,7 +533,7 @@ model = TwoLinearLayerNet(1, 20, 1)
 
 두 코딩 스타일의 차이점 중 하나는 import하는 것이 다르다(F.relu와 nn.ReLU는 사실 거의 같다). Activation function 부분에서 `torch.nn.functional`은 `torch.nn`의 Module에 거의 포함되는데, `forward()`에서 정의해서 쓰느냐 마느냐에 따라 다르게 선택하면 되는 정도이다.
 
-### cfg(config)를 정의한 후 모델을 build하는 방법
+### cfg(config)를 정의한 후 모델을 생성하는 방법
 
 처음 보면 알아보기 까다로운 방법이지만, *매우* 복잡한 모델의 경우 `.cfg` 파일을 따로 만들어 모델의 구조를 정의하는 방법이 존재한다. 많이 쓰이는 방법은 대략 두 가지 정도인 것 같다.
 
@@ -682,11 +696,15 @@ vgg16 = models.vgg16(pretrained=True)
 
 # Set Loss function(creterion) and Optimizer
 
-## [Pytorch Loss function](https://pytorch.org/docs/stable/nn.html#loss-functions)의 종류
+## Pytorch Loss function의 종류
+
+참조: [Loss functions](https://pytorch.org/docs/stable/nn.html#loss-functions)
 
 
 
-## [Pytorch Optimizer](https://pytorch.org/docs/stable/optim.html)의 종류
+## Pytorch Optimizer의 종류
+
+참조: [nn.optim](https://pytorch.org/docs/stable/optim.html)
 
 ---
 
