@@ -164,7 +164,7 @@ Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이�
 
 각각의 dataset마다 필요한 parameter가 조금씩 다르기 때문에, [MNIST](https://pytorch.org/docs/stable/torchvision/datasets.html#mnist)만 간단히 설명하도록 하겠다. 사실 공식 홈페이지를 참조하면 어렵지 않게 사용 가능하다.
 
-![01_MNIST](/public/img/PyTorch/2018-11-10-pytorch-usage-03-Building-Model/01.PNG)
+![01_MNIST](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/01.PNG)
 
 - root: 데이터를 저장할 루트 폴더이다. 보통 `data/`나 `data/mnist/`를 많이 쓰는 것 같지만, 상관없다.
 - train: 학습 데이터를 받을지, 테스트 데이터를 받을지를 결정한다.
@@ -699,6 +699,55 @@ vgg16 = models.vgg16(pretrained=True)
 ## Pytorch Loss function의 종류
 
 참조: [Loss functions](https://pytorch.org/docs/stable/nn.html#loss-functions)
+
+Loss function은 모델이 추측한 결과(prediction)과 실제 정답(label 또는 y 등)의 *loss*를 계산한다. 이는 loss function을 어떤 것을 쓰느냐에 따라 달라진다. 예를 들어 regression model에서 MSE(Mean Squared Error)를 쓸 경우 평균 제곱오차를 계산한다.
+
+사용법은 다른 함수들도 아래와 똑같다.
+```python
+import torch
+from torch import nn
+criterion = nn.MSELoss()
+prediction = torch.Tensor([12, 21, 30, 41, 52]) # 예측값
+target = torch.Tensor([10, 20, 30, 40, 50]) # 정답
+loss = criterion(prediction, target)
+print(loss)
+# tensor(2.)
+# loss = (2^2 + 1^2 + 0^2 + 1^2 + 2^2) / 5 = 2
+
+criterion_reduction_none = nn.MSELoss(reduction='none')
+loss = criterion_reduction_none(prediction, target)
+print(loss)
+# tensor([4., 1., 0., 1., 4.])
+```
+
+여러 코드들을 살펴보면, loss function을 정의할 때는 보통 `creterion`, `loss_fn`, `loss_function`등의 이름을 사용하니 참고하자.
+
+홈페이지를 참조하면 각 함수별 설명에 'Creates a criterion that measures...'라 설명이 되어 있다. 위의 예시를 보면 알겠지만 해당 함수들이 당장 loss를 계산하는 것이 아니라 loss를 계산하는 기준을 정의한다는 뜻이다.  
+또 많은 함수들은 `reduce`와 `size_average` argument를 갖는다. loss를 계산하여 평균을 내는 것이 아니라 각 원소별로 따로 계산할 수 있게 해 준다. 그러나 2019.02.16 기준으로 다음과 비슷한 경고가 뜬다.
+
+> reduce args will be deprecated, please use reduction='none' instead.
+
+따라서 `reduction` argument를 쓰도록 하자. 지정할 수 있는 종류는 'none' | 'mean' | 'sum' 세 가지이다. 기본값은 mean으로 되어 있다.
+
+- nn.L1Loss: 각 원소별 차이의 절댓값을 계산한다.
+![L1](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/02.PNG)
+- nn.MSELoss: Mean Squared Error(평균제곱오차) 또는 squared L2 norm을 계산한다.
+![MSE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/03.PNG)
+- nn.CrossEntropyLoss: Cross Entropy Loss를 계산한다. nn.LogSoftmax() and nn.NLLLoss()를 포함한다. weight argument를 지정할 수 있다.
+![CE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/04.PNG)
+- nn.CTCLoss: Connectionist Temporal Classification loss를 계산한다.
+- nn.NLLLoss: Negative log likelihood loss를 계산한다.
+![NLL](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/05.PNG)
+- nn.PoissonNLLLoss: target이 poission 분포를 가진 경우 Negative log likelihood loss를 계산한다.
+![PNLL](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/06.PNG)
+- nn.KLDivLoss: Kullback-Leibler divergence Loss를 계산한다.
+![KLDiv](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/07.PNG)
+- nn.BCELoss: Binary Cross Entropy를 계산한다. 
+![BCE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/08.PNG)
+- nn.BCEWithLogitsLoss: Sigmoid 레이어와 BCELoss를 하나로 합친 것인데, 홈페이지의 설명에 따르면 두 개를 따로 쓰는 것보다 이 함수를 쓰는 것이 조금 더 수치 안정성을 가진다고 한다.
+![BCE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/09.PNG)
+- 이외에 MarginRankingLoss, HingeEmbeddingLoss, MultiLabelMarginLoss, SmoothL1Loss, SoftMarginLoss, MultiLabelSoftMarginLoss, CosineEmbeddingLoss, MultiMarginLoss, TripletMarginLoss를 계산하는 함수들이 있다. 필요하면 찾아보자.
+
 
 
 
