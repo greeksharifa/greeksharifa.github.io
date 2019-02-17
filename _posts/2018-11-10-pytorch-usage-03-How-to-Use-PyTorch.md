@@ -10,6 +10,12 @@ tags: [PyTorch]
 
 사용되는 torch 함수들의 사용법은 [여기](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/)에서 확인할 수 있다.
 
+Pytorch의 학습 방법(loss function, optimizer, autograd, backward 등이 어떻게 돌아가는지)을 알고 싶다면 [여기](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#train-model)로 바로 넘어가면 된다.
+
+Pytorch 사용법이 헷갈리는 부분이 있으면 [Q&A 절](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#q--a)을 참고하면 된다.
+
+예시 코드의 많은 부분은 링크와 함께 공식 Pytorch 홈페이지(pytorch.org/docs)에서 가져왔음을 밝힌다.
+
 *주의: 이 글은 좀 길다. ㅎ*
 
 ---
@@ -700,16 +706,16 @@ vgg16 = models.vgg16(pretrained=True)
 
 참조: [Loss functions](https://pytorch.org/docs/stable/nn.html#loss-functions)
 
-Loss function은 모델이 추측한 결과(prediction)과 실제 정답(label 또는 y 등)의 *loss*를 계산한다. 이는 loss function을 어떤 것을 쓰느냐에 따라 달라진다. 예를 들어 regression model에서 MSE(Mean Squared Error)를 쓸 경우 평균 제곱오차를 계산한다.
+Loss function은 모델이 추측한 결과(prediction 또는 output)과 실제 정답(label 또는 y 등)의 *loss*를 계산한다. 이는 loss function을 어떤 것을 쓰느냐에 따라 달라진다. 예를 들어 regression model에서 MSE(Mean Squared Error)를 쓸 경우 평균 제곱오차를 계산한다.
 
 사용법은 다른 함수들도 아래와 똑같다.
 ```python
 import torch
 from torch import nn
-criterion = nn.MSELoss()
+criterion  = nn.MSELoss()
 prediction = torch.Tensor([12, 21, 30, 41, 52]) # 예측값
-target = torch.Tensor([10, 20, 30, 40, 50]) # 정답
-loss = criterion(prediction, target)
+target     = torch.Tensor([10, 20, 30, 40, 50]) # 정답
+loss       = criterion(prediction, target)
 print(loss)
 # tensor(2.)
 # loss = (2^2 + 1^2 + 0^2 + 1^2 + 2^2) / 5 = 2
@@ -748,19 +754,173 @@ print(loss)
 ![BCE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/09.PNG)
 - 이외에 MarginRankingLoss, HingeEmbeddingLoss, MultiLabelMarginLoss, SmoothL1Loss, SoftMarginLoss, MultiLabelSoftMarginLoss, CosineEmbeddingLoss, MultiMarginLoss, TripletMarginLoss를 계산하는 함수들이 있다. 필요하면 찾아보자.
 
-
-
-
 ## Pytorch Optimizer의 종류
 
-참조: [nn.optim](https://pytorch.org/docs/stable/optim.html)
+참조: [torch.optim](https://pytorch.org/docs/stable/optim.html)
+
+[여기](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#nnmodule-%EB%82%B4%EC%9E%A5-%ED%95%A8%EC%88%98)에도 간략하게 언급했었지만, GPU CUDA를 사용할 계획이라면 optimizer를 정의하기 전에 미리 해놓아야 한다(`model.cuda()`). 공식 홈페이지에 따르면, 
+> If you need to move a model to GPU via .cuda(), please do so before constructing optimizers for it. Parameters of a model after .cuda() will be different objects with those before the call.
+In general, you should make sure that optimized parameters live in consistent locations when optimizers are constructed and used.
+
+이유를 설명하자면 
+1. optimizer는 argument로 model의 parameter를 입력받는다.
+2. `.cuda()`를 쓰면 모델의 parameter가 cpu 대신 gpu에 올라가는 것이므로 다른 object가 된다.
+3. 따라서 optimizer에 model parameter의 위치를 전달한 후 `.cuda()`를 실행하면, 학습시켜야 할 parameter는 GPU에 올라가 있는데 optimizer는 cpu에 올라간 엉뚱한 parameter 위치를 참조하고 있는 것이 된다.
+
+그러니 순서를 지키자.
+
+optimizer 정의는 다음과 같이 할 수 있다.
+```python
+optimizer = optim.SGD(model.parameters(), lr = 0.01, momentum=0.9)
+optimizer = optim.Adam([var1, var2], lr = 0.0001)
+```
+
+optimizer에 대해 알아 두어야 할 것이 조금 있다.
+1. optimizer는 `step()` method를 통해 argument로 전달받은 parameter를 업데이트한다.
+2. 모델의 parameter별로(per-parameter) 다른 기준(learning rate 등)을 적용시킬 수 있다. [참고](https://pytorch.org/docs/stable/optim.html#per-parameter-options)
+3. `torch.optim.Optimizer(params, defaults)`는 모든 optimizer의 base class이다.
+4. `nn.Module`과 같이 `state_dict()`와 `load_state_dict()`를 지원하여 optimizer의 상태를 저장하고 불러올 수 있다.
+5. `zero_grad()` method는 optimizer에 연결된 parameter들의 gradient를 0으로 만든다.
+6. `torch.optim.lr_scheduler`는 epoch에 따라 learning rate를 조절할 수 있다.
+
+Optimizer의 종류:
+- optim.Adadelta, optim.Adagrad, optim.Adam, optim.SparseAdam, optim.Adamax
+- optim.ASGD, *optim.LBFGS*
+- optim.RMSprop, optim.Rprop
+- optim.SGD
+
+LBFGS는 per-parameter 옵션이 지원되지 않는다. 또한 memory를 다른 optimizer에 비해 많이 잡아먹는다고 한다.
+
+lr Scheduler의 종류:
+- optim.lr_scheduler.LambdaLR
+- optim.lr_scheduler.StepLR
+- optim.lr_scheduler.MultiStepLR
+- optim.lr_scheduler.ExponentialLR
+- optim.lr_scheduler.CosineAnnealingLR
+- optim.lr_scheduler.ReduceLROnPlateau
+
+예를 들면 이렇게 사용한다고 한다. 사용 방법은 scheduler마다 조금씩 다르니 [홈페이지](https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate)를 참조하자.
+```python
+lambda1 = lambda epoch: epoch // 30
+lambda2 = lambda epoch: 0.95 ** epoch
+scheduler = LambdaLR(optimizer, lr_lambda=[lambda1, lambda2])
+for epoch in range(100):
+    scheduler.step()
+    train(...)
+    validate(...)
+```
 
 ---
 
 # Train Model
 
-https://pytorch.org/docs/stable/cuda.html
-https://pytorch.org/docs/stable/tensor_attributes.html#torch-device
+일반적인 machine learning의 학습 방법은 다음과 같다. 입력은 input, 모델의 출력은 output, 정답은 target이라고 하자.
+
+1. model structure, loss function, optimizer 등을 정한다.
+2. **forward-propagation**: input을 모델에 통과시켜 output을 계산한다.
+3. loss function으로 output과 target 간 **loss**를 계산한다.
+4. **back-propagation**: loss와 chain rule을 활용하여 모델의 각 레이어에서 gradient($\Delta w$)를 계산한다.
+5. **update**: $ w \leftarrow w - \alpha\Delta w $식에 의해 모델의 parameter를 update한다.
+
+Pytorch의 학습 방법은 다음과 같다.
+1. model structure, loss function, optimizer 등을 정한다.
+2. `optimizer.zero_grad()`: 이전 epoch에서 계산되어 있는 parameter의 gradient를 0으로 초기화한다.
+3. `output = model(input)`: input을 모델에 통과시켜 output을 계산한다. 
+4. `loss = loss_fn(output, target)`: output과 target 간 **loss**를 계산한다.
+5. `loss.backward()`: loss와 chain rule을 활용하여 모델의 각 레이어에서 gradient($\Delta w$)를 계산한다.
+6. `optimizer.step()`: $w \leftarrow w - \alpha\Delta w$식에 의해 모델의 parameter를 update한다.
+
+거의 일대일 대응되지만 다른 점이 하나 있다.
+- `optimizer.zero_grad()`: Pytorch는 gradient를 `loss.backward()`를 통해 계산하지만, 이 함수는 이전 gradient를 덮어쓴 뒤 새로 계산하는 것이 아니라, 이전 gradient에 ***누적하여*** 계산한다.
+    - *귀찮은데?* 라고 생각할 수는 있다. 그러나 이러한 누적 계산 방식은 RNN 모델을 구현할 때는 오히려 훨씬 편하게 코드를 작성할 수 있도록 도와준다. 
+    - 그러니 gradient가 누적될 필요 없는 모델에서는 model에 input를 통과시키기 전 `optimizer.zero_grad()`를 한번 호출해 주기만 하면 된다고 생각하면 끝이다.
+
+Pytorch가 대체 어떻게 `loss.backward()` 단 한번에 gradient를 자동 계산하는지에 대한 설명도 하면,
+
+- 모든 Pytorch Tensor는 `requires_grad` argument를 가진다. 일반적으로 생성하는 Tensor는 기본적으로 해당 argument 값이 `False`이며, 따로 `True`로 설정해 주면 gradient를 계산해 주어야 한다. `nn.Linear` 등의 module은 생성할 때 기본적으로 `requires_grad=True`이기 때문에, 일반적으로 모델의 parameter는 gradient를 계산하게 된다.
+    - [참고](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import): Pytorch 0.4.0 버전 이전에는 `Variable` class가 해당 역할을 수행하였지만, deprecated되었다. 
+- 마지막 레이어만 원하는 것으로 바꿔서 그 레이어만 학습을 수행하는 형태의 transfer learning을 `requires_grad`를 이용해 손쉽게 구현할 수 있다. 이외에도 특정 레이어만 gradient를 계산하지 않게 하는 데에도 쓸 수 있다. 아래 예시는 512개의 class 대신 100개의 class를 구별하고자 할 때 resnet18을 기반으로 transfer learning을 수행하는 방식이다.
+```python
+model = torchvision.models.resnet18(pretrained=True)
+for param in model.parameters():
+    param.requires_grad = False
+# Replace the last fully-connected layer
+# Parameters of newly constructed modules have requires_grad=True by default
+model.fc = nn.Linear(512, 100)
+
+# Optimize only the classifier
+optimizer = optim.SGD(model.fc.parameters(), lr=1e-2, momentum=0.9)
+```
+- `requires_grad=True`인 Tensor로부터 연산을 통해 생성된 Tensor도 `requires_grad=True`이다.
+- `with torch.no_grad():` 범위 안에서는 gradient 계산을 하지 않는다.
+- `with torch.no_grad():` 안에서 선언된 `with torch.enable_grad():` 범위 안에서는 다시 gradient 계산을 한다. 이 두 가지 기능을 통해 국지적으로 gradient 계산을 수행하거나 수행하지 않을 수 있다.
+
+```python
+import torch
+
+x = torch.Tensor(1)
+print('x.requires_grad:', x.requires_grad)
+
+y = torch.ones(1, requires_grad=True)
+print('y.requires_grad:', y.requires_grad)
+
+z = 172 * y + 3
+print('z.requires_grad:', z.requires_grad)
+
+with torch.no_grad():
+    print('z.requires_grad:', (z ** 2).requires_grad)
+    with torch.enable_grad():
+        print('z.requires_grad:', (z ** 2).requires_grad)
+
+print('z.grad_fn:', z.grad_fn)
+
+print('x:', x, '\ny:', y, '\nz:', z)
+
+z.backward()
+print('y.grad:', y.grad)
+print('z.grad:', z.grad)
+```
+
+```
+x.requires_grad: False
+y.requires_grad: True
+z.requires_grad: True
+z.requires_grad: False
+z.requires_grad: True
+z.grad_fn: <AddBackward0 object at 0x0000028634614780>
+x: tensor([1.4013e-45]) 
+y: tensor([1.], requires_grad=True) 
+z: tensor([175.], grad_fn=<AddBackward0>)
+y.grad: tensor([172.])
+z.grad: None
+```
+튜토리얼이 조금 더 궁금하다면 [여기](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html)를 참고해도 좋다.
+
+
+학습할 때 알아두면 괜찮은 것들을 대략 정리해보았다. 어떤 식으로 학습하는 것이 좋은지(learning rate 선택 기준 등)는 양이 너무 방대하기에 여기에는 적지 않는다.
+
+**[CUDA](https://pytorch.org/docs/stable/cuda.html)**
+
+- `torch.cuda.is_available()`: 학습을 시킬 때는 GPU를 많이 사용한다. GPU가 사용가능한지 알 수 있다.
+- `torch.cuda.device(device)`: 어느 devide(GPU나 CPU)를 쓸 지 선택한다.
+- `torch.cuda.device_count()`: 현재 선택된 device의 수를 반환한다.
+- `torch.cuda.init()`: C API를 쓰는 경우 명시적으로 호출해야 한다.
+- `torch.cuda.set_device(device)`: 현재 device를 설정한다.
+- `torch.cuda.manual_seed(seed)`: 랜덤 숫자를 생성할 시드를 정한다. multi-gpu 환경에서는 `manual_seed_all` 함수를 사용한다.
+- `torch.cuda.empty_cache()`: 사용되지 않는 cache를 release하나, 가용 메모리를 늘려 주지는 않는다.
+
+
+
+간단한 학습 과정은 다음 구조를 따른다.
+```python
+# 변수명으로 input을 사용하는 것은 비추천. python 내장 함수 이름이다.
+for data, target in dataloader: 
+    optimizer.zero_grad() # RNN에서는 생략될 수 있음
+    output = model(data)
+    loss = loss_fn(output, target)
+    loss.backward()
+    optimizer.step()
+```
 
 
 ---
@@ -771,4 +931,8 @@ https://pytorch.org/docs/stable/tensor_attributes.html#torch-device
 
 # Q & A
 
-https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615
+- `model.train()`과 `model.eval()`은 모델이 학습 모드인지, 테스트 모드인지를 정하는 것이다. 이는 dropout이나 batchnorm이 있는 모델의 경우 학습할 때와 테스트할 때 모델이 달라지기 때문에 세팅하는 것이다(또한 필수이다). `torch.no_grad()`는 (대개 일시적으로) 해당 범위 안에서 gradient 계산을 중지시킴으로써 메모리 사용량과 계산 속도를 빨리 하는 것이다. [참고](https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615)
+- `optimizer.zero_grad()`를 사용하는 이유. [참고](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#train-model)
+
+댓글로 문의하시면 확인 후 포스팅에 추가 가능합니다.
+
