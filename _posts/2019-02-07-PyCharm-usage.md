@@ -56,6 +56,7 @@ Refactor > Rename | Shift + F6 | F2
 Other > Terminal | | Alt + T
 Other > Python Console | | Alt + 8
 Other > SciView | | Alt + 0
+Show in Explorer | | Ctrl + Alt + Shift + E
 
 필자의 경우 나머지 설정은 그대로 두는 편이나, `Ctrl + Enter`로 바꿀 때는 다른 곳에 할당된 것을 지운다(Already assigned 경고창에서 Leave 대신 Remove를 선택). 안 그러면 선택한 부분이 Python Console(대화형)에서 실행되지 않는다.
 
@@ -94,14 +95,36 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 
 ---
 
-## Project 창
+## Project 창(Alt + 1)
 
+처음 프로젝트를 열면 다음과 같은 화면이 보일 것이다. (Show tips at startup은 무시한다)
 
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/13.PNG" width="100%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/13.PNG" width="120%"></center>
+맨 왼쪽에는 프로젝트 창이 있다. 맨 왼쪽 빨간 박스로 표시한 곳을 클릭하면 프로젝트 창을 접었다 폈다 할 수 있다. 단축키를 눌러도 된다(Alt + 1).  
+
+필자는 현재 untitled라는 이름으로 프로젝트를 생성했기 때문에, 루트 폴더는 현재 untitled이다. 주황 박스를 오른쪽 클릭하면 꽤 많은 옵션이 있다. 참고로 프로젝트 내 모든 디렉토리 또는 파일에 오른쪽 클릭하여 기능을 쓸 수 있다. 디렉토리를 우클릭했을 때와 파일을 우클릭했을 때 옵션이 조금 다르다.
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14.PNG" width="70%"></center>
+
+각 옵션을 대략 설명하면,
+- New: File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 자주 쓰는 기능이지만 안타깝게도 단축키는 설정이 어려운 것 같다.
+- Cut, Copy, Paste 등은 설명하지 않겠다.
+- Copy Parh, Copy Relative Path: 각각 해당 디렉토리 또는 파일의 절대/상대 경로를 복사한다. 이미지나 데이터 파일 등의 경로를 써야 할 때 유용하게 쓸 수 있다. 단, 사용 환경에 따라 디렉토리 구분자가 `/`, `\`, `//` 등으로 달라지는 경우가 있으니 주의.
+- Refactor: 해당 디렉토리 또는 파일의 이름을 변경한다. 이때 이 파일명을 사용하는 코드(file open 등)이 있으면 그 코드를 자동으로 수정하게 할 수 있다.
+- Find Usages: 해당 파일을 참조하는 코드를 살펴볼 수 있다. Refactor와 같이 사용하면 좋다.
+- Show in Explorer: 해당 디렉토리나 파일이 있는 디렉토리를 탐색기나 Finder 등에서 열 수 있다.
+- Mark Directory as: 디렉토리의 속성을 설정한다. 세부 옵션이 4개 있다.
+    - Sources Root: 프로젝트에서 코드의 최상위 폴더를 지정한다. 코드를 짜다 보면 프로젝트 루트 폴더에 직속된 파일이 아닌 경우 패키지나 파일 reference를 찾지 못하는 경우가 많은데, 그럴 때는 해당 코드를 포함하는 파일 바로 상위의 디렉토리를 Sources Root로 설정하면 빨간 줄이 사라지는 것을 볼 수 있다.
+    - Excluded: PyCharm 색인(Index)에서 제외시킨다. PyCharm은 Find Usages와 같은 기능을 지원하기 위해 프로젝트 내 모든 파일과 코드에 대해 indexing을 수행하는데(목차를 생성하는 거랑 비슷함), 프로젝트 크기가 크면 굳이 필요 없는 수많은 파일들까지 indexing해야 한다. 이는 PyCharm 성능 저하와 함께 색인 파일의 크기가 매우 커지므로(임시 파일까지 포함하여 수 GB까지 되기도 함) 너무 많으면 적당히 제외시키도록 하자.
+    - Resource Root: 말 그대로 Resource Root로 지정한다. 
+    - Template Folder: 템플릿이 있는 폴더에 지정하면 된다. Pure Python을 쓸 때에는 별 의미 없다.
+- Add to Favorites: Favorites창에 해당 디렉토리나 파일을 추가한다. 즐겨찾기 기능이랑 같다. 프로젝트 창 아래에서 창을 찾을 수 있고, `Alt + 2` 단축키로 토글할 수 있다.
+
+이제 우클릭 > New > Python File로 새 파이썬 파일을 하나 생성하자. 
+
 
 ---
 
 ## References
 
-[공식 홈페이지](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)에서 더 자세한 사용법을 찾아볼 수 있다.
+[공식 홈페이지](https://www.jetbrains.com/pycharm/)에서 더 자세한 사용법을 찾아볼 수 있다.

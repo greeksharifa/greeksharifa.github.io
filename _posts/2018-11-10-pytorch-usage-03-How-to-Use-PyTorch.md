@@ -840,6 +840,7 @@ Pytorch가 대체 어떻게 `loss.backward()` 단 한번에 gradient를 자동 �
 - 모든 Pytorch Tensor는 `requires_grad` argument를 가진다. 일반적으로 생성하는 Tensor는 기본적으로 해당 argument 값이 `False`이며, 따로 `True`로 설정해 주면 gradient를 계산해 주어야 한다. `nn.Linear` 등의 module은 생성할 때 기본적으로 `requires_grad=True`이기 때문에, 일반적으로 모델의 parameter는 gradient를 계산하게 된다.
     - [참고](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import): Pytorch 0.4.0 버전 이전에는 `Variable` class가 해당 역할을 수행하였지만, deprecated되었다. 
 - 마지막 레이어만 원하는 것으로 바꿔서 그 레이어만 학습을 수행하는 형태의 transfer learning을 `requires_grad`를 이용해 손쉽게 구현할 수 있다. 이외에도 특정 레이어만 gradient를 계산하지 않게 하는 데에도 쓸 수 있다. 아래 예시는 512개의 class 대신 100개의 class를 구별하고자 할 때 resnet18을 기반으로 transfer learning을 수행하는 방식이다.
+
 ```python
 model = torchvision.models.resnet18(pretrained=True)
 for param in model.parameters():
@@ -851,6 +852,7 @@ model.fc = nn.Linear(512, 100)
 # Optimize only the classifier
 optimizer = optim.SGD(model.fc.parameters(), lr=1e-2, momentum=0.9)
 ```
+
 - `requires_grad=True`인 Tensor로부터 연산을 통해 생성된 Tensor도 `requires_grad=True`이다.
 - `with torch.no_grad():` 범위 안에서는 gradient 계산을 하지 않는다.
 - `with torch.no_grad():` 안에서 선언된 `with torch.enable_grad():` 범위 안에서는 다시 gradient 계산을 한다. 이 두 가지 기능을 통해 국지적으로 gradient 계산을 수행하거나 수행하지 않을 수 있다.
@@ -894,6 +896,7 @@ z: tensor([175.], grad_fn=<AddBackward0>)
 y.grad: tensor([172.])
 z.grad: None
 ```
+
 튜토리얼이 조금 더 궁금하다면 [여기](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html)를 참고해도 좋다.
 
 
@@ -926,6 +929,128 @@ for data, target in dataloader:
 ---
 
 # Visualize and save results
+
+## Visualization Library
+
+Visualization은 이 글에서 설명하지 않겠다. 기본적으로 python의 그래프 패키지인 `matplotlib`을 많이 쓰며, `graphviz`, `seaborn` 등의 다른 라이브러리도 잘 보이는 편이다.
+
+## Save & Load Model
+
+모델을 저장하는 방법은 여러 가지가 있지만, pytorch를 사용할 때는 다음 방법이 가장 권장된다. 아주 유연하고 또 간단하기 때문이다.
+
+**Save**:
+```python
+torch.save(model.state_dict(), PATH)
+```
+
+**Load**:
+```python
+model = TheModelClass(*args, **kwargs)
+model.load_state_dict(torch.load(PATH))
+# model.eval() # 테스트 시
+
+# 참고로 model.load_state_dict(PATH)와 같이 쓸 수는 없다.
+```
+
+epoch별로 checkpoint를 쓰면서 저장할 때는 다음과 같이 혹은 비슷하게 쓰면 좋다. checkpoint를 쓸 때는 단순히 모델의 parameter뿐만 아니라 epoch, loss, optimizer 등을 저장할 필요가 있다.
+
+**Save**:
+```python
+torch.save({
+            'epoch': epoch,
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'loss': loss,
+            ...
+            }, PATH)
+```
+
+**Load**:
+```python
+model = TheModelClass(*args, **kwargs)
+optimizer = TheOptimizerClass(*args, **kwargs)
+
+checkpoint = torch.load(PATH)
+model.load_state_dict(checkpoint['model_state_dict'])
+optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+epoch = checkpoint['epoch']
+loss = checkpoint['loss']
+# model.train() or model.eval()
+```
+
+일반적으로 저장한 모델 파일명은 `.pt`나 `.pth` 확장자를 쓴다. 모델을 포함하여 여러 가지를 같이 저장할 때는 `.tar` 확장자를 자주 쓰는 편이다.
+
+모델을 불러오고 나서 계속 학습시킬 것이라면 `model.train()`, 테스트를 할 것이라면 `model.eval()`으로 모드를 설정하도록 한다. 이유는 이 글에 설명이 있다.
+
+모델이 여러 개라면 
+```python
+torch.save({
+            'modelA_state_dict': modelA.state_dict(),
+            'modelB_state_dict': modelB.state_dict(),
+            ...
+```
+처럼 쓰면 그만이다. 
+
+구조가 조금 다른 모델에다가 parameter를 load하고 싶을 경우 load할 때 다음처럼 쓴다.
+```python
+model.load_state_dict(torch.load(PATH), strict=False)
+```
+
+`load_state_dict` 함수는 기본적으로 `strict=True` 옵션을 갖고 있으며, 이는 불러올 모델과 저장된 모델의 레이어의 개수와 이름 등이 *같아야만* 오류 없이 불러온다.  
+
+따라서 transfer learning이나, 복잡한 모델을 새로 학습시키고 싶을 때 모델의 일부라도 parameter를 불러오고 싶다면 `strict=False` argument를 설정하면 된다.  
+이는 레이어들이 정확히 일치하지 않아도 매칭이 되는 레이어가 일부라도 있다면 그 레이어들에 한해서 parameter를 load한다.  
+또 parameter 개수는 같지만 이름은 다른 레이어에 parameter를 불러오고 싶을 때는, `state_dict`는 딕셔너리이기 때문에 그냥 해당 딕셔너리의 이름만 바꿔서 load하면 그만이다.
+
+`pickle` 또는 `torch.save`를 통해 model 전체를 통째로 저장하는 방법은 간편하기는 하지만 이후 불러올 때는 해당 모델과 완전히 똑같이 생긴 모델에만 사용 가능하기 때문에 확장성과 재사용성이 떨어진다.  
+layer 이름과 parameter를 mapping하여 저장하는 `state_dict`를 쓰는 것이 transfer learinng을 쉽게 할 수 있는 등 범용성이 더 좋다.
+
+device를 바꿔서 저장하고 싶다면, `load_state_dict`에서 `map_location` argument를 설정하거나, `model.to(device)` 함수를 사용하면 된다. 자세한 것은 [홈페이지](https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-across-devices)를 참조한다. GPU를 사용할 때 바꿔줘야 하는 부분은 [여기](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#nnmodule-%EB%82%B4%EC%9E%A5-%ED%95%A8%EC%88%98)의 cuda 부분을 참고한다.
+
+### torch.save & torch.load
+
+내부적으로 `pickle`을 사용하며, 따라서 모델뿐 아니라 일반 tensor, 기타 다른 모든 python 객체를 저장할 수 있다.
+
+### nn.Module.state_dict & nn.Module.load_state_dict
+
+우선 `state_dict`는 간단히 말해 모델의 상태를 딕셔너리 형태로 표현하는 것이다. 그러면 모델의 상태는 어떻게 정의되는가?  
+`state_dict`로 저장되는 모델의 상태는 learnable parameters이며, `state_dict`는 `{레이어 이름: parameter tensor}`의 형태를 갖는 딕셔너리이다.  
+딱 그뿐이다. 간단하지 않은가?
+
+Optimizer도 `state_dict`를 갖고 있는데, 이 경우는 사용된 hyperparameter 등의 상태가 저장된다.
+
+[공식 홈페이지](https://pytorch.org/tutorials/beginner/saving_loading_models.html)의 예시를 일부 가져오면 다음과 같다.
+
+```python
+# 모델이 이렇게 생겼으면, 
+self.conv1 = nn.Conv2d(3, 6, 5)
+self.pool = nn.MaxPool2d(2, 2)
+self.conv2 = nn.Conv2d(6, 16, 5)
+self.fc1 = nn.Linear(16 * 5 * 5, 120)
+
+# 이 코드에 의해
+for param_tensor in model.state_dict():
+    print(param_tensor, "\t", model.state_dict()[param_tensor].size())
+
+# 이렇게 출력된다.
+conv1.weight     torch.Size([6, 3, 5, 5])
+conv1.bias       torch.Size([6])
+conv2.weight     torch.Size([16, 6, 5, 5])
+conv2.bias       torch.Size([16])
+fc1.weight       torch.Size([120, 400])
+fc1.bias         torch.Size([120])
+
+# optimizer는
+optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
+for var_name in optimizer.state_dict():
+    print(var_name, "\t", optimizer.state_dict()[var_name])
+
+# 이렇다.
+state    {}
+param_groups     [{'lr': 0.001, 'momentum': 0.9, 'dampening': 0, 'weight_decay': 0, 
+'nesterov': False, 'params': [4675713712, 4675713784, ..., 4675714720]}]
+```
+
 
 ---
 
