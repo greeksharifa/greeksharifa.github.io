@@ -165,6 +165,7 @@ argparseTest.py: error: argument --foo/-f: expected one argument
 - `count`: 인자를 적은 횟수만큼 값이 올라간다. 보통 `verbose` 옵션에 많이 쓴다.
 - `help`: 도움말 메시지를 출력하게 하고 종료하여 코드는 실행시키지 않는다. `--help` 역할을 대신한다.
 - `version`: `version` 인자에 사용가능하다. 버전 정보를 출력하고 종료한다.
+
 ```
 parser.add_argument('--foo', action='store_const', const=10)
 > python argparseTest.py --foo

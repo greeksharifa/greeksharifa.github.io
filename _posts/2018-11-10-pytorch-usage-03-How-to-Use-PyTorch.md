@@ -1058,7 +1058,7 @@ param_groups     [{'lr': 0.001, 'momentum': 0.9, 'dampening': 0, 'weight_decay':
 
 - `model.train()`과 `model.eval()`은 모델이 학습 모드인지, 테스트 모드인지를 정하는 것이다. 이는 dropout이나 batchnorm이 있는 모델의 경우 학습할 때와 테스트할 때 모델이 달라지기 때문에 세팅하는 것이다(또한 필수이다). `torch.no_grad()`는 (대개 일시적으로) 해당 범위 안에서 gradient 계산을 중지시킴으로써 메모리 사용량을 줄이고 계산 속도를 빨리 하는 것이다. [참고](https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615)
 - `optimizer.zero_grad()`를 사용하는 이유. [참고](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#train-model)
-- Pytorch 코드들에는 `torch.autograd.Variable`을 사용한 코드가 많다. Pytorch 0.4.0 버전 이후로는 Tensor 클래스에 통합되어 더 이상 쓸 필요가 없다. [참고(3번 항목)](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import)
+- Pytorch 코드들 중에는 `torch.autograd.Variable`을 사용한 경우가 많다. Pytorch 0.4.0 버전 이후로는 Tensor 클래스에 통합되어 더 이상 쓸 필요가 없다. [참고(3번 항목)](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import)
 
 
 댓글로 문의하시면 확인 후 포스팅에 추가 가능합니다.
