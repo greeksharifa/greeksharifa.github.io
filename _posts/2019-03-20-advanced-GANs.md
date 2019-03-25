@@ -45,11 +45,13 @@ RIM에서 최적의 unsupervised classifier의 목적함수로 엔트로피를 �
 왼쪽에서 초록색은 G(generate라고 되어 있다), 보라색은 D를 의미한다. 여기서 H는 엔트로피이다.  
 
 오른쪽 그림을 보면, D의 입장에서는:
+
 - i) real data는 실제 class label을 딱 하나 갖고 있기 때문에 해당하는 label일 확률만 1에 가깝고 나머지는 0이어야 한다. 따라서 엔트로피($H[p(y|x, D)]$를 최소화한다.
 - ii) fake data의 경우 특정 class에 속하지 않기 때문에 class label별로 확률은 비슷해야 한다. 따라서 엔트로피$H[p(y|x, G(z))]$를 최대화한다.
 - iii) 학습 sample이 특정 class에 속할 확률이 비슷해야 한다는 가정을 했기 때문에, input data $x$에 대한 marginal distribution(주변확률분포)의 엔트로피($H[p(y| D)]$)가 최대가 되어야 한다. 
 
 G의 입장에서는:
+
 - D를 속여야 하기 때문에 G가 만든 가짜 데이터는 가짜임에도 특정 class에 속한 것처럼 해야 한다. 즉, D의 i) 경우처럼 엔트로피($H[p(y|x, G(z))]$)를 최소화한다.
 - 생성된 sample은 특정 class에 속할 확률이 비슷해야 하기 때문에 marginal distribution의 엔트로피($H[p(y| D)]$)가 최대화되어야 한다.
 
