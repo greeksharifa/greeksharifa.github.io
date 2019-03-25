@@ -36,11 +36,11 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 데이터의 전체 또는 일부가 unlabeled인 경우 clustering은 $p_x$를 직접 예측하는 generative model과 분포를 예측하는 대신 데이터를 직접 잘 구분된 카테고리로 묶는 discriminative model로 나누어지는데, 이 모델에서는 이 두 아이디어를 합치고자 했다.  
 논문에서 이 **catGAN**은 original GAN이 $real, fake$만 구분하던 것을 real인 경우에는 그 class가 무엇인지까지 구분하게($C_1, C_2, ..., C_N, C_{fake}$)했다는 점에서 original GAN의 일반화 버전이라고 하였으며, 또한 [RIM(Regularized Information Maximization)](https://papers.nips.cc/paper/4154-discriminative-clustering-by-regularized-information-maximization)에서 regularization이 추가가 되었듯 catGAN에선 G가 D에 대한 regularization을 하기 때문에 RIM의 확장판이라고도 하였다.
 
-<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN1.PNG" width="50%"></center>
+<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN1.png" width="50%"></center>
 
 RIM에서 최적의 unsupervised classifier의 목적함수로 엔트로피를 사용하였듯 catGAN도 목적함수로 엔트로피 개념을 사용한다. 아래는 논문에 나온 그림이다.
 
-<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN2.PNG" width="100%"></center>
+<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN2.png" width="100%"></center>
 
 왼쪽에서 초록색은 G(generate라고 되어 있다), 보라색은 D를 의미한다. 여기서 H는 엔트로피이다.  
 
@@ -63,17 +63,17 @@ $$ L_G = min_G ~~~ H_G[p(y| D)] + \mathbb{E}_{z\sim P(z)}[H[p(y|G(z), D)]] $$
 
 위 목적함수를 사용하여 실험한 결과는 다음과 같다.
 
-<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN3.PNG" width="100%"></center>
+<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN3.png" width="100%"></center>
 
 Unsupervised catGAN은 9.7%의 error를 보이는 데 반해 $n=100$만의 labeled data가 있는 버전의 경우 error가 1.91%까지 떨어진다. $n=1000$, $n=전체$인 경우 error는 점점 떨어지는 것을 볼 수 있다. 즉, 아주 적은 labeled data를 가진 semi-supervised learning이라도 굉장히 쓸모있다는 뜻이다.
 
 또한 k-means나 RIM과 비교했을 때 두 원을 잘 분리해내는 것을 볼 수 있다.
 
-<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN4.PNG" width="100%"></center>
+<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN4.png" width="100%"></center>
 
 MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 
-<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN5.PNG" width="100%"></center>
+<center><img src="/public/img/2019-03-20-advanced-GANs/catGAN5.png" width="100%"></center>
 
 ---
 
@@ -91,7 +91,7 @@ MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 - classifier의 정확도는 sample의 수가 적을 때 CNN보다 더 높다는 것을 보여주었다. sample이 많을 때는 거의 같았다.
 - original GAN보다 생성하는 이미지의 품질이 좋다.
 
-<center><img src="/public/img/2019-03-20-advanced-GANs/semiGAN.PNG" width="60%"></center>
+<center><img src="/public/img/2019-03-20-advanced-GANs/semiGAN.png" width="60%"></center>
 
 ---
 
