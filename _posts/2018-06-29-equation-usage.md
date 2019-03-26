@@ -30,8 +30,9 @@ $ {x} \{x\} $
 
 Equation          | Code                                                           | Display
 -------           | --------                                                       | --------
-NewLine           | \\                                                             | $ \\ $
-Greek Letters     | \alpha, \beta, …, \omega, \Gamma                               | $ \alpha, \beta, …, \omega, \Gamma $
+NewLine           | \\\\                                                             | $ \\ $
+Greek small Letters     | \epsilon, \zeta, \eta, \iota, \kappa, \mu, \nu, \rho, \tau, \chi              | $ \epsilon, \zeta, \eta, \iota, \kappa, \mu, \nu, \rho, \tau, \chi $
+Greek Letters | \gamma, \Gamma, \delta, \theta, \lambda, \xi, \pi, \sigma, \upsilon, \phi, \psi, \omega | $ \gamma, \Gamma, \delta, \theta, \lambda, \xi, \pi, \sigma, \upsilon, \phi, \psi, \omega $
 Super/subscripts  | x_i^2, x_{i^2}, \log_2 x, 10^{10}, x^{y^z}                     | $ x_i^2, x_{i^2}, \log_2 x, 10^{10}, x^{y^z} $
 Parentheses 1     | (\frac{1}{2}), \left(\frac{1}{2}\right)                        | $ (\frac{1}{2}), \left(\frac{1}{2}\right) $
 Parentheses 2     | (x) {x} [x] \|x\| \vert x \vert \Vert x \Vert                  | $ (x) {x} [x] \|x\| \vert x \vert \Vert x \Vert $
@@ -54,8 +55,9 @@ Symbols 9         | \infty \aleph_0 \nabla \partial \Im \Re                     
 Symbols 10        | a\equiv b\pmod n                                               | $ a\equiv b\pmod n $
 Symbols 11        | \ldots, \cdots                                                 | $ \ldots, \cdots $
 Symbols 12        | \epsilon \varepsilon \phi \varphi \ell                         | $ \epsilon \varepsilon \phi \varphi \ell $
+Double-lined      | \mathbb{E} \mathbb{R}                                          | $ \mathbb{E} \mathbb{R} $
 Spaces            | 1 \ 2 \quad 3 \qquad 4                                         | $ 1 \ 2 \quad 3 \qquad 4 $
-Plain text        | \text{…}                                                       | $ \text{…} $
+Plain text        | \text{text…}                                                       | $ \text{text…} $
 Accents           | \hat{x} \widehat{xy} \bar{x} \overline{xyz} \vec{x} \overrightarrow{xy} \overleftrightarrow{xy} \dot{x} \ddot{x} | $ \hat{x} \widehat{xy} \bar{x} \overline{xyz} \vec{x} \overrightarrow{xy} \overleftrightarrow{xy} \dot{x} \ddot{x} $
 Special Characters| \$ \{ \_ \                                                     | $ \$ \{ \_ \ $
 
