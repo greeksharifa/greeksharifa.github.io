@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GAN의 개선 모델들(Semi-supervised GAN, catGAN, ACGAN, LSGAN, WGAN, WGAN_GP, DRAGAN, infoGAN, EBGAN, BEGAN, SGAN)
+title: GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)
 author: YouWon
 categories: [Generative Model]
 tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
@@ -14,7 +14,7 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 
 - **catGAN(Categorical GAN):** D가 real/fake만 판별하는 대신 class label/fake class을 출력하도록 바꿔서 unsupervised 또는 semi-supervised learning이 가능하도록 하였고 또한 더 높은 품질의 sample을 생성할 수 있게 되었다.
 - **Semi-supervised GAN:** catGAN과 거의 비슷하다. original GAN과는 달리 DCGAN을 기반으로 만들어졌다.
-- **:** 
+- **LSGAN:** 진짜 분포 $ p_{data} $와 가짜 데이터 분포 $p_g$를 비슷하게 만들기 위해, decision boundary에서 멀리 떨어진 sample에게 penalty를 주어 진짜 데이터에 근접하게 만드는 아이디어를 사용했다. 이름답게 loss function에는 Least Square가 사용되었고, 이를 통해 더 선명한 출력 이미지와 학습 과정의 높은 안정성을 얻었다. 또한, 이 최적화 과정이 $\chi^2$ divergence 최소화와 같음을 보였다.
 - **:** 
 - **:** 
 - **:** 
@@ -97,16 +97,92 @@ MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 
 ---
 
-# ACGAN
-
-논문 링크: **[ACGAN](https://arxiv.org/abs/1610.09585)**
-
-
----
-
 # LSGAN
 
 논문 링크: **[LSGAN](https://arxiv.org/abs/1611.04076)**
+
+original GAN의 sigmoid cross entropy loss function은 vanishing gradients 문제가 있고, 따라서 출력 이미지는 실제 이미지에 비해선 분명히 품질이 떨어진다. 
+
+아래 그림의 (b)에서, 오른쪽 아래의 가짜 데이터는 D를 잘 속이고 있지만 vanishing gradient(sigmoid 그래프의 양쪽 끝을 생각하라) 문제로 인해 거의 업데이트되지 않고, 따라서 가짜 이미지는 실제 이미지와는 동떨어진 결과를 갖는다.  
+그러나 (c)처럼 이렇게 경계로부터 멀리 떨어진 sample들을 거리에 penalty를 줘서 경계 근처로 끌어올 수 있다면 가짜 이미지는 실제에 거의 근접하게 될 것이다. LSGAN은 이 아이디어에서 출발한다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/LSGAN1.png" width="100%"></center>
+
+그래서, D를 위한 loss function을 least squares로 대체하면, 경계(decision boundary)로부터 먼 sample들은 penalty를 받아 경계 근처로 끌려온다. 
+
+original GAN의 목적함수는 다음과 같았다.
+
+$$ min_G max_D V(D, G) = \mathbb{E}_{x \sim p_{data}(x)}[log D(x)] + \mathbb{E}_{x \sim p_{z}(z)}[log (1-D(G(z)))] $$
+
+LSGAN의 목적함수는 다음과 같다. $a$: fake data label , $b$: real data label.  
+$c$: G가 원하는 것은 이 $c$라는 값을 D가 fake data라고 믿는 것이다.
+
+$$ min_D V_{\text{LSGAN}}(D) = \frac{1}{2} \mathbb{E}_{x \sim p_{data}(x)}[(D(x)-b)^2] + \frac{1}{2} \mathbb{E}_{x \sim p_{z}(z)}[(D(G(z)) - a)^2] $$
+
+$$ min_G V_{\text{LSGAN}}(G) = \frac{1}{2} \mathbb{E}_{x \sim p_{z}(z)}[(D(G(z)) - c)^2] $$
+
+이렇게 목적함수를 바꿈으로써 얻는 이득은 두 가지다.
+
+1. original GAN과는 달리 decision boundary에서 멀리 떨어진 sample을 오랫동안 가만히 두지 않고, 설령 맞는 영역에 위치한다고 해도 이에 penalty를 준다. 이는 결과적으로 G가 이미지를 생성할 때 decision boundary에 최대한 가까운, 즉 실제 이미지에 가깝게 생성하도록 한다.
+2. 멀리 떨어진 sample일수록 square 함수에 의해 penalty를 크게 받는다. 따라서 vanishing gradients 문제가 많이 해소되며, 따라서 학습이 안정적이게 된다. original GAN의 sigmoid는 $\vert x \vert$가 클 때 gradient가 매우 작다.
+
+또 한 가지 더: LSGAN의 목적함수를 최적화하는 과정은 $\chi^2$ divergence를 최소화하는 것과 같다.  
+간략히 설명하면, 
+
+original GAN에서는 최적화 과정이 Jensen-Shannon divergence를 최소화하는 것을 보였다.
+
+$$ C(G) = KL \biggl( p_{data} \Vert \frac{p_{data}+p_g}{2} \biggr) + KL \biggl( p_{g} \Vert \frac{p_{data}+p_g}{2} \biggr) - log(4) $$
+
+이제 LSGAN의 목적함수를 확장해 보면, 
+
+$$ min_D V_{\text{LSGAN}}(D) = \frac{1}{2} \mathbb{E}_{x \sim p_{data}(x)}[(D(x)-b)^2] + \frac{1}{2} \mathbb{E}_{x \sim p_{z}(z)}[(D(G(z)) - a)^2] $$
+
+$$ min_G V_{\text{LSGAN}}(G) = \frac{1}{2} \mathbb{E}_{x \sim p_{data}(x)}[(D(x)-c)^2] +  \frac{1}{2} \mathbb{E}_{x \sim p_{z}(z)}[(D(G(z)) - c)^2] $$
+
+$ V_{\text{LSGAN}}(G) $의 추가된 항은 G의 parameter를 포함하지 않기 때문에 최적값에 영향을 주지 않는다.
+
+우선 G를 고정했을 때 D의 최적값은:
+
+$$ D^\ast(x) = {bp_{data}(x) + ap_g(x) \over p_{data}(x) + p_g(x)} $$
+
+중간 과정을 조금 생략하고 적으면,  $b-c=1, b-a=2$라 했을 때
+
+$$ 2C(G) = \mathbb{E}_{x \sim p_{data}} [(D^\ast(x)-c)^2] + \mathbb{E}_{x \sim p_{g}} [(D^\ast(x)-c)^2] \\    = \int_\chi {((b-c)(p_d(x) + p_g(x)) - (b-a)p_g(x))^2 \over p_d(x) + p_g(x)} dx  \\ = \int_\chi {(2p_g(x) - (p_d(x) + p_g(x)))^2 \over p_d(x) + p_g(x)} dx \\ = \chi^2_{Pearson} (p_d + p_g \Vert 2p_g)  $$
+
+그러므로 LSGAN의 최적화 과정은 $b-c=1, b-a=2$일 때 $p_d + p_g$와 $2p_g$ 사이의 Pearson $\chi^2$ divergence를 최소화하는 과정과 같다.
+
+학습시킬 때 $a, b, c$ 값을 $a=-1, b=1, c=0$ 또는 $a=0, b=c=1$ 등을 쓸 수 있다. 둘 사이의 차이는 실험 결과 별로 없으므로,  논문에서는 후자를 택했다.
+
+LSGAN의 구조는 두 가지가 제안되어 있다. 하나는 112$ \times $112 size의 이미지를 출력하는 모델, 다른 하나는 class 개수가 3470개인 task를 위한 것(한자를 분류한다)인데, 충분히 읽기 쉬운 글자를 만들어내는 것을 볼 수 있다.
+
+아래에 모델 구조를 나타내었다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/LSGAN2.png" width="100%"></center>
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/LSGAN3.png" width="100%"></center>
+
+많은 class 수를 가진 경우 생성된 이미지 품질이 좋지 못한데, 이유는 입력 class 종류는 매우 많지만 출력은 하나뿐이기 때문이다. 이를 해결하는 방법은 conditional GAN을 쓰는 것이다.  
+그러나 one-hot encoding은 너무 비용이 크기 때문에 그 대신 각각의 class에 대응하는 작은 벡터를 linear mapping을 통해 하나 만들어서 모델의 레이어에 붙이는 방식을 썼다. 그 결과가 위 그림과 같으며, 목적함수는 다음과 같이 정의된다:
+
+$$ min_D V_{\text{LSGAN}}(D) = \frac{1}{2} \mathbb{E}_{x \sim p_{data}(x)}[(D(x \vert \Phi(y))-1)^2] + \frac{1}{2} \mathbb{E}_{x \sim p_{z}(z)}[(D(G(z) \vert \Phi(y)))^2] $$
+
+$$ min_G V_{\text{LSGAN}}(G) = \frac{1}{2} \mathbb{E}_{x \sim p_{z}(z)}[(D(G(z \vert \Phi(y))) - 1)^2] $$
+
+$y$는 label vector, $ \Phi(\cdot) $은 linear mapping 함수이다.
+
+LSUN-bedroom 등 여러 데이터셋에 대한 실험 결과이다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/LSGAN4.png" width="100%"></center>
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/LSGAN5.png" width="100%"></center>
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/LSGAN6.png" width="100%"></center>
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/LSGAN7.png" width="100%"></center>
+
+마지막 그림의 경우 한자 글자를 꽤 잘 생성해내는 것을 볼 수 있다.
+
+LSGAN도 GAN의 역사에서 꽤 중요한 논문 중 하나이다.
 
 
 ---
@@ -114,6 +190,8 @@ MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 # WGAN
 
 논문 링크: **[WGAN](https://arxiv.org/abs/1701.07875)**
+
+
 
 
 ---
@@ -132,13 +210,6 @@ MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 
 ---
 
-# infoGAN
-
-논문 링크: **[infoGAN](https://arxiv.org/abs/1606.03657)**
-
-
----
-
 # EBGAN
 
 논문 링크: **[EBGAN](https://arxiv.org/abs/1609.03126)**
@@ -153,9 +224,16 @@ MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 
 ---
 
-# SGAN
+# ACGAN
 
-논문 링크: **[SGAN](https://arxiv.org/abs/1712.02330)**
+논문 링크: **[ACGAN](https://arxiv.org/abs/1610.09585)**
+
+
+---
+
+# infoGAN
+
+논문 링크: **[infoGAN](https://arxiv.org/abs/1606.03657)**
 
 
 ---
