@@ -200,17 +200,27 @@ LSGAN도 GAN의 역사에서 꽤 중요한 논문 중 하나이다.
 
 original GAN부터 시작해서 GAN의 기본 아이디어는 두 분포 사이의 거리를 최소화하도록 G(와 D)를 잘 학습시키는 것이다. original GAN의 경우 이 최적화 과정이 *Jenson-Shannon divergence*(JSD)를 최소화하는 것과 같다는 것은 이미 증명되어있다.
 
-그러나 이 JSD는 모든 분포의 거리를 효과적으로 측정해주지 못한다. 예를 들어 $x=0$과 $x=\theta$ 두 (반직선 형태인) 분포 $\mathbb{P}_0, \mathbb{P}_\theta$ 간의 거리를 JSD로 측정하면,
+그러나 이 JSD는 모든 분포의 거리를 효과적으로 측정해주지 못한다. 예를 들어 
+
+$$ \mathbb{P}_0(x=0, y>0), \quad \mathbb{P}_\theta(x=\theta, y>0)$$
 
 <center><img src="/public/img/2019-03-20-advanced-GANs/WGAN1.png" width="50%"></center>
 
-$\theta=0$일 때 $0$, $\theta \ne 0$일 때 $JS(\mathbb{P}_0, \mathbb{P}_\theta) = log 2$으로 고정이다. 즉, $\theta$가 1이든 0.0001이든 상관없이 두 분포가 얼마나 가까운지에 대한 정보를 JSD는 전혀 제공해주지 못한다. 이는 KL divergence도 마찬가지인데, 이건 $\theta \ne 0$인 경우 아예 $KL(\mathbb{P}_0, \mathbb{P}_\theta) = \infty$이다.
+두 (반직선 형태인) 분포 간의 거리를 JSD로 측정하면,
 
-참고로 논문에 나온 다른 측정방식으로 *Total Variation*(TV)이 있는데,
+$$ JS ( \mathbb{P}_{0}, \mathbb{P}_\theta ) = 0 \ \ if \ \theta=0, \quad log \ 2 \quad otherwise $$
+
+즉, $ \theta $가 1이든 0.0001이든 상관없이 두 분포가 얼마나 가까운지에 대한 정보를 JSD는 전혀 제공해주지 못한다. 이는 KL divergence도 마찬가지이다.
+
+$$ KL ( \mathbb{P}_{0}, \mathbb{P}_{\theta}) = 0 \ \ if \ \theta=0, \quad \infty  \quad otherwise $$
+
+참고로 논문에 나온 다른 측정방식으로 *Total Variation*(TV)이 있는데 별반 다를 것은 없다.
+
+$$ \lambda( \mathbb{P}_{0}, \mathbb{P}_{\theta}) = 0 \ \ if \ \theta=0, \quad 1 \quad otherwise $$
+
+참고로 TV는 이렇게 정의된다.
 
 $$ \delta(\mathbb{P}_r, \mathbb{P}_g) = sup_{A \in \Sigma} \vert \mathbb{P}_r(A) - \mathbb{P}_g(A) \vert  $$
-
-TV 역시 $\theta \ne 0$ 이면 항상 $\delta(\mathbb{P}_0, \mathbb{P}_\theta) = 1$이다.
 
 그래서 WGAN의 저자들은 이와 비슷한 분포를 가진 경우 등은 GAN이 수렴을 잘 하지 못할 것이라고 하며 분포 간 거리를 측정하는 새로운 *Earth-Mover*(EM) distance 또는 *Wasserstein-1* distance라고 부르는 것을 제안했다.
 
@@ -225,7 +235,7 @@ $$ W(\mathbb{P}_0, \mathbb{P}_\theta) = \vert \theta \vert $$
 
 로 아주 적절하게 나온다.
 
-그래서 이렇게 나온 Wasserstein distance는 $\mathbb{P}_r$과 $\mathbb{P}_\theta$ 사이의 거리를 $\mathbb{P}_r$를 $\mathbb{P}_\theta$로 옮길 때 필요한 양과 거리의 곱으로 측정한다.  
+그래서 이렇게 나온 Wasserstein distance는 <span>$\mathbb{P}_r$</span>과 <span>$\mathbb{P}_\theta$</span> 사이의 거리를 <span>$\mathbb{P}_r$</span>를 <span>$\mathbb{P}_\theta$</span>로 옮길 때 필요한 양과 거리의 곱으로 측정한다.  
 이를 어떤 산(분포) 전체를 옮기는 것과 같다고 해서 *Earth Mover* 또는 EM distance라고 불린다.
 
 $$ Cost = mass \times distance$$
@@ -266,6 +276,49 @@ $$ \\ $$
 
 논문 링크: **[WGAN](https://arxiv.org/abs/1704.00028)**
 
+WGAN은 clipping을 통해 Lipschitz 함수 제약을 해결하긴 했지만, 이는 예상치 못한 결과를 초래할 수 있다:
+
+> (WGAN 논문에서 인용)  
+> 만약 clipping parameter($c$)가 너무 크다면, 어떤 weights든 그 한계에 다다르기까지 오랜 시간이 걸릴 것이며, 따라서 D가 최적화되기까지 오랜 시간이 걸린다.  
+> 반대로 $c$가 너무 작다면, 레이어가 크거나 BatchNorm을 쓰지 않는다면 쉽게 vanishing gradients 문제가 생길 수 있다.
+
+clipping은 단순하지만 문제를 발생시킬 수 있다. 특히 $c$가 잘 정해지지 않았다면 품질이 낮은 이미지를 생성하고 수렴하지 않을 수 있다. 모델의 성능은 이 $c$에 매우 민감하다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN_GP1.png" width="100%"></center>
+
+가중치 clipping은 가중치를 정규화하는 효과를 갖는다. 이는 모델 $f$의 어떤 한계치를 설정하는 것과 같다.
+
+그래서 이 논문에서는 *gradient penalty*라는 것을 D의 목적함수에 추가해 이 한계를 극복하고자 한다.
+
+$$ L = \mathbb{E}_{\hat{x} \sim \mathbb{P}_g} \ [D(\hat{x})] - \mathbb{E}_{x \sim \mathbb{P}_r} \ [D(x)] + \lambda \ \mathbb{E}_{\hat{x} \sim \mathbb{P}_{\hat{x}}} \ [(\Vert \nabla_{\hat{x}}D(\hat{x}) \Vert_2 - 1)^2 ] $$
+
+즉 clipping을 적용하는 대신 WGAN_GP는 gradient norm이 목표인 $1$에서 멀어지면 penalty를 주는 방식을 택했다.
+
+- **Sampling Distribution:** $\mathbb{P}_{\hat{x}}$는 실제 데이터 분포 $\mathbb{P}_r$과 G가 생성한 데이터 분포 $\mathbb{P}_g$로부터 추출한 point 쌍들 사이에 직선을 하나 그어서 얻은 것이다.
+- **Penalty coefficient:** $\lambda$가 붙은 마지막 항(이 논문에서는 $\lambda=10$으로 고정됨)이 gradient penalty이다.
+- **No critic batch normalization:** BN은 D의 문제의 형식을 1-1 매칭 문제에서 전체 batch input-batch output으로 바꿔버린다. 이 논문에서 새로 만든 gradient penalty 목적함수는 이 조건에 맞지 않기 때문에 BN을 쓰지 않았다.
+- **Two-sided penalty:** gradient가 단지 $1$ 아래로 내려가는 것을 막는(one-sided) 대신 $1$ 근처에 머무르도록 했다(two-sided).
+
+그래서 발전시킨 알고리즘은 다음과 같다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN_GP2.png" width="100%"></center>
+
+좀 특이하게도 이 논문에는 모델 구조(architecture)를 바꿔가면서 한 실험 결과가 있다. 확실히 WGAN_GP 버전이 뛰어남을 볼 수 있다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN_GP3.png" width="100%"></center>
+
+WGAN_GP만이 (이 논문에서 실험한) 모든 architecture에 대해서 제대로 된 학습에 성공하였다고 한다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN_GP4.png" width="100%"></center>
+
+여러 실험 결과들이 더 있지만 하나만 더 소개하면,  
+논문에서는 아래 이미지(LSUN-bedroom)가 지금까지의 연구에 의해 나온 것 중 제일 잘 나온 것이라고 믿는다고 한다. 각각의 이미지가 $128 \times 128 $ 크기라 그다지 고해상도는 아니긴 하지만 어쨌든 실제로 꽤 깨끗한 이미지로 보인다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN_GP5.png" width="100%"></center>
+
+$$ \\ $$
+
+종합하면 이 개선된 버전은 데이터셋뿐만 아니라(WGAN) 모델 구조에 대해서도(architecture) 학습 안정성을 얻었다고 할 수 있다.
 
 ---
 
