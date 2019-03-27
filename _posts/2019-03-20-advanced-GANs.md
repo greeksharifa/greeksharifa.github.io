@@ -15,7 +15,7 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 - **catGAN(Categorical GAN):** D가 real/fake만 판별하는 대신 class label/fake class을 출력하도록 바꿔서 unsupervised 또는 semi-supervised learning이 가능하도록 하였고 또한 더 높은 품질의 sample을 생성할 수 있게 되었다.
 - **Semi-supervised GAN:** catGAN과 거의 비슷하다. original GAN과는 달리 DCGAN을 기반으로 만들어졌다.
 - **LSGAN:** 진짜 분포 $ p_{data} $와 가짜 데이터 분포 $p_g$를 비슷하게 만들기 위해, decision boundary에서 멀리 떨어진 sample에게 penalty를 주어 진짜 데이터에 근접하게 만드는 아이디어를 사용했다. 이름답게 loss function에는 Least Square가 사용되었고, 이를 통해 더 선명한 출력 이미지와 학습 과정의 높은 안정성을 얻었다. 또한, 이 최적화 과정이 $\chi^2$ divergence 최소화와 같음을 보였다.
-- **:** 
+- **WGAN:** 실제 데이터의 분포와 가짜 데이터의 분포의 거리를 측정하는 방법으로 *Wasserstein Distance*를 정의하여 가짜 데이터를 실제 데이터에 근접하도록 하는 방법을 제시하였는데, 기존의 GAN들이 최적 값으로 잘 수렴하지 않던 문제를 해결, 거의 대부분의 데이터셋에서 학습이 잘 되는 GAN을 만들어냈다.
 - **:** 
 - **:** 
 - **:** 
@@ -191,8 +191,74 @@ LSGAN도 GAN의 역사에서 꽤 중요한 논문 중 하나이다.
 
 논문 링크: **[WGAN](https://arxiv.org/abs/1701.07875)**
 
+*이 논문도 f-GAN처럼 수학으로 넘쳐흐른다. 다만 요약하지 않을 뿐*
 
+이 논문의 수학을 이해하는 데 있어 매우 좋은 참고자료가 있다: [링크](https://www.slideshare.net/ssuser7e10e4/wasserstein-gan-i)
 
+이 논문은 실제 데이터 분포와 가짜 데이터 분포 사이의 거리를 측정하는 방법을 바꿈으로써 GAN이 *매우* 안정적인 학습을 할 수 있도록 만들었다는 것에 의의가 있다.  
+기억할 것은 하나다: **거의 대부분의 데이터셋에서 학습이 안정적으로 잘 진행된다**(다만 경우에 따라 약간 느리다고 한다).
+
+original GAN부터 시작해서 GAN의 기본 아이디어는 두 분포 사이의 거리를 최소화하도록 G(와 D)를 잘 학습시키는 것이다. original GAN의 경우 이 최적화 과정이 *Jenson-Shannon divergence*(JSD)를 최소화하는 것과 같다는 것은 이미 증명되어있다.
+
+그러나 이 JSD는 모든 분포의 거리를 효과적으로 측정해주지 못한다. 예를 들어 $x=0$과 $x=\theta$ 두 (반직선 형태인) 분포 $\mathbb{P}_0, \mathbb{P}_\theta$ 간의 거리를 JSD로 측정하면,
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN1.png" width="50%"></center>
+
+$\theta=0$일 때 $0$, $\theta \ne 0$일 때 $JS(\mathbb{P}_0, \mathbb{P}_\theta) = log 2$으로 고정이다. 즉, $\theta$가 1이든 0.0001이든 상관없이 두 분포가 얼마나 가까운지에 대한 정보를 JSD는 전혀 제공해주지 못한다. 이는 KL divergence도 마찬가지인데, 이건 $\theta \ne 0$인 경우 아예 $KL(\mathbb{P}_0, \mathbb{P}_\theta) = \infty$이다.
+
+참고로 논문에 나온 다른 측정방식으로 *Total Variation*(TV)이 있는데,
+
+$$ \delta(\mathbb{P}_r, \mathbb{P}_g) = sup_{A \in \Sigma} \vert \mathbb{P}_r(A) - \mathbb{P}_g(A) \vert  $$
+
+TV 역시 $\theta \ne 0$ 이면 항상 $\delta(\mathbb{P}_0, \mathbb{P}_\theta) = 1$이다.
+
+그래서 WGAN의 저자들은 이와 비슷한 분포를 가진 경우 등은 GAN이 수렴을 잘 하지 못할 것이라고 하며 분포 간 거리를 측정하는 새로운 *Earth-Mover*(EM) distance 또는 *Wasserstein-1* distance라고 부르는 것을 제안했다.
+
+$$ W(\mathbb{P}_r, \mathbb{P}_g) = \text{inf}_{\gamma \in \Pi(\mathbb{P}_r, \mathbb{P}_g)} \int d(x, y) \gamma (dxdy)  \\ = \text{inf}_{\gamma \in \Pi(\mathbb{P}_r, \mathbb{P}_g)} \ \mathbb{E}_{(x, y) \sim \gamma} [ \Vert x - y \Vert ] $$
+
+$\Pi(\mathbb{P}, \mathbb{Q})$는 두 확률분포 $\mathbb{P}, \mathbb{Q}$의 결합확률분포들의 집합이고, $\gamma$는 그 중 하나이다.  
+즉 위 식은 모든 결합확률분포 $\Pi(\mathbb{P}, \mathbb{Q})$ 중 $d(x,y)$의 기댓값을 가장 작게 추정한 값이다. 
+
+이제 이 식을 위 그림의 두 분포에 적용하면 거리는
+
+$$ W(\mathbb{P}_0, \mathbb{P}_\theta) = \vert \theta \vert $$
+
+로 아주 적절하게 나온다.
+
+그래서 이렇게 나온 Wasserstein distance는 $\mathbb{P}_r$과 $\mathbb{P}_\theta$ 사이의 거리를 $\mathbb{P}_r$를 $\mathbb{P}_\theta$로 옮길 때 필요한 양과 거리의 곱으로 측정한다.  
+이를 어떤 산(분포) 전체를 옮기는 것과 같다고 해서 *Earth Mover* 또는 EM distance라고 불린다.
+
+$$ Cost = mass \times distance$$
+
+original GAN과 목적함수의 차이를 비교하면, 
+
+name | Discriminator | Generator
+-------- | -------- | --------
+GAN  | $\nabla_{\theta_d} \frac{1}{m} \sum^m_{i=1} \ [log D(x^{(i)}) + log (1-D(G(z^{(i)})))] $ | $\nabla_{\theta_g} \ \frac{1}{m} \sum^m_{i=1} log (D(G(z^{(i)}))) $
+WGAN | $\nabla_w \frac{1}{m} \ \sum^m_{i=1} \ [f(x^{(i)}) + f(G(z^{(i)}))] $ | $\nabla_{\theta} \frac{1}{m} \ \sum^m_{i=1} \ f(G(z^{(i)})) $
+
+차이점이 더 있는데,
+- $f$는 *k*-Lipschitz function이어야 한다. 이를 위해 WGAN에서는 단순히 $[c, -c]$로 clipping한다.
+- log_sigmoid를 사용하지 않는다.
+
+이제 WGAN 논문에 제시된 알고리즘을 보자.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN2.png" width="100%"></center>
+
+알고리즘에 굉장히 특별하진 않다. optimizer로 *RMSProp*을 사용한 것이 약간의 차이점이다.
+
+학습 과정에서의 장점을 보여주는 그림이 논문에 제시되어 있다. 두 Gaussian 분포를 볼 때 GAN의 수렴이 훨씬 잘 된다는 말이다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN3.png" width="100%"></center>
+
+WGAN 실험 결과를 보면 다음과 같다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/WGAN4.png" width="100%"></center>
+
+$$ \\ $$
+사실 이 논문은 부록을 포함해 32page짜리 논문으로 수학이 넘쳐흐르지만, 필자의 논문 리뷰는 이 논문이 무슨 내용인지 정도만 전달하려는, 내용을 적당히 요약하여 보여주는 것이 목적이므로 자세한 수식 및 증명 과정은 따로 적지 않는다.  
+
+~~궁금하면 직접 읽으면 된다~~
 
 ---
 
