@@ -6,6 +6,8 @@ categories: References
 tags: [usage]
 ---
 
+---
+
 이 글에서는 포스팅 방식을 설명한다.
 
 우선 이 `2018-06-28-example-title.md` 파일을 같은 폴더에 복사 붙여넣기 한다. 물론 이름은 다른 것으로 바꿔준다.

@@ -16,16 +16,17 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 - **Semi-supervised GAN:** catGAN과 거의 비슷하다. original GAN과는 달리 DCGAN을 기반으로 만들어졌다.
 - **LSGAN:** 진짜 분포 $ p_{data} $와 가짜 데이터 분포 $p_g$를 비슷하게 만들기 위해, decision boundary에서 멀리 떨어진 sample에게 penalty를 주어 진짜 데이터에 근접하게 만드는 아이디어를 사용했다. 이름답게 loss function에는 Least Square가 사용되었고, 이를 통해 더 선명한 출력 이미지와 학습 과정의 높은 안정성을 얻었다. 또한, 이 최적화 과정이 $\chi^2$ divergence 최소화와 같음을 보였다.
 - **WGAN:** 실제 데이터의 분포와 가짜 데이터의 분포의 거리를 측정하는 방법으로 *Wasserstein Distance*를 정의하여 가짜 데이터를 실제 데이터에 근접하도록 하는 방법을 제시하였는데, 기존의 GAN들이 최적 값으로 잘 수렴하지 않던 문제를 해결, 거의 대부분의 데이터셋에서 학습이 잘 되는 GAN을 만들어냈다.
-- **:** 
-- **:** 
+- **WGAN_GP:** Improved WGAN이다. WGAN이 *k*-Lipschitz constraints를 만족시키기 위해 단순히 clipping을 수행하는데, 이것이 학습을 방해하는 요인으로 작용할 수 있다. WGAN_GP에서는 gradient penalty라는 것을 목적함수에 추가하여 이를 해결하였고, 학습 안정성을 데이터셋뿐만 아니라 모델 architecture에 대해서도 얻어냈다.
+- **DRAGAN:** Deep Regret Analytic GAN.
 - **:** 
 - **:** 
 - **:** 
 - **:** 
 
+이 글에 소개된 대부분의 GAN은 다음 repository에 구현되어 있다.
 
-
-논문을 적절히 번역 및 요약하는 것으로 시작한다. 많은 부분을 생략할 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.
+[pytorch version](https://github.com/znxlwm/pytorch-generative-model-collections)  
+[tensorflow version](https://github.com/hwalsuklee/tensorflow-generative-model-collections?fbclid=IwAR1VSa7c9QOdVcrzuPX995FBwqI1WhOAl43jM2HSzp84sfMw2hMZwsB_KPQ)
 
 ---
 
@@ -191,6 +192,10 @@ LSGAN도 GAN의 역사에서 꽤 중요한 논문 중 하나이다.
 
 논문 링크: **[WGAN](https://arxiv.org/abs/1701.07875)**
 
+소스코드: [pytorch](https://github.com/martinarjovsky/WassersteinGAN)
+
+참고할 만한 사이트: [링크](https://medium.com/@jonathan_hui/gan-wasserstein-gan-wgan-gp-6a1a2aa1b490)
+
 *이 논문도 f-GAN처럼 수학으로 넘쳐흐른다. 다만 요약하지 않을 뿐*
 
 이 논문의 수학을 이해하는 데 있어 매우 좋은 참고자료가 있다: [링크](https://www.slideshare.net/ssuser7e10e4/wasserstein-gan-i)
@@ -276,6 +281,10 @@ $$ \\ $$
 
 논문 링크: **[WGAN](https://arxiv.org/abs/1704.00028)**
 
+소스코드: [pytorch](https://github.com/caogang/wgan-gp)
+
+참고할 만한 사이트: [링크](https://medium.com/@jonathan_hui/gan-wasserstein-gan-wgan-gp-6a1a2aa1b490)
+
 WGAN은 clipping을 통해 Lipschitz 함수 제약을 해결하긴 했지만, 이는 예상치 못한 결과를 초래할 수 있다:
 
 > (WGAN 논문에서 인용)  
@@ -288,7 +297,7 @@ clipping은 단순하지만 문제를 발생시킬 수 있다. 특히 $c$가 잘
 
 가중치 clipping은 가중치를 정규화하는 효과를 갖는다. 이는 모델 $f$의 어떤 한계치를 설정하는 것과 같다.
 
-그래서 이 논문에서는 *gradient penalty*라는 것을 D의 목적함수에 추가해 이 한계를 극복하고자 한다.
+그래서 이 논문에서는 *gradient penalty*라는 것을 D의 목적함수에 추가해 이 한계를 극복하고자 한다(G의 목적함수는 건드리지 않은 듯 하다).
 
 $$ L = \mathbb{E}_{\hat{x} \sim \mathbb{P}_g} \ [D(\hat{x})] - \mathbb{E}_{x \sim \mathbb{P}_r} \ [D(x)] + \lambda \ \mathbb{E}_{\hat{x} \sim \mathbb{P}_{\hat{x}}} \ [(\Vert \nabla_{\hat{x}}D(\hat{x}) \Vert_2 - 1)^2 ] $$
 
@@ -326,6 +335,32 @@ $$ \\ $$
 
 논문 링크: **[DRAGAN](https://arxiv.org/abs/1705.07215)**
 
+소스코드: [tensorflow](https://github.com/kodalinaveen3/DRAGAN?fbclid=IwAR3mPLo134C3xx4QerWUCCTWqCVfH7seDkPK5Rlkr_trAjxwYfCHWvcs1dk), [pytorch](https://github.com/jfsantos/dragan-pytorch)
+
+참고할 만한 사이트: [링크](https://lernapparat.de/more-improved-wgan/)
+
+WGAN_GP 논문과 차이점은 D(critic network)에 의해 계산되는 식별함수 $f$가 gradient에 있어 어떤 제한을 받는가이다.
+- WGAN_GP에서는 gradient가 실제 데이터와 가짜 데이터 사이의 직선 위 랜덤한 곳으로 설정되기 때문에 모든 곳에서 $ \vert \nabla f \vert = 1 $를 향한다.
+- DRAGAN에서는 gradient가 실제에 "가깝게" sampling된다. 이는  실제 데이터 근처에 있을 때만 $ \vert \nabla f \vert = 1 $를 향한다.
+
+아래 그림은 위 차이를 보여준다. [참고 사이트]((https://lernapparat.de/more-improved-wgan/))에서 가져왔다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/DRAGAN1.png" width="80%"></center>
+
+간단히 DRAGAN은 실제 데이터 분포(manifold)에 가까울 때만 gradient penalizing을 시켜 [mode collapsing](https://greeksharifa.github.io/generative%20model/2019/03/03/GAN/#mode-collapsing)을 막을 수 있다.
+
+$ \lambda $가 penalty hyperparameter로 사용되는데, 작은 $\lambda$는 toy tasks에 있어 특히 잘 학습됨을 볼 수 있다.
+
+이 논문이 기여한 바는 다음과 같다:
+
+- AGD를 regret minimization으로 봄으로써 GAN 학습에 대한 추론을 제안하였다.
+- nonparametric 한계 안에서 GAN 학습의 점근적 수렴과 매 단계마다 D가 최적이어야 할 필요가 없다는 것을 증명하였다.
+- AGD가 비 볼록(non-convex) 게임에서 잠재적으로 어떻게 나쁜 국소평형 지점(local minima)으로 수렴하는지와 이것이 GAN의 학습에 있어 mode collapsing에 얼마나 큰 책임이 있는지를 논했다.
+- 실제 데이터에 근접한 경우에 D의 $f$의 gradient가 큰 값을 가질 때 어떻게 mode collapse 상황이 생기는지를 특징지었다.
+- 이러한 관찰에 의해 DRAGAN(a novel gradient penalty scheme)을 소개하였고 이것이 mode collapsing 문제를 완화해준다는 것을 보였다.
+
+
+
 
 ---
 
@@ -359,6 +394,7 @@ $$ \\ $$
 
 # 이후 연구들
 
-GAN 이후로 수많은 발전된 GAN이 연구되어 발표되었다. 
+GAN 이후로 수많은 발전된 GAN이 연구되어 발표되었다.  
+PROGDAN, SLOGAN 등이 있다.
 
 ---
