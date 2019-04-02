@@ -95,7 +95,7 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 
 ---
 
-## Project 창(Alt + 1)
+## Project 창(`Alt + 1`)
 
 처음 프로젝트를 열면 다음과 같은 화면이 보일 것이다. (Show tips at startup은 무시한다)
 
@@ -120,7 +120,232 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
     - Template Folder: 템플릿이 있는 폴더에 지정하면 된다. Pure Python을 쓸 때에는 별 의미 없다.
 - Add to Favorites: Favorites창에 해당 디렉토리나 파일을 추가한다. 즐겨찾기 기능이랑 같다. 프로젝트 창 아래에서 창을 찾을 수 있고, `Alt + 2` 단축키로 토글할 수 있다.
 
-이제 우클릭 > New > Python File로 새 파이썬 파일을 하나 생성하자. 
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14_1.PNG" width="60%"></center>
+
+### 새 파일 생성
+
+이제 우클릭 > New > Python File로 새 파이썬 파일을 하나 생성하자. (현재 프로젝트 이름은 `PythonTutorial`이다)
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/15.PNG" width="100%"></center>
+
+안타깝게도 새 Python 파일 생성을 위한 단축키는 지정할 수 없는 듯하다.
+
+---
+
+## 코드 실행(전체 또는 선택)
+
+그리고 원하는 파일명을 입력한다. 필자는 `tutorial`이라고 입력하겠다. 그러면 파일명은 `tutorial.py`가 될 것이다.
+
+이제 코딩할 수 있는 창이 열렸으니 코드를 입력하자.
+
+```python
+print('Hello Pycharm!')
+```
+
+코드를 작성했으면 실행을 해 보아야 하지 않겠는가? 실행하는 방법은 여러 가지가 있다.
+
+- 실행하고 싶은 코드 라인에 커서를 놓거나 실행할 만큼 드래그를 한 다음 [위](https://greeksharifa.github.io/references/2019/02/07/PyCharm-usage/#settings)에서 단축키를 바꿨다면 `Ctrl + Enter`, 바꾸지 않았다면 `Alt + Shift + E`를 누른다. 그러면 `Python Console`이라는 창이 아래쪽에 열리면서 실행한 코드와 실행 결과가 나타난다. 역시 단축키를 설정했다면 `Alt + 8`로 열 수 있다. PyCharm Default settings에는 단축키가 할당되어 있지 않다.
+    - 이것은 정확히는 Interpreter라고 부르는 대화형 파이썬 창에서 실행시키는 것이다. 명령창(cmd, terminal)에서 `python`을 실행시키고 코드를 입력하는 것과 같은 형태이다. [Jupyter notebook](https://greeksharifa.github.io/references/2019/01/26/Jupyter-usage/)과도 비슷하다.
+    - 장점은 명령창에서 바로 입력하는 경우 오타가 나면 다시 입력해야 하는데 편집기에 코드를 써 놓고 필요한 만큼만 `Ctrl + Enter`로 실행시키는 이 방식은 코드 수정과 재사용이 훨씬 편하다는 것이다.
+    - 콘솔에 문제가 있거나 해서 현재 실행창을 재시작하고 싶으면 `Python Console` 왼쪽 `Rerun` 버튼(화살표)을 누르거나 `Ctrl + F5`를 입력한다.
+    - 참고로 PyCharm 아래쪽/왼쪽/오른쪽에 있는 창들 중에서 옆의 숫자는 단축키를 간략하게 나타낸 것이다. 예를 들어 필자는 좀 전 설정에서 `Python Console` 창의 단축키를 `Alt + 8`로 설정해 놨는데, 그래서 옆에 `8` 이라는 숫자가 표시된다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/16.PNG" width="100%"></center>
+
+- Run > Run...을 누르면 실행시키고 싶은 파일 목록이 나타난다. 이 중 원하는 파일(현재는 `tutorial`)을 선택하면 `Terminal`이라는 창에서 ***해당 파일의 전체 코드***가 실행된다.
+    - 다시 실행할 때는 Run > Run을 선택하면 마지막으로 실행한 파일이 전체 실행된다. 
+    - 아래 그림의 `Terminal` 창 왼쪽의 `ReRun` 버튼을 눌러도 마지막으로 실행한 파일이 다시 실행된다. 단축키는 `Ctrl + F5`이다.
+    - PyCharm 오른쪽 위에서도 실행할 파일을 선택 후 실행시킬 수 있다. 
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/17.PNG" width="100%"></center>
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/18.PNG" width="100%"></center>
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/19.PNG" width="80%"></center>
+
+- PyCharm 아래쪽의 `Terminal` 창을 클릭하거나 `Alt + T` 단축키(바꾼 것이다)로 `Terminal` 창을 열어서 `python tutorial.py`를 입력한다. 
+    - 그렇다. Python 파일 실행 방법과 똑같다. 이 `Terminal` 창은 명령창(cmd 또는 터미널)과 똑같다.
+    - 대략 `tu` 정도까지만 입력하고 `Tab` 키를 누르면 파일명이 자동완성된다. 
+    - 이 방법도 역시 해당 파일에 들어있는 모든 코드를 전체 실행시킨다.
+    - 터미널 창 답게 여러 개의 세션을 열어 놓을 수 있다. 기본적으로 `Local`이라는 이름의 탭이 생성되며, 오른쪽의 `+` 버튼을 클릭하라.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/20.PNG" width="80%"></center>
+
+- `Project` 창에서도 해당 파일을 `우클릭 > Run (파일명)`을 클릭하면 해당 파일의 코드 전체가 실행된다.
+- 편집 창에서도 파일명 탭을 `우클릭 > Run (파일명)`해도 된다. 실행 방법은 많다.
+
+---
+
+## 편집 창(코드 편집기)
+
+코드를 편집하는 부분에도 여러 기능들이 숨어 있다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/27.PNG" width="100%"></center>
+
+위 그림의 오른쪽 부분을 보자. 경고인 듯한 느낌표와 함께 여러 색깔의 줄이 있다. 현재 커서는 9번째 라인의 `example` 변수에 위치해 있다.
+
+- 먼저 왼쪽에는 줄 번호(line number)라는 것을 다들 알 수 있을 것이다.
+    - 하지만 이 단축키는 모르는 사람이 많다. `Ctrl + G`를 누르면 원하는 라인으로 이동할 수 있다. 줄의 어느 부분으로 이동할지도 `line:column` 형식으로 정할 수 있다. 줄 번호만 지정하고 싶으면 그냥 숫자만 입력하라.
+- 빨간 화살표가 가리키고 있는 경고 표시는 현재 이 파일에 **syntax error**가 있다는 뜻이다. 메인 화면에도 해당 부분에는 빨간 줄이 그어진다(`printf`). 그리고 오른쪽에도 빨간색 bar가 생긴다. 
+    - 이 bar들은 현재 파일에서의 상대적 위치를 뜻한다. 즉, 예를 들어 맨 아래에 있는 오류 코드가 화면에 안 보이더라도 bar는 제일 아래쪽 근처에 표시된다.
+- 커서가 위치한 곳이 변수나 함수 등이라면 해당 파일의 모든 부분에서 같은 이름을 가진 변수(또는 함수)에는 옅은 초록색 배경색이 칠해진다. 그리고 해당 변수(함수)가 선언된 곳에는 옅은 주황색으로 배경색이 칠해진다(이 색깔은 `Settings`에서 바꿀 수 있다). 어디서 사용되고 있는지 쉽게 알 수 있다. 그리고 그림에서 오른쪽에도 주황색 또는 초록색 짧은 bar가 생긴 것을 볼 수 있다.
+    - 옅어서 잘 안보인다면 색깔을 바꾸거나 아니면 Find and Replace(`Ctrl + H`)로 찾으면 더 선명하게 표시되기는 하는데, 해당 이름을 포함한 다른 변수 등도 같이 선택된다는 문제가 있다. 적당히 선택하자.
+- 특별히 ***TODO*** 주석문은 일반 회색 주석과는 다르게 연두색으로 눈에 띄게 칠해진다. 또한 오른쪽에 파란색 bar가 생긴다. 이 주석은 참고로 `TODO` 창(`Alt + 6`)에서도 확인 가능하다. 못다한 코딩이 있을 때 쓸 수 있는 좋은 습관이다.
+
+편집 창의 아무 부분을 우클릭하여 `Local History > Show History`를 클릭하면 해당 파일이 어떻게 수정되어 왔었는지가 저장된다. 잘 안 쓸 수도 있지만 잘못 지운 상태로 코딩을 좀 진행했다거나 하는 상황에서 쓸모 있는 기능이다. 
+
+---
+
+### 빠른 선택, 코드 정리, 편집 등등 단축키
+
+원하는 부분을 빠르게 선택할 수 있는 단축키는 많다. 이를 다 알고 빠르게 할 수 있다면 코딩 속도는 아주 빨라진다.  
+
+- 변수/함수 더블클릭: 해당 변수 이름 선택
+- `Ctrl + Z`: 실행 취소(Undo)
+- `Ctrl + Shift + Z`: 재실행(Redo)
+- `Ctrl + D`(Duplicate): 현재 커서가 있는 한 줄(또는 드래그한 선택 범위)을 복사해 아래에 붙여 넣는다.
+- `Ctrl + X` / `Ctrl + C`: 현재 커서가 있는 한 줄(또는 드래그한 선택 범위)을 잘라내기/복사한다. 한 줄도 된다는 것을 기억하라.
+- `Ctrl + W`: 현재 선택 범위의 한 단계 위 범위를 전체 선택한다. 무슨 말인지 모르겠다면 직접 해 보면 된다. 범위는 블록이나 괄호 등을 포함한다.
+- `Tab`: 현재 커서가 있는 한 줄(또는 드래그한 선택 범위)를 한 단계(오른쪽으로 이동) indent한다.
+- `Shift + Tab`: 현재 커서가 있는 한 줄(또는 드래그한 선택 범위)를 반대 방향으로(왼쪽으로 이동) 한 단계 indent한다.
+- `Ctrl + A`: 현재 파일의 코드를 전체선택한다.
+
+- `Ctrl + Shift + O`(Import Optimization): 코드 내에 어지럽게 널려 있는 import들을 파일 맨 위로 모아 잘 정리한다.
+- `Ctrl + Shift + L`: 코드의 빈 줄, indentation 등을 한 번에 정리한다.
+
+- `Ctrl + 좌클릭`: 해당 변수/함수가 선언된 위치로 화면/커서가 이동한다. 변수가 어떻게 정의됐는지 또는 함수가 어떻게 생겼는지 보기 유용하다.
+
+이외에도 기능은 정말 많다(Toggle Case, Convert indents to space/tab, Copy as Plain Text, Paste without Formatting, ...). 한번 잘 찾아보자.
+
+---
+
+### 찾기(및 바꾸기), (`Ctrl + F | Ctrl + H`)
+
+찾기 및 바꾸기의 기본 단축키는 `Ctrl + R`이다(**R**eplace). 많은 다른 프로그램들은 `Ctrl + H`를 쓰기 때문에 바꾸는 것도 좋다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/28.PNG" width="100%"></center>
+
+여기도 여러 기능들이 있다. `찾기` 설명은 찾기 및 바꾸기의 설명 안에 포함되므로 생략하겠다.  
+아래에서 설명할 기능들은 모두 그림에 나온 버튼이나 체크박스 등에 대한 것이다. 
+
+- 왼쪽 검색창에 찾고자 하는(또는 대체될) 문자열 또는 정규식을 입력한다. 아래쪽 창에는 대체할 문자열을 입력한다.
+    - 왼쪽 돋보기를 클릭하면 이전에 검색했던 문자열들을 재검색할 수 있다.
+- `F3`: 다음 것 찾기
+- `Shift + F3`: 이전 것 찾기
+- Find All: 전부 다 찾아서 보여준다.
+- Select All Occurrences: 매칭되는 결과를 전부 선택한다.
+- Show Filter Popup: 찾을 범위를 지정할 수 있다. 전부(Anywhere), 주석에서만(In comments), 문자열에서만(In String Literals), 둘 다에서만, 혹은 제외하고 등의 필터를 설정 가능하다.
+- Match Case: 체크하면 대소문자를 구분한다.
+- Words: 정확히 단어로 맞아야 할 때(해당 문자열을 포함하는 단어를 제외하는 등) 체크한다.
+- Regex: [정규표현식](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/)을 사용하여 찾는다. 잘 쓸 줄 안다면 아주 좋다.
+- 오른쪽에는 몇 개나 매칭되는 문자열을 찾았는지 보여준다(3 matches). 만약 하나도 없으면 문자 입력 창이 빨갛게 되면서 No matches라고 뜬다.
+- Replace(`Alt + p`): 현재 선택된 부분을 대체한다..
+- Replace all(`Alt + a`): 매칭되는 모든 문자열을 찾아 대체한다.
+- Exclude: 해당 매칭된 부분은 대체할 부분에서 제외한다.
+- Preserve Case: 대체 시 대소문자 형식을 보존한다.
+- In Selection: 파일 전체가 아닌 선택한 부분에서만 찾는다.
+
+### 더 넓은 범위에서 찾기
+
+선택한 파일 말고 더 넓은 범위에서 찾으려면 `Ctrl + Shift + F`를 누르거나 다음 그림을 참고한다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/29.PNG" width="80%"></center>
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/30.PNG" width="80%"></center>
+
+위의 Match Case등은 사용법이 똑같지만, 여기서는 파일뿐 아니라 프로젝트 전체, 모듈, 디렉토리, 또는 특정 범위(scope)에서 찾을 수 있다. `Edit > Find > `안의 다른 선택지들 역시 사용법은 크게 다르지 않으니 참고하자.
+
+다른 (범용) 찾기 단축키로 `Shift + Shift`(Shift 키를 두번 누름)이 있다. 한번 해 보자.
+
+### 변수/함수 등이 사용된 위치 찾기
+
+찾고자 하는 변수/함수를 우클릭하여 `Find Usages`를 클릭하거나 `Alt + F7`을 누른다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/31.PNG" width="100%"></center>
+
+그러면 해당 변수/함수가 어디서 사용되었는지 정보가 전부 나온다. 왼쪽에 있는 많은 버튼들로 적절한 그룹별로 묶거나 하는 등의 작업을 할 수 있다.
+
+### Refactor(이름 재지정)
+
+변수명을 바꾸고 싶어졌을 때가 있다. 무식하게 일일이 바꾸거나, 아니면 `Find and Replace`로 선택적으로 할 수도 있다.
+
+하지만 매우 쉽고 편리한 방법이 있다. 해당 변수를 선택하고 `Shift + F6`을 누른다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/32.PNG" width="100%"></center>
+
+원하는 이름으로 바꾸고 `Refactor`을 누르면 해당 변수만 정확하게 원하는 이름으로 바뀐다. 심지어 import해서 사용한 다른 파일에서도 바뀐다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/33.PNG" width="100%"></center>
+
+*아주 편리하다.*
+
+---
+
+## 창 위치 및 크기 변경
+
+`Python Console` 등의 창은 위치나 크기가 변경 가능하다. 크기는 창의 경계에 마우스 커서를 갖다대는 방식이니 굳이 설명하지 않겠다.  
+위치는 탭을 끌어서 이동시키거나 아니면 `우클릭 > Move to > 원하는 곳`을 선택하면 된다.
+
+또 모니터를 2개 이상 쓴다면 `View Mode`에서 해당 설정을 변경할 수 있다. 기본은 PyCharm 내부에 위치 고정된 `Dock Pinned` 모드이다. `Float`이나 `Window`를 선택하면 위치를 자유롭게 이동할 수 있다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/21.PNG" width="80%"></center>
+
+모니터 크기는 충분한데 코드는 위아래로만 길게 보여서 공간이 아까웠다면, PyCharm에서는 굳이 그럴 필요 없다. Vim의 Split View와 비슷한 기능이 있다.
+
+편집 창(메인 화면)의 탭을 우클릭한 다음 `Split Vertically`를 클릭해 보라. `Split Horizontally`도 괜찮다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/23.PNG" width="80%"></center>
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/24.PNG" width="80%"></center>
+
+동일한 파일을 여러 번 열고 다른 부분을 보는 것도 가능하다. 꽤 유용한 기능이다.
+
+---
+
+## Favorites 창(`Alt + 2`)
+
+`Alt + 2`를 눌러 `Favorites` 창을 연다.
+
+말 그대로 즐겨찾기이다. 자주 사용하는 파일을 `Favorites`에 등록할 수 있다. 기본적으로 현재 프로젝트 이름으로 리스트가 하나 생성되어 있다.  
+이게 싫거나 새로운 리스트를 추가하고 싶으면 아래 그림의 오른쪽에 보이는 `Add to New Favorites List`를 클릭하라.
+
+그러면 `Favorites` 창에 해당 리스트에 추가한 파일이 등록된다. 이제 프로젝트 창에서 찾을 필요 없이 바로 파일을 열어볼 수 있다.
+
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/25.PNG" width="100%"></center>
+
+---
+
+## Run 창(`Alt + 4`)
+
+`Alt + 3`은 기본적으로 할당되어 있지 않다. 추가하고 싶으면 추가하라.
+
+`Run` 창은 조금 전 코드를 실행할 때 본 것이다. 여기서는 왼쪽에 몇 가지 버튼이 있는데, 각각
+
+- Rerun(마지막 실행 파일 재실행)
+- Stop(현재 실행 중인 파일 실행 중단)
+- Restore Layout(레이아웃 초기화)
+- Pin Tab(현재 실행 탭 고정)
+- Up/Down to Stack Trace(trace 상에서 상위 또는 하위 단계로 이동)
+- Soft-Wrap(토글 키. 활성화 시 출력 내용이 한 줄을 넘기면 아래 줄에 출력됨. 비활성화 시 스크롤해야 나머지 내용이 보인다)
+- Scroll to the end(제일 아래쪽으로 스크롤)
+- Print(출력 결과를 정말 프린터에서 뽑는 거다)
+- Clear All(현재 출력 결과를 모두 지우기)
+
+Soft-wrap 등은 꽤 유용하므로 잘 사용하자.
+
+`Run` 창을 우클릭 시 `Compare with Clipboard` 항목이 있는데, 현재 클립보드에 있는(즉, `Ctrl + C` 등으로 복사한) 내용과 출력 결과를 비교하는 창을 띄운다. 정답 출력 결과를 복사해 놨다면 유용하게 쓸 수 있다.
+
+---
+
+## TODO 창(`Alt + 6`)
+
+
+
+
+
+
+
+
 
 
 ---
