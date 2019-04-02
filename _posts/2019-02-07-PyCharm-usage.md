@@ -104,7 +104,7 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 맨 왼쪽에는 프로젝트 창이 있다. 맨 왼쪽 빨간 박스로 표시한 곳을 클릭하면 프로젝트 창을 접었다 폈다 할 수 있다. 단축키를 눌러도 된다(Alt + 1).  
 
 필자는 현재 untitled라는 이름으로 프로젝트를 생성했기 때문에, 루트 폴더는 현재 untitled이다. 주황 박스를 오른쪽 클릭하면 꽤 많은 옵션이 있다. 참고로 프로젝트 내 모든 디렉토리 또는 파일에 오른쪽 클릭하여 기능을 쓸 수 있다. 디렉토리를 우클릭했을 때와 파일을 우클릭했을 때 옵션이 조금 다르다.
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14.PNG" width="70%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14.png" width="70%"></center>
 
 각 옵션을 대략 설명하면,
 - New: File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 자주 쓰는 기능이지만 안타깝게도 단축키는 설정이 어려운 것 같다.
@@ -120,13 +120,13 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
     - Template Folder: 템플릿이 있는 폴더에 지정하면 된다. Pure Python을 쓸 때에는 별 의미 없다.
 - Add to Favorites: Favorites창에 해당 디렉토리나 파일을 추가한다. 즐겨찾기 기능이랑 같다. 프로젝트 창 아래에서 창을 찾을 수 있고, `Alt + 2` 단축키로 토글할 수 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14_1.PNG" width="60%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14_1.png" width="60%"></center>
 
 ### 새 파일 생성
 
 이제 우클릭 > New > Python File로 새 파이썬 파일을 하나 생성하자. (현재 프로젝트 이름은 `PythonTutorial`이다)
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/15.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/15.png" width="100%"></center>
 
 안타깝게도 새 Python 파일 생성을 위한 단축키는 지정할 수 없는 듯하다.
 
@@ -150,18 +150,18 @@ print('Hello Pycharm!')
     - 콘솔에 문제가 있거나 해서 현재 실행창을 재시작하고 싶으면 `Python Console` 왼쪽 `Rerun` 버튼(화살표)을 누르거나 `Ctrl + F5`를 입력한다.
     - 참고로 PyCharm 아래쪽/왼쪽/오른쪽에 있는 창들 중에서 옆의 숫자는 단축키를 간략하게 나타낸 것이다. 예를 들어 필자는 좀 전 설정에서 `Python Console` 창의 단축키를 `Alt + 8`로 설정해 놨는데, 그래서 옆에 `8` 이라는 숫자가 표시된다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/16.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/16.png" width="100%"></center>
 
 - Run > Run...을 누르면 실행시키고 싶은 파일 목록이 나타난다. 이 중 원하는 파일(현재는 `tutorial`)을 선택하면 `Terminal`이라는 창에서 ***해당 파일의 전체 코드***가 실행된다.
     - 다시 실행할 때는 Run > Run을 선택하면 마지막으로 실행한 파일이 전체 실행된다. 
     - 아래 그림의 `Terminal` 창 왼쪽의 `ReRun` 버튼을 눌러도 마지막으로 실행한 파일이 다시 실행된다. 단축키는 `Ctrl + F5`이다.
     - PyCharm 오른쪽 위에서도 실행할 파일을 선택 후 실행시킬 수 있다. 
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/17.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/17.png" width="100%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/18.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/18.png" width="100%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/19.PNG" width="80%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/19.png" width="80%"></center>
 
 - PyCharm 아래쪽의 `Terminal` 창을 클릭하거나 `Alt + T` 단축키(바꾼 것이다)로 `Terminal` 창을 열어서 `python tutorial.py`를 입력한다. 
     - 그렇다. Python 파일 실행 방법과 똑같다. 이 `Terminal` 창은 명령창(cmd 또는 터미널)과 똑같다.
@@ -169,7 +169,7 @@ print('Hello Pycharm!')
     - 이 방법도 역시 해당 파일에 들어있는 모든 코드를 전체 실행시킨다.
     - 터미널 창 답게 여러 개의 세션을 열어 놓을 수 있다. 기본적으로 `Local`이라는 이름의 탭이 생성되며, 오른쪽의 `+` 버튼을 클릭하라.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/20.PNG" width="80%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/20.png" width="80%"></center>
 
 - `Project` 창에서도 해당 파일을 `우클릭 > Run (파일명)`을 클릭하면 해당 파일의 코드 전체가 실행된다.
 - 편집 창에서도 파일명 탭을 `우클릭 > Run (파일명)`해도 된다. 실행 방법은 많다.
@@ -180,7 +180,7 @@ print('Hello Pycharm!')
 
 코드를 편집하는 부분에도 여러 기능들이 숨어 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/27.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/27.png" width="100%"></center>
 
 위 그림의 오른쪽 부분을 보자. 경고인 듯한 느낌표와 함께 여러 색깔의 줄이 있다. 현재 커서는 9번째 라인의 `example` 변수에 위치해 있다.
 
@@ -223,7 +223,7 @@ print('Hello Pycharm!')
 
 찾기 및 바꾸기의 기본 단축키는 `Ctrl + R`이다(**R**eplace). 많은 다른 프로그램들은 `Ctrl + H`를 쓰기 때문에 바꾸는 것도 좋다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/28.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/28.png" width="100%"></center>
 
 여기도 여러 기능들이 있다. `찾기` 설명은 찾기 및 바꾸기의 설명 안에 포함되므로 생략하겠다.  
 아래에서 설명할 기능들은 모두 그림에 나온 버튼이나 체크박스 등에 대한 것이다. 
@@ -249,9 +249,9 @@ print('Hello Pycharm!')
 
 선택한 파일 말고 더 넓은 범위에서 찾으려면 `Ctrl + Shift + F`를 누르거나 다음 그림을 참고한다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/29.PNG" width="80%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/29.png" width="80%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/30.PNG" width="80%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/30.png" width="80%"></center>
 
 위의 Match Case등은 사용법이 똑같지만, 여기서는 파일뿐 아니라 프로젝트 전체, 모듈, 디렉토리, 또는 특정 범위(scope)에서 찾을 수 있다. `Edit > Find > `안의 다른 선택지들 역시 사용법은 크게 다르지 않으니 참고하자.
 
@@ -261,7 +261,7 @@ print('Hello Pycharm!')
 
 찾고자 하는 변수/함수를 우클릭하여 `Find Usages`를 클릭하거나 `Alt + F7`을 누른다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/31.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/31.png" width="100%"></center>
 
 그러면 해당 변수/함수가 어디서 사용되었는지 정보가 전부 나온다. 왼쪽에 있는 많은 버튼들로 적절한 그룹별로 묶거나 하는 등의 작업을 할 수 있다.
 
@@ -271,11 +271,11 @@ print('Hello Pycharm!')
 
 하지만 매우 쉽고 편리한 방법이 있다. 해당 변수를 선택하고 `Shift + F6`을 누른다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/32.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/32.png" width="100%"></center>
 
 원하는 이름으로 바꾸고 `Refactor`을 누르면 해당 변수만 정확하게 원하는 이름으로 바뀐다. 심지어 import해서 사용한 다른 파일에서도 바뀐다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/33.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/33.png" width="100%"></center>
 
 *아주 편리하다.*
 
@@ -288,15 +288,15 @@ print('Hello Pycharm!')
 
 또 모니터를 2개 이상 쓴다면 `View Mode`에서 해당 설정을 변경할 수 있다. 기본은 PyCharm 내부에 위치 고정된 `Dock Pinned` 모드이다. `Float`이나 `Window`를 선택하면 위치를 자유롭게 이동할 수 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/21.PNG" width="80%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/21.png" width="80%"></center>
 
 모니터 크기는 충분한데 코드는 위아래로만 길게 보여서 공간이 아까웠다면, PyCharm에서는 굳이 그럴 필요 없다. Vim의 Split View와 비슷한 기능이 있다.
 
 편집 창(메인 화면)의 탭을 우클릭한 다음 `Split Vertically`를 클릭해 보라. `Split Horizontally`도 괜찮다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/23.PNG" width="80%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/23.png" width="80%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/24.PNG" width="80%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/24.png" width="80%"></center>
 
 동일한 파일을 여러 번 열고 다른 부분을 보는 것도 가능하다. 꽤 유용한 기능이다.
 
@@ -311,7 +311,7 @@ print('Hello Pycharm!')
 
 그러면 `Favorites` 창에 해당 리스트에 추가한 파일이 등록된다. 이제 프로젝트 창에서 찾을 필요 없이 바로 파일을 열어볼 수 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/25.PNG" width="100%"></center>
+<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/25.png" width="100%"></center>
 
 ---
 
