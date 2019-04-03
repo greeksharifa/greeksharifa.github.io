@@ -6,7 +6,11 @@ categories: References
 tags: [usage]
 ---
 
+---
+
 PyCharm은 Jetbrains 사에서 제작 및 배포하는 **유료** 프로그램이다.
+
+글이 길기 때문에 사용법을 검색하고 싶다면 `Ctrl + F` 키를 누른 다음 검색해 보자.
 
 ---
 
@@ -19,32 +23,31 @@ PyCharm 홈페이지에서 설치 파일을 다운받는다.
 
 ### Settings
 
-설치 시 다음 창을 볼 수 있다. 해당 컴퓨터에 설치한 적이 있으면 설정 파일 위치를 지정하고, 아니면 만다.
+설치 시 다음 창을 볼 수 있다. 해당 컴퓨터에 설치한 적이 있으면 설정 파일 위치를 지정하고, 아니면 말도록 하자.
 
-
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/01.PNG" width="70%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/01.PNG" width="70%"></center>
 
 필자는 Darcula로 지정했고, 왼쪽 아래의 `Skip Remaining and Set Defaults` 버튼을 누른다. 본인이 추가 설정하고 싶은 부분이 있으면 이후 설정에서 마음대로 바꾸면 된다.
 
-![02_install](/public/img/PyCharm/2019-02-07-PyCharm-usage/02.PNG)
+![02_install](/public/img/2019-02-07-PyCharm-usage/02.PNG)
 
 설정을 완료하면 아래와 같은 화면을 볼 수 있다. 오른쪽 아래의 `Configure` > `Settings` 를 클릭한다.
 
-![03_install](/public/img/PyCharm/2019-02-07-PyCharm-usage/03.PNG)
+![03_install](/public/img/2019-02-07-PyCharm-usage/03.PNG)
 
 정확히는 `Settings for New Projects`라는 대화창을 볼 수 있다. 이는 새 프로젝트를 만들 때 적용되는 **기본 설정**이다. 새로운 설정을 만들고 싶다면 `Default` 설정을 복제(Duplicate)한 뒤 새 설정에서 바꾸도록 한다.
 
-![04_settings](/public/img/PyCharm/2019-02-07-PyCharm-usage/04.PNG)
+![04_settings](/public/img/2019-02-07-PyCharm-usage/04.PNG)
 
 설정에서 `Appearance & Behavior` > `Appearance`에서, `Theme`를 `Darcula` 또는 다른 것으로 지정할 수 있다. 아래의 `Use Custom Font`는 메뉴 등의 폰트를 해당 폰트로 지정할 수 있다.  
 참고로, 코드의 폰트는 `Editor` > `Font`에서 지정한다. 이 두 가지 역시 구분하도록 한다. 기본값을 `Monospaced`이다.
 
-![05_settings](/public/img/PyCharm/2019-02-07-PyCharm-usage/05.PNG)
+![05_settings](/public/img/2019-02-07-PyCharm-usage/05.PNG)
 
 `Keymap`에서는 단축키를 지정할 수 있다. PyCharm의 기본 단축키는 타 프로그램과 좀 다른 부분이 많아 필자는 일부를 바꿨다.  
 변경하고 싶은 단축키를 찾아서 더블클릭 또는 우클릭하면 기존에 지정되어 있는 단축키를 삭제하고 새 단축키를 지정할 수 있다. 이때 겹친다면 기존 단축키를 남겨둘지 제거할지 선택할 수 있다.
 
-![06_settings](/public/img/PyCharm/2019-02-07-PyCharm-usage/06.PNG)
+![06_settings](/public/img/2019-02-07-PyCharm-usage/06.PNG)
 
 추천하는 변경할 단축키는 다음과 같다. 
 
@@ -60,22 +63,22 @@ Show in Explorer | | Ctrl + Alt + Shift + E
 
 필자의 경우 나머지 설정은 그대로 두는 편이나, `Ctrl + Enter`로 바꿀 때는 다른 곳에 할당된 것을 지운다(Already assigned 경고창에서 Leave 대신 Remove를 선택). 안 그러면 선택한 부분이 Python Console(대화형)에서 실행되지 않는다.
 
-![07_settings](/public/img/PyCharm/2019-02-07-PyCharm-usage/07.PNG)
+![07_settings](/public/img/2019-02-07-PyCharm-usage/07.PNG)
 
 위 그림에서 기본 Python Interpreter 파일(python.exe)를 설정한다. 새 프로젝트를 생성 시 Configure Python Interpreter라는 경고가 보이면서 코드 실행이 안 되면 인터프리터가 설정되지 않은 것이다. 컴퓨터에 설치된 파이썬 파일을 찾아 설정하자.
 
-![08_settings](/public/img/PyCharm/2019-02-07-PyCharm-usage/08.PNG)
+![08_settings](/public/img/2019-02-07-PyCharm-usage/08.PNG)
 
 `Show All...`을 클릭하면 처음에는 빈 창이 보인다. `+`를 눌러서 원하는 환경을 추가한다. 기존의 것을 추가하거나, 새로운 가상환경(virtualenv 또는 conda)를 즉석에서 생성 가능하다.  
 이렇게 만든 가상환경은 해당 프로젝트에서만 쓰거나(기본 설정), 아래쪽의 `Make available to all projects`를 체크하여 다른 프로젝트에서도 해당 인터프리터를 택할 수 있도록 정할 수도 있다.
 
-![09_settings](/public/img/PyCharm/2019-02-07-PyCharm-usage/09.PNG)
+![09_settings](/public/img/2019-02-07-PyCharm-usage/09.PNG)
 
 PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `Special Variables`라는 창이 뜨는 것을 볼 수 있다. 보통 쓸 일이 없는데 기본으로 표시되는 것이므로, `Build, Execution, Deployment` > `Console`에서 `Show console variable by default` 체크를 해제한다.
 
 해당 설정을 마쳤으면 첫 화면에서 `Create New Project`를 클릭한다.
 
-![10_new_projects](/public/img/PyCharm/2019-02-07-PyCharm-usage/10.PNG)
+![10_new_projects](/public/img/2019-02-07-PyCharm-usage/10.PNG)
 
 프로젝트 이름은 기본적으로 Untitled 이므로 바꿔주고, 아래쪽의 Project Interpreter를 설정해 둔다. 미리 설정했다면 목록이 보일 것이고, 아니라면 새로 생성하거나 `python.exe` 위치를 찾아 지정해준다.
 
@@ -83,11 +86,11 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 
 시작 화면에서 `Configure` > `Settings Repository...`, 또는 프로젝트 생성 후 `File` > `Settings Repository...` 를 클릭하면 지금까지 설정한 설정들을 git repository에 저장할 수 있다. git을 알고 있다면, Merge, Overwrite Local, Overwrite Remote의 뜻을 알 것이라 믿는다. git repository에 저장하면 컴퓨터를 옮겨도 동일한 설정을 쉽게 지정할 수 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/11.PNG" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/11.PNG" width="80%"></center>
 
 이를 지정하려면 Personal Access Token이 필요하다. [여기](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)를 참조한다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/12.PNG" width="70%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/12.PNG" width="70%"></center>
 
 등록이 완료되면 Merge, Overwrite Local(git에 저장된 내용을 local로 덮어씀), Overwrite Remote(현재 local 설정을 인터넷에 덮어씀) 중 하나를 선택해 설정을 동기화할 수 있다.
 
@@ -99,12 +102,13 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 
 처음 프로젝트를 열면 다음과 같은 화면이 보일 것이다. (Show tips at startup은 무시한다)
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/13.PNG" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/13.PNG" width="100%"></center>
 
 맨 왼쪽에는 프로젝트 창이 있다. 맨 왼쪽 빨간 박스로 표시한 곳을 클릭하면 프로젝트 창을 접었다 폈다 할 수 있다. 단축키를 눌러도 된다(Alt + 1).  
 
 필자는 현재 untitled라는 이름으로 프로젝트를 생성했기 때문에, 루트 폴더는 현재 untitled이다. 주황 박스를 오른쪽 클릭하면 꽤 많은 옵션이 있다. 참고로 프로젝트 내 모든 디렉토리 또는 파일에 오른쪽 클릭하여 기능을 쓸 수 있다. 디렉토리를 우클릭했을 때와 파일을 우클릭했을 때 옵션이 조금 다르다.
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14.png" width="70%"></center>
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/14.png" width="70%"></center>
 
 각 옵션을 대략 설명하면,
 - New: File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 자주 쓰는 기능이지만 안타깝게도 단축키는 설정이 어려운 것 같다.
@@ -120,13 +124,13 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
     - Template Folder: 템플릿이 있는 폴더에 지정하면 된다. Pure Python을 쓸 때에는 별 의미 없다.
 - Add to Favorites: Favorites창에 해당 디렉토리나 파일을 추가한다. 즐겨찾기 기능이랑 같다. 프로젝트 창 아래에서 창을 찾을 수 있고, `Alt + 2` 단축키로 토글할 수 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/14_1.png" width="60%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/14_1.png" width="70%"></center>
 
 ### 새 파일 생성
 
 이제 우클릭 > New > Python File로 새 파이썬 파일을 하나 생성하자. (현재 프로젝트 이름은 `PythonTutorial`이다)
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/15.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/15.png" width="100%"></center>
 
 안타깝게도 새 Python 파일 생성을 위한 단축키는 지정할 수 없는 듯하다.
 
@@ -150,18 +154,18 @@ print('Hello Pycharm!')
     - 콘솔에 문제가 있거나 해서 현재 실행창을 재시작하고 싶으면 `Python Console` 왼쪽 `Rerun` 버튼(화살표)을 누르거나 `Ctrl + F5`를 입력한다.
     - 참고로 PyCharm 아래쪽/왼쪽/오른쪽에 있는 창들 중에서 옆의 숫자는 단축키를 간략하게 나타낸 것이다. 예를 들어 필자는 좀 전 설정에서 `Python Console` 창의 단축키를 `Alt + 8`로 설정해 놨는데, 그래서 옆에 `8` 이라는 숫자가 표시된다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/16.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/16.png" width="100%"></center>
 
 - Run > Run...을 누르면 실행시키고 싶은 파일 목록이 나타난다. 이 중 원하는 파일(현재는 `tutorial`)을 선택하면 `Terminal`이라는 창에서 ***해당 파일의 전체 코드***가 실행된다.
     - 다시 실행할 때는 Run > Run을 선택하면 마지막으로 실행한 파일이 전체 실행된다. 
     - 아래 그림의 `Terminal` 창 왼쪽의 `ReRun` 버튼을 눌러도 마지막으로 실행한 파일이 다시 실행된다. 단축키는 `Ctrl + F5`이다.
     - PyCharm 오른쪽 위에서도 실행할 파일을 선택 후 실행시킬 수 있다. 
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/17.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/17.png" width="100%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/18.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/18.png" width="100%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/19.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/19.png" width="80%"></center>
 
 - PyCharm 아래쪽의 `Terminal` 창을 클릭하거나 `Alt + T` 단축키(바꾼 것이다)로 `Terminal` 창을 열어서 `python tutorial.py`를 입력한다. 
     - 그렇다. Python 파일 실행 방법과 똑같다. 이 `Terminal` 창은 명령창(cmd 또는 터미널)과 똑같다.
@@ -169,7 +173,7 @@ print('Hello Pycharm!')
     - 이 방법도 역시 해당 파일에 들어있는 모든 코드를 전체 실행시킨다.
     - 터미널 창 답게 여러 개의 세션을 열어 놓을 수 있다. 기본적으로 `Local`이라는 이름의 탭이 생성되며, 오른쪽의 `+` 버튼을 클릭하라.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/20.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/20.png" width="80%"></center>
 
 - `Project` 창에서도 해당 파일을 `우클릭 > Run (파일명)`을 클릭하면 해당 파일의 코드 전체가 실행된다.
 - 편집 창에서도 파일명 탭을 `우클릭 > Run (파일명)`해도 된다. 실행 방법은 많다.
@@ -180,7 +184,7 @@ print('Hello Pycharm!')
 
 코드를 편집하는 부분에도 여러 기능들이 숨어 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/27.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/27.png" width="100%"></center>
 
 위 그림의 오른쪽 부분을 보자. 경고인 듯한 느낌표와 함께 여러 색깔의 줄이 있다. 현재 커서는 9번째 라인의 `example` 변수에 위치해 있다.
 
@@ -193,6 +197,32 @@ print('Hello Pycharm!')
 - 특별히 ***TODO*** 주석문은 일반 회색 주석과는 다르게 연두색으로 눈에 띄게 칠해진다. 또한 오른쪽에 파란색 bar가 생긴다. 이 주석은 참고로 `TODO` 창(`Alt + 6`)에서도 확인 가능하다. 못다한 코딩이 있을 때 쓸 수 있는 좋은 습관이다.
 
 편집 창의 아무 부분을 우클릭하여 `Local History > Show History`를 클릭하면 해당 파일이 어떻게 수정되어 왔었는지가 저장된다. 잘 안 쓸 수도 있지만 잘못 지운 상태로 코딩을 좀 진행했다거나 하는 상황에서 쓸모 있는 기능이다. 
+
+---
+
+### .ipynb 파일 사용
+
+PyCharm에서도 `.ipynb`파일을 사용할 수 있다. 웹브라우저에서 보는 jupyter notebook과 모양이 매우 흡사하다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/36.png" width="100%"></center>
+
+위쪽의 셀 실행 버튼을 누르면(초록색 삼각형) jupyter 서버 주소 토큰을 입력하라고 나온다. 본인이 jupyter 서버를 실행시켰다면 [jupyter notebook 서버를 켠 상태](https://greeksharifa.github.io/references/2019/01/26/Jupyter-usage/#%EC%8B%A4%ED%96%89-%EB%B0%8F-%EC%A2%85%EB%A3%8C)에서 해당 주소를 입력해주고 실행하면 .ipynb 파일을 브라우저에서 쓰는 것처럼 사용할 수 있다.
+
+--- 
+
+### 자동완성 기능
+
+일반적인 편집기에는 다 들어있는, 변수나 함수 등의 이름을 일부만 입력하고 `Tab` 키를 누르면 자동완성이 된다는 것은 알고 있을 것이다.
+
+아래는 일부 코드 블록을 간편하게 입력할 수 있는 방법을 소개한 것이다.
+
+- 클래스 내부의 함수를 작성할 때는 `(`를 입력하는 순간 `self` 인자가 자동으로 추가된다. 기본적으로 써야 하는 인자이기 때문에 자동 추가되며, 이를 비활성화하고 싶으면 `File > Settings > Editor > General > Smart Keys`에서 바꿀 수 있다.
+- 함수나 클래스를 작성할 때, 삼중따옴표를 함수 prototype 정의 바로 밑에 써 주면 깔끔하게 함수 사용법을 정리할 수 있는 주석이 나타난다. 
+    - 빈 줄에 함수 설명을, `param`에는 각 인자의 설명을, `return`에는 이 함수의 반환값에 대한 설명을 써 주자.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/34.png" width="60%"></center>
+
+
 
 ---
 
@@ -214,8 +244,11 @@ print('Hello Pycharm!')
 - `Ctrl + Shift + L`: 코드의 빈 줄, indentation 등을 한 번에 정리한다.
 
 - `Ctrl + 좌클릭`: 해당 변수/함수가 선언된 위치로 화면/커서가 이동한다. 변수가 어떻게 정의됐는지 또는 함수가 어떻게 생겼는지 보기 유용하다.
+- `Alt + 좌클릭`: 커서를 원하는 곳에 일단 놓고, 또 같은 것을 입력하고 싶은 곳에 `Alt`를 누른 채로 새로 클릭하면, 커서가 여러 개가 되는 것을 확인할 수 있다. 이 상태에서 키보드로 입력을 시작하면 여러 곳에서 한번에 입력이 가능하다.
 
 이외에도 기능은 정말 많다(Toggle Case, Convert indents to space/tab, Copy as Plain Text, Paste without Formatting, ...). 한번 잘 찾아보자.
+
+각각의 기능들은 Edit 탭이나 Navigate, Code, Refactor 탭 등에 잘 분류되어 있다. 한번쯤 살펴보고 본인에게 필요한 기능들은 기억해두면 좋다.
 
 ---
 
@@ -223,9 +256,9 @@ print('Hello Pycharm!')
 
 찾기 및 바꾸기의 기본 단축키는 `Ctrl + R`이다(**R**eplace). 많은 다른 프로그램들은 `Ctrl + H`를 쓰기 때문에 바꾸는 것도 좋다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/28.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/28.png" width="100%"></center>
 
-여기도 여러 기능들이 있다. `찾기` 설명은 찾기 및 바꾸기의 설명 안에 포함되므로 생략하겠다.  
+여기도 여러 기능들이 있다. 찾기 설명은 찾기 및 바꾸기의 설명 안에 포함되므로 생략하겠다.  
 아래에서 설명할 기능들은 모두 그림에 나온 버튼이나 체크박스 등에 대한 것이다. 
 
 - 왼쪽 검색창에 찾고자 하는(또는 대체될) 문자열 또는 정규식을 입력한다. 아래쪽 창에는 대체할 문자열을 입력한다.
@@ -249,9 +282,9 @@ print('Hello Pycharm!')
 
 선택한 파일 말고 더 넓은 범위에서 찾으려면 `Ctrl + Shift + F`를 누르거나 다음 그림을 참고한다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/29.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/29.png" width="100%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/30.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/30.png" width="80%"></center>
 
 위의 Match Case등은 사용법이 똑같지만, 여기서는 파일뿐 아니라 프로젝트 전체, 모듈, 디렉토리, 또는 특정 범위(scope)에서 찾을 수 있다. `Edit > Find > `안의 다른 선택지들 역시 사용법은 크게 다르지 않으니 참고하자.
 
@@ -261,7 +294,7 @@ print('Hello Pycharm!')
 
 찾고자 하는 변수/함수를 우클릭하여 `Find Usages`를 클릭하거나 `Alt + F7`을 누른다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/31.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/31.png" width="100%"></center>
 
 그러면 해당 변수/함수가 어디서 사용되었는지 정보가 전부 나온다. 왼쪽에 있는 많은 버튼들로 적절한 그룹별로 묶거나 하는 등의 작업을 할 수 있다.
 
@@ -271,11 +304,11 @@ print('Hello Pycharm!')
 
 하지만 매우 쉽고 편리한 방법이 있다. 해당 변수를 선택하고 `Shift + F6`을 누른다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/32.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/32.png" width="80%"></center>
 
 원하는 이름으로 바꾸고 `Refactor`을 누르면 해당 변수만 정확하게 원하는 이름으로 바뀐다. 심지어 import해서 사용한 다른 파일에서도 바뀐다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/33.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/33.png" width="100%"></center>
 
 *아주 편리하다.*
 
@@ -288,15 +321,15 @@ print('Hello Pycharm!')
 
 또 모니터를 2개 이상 쓴다면 `View Mode`에서 해당 설정을 변경할 수 있다. 기본은 PyCharm 내부에 위치 고정된 `Dock Pinned` 모드이다. `Float`이나 `Window`를 선택하면 위치를 자유롭게 이동할 수 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/21.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/21.png" width="100%"></center>
 
 모니터 크기는 충분한데 코드는 위아래로만 길게 보여서 공간이 아까웠다면, PyCharm에서는 굳이 그럴 필요 없다. Vim의 Split View와 비슷한 기능이 있다.
 
 편집 창(메인 화면)의 탭을 우클릭한 다음 `Split Vertically`를 클릭해 보라. `Split Horizontally`도 괜찮다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/23.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/23.png" width="100%"></center>
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/24.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/24.png" width="100%"></center>
 
 동일한 파일을 여러 번 열고 다른 부분을 보는 것도 가능하다. 꽤 유용한 기능이다.
 
@@ -311,7 +344,7 @@ print('Hello Pycharm!')
 
 그러면 `Favorites` 창에 해당 리스트에 추가한 파일이 등록된다. 이제 프로젝트 창에서 찾을 필요 없이 바로 파일을 열어볼 수 있다.
 
-<center><img src="/public/img/PyCharm/2019-02-07-PyCharm-usage/25.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/25.png" width="100%"></center>
 
 ---
 
@@ -339,14 +372,168 @@ Soft-wrap 등은 꽤 유용하므로 잘 사용하자.
 
 ## TODO 창(`Alt + 6`)
 
+PyCharm에서는 주석(`#`)을 달면서 앞에 `TODO:`라는 문구를 적으면 해당 주석은 특별히 눈에 띄는 연두색으로 바뀐다.
 
+이 **TODO**들은 앞으로 해야 할 것을 모아 놓은 것이다. 이를 나중에 찾아보려면 PyCharm 아래쪽의 `TODO` 창을 클릭하거나 `Alt + 6`으로 열자.  
+그럼 현재 프로젝트의 어느 부분이 미완성인 채로 남아 있는지 한번에 볼 수 있다. 기본적으로 파일별로 정렬되어 있다.
 
+<center><img src="/public/img/2019-02-07-PyCharm-usage/35.png" width="100%"></center>
 
+---
 
+## Structure 창(`Alt + 7`)
 
+현재 파일이 어떤 구조로(클래스는 무엇을 포함하고, 함수는 어떤 statement들을 포함하는지 등) 되어 있는지 살펴보려면 코드를 한줄한줄 다 뜯어보는 대신 Structure 창에서 볼 수 있다.  
+어떤 변수가 어디에 정의되었는지까지도 볼 수 있다.
 
+---
 
+## Python Console 창(`Alt + 8`)
 
+단축키는 필자가 지정한 것이다.
+
+이는 명령창에서 Python을 실행했을 때 나타나는 것과 같다고 말했었다. 어려울 것 없이 똑같이 사용할 수 있다.
+
+단, 사용 환경에 따라 이런 대화형 창에서는 가용 메모리를 다 쓰지 못하는 경우가 있다. 예를 들어 GPU 메모리를 수 GB씩 쓰는 학습 알고리즘 등의 경우 터미널에서 `python 파일명`으로 실행하면 잘 작동하는데 대화형 창에서 실행하면 작동이 중지되는 것을 종종 볼 수 있다. 참고하자.
+
+---
+
+## Version Control 창(`Alt + 9`)
+
+이건 Git 기능을 PyCharm에 옮겨놓은 것과 같다. git 사용법을 안다면 쉽게 이용 가능하다. 하지만 git을 잘 알고 있다면 그냥 Python의 `terminal` 창을 열어서 git 명령어를 치는 것이 편할 수 있다.
+
+---
+
+## SciView 창(`Alt + 0`)
+
+PyCharm에서 `matplotlib` 등으로 그래프를 그린다면 바로 이 창에 표시가 된다.
+
+여기서 한 장씩 보기 또는 grid 모드로 보기 등을 선택할 수 있고, 확대 및 축소, 1:1, 창 크기에 맞추기 등의 옵션도 가능하다.
+
+그림 오른쪽 위에 작게 표시되는 x 표시를 누르면 그림을 지울 수 있다. 또한 우클릭을 통해 저장하거나 전체 삭제 등의 작업을 할 수 있다. 배경화면 사진으로도 지정할 수 있다(!).
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/37.png" width="100%"></center>
+
+참고로 pycharm에서는 일반적으로 `plt.show()`를 그냥 하면 그림이 표시되지 않는 경우가 있다. 이에 대한 해결법은 [링크](https://stackoverflow.com/questions/24886625/pycharm-does-not-show-plot)를 참고하자.
+
+```python
+plt.interactive(False)
+# plt.show(block=True)
+```
+
+---
+
+## 디버깅(Debugging)
+
+PyCharm의 훌륭한 기능 중 하나이다. 사실 웬만한 코드 편집기에 있기는 한데, python을 쓰는 사람들 중에 이를 활용할 줄 알아서 쓰는 경우는 생각보다 많지 않은 것 같다.  
+(물론 알아서 디버깅을 해 주는 것은 아니다..)
+
+예를 들어 다음과 같은 프로그램을 짰다고 생각해 보자.
+
+```python
+def func(idx):
+    example[idx] = example[idx - 2] + example[idx - 1]
+
+example = [1] * 20
+
+for i in range(20):
+    func(i)
+        
+for i, e in enumerate(example):
+    print('fibonacci({})\t: {:8d}'.format(i, e))
+```
+
+결과는 다음과 갈다.
+
+```
+fibonacci(0)	:        2
+fibonacci(1)	:        3
+fibonacci(2)	:        5
+fibonacci(3)	:        8
+...
+```
+
+피보나치 수열은 2부터 시작하지 않으므로 잘못되었다. 그러면? 디버깅을 시작한다(물론 간단한 예시라서 바로 고칠 수 있지만 우선 넘어간다).
+
+디버깅을 시작하는 방법은 여러 가지가 있다. 이는 코드를 실행할 때와 매우 비슷한데, 초록색 삼각형 대신 벌레 모양의 아이콘을 클릭하면 된다. 그게 다이다. `Run` 대신에 `Debug`를 누를 뿐이다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/38.png" width="60%"></center>
+
+그러나 시작하기 전 **Breakpoint**를 하나 설정한다. 버그가 있다고 생각하는 시점 직전에 설정하면 된다. 우선 이번 예시에서는 example을 선언한 라인에 설정하겠다. 코드 왼쪽, 라인 번호 바로 오른쪽 빈 공간을 클릭하자.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/39.png" width="80%"></center>
+
+그러면 빨간 점과 함께 해당 라인의 배경이 빨간색으로 칠해진다.
+
+그리고 `Run > Debug`를 클릭한다. 벌레를 클릭해도 좋다.  
+뭔가 다른 프로그램이 실행되고 있는 것 같으면, 실행하려는 파일명을 다시 확인하라.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/40.png" width="100%"></center>
+
+디버깅할 때는 코드를 그냥 실행할 때와는 동작이 많이 다르다. 
+- 실행 시에는 코드가 처음부터 끝까지 멈춤 없이 진행된다. 
+    - 물론 사용자의 입력을 기다리거나, 계산이 오래 걸리거나, `sleep()`등으로 지연시키는 경우는 예외이다. 그러나 이 경우에도 입력/계산/시간이 완료되면 자동으로 다음 코드를 지체 없이 빠르게 실행한다.
+- 디버깅 시, 처음에는 **Breakpoints** 까지는 실행 시와 똑같이 순식간에 진행된다. 그러나 **Breakpoints**에 도달하면 그 라인의 실행 직전까지만 코드가 실행된 후 대기 상태로 전환한다(이름이 왜 breakpoint이겠는가?).
+- 그리고 이후 진행은 사용자가 무엇을 클릭했느냐에 따라 달라진다. 디버깅 모드에서는 
+    - 한 줄 실행(딱 한줄만 실행), 
+    - 지정 위치까지 실행(해당 지점을 **Breakpoints** 삼아 그 라인 직전까지 실행), 
+    - 어떤 함수 내부로 들어가 한 줄씩 실행, 
+    - 현재 실행 중인 함수 밖으로 나오는 데까지 실행 
+    - 등등의 옵션이 있는데, 각각의 옵션에 따라 딱 필요한 만큼까지만 코드가 실행된 후 대기 상태로 멈춰 있는다.
+
+우선 `F8`을 눌러보자. `Step Over`이라고 되어 있다. 위 그림에서 빨간 박스 안의 첫 번째 아이콘을 클릭해도 된다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/41.png" width="100%"></center>
+
+- 그럼 한 줄을 실행하고 다음 statement로 넘어가 있다. 빈 줄은 건너뛴다.
+- 실행한 줄 옆에 그 줄의 변수에 들어 있는 값이 업데이트된다. `example` 변수는 `list` 타입이며, 값 1을 20개 갖고 있는 리스트이다.
+- 왼쪽 아래 untitled.py: 7로 값이 바뀌었다. 현재 `untitled.py`의 7번째 줄을 실행하기 직전이란 뜻이다. 
+- 아래쪽 `Variables` 창에서 접근할 수 있는 변수 목록이 업데이트되었다. 현재는 `example` 하나뿐이므로 그 값을 볼 수 있다. 
+
+`Variables` 창에서는 현재 scope에서 접근가능한 변수 목록이 자동으로 업데이트되지만, 미리 보고 싶거나 혹은 계산 결과 등을 보고 싶다면 새로운 *Watch*를 추가할 수 있다. `Variables` 창 아무 곳이나 우클릭하면 새로 보고 싶은 변수 혹은 수식 결과값 등을 추가할 수 있다. 예시로 `example * 2`를 추가해 보았다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/42.png" width="100%"></center>
+
+`Step Over` 외에 다른 버튼들은 다음과 같다.
+
+- `Step Into`(`F7`): 코드가 어떤 함수를 실행하는 경우(예: 예시의 `func`, 내장 함수인 `print` 등), 해당 함수의 내부로 들어가서 실행할 수 있게 해 준다.
+    - 아래 예시는 `func()` 내부로 들어간 모습을 보여준다.
+    - 참고로 argument로 무엇이 전달되었는지 등도 표시된다(아래 그림의 경우 `idx: 5`라고 되어 있는 것을 볼 수 있다). argument뿐 아니라 업데이트되고 있는 변수들 모두 값을 보여주며, 방금 업데이트된(조금 전 실행한 라인의 결과) 값은 회색이 아닌 주황색으로 표시된다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/43.png" width="80%"></center>
+
+- `Step Into My Code`: 위의 `Step Into`는 `print` 같은 내장 함수들 안으로까지 파고들어 코드를 실행한다. 내장 함수가 오작동하는 것은 아니기 때문에 자신의 코드만 검사하고 싶다면 이쪽을 택하자.
+- `Force Step Into`: 말 그대로 강제로 함수 안으로 들어가 실행시킨다. 비활성화된 경우가 많을 것이다.
+- `Step Out`(`Shift + F8`): 실행되고 있는 함수 밖으로 나오는 데까지 실행시킨다. `func`  또는 `print` 끝난 다음 줄로 이동한다.
+- `Run to Cursor`(`Alt + F9`): 커서가 있는 곳으로까지 코드를 실행시킨다. 반복문 내부인 경우 가장 가까운 반복 단계에서 멈춘다.
+
+위의 모든 명령은 **Breakpoint**에서 걸린다. 즉, `Run to Cursor` 등으로 많이 이동하려 해도 그 사이에 **Breakpoint**가 있으면 그 직전까지만 실행된 상태로 멈춘다.
+
+이런 기능들을 활용하면서 디버깅하면 어느 단계에서 코드가 잘못 되었는지 확인할 수 있다.
+
+**Breakpoint**에는 한 가지 중요한 기능이 있다. 지금까지 설정한 것은 코드가 설정된 라인에 가면 무조건 멈추는데, 이 조건을 바꿀 수 있다. **Breakpoint**를 나타내는 빨간 원을 우클릭하자.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/44.png" width="60%"></center>
+
+조건을 설정할 수 있는 창이 나온다.
+
+아래의 `More...`를 클릭하면, 
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/45.png" width="100%"></center>
+
+더 자세한 조건을 설정할 수 있다.
+
+예시를 한 개만 들어보겠다. `func(i)`에 걸린 Breakpoint를 해제하고, 아래처럼 설정한다. `idx == 5` 일 때만 Breakpoint가 작동할 것이다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/46.png" width="80%"></center>
+
+조건을 설정하면 빨간 원 옆에 `?`가 생기면서 condition이 설정되었음을 나타낸다.  
+디버깅 모드를 종료했다가 다시 시작한 다음, 프로그램 끝에 커서를 놓고 `Run to Cursor`를 실행해 보자.  
+그러면 `idx == 5`일 때 `func()` 함수 내부에 멈춰 있음을 볼 수 있다. 한 번 더 `Run to Cursor`로 이동하면 그때서야 끝부분으로 이동한다. 즉 `idx == 5`인 조건을 지났기 때문에 다시 발동하지 않는 것이다.
+
+이 기능은 반복문이 여러 차례 반복된 뒤에야(예: 1000번쯤, `Step Over`를 1000번씩 누르긴 싫을 것이다) 버그가 나타나는 경우 해당 지점 직전에까지 가도록 Breakpoint를 설정하는 방법으로 쉽게 탐색할 수 있다.
+
+잘 쓰면 꽤 유용하니 이것도 익혀 두도록 하자.
 
 ---
 
