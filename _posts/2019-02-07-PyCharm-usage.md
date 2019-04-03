@@ -492,7 +492,7 @@ fibonacci(3)	:        8
 
 `Variables` 창에서는 현재 scope에서 접근가능한 변수 목록이 자동으로 업데이트되지만, 미리 보고 싶거나 혹은 계산 결과 등을 보고 싶다면 새로운 *Watch*를 추가할 수 있다. `Variables` 창 아무 곳이나 우클릭하면 새로 보고 싶은 변수 혹은 수식 결과값 등을 추가할 수 있다. 예시로 `example * 2`를 추가해 보았다.
 
-<center><img src="/public/img/2019-02-07-PyCharm-usage/42.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/42.PNG" width="100%"></center>
 
 `Step Over` 외에 다른 버튼들은 다음과 같다.
 
@@ -500,7 +500,7 @@ fibonacci(3)	:        8
     - 아래 예시는 `func()` 내부로 들어간 모습을 보여준다.
     - 참고로 argument로 무엇이 전달되었는지 등도 표시된다(아래 그림의 경우 `idx: 5`라고 되어 있는 것을 볼 수 있다). argument뿐 아니라 업데이트되고 있는 변수들 모두 값을 보여주며, 방금 업데이트된(조금 전 실행한 라인의 결과) 값은 회색이 아닌 주황색으로 표시된다.
 
-<center><img src="/public/img/2019-02-07-PyCharm-usage/43.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/43.PNG" width="80%"></center>
 
 - `Step Into My Code`: 위의 `Step Into`는 `print` 같은 내장 함수들 안으로까지 파고들어 코드를 실행한다. 내장 함수가 오작동하는 것은 아니기 때문에 자신의 코드만 검사하고 싶다면 이쪽을 택하자.
 - `Force Step Into`: 말 그대로 강제로 함수 안으로 들어가 실행시킨다. 비활성화된 경우가 많을 것이다.
@@ -513,23 +513,23 @@ fibonacci(3)	:        8
 
 **Breakpoint**에는 한 가지 중요한 기능이 있다. 지금까지 설정한 것은 코드가 설정된 라인에 가면 무조건 멈추는데, 이 조건을 바꿀 수 있다. **Breakpoint**를 나타내는 빨간 원을 우클릭하자.
 
-<center><img src="/public/img/2019-02-07-PyCharm-usage/44.png" width="60%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/44.PNG" width="60%"></center>
 
 조건을 설정할 수 있는 창이 나온다.
 
 아래의 `More...`를 클릭하면, 
 
-<center><img src="/public/img/2019-02-07-PyCharm-usage/45.png" width="100%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/45.PNG" width="100%"></center>
 
 더 자세한 조건을 설정할 수 있다.
 
 예시를 한 개만 들어보겠다. `func(i)`에 걸린 Breakpoint를 해제하고, 아래처럼 설정한다. `idx == 5` 일 때만 Breakpoint가 작동할 것이다.
 
-<center><img src="/public/img/2019-02-07-PyCharm-usage/46.png" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/46.PNG" width="80%"></center>
 
 조건을 설정하면 빨간 원 옆에 `?`가 생기면서 condition이 설정되었음을 나타낸다.  
 디버깅 모드를 종료했다가 다시 시작한 다음, 프로그램 끝에 커서를 놓고 `Run to Cursor`를 실행해 보자.  
-그러면 `idx == 5`일 때 `func()` 함수 내부에 멈춰 있음을 볼 수 있다. 한 번 더 `Run to Cursor`로 이동하면 그때서야 끝부분으로 이동한다. 즉 `idx == 5`인 조건을 지났기 때문에 다시 발동하지 않는 것이다.
+그러면 `idx == 5`일 때 `func` 함수 내부에 멈춰 있음을 볼 수 있다. 한 번 더 `Run to Cursor`로 이동하면 그때서야 끝부분으로 이동한다. 즉 `idx == 5`인 조건을 지났기 때문에 다시 발동하지 않는 것이다.
 
 이 기능은 반복문이 여러 차례 반복된 뒤에야(예: 1000번쯤, `Step Over`를 1000번씩 누르긴 싫을 것이다) 버그가 나타나는 경우 해당 지점 직전에까지 가도록 Breakpoint를 설정하는 방법으로 쉽게 탐색할 수 있다.
 
