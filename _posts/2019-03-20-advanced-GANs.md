@@ -8,7 +8,7 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 
 ---
 
-이 글에서는 LSGAN, WGAN, WGAN_GP, DRAGAN, infoGAN, ACGAN, EBGAN, BEGAN 등에 대해 알아보도록 하겠다.
+이 글에서는 catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN 등에 대해 알아보도록 하겠다.
 
 각각에 대해 간단히 설명하면, 
 
@@ -20,8 +20,8 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 - **DRAGAN:** Deep Regret Analytic GAN이다. WGAN에 더불어 gradient penalty를 정규화하고 더 다듬어 gradient penalty schemes(또는 heuristics)를 만들었고, 이를 저자들은 DRAGAN algorithm이라 하였다. 결과적으로 여전히 남아 있던 mode collapse 문제를 더 완화하였다.
 - **EBGAN:** Energy-Based GAN. 지금까지 대부분의 GAN이 D가 real일 확률을 0/1로 나타냈었다면, 이 모델은 그 구조를 깨고 에너지 기반 모델로 바꿨다는 데 의의가 있다. 그래서 D는 단지 real/fake를 구분하는 것이 아닌 G에 대한 일종의 loss function처럼 동작하며, 실제 구현은 Auto-Encoder으로 이루어졌다.
 - **BEGAN:** Boundary Equilibrium GAN으로, EBGAN을 베이스로 하고 Watterstein distance를 사용하였으며, 모델 구조를 단순화하고 이미지 다양성과 품질 간 trade-off를 조절할 수 있는 방법 또한 알아냈다고 한다. 이 논문에서는 스스로 ***milestone***한 품질을 얻었다고 한다.
-- **:** 
-- **:** 
+- **ACGAN:** 
+- **infoGAN:** 
 
 이 글에 소개된 대부분의 GAN은 다음 repository에 구현되어 있다.
 
@@ -549,14 +549,12 @@ DCGAN과는 달리
 
 <center><img src="/public/img/2019-03-20-advanced-GANs/BEGAN6.png" width="100%"></center>
 
-
-
-
 ---
 
 # ACGAN
 
 논문 링크: **[ACGAN](https://arxiv.org/abs/1610.09585)**
+
 
 
 ---
@@ -571,6 +569,8 @@ DCGAN과는 달리
 # 이후 연구들
 
 GAN 이후로 수많은 발전된 GAN이 연구되어 발표되었다.  
-PROGDAN, SLOGAN 등이 있다.
+GAN 학습에 관한 내용을 정리한 것으로는 다음 논문이 있다. [Improved Techniques for Training GANs](https://arxiv.org/abs/1606.03498)
+
+또 다른 것으로는 PROGDAN, SLOGAN 등이 있다.
 
 ---
