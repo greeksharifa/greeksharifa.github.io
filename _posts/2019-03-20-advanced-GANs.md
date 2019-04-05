@@ -17,8 +17,8 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 - **LSGAN:** 진짜 분포 $ p_{data} $와 가짜 데이터 분포 $p_g$를 비슷하게 만들기 위해, decision boundary에서 멀리 떨어진 sample에게 penalty를 주어 진짜 데이터에 근접하게 만드는 아이디어를 사용했다. 이름답게 loss function에는 Least Square가 사용되었고, 이를 통해 더 선명한 출력 이미지와 학습 과정의 높은 안정성을 얻었다. 또한, 이 최적화 과정이 $\chi^2$ divergence 최소화와 같음을 보였다.
 - **WGAN:** 실제 데이터의 분포와 가짜 데이터의 분포의 거리를 측정하는 방법으로 *Wasserstein Distance*를 정의하여 가짜 데이터를 실제 데이터에 근접하도록 하는 방법을 제시하였는데, 기존의 GAN들이 최적 값으로 잘 수렴하지 않던 문제를 해결, 거의 대부분의 데이터셋에서 학습이 잘 되는 GAN을 만들어냈다.
 - **WGAN_GP:** Improved WGAN이다. WGAN이 *k*-Lipschitz constraints를 만족시키기 위해 단순히 clipping을 수행하는데, 이것이 학습을 방해하는 요인으로 작용할 수 있다. WGAN_GP에서는 gradient penalty라는 것을 목적함수에 추가하여 이를 해결하였고, 학습 안정성을 데이터셋뿐만 아니라 모델 architecture에 대해서도 얻어냈다.
-- **DRAGAN:** Deep Regret Analytic GAN.
-- **:** 
+- **DRAGAN:** Deep Regret Analytic GAN이다. WGAN에 더불어 gradient penalty를 정규화하고 더 다듬어 gradient penalty schemes(또는 heuristics)를 만들었고, 이를 저자들은 DRAGAN algorithm이라 하였다. 결과적으로 여전히 남아 있던 mode collapse 문제를 더 완화하였다.
+- **EBGAN:** Energy-Based GAN. 지금까지 대부분의 GAN이 D가 real일 확률을 0/1로 나타냈었다면, 이 모델은 그 구조를 깨고 에너지 기반 모델로 바꿨다는 데 의의가 있다. 그래서 D는 단지 real/fake를 구분하는 것이 아닌 G에 대한 일종의 loss function처럼 동작하며, 실제 구현은 Auto-Encoder으로 이루어졌다.
 - **:** 
 - **:** 
 - **:** 
@@ -148,7 +148,13 @@ $$ D^\ast(x) = {bp_{data}(x) + ap_g(x) \over p_{data}(x) + p_g(x)} $$
 
 중간 과정을 조금 생략하고 적으면,  $b-c=1, b-a=2$라 했을 때
 
-$$ 2C(G) = \mathbb{E}_{x \sim p_{data}} [(D^\ast(x)-c)^2] + \mathbb{E}_{x \sim p_{g}} [(D^\ast(x)-c)^2] \\    = \int_\chi {((b-c)(p_d(x) + p_g(x)) - (b-a)p_g(x))^2 \over p_d(x) + p_g(x)} dx  \\ = \int_\chi {(2p_g(x) - (p_d(x) + p_g(x)))^2 \over p_d(x) + p_g(x)} dx \\ = \chi^2_{Pearson} (p_d + p_g \Vert 2p_g)  $$
+$$ 2C(G) = \mathbb{E}_{x \sim p_{data}} [(D^\ast(x)-c)^2] + \mathbb{E}_{x \sim p_{g}} [(D^\ast(x)-c)^2] $$
+
+$$  = \int_\chi {((b-c)(p_d(x) + p_g(x)) - (b-a)p_g(x))^2 \over p_d(x) + p_g(x)} dx  $$
+
+$$  = \int_\chi {(2p_g(x) - (p_d(x) + p_g(x)))^2 \over p_d(x) + p_g(x)} dx $$
+
+$$  = \chi^2_{Pearson} (p_d + p_g \Vert 2p_g)  $$
 
 그러므로 LSGAN의 최적화 과정은 $b-c=1, b-a=2$일 때 $p_d + p_g$와 $2p_g$ 사이의 Pearson $\chi^2$ divergence를 최소화하는 과정과 같다.
 
@@ -359,7 +365,24 @@ $ \lambda $가 penalty hyperparameter로 사용되는데, 작은 $\lambda$는 to
 - 실제 데이터에 근접한 경우에 D의 $f$의 gradient가 큰 값을 가질 때 어떻게 mode collapse 상황이 생기는지를 특징지었다.
 - 이러한 관찰에 의해 DRAGAN(a novel gradient penalty scheme)을 소개하였고 이것이 mode collapsing 문제를 완화해준다는 것을 보였다.
 
+원래의 GAN들은, sample이 real data에 가까움에도 sharp gradient를 갖기 떄문에 mode collapse의 정의에 의해 이것이 나타난다. 이러한 sharp gradient는 G가 많은 $z$ 벡터들을 하나의 출력값 $x$로 가게끔 하고 따라서 형평성(equilibrium, mode collapse의 정의를 생각하라)을 약화시키도록 한다.  
+그래서 이러한 실패를 막으려면 D에게 다음과 같은 penalty를 줘서 gradient를 정규화시키는 것이다:
 
+$$ \lambda \ \cdot \ \mathbb{E}_{x \sim P_{real}, \ \delta \sim N_d (0, \ cI)} [\Vert \nabla_X D_\theta(x+\delta) \Vert^2 ] $$
+
+이 전략은 GAN 학습의 안정성을 증가시킨다. 이 논문에는 그 결과와 그렇게 되는 이유가 설명되어 있으니 자세한 부분은 이를 참고하자.
+
+그러나, 이 논문에서는 위의 penalty 식이 여전히 불안정하며 지나치게 penalty를 주는(over-penalized) 경우가 있을 수 있고, 따라서 D는 real point $x$와 noise인 $x+\lambda$에게 동일한 "실제 데이터일" 확률을 부여할 수 있다는 것을 발견하였다. 따라서 더 나은 gradient penalty 식은
+
+$$ \lambda \ \cdot \ \mathbb{E}_{x \sim P_{real}, \ \delta \sim N_d (0, \ cI)} [ \ max(0, \ \Vert \nabla_X D_\theta(x+\delta) \Vert^2 - k )\ ] $$
+
+그리고, 실험적인 최적화를 적용한 최종 penalty 식은
+
+$$ \lambda \ \cdot \ \mathbb{E}_{x \sim P_{real}, \ \delta \sim N_d (0, \ cI)} [ \ \Vert \nabla_X D_\theta(x+\delta) \Vert - k \ ]^2 $$
+
+결과적으로 real data의 작은 동요(변화, perturbations)에도 잘 작동하였다. 
+
+이 논문에서 사용한 gradient penalty schemes 또는 heuristics는 DRAGAN algorithm으로 부르기로 하였다.
 
 
 ---
@@ -368,6 +391,61 @@ $ \lambda $가 penalty hyperparameter로 사용되는데, 작은 $\lambda$는 to
 
 논문 링크: **[EBGAN](https://arxiv.org/abs/1609.03126)**
 
+이 논문에서는 D를 data manifold에 가까운 지점에서는 낮은 에너지를, 그렇지 않은 지점에서는 높은 에너지를 갖도록 하는 일종의 energy function으로 보는 Energy-Based GAN을 소개한다. 일반 GAN과 비슷하게 G는 최대한 낮은 에너지를 갖는(즉, 실제 데이터와 비슷한) sample을 생성하고, D는 G가 생성한 이미지들에는 높은 에너지를 부여하도록 한다.  
+D를 energy function으로 봄으로써 다양한 architecture과 loss function에 사용할 수 있게 되었다.  이 논문에서는 D를 auto-encoder로 구현하였다.  
+결과적으로 EBGAN은 학습이 더 안정적이며 또한 고해상도 이미지를 생성하는 데에도 능하다는 것을 보여주었다.
+
+우선 Energy Based Model은,
+- LeCun이 2006년 제안하였으며
+- input space를 하나의 scalar(energy로 지칭된다)로 mapping하는 모델이다.
+- 학습이 제대로 된 경우 낮은 에너지를, 아니면 높은 에너지를 생성하며
+- CNN등의 학습에서 cross entropy loss를 사용하여 loss를 낮춰가는 것과 비슷하다. 여기선 loss랑 energy랑 비슷하게 사용된다.
+
+간단히 이 Energy Based Model을 GAN에 적용시킨 것이 EBGAN이다.
+
+이 논문의 contribution은,
+- GAN 학습에 energy-based를 적용시켰고
+- simple hinge loss에 대해, 시스템이 수렴했을 때 G는 데이터 분포를 따르는 point를 생성하게 된다는 증명과
+- energy를 reconstruction error로 본 auto-encoder architecture로 EBGAN framework를 만들었고
+- EBGAN과 확률적 GAN 모두에게 좋은 결과를 얻을 수 있는 시스템적 실험셋(hyperparameter 등)
+- ImageNet 데이터셋에 대해 256$\times$256 고해상도 이미질르 생성할 수 있음을 보여주었다.
+
+목적함수는 다음과 같이 정의된다. $[\cdot]^+ = max(0,\  \cdot)$이다.
+
+$$ \mathcal{L}_D(x, z) = D(x) + [m - D(G(z))]^{+} $$
+
+$$ \mathcal{L}_G(z) = D(G(z)) $$
+
+EBGAN은 per-pixel Euclidean distance를 사용한다.
+
+찾아낸 해가 optimum인지에 대한 증명은 Theorem 1과 2로 나누어져 증명이 논문에 수록되어 있다. 간략히 소개하기엔 꽤 복잡하므로 넘어간다.
+
+D의 구조를 나타내면 다음과 같다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/EBGAN1.png" width="100%"></center>
+
+왜 auto-encoder를 썼냐 하면:
+
+- D가 오직 0과 1 두 값만 낸다면 한 minibatch 안에서 많은 다른 sample들이 orthogonal에서 멀어질 것임을 뜻한다. 이는 비효율적인 학습을 초래하며, minibatch size를 줄이는 것은 현재 하드웨어 상으로 별로 좋은 옵션이 아니다. 그래서 이 대신 reconstruction-based output을 씀으로써 D에게 좀 더 다양한 target을 제공한다.
+- Auto-encoder는 전통적으로 energy-based model을 표현하는 좋은 모델이다. auto-encoder는 supervision이나 negative sample 같은 것 없이도 energy manifold를 잘 학습할 수 있다. 이는 EBGAN auto-encoding model이 *실제* 데이터를 복원하도록 학습했을 때, D는 그 data manifold를 스스로 찾아낼 수 있다는 뜻이다. 반대로 G로부터의 negative sample이 없다면 binary logistic loss로 학습된 D는 무의미하다는 뜻이기도 하다.
+
+이 논문에서는 **repelling regularizer**라는 것을 제안하는데, 이는 모델이 겨우 몇 개의 $p_{data}$로 뭉쳐 있는 sample들을 생성하는 것을 고의로 막기 위한 것으로 EBGAN auto-encoder model에 최적화된 것이다.   
+Pulling-away Term, PT는 다음과 같이 정의된다:
+
+$$ f_{PT}(S) = \frac{1}{N(N-1)} \sum_i \sum_{j \ne i} \Bigl( \frac{S_i S_j}{\Vert S_i \Vert \Vert S_j \Vert } \Bigr)^2 $$
+
+PT는 minibatch 상에서 동작하고 쌍으로 sample representation을 orthogonalize하려고 한다. 논문에서는 PT로 학습된 EBGAN auto-encoder model을 **EBGAN-PT**라고 부르기로 하였다.
+
+이 논문의 실험결과는 다른 GAN과는 약간 다르다. *Inception score*를 생성 품질을 측정하는 척도로 사용하여 GAN과 EBGAN의 생성 품질을 비교한 것이다. 점수가 높을수록 품질이 좋은 것이도, 각 막대그래프는 해당 점수를 가진 sample의 비율이 얼마나 되는지를 나타낸 것이다. 따라서 각 막대가 오른쪽에 많이 분포할수록 생성 품질이 좋다고 할 수 있다.  
+아래 그림은 일부만 가져온 것이다. 논문에서도 그림이 너무 작으니 pdf에서 확대해서 보라는 것을 추천하고 있다. 그림이 15개 정도 있는데, 실험 조건만 다를 뿐 대부분 비슷한 분포를 보이고 있다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/EBGAN2.png" width="80%"></center>
+
+일반 GAN과 비교하면 MNIST 생성 품질도 확실히 좋은 것을 볼 수 있다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/EBGAN3.png" width="100%"></center>
+
+또 LSUN, CELEBA, ImageNet 데이터셋에 대해서도 실험한 결과들이 논문에 실려 있다. 대부분의 이미지는 품질이 훨씬 좋고 선명한 이미지 품질을 볼 수 있다.
 
 ---
 
@@ -375,6 +453,7 @@ $ \lambda $가 penalty hyperparameter로 사용되는데, 작은 $\lambda$는 to
 
 논문 링크: **[BEGAN](https://arxiv.org/abs/1703.10717)**
 
+$$ \mathcal{L} $$
 
 ---
 
