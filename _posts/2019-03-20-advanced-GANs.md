@@ -19,7 +19,7 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 - **WGAN_GP:** Improved WGAN이다. WGAN이 *k*-Lipschitz constraints를 만족시키기 위해 단순히 clipping을 수행하는데, 이것이 학습을 방해하는 요인으로 작용할 수 있다. WGAN_GP에서는 gradient penalty라는 것을 목적함수에 추가하여 이를 해결하였고, 학습 안정성을 데이터셋뿐만 아니라 모델 architecture에 대해서도 얻어냈다.
 - **DRAGAN:** Deep Regret Analytic GAN이다. WGAN에 더불어 gradient penalty를 정규화하고 더 다듬어 gradient penalty schemes(또는 heuristics)를 만들었고, 이를 저자들은 DRAGAN algorithm이라 하였다. 결과적으로 여전히 남아 있던 mode collapse 문제를 더 완화하였다.
 - **EBGAN:** Energy-Based GAN. 지금까지 대부분의 GAN이 D가 real일 확률을 0/1로 나타냈었다면, 이 모델은 그 구조를 깨고 에너지 기반 모델로 바꿨다는 데 의의가 있다. 그래서 D는 단지 real/fake를 구분하는 것이 아닌 G에 대한 일종의 loss function처럼 동작하며, 실제 구현은 Auto-Encoder으로 이루어졌다.
-- **:** 
+- **BEGAN:** Boundary Equilibrium GAN으로, EBGAN을 베이스로 하고 Watterstein distance를 사용하였으며, 모델 구조를 단순화하고 이미지 다양성과 품질 간 trade-off를 조절할 수 있는 방법 또한 알아냈다고 한다. 이 논문에서는 스스로 ***milestone***한 품질을 얻었다고 한다.
 - **:** 
 - **:** 
 
@@ -453,7 +453,104 @@ PT는 minibatch 상에서 동작하고 쌍으로 sample representation을 orthog
 
 논문 링크: **[BEGAN](https://arxiv.org/abs/1703.10717)**
 
-$$ \mathcal{L} $$
+구글이 내놓은 GAN 논문이다. 이 논문에서 중요한 특징 및 개선점은,
+
+- 모델 구조는 더 단순해졌고, 여전히 빠르고 안정적인 학습이 가능하다.
+- EBGAN을 바탕으로 해 energy와 auto-encoder를 사용한다. 다만 loss는 WGAN의 Wasserstein distance를 사용한다.
+- 대부분의 GAN이 '실제 데이터 분포'와 '가짜 데이터 분포' 사이의 거리를 좁히기 위해 노력해왔다면, BEGAN은 '진짜 데이터에 대한 auto-encoder 데이터 분포'와 '가짜 데이터에 대한 auto-encoder 데이터 분포' 사이의 거리를 계산한다.
+- D가 G를 압도하는 상황이 발생하는 것을 막기 위해 D와 G의 equilibrium을 조절하는 hyperparameter $\gamma$를 도입하였다. *diversity ratio*라고 부른다는데, 이것으로
+    - auto-encoder가 데이터를 복원하는 것과 진짜/가짜를 구별하는 것 사이의 균형을 맞추고
+    - $\gamma$가 낮으면 auto-encoder가 새 이미지를 생성하는 것에 집중한다는 것이므로 이미지 다양성이 떨어진다. 반대는 당연히 반대의 효과를 가진다.
+    - 이 equilibrium 개념을 가져와서 수렴(즉, 학습)이 잘 되었는지를 판별하는 데 쓸 수도 있다.
+
+이 논문은 결과에 비해 수식이 꽤 단순한 편이다.
+
+**auto-encoder의 Wasserstein distance 하한**
+
+우선 pixel-wise auto-encoder를 학습할 때 $ \mathcal{L}: \mathbb{R}^{N_x} \mapsto \mathbb{R}^+$ 를 정의하면,
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/BEGAN1.png" width="100%"></center>
+
+$\mu_{1, 2}$를 auto-encoder loss의 두 분포라 하고, $\Gamma(\mu_1, \mu_2)$를 모든 $\mu_1$과 $\mu_2$의 결합들의 집합이라 하고, $m_{1, 2} \in \mathbb{R}$을 각 평균이라 하면, Wasserstein distance는
+
+$$ W_1(\mu_1, \mu_2) = inf_{\gamma \in \Gamma(\mu_1, \mu_2)} \ \mathbb{E}_{(x_1, x_2) \sim \gamma} [\vert x_1 - x_2 \vert ] $$
+
+Jensen's inequality를 써서
+
+$$ inf \mathbb{E}[ \vert x_1 - x_2 \vert ] \geqslant inf \vert \mathbb{E}[x_1 - x_2] \vert = \vert m_1 - m_2 \vert $$
+
+데이터 분포 간 사이의 거리를 구하려는 것이 아니라 auto-encoder loss distribution의 Wasserstein distance를 구하려고 하는 것이라는 것을 알아둘 필요가 있다.
+
+GAN의 목적함수에서, $\vert m_1 - m_2 \vert $를 최대화하는 것은 딱 두 가지인데, $m_1$이 0으로 가는 것이 auto-encoder가 실제 이미지를 생성하는 것으로 자연스럽기 때문에 선택한 것은 다음 중 (b)이다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/BEGAN2.png" width="100%"></center>
+
+GAN의 목적함수를 정리하면,
+
+$$ \mathcal{L}_D = \mathcal{L}(x;\theta_D) - \mathcal{L}(G(z_D;\theta_G);\theta_D) \qquad \text{for} \ \ \theta_D $$
+
+$$ \mathcal{L}_G = -\mathcal{L}_D \qquad \qquad \qquad \qquad \qquad \qquad \text{for} \ \ \theta_G $$
+
+참고: $ G(\cdot) = G(\cdot, \ \theta_G), \mathcal{L}(\cdot) = \mathcal{L}(\cdot ; \ \theta_D)$이다.
+
+**D와 G의 평형(equilibrium)**
+
+만약 평헝이 이루어졌다면 다음은 당연하다:
+
+$$ \mathbb{E} [ \mathcal{L}(x)] = \mathbb{E}[\mathcal{L}(G(z))] $$
+
+한쪽이 지나치게 강해지는 것을 막기 위해, diversity ratio $\gamma$를 정의하였다:
+
+$$ \gamma = \frac{\mathbb{E}[\mathcal{L}(G(z))]}{ \mathbb{E}[\mathcal{L}(x)] } \in [0, 1]$$
+
+이것으로 조금 위에서 말한 이미지의 다양성과 품질 간 trade-off, D와 G의 평형 등을 모두 얻을 수 있다.
+
+**BEGAN의 목적함수**
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/BEGAN3.png" width="100%"></center>
+
+- $ \mathbb{E}[\mathcal{L}(G(z))]  = \gamma \mathbb{E}[ \mathcal{L}(x)] $를 유지하기 위해 Proportional Control Theory를 사용하였다.
+    - $k_t \in [0, 1]$를 사용하여 얼마나 경사하강법 중 $\mathcal{L}(G(z))$를 강조할 것인지를 조절한다.
+    - $k_0 = 0$
+    - t가 지날수록 값이 커진다.
+- $\lambda_k$는 learning rate와 비슷하다.
+
+**수렴 판별 방법**
+
+조금 전의 equilibrium 컨셉을 생각해서, 수렴과정을 가장 가까운 복원 $\mathcal{L}(x)$를 찾는 것으로 생각할 수 있다.
+
+수렴 측정방법은 다음과 같이 표현 가능하다:
+
+$$ \mathcal{M}_{global} = \mathcal{L}(x) + \vert \gamma \mathcal{L}(x) - \mathcal{L}(G(z_G)) \vert $$
+
+이는 모델이 잘 학습되어 최종 상태에 도달했는지, 아니면 mode collapsing했는지를 판별할 때 쓸 수 있다.
+
+
+**Model architecture**
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/BEGAN4.png" width="100%"></center>
+
+DCGAN과는 달리 
+
+- batch norm
+- dropout
+- transpose convolution
+- exponential growth for convolution filters
+
+등이 다 없다. 모델 구조가 상당히 단순함을 알 수 있다.
+
+**실험 결과**
+
+간단히 말하면..좋다. 
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/BEGAN5.png" width="100%"></center>
+
+예전에 [DCGAN](https://greeksharifa.github.io/generative%20model/2019/03/17/DCGAN/)에서 봤던 interpolating도 잘 됨을 확인할 수 있다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/BEGAN6.png" width="100%"></center>
+
+
+
 
 ---
 
