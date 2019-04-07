@@ -10,6 +10,8 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 
 이 글에서는 catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN 등에 대해 알아보도록 하겠다.
 
+아래쪽의 ACGAN, infoGAN은 발표 시기가 아주 최신은 아니지만 conditional GAN(CGAN)의 연장선상에 있다고 할 수 있기 때문에 따로 빼 놓았다.
+
 각각에 대해 간단히 설명하면, 
 
 - **catGAN(Categorical GAN):** D가 real/fake만 판별하는 대신 class label/fake class을 출력하도록 바꿔서 unsupervised 또는 semi-supervised learning이 가능하도록 하였고 또한 더 높은 품질의 sample을 생성할 수 있게 되었다.
@@ -20,7 +22,7 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 - **DRAGAN:** Deep Regret Analytic GAN이다. WGAN에 더불어 gradient penalty를 정규화하고 더 다듬어 gradient penalty schemes(또는 heuristics)를 만들었고, 이를 저자들은 DRAGAN algorithm이라 하였다. 결과적으로 여전히 남아 있던 mode collapse 문제를 더 완화하였다.
 - **EBGAN:** Energy-Based GAN. 지금까지 대부분의 GAN이 D가 real일 확률을 0/1로 나타냈었다면, 이 모델은 그 구조를 깨고 에너지 기반 모델로 바꿨다는 데 의의가 있다. 그래서 D는 단지 real/fake를 구분하는 것이 아닌 G에 대한 일종의 loss function처럼 동작하며, 실제 구현은 Auto-Encoder으로 이루어졌다.
 - **BEGAN:** Boundary Equilibrium GAN으로, EBGAN을 베이스로 하고 Watterstein distance를 사용하였으며, 모델 구조를 단순화하고 이미지 다양성과 품질 간 trade-off를 조절할 수 있는 방법 또한 알아냈다고 한다. 이 논문에서는 스스로 ***milestone***한 품질을 얻었다고 한다.
-- **ACGAN:** 
+- **ACGAN:** D를 2개의 분류기로 구성하고 목적함수도 두 개로 나눠서 real/fake, 데이터의 class를 구하는 과정을 분리하여 disentangled한 $z$를 만들었다. 
 - **infoGAN:** 
 
 이 글에 소개된 대부분의 GAN은 다음 repository에 구현되어 있다.
@@ -555,13 +557,40 @@ DCGAN과는 달리
 
 논문 링크: **[ACGAN](https://arxiv.org/abs/1610.09585)**
 
+[DCGAN](https://greeksharifa.github.io/generative%20model/2019/03/17/DCGAN/)에서는 $z$가 속한 벡터공간의 각 차원별 특징은 사람이 해석할 수 없는 수준이다. 즉 $z$의 요소를 변화시킬 때 사진이 변화하는 형상은 알 수 있지만, 각각의 차원이 정확히 무슨 역할을 하고 어떤 특징을 갖는지는 알 수가 없다.  
+그러나 해석하기 쉬운 특징량(disentangled latend code)에 의존하는 모델들이 여럿 제안되었는데, 그것은 앞에서 설명했던 [CGAN](https://greeksharifa.github.io/generative%20model/2019/03/19/CGAN/), ACGAN, [infoGAN](https://greeksharifa.github.io/generative%20model/2019/03/20/advanced-GANs/#infogan) 등이 있다.
 
+<center><img src="/public/img/2019-03-20-advanced-GANs/ACGAN1.png" width="50%"></center>
+
+ACGAN이 original GAN 및 CGAN과 다른 점은,
+
+- D는 2개의 분류기로 구성되는데
+    - 하나는 original GAN과 같은 real/fake 판별
+    - 다른 하나는 데이터의 class 판별
+- 목적함수: 맞는 **S**ource의 log-likelihood $L_S$, 맞는 **C**lass의 log-likelihood $L_C$ 두 개로 나누어
+    - $L_S$는 기존 GAN의 목적함수와 같다. 즉 real/fake를 판별하는 것과 관련이 있다.
+    - $L_C$는 그 데이터의 class를 판별하는 것과 관련이 있다. CGAN에서 본 것과 약간 비슷하다.
+    - D는 $L_S+L_C$를 최대화하고
+    - G는 $L_C-L_S$를 최대화하도록 학습된다.
+
+$$ L_S = E[log \ p(S=real \vert X_{real})] +  E[log \ p(S=fake \vert X_{fake})] $$
+
+$$ L_C = E[log \ p(C=c \quad \ \vert X_{real})] + E[log \ p(C=c \ \ \quad  \vert X_{fake})]  $$
+
+실험은 ImageNet과 CIFAR-10에 대해 진행하였다고 한다. 결과는 (위의 BEGAN에 비해) 아주 놀랍지는 않아서(물론 예전 논문이다) 생략한다.
+
+대신 실험 시 사용한 모델 구조를 가져왔다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/ACGAN2.png" width="100%"></center>
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/ACGAN3.png" width="100%"></center>
 
 ---
 
 # infoGAN
 
 논문 링크: **[infoGAN](https://arxiv.org/abs/1606.03657)**
+
 
 
 ---
