@@ -591,7 +591,53 @@ $$ L_C = E[log \ p(C=c \quad \ \vert X_{real})] + E[log \ p(C=c \ \ \quad  \vert
 
 논문 링크: **[infoGAN](https://arxiv.org/abs/1606.03657)**
 
+original GAN은 input vector $z$에 어떠한 제한도 없이 단순히 무작위 값을 집어넣었기 때문에, 이러한 $z$의 각 차원은 역할이 분리되지 않고 심하게 꼬여(entangled) 있다.  
+그러나 이 domain들은 서로 다른 역할을 하는 여러 부분으로 분리될 수 있다. 
 
+그래서 이 논문에서는 noise 부분 $z$와, 데이터 분포의 가장 중요한 의미를 가지는 특징량(latent code) $c$ 두 부분으로 나누었다(CGAN과 비슷). 특징량은 설명 가능한 부분(semantic features), $z$는 원래의 것처럼 데이터를 생성하기 위한 incompressible noise이다.
+
+G에 들어가는 input은 따라서 $G(z, c)$로 표시된다. 그러나 기존 GAN은 단지 $P_G(x \vert c) = P_G(x)$로 처리함으로써 특징량 $c$를 무시해버릴 수 있다. 따라서 정보이론적 정규화를 시행하도록 한다: $c$와 $G(z, c)$ 사이에는 아주 높은 상호정보량이 있기 때문에, $I(c;\ G(z,c))$ 역시 높을 것이다.
+
+참고: 상호정보량은 다음과 같이 KLD로 측정한다. 서로 독립인 경우 0이 되는 것은 상호정보량의 이름에서 봤을 때 직관적이다.
+
+$$ I(X;Y) = D_{KL}(p(x,y) \Vert p(x)p(y)) $$
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/infoGAN1.png" width="50%"></center>
+
+그래서 목적함수는 다음과 같다.
+
+$$ min_G max_D V_I(D, G) = V(D, G) - \lambda I(c; G(z, c)) $$ 
+
+$V(D, G)$는 기존 GAN의 목적함수이다.
+
+상호정보량은 쉽게 구하긴 어렵기 때문에, 논문에서는 이를 직접적으로 구하는 대신 하한을 구해 이를 최대화하는 방식을 썼다. 수식을 중간과정을 일부 생략하고 적으면
+
+$$ I(c; G(z, c)) = H(c) - H(c \vert G(z, c)) = \mathbb{E}_{x \sim G(z,c)} [ \mathbb{E}_{c' \sim P(c \vert x)}[log \ P(c' \vert x)]] + H(c) $$
+
+$$ \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \ \  \ge \mathbb{E}_{x \sim G(z,c)} [ \mathbb{E}_{c' \sim P(c \vert x)}[log \ Q(c' \vert x)]] + H(c) $$
+
+상호정보량 I(c; G(z, c))의  variational lower bound $L_I(G, Q)$를 정의할 수 있는데,
+
+$$ L_I(G, Q) = E_{c \sim P(c), x \sim G(z, c)}[log \ Q(c \vert x)] + H(c) $$
+
+$$ \qquad \qquad \qquad \ = E_{x \sim G(z,c)} [ \mathbb{E}_{c' \sim P(c \vert x)}[log \ Q(c' \vert x)]] + H(c)  $$
+
+$$ \le  I(c; G(z, c)) \ \qquad \qquad \quad $$
+
+그래서 infoGAN은 아래 minimax game을 하는 것이 된다:
+
+$$ min_{G, Q} max_D V_{\text{infoGAN}}(D, G, Q) = V(D, G) - \lambda L_I(G,Q) $$ 
+
+**실험 결과**
+
+semantic features $c$를 적절히 조작하면 생성될 이미지에 어떤 변화를 줄 수 있는지를 중점적으로 보여주었다.  
+MNIST의 경우 숫자의 종류(digit), 회전, 너비 등을 조작할 수 있고, 사람 얼굴의 경우 얼굴의 각도, 밝기, 너비 등을 바꿀 수 있음을 보여주었다.
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/infoGAN2.png" width="100%"></center>
+
+<center><img src="/public/img/2019-03-20-advanced-GANs/infoGAN3.png" width="100%"></center>
+
+더 많은 결과는 논문을 참조하자.
 
 ---
 
