@@ -41,7 +41,7 @@ PyCharm 홈페이지에서 설치 파일을 다운받는다.
 ![04_settings](/public/img/2019-02-07-PyCharm-usage/04.PNG)
 
 설정에서 `Appearance & Behavior` > `Appearance`에서, `Theme`를 `Darcula` 또는 다른 것으로 지정할 수 있다. 아래의 `Use Custom Font`는 메뉴 등의 폰트를 해당 폰트로 지정할 수 있다.  
-참고로, 코드의 폰트는 `Editor` > `Font`에서 지정한다. 이 두 가지 역시 구분하도록 한다. 기본값을 `Monospaced`이다.
+참고로, 코드의 폰트는 `Editor` > `Font`에서 지정한다. 이 두 가지 역시 구분하도록 한다. 기본값은 `Monospaced`이다.
 
 ![05_settings](/public/img/2019-02-07-PyCharm-usage/05.PNG)
 
@@ -114,7 +114,7 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 각 옵션을 대략 설명하면,
 - New: File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 자주 쓰는 기능이지만 안타깝게도 단축키는 설정이 어려운 것 같다.
 - Cut, Copy, Paste 등은 설명하지 않겠다.
-- Copy Parh, Copy Relative Path: 각각 해당 디렉토리 또는 파일의 절대/상대 경로를 복사한다. 이미지나 데이터 파일 등의 경로를 써야 할 때 유용하게 쓸 수 있다. 단, 사용 환경에 따라 디렉토리 구분자가 `/`, `\`, `//` 등으로 달라지는 경우가 있으니 주의.
+- Copy Path, Copy Relative Path: 각각 해당 디렉토리 또는 파일의 절대/상대 경로를 복사한다. 이미지나 데이터 파일 등의 경로를 써야 할 때 유용하게 쓸 수 있다. 단, 사용 환경에 따라 디렉토리 구분자가 `/`, `\`, `//` 등으로 달라지는 경우가 있으니 주의.
 - Refactor: 해당 디렉토리 또는 파일의 이름을 변경한다. 이때 이 파일명을 사용하는 코드(file open 등)이 있으면 그 코드를 자동으로 수정하게 할 수 있다.
 - Find Usages: 해당 파일을 참조하는 코드를 살펴볼 수 있다. Refactor와 같이 사용하면 좋다.
 - Show in Explorer: 해당 디렉토리나 파일이 있는 디렉토리를 탐색기나 Finder 등에서 열 수 있다.
