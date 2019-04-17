@@ -17,7 +17,7 @@ VQA task는 이미지(Visual, 영상으로도 확장 가능)와 그 이미지에
 > VQA Challenge는 2016년 CVPR을 시작으로 매년 개최되며, 1년마다 발전된 기술을 평가하고 시상하고 있다. 2017년부터는 같은 질문에 비슷한 이미지를 보여주고 다른 답변을 하는 데이터를 VQA 2.0 데이터셋 통해 수집한 후 인공지능의 유효성을 엄밀히 평가한다.  
 > 예를 들어 ‘누가 안경을 쓰고 있나?’라는 질문에 비슷한 이미지가 주어지면 ‘남자’ 또는 ‘여자’의 답을 가질 수 있도록 데이터의 분포를 고려하는 것. VQA 2.0 데이터셋은 20만 개의 이미지에 대해 110만 개의 질문과 1100만 이상의 답을 가지며, VQA 1.0보다 1.8배의 데이터를 가지고 있다.
 
-VQA Challenge는 컴퓨터비전패턴인식학회(IEEE Computer Vision and Pattern Recognition, CVPR) 워크샵 중 하나이며, [VQA Homepage](https://visualqa.org/) 에서 매년 열린다. 관심 있으면 클릭해 보자.
+VQA Challenge는 컴퓨터비전패턴인식학회(IEEE Computer Vision and Pattern Recognition, CVPR) 워크샵 중 하나이며, [VQA Homepage](https://visualqa.org/)에서 매년 열린다. 관심 있으면 클릭해 보자.
 
 국내 연구팀의 대표적인 성과로는 2016년 네이버랩스 2위, 2018년 서울대 장병탁교수팀 2위가 있겠다.
 

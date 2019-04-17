@@ -99,7 +99,7 @@ RNN Encoder-Decoder를 학습시킬 때, 기존 말뭉치들에서 각각의 phr
 
 학습과정에 대한 자세한 사항은 논문을 참조하기 바란다.  
 
-**Conclustion**  
+**Conclusion**  
 결과적으로 RNN Encoder-Decoder는 phrase pairs 내에 있는 언어학적 규칙을 포착하고, 적절하게 구성된 target phrases 또한 제안하는 데에도 좋은 성능을 보이는 것으로 확인되었다. 
 
 **Structure of Encoder**  
