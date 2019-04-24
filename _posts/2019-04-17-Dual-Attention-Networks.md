@@ -32,6 +32,16 @@ vision과 language 사이의 세밀한 상호작용을 포착하기 위해 우�
 
 ## 서론(Introduction)
 
+Vision과 language는 실제 세계를 이해하기 위한 인간 지능의 중요한 두 부분이다. 이는 AI에도 마찬가지이며, 최근 딥러닝의 발전으로 인해 이 두 분야의 경계조차 허물어지고 있다. VQA, Image Captioning, image-text matching, visual grounding 등등.
+
+최근 기술 발전 중 하나는 attention mechanism인데, 이는 이미지 등 전체 데이터 중에서 중요한 부분에만 '집중'한다는 것을 구현한 것으로 많은 신경망의 성능을 향상시키는 데 기여했다.   
+시각 데이터와 텍스트 데이터 각각에서는 attention이 많은 발전을 가져다 주었지만, 이 두 모델을 결합시키는 것은 연구가 별로 진행되지 못했다.  
+
+VQA같은 경우 "(이미지 속) 저 우산의 색깔은 무엇인가?" 와 같은 질문에 대한 답은 '우산'과 '색깔'에 집중함으로써 얻을 수 있고, 이미지와 텍스트를 매칭하는 task에서는 이미지 속 'girl'과 'pool'에 집중함으로써 해답을 얻을 수 있다.
+
+<center><img src="/public/img/2019-04-17-Dual-Attention-Networks/01.png" width="80%"></center>
+
+이 논문에서 우리는 vision과 language의 fine-grained 상호작용을 위한 visual 모델과 textual 모델 두 가지를 잘 결합한 Dual Attention Networks(DANs)를 소개한다. 
 
 ---
 
@@ -53,7 +63,6 @@ vision과 language 사이의 세밀한 상호작용을 포착하기 위해 우�
 
 
 
-<center><img src="/public/img/2019-04-07-Pix2Pix/08.png" width="100%"></center>
 
 
 
