@@ -484,7 +484,7 @@ sequential_model = nn.Sequential(
 )
 ```
 
-여러 [Layer](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#pytorch-layer%EC%9D%98-%EC%A2%85%EB%A5%98)와 [Activation function](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-Building-Model/#pytorch-activation-function%EC%9D%98-%EC%A2%85%EB%A5%98)들을 조합하여 하나의 sequential model을 만들 수 있다. 역시 상대적으로 복잡하지 않은 모델 중 모델의 구조가 sequential한 모델에만 사용할 수 있다.
+여러 [Layer](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#pytorch-layer%EC%9D%98-%EC%A2%85%EB%A5%98)와 [Activation function](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#pytorch-activation-function%EC%9D%98-%EC%A2%85%EB%A5%98)들을 조합하여 하나의 sequential model을 만들 수 있다. 역시 상대적으로 복잡하지 않은 모델 중 모델의 구조가 sequential한 모델에만 사용할 수 있다.
 
 ### 함수로 정의하는 방법
 
