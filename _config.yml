@@ -1,7 +1,7 @@
 # Site Info
 title: YW & YY
-tagline: "YW & YY's blog"
-description: "YW & YY's blog powered by jekyll theme"
+tagline: "YW & YY's Python, Maching Learning, Deep Learning"
+description: "YW & YY's ML blog powered by jekyll theme"
 baseurl: ""
 url: https://greeksharifa.github.io
 logo: '/public/img/logo.png'
@@ -33,7 +33,7 @@ author:
     # facebook:  <hide>
     # twitter:   <hide> https://twitter.com/Li_Zhihao
     # weibo:     <hide> http://weibo.com/41173780
-    email:     mailto:sharifa@snu.ac.kr
+    email:     mailto:greeksharifa@gmail.com
 
 # Navigation (2nd level links supported)
 nav:
