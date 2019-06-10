@@ -28,22 +28,13 @@ MovieQA 홈페이지는 http://movieqa.cs.toronto.edu/home/ 이다.
 
 우리는 video와 text 모두를 통해 자동적 스토리 이해를 평하가는 MovieQA 데이터셋을 소개할 것이다. 이 데이터셋은 408개의 영화(movie)에 대한 아주 다양한 의미의 14,944개의 질문으로 이루어져 있다. 이 질문들은 '누가' '누구에게' '무엇을' '어떻게' '왜' 했는지까지의 범위를 포함한다. 각 질문에는 5개의 답이 있는데 1개만 맞는 답이며 4개는 사람이 직접 만든 가짜 답이다. 우리의 데이터셋은 영상클립, 줄거리, 제목, 자막, DVS 등 많은 소스들을 포함한다는 점에서 유일하다. 우리는 이 데이터셋을 다양한 통계적 방법으로 분석했으며 존재하는 QA 기술들을 확장하여 열린 의미의 QA로 하는 것은 어렵다는 것을 보일 것이다. 우리는 이 데이터셋을 평가방법과 함께 일반에 공개하여 도전을 장려할 것이다.
 
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/01.png" width="100%"></center>
+
 ---
 
 ## 서론(Introduction)
 
-Computer Vision(CV), Natural Language Processing (NLP), Knowledge Representation & Reasoning (KR)를 결합한 이미지 캡셔닝(captioning)은 지난 몇 년간 급격히 발전해 왔다. 그러나 이 task는 별로 "AI-complete"하지 못하다(그다지 인공"지능"스럽지 않다).  
-그러면 "AI-complete"하지 못하다는 것은 무엇인가? 이 논문에서는 좀 더 자유로운 형식에 열린 형태인 VQA(Visual Question Answering)을 제안하고자 한다. 이러한 답변을 제대로 하기 위해서는 다양한 AI 능력들이 필요하다:
-
-- 세밀한 인식("이 피자엔 어떤 종류의 치즈가 있는가?")
-- 물체 감지("얼마나 많은 자전거가 있는가?")
-- 행동인식("남자는 울고 있는가?")
-- 지식기반 추론("이것은 채식주의자를 위한 피자인가?")
-- 상식 추론("이 사람은 20/20 시력을 갖고 있는가?", "이 사람은 회사를 원하는가?" 참고: 20/20은 1.0/1.0과 같음)
-
-또한 VQA 시스템은 자동으로 평가가 가능해야 한다. 이 논문에서는 열린 문제(open-ended, 답변의 가능성이 다양함)와 다지선다형(multiple-choice) task를 둘 다 본다. 다지선다형 문제는 열린 문제와는 다르게 단지 정해진 답변 중 옳은 것을 고르기만 하면 된다.
-
-데이터셋은 COCO 데이터셋에 5만 개를 더 추가했다. 데이터 수는 초록에도 나와 있다. 또한 이미지 캡셔닝이랑 무엇이 다른지에 대한 설명도 나와 있다.
+이미지 태깅, 물체인식 및 분할, 액션 인식, 이미지/비디오 캡셔닝 등 많은 시각적 task에서 레이블링된 많은 양의 데이터가 사용 가능해진 것과 함께 딥러닝에서 빠른 발전이 있었다. 
 
 
 ---
@@ -62,7 +53,6 @@ Computer Vision(CV), Natural Language Processing (NLP), Knowledge Representation
 
 사실 이미지 한장이면 충분할 듯 하다.
 
-<center><img src="/public/img/2019-04-17-Visual-Question-Answering/01.png" width="100%"></center>
 
 잘 안 보이니까 일부만 확대하겠다.
 
