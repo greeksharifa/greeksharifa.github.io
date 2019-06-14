@@ -125,11 +125,23 @@ Perceptron은 선형 결합(Linear combination)으로 계산되기 때문에, $x
 
 <center><img src="/public/img/2019-06-10-Deep-Learning-01/05.png" width="100%" alt="XOR"></center>
 
+<center><img src="/public/img/2019-06-10-Deep-Learning-01/06.png" width="100%" alt="XOR"></center>
+
 > 출처: http://www.cs.stir.ac.uk/courses/ITNP4B/lectures/kms/2-Perceptrons.pdf
 
 위 그림과 같이 XOR은 한 직선으로 구분해내는 것이 불가능하다. 
 
 ### MLP(Multi-Layer Perceptron, 다층 퍼셉트론)
+
+위에서 설명한 것은 Sinle-Layer Perceptron이다. 즉, 퍼셉트론이 한 층으로만 되어 있다는 것인데, 이를 여러 층으로 쌓으면 위에서 본 XOR을 퍼셉트론이로 구분해내는 것이 가능해진다.
+
+<center><img src="/public/img/2019-06-10-Deep-Learning-01/08.png" width="100%" alt="Multi-Layer Perceptron"></center>
+
+<center><img src="/public/img/2019-06-10-Deep-Learning-01/07.png" width="100%" alt="Multi-Layer Perceptron"></center>
+
+> 출처: https://gomguard.tistory.com/178
+
+자세한 것은 [여기](https://gomguard.tistory.com/178)를 참조하면 될 것 같다.
 
 
 

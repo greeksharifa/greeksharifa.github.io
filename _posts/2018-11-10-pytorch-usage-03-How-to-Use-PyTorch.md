@@ -12,6 +12,7 @@ tags: [PyTorch]
 [PyTorch 사용법 - 01. 소개 및 설치](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-01-introduction/)  
 [PyTorch 사용법 - 02. Linear Regression Model](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/)  
 **[PyTorch 사용법 - 03. How to Use PyTorch](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/)**  
+[PyTorch 사용법 - 04. Recurrent Neural Network Model](https://greeksharifa.github.io/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/)  
 
 ---
 
@@ -911,10 +912,12 @@ z.grad: None
 
 학습할 때 알아두면 괜찮은 것들을 대략 정리해보았다. 어떤 식으로 학습하는 것이 좋은지(learning rate 선택 기준 등)는 양이 너무 방대하기에 여기에는 적지 않는다.
 
+## CUDA: use GPU
+
 **[CUDA](https://pytorch.org/docs/stable/cuda.html)**
 
 - `torch.cuda.is_available()`: 학습을 시킬 때는 GPU를 많이 사용한다. GPU가 사용가능한지 알 수 있다.
-- `torch.cuda.device(device)`: 어느 devide(GPU나 CPU)를 쓸 지 선택한다.
+- `torch.cuda.device(device)`: 어느 device(GPU나 CPU)를 쓸 지 선택한다.
 - `torch.cuda.device_count()`: 현재 선택된 device의 수를 반환한다.
 - `torch.cuda.init()`: C API를 쓰는 경우 명시적으로 호출해야 한다.
 - `torch.cuda.set_device(device)`: 현재 device를 설정한다.

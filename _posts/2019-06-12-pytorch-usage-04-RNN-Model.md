@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PyTorch 사용법 - 02. Linear Regression Model
+title: PyTorch 사용법 - 04. Recurrent Neural Network(RNN) Model
 author: YouWon
 categories: PyTorch
 tags: [PyTorch]
@@ -10,13 +10,13 @@ tags: [PyTorch]
 
 [PyTorch 사용법 - 00. References](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/)  
 [PyTorch 사용법 - 01. 소개 및 설치](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-01-introduction/)  
-**[PyTorch 사용법 - 02. Linear Regression Model](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/)**  
+[PyTorch 사용법 - 02. Linear Regression Model](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/)  
 [PyTorch 사용법 - 03. How to Use PyTorch](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/)  
-[PyTorch 사용법 - 04. Recurrent Neural Network Model](https://greeksharifa.github.io/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/)  
+**[PyTorch 사용법 - 04. Recurrent Neural Network Model](https://greeksharifa.github.io/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/)**  
 
 ---
 
-이 글에서는 가장 기본 모델인 Linear Regression Model의 Pytorch 프로젝트를 살펴본다.  
+이 글에서는 RNN(Recurrent Neural Network) 기본 모델의 Pytorch 프로젝트를 살펴본다.  
 
 사용되는 torch 함수들의 사용법은 [여기](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/)에서 확인할 수 있다.
 
