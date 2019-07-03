@@ -743,36 +743,38 @@ print(loss)
 
 > reduce args will be deprecated, please use reduction='none' instead.
 
-따라서 `reduction` argument를 쓰도록 하자. 지정할 수 있는 종류는 'none' | 'mean' | 'sum' 세 가지이다. 기본값은 mean으로 되어 있다.
+따라서 `reduction` argument를 쓰도록 하자. 지정할 수 있는 종류는 'none' \| 'mean' \| 'sum' 세 가지이다. 기본값은 mean으로 되어 있다.
 
-- nn.L1Loss: 각 원소별 차이의 절댓값을 계산한다.
+- **nn.L1Loss**: 각 원소별 차이의 절댓값을 계산한다.
 ![L1](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/02.PNG)
-- nn.MSELoss: Mean Squared Error(평균제곱오차) 또는 squared L2 norm을 계산한다.
+- **nn.MSELoss**: Mean Squared Error(평균제곱오차) 또는 squared L2 norm을 계산한다.
 ![MSE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/03.PNG)
-- nn.CrossEntropyLoss: Cross Entropy Loss를 계산한다. nn.LogSoftmax() and nn.NLLLoss()를 포함한다. weight argument를 지정할 수 있다.
+- **nn.CrossEntropyLoss**: Cross Entropy Loss를 계산한다. nn.LogSoftmax() and nn.NLLLoss()를 포함한다. weight argument를 지정할 수 있다.
 ![CE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/04.PNG)
-- nn.CTCLoss: Connectionist Temporal Classification loss를 계산한다.
-- nn.NLLLoss: Negative log likelihood loss를 계산한다.
+- **nn.CTCLoss**: Connectionist Temporal Classification loss를 계산한다.
+- **nn.NLLLoss**: Negative log likelihood loss를 계산한다.
 ![NLL](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/05.PNG)
-- nn.PoissonNLLLoss: target이 poission 분포를 가진 경우 Negative log likelihood loss를 계산한다.
+- **nn.PoissonNLLLoss**: target이 poission 분포를 가진 경우 Negative log likelihood loss를 계산한다.
 ![PNLL](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/06.PNG)
-- nn.KLDivLoss: Kullback-Leibler divergence Loss를 계산한다.
+- **nn.KLDivLoss**: Kullback-Leibler divergence Loss를 계산한다.
 ![KLDiv](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/07.PNG)
-- nn.BCELoss: Binary Cross Entropy를 계산한다. 
+- **nn.BCELoss**: Binary Cross Entropy를 계산한다. 
 ![BCE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/08.PNG)
-- nn.BCEWithLogitsLoss: Sigmoid 레이어와 BCELoss를 하나로 합친 것인데, 홈페이지의 설명에 따르면 두 개를 따로 쓰는 것보다 이 함수를 쓰는 것이 조금 더 수치 안정성을 가진다고 한다.
+- **nn.BCEWithLogitsLoss**: Sigmoid 레이어와 BCELoss를 하나로 합친 것인데, 홈페이지의 설명에 따르면 두 개를 따로 쓰는 것보다 이 함수를 쓰는 것이 조금 더 수치 안정성을 가진다고 한다.
 ![BCE](/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/09.PNG)
-- 이외에 MarginRankingLoss, HingeEmbeddingLoss, MultiLabelMarginLoss, SmoothL1Loss, SoftMarginLoss, MultiLabelSoftMarginLoss, CosineEmbeddingLoss, MultiMarginLoss, TripletMarginLoss를 계산하는 함수들이 있다. 필요하면 찾아보자.
+- 이외에 **MarginRankingLoss, HingeEmbeddingLoss, MultiLabelMarginLoss, SmoothL1Loss, SoftMarginLoss, MultiLabelSoftMarginLoss, CosineEmbeddingLoss, MultiMarginLoss, TripletMarginLoss**를 계산하는 함수들이 있다. 필요하면 찾아보자.
 
 ## Pytorch Optimizer의 종류
 
 참조: [torch.optim](https://pytorch.org/docs/stable/optim.html)
 
 [여기](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#nnmodule-%EB%82%B4%EC%9E%A5-%ED%95%A8%EC%88%98)에도 간략하게 언급했었지만, GPU CUDA를 사용할 계획이라면 optimizer를 정의하기 전에 미리 해놓아야 한다(`model.cuda()`). 공식 홈페이지에 따르면, 
+
 > If you need to move a model to GPU via .cuda(), please do so before constructing optimizers for it. Parameters of a model after .cuda() will be different objects with those before the call.
 In general, you should make sure that optimized parameters live in consistent locations when optimizers are constructed and used.
 
 이유를 설명하자면 
+
 1. optimizer는 argument로 model의 parameter를 입력받는다.
 2. `.cuda()`를 쓰면 모델의 parameter가 cpu 대신 gpu에 올라가는 것이므로 다른 object가 된다.
 3. 따라서 optimizer에 model parameter의 위치를 전달한 후 `.cuda()`를 실행하면, 학습시켜야 할 parameter는 GPU에 올라가 있는데 optimizer는 cpu에 올라간 엉뚱한 parameter 위치를 참조하고 있는 것이 된다.
@@ -793,7 +795,7 @@ optimizer에 대해 알아 두어야 할 것이 조금 있다.
 5. `zero_grad()` method는 optimizer에 연결된 parameter들의 gradient를 0으로 만든다.
 6. `torch.optim.lr_scheduler`는 epoch에 따라 learning rate를 조절할 수 있다.
 
-Optimizer의 종류:
+**Optimizer의 종류:**
 - optim.Adadelta, optim.Adagrad, optim.Adam, optim.SparseAdam, optim.Adamax
 - optim.ASGD, *optim.LBFGS*
 - optim.RMSprop, optim.Rprop
@@ -801,24 +803,150 @@ Optimizer의 종류:
 
 LBFGS는 per-parameter 옵션이 지원되지 않는다. 또한 memory를 다른 optimizer에 비해 많이 잡아먹는다고 한다.
 
-lr Scheduler의 종류:
-- optim.lr_scheduler.LambdaLR
-- optim.lr_scheduler.StepLR
-- optim.lr_scheduler.MultiStepLR
-- optim.lr_scheduler.ExponentialLR
-- optim.lr_scheduler.CosineAnnealingLR
-- optim.lr_scheduler.ReduceLROnPlateau
+## Pytorch LR(Learning Rate) Scheduler의 종류
 
-예를 들면 이렇게 사용한다고 한다. 사용 방법은 scheduler마다 조금씩 다르니 [홈페이지](https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate)를 참조하자.
+LR(Learning Rate) Scheduler는 미리 지정한 횟수의 epoch이 지날 때마다 lr을 감소(decay)시켜준다.  
+이는 학습 초기에는 빠르게 학습을 진행시키다가 minimum 근처에 다다른 것 같으면 lr을 줄여서 더 최적점을 잘 찾아갈 수 있게 해주는 것이다.
+
+종류는 여러 개가 있는데, 마음에 드는 것을 선택하면 된다. 아래쪽에 어떻게 lr이 변화하는지 그림을 그려 놓았다.
+
+**lr Scheduler의 종류:**
+- optim.lr_scheduler.LambdaLR: lambda 함수를 하나 받아 그 함수의 결과를 lr로 설정한다.
+- optim.lr_scheduler.StepLR: 특정 step마다 lr을 gamma 비율만큼 감소시킨다.
+- optim.lr_scheduler.MultiStepLR: StepLR과 비슷한데 매 step마다가 아닌 지정된 epoch에만 gamma 비율로 감소시킨다.
+- optim.lr_scheduler.ExponentialLR: lr을 지수함수적으로 감소시킨다.
+- optim.lr_scheduler.CosineAnnealingLR: lr을 cosine 함수의 형태처럼 변화시킨다. lr이 커졌다가 작아졌다가 한다.
+- **optim.lr_scheduler.ReduceLROnPlateau**: 이 scheduler는 다른 것들과는 달리 학습이 잘 되고 있는지 아닌지에 따라 동적으로 lr을 변화시킬 수 있다. 보통 validation set의 loss를 인자로 주어서 사전에 지정한 epoch동안 loss가 줄어들지 않으면 lr을 감소시키는 방식이다.
+
+각 scheduler는 공통적으로 `last_epoch` argument를 갖는다. Default value로 -1을 가지며, 이는 초기 lr을 optimizer에서 지정된 lr로 설정할 수 있도록 한다. 
+
+<center><img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/10.PNG" width="100%" alt="10_Scheduler"></center>
+
+
+코드는 아래와 같이 작성하였다.
 ```python
-lambda1 = lambda epoch: epoch // 30
-lambda2 = lambda epoch: 0.95 ** epoch
-scheduler = LambdaLR(optimizer, lr_lambda=[lambda1, lambda2])
-for epoch in range(100):
-    scheduler.step()
-    train(...)
-    validate(...)
+from torch import optim
+from torch import nn
+
+import re
+import random
+from matplotlib import pyplot as plt
+
+
+class Model(nn.Module):
+
+    def __init__(self):
+        super(Model, self).__init__()
+        self.linear1 = nn.Linear(5, 3)
+
+    def forward(self, x):
+        return self.linear1(x)
+
+
+model = Model()
+
+optimizer = optim.Adam(model.parameters(), lr=1.0)
+
+
+scheduler_list = [
+    optim.lr_scheduler.ReduceLROnPlateau(optimizer=optimizer,
+                                         mode='min',
+                                         factor=0.5,
+                                         patience=3, ), # 이외에도 인자가 많다. 찾아보자.
+    optim.lr_scheduler.LambdaLR(optimizer=optimizer,
+                                lr_lambda=lambda epoch: 1 / (epoch+1)),
+    optim.lr_scheduler.StepLR(optimizer=optimizer,
+                              step_size=5,
+                              gamma=0.5),
+    optim.lr_scheduler.MultiStepLR(optimizer=optimizer,
+                                   milestones=[2, 5, 10, 11, 28],
+                                   gamma=0.5),
+    optim.lr_scheduler.ExponentialLR(optimizer=optimizer,
+                                     gamma=0.5),
+    optim.lr_scheduler.CosineAnnealingLR(optimizer=optimizer,
+                                         T_max=10,
+                                         eta_min=0),
+]
+
+reObj = re.compile(r'<torch\.optim\.lr_scheduler\.(.+) object.*>')
+
+
+for i, scheduler in enumerate(scheduler_list):
+    scheduler_name = reObj.match(str(scheduler)).group(1)
+    print(scheduler_name)
+
+    lr_list = []
+
+    for epoch in range(1, 30+1):
+        if str(scheduler_name) == 'ReduceLROnPlateau':
+            scheduler.step(random.randint(1, 50))
+        else:
+            scheduler.step()
+
+        lr = optimizer.param_groups[0]['lr']
+        # print('epoch: {:3d}, lr={:.6f}'.format(epoch, lr))
+        lr_list.append(lr)
+
+    plt.subplot(3, 2, i + 1)
+
+    plt.title(scheduler_name)
+    plt.ylim(0, 1.1)
+    plt.plot(lr_list)
+
+plt.show()
+# plt.savefig('scheduler')
 ```
+
+
+조금 더 자세한 설명은 [홈페이지](https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate)를 참조하자.
+```python
+from torch import optim
+from torch import nn
+
+
+class Model(nn.Module):
+
+    def __init__(self):
+        super(Model, self).__init__()
+        self.linear1 = nn.Linear(5, 3)
+
+    def forward(self, x):
+        return self.linear1(x)
+
+
+model = Model()
+optimizer = optim.Adam(model.parameters(), lr=1.0) # 1.0은 보통 너무 크다. 하지만 예시이므로 1을 주었다.
+
+# Learning Rate가 scheduler에 따라 어떻게 변하는지 보려면 이곳을 바꾸면 된다.
+scheduler = optim.lr_scheduler.LambdaLR(optimizer=optimizer,
+                                        lr_lambda=lambda epoch: 0.95 ** epoch)
+
+for epoch in range(1, 100+1):
+    for param_group in optimizer.param_groups:
+        lr = param_group['lr']
+    print('epoch: {:3d}, lr={:.6f}'.format(epoch, lr))
+    scheduler.step()
+```
+
+결과:
+
+```
+epoch:   1, lr=1.000000
+epoch:   2, lr=1.000000
+epoch:   3, lr=0.950000
+epoch:   4, lr=0.902500
+epoch:   5, lr=0.857375
+epoch:   6, lr=0.814506
+epoch:   7, lr=0.773781
+epoch:   8, lr=0.735092
+epoch:   9, lr=0.698337
+epoch:  10, lr=0.663420
+...
+```
+
+
+
+
 
 ---
 
@@ -1071,6 +1199,8 @@ param_groups     [{'lr': 0.001, 'momentum': 0.9, 'dampening': 0, 'weight_decay':
 - `model.train()`과 `model.eval()`은 모델이 학습 모드인지, 테스트 모드인지를 정하는 것이다. 이는 dropout이나 batchnorm이 있는 모델의 경우 학습할 때와 테스트할 때 모델이 달라지기 때문에 세팅하는 것이다(또한 필수이다). `torch.no_grad()`는 (대개 일시적으로) 해당 범위 안에서 gradient 계산을 중지시킴으로써 메모리 사용량을 줄이고 계산 속도를 빨리 하는 것이다. [참고](https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615)
 - `optimizer.zero_grad()`를 사용하는 이유. [참고](https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#train-model)
 - Pytorch 코드들 중에는 `torch.autograd.Variable`을 사용한 경우가 많다. Pytorch 0.4.0 버전 이후로는 Tensor 클래스에 통합되어 더 이상 쓸 필요가 없다. [참고(3번 항목)](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import)
+- 역시 Pytorch 코드들 중에는 loss를 tensor가 아닌 그 값을 가져올 때 `loss.data[0]` 등의 표현식은 에러를 뱉는 경우가 많다. 이는 0.4 이후 버전의 PyTorch에서는 `loss.item()`으로 그 값을 가져오도록 변경되었기 때문이다. 
+    - Pytorch의 loss는 이전에는 `Variable`에 할당된 `size=(1, )`의 tensor였지만 이제는 scalar 형태이다.
 
 
 댓글로 문의하시면 확인 후 포스팅에 추가 가능합니다.
