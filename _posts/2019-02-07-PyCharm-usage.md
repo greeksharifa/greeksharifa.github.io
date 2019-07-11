@@ -3,13 +3,13 @@ layout: post
 title: PyCharm 사용법
 author: YouWon
 categories: References
-tags: [usage]
+tags: [PyCharm, usage]
 ---
 
 ---
 
 PyCharm은 Jetbrains 사에서 제작 및 배포하는 **유료**/무료 프로그램이다.  
-Professional 버전은 돈을 주고 구입하거나, 학생이라면 학생인증을 하고 무료로 사용할 수 있다.
+Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생인증](https://www.jetbrains.com/student/)을 하고 무료로 사용할 수 있다.
 
 글이 길기 때문에 사용법을 검색하고 싶다면 `Ctrl + F` 키를 누른 다음 검색해 보자.
 
