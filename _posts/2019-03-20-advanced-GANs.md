@@ -23,7 +23,7 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 - **EBGAN:** Energy-Based GAN. 지금까지 대부분의 GAN이 D가 real일 확률을 0/1로 나타냈었다면, 이 모델은 그 구조를 깨고 에너지 기반 모델로 바꿨다는 데 의의가 있다. 그래서 D는 단지 real/fake를 구분하는 것이 아닌 G에 대한 일종의 loss function처럼 동작하며, 실제 구현은 Auto-Encoder으로 이루어졌다.
 - **BEGAN:** Boundary Equilibrium GAN으로, EBGAN을 베이스로 하고 Watterstein distance를 사용하였으며, 모델 구조를 단순화하고 이미지 다양성과 품질 간 trade-off를 조절할 수 있는 방법 또한 알아냈다고 한다. 이 논문에서는 스스로 ***milestone***한 품질을 얻었다고 한다.
 - **ACGAN:** D를 2개의 분류기로 구성하고 목적함수도 두 개로 나눠서 real/fake, 데이터의 class를 구하는 과정을 분리하여 disentangled한 $z$를 만들었다. 
-- **infoGAN:** 
+- **infoGAN:** 많은 GAN들이 그 내부의 parameter가 심하게 꼬여(entangled) 있고 이는 parameter의 어떤 부분이 어느 역할을 하는지 전혀 알 수 없게 만든다. infoGAN에서는 이를 잘 분리하여, semantic feature를 잘 조작하면 어떤 인자를 조작했느냐에 따라 생성되는 이미지의 각도, 밝기, 너비 등을 임의로 조작할 수 있게 하였다.
 
 이 글에 소개된 대부분의 GAN은 다음 repository에 구현되어 있다.
 
