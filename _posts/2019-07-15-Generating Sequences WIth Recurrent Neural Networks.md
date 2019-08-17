@@ -6,12 +6,12 @@ categories: [NLP(Natural Language Processing) / RNNs]
 tags: [PyTorch]
 ---
 
-이 글에서는 2013년 8월 Alex Graves가 발표한 Generating Sequences With Recurrent Neural Networks
+이 글에서는 2013년 8월 Alex Graves가 발표한 Generating Sequences With Recurrent Neural Networks를 살펴보도록 한다.
 
 [연구자의 홈페이지](https://www.cs.toronto.edu/~graves/)도 있다.
 
 
-논문을 적절히 번역 및 요약하는 것으로 시작한다. 많은 부분을 생략할 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.
+논문을 적절히 번역 및 요약하는 것으로 시작한다. 중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.
 
 ---
 
@@ -135,4 +135,106 @@ Wikipedia는 글의 주제와 같은 수천 단어 이상일 수 있는 넓은 �
 ## 4. 손글씨 예측(Handwriting Prediction)
 
 예측 네트워크가 실수값 시퀀스(real-valued sequences)도 충분히 잘 생성할 수 있는지 확인하기 위해 *online* 손글씨 데이터에 이를 적용해 보았다(*online* 필기 데이터란 그냥 필기 이미지만 있는 *offline* 데이터와는 달리 펜으로 해당 필기를 할 때 어떤 궤적을 그렸는지에 대한 정보가 있는 것이다). IAM-OnDB 데이터셋을 사용하였다.  
+IAM-OnDB 데이터셋은 221명의 사람이 Lancaster-Oslo-Bergen 말뭉치를 쓴 필기 데이터이다.
+
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/07.png" width="100%" alt="IAM-OnDB"></center>
+
+### 4.1 혼합밀도 출력값(Mixture Density Outputs)
+
+*Mixture Density Outputs*의 아이디어는 혼합분포(mixture distribution)을 parameterise하기 위해 신경망의 출력값을 사용하는 것이다. 출력값의 부분집합은 혼합가중치(mixture weights)를 정의하기 위해, 남은 출력값은 독립적인 mixture components를 parameterise하도록 사용된다. Misture weight 출력값은 정규화, softmax 등을 거쳐 의미 있는 범위 안에 포함되도록 한다. 이는 Boltzmann machine이나 다른 무방향 모델과는 달리 density가 정규화되고 직접 미불되며 편향되지 않는 샘플을 고른다는 점에서 대비된다.
+
+손글씨 실험을 위해, 기본적인 RNN 구조는 Section 2에서 변하지 않았다. 각 입력벡터 $x_t$는 이전 입력으로부터의 pen offset을 정의하는 실수쌍 $x_1, x_2$로 구성되며, 벡터가 stroke로 끝나면(다음 벡터가 기록되기 전에 펜이 보드에서 떨어지면) 1, 아니면 0의 값을 갖는 이진값 $x_3$로 구성된다.  
+이변수 혼합 가우시안(A mixture of bivariate Gaussians)이 $x_1, x_2$를 베르누이 분포가 $x_3$을 예측한다.
+
+각 출력벡터 $y_t$는 stroke로 끝날 확률 $e$, 평균 $\mu^j$, 표준편차 $\sigma^j$, 상관계수 $\rho^j$, $M$ mixture components에 대한 혼합가중치 $\pi^j$로 구성된다.
+
+$$ x_t \in \mathbb{R} \times \mathbb{R} \times \{0, 1\} $$
+
+$$ y_t = \Big( e_t, \{ \pi_t^j, \mu_t^j, \sigma_t^j, \rho_t^j \}_{j=1}^M \Big) $$
+
+평균과 표준편차는 2차원 벡터이고 나머지는 스칼라이다. 벡터 $y_t$는 네트워크 출력값 $\hat{y}_t$로부터 얻어지며, 
+
+$$ \hat{y}_t = \Big( \hat{e}_t, \{ \hat{w}_t^j, \mu_t^j, \sigma_t^j, \rho_t^j \}_{j=1}^M \Big) = b_y + \sum_{n=1}^N W_{h^ny}h_t^n$$
+
+이다.
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/08.png" width="100%" alt="Mixture Density"></center>
+
+이 density map에서 두 종류의 예측을 볼 수 있다:
+
+- 글자를 따라 존재하는 작은 점들(지금 써지고 있는 stroke를 예측)
+- 세 개의 큰 원(다음 stroke의 시작점이 되는, stroke의 끝을 예측)
+
+끝획(end-of-stroke)는 더 큰 분산을 갖는데 이는 화이트보드에서 펜이 떨어졌을 때 그 위치가 기록되지 않기 때문이며, 따라서 다음 stroke와의 거리가 커질 수 있다.
+
+아래쪽 열지도는 갈은 sequence에서 misture component weights를 보여준다. 
+
+### 4.2 실험(Experiments)
+
+네트워크는 RMSProp을 사용하였으며 가중치 업데이트 식은 다음과 갈다.
+
+<img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/09.png" width="70%" alt="Equations">
+
+손글씨 예측 결과는 다음과 같다.
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/10.png" width="100%" alt="Handwriting Results"></center>
+
+---
+
+## 5. 손글씨 합성(Handwriting Synthesis)
+
+손글씨 합성은 sequence가 매우 다른 길이를 가질 수 있고 그 사이의 alignment는 데이터가 생성되기 전까지 알려지지 않는다는 점에서 어렵다. 이는 각 글자가 필체, 크기, 펜 속도 등에 따라 매우 달라지기 때문이다.
+
+연속적인 예측을 할 수 있는 한 신경망 모델은 RNN transducer이다. 그러나 이전 연구 결과들은 만족스럽지 못하다.
+
+
+### 5.1. 합성 네트워크(Synthesis Network)
+
+네트워크 구조는 다음과 같다.
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/11.png" width="100%" alt="Architecture"></center>
+
+길이 $U$의 글자 sequence $c$가 주어지고 길이 $T$의 data sequence $x$가 주어졌을 때, 시간 $t(1\le t \le T)$에서 $c$로의 soft window $w_t$는 $K$ Gaussian 함수의 혼합에 의해 정의된다:
+
+$$ \phi(t, u) = \sum_{k=1}^K \alpha_t^k \text{exp} \Big( - \beta_t^k (\kappa_t^k - u)^2 \Big) $$
+
+$$ w_t = \sum_{u=1}^U \phi(t, u)c_u $$ 
+
+$\phi(t, u)$는 시간 $t$에서 $c_u$의 window weight이고, $\kappa_t$는 window의 위치를 제어하며, $\beta_t$는 window의 너비를, $\alpha_t$는 혼합 내에서 window의 중요도를 제어한다.
+
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/12.png" width="100%" alt="Window"></center>
+
+### 5.2. 실험(Experiments)
+
+실험은 이전 section과 동일한 입력 데이터를 사용한다. IAM-OnDB는 이제 글자 sequence $c$를 정의한다. 
+
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/13.png" width="100%" alt="Synthesis Results"></center>
+
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/14.png" width="100%" alt="Synthesis Results"></center>
+
+### 5.3~5.5 Sampling(Unbiased, Biased, Prime Sampling)
+
+Bias를 다르게 하는 등의 변형을 거쳐 손글씨를 합성한 결과를 몇 개 가져왔다.
+
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/15.png" width="100%" alt="Synthesis Results"></center>
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/16.png" width="100%" alt="Synthesis Results"></center>
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/17.png" width="100%" alt="Synthesis Results"></center>
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/18.png" width="100%" alt="Synthesis Results"></center>
+
+<center><img src="/public/img/2019-07-15-Generating Sequences WIth Recurrent Neural Networks/19.png" width="100%" alt="Synthesis Results"></center>
+
+
+## Refenrences
+
+논문 참조. 33개의 레퍼런스가 있다.
+
+---
 
