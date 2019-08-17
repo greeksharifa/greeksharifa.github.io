@@ -23,7 +23,7 @@ VQA Challenge는 컴퓨터비전패턴인식학회(IEEE Computer Vision and Patt
 
 VQA Challenge라고 하는 것은 Aishwarya Agrawal, Jiasen Lu, Stanislaw Antol, Margaret Mitchell, C. Lawrence Zitnick, Dhruv Batra, Devi Parikh 등의 연구자가 일종의 Challenge로서 제안한 것이기 때문에, 이를 중심으로 설명한다. 그렇기 때문에 논문이기도 하면서 동시에 새로운 task를 제안하겠다는 느낌이 강하다.
 
-논문을 적절히 번역 및 요약하는 것으로 시작한다. 많은 부분을 생략할 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.
+중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.
 
 ---
 
