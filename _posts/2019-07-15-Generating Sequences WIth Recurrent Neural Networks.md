@@ -3,7 +3,7 @@ layout: post
 title: Generating Sequences With Recurrent Neural Networks
 author: YouWon
 categories: [NLP(Natural Language Processing) / RNNs]
-tags: [PyTorch]
+tags: [Paper_Review, NLP]
 ---
 
 이 글에서는 2013년 8월 Alex Graves가 발표한 Generating Sequences With Recurrent Neural Networks를 살펴보도록 한다.

@@ -3,7 +3,7 @@ layout: post
 title: Attention Is All You Need
 author: YouWon
 categories: [NLP(Natural Language Processing) / RNNs]
-tags: [PyTorch]
+tags: [Paper_Review, NLP]
 ---
 
 이 글에서는 2017년 *Ashish Vaswani* 등 연구자가 발표한 Attention Is All You Need를 살펴보도록 한다.
