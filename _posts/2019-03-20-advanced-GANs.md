@@ -27,14 +27,16 @@ tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]
 
 이 글에 소개된 대부분의 GAN은 다음 repository에 구현되어 있다.
 
-[pytorch version](https://github.com/znxlwm/pytorch-generative-model-collections)  
-[tensorflow version](https://github.com/hwalsuklee/tensorflow-generative-model-collections?fbclid=IwAR1VSa7c9QOdVcrzuPX995FBwqI1WhOAl43jM2HSzp84sfMw2hMZwsB_KPQ)
+[Pytorch version](https://github.com/znxlwm/pytorch-generative-model-collections)  
+[Tensorflow version](https://github.com/hwalsuklee/tensorflow-generative-model-collections?fbclid=IwAR1VSa7c9QOdVcrzuPX995FBwqI1WhOAl43jM2HSzp84sfMw2hMZwsB_KPQ)
 
 ---
 
 # catGAN
 
 논문 링크: **[catGAN](https://arxiv.org/abs/1511.06390)**
+
+2015년 11월 처음 제안되었다.
 
 데이터의 전체 또는 일부가 unlabeled인 경우 clustering은 $p_x$를 직접 예측하는 generative model과 분포를 예측하는 대신 데이터를 직접 잘 구분된 카테고리로 묶는 discriminative model로 나누어지는데, 이 모델에서는 이 두 아이디어를 합치고자 했다.  
 논문에서 이 **catGAN**은 original GAN이 $real, fake$만 구분하던 것을 real인 경우에는 그 class가 무엇인지까지 구분하게($C_1, C_2, ..., C_N, C_{fake}$)했다는 점에서 original GAN의 일반화 버전이라고 하였으며, 또한 [RIM(Regularized Information Maximization)](https://papers.nips.cc/paper/4154-discriminative-clustering-by-regularized-information-maximization)에서 regularization이 추가가 되었듯 catGAN에선 G가 D에 대한 regularization을 하기 때문에 RIM의 확장판이라고도 하였다.
@@ -86,6 +88,8 @@ MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 
 논문 링크: **[Semi-supervised GAN](https://arxiv.org/abs/1606.01583)**
 
+2016년 6월 처음 제안되었다.
+
 위의 catGAN과 거의 비슷한 역할을 한다. 전체적인 구조도 비슷하다.
 
 논문 자체가 짧고 목적함수에 대한 내용이 없어서 자세한 설명은 생략한다. 특징을 몇 개만 적자면, 
@@ -103,6 +107,8 @@ MNIST나 CIFAR-10 데이터도 잘 생성해내는 것을 확인하였다.
 # LSGAN
 
 논문 링크: **[LSGAN](https://arxiv.org/abs/1611.04076)**
+
+2016년 11월 처음 제안되었다.
 
 original GAN의 sigmoid cross entropy loss function은 vanishing gradients 문제가 있고, 따라서 출력 이미지는 실제 이미지에 비해선 분명히 품질이 떨어진다. 
 
@@ -200,6 +206,8 @@ LSGAN도 GAN의 역사에서 꽤 중요한 논문 중 하나이다.
 
 논문 링크: **[WGAN](https://arxiv.org/abs/1701.07875)**
 
+2017년 1월 처음 제안되었다.
+
 소스코드: [pytorch](https://github.com/martinarjovsky/WassersteinGAN)
 
 참고할 만한 사이트: [링크](https://medium.com/@jonathan_hui/gan-wasserstein-gan-wgan-gp-6a1a2aa1b490)
@@ -287,7 +295,9 @@ $$ \\ $$
 
 # Improved WGAN
 
-논문 링크: **[WGAN](https://arxiv.org/abs/1704.00028)**
+논문 링크: **[WGAN_GP](https://arxiv.org/abs/1704.00028)**
+
+2017년 3월 처음 제안되었다.
 
 소스코드: [pytorch](https://github.com/caogang/wgan-gp)
 
@@ -343,6 +353,8 @@ $$ \\ $$
 
 논문 링크: **[DRAGAN](https://arxiv.org/abs/1705.07215)**
 
+2017년 5월 처음 제안되었다.
+
 소스코드: [tensorflow](https://github.com/kodalinaveen3/DRAGAN?fbclid=IwAR3mPLo134C3xx4QerWUCCTWqCVfH7seDkPK5Rlkr_trAjxwYfCHWvcs1dk), [pytorch](https://github.com/jfsantos/dragan-pytorch)
 
 참고할 만한 사이트: [링크](https://lernapparat.de/more-improved-wgan/)
@@ -390,6 +402,8 @@ $$ \lambda \ \cdot \ \mathbb{E}_{x \sim P_{real}, \ \delta \sim N_d (0, \ cI)} [
 ---
 
 # EBGAN
+
+2016년 9월 처음 제안되었다.
 
 논문 링크: **[EBGAN](https://arxiv.org/abs/1609.03126)**
 
@@ -454,6 +468,8 @@ PT는 minibatch 상에서 동작하고 쌍으로 sample representation을 orthog
 # BEGAN
 
 논문 링크: **[BEGAN](https://arxiv.org/abs/1703.10717)**
+
+2017년 3월 처음 제안되었다.
 
 구글이 내놓은 GAN 논문이다. 이 논문에서 중요한 특징 및 개선점은,
 
@@ -557,6 +573,8 @@ DCGAN과는 달리
 
 논문 링크: **[ACGAN](https://arxiv.org/abs/1610.09585)**
 
+2016년 10월 처음 제안되었다.
+
 [DCGAN](https://greeksharifa.github.io/generative%20model/2019/03/17/DCGAN/)에서는 $z$가 속한 벡터공간의 각 차원별 특징은 사람이 해석할 수 없는 수준이다. 즉 $z$의 요소를 변화시킬 때 사진이 변화하는 형상은 알 수 있지만, 각각의 차원이 정확히 무슨 역할을 하고 어떤 특징을 갖는지는 알 수가 없다.  
 그러나 해석하기 쉬운 특징량(disentangled latend code)에 의존하는 모델들이 여럿 제안되었는데, 그것은 앞에서 설명했던 [CGAN](https://greeksharifa.github.io/generative%20model/2019/03/19/CGAN/), ACGAN, [infoGAN](https://greeksharifa.github.io/generative%20model/2019/03/20/advanced-GANs/#infogan) 등이 있다.
 
@@ -590,6 +608,8 @@ $$ L_C = E[log \ p(C=c \quad \ \vert X_{real})] + E[log \ p(C=c \ \ \quad  \vert
 # infoGAN
 
 논문 링크: **[infoGAN](https://arxiv.org/abs/1606.03657)**
+
+2016년 6월 처음 제안되었다.
 
 original GAN은 input vector $z$에 어떠한 제한도 없이 단순히 무작위 값을 집어넣었기 때문에, 이러한 $z$의 각 차원은 역할이 분리되지 않고 심하게 꼬여(entangled) 있다.  
 그러나 이 domain들은 서로 다른 역할을 하는 여러 부분으로 분리될 수 있다. 

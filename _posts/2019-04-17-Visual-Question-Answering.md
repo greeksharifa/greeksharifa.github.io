@@ -3,7 +3,7 @@ layout: post
 title: VQA(Visual Question Answering)
 author: YouWon
 categories: [Computer Vision]
-tags: [Paper_Review, VQA]
+tags: [Paper_Review, VQA, Task_Proposal]
 ---
 
 ---

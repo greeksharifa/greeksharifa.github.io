@@ -3,7 +3,7 @@ layout: post
 title: MovieQA(Movie Question Answering)
 author: YouWon
 categories: [Computer Vision]
-tags: [Paper_Review, VQA]
+tags: [Paper_Review, VQA, Task_Proposal]
 ---
 
 ---

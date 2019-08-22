@@ -6,7 +6,7 @@ categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]
 ---
 
-이 글에서는 2013년 8월 Alex Graves가 발표한 Generating Sequences With Recurrent Neural Networks를 살펴보도록 한다.
+이 글에서는 2013년 8월(v1) Alex Graves가 발표한 Generating Sequences With Recurrent Neural Networks를 살펴보도록 한다.
 
 [연구자의 홈페이지](https://www.cs.toronto.edu/~graves/)도 있다.
 

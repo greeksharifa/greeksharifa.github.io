@@ -6,7 +6,7 @@ categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]
 ---
 
-이 글에서는 2018년 *Matthew E. Peters* 등 연구자가 발표한 Deep contextualized word representations를 살펴보도록 한다.
+이 글에서는 2018년 2월 *Matthew E. Peters* 등이 발표한 Deep contextualized word representations를 살펴보도록 한다.
 
 참고로 이 논문의 제목에는 ELMo라는 이름이 들어가 있지 않은데, 이 논문에서 제안하는 모델의 이름이 ELMo이다.  
 Section 3에서 나오는 이 모델은 **E**mbeddings from **L**anguage **Mo**dels이다.
@@ -17,7 +17,9 @@ Section 3에서 나오는 이 모델은 **E**mbeddings from **L**anguage **Mo**d
 
 # ELMo - Deep contextualized word representations
 
-논문 링크: **[Deep contextualized word representations](https://arxiv.org/abs/1802.05365)**
+논문 링크: **[Deep contextualized word representations](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf)**
+
+홈페이지: **[OpenAI Blog](https://openai.com/blog/language-unsupervised/)**
 
 ## 초록(Abstract)
 
