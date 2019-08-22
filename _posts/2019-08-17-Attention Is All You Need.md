@@ -97,7 +97,7 @@ $$ Attention(Q, K, V) = \text{softmax} \Big( \frac{QK^T}{\sqrt{d_k}} \Big) V $$
 
 #### 3.2.2. Multi-Head Attention
 
-$d_model$차원 key, value, query로 단일 attention function을 쓰는 것보다 query, key, value를 각각 $d_k, d_k, d_v$차원으로 각각 다르게 $h$번 학습시키는 것이 낫다. 여기서 $h$번 학습시킨다는 것은 단지 반복을 한다는 것이 아니라, 각 sub-layer에 동일한 부분이 $h$개 존재한다는 뜻이다. 위 그림의 오른쪽을 보자.  
+$d_{model}$차원 key, value, query로 단일 attention function을 쓰는 것보다 query, key, value를 각각 $d_k, d_k, d_v$차원으로 각각 다르게 $h$번 학습시키는 것이 낫다. 여기서 $h$번 학습시킨다는 것은 단지 반복을 한다는 것이 아니라, 각 sub-layer에 동일한 부분이 $h$개 존재한다는 뜻이다. 위 그림의 오른쪽을 보자.  
 이렇게 각각 따로 계산된 $h$쌍의 $d_v$차원 출력은 이어붙인(concatenate) 후 한번 더 선형 함수에 통과시켜(projected) 최종 출력값이 된다.
 
 식으로 나타내면 다음과 같다.
