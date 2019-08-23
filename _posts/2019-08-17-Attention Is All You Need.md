@@ -16,6 +16,8 @@ tags: [Paper_Review, NLP]
 
 논문 링크: **[Attention Is All You Need](https://arxiv.org/abs/1706.03762)**
 
+Pytorch code: **[Harvard NLP](http://nlp.seas.harvard.edu/2018/04/03/attention.html)**
+
 ## 초록(Abstract)
 
 성능 좋은 변환(번역) 모델은 인코더와 디코더를 포함한 복잡한 recurrent 또는 convolutional 신경망에 기반을 두고 있다. 최고 성능을 내는 모델 역시 attention mechanism을 사용하여 인코더와 디코더를 연결한다.  
@@ -200,10 +202,7 @@ Machine Translation, Model Variations, English Constituency Parsing에 대한 �
 (여러 번 나온 말이지만) **Transformer**는 recurrence와 convolution을 모두 제거한, 오직 attention에만 의존하는 새로운 종류의 모델이다. 이 모델은 계산량을 줄이고 병렬화를 적용해 학습 속도가 훨씬 빠를 뿐만 아니라 그 성능 또한 state-of-the-art를 달성하는 수준에 이르렀다.  
 또한 이러한 attention에 기반한 모델은 다른 task들에 적용할 수도 있다. 비단 텍스트뿐만 아니라 이미지, 오디오나 비디오 등의 상대적으로 큰 입력-출력을 요하는 task들에 효과적으로 사용할 수 있을 것이다.
 
-
-### code
-
-코드는 [여기](https://github.com/tensorflow/tensor2tensor)에서 찾아볼 수 있다.
+이 모델을 학습하고 평가한 코드는 [여기](https://github.com/tensorflow/tensor2tensor)에서 찾아볼 수 있다.
 
 ---
 
