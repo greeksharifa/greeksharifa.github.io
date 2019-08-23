@@ -102,14 +102,14 @@ $d_{model}$차원 key, value, query로 단일 attention function을 쓰는 것�
 
 식으로 나타내면 다음과 같다.
 
-$$ \text{MultiHead}(Q, K, V) = \text{Concat}(head_1, ..., , head_h)W^O, where \ head_i=\text{Attention}(QW_i^Q, KW_i^K, VW_i^V) $$
+$$ \text{MultiHead}(Q, K, V) = \text{Concat}(head_1, ..., head_h)W^O, where \ head_i=\text{Attention}(QW_i^Q, KW_i^K, VW_i^V) $$
 
 여기서 $ W_i^Q \in \mathbb{R}^{d_{model} \times d_k}, W_i^K \in \mathbb{R}^{d_{model} \times d_k}, W_i^V \in \mathbb{R}^{d_{model} \times d_v}, W^O \in \mathbb{R}^{hd_v \times d_{model}} $이며, 논문에서는 $h=8, d_k=d_v=d_{model}/h = 64$를 사용하였다.  
 각 head의 차원이 줄었기 때문에 단일 head attention과 계산량은 비슷하다.
 
 #### 3.2.3. Applications of Attention in our Model
 
-- "encoder-decoder attnetion" layer에서, query는 이전 디코더 layer에서 오며 memory key와 value는 encoder의 출력에서 온다. 이는 디코더가 입력의 모든 위치(원소)를 고려할 수 있도록 한다.
+- "encoder-decoder attention" layer에서, query는 이전 디코더 layer에서 오며 memory key와 value는 encoder의 출력에서 온다. 이는 디코더가 입력의 모든 위치(원소)를 고려할 수 있도록 한다.
 - 인코더는 self-attention layer를 포함한다. 여기서 모든 key, value, query는 같은 곳(인코더의 이전 layer의 출력)에서 온다. 따라서 인코더의 각 원소는 이전 layer의 모든 원소를 고려할 수 있다.
 - 이는 디코더에서도 비슷하다. 그러나 auto-regressive 속성을 보존하기 위해 디코더는 출력을 생성할 시 다음 출력을 고려해서는 안 된다. 즉 이전에 설명한 **masking**을 통해 이전 원소는 참조할 수 없도록 한다. 이 masking은 dot-product를 수행할 때 $-\infty$로 설정함으로써 masking out시킨다. 이렇게 설정되면 softmax를 통과할 때 0이 되므로 masking의 목적이 달성된다.
 
@@ -165,8 +165,8 @@ Batch size | 25000
 Hardware | 8개의 P100 GPU
 Schedule | Base Model: 12시간=10만 step $\times$ 0.4초/step, Big Model: 36시간=30만 step
 Optimizer | Adam($\beta_1=0.9, \beta_2=0.98, \epsilon=10^{-9} $)
-Learning Rate | $lrate = d_{model}^{-0.5} \cdot \text{min} (step\_num^{-0.5}, step\_num \cdot warmup\_steps^{-1.5}) $
-$warmup\_steps$ | 4000
+Learning Rate | $lrate = d_{model}^{-0.5} \cdot \text{min} ($step\_num$^{-0.5}$, step\_num $\cdot$ warmup\_steps $^{-1.5}) $ 
+warmup\_steps | 4000
 Regularization | Residual Dropout($P_{drop} = 0.1$)
 
 ---
