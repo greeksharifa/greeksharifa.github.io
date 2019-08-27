@@ -82,7 +82,7 @@ GPT와 가장 유사한 연구는 신경망을 언어모델링 목적함수를 �
 
 학습은 두 단계로 진행된다. 
 
-1. 큰 말뭉치에서 고용량 언어모델을 학습한다.
+1. 큰 말뭉치에서 높은 역량의 언어모델을 학습한다.
 2. 분류 데이터를 써서 특정 과제에 맞춰 모델을 세부조정한다.
 
 ### 3.1. Unsupervised pre-training
@@ -97,7 +97,7 @@ GPT는 언어모델로 Transformer의 변형인 multi-layer *Transformer decoder
 
 $$ h_0 = UW_e + W_p \qquad \qquad \qquad \qquad \ \ \qquad $$
 
-$$ h_l = \text{transformer\_block}(h_{l-1}) \ \ \forall l \in [1, n] $$
+$$ h_l = \text{transformer_block}(h_{l-1}) \ \ \forall l \in [1, n] $$
 
 $$ P(u) = \text{softmax}(h_n W_e^T) \qquad \qquad \qquad \quad \ \ \qquad $$
 
@@ -113,7 +113,7 @@ $$ P(y \vert x^1, ..., x^m) = \text{softmax}(h_l^m W_y) $$
 
 이는 다음 우도를 최대화하도록 한다:
 
-$$ L_2(\mathcal{C}) = \sum_(x, y) \log P(y \vert x^1, ..., x^m) $$
+$$ L_2(\mathcal{C}) = \sum_{(x, y)} \log P(y \vert x^1, ..., x^m) $$
 
 세부조정 단계에 언어모델을 보조 목적함수로 포함시키는 것은 다음 이유에서 학습을 돕는다.
 
@@ -124,7 +124,7 @@ $$ L_2(\mathcal{C}) = \sum_(x, y) \log P(y \vert x^1, ..., x^m) $$
 
 구체전으로, weight $\lambda$에 대해 다음 목적함수를 최적화한다:
 
-$$ L_3(\mathcal{L}) = L_2(\mathcal{L}) + \lambda \ast L_1(\mathcal{L}) $$
+$$ L_3(\mathcal{C}) = L_2(\mathcal{C}) + \lambda \ast L_1(\mathcal{C}) $$
 
 종합적으로, 세부조정 단계에서 추가된 parameter는 $W_y$과 구분자 token을 위한 embedding 뿐이다.
 
@@ -142,7 +142,7 @@ $$ L_3(\mathcal{L}) = L_2(\mathcal{L}) + \lambda \ast L_1(\mathcal{L}) $$
 
 **Question Answering and Commonsense Reasoning**
 
-문맥 문서 $z$, 질문 $q$, 가능한 답변 $\{a_k\}$이라 하면, $[z ; q ; \$ ; a_k]$로 연결하고 입력의 개수는 답변의 개수만큼 생성된다.
+문맥 문서 $z$, 질문 $q$, 가능한 답변 $\{a_k\}$이라 하면, `[z; q; $; a_k]`로 연결하고 입력의 개수는 답변의 개수만큼 생성된다.
 
 <center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/01.png" width="100%" alt="Architecture"></center>
 
@@ -155,23 +155,60 @@ $$ L_3(\mathcal{L}) = L_2(\mathcal{L}) + \lambda \ast L_1(\mathcal{L}) $$
 
 **Unsupervised pre-training**
 
+언어모델을 학습하기 위한 dataset으로 7천 개의 다양한 분야의 미출판 책에 대한 내용을 포함하는 [BooksCorpus](https://arxiv.org/abs/1506.06724)를 사용한다. 이는 특히 넓은 범위에 걸친 언어적 정보를 포함하기에 중요하다. 대안이 되는 dataset으로는 [ELMo](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/)에서 사용된 1B Word Benchmark가 있다. 이는 크기는 비슷하지만 문장들이 서로 섞여 있어 장거리 의존정보가 파괴되어 있다. 
+
+사용하는 dataset 정보는 아래와 같다.
+
+<center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/02.png" width="100%" alt="List of dataset"></center>
+
+
 **Model specifications**
+
+Transformer의 세부 세팅을 대부분 따르지만, Encoder-Decoder 중 Decoder만 사용한다. 이 decoder는 [원본](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/#31-encoder-and-decoder-stacks)은 6번 반복되지만, GPT는 12번 반복한다.
+
+Parameter | Descrption
+-------- | --------
+State dimension | decoder: 768, inner state: 3072
+Batch size | 64 random sample $\times$ 512 token/sample
+Schedule | 100 epochs, 
+Optimizer | Adam
+Learning Rate | 0~2000 step까지 2.5e-4까지 증가, 이후 cosine 함수를 따라 0으로 서서히 감소
+warmup\_steps | 4000
+Regularization | L2($w=0.01$)
+Activation | GELU(Gaussian Error Linear Unit)
 
 **Fine-tuning details**
 
+비지도 사전학습에서 사용한 hyperparameter를 그대로 사용했다. $p=0.1$의 dropout을 추가했다.  
+learning rate는 6.25e-5와 batch size는 32, 세부조정은 3 epoch 동안 진행되었으며 learning rate decay는 warmup을 포함해 각 학습당 0.2%였고, $\lambda=0.5$이다.
+
 ### 4.2. Supervised fine-tuning
 
-Stanford Question Answering Dataset은 10만여 개의 질답 쌍으로 구성되어 있다. 질문과 그에 대한 답을 포함하는 위키피디아 지문이 주어지면, 해당 지문에서 답이 되는 부분을 찾는 과제이다.
+자연어추론, 질답, 의미유사성, 문서분류에 대해 평가를 진행하였으며 이 중 일부는 GLUE benchmark에 포함되어 있다. 결과는 아래 Table 2, 3에 있다.
 
 **Natural Language Inference**
 
+Image caption(SNLI), 문서화된 음성, 대중소설, 정부 보고서(MNLI), 위키피디아 기사(QNLI), 과학시험(SciTail), 뉴스기사(RTE) 등의 다양한 데이터로 실험하였다. 각 0.6~5.8% 정도 성능이 향상되었다. 
+
+<center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/03.png" width="100%" alt="Results"></center>
+
 **Question answering and commonsense reasoning**
+
+중고등학교 시험에서 나온 영어지문과 관련 질문으로 구성된 RACE dataset으로 진행하였다. 또 Story Cloze에 대해서도 진행했는데 이는 무려 8.9%까지 높은 성능을 내며 결과를 종합했을 때 GPT가 넓은 범위에 걸친 문맥 정보도 잘 포착해냄을 알 수 있다.
+
+<center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/04.png" width="100%" alt="Results"></center>
 
 **Semantic Similarity**
 
+QQP에 대해서는 BiLSTM + ELMo + Attention을 사용한 모델보다도 특히 성능이 향상되었다.
+
+<center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/05.png" width="100%" alt="Results"></center>
+
 **Classification**
 
+두 개의 다른 텍스트 분류 과제에 대해서도 평가를 진행했다. CoLA(The Corpus of Linguistic Acceptability)는 어떤 문장이 문법적으로 옳은지를 전문가가 평가한 답변과, 학습된 모델에 대한 언어적 편향에 대한 테스트를 포함한다.  SST-2(The Stanford Sentiment Treebank)는 표준 이진 분류 문제이다. CoLA에 대해서는 35.0 $\to$ 45.4점으로, SST-2에서는 68.9 $\to$ 72.8점으로 상승하였다.
 
+**종합하면, 12개의 task 중 9개에서 state-of-the-art를 달성하였다.**
 
 ---
 
@@ -179,16 +216,32 @@ Stanford Question Answering Dataset은 10만여 개의 질답 쌍으로 구성�
 
 **Impact of number of layers transferred**
 
-**Zeroo-shot Behaviors**
+아래 Figure 2의 왼쪽은 layer의 수를 다르게 하면서 RACE와 MultiNLI에 대해 실험을 진행한 것인데, 전이 embedding이 대략 9% 정도 향상을 준다는 내용이다.
+
+<center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/06.png" width="100%" alt="Impact of number of layers transferred"></center>
+
+**Zero-shot Behaviors**
+
+저자는 근본적인 generative model이 LM capability를 향상시키기 위해 많은 task를 수행하는 법을 배울 수 있고, LSTM과 비교해서 transformer의 attentional memory가 transfer에 도움이 된다고 가정하였다
+Transformer를 통한 언어모델의 사전학습이 효과적인지에 대한 가정이 하나 있다. 기반 생성모델은 언어모델링 역량을 향상시키기 위해 평가에 포함된 여러 과제를 수행하는 것을 학습하였으며, Transformer의 attentional memory는 LSTM에 비해 전이를 더 원활하게 해 준다는 것이다. 지도 세부조정 없이 과제를 수행하기 위해 기반 생성모델을 사용하는 일련의 체험적 해결책(heuristic solutions)을 사용했다. 이 결과를 위 Figure 2의 오른쪽 부분에 시각화하였다.  
+이 체험적 해결책의 성능은 안정적이며 학습에 따라 꾸준히 증가하는 것으로 보아 생성적 사전학습은 과제와 관련된 넓은 범위의 기능성(functionality)의 학습을 뒷받침한다. 또한 LSTM은 zero-shot 성능에서 큰 편차를 보여 Transformer 구조의 귀납적 편향이 전이를 돕는다고 할 수 있다. 
 
 **Ablation studies**
 
+세 가지 분석을 수행하였다.
+
+1. 세부조정 단계에서 보조 LM 목적함수는 NLI task와 QQP에 도움을 주는데, 큰 dataset에서는 이점이 있지만 작은 dataset에서는 그렇지 못함을 보여준다.
+2. Transformer을 같은 구조의 2048 unit의 LSTM로 대체하였는데 5.6점의 점수 하락이 있었다. 성능이 좋은 경우는 MRPC 뿐이었다.
+3. Transformer를 사전학습 없이 바로 지도학습을 하도록 해보았는데, 14.8%의 성능 하락이 있었다.
+
+<center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/07.png" width="100%" alt="Ablation studies"></center>
 
 ---
 
 ## 6. 결론(Conclusion)
 
-최근 
+생성적 사전학습과 특정과제에 특화된 세부조정을 통해 학습된, 과제에 대해 별다른 지식이 없으며 자연어이해 능력이 뛰어난 단일 모델(framework)를 소개하였다. 넓은 범위에 걸친 언어적 정보를 포함하는 다양한 말뭉치에 대해 사전학습을 진행하여 중요한 일반지식과 질답, 의미유사성 평가, 함의 확인, 문서분류 등의 과제에서 성공적으로 전이되는 장거리 의존성을 처리하는 능력을 학습하여 12개 중 9개의 과제에 대해 state-of-the-art를 달성하였다. 특정 과제에 대한 성능을 높이는 비지도 사전학습은 기계학습연구의 중요한 목표가 되었다.  
+이 연구는 상당한 성능향상이 정말로 가능하며 어떤 모델(Transformers)과 dataset(장거리 의존성을 포함하는 텍스트)가 이 접근법에 가장 좋은지에 대한 조언을 제공한다. 이 연구가 자연어이해와 다른 분야에 대한 비지도학습에 대한 새로운 연구에 도움이 되기를 희망하며, 나아기 비지도학습이 언제 그리고 어떻게 작동하는지에 대한 우리의 이해를 증진시키기를 바란다.
 
 ---
 
@@ -196,6 +249,6 @@ Stanford Question Answering Dataset은 10만여 개의 질답 쌍으로 구성�
 
 논문 참조. 71개의 레퍼런스가 있다.
 
-부록은 없다.
+부록은 없다(yeah).
 
 ---
