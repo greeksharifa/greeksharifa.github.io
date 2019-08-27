@@ -6,6 +6,8 @@ categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]
 ---
 
+---
+
 이 글에서는 2018년 10월 *Jacob Devlin* 등이 발표한 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding를 살펴보도록 한다.
 
 어쩐지 [ELMo](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/)를 매우 의식한 듯한 모델명이다.
@@ -34,11 +36,11 @@ BERT는 개념적으로 간단하고 경험적으로 강력하다. GLUE benchmar
 
 언어모델 사전학습은 자연어처리 과제들에서 효과적이다. 사전학습된 언어표현을 downstream task에 적용하는 데는 두 가지 전략이 있는데
 
-1. 사전학습된 표현을 해당과제에 특화된(task-specific) 모델구조에 추가하는 특성기반 접근법(feature-based approach), 예로 [ELMo](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/)가 있다.
-2. 해당과제에 특화된 parameter를 최소로 추가하여, 간단히 사전학습된 *모든* parameter를 세부조정(fine-tune)함으로써 downstream task에서 학습하는 방법, 예로 [Generative Pre-trained Transformer(OpenAI GPT)](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)가 있다.
+1. 사전학습된 표현을 특정과제에 특화된(task-specific) 모델구조에 추가하는 특성기반 접근법(feature-based approach), 예로 [ELMo](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/)가 있다.
+2. 특정과제에 특화된 parameter를 최소로 추가하여, 간단히 사전학습된 *모든* parameter를 세부조정(fine-tune)함으로써 downstream task에서 학습하는 방법, 예로 [Generative Pre-trained Transformer(OpenAI GPT)](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)가 있다.
 
 이 두 접근법은 범용언어표현을 학습하기 위해 단방향 언어모델을 사용하기 때문에 사전학습기간 동안 같은 목적함수를 공유한다.  
-그러나 이러한 방법은, 특히 fine-tuning 접근법은 사전학습된 표현의 능력을 제한시킨다. 가장 큰 한계는 표준언어모델은 단방향이며 이것이 사전학습하는 동안 모델구조의 선택권을 제한한다. 예로 OpenAI GPT의 경우, 좌$\rightarrow$우 구조를 사용하였는데 이는 Transformer의 self-attention layer에서 모든 token이 이전 token에만 의존하게 만든다. 
+그러나 이러한 방법은, 특히 fine-tuning 접근법은 사전학습된 표현의 능력을 제한시킨다. 가장 큰 한계는 표준언어모델은 단방향이며 이것이 사전학습하는 동안 모델구조의 선택권을 제한한다. 예로 [OpenAI GPT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)의 경우, 좌$\rightarrow$우 구조를 사용하였는데 이는 Transformer의 self-attention layer에서 모든 token이 이전 token에만 의존하게 만든다. 
 
 이 논문에서는 fine-tuning을 기반으로 한 BERT라는 접근법을 제안한다. 이 모델은 **MLM**(Masked Language Model) 사전학습을 사용하여 단방향성을 제거하였다. 이는
 
@@ -49,7 +51,7 @@ BERT는 개념적으로 간단하고 경험적으로 강력하다. GLUE benchmar
 그래서 이 논문의 기여한 바는
 
 - 언어표현을 위한 양방향 사전학습의 중요성을 보여주었다. 즉 deep bidirectional representation을 사전학습할 수 있다.
-- 사전학습된 표현은 해당과제에 특화된 구조를 만들기 위해 조정을 계속할 필요를 줄여준다는 것을 보였다. 
+- 사전학습된 표현은 특정과제에 특화된 구조를 만들기 위해 조정을 계속할 필요를 줄여준다는 것을 보였다. 
 - 11개의 NLP 과제에서 state-of-the-art 결과를 얻어내었다. 
 
 ---
@@ -70,12 +72,12 @@ ELMo와 그 이전 모델들은 전통적인 단어 embedding을 다른 차원�
 
 이 방법은 미분류된(unlabeled) 문자로부터 사전학습된 단어 embedding을 얻는 것부터 시작한다.
 
-더 최근에는, 문맥 token 표현을 생성하는 문장/문서 인코더가 미분류 문자로부터 사전학습되고 감독 downstream task에 맞춰 세부조정되었다. 이 접근법의 장점은 parameter의 수가 적다는 것이다.  
-OpenAI GPT는 GLUE benchmark에서 높은 성능을 기록핬다. 좌$\rightarrow$우 언어모델링과 auto-encoder objective가 이러한 모델에 사용되었다.
+더 최근에는, 문맥 token 표현을 생성하는 문장/문서 인코더가 미분류 문자로부터 사전학습되고 지도 downstream task에 맞춰 세부조정되었다. 이 접근법의 장점은 parameter의 수가 적다는 것이다.  
+[OpenAI GPT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)는 GLUE benchmark에서 높은 성능을 기록핬다. 좌$\rightarrow$우 언어모델링과 auto-encoder objective가 이러한 모델에 사용되었다.
 
 ### 2.3. Transfer Learning from Supervised Data
 
-언어추론이나 기계번역 등의 분야에서 감독이 있는 task에서 큰 dataset으로 효과적인 전이학습을 하려는 연구가 있어왔다. Computer vision 연구는 또한 ImageNet 등 사전학습된 큰 모델로부터의 전이학습이 중요함을 보였다.
+언어추론이나 기계번역 등의 분야에서 지도가 있는 task에서 큰 dataset으로 효과적인 전이학습을 하려는 연구가 있어왔다. Computer vision 연구는 또한 ImageNet 등 사전학습된 큰 모델로부터의 전이학습이 중요함을 보였다.
 
 ---
 
@@ -99,7 +101,7 @@ BERT에는 두 가지 모델이 있는데
 - BERT_base: $L=12, H=768, A=12$. 전체 parameter 수: 110M
 - BERT_large: $L=24, H=1024, A=16$. 전체 parameter 수: 340M
 
-BERT_base는 비교를 위해 OpenAI GPT와 같은 크기를 가지도록 만들었다. 그러나 BERT Transformer는 양뱡향 self-attention을 사용하고 GPT Transformer는 모든 token이 왼쪽 문맥만 참조하도록 제한된 self-attention을 사용한다.
+BERT_base는 비교를 위해 [OpenAI GPT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)와 같은 크기를 가지도록 만들었다. 그러나 BERT Transformer는 양뱡향 self-attention을 사용하고 GPT Transformer는 모든 token이 왼쪽 문맥만 참조하도록 제한된 self-attention을 사용한다.
 
 **Input/Output Representations**
 
@@ -118,7 +120,7 @@ BERT가 다양한 downstream task를 처리할 수 있게 하기 위해, 입력�
 
 ### 3.1. Pre-training BERT
 
-BERT를 사전학습시키기 위해 전통적인 좌$\rightarrow$우 또는 우$\rightarrow$좌 언어모델을 사용하지 않는다. 대신, 다음의 두 가지 무감독 task를 사용하여 학습시켜 놓는다.
+BERT를 사전학습시키기 위해 전통적인 좌$\rightarrow$우 또는 우$\rightarrow$좌 언어모델을 사용하지 않는다. 대신, 다음의 두 가지 비지도 task를 사용하여 학습시켜 놓는다.
 
 **Task #1: Masked LM**
 
@@ -238,7 +240,7 @@ batch size 16, learning rate 2e^-5, 3 epochs로 진행한 결과는 다음과 �
 ### 5.1. Effect of Pre-training Tasks
 
 다음 두 가지 경우와 BERT_base를 비교한다: (No NSP), (LTR & No NSP).  
-MLM 대신 좌$\rightarrow$우(left-to-right, LTR) LM을 사용한 것으로, 이러한 제약은 *pre-training*뿐 아니라 *fine-tuning*에도 적용되었는데 두 단계 사이의 mismatch를 피하기 위해서다. 이는 같은 dataset, 입력표현, fine-tuning scheme을 사용하여 OpenAI GPT와도 직접비교가 가능하다.
+MLM 대신 좌$\rightarrow$우(left-to-right, LTR) LM을 사용한 것으로, 이러한 제약은 *pre-training*뿐 아니라 *fine-tuning*에도 적용되었는데 두 단계 사이의 mismatch를 피하기 위해서다. 이는 같은 dataset, 입력표현, fine-tuning scheme을 사용하여 [OpenAI GPT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)와도 직접비교가 가능하다.
 
 <center><img src="/public/img/2019-08-23-BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding/06.png" width="60%" alt="Effect of Pre-training Tasks"></center>
 
@@ -259,7 +261,7 @@ Layer 수, hidden units, attention head 등의 hyperparameter를 각각 바꿔�
 BERT의 모든 결과는 간단한 분류 layer만 사전학습된 모델에 추가하는 fine-tuning 접근법을 사용했고, 모든 parameter는 downstream task에서 결합학습되었다.  
 그러나 이러한 특성기반 접근법에서, 고정된 특성이 사전학습된 모델로부터 추출될 때 특정 이점을 갖는다.
 
-1. 모든 task가 Transformer 인코더 구조로 쉽게 표현될 수 있는 것은 아니며, 따라서 해당과제에 특화된 모델구조가 추가될 필요가 있다.
+1. 모든 task가 Transformer 인코더 구조로 쉽게 표현될 수 있는 것은 아니며, 따라서 특정과제에 특화된 모델구조가 추가될 필요가 있다.
 2. 학습데이터에 대한 한 번의 '비싼' 사전 계산에 대한 연산량 관점에서의 이득이 있고 이 표현 위에서 연산량이 적은 모델에 대한 많은 실험을 진행할 수 있다.
 
 BERT에 특성기반 접근법을 적용할 과제로는 CoNLL-2003 Named Entity Recognition(NER) task이 선정되었다. BERT에는 WordPiece 모델을 사용했고, 데이터에서 제공된 최대한의 문서 문맥을 포함시켰다.  
@@ -273,7 +275,7 @@ BERT_large는 거의 state-of-the-art 성능을 가지며, 이는 BERT가 세부
 
 ## 6. 결론(Conclusion)
 
-최근 경험적 향상은 언어모델에서의 전이학습, 무감독 사전학습 등에 의해 이루어졌다. 특히, 이러한 결과들은 자원이 적은 task에서도 깊은 양방향 구조에서 이점을 얻도록 하였다. 이 논문의 가장 큰 기여는 같은 사전학습된 모델을 넓은 범위의 NLP task에 적용시킬 수 있도록 하는 깊은 *양방향* 구조를 일반화한 것이다.
+최근 경험적 향상은 언어모델에서의 전이학습, 비지도 사전학습 등에 의해 이루어졌다. 특히, 이러한 결과들은 자원이 적은 task에서도 깊은 양방향 구조에서 이점을 얻도록 하였다. 이 논문의 가장 큰 기여는 같은 사전학습된 모델을 넓은 범위의 NLP task에 적용시킬 수 있도록 하는 깊은 *양방향* 구조를 일반화한 것이다.
 
 ---
 

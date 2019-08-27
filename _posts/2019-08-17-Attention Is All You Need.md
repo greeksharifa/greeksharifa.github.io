@@ -6,6 +6,8 @@ categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]
 ---
 
+---
+
 이 글에서는 2017년 6월(v1) *Ashish Vaswani* 등이 발표한 Attention Is All You Need를 살펴보도록 한다.
 
 중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.

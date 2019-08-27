@@ -6,6 +6,8 @@ categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]
 ---
 
+---
+
 이 글에서는 2018년 2월 *Matthew E. Peters* 등이 발표한 Deep contextualized word representations를 살펴보도록 한다.
 
 참고로 이 논문의 제목에는 ELMo라는 이름이 들어가 있지 않은데, 이 논문에서 제안하는 모델의 이름이 ELMo이다.  
@@ -110,16 +112,16 @@ $s^{task}$는 softmax-정규화된 가중치이고 scalar parameter $\gamma^{tas
 
 ### 3.3. Using biLMs for supervised NLP tasks
 
-목표 NLP task에 대한 기학습된 biLM과 감독(supervised) 모델구성이 주어지면, 해당 task 모델을 향상시키도록 biLM을 쓰는 과정은 간단하다. 
+목표 NLP task에 대한 기학습된 biLM과 지도(supervised) 모델구성이 주어지면, 해당 task 모델을 향상시키도록 biLM을 쓰는 과정은 간단하다. 
 
 - 단지 biLM을 돌리고 각 단어마다 모든 layer representation을 기록한다. 
 - 그리고 모델이 이 representation들의 선형결합을 배우도록 한다.
-    - 먼저 biLM이 없는 감독 모델을 고려한다.
-    - 대부분의 NLP 감독 모델은 가장 낮은 단계의 layer에서 공통구조를 공유하는데, 이는 ELMo를 일관된 방법으로 추가할 수 있게 해 준다.
+    - 먼저 biLM이 없는 지도 모델을 고려한다.
+    - 대부분의 NLP 지도 모델은 가장 낮은 단계의 layer에서 공통구조를 공유하는데, 이는 ELMo를 일관된 방법으로 추가할 수 있게 해 준다.
     - $(t_1, t_2, ..., t_N)$이 주어지면 기학습된 단어 embedding(+글자기반 representation)을 사용하여 각 token 위치마다 문맥-독립적 token representation $x_k$를 만든다.
     - 그러면 모델은 biRNN이든 CNN이든 FFN이든 사용하여 문맥-의존적 representation $h_k$를 생성한다.
 
-ELMo를 감독모델에 추가하려면 
+ELMo를 지도 모델에 추가하려면 
 
 - 먼저 biLM의 weight를 고정시키고 
 - ELMo 벡터 $\text{ELMo}_k^{task}$와 $x_k$를 이어붙인 후 
