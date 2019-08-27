@@ -80,7 +80,7 @@ $$ p(t_1, t_2, ..., t_N) = \prod_{k=1}^N p(t_k \vert t_{k+1}, t_{k+2}, ..., t_N)
 
 biLM은 이 둘을 결합시킨 로그우도를 최대화한다.
 
-$$ \sum_{k=1}^N \Big( \text{log} \ p(t_k \vert t_1, ..., t_{k-1}; \Theta_x, \overrightarrow{\Theta}_{LSTM}, \Theta_s) + \text{log} \ p(t_k \vert t_{k+1}, ..., t_N; \Theta_x, \overleftarrow{\Theta}_{LSTM}, \Theta_s) \Big)$$
+$$ \sum_{k=1}^N \Big( \log \ p(t_k \vert t_1, ..., t_{k-1}; \Theta_x, \overrightarrow{\Theta}_{LSTM}, \Theta_s) + \log \ p(t_k \vert t_{k+1}, ..., t_N; \Theta_x, \overleftarrow{\Theta}_{LSTM}, \Theta_s) \Big)$$
 
 $\Theta_x$는 token representation, $\Theta_s$는 Softmax layer이며 이 둘은 LSTM의 parameter과는 다르게 고정된다.
 

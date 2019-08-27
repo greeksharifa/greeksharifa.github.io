@@ -121,7 +121,7 @@ $$ \text{MultiHead}(Q, K, V) = \text{Concat}(head_1, ..., head_h)W^O, where \ he
 
 인코더와 디코더의 각 layer는 FC feed-forward 네트워크를 포함하는데, 이는 각 위치마다 동일하게 적용되지만 각각 따로 적용된다. 이는 ReLU 활성함수와 2개의 선형변환을 포함한다. kernel size가 1인 CNN과 같다.
 
-$$ \text{FFN}(x) = \text{max}(0, xW_1 + b_1)W_2 + b_2 $$
+$$ \text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2 $$
 
 각 레이어에 이 부분은 독립적인 parameter를 사용한다. 논문에서는 $d_{model}=512, d_{ff} = 2048$을 사용했다.
 
@@ -169,7 +169,7 @@ Batch size | 25000
 Hardware | 8개의 P100 GPU
 Schedule | Base Model: 12시간=10만 step $\times$ 0.4초/step, Big Model: 36시간=30만 step
 Optimizer | Adam($\beta_1=0.9, \beta_2=0.98, \epsilon=10^{-9} $)
-Learning Rate | $lrate = d_{model}^{-0.5} \cdot \text{min} ($step\_num$^{-0.5}$, step\_num $\cdot$ warmup\_steps $^{-1.5}) $ 
+Learning Rate | $lrate = d_{model}^{-0.5} \cdot \min ($step\_num$^{-0.5}$, step\_num $\cdot$ warmup\_steps $^{-1.5}) $ 
 warmup\_steps | 4000
 Regularization | Residual Dropout($P_{drop} = 0.1$)
 

@@ -70,7 +70,7 @@ $\mathcal{Y}$는 출력레이어 함수이다.
 
 $$Pr(x) = \prod_{t=1}^T Pr(x_{t+1} \vert y_t)  $$
 
-$$ \mathcal{L}(x) = -\prod_{t=1}^T \text{log} Pr(x_{t+1} \vert y_t) $$
+$$ \mathcal{L}(x) = -\prod_{t=1}^T \log Pr(x_{t+1} \vert y_t) $$
 
 로 정의된다.
 

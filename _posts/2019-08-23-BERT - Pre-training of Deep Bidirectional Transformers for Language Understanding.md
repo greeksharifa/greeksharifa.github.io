@@ -215,7 +215,7 @@ SQuAD v2.0은 (짧은) 답이 지문에 없는 경우를 포함시켜 더 확장
 
 이를 위해 답이 없는 경우는 답이 되는 span의 시작과 끝이 `[CLS]`인 것으로 바꿔서 생각하는 것으로 해결한다. 이 때 점수는 다음과 같이 계산된다.
 
-$$ s_{null}(\text{null span}) = S \cdot C + E \cdot C, \quad s_{\hat{i}, j}(\text{non-null span}) = \text{max}_{j \ge i} S \cdot T_i + E \cdot T_j $$
+$$ s_{null}(\text{null span}) = S \cdot C + E \cdot C, \quad s_{\hat{i}, j}(\text{non-null span}) = \max_{j \ge i} S \cdot T_i + E \cdot T_j $$
 
 F1을 최대화하기 위해, non-null span이 답이 되려면 한계점 $\tau$에 대해 $ s_{\hat{i}, j} > s_{null} + \tau$이어야 한다. 
 
