@@ -10,7 +10,7 @@ tags: [Paper_Review, NLP]
 
 이 글에서는 2018년 6월 *Alec Radford* 등이 발표한 OpenAI GPT-1: Improving Language Understanding by Generative Pre-Training를 살펴보도록 한다.
 
-코드와 사전학습(기학습)된 모델은 [여기](https://github.com/google-research/bert)에서 볼 수 있다.
+코드와 논문은 [여기](https://openai.com/blog/language-unsupervised/)에서 볼 수 있다.
 
 중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.
 
