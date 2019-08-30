@@ -177,6 +177,8 @@ warmup\_steps | 4000
 Regularization | L2($w=0.01$)
 Activation | GELU(Gaussian Error Linear Unit)
 
+논문에는 안 나와있지만 모델의 크기는 parameter가 117M개이다.
+
 **Fine-tuning details**
 
 비지도 사전학습에서 사용한 hyperparameter를 그대로 사용했다. $p=0.1$의 dropout을 추가했다.  
