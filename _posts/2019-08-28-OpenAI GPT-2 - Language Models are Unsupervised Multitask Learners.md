@@ -74,6 +74,9 @@ McCann은 MQAN이라는 단일 모델로 학습하는 것이 가능했다고 설
 대화(dialog) 데이터는 꽤 괜찮은 학습 방법이지만, 상호작용이 필요없는 인터넷 사이트에 존재하는 방대한 양의 데이터가 더 낫다는 판단을 내렸다. 충분한 용량을 가지는 언어모델이라면 데이터 조달 방법과는 관련없이 더 나은 예측을 위한 수행을 시작할 것이라는 추측이 있다. 만약 지금 가능하다면, 아마 현실적으로 비지도 다중작업 학습이 될 것이다. 
 
 
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/01.png" width="80%" alt="Examples"></center>
+
+
 ### 2.1. Training Dataset
 
 많은 선행연구에서 사용된 dataset은 뉴스와 같이 한 영역에서만 가져온 데이터로 구성되어 있었다. 이 논문에서는 가능한 한 다양한 출처로부터 가져오려고 하였다.
@@ -137,38 +140,54 @@ Parameters | Layers | d_{model}
 
 ### 3.1. Language Modeling
 
+GPT-2는 문자단위(byte level)로 되어 있어 손실이 있는 전처리나 토큰화 등이 필요하지 않으며, 어떤 언더 모델 benchmark에도 사용할 수 있다. 평가는 WebText 언어모델에 따른 dataset의 로그확률을 계산하는 방식으로 통일했다. WebText 언어모델은 일반 분포를 심하게 벗어난 것, 이를테면 대단히 규격화된 텍스트, 분리된 구두점이나 축약형, 섞인 문장에 대해 평가받으며, `<UNK>`는 WebText에 400억 byte 중 26번밖에 나타나지 않는다.  
+
+결과는 아래 표에 나와 있으며, 어떤 세부조정도 거치지 않고 zero-shot 환경에서 8개 중 7개에서 state-of-the-art를 달성하였다.
+
+
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/02.png" width="100%" alt="Results"></center>
 
 
 ### 3.2. Children's Boot Test
 
+품사(고유명사, 명사, 동사, 전치사)에 따른 언어 모델의 성능을 측정하기 위한 dataset이다. [원 논문](https://arxiv.org/abs/1511.02301)에 소개된 내용을 따라 각 선택의 확률과 언어모델의 선택에 따른 문장의 나머지 부분에 대한 확률을 계산하고 가장 높은 확률의 선택지를 선택하게 했다. 결과는 89.1% $\to$ 93.3%가 되었다.
 
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/03.png" width="80%" alt="Results"></center>
 
 ### 3.3. LAMBADA
 
-
+텍스트의 장거리 의존성(long-range dependencies)을 평가한다. 간단히 말하면 정확도는 19% $\to$ 52.66%, perplexity는 99.8 $\to$ 8.6으로 향상시켰다.
 
 ### 3.4. Winograd Schema Challenge
 
+텍스트에 존재하는 중의성(또는 모호한 부분, ambiguities)을 해석하는 능력을 측정함으로써 일반상식 추론능력을 평가한다. GPT-2는 정확도를 7% 증가시켜 70.70%를 달성했다.
 
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/04.png" width="80%" alt="Results"></center>
 
 ### 3.5. Reading Comprehension
 
-
+CoQA(The Conversation Question Answering dataset)을 7개의 분야에서 가져온 문서에서 질문자-답변자의 자연어 대화로 이루어진 dataset이다. CoQA 테스트는 독해능력과 대화에 기반한 모델의 답변능력을 평가한다. GPT-2는 55 F1 score를 달성해 4개 중 3개의 다른 모델을 능가했는데 이는 심지어 주어진 127k 이상의 수동 수집된 질답 쌍으로 학습시키지 않은 것이다. 지도가 포함된 state-of-the-art인 BERT는 89 F1 score에 근접하였다. 그러나 어떤 세부조정 없이 55점을 달성했다는 것은 상당히 고무적인 일이다.
 
 ### 3.6. Summarization
 
+CNN과 Daily Mail dataset으로 요약 능력을 평가했다. 총합 6.4점의 향상을 보였다.
 
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/05.png" width="80%" alt="Results"></center>
 
 ### 3.7. Translation
 
-
+번역에서는 예상외로 별로 좋은 결과를 내지 못했다고 한다.
 
 ### 3.8. Question Answering
 
+답변한 문장이 '완전히 일치하는' 평가 방법을 썼을 때 GPT-2는 약 4.1%의 정확도를 보여 일반적으로 5.3배의 정확도를 보인다. 그러나 GPT-2가 생성한 30개의 가장 '자신있는' 답변은 아래 그림에 나와 있는데 이는 정보검색과 문서추출 질답을 병행한 열린분야 질답 시스템에 비하면 50%까지 낮은 성능을 보인다.
+
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/06.png" width="100%" alt="Results"></center>
 
 ---
 
 ## 4. 일반화 vs 암기(Generalization vs Memorization)
+
 
 
 ---
