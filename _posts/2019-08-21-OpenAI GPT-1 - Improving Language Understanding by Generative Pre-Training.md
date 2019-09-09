@@ -218,7 +218,7 @@ QQP에 대해서는 BiLSTM + ELMo + Attention을 사용한 모델보다도 특�
 
 **Impact of number of layers transferred**
 
-아래 Figure 2의 왼쪽은 layer의 수를 다르게 하면서 RACE와 MultiNLI에 대해 실험을 진행한 것인데, 전이 embedding이 대략 9% 정도 향상을 준다는 내용이다.
+아래 Figure 2의 왼쪽은 layer의 수를 다르게 하면서 RACE와 MultiNLI에 대해 실험을 진행한 것인데, transferring embedding이 성능 향상을 가져오며, 각 transformer layer 당 9%까지 향상시킨다(on MultiNLI)는 내용이다. 이는 사전학습된 모델의 각각의 layer가 문제를 푸는 데 있어 유용한 기능을 포함한다는 것을 의미한다.
 
 <center><img src="/public/img/2019-08-21-OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training/06.png" width="100%" alt="Impact of number of layers transferred"></center>
 
