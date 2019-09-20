@@ -14,9 +14,9 @@ Multi-Armed Bandit 문제에서 Context 개념이 추가된 Contextual Bandit �
   
 그림을 통해 파악해보자.  
   
-<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/01.JPG" width="90%"></center>
+<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/01.JPG" width="100%"></center>
 
-<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/02.JPG" width="90%"></center>
+<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/02.JPG" width="100%"></center>
 
 첫 번째 그림은 전통적인 추천시스템에 관한 것이고, 두 번째 그림은 Contextual Bandit 문제와 관련된 것이다.  
 
@@ -33,7 +33,7 @@ Lin UCB는 **A contextual-bandit approach to personalized news article recommend
 
 이 알고리즘의 기본 개념은 아래와 같다.  
 
-<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/03.JPG" width="90%"></center>
+<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/03.JPG" width="100%"></center>
 
 Context Vector를 어떻게 구성할 것인가에 따라 Linear Disjoint Model과 Linear Hybrid Model로 구분된다. Hyperparameter인 Alpha가 커질 수록 Exploration에 더욱 가중치를 두게 되며, 결과는 이 Alpha에 다소 영향을 받는 편이다.  
 
@@ -46,7 +46,7 @@ Context Vector를 어떻게 구성할 것인가에 따라 Linear Disjoint Model�
 ### 3.1 Tree Boost
 Tree Heuristic에 접근하기 위해서는 먼저 그 전신이라고 할 수 있는 Tree Boost 알고리즘에 대해 알아야 한다. 본 알고리즘은 **A practical method for solving contextual bandit problems using decision trees** 논문에서 소개되었다.  
 
-<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/04.JPG" width="90%"></center>
+<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/04.JPG" width="100%"></center>
 
 Tree Boost는 Thompson Sampling의 개념을 차용하여 설계된 알고리즘이다. 위의 Lin UCB가 Context와 Reward 사이의 관계를 선형적으로 정의하였다면, 본 알고리즘은 Tree 계열의 모델로써 이 관계를 정의한다.  
   
@@ -64,7 +64,7 @@ Tree Boost와의 가장 큰 차이점은 바로, 한 Trial에 한 번만 적합�
   
 알고리즘의 실질적인 작동원리는 아래 그림과 코드를 보면 상세히 설명되어 있다.  
 
-<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/05.JPG" width="90%"></center>
+<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/05.JPG" width="100%"></center>
 
 ```python
 """
@@ -506,6 +506,6 @@ Test는 전통적으로 자주 애용되었던 Movielens 데이터와 Covtype �
 ---
 
 ## Reference
-> [http://rob.schapire.net/papers/www10.pdf]
-> [http://auai.org/uai2017/proceedings/papers/171.pdf]
+> [Lin UCB 논문](http://rob.schapire.net/papers/www10.pdf)
+> [Tree Heuristic 논문](http://auai.org/uai2017/proceedings/papers/171.pdf)
 
