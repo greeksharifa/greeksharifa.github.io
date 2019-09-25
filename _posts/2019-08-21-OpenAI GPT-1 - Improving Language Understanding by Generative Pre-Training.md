@@ -82,7 +82,7 @@ GPT와 가장 유사한 연구는 신경망을 언어모델링 목적함수를 �
 
 학습은 두 단계로 진행된다. 
 
-1. 큰 말뭉치에서 고용량의 언어모델을 학습한다.
+1. 큰 말뭉치에서 대용량의 언어모델을 학습한다.
 2. 분류 데이터를 써서 특정 과제에 맞춰 모델을 세부조정한다.
 
 ### 3.1. Unsupervised pre-training
@@ -107,11 +107,11 @@ $U = (u_{-k}, ..., u_{-1})$는 token의 문맥벡터, $n$은 layer의 수, $W_e$
 
 ### 3.2. Supervised fine-tuning
 
-위 $L_1(\mathcal{U})$ 우도에 따라 모델을 학습시키고 나면, parameter를 목표 과제에 맞춰 세부조정한다. 분류된 dataset $\mathcal{C}$이 있고 각 구성요소가 일련의 입력 token $x^1, ..., x^m$ 및 그 정답(label) $y$로 되어 있다고 하자. 이 입력을 사전학습된 모델에 전달하여 최종 transformer block의 activation $h_l^m$을 얻고, 이는 $y$를 예측하기 위해 parameter $W_y$와 함께 선형 출력층으로 전달된다:
+위 $L_1(\mathcal{U})$ 우도에 따라 모델을 학습시키고 나면, parameter를 목표 과제에 맞춰 세부조정한다. 분류된 dataset $\mathcal{C}$이 있고 각 구성요소가 일련의 입력 token $x^1, ..., x^m$ 및 그 정답(label) $y$로 되어 있다고 하자. 입력은 최종 transformer block의 활성값 $h_l^m$을 얻기 위해 위의 사전학습된 모델에 전달하고 이 결과는 다시 $y$를 예측하기 위해 parameter $W_y$와 함께 선형 출력층으로 전달된다:
 
 $$ P(y \vert x^1, ..., x^m) = \text{softmax}(h_l^m W_y) $$
 
-이 단계에서는 다음 우도를 최대화하도록 한다:
+이는 다음 우도를 최대화하도록 한다:
 
 $$ L_2(\mathcal{C}) = \sum_{(x, y)} \log P(y \vert x^1, ..., x^m) $$
 

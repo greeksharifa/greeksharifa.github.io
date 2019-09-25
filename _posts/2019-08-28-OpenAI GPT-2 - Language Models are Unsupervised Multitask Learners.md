@@ -188,28 +188,50 @@ CNN과 Daily Mail dataset으로 요약 능력을 평가했다. 총합 6.4점의 
 
 ## 4. 일반화 vs 암기(Generalization vs Memorization)
 
+최근 연구에서 많이 사용되는 데이터셋 중에는 거의 동일한 이미지를 여럿 포함하는 것이 있는데, 예를 들면 CIFAR-10의 경우 3.3%의 이미지가 train / test 세트에서 겹친다. 이는 기계학습 시스템의 일반화 성능을 과대평가하게 만든다. 이는 성능 측정에 방해 요인이 되기 때문에 데이터셋이 이러한 요인이 없는지 확인하는 것은 중요하다.
 
+그래서 WebText에 대해 8-gram 학습세트 토큰을 포함하는 Bloom 필터를 만들어 테스트해보았고, 결과는 다음과 같다. 
+
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/07.png" width="100%" alt="Results"></center>
+
+물론 WebText는 써도 괜찮다는 결론이 나왔다. 그런데 다른 데이터셋의 경우에는 생각보다 높은 겹침(overlap) 현상이 나타나는 것을 볼 수 있다.
+
+비슷한 텍스트들이 성능에 어떤 영향을 미치는지 이해하고 정량화하는 것은 중요한 부분이다. 더 나은 데이터중복제거(de-duplication) 기술은 매우 중요하며, 중복제거에 기반한 n-gram overlap을 사용하는 것은 훌륭한 방법이며 이 논문에서는 이를 추천한다.
+
+WebText LM의 성능을 결정하는 또 다른 잠재적 방법은 암기(기억, memorization)이 held-out set에 어떤 영향을 미치는지 살펴보는 것이다. train / test set에 대해 성능을 평가한 다음 그림은 그 거대한 GPT-2가 WebText에 대해 여전히 과소적합(underfitted)되었으며 암기에 의한 것이 아님을 보여준다.
+
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/08.png" width="70%" alt="Results"></center>
 
 ---
 
 ## 5. 관련 연구(Related Work)
 
+이 논문의 많은 부분은 더 큰 데이터셋으로 학습된 더 큰 언어모델의 성능을 측정하는 데 쓰였다. 다른 많은 연구들도 이와 비슷하다(scaled RNN based LM 등).
 
+iWeb Corpus와 같은 거대한 웹페이지의 텍스트 말뭉치를 필터링하고 구축하는 대안을 제시하거나, 언어문제를 위한 사전학습 방법, 벡터표현, seq2seq 등이 연구되었으며 최근 연구들은 언어모델의 사전학습이 잡담이나 대화 같은 어려운 생성문제에 맞춰 세부조정할 때 도움이 된다는 것을 밝혀내었다.
 
 ---
 
 ## 6. 토의(Discussion)
 
+많은 연구들은 지도/비지도 사전학습 표현에 대한 학습, 이해, 비판적 평가에 관해 연구를 진행해 왔다. 이 논문은 비지도 학습이 아직 연구할 거리가 더 남아 있음을 밝혔다. 
 
+GPT-2의 zero-shot 학습 성능은 독해 등에서 좋은 성능을 보였으나 요약과 같은 문제에서는 기본적인 성능만을 보여주었다. 꽤 괜찮긴 해도 실제 사용하기엔 여전히 무리이다.
+
+GPT-2의 성능이 많은 과제에서 괜찮긴 한데, 세부조정을 통한 그 한계가 얼마인지는 분명하지 않다. 그렇지만 이 논문의 저자들은 decaNLP나 GLUE와 갈은 벤치마크에서 세부조정(fine-tuning)할 것을 계획하고 있다고 한다.  
+또 GPT-2의 학습데이터와 그 크기가 [BERT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/)에서 말한 단방향 표현의 비효율성을 극복할 수 있을 만큼 충분한지도 확실치 않다고 한다. 
 
 ---
 
 ## 7. 결론(Conclusion)
 
-
+큰 크기의 언어모델이 충분히 크고 다양한 데이터셋에서 학습된다면 많은 분야와 데이터셋에서 괜찮은 성능을 보여준다. GPT-2의 zero-shot은 8개 중 7개의 주요 언어 과제에서 state-of-the-art를 달성하였다.  
+모델이 zero-shot으로 다양한 과제에서 잘 수행한다는 것은 대용량의 모델이 외부 지도 없이 충분히 크고 다양한 말뭉치로부터 학습하면 많은 문제를 잘 수행할 가능성을 최대화할 것을 제시한다.
 
 
 **Acknowledgements**
+
+언제나 있는 감사의 인사
 
 ---
 
@@ -224,14 +246,29 @@ CNN과 Daily Mail dataset으로 요약 능력을 평가했다. 총합 6.4점의 
 
 ### 8.1. Model capacity
 
+가장 작은 WebText LM과 GPT-2가 본 적 없는(unseen) WebTest 테스트 기사에 대해 생성한 문장들을 비교하여 나열한 것이 표 7~11에 있다. 256개의 단어(token)을 주고 다음 256를 생성하는 것이다. 논문에 따르면 잘 된 것을 골라 가져온 것은 아니라고 한다.  
+그 중 하나를 가져와 보았다. 기계가 생성한 문장치고 깔끔하다.
+
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/09.png" width="100%" alt="Generation Results"></center>
 
 ### 8.2. Text Memorization
 
+게티즈버그 연설 유명한 인용문이나 연설 같은 문장이 주어질 때 GPT-2가 (그대로) '암기'하는 행동을 보이는 것이 관찰되었다.  
+이런 현상이 얼마나 일어나는지 보기 위해 test set 기사를 주고 GPT-2가 생성한 문장과 실제 문장의 완성한 것과의 overlap 비율을 비교해 보았다.  
+결과는 기준보다 그 비율이 낮다고 한다.
 
 ### 8.3. Diversity
 
+표 12는 같은 문장을 주고 나머지를 생성하라 했을 때 얼마나 다양한 문장들을 생성하는지 본 것이다.
+
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/10.png" width="100%" alt="Generation Results"></center>
 
 ### 8.4. Robustness
+
+표 13은 앞에서 언급 한 유니콘 뉴스 기사를 보여준다. 이 모델이 분포 문맥을 다룰 수는 있지만 이러한 샘플의 품질은 일반적으로 낮다.
+
+<center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/11.png" width="100%" alt="Generation Results"></center>
+
 
 
 ---
