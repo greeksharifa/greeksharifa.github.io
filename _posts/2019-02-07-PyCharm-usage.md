@@ -18,6 +18,9 @@ Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생인
 ## 설치
 
 PyCharm 홈페이지에서 설치 파일을 다운받는다. 
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 [Windows](https://www.jetbrains.com/pycharm/download/#section=windows), [Mac](https://www.jetbrains.com/pycharm/download/#section=mac), [Linux](https://www.jetbrains.com/pycharm/download/#section=linux)
 
 유료 버전을 구매했거나 학생 인증이 가능하다면, Professional 버전을 다운받도록 한다.

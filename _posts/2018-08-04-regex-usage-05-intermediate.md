@@ -99,6 +99,8 @@ print(re.sub('\d{4}', 'XXXX', '010-1234-5678'))
 count 인자는, 최대 몆 개까지 치환할 것인가를 지정한다. 만약 일치되는 문자열이 3인데 count=2로 지정되어 있으면 마지막 세 번째 문자열은 치환되지 않는다.  
 물론 일치되는 문자열이 count보다 적으면 그냥 전부 다 치환된다.
 
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 ```python
 print(re.sub(pattern='Gorio', repl='Ryan', count=2, \
              string='Gorio, Gorio, Gorio keep a straight face.'))
