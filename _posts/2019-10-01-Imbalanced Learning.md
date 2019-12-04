@@ -44,7 +44,46 @@ SMOTE는 Synthetic Minority Oversampling TEchnique의 약자로, 2002년에 처�
 
 본 과정을 일정 수 만큼 진행하면 아래 그림과 같이 새로운 합성 데이터가 생성됨을 알 수 있다.  
 
-<center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/01.png" width="100%"></center>  
+<center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/01.png" width="70%"></center>  
+
+간단한 예시를 보면,
+
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+from imblearn.over_sampling import SMOTE
+from sklearn.preprocessing import MinMaxScaler
+
+x, y = make_classification(n_features=2, n_informative=2, n_samples=20, weights= [0.8, 0.2],
+                           n_redundant=0, n_clusters_per_class=1, random_state=0)
+scaler = MinMaxScaler(feature_range=(0, 1))
+x = scaler.fit_transform(x)
+
+# SMOTE 이전
+df1 = pd.DataFrame(np.concatenate([x, y.reshape(-1, 1)], axis=1),
+                  columns=['col1', 'col2', 'result'])
+sns.relplot(x='col1', y='col2', hue='result', data=df1)
+plt.show()
+
+# SMOTE 이후
+sm = SMOTE(ratio='auto', kind='regular', k_neighbors=3)
+X, Y = sm.fit_sample(x, list(y))
+
+df2 = pd.DataFrame(np.concatenate([X, Y.reshape(-1, 1)], axis=1),
+                  columns=['col1', 'col2', 'result'])
+
+sns.relplot(x='col1', y='col2', hue='result', data=df2)
+plt.show()
+```
+  
+아래 그림에서 위는 SMOTE 이전의 데이터를, 아래는 SMOTE 이후의 데이터 분포를 보여준다.  
+<center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/02.JPG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/03.JPG" width="70%"></center>  
+
+---
+## 3. 
 
 
 
@@ -56,15 +95,7 @@ Adasyn
 
 ---
 
-[여기](https://sumniya.tistory.com/9)
-<center><img src="/public/img/Machine_Learning/2019-09-18-Contextual Bandit and Tree Heuristic/02.JPG" width="100%"></center>
-
-|알고리즘|10% Dataset<br /><br />(58,100)|20% Dataset<br /><br />(116,200)|50% Dataset<br /><br />(290,500)|100% Dataset<br /><br />(581,000)|비고|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Lin UCB|0.7086<br /><br />(23.66초)|0.7126<br /><br />(49.39초)|0.7165<br /><br />(137.19초)|0.7180<br /><br />(5분 39초)|alpha=0.2|
-|Tree Heuristic|0.7154<br /><br />(100.65초)|0.7688<br /><br />(6분 48초)|0.8261<br /><br />(2463.70초)|0.8626<br /><br />(2시간 37분)|3000 trial이<br /><br />지날 때 마다 적합|
 
 ## Reference
-> [참고 블로그](https://mkjjo.github.io/python/2019/01/04/smote_duplicate.html)
-> [Tree Heuristic 논문](http://auai.org/uai2017/proceedings/papers/171.pdf)
+> [참고 블로그](https://mkjjo.github.io/python/2019/01/04/smote_duplicate.html)  
 
