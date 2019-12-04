@@ -35,19 +35,19 @@ SMOTE는 Synthetic Minority Oversampling TEchnique의 약자로, 2002년에 처�
 - 소수(위 예시에선 비정상) 데이터 중 1개의 Sample을 선택한다. 이 Sample을 기준 Sample이라 명명한다.  
 - 기준 Sample과 거리(유클리드 거리)가 가까운 k개의 Sample(KNN)을 찾는다. 이 k개의 Sample 중 랜덤하게 1개의 Sample을 선택한다. 이 Sample을 KNN Sample이라 명명한다.  
 - 새로운 Synthetic Sample은 아래와 같이 계산한다.
-  $$X_{new} = X_i + (X_k - X_i) * \delta$$
+  $$X_{new} = X_i + (X_k - X_i) * \delta$$  
+    
+  $X_{new}$: Synthetic Sample  
+  $X_i$: 기준 Sample  
+  $X_k$: KNN Sample  
+  $\delta$: 0 ~ 1 사이에서 생성된 난수  
   
-  $X_{new}$: Synthetic Sample
-  $X_i$: 기준 Sample
-  $X_k$: KNN Sample
-  $\delta$: 0 ~ 1 사이에서 생성된 난수
-
 본 과정을 일정 수 만큼 진행하면 아래 그림과 같이 새로운 합성 데이터가 생성됨을 알 수 있다.  
-
+  
 <center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/01.png" width="70%"></center>  
-
+  
 간단한 예시를 보면,
-
+  
 ```python
 import pandas as pd
 import seaborn as sns
@@ -78,23 +78,15 @@ sns.relplot(x='col1', y='col2', hue='result', data=df2)
 plt.show()
 ```
   
-아래 그림에서 위는 SMOTE 이전의 데이터를, 아래는 SMOTE 이후의 데이터 분포를 보여준다.  
+다음 그림들에서 위는 SMOTE 이전의 데이터를, 아래는 SMOTE 이후의 데이터 분포를 보여준다.  
 <center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/02.JPG" width="70%"></center>  
 <center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/03.JPG" width="70%"></center>  
 
 ---
-## 3. 
-
-
-
-
-MSMOTE
-Borderline SMOTE
-Adasyn
-
+## 3. 추가할 것
+MSMOTE, Borderline SMOTE, Adasyn
 
 ---
-
 
 ## Reference
 > [참고 블로그](https://mkjjo.github.io/python/2019/01/04/smote_duplicate.html)  
