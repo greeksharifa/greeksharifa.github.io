@@ -19,12 +19,12 @@ fig.savefig('graph.png', dpi=300, format='png', bbox_inches="tight", facecolor="
 ---
 ## 2. Plot Aesthetics  
 ### 2.1. Style Management  
-> **sns.set_style(style=None, rc=None)**
+> **sns.set_style(style=None, rc=None)**  
 > :: 그래프 배경을 설정함  
 > - *style* = "darkgrid", "whitegrid", "dark", "white", "ticks"  
 > - *rc* = [dict], 세부 사항을 조정함  
 
-> **sns.despine(offset=None, trim=False, top=True, right=True, left=False, bottom=False)**
+> **sns.despine(offset=None, trim=False, top=True, right=True, left=False, bottom=False)**  
 > :: Plot의 위, 오른쪽 축을 제거함  
 > - *top, right, left, bottom* = True로 설정하면 그 축을 제거함  
 > - *offset* = [integer or dict], 축과 실제 그래프가 얼마나 떨어져 있을지 설정함  
@@ -51,6 +51,9 @@ sns.axes_style()
 
 # 배경 스타일을 darkgrid로 적용하고 투명도를 0.9로
 sns.set_style("darkgrid", {"axes.facecolor": "0.9"})
+
+# 혹은 간단하게 darkgrid만 적용하고 싶다면,
+sns.set(style="darkgrid")
 ```
 
 ### 2.2. Color Management  
@@ -66,7 +69,7 @@ sns.palplot(current_palette)
 
 지금부터 color_palette 메서드를 통해 palette를 바꾸는 법에 대해 알아볼 것이다.  
 
-> **sns.color_palette(palette=None, n_colors=None)**
+> **sns.color_palette(palette=None, n_colors=None)**  
 > :: color palette를 정의하는 색깔 list를 반환함  
 > - *palette* = [string], Palette 이름  
 > - *n_colors* = [Integer]   
@@ -163,10 +166,72 @@ Seaborn의 Plotting 메서드들 중 가장 중요한 위치에 있는 메서드
 데이터의 분포를 그리기 위해서는 distplot, kdeplot, jointplot 등을 사용할 수 있다.  
 
 ### 3.1. Visualizing statistical relationships  
+> **sns.relplot(x, y, kind, hue, size, style, data, row, col, col_wrap, row_order, col_order, palette, ...)**  
+> :: 2개의 연속형 변수 사이의 통계적 관계를 조명함, 각종 옵션으로 추가적으로 변수를 삽입할 수도 있음  
+> - *hue, size, style* = [string], 3개의 변수를 더 추가할 수 있음
+> - *col* = [string], 여러 그래프를 한 번에 그릴 수 있게 해줌. 변수 명을 입력하면 됨
+> - *kind* = [string], scatter 또는 line 입력
+> - 자세한 설명은 [이곳](http://seaborn.pydata.org/generated/seaborn.relplot.html#seaborn.relplot)을 확인
+
+#### 3.1.1. **Scatter plot**  
+```python
+sns.relplot(x="total_bill", y="tip", size="size", sizes=(15, 200), data=tips)
+```
+  
+<center><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/scatter.JPG" width="50%"></center>  
+  
+
+#### 3.1.2. **Line plot**  
+- **일반적인 Line Plot**  
+```python
+df = pd.DataFrame(dict(time=np.arange(500),
+                       value=np.random.randn(500).cumsum()))
+sns.relplot(x="time", y="value", kind="line", data=df)
+```
+  
+<center><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/line1.JPG" width="50%"></center>  
+  
+
+- **같은 x 값에 여러 y가 존재할 때 (Aggregation)**  
+데이터가 아래와 같이 생겼다고 가정하자. (timepoint 값에 여러 개의 signal 값이 존재하는 상황)  
+
+|subject|timepoint|event|region|signal|
+|:--------:|:--------:|:--------:|:--------:|:--------:|
+|s13|18|stim|parietal|-0.017|
+|s5|14|stim|parietal|-0.081|
+|s12|14|stim|parietal|-0.810|
+|s11|18|stim|parietal|-0.0461|
+|s10|18|stim|parietal|-0.0379|
+
+이 때, 위와 같은 경우에는 자연스럽게 Confidence Interval이 추가된다. 만약 이를 제거하고 싶으면, argument에 ci=None을 추가하면 되며, 만약 ci="sd"로 입력하면, 표준편차가 표시된다.  
+```python
+sns.relplot(x="timepoint", y="signal", kind="line", data=fmri, ci="sd")
+```
+  
+우측이 ci="sd"이다.  
+<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/line2.JPG" width="45%"></span></div>
+<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/line3.JPG" width="45%"></span></div>  
+
+여러 변수 사이의 관계를 탐구하기 위해 다음과 같은 그래프를 그릴 수도 있다.  
+```python
+pal = sns.cubehelix_palette(light=0.8, n_colors=2)
+sns.relplot(x="timepoint", y="signal", hue="region", style="event",
+            palette=pal, dashes=False, markers=True, kind="line", data=fmri)
+```
+  
+<center><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/02.JPG" width="50%"></center>  
 
 
+#### 3.1.3. **여러 그래프 한 번에 그리기**  
+여러 그래프를 한 번에 그리고 싶다면 아래와 같은 방법을 사용하면 된다. 이는 다른 seaborn 메서드에도 두루 적용할 수 있는 방법이다. col에 지정된 변수 내 값이 너무 많으면, col_wrap[integer]을 통해 한 행에 나타낼 그래프의 수를 조정할 수 있다.  
 
-
+```python
+# Showing multiple relationships with facets
+sns.relplot(x="timepoint", y="signal", hue="subject", col="region",
+            row="event", height=3, kind="line", estimator=None, data=fmri)
+```
+  
+<center><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/03.JPG" width="50%"></center>  
 
 ### 3.2. Plotting with categorical data  
 
