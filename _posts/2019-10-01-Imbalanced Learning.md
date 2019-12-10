@@ -83,11 +83,12 @@ plt.show()
 <center><img src="/public/img/Machine_Learning/2019-10-01-Imbalanced Learning/03.JPG" width="70%"></center>  
 
 ---
-## 3. 추가할 것
+## 3. 추가할 것  
 MSMOTE, Borderline SMOTE, Adasyn
+
 
 ---
 
 ## Reference
 > [참고 블로그](https://mkjjo.github.io/python/2019/01/04/smote_duplicate.html)  
-
+> 파이썬 머신러닝 완벽 가이드, 권철민, 위키북스
