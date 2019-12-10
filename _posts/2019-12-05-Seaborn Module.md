@@ -6,7 +6,7 @@ categories: Machine_Learning
 tags: [Machine_Learning, Visualization]
 ---
 
-## 1. Seaborn 모듈  
+## 1. Seaborn 모듈 개요  
 Seaborn은 Matplotlib에 기반하여 제작된 파이썬 데이터 시각화 모듈이다. 고수준의 인터페이스를 통해 직관적이고 아름다운 그래프를 그릴 수 있다. 본 글은 Seaborn 공식 문서의 Tutorial 과정을 정리한 것임을 밝힌다.  
 
 그래프 저장 방법은 아래와 같이 matplotlib과 동일하다.  
@@ -209,8 +209,8 @@ sns.relplot(x="timepoint", y="signal", kind="line", data=fmri, ci="sd")
 ```
   
 우측이 ci="sd"이다.  
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/line2.JPG" width="40%"></span></div>
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/line3.JPG" width="40%"></span></div>  
+<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/line2.JPG" width="40%"></span>
+<span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/line3.JPG" width="40%"></span></div>  
 
 여러 변수 사이의 관계를 탐구하기 위해 다음과 같은 그래프를 그릴 수도 있다.  
 ```python
@@ -249,8 +249,8 @@ sns.catplot(x="day", y="total_bill", hue="sex", kind="swarm",
             order=["Sun", "Sat", "Thur", "Fri"], data=tips)
 ```
   
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat1.JPG" width="40%"></span></div>
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat2.JPG" width="40%"></span></div> 
+<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat1.JPG" width="40%"></span>
+<span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat2.JPG" width="40%"></span></div> 
 
 swarm 그래프는 그래프 포인트끼리 겹치는 것을 막아준다. (overlapping 방지) 가로로 그리고 싶으면, x와 y의 순서를 바꿔주면 된다.  
 
@@ -265,8 +265,8 @@ sns.catplot(x="total_bill", y="day", hue="time",
             kind="violin", bw=.15, cut=0, data=tips)
 ```
 
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat3.JPG" width="40%"></span></div>
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat4.JPG" width="40%"></span></div>  
+<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat3.JPG" width="40%"></span>
+<span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat4.JPG" width="40%"></span></div>  
 
 그래프 내부에 선(Inner Stick)을 추가하고 싶거나, Scatter Plot과 Distribution Plot을 동시에 그리고 싶다면 아래의 기능을 사용하면 된다.  
 
@@ -280,8 +280,8 @@ g = sns.catplot(x="day", y="total_bill", kind="violin", inner=None, data=tips)
 sns.swarmplot(x="day", y="total_bill", color="k", size=3, data=tips, ax=g.ax)
 ```
 
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat5.JPG" width="40%"></span></div>
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat6.JPG" width="40%"></span></div>  
+<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat5.JPG" width="40%"></span>
+<span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/cat6.JPG" width="40%"></span></div>  
 
 #### 3.2.3. Statistical Estimation within categories: barplot, countplot, pointplot  
 아래는 기본적인 Barplot, Countplot, Pointplot을 그리는 방법에 대한 소개이다.  
@@ -346,13 +346,10 @@ x = np.random.gamma(6, size=200)
 sns.distplot(x, kde=False, fit=stats.gamma)
 ```
   
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/05.JPG" width="40%"></span></div>
-<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/06.JPG" width="40%"></span></div>  
+<div><span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/05.JPG" width="40%"></span>
+<span><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/06.JPG" width="40%"></span></div>  
 
 #### 3.2.2. 이변량 분포  
-
-
-
 ```python
 # Prep
 mean, cov = [0, 1], [(1, .5), (.5, 1)]
@@ -386,7 +383,7 @@ sns.rugplot(df.y, vertical=True, ax=ax);
   
 <center><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/10.JPG" width="50%"></center>  
 
-만약 Density의 연속성을 부드럽게 표현하고 싶다면, Countour Level을 조 정하면 된다.  
+만약 Density의 연속성을 부드럽게 표현하고 싶다면, Contour Level을 조 정하면 된다.  
 ```python
 cmap = sns.cubehelix_palette(as_cmap=True, dark=0, light=1, reverse=True)
 sns.kdeplot(df.x, df.y, cmap=cmap, n_levels=60, shade=True)
@@ -394,7 +391,7 @@ sns.kdeplot(df.x, df.y, cmap=cmap, n_levels=60, shade=True)
   
 <center><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/11.JPG" width="50%"></center>  
 
-#### 3.2.3. 쌍으로 된 관계 시각화  
+#### 3.2.3. Pairwise 관계 시각화  
 ```python
 iris = sns.load_dataset('iris')
 sns.pairplot(iris)
@@ -407,7 +404,7 @@ g.map_offdiag(sns.kdeplot, cmap="Blues_d", n_levels=6);
 <center><img src="/public/img/Machine_Learning/2019-12-05-Seaborn Module/12.JPG" width="50%"></center>   
 ---
 ## 4. Multi-plot grids  
-
+[이곳](http://seaborn.pydata.org/tutorial/axis_grids.html)을 참조할 것  
 
 ---
 ## Reference
