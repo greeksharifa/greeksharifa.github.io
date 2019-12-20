@@ -17,7 +17,7 @@ tags: [Machine_Learning, Recommendation System, Matrix Factorization, Latent Fac
 
 아래에서 보충 설명을 하겠지만 추천 시스템의 대표적인 방법론들을 구조화하면 아래와 같다.  
 
-<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/01.JPG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/01.JPG" width="80%"></center>  
 
 앞으로 총 4개의 시리즈로 이어질 추천 시스템에 관한 글들은, 위에서 언급한 `잠재 요인 협업 필터링`과 이 방법론에서 출발하여 발전된 알고리즘에 대해 다룰 예정이다. 간단히 순서를 보면 아래와 같다.  
 
@@ -38,7 +38,7 @@ tags: [Machine_Learning, Recommendation System, Matrix Factorization, Latent Fac
 ### 2.2. 최근접 이웃 협업 필터링  
 모든 협업 필터링은 사용자-아이템 행렬 데이터에 의존한다. 사용자가 남긴 평점(rating) 데이터를 기반하여 남기지 않은 데이터를 추론하는 형식이다.  
 
-<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/02.JPG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/02.JPG" width="60%"></center>  
 
 #### 2.2.1. 사용자 기반 최근접 이웃 협업 필터링  
 특정 사용자와 유사한 사용자들을 선정하고, 이들을 TOP-N이라고 명명한 뒤 이들이 선호하는 아이템을 특정 사용자에게 추천하는 방식이다.  
@@ -91,7 +91,7 @@ SVD를 기하학적으로 설명하면, $V^T, U$에 의해서 A 행렬의 방향
 
 `SGD`를 이용해서 행렬을 분해하면 다음과 같다.
 
-<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/03.JPG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/03.JPG" width="100%"></center>  
 
 이 때 요인의 개수는 하이퍼파라미터로 임의로 조정하거나, Cross-Validation을 통해 최적의 값을 찾을 수 있다. 위에서 분해된 행렬을 다시 내적하여 원 행렬을 예측해보면 아래와 같이 크게 차이가 나지 않음을 알 수 있다.  
 
