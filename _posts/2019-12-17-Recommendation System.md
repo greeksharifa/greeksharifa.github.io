@@ -170,12 +170,81 @@ print(pred_matrix)
 ```
 ---
 ## 6. Surprise 모듈을 활용한 예제  
+Movielens 데이터를 이용하여 `잠재 요인 협업 필터링`을 간단히 시연해보도록 하겠다. 본 모듈은 추천 시스템에 널리 쓰이는 대표적인 알고리즘들을 패키지화한 것으로, 사이킷런의 API와 프레임워크와 굉장히 유사하다. 다만 엄격한 Input 체계를 갖추고 있는데, 반드시 `사용자 ID`, `아이템 ID`, `평점`만이 포함되어 있는 Row 레벨 형태의 데이터만 Input으로 받아들인다.  
 
+```python
+# Surprise 패키지: scikit-surprise
+from surprise import SVD, Dataset, accuracy, Reader
+from surprise.model_selection import train_test_split, GridSearchCV
 
+data = Dataset.load_builtin('ml-100k')
+```
+위에서 쓴 `load_builtin` 메서드는 Movielens 홈페이지에 들를 필요 없이 해당 사이트의 데이터를 다운로드 받고 로드하는 메서드인데, 사실 앞으로 다른 데이터를 쓴다면 크게 쓸 일이 없다. Surprise 모듈은 데이터 로드를 위해 2개의 메서드를 추가적으로 제공한다.  
 
+```python
+# load_from_file: OS 파일 로딩
+ratings = pd.read_csv('data/ratings.csv')
+ratings.to_csv('data/ratings_noh.csv', index=False, header=False)
 
+# line_format: 칼럼을 순서대로 나열함. 공백으로 분리
+# rating_scale: 평점의 단위
+reader = Reader(line_format='user item rating timestamp', sep=',',
+                rating_scale=(0.5, 5))
+data = Dataset.load_from_file('data/ratings_noh.csv', reader=reader)
+```
 
+```python
+# load_from_df: Pandas DataFrame 으로 로딩
+ratings = pd.read_csv('data/ratings.csv')
+reader = Reader(rating_scale=(0.5, 50))
+data = Dataset.load_from_df(df=ratings[['userId', 'movieId', 'rating']], reader=reader)
+```
 
+이제 데이터셋을 훈련 데이터와 테스트 데이터로 분할한 뒤 적합을 해보자.  
+```python
+trainset, testset = train_test_split(data, test_size=0.25, random_state=0)
+
+# 알고리즘 객체 생성
+# SVD: n_factors(K), n_epochs(디폴트 20), biased=True(베이스라인 사용자 편향 적용 여부)
+algo = SVD(n_factors=50, random_state=0)
+algo.fit(trainset=trainset)
+```
+
+예측을 위해선 `test` 메서드와 `predict` 메서드가 제공되는데, 전자의 경우 테스트 데이터셋 전체에 대한 예측 값을, 후자의 경우 하나의 개체에 대한 예측 값을 출력한다. 따라서 `predict`의 결과를 모은 것이 `test`의 결과라고 보면 이해하기 쉽다.  
+
+```python
+predictions = algo.test(testset=testset)
+predictions[0:3]
+
+[Prediction(uid='120', iid='282', r_ui=4.0, est=3.66..., details={'was_impossible': False}),
+ Prediction(uid='882', iid='291', r_ui=4.0, est=3.97..., details={'was_impossible': False}),
+ Prediction(uid='535', iid='507', r_ui=5.0, est=4.15..., details={'was_impossible': False})]
+
+# userID, itemID 는 string 으로 입력해야 함
+uid = str(196)
+iid = str(302)
+pred = algo.predict(uid, iid)
+print(pred)
+
+user: 196        item: 302        r_ui = None   est = 4.30   {'was_impossible': False}
+
+# 정확도 평가
+accuracy.rmse(predictions=predictions, verbose=True)
+```
+
+**Cross-Validation**을 통해 파라미터를 조정할 수도 있다. 코드 구현은 아래와 같다.  
+```python
+#cross_validate(algo=algo, data=data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+
+algo = SVD()
+param_grid = {'n_epochs': [20, 40, 60], 'n_factors': [50, 100, 200]}
+grid = GridSearchCV(SVD, param_grid, measures=['RMSE', 'MAE'], cv=3)
+grid.fit(data=data)
+
+print(grid.best_score['rmse'])
+print(grid.best_params['rmse'])
+```
+좀 더 자세한 정보와 다양한 기능에 대해 알아보고 싶다면 아래 공식 문서를 참조하길 바란다.
 
 ---
 ## Reference  
