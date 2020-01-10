@@ -1,6 +1,6 @@
 ---
 layout: post
-title: collections, heapq 모듈 설명
+title: 파이썬 collections, heapq 모듈 설명
 author: Youyoung
 categories: 파이썬
 tags: [References, 파이썬]
@@ -30,11 +30,12 @@ Counter({1: 2, 2: 2, 3: 1})
 ```
 
 이 외에도 여러 계산이 가능한데, 아래를 참고하길 바란다.  
+
 |연산자|설명|
 |:--------:|:--------:|
 |-=|뺀다. 결과가 음수면 그 요소는 삭제된다.|
-|&=|좌변의 Counter 객체 요소 중 우변의 Counter 객체 요소에 미포함되어 있는 key의 요소를 삭제한다. 요소의 값은 둘 중 작은 쪽의 값이 된다.|
-|l=|2개의 Counter 객체 전체의 요소로부터 새롭게 Counter 객체를 생성한다. key가 같으면 두 값 중 큰 쪽의 값이 된다.|
+|&=|좌변의 Counter 객체 요소 중 우변의 Counter 객체 요소에 미포함되어 있는 <br /><br /> key의 요소를 삭제한다. 요소의 값은 둘 중 작은 쪽의 값이 된다.|
+|l=|2개의 Counter 객체 전체의 요소로부터 새롭게 Counter 객체를 생성한다. <br /><br /> key가 같으면 두 값 중 큰 쪽의 값이 된다.|
 
 위 누계 연산자에서 =를 빼고 `+, -, &, |` 만 사용할 경우 이항 연산자로 작용한다.  
 
