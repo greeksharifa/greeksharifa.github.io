@@ -73,14 +73,62 @@ jupyter notebook --notebook-dir=/user/define/directory
 jupyter notebook --generate-config
 ```
 그러면 Jupyter가 실행되는 대신 설정 파일이 열린다.  
+Linux에서는 기본적으로 `/home/<username>/.jupyter/jupyter_notebook_config.py` 파일로 생성되며, 윈도우에서는 `C:\Users\<username>\.jupyter\jupyter_notebook_config.py`로 생성된다.
+
 설정 파일에서 필요한 옵션을 변경하여 사용하면 된다. 기본적으로 사용하지 않는 옵션은 모두 주석 처리되어 있다. 
 
-설정 파일을 재지정하고 싶으면 다음과 같이 입력한다.
+기본 설정 파일을 재지정하고 싶으면 다음과 같이 입력한다.
 ```
 jupyter notebook --config=custom_config.py
 ```
 
+임시로 설정 파일을 변경해서 실행하고 싶다면 일반 옵션 주듯이 하면 된다.
+```
+jupyter notebook --config custom_config.py
+```
+
+
 Jupyter notebook을 단순히 로컬 환경에서 실행하는 것이 아니라 서버로 띄워 놓고 원격 접속을 하려면, 위 방법으로 허용 포트나 접속 주소 등 설정 파일을 수정해야 한다. 
+
+### 고급: 원격 접속 설정
+
+localhost(127.0.0.1) 말고 다른 컴퓨터에서 (서버로) 원격접속하고 싶을 때가 있다. 그럴 때는 다음 과정을 따른다.
+
+1. 명령창(cmd or terminal)에 python 또는 ipython을 입력하여 대화창을 연다.
+    - 다음을 입력한다: 
+        ```
+        >>> from notebook.auth import passwd
+        >>> passwd()
+        Enter password: 
+        Verity password: 
+        'sha1:c5b493745105:0d26dcd6e9cf868d3b49f43d'
+        ```
+    - 출력으로 나온 암호화된 비밀번호를 기억해 둔다.
+    - 참고로 linux에서나 윈도우에서나 passwd() 등으로 비밀번호를 입력할 때에는 명령창에 입력하고 있는 문자가 전혀 표시되지 않는다. 별표(`*`)로도 표시되지 않으니 참고.
+    - 대화창을 종료한다.
+2. 이제 조금 전에 생성한 `jupyter_notebook_config.py`를 편집기로 연다.
+    - 아래처럼 주석처리된 부분을 다음과 같이 바꾼다. 물론 비밀번호는 조금 전 여러분이 생성한 문자열로 입력해야 한다.
+        ```
+        #c.NotebookApp.password = '' 
+        ```
+        ```
+        c = get_config()
+        c.NotebookApp.password = 'sha1:c5b493745105:0d26dcd6e9cf868d3b49f43d'
+        ```
+    - **필수:** 비슷하게 다음 설정들을 바꿔주어야 한다. 모든 설정을 변경할 때에는 앞의 주석(`#`)을 지우도록 한다.
+        - 외부접속 허용: `c.NotebookApp.allow_origin = '*'`
+        - IP 설정: `c.NotebookApp.ip = <여러분의 IP>`
+    - **옵션:** 다음은 하고 싶으면 하도록 한다. 
+        - 작업경로 설정: `c.NotebookApp.notebook_dir = <원하는 경로>`
+        - 포트 설정: `c.NotebookApp.port = <원하는 port>`
+        - jupyter notebook으로 실행 시 브라우저 실행 여부: `c.NotebookApp.open_browser = False`
+
+이제 외부접속을 할 때는 서버에서 
+- jupyter notebook을 실행시킨 다음
+- <여러분의 IP>:<원하는 port> 형식을 브라우저의 주소창에 입력하면 된다.
+    - 예시: `123.212.321.14:8888`
+- 여러분이 설정한 비밀번호를 입력한다. 암호화된 문자열이 아니라 `passwd()` 에서 입력한 비밀번호면 된다.
+- 물론 일반 가정집에서는 그냥 ip를 할당할 수 없기 때문에 공유기 설정을 해주거나, 회사 컴퓨터 등이라면 따로 접속 허용하는 절차를 거쳐야 한다. 이 부분은 여기서는 ~pass~
 
 ---
 
