@@ -27,6 +27,10 @@ python train.py --epochs 50 --batch-size 64 --save-dir weights
 ```
 Machine Learning을 포함해서, 위와 같은 실행 옵션은 많은 코드에서 볼 수 있었을 것이다. 학습 과정을 포함하여 대부분은 명령창 또는 콘솔에서 `python 파일명 옵션들...`으로 실행시키기 때문에, argparse에 대한 이해는 필요하다.
 
+***중요:***
+- 기본적으로 `argparse` 라이브러리는 명령창(터미널)에서 실행하는 것을 원칙으로 한다. Jupyter notebook이나 (iPython) 대화형 실행 framework에서는 제대로 실행되지 않을 수 있다. 또한 이러한 대화형 framework에서는 코드 상에서 명시적으로 집어 넣는 게 아닌 이상 인자에 값을 바로 줄 수도 없다. 
+- 그래도 쓰고 싶다면 `args = parser.parse_args()`를 `args = parser.parse_args(args=[])`로 바꾸고 사용할 수는 있다...하지만 위의 이유로 인해 별 의미는 없을 듯하다.
+
 필자는 이 글에서 위의 명령 중 `--epochs`와 같은 것을 **인자**, `50`과 같은 것을 (같이 준) **값**으로 부르겠다.
 
 argparse는 python에 기본으로 내장되어 있다.
