@@ -9,7 +9,7 @@ tags: [PyCharm, usage]
 ---
 
 PyCharm은 Jetbrains 사에서 제작 및 배포하는 **유료**/무료 프로그램이다.  
-Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생인증](https://www.jetbrains.com/student/)을 하고 무료로 사용할 수 있다.
+Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생 인증](https://www.jetbrains.com/student/)을 하고 무료로 사용할 수 있다.
 
 글이 길기 때문에 사용법을 검색하고 싶다면 `Ctrl + F` 키를 누른 다음 검색해 보자.
 
@@ -23,7 +23,7 @@ PyCharm 홈페이지에서 설치 파일을 다운받는다.
 
 [Windows](https://www.jetbrains.com/pycharm/download/#section=windows), [Mac](https://www.jetbrains.com/pycharm/download/#section=mac), [Linux](https://www.jetbrains.com/pycharm/download/#section=linux)
 
-유료 버전을 구매했거나 학생 인증이 가능하다면, Professional 버전을 다운받도록 한다.
+유료 버전을 구매했거나 [학생 인증](https://www.jetbrains.com/student/)이 가능하다면, Professional 버전을 다운받도록 한다.
 
 ### Settings
 
@@ -33,25 +33,25 @@ PyCharm 홈페이지에서 설치 파일을 다운받는다.
 
 필자는 Darcula로 지정했고, 왼쪽 아래의 `Skip Remaining and Set Defaults` 버튼을 누른다. 본인이 추가 설정하고 싶은 부분이 있으면 이후 설정에서 마음대로 바꾸면 된다.
 
-![02_install](/public/img/2019-02-07-PyCharm-usage/02.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/02.PNG" width="100%"></center>
 
 설정을 완료하면 아래와 같은 화면을 볼 수 있다. 오른쪽 아래의 `Configure` > `Settings` 를 클릭한다.
 
-![03_install](/public/img/2019-02-07-PyCharm-usage/03.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/03.PNG" width="100%"></center>
 
 정확히는 `Settings for New Projects`라는 대화창을 볼 수 있다. 이는 새 프로젝트를 만들 때 적용되는 **기본 설정**이다. 새로운 설정을 만들고 싶다면 `Default` 설정을 복제(Duplicate)한 뒤 새 설정에서 바꾸도록 한다.
 
-![04_settings](/public/img/2019-02-07-PyCharm-usage/04.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/04.PNG" width="100%"></center>
 
 설정에서 `Appearance & Behavior` > `Appearance`에서, `Theme`를 `Darcula` 또는 다른 것으로 지정할 수 있다. 아래의 `Use Custom Font`는 메뉴 등의 폰트를 해당 폰트로 지정할 수 있다.  
 참고로, 코드의 폰트는 `Editor` > `Font`에서 지정한다. 이 두 가지 역시 구분하도록 한다. 기본값은 `Monospaced`이다.
 
-![05_settings](/public/img/2019-02-07-PyCharm-usage/05.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/05.PNG" width="100%"></center>
 
 `Keymap`에서는 단축키를 지정할 수 있다. PyCharm의 기본 단축키는 타 프로그램과 좀 다른 부분이 많아 필자는 일부를 바꿨다.  
 변경하고 싶은 단축키를 찾아서 더블클릭 또는 우클릭하면 기존에 지정되어 있는 단축키를 삭제하고 새 단축키를 지정할 수 있다. 이때 겹친다면 기존 단축키를 남겨둘지 제거할지 선택할 수 있다.
 
-![06_settings](/public/img/2019-02-07-PyCharm-usage/06.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/06.PNG" width="100%"></center>
 
 추천하는 변경할 단축키는 다음과 같다. 
 
@@ -67,22 +67,22 @@ Show in Explorer | | Ctrl + Alt + Shift + E
 
 필자의 경우 나머지 설정은 그대로 두는 편이나, `Ctrl + Enter`로 바꿀 때는 다른 곳에 할당된 것을 지운다(Already assigned 경고창에서 Leave 대신 Remove를 선택). 안 그러면 선택한 부분이 Python Console(대화형)에서 실행되지 않는다.
 
-![07_settings](/public/img/2019-02-07-PyCharm-usage/07.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/07.PNG" width="100%"></center>
 
 위 그림에서 기본 Python Interpreter 파일(python.exe)를 설정한다. 새 프로젝트를 생성 시 Configure Python Interpreter라는 경고가 보이면서 코드 실행이 안 되면 인터프리터가 설정되지 않은 것이다. 컴퓨터에 설치된 파이썬 파일을 찾아 설정하자.
 
-![08_settings](/public/img/2019-02-07-PyCharm-usage/08.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/08.PNG" width="100%"></center>
 
 `Show All...`을 클릭하면 처음에는 빈 창이 보인다. `+`를 눌러서 원하는 환경을 추가한다. 기존의 것을 추가하거나, 새로운 가상환경(virtualenv 또는 conda)를 즉석에서 생성 가능하다.  
 이렇게 만든 가상환경은 해당 프로젝트에서만 쓰거나(기본 설정), 아래쪽의 `Make available to all projects`를 체크하여 다른 프로젝트에서도 해당 인터프리터를 택할 수 있도록 정할 수도 있다.
 
-![09_settings](/public/img/2019-02-07-PyCharm-usage/09.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/09.PNG" width="100%"></center>
 
 PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `Special Variables`라는 창이 뜨는 것을 볼 수 있다. 보통 쓸 일이 없는데 기본으로 표시되는 것이므로, `Build, Execution, Deployment` > `Console`에서 `Show console variable by default` 체크를 해제한다.
 
 해당 설정을 마쳤으면 첫 화면에서 `Create New Project`를 클릭한다.
 
-![10_new_projects](/public/img/2019-02-07-PyCharm-usage/10.PNG)
+<center><img src="/public/img/2019-02-07-PyCharm-usage/10.PNG" width="100%"></center>
 
 프로젝트 이름은 기본적으로 Untitled 이므로 바꿔주고, 아래쪽의 Project Interpreter를 설정해 둔다. 미리 설정했다면 목록이 보일 것이고, 아니라면 새로 생성하거나 `python.exe` 위치를 찾아 지정해준다.
 
@@ -92,11 +92,19 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 
 <center><img src="/public/img/2019-02-07-PyCharm-usage/11.PNG" width="80%"></center>
 
+git repository는 그냥 여러분의 git 계정에서 빈 거 하나 만든 다음에 그 주소를 복사하면 된다. 그러면 PyCharm이 알아서 설정을 동기화시켜 줄 것이다.
+
 이를 지정하려면 Personal Access Token이 필요하다. [여기](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)를 참조한다.
 
 <center><img src="/public/img/2019-02-07-PyCharm-usage/12.PNG" width="70%"></center>
 
 등록이 완료되면 Merge, Overwrite Local(git에 저장된 내용을 local로 덮어씀), Overwrite Remote(현재 local 설정을 인터넷에 덮어씀) 중 하나를 선택해 설정을 동기화할 수 있다.
+
+참고: 이렇게 동기화한 경우 일부 설정(예: `kepmap` 등)이 바로 적용되지 않는 경우가 있다. 그런 경우는
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/48.PNG" width="100%"></center>
+
+여기에서 Keymap 설정을 변경해 주면 된다. 보통 처음 동기화를 시도하면 기본 설정이나 어떤 `Default Copy` 버전으로 동작하고 있는 경우가 많다.
 
 여기까지 초기 설정이 끝났다(원하는 부분만 진행해도 좋다). 이제 PyCharm 프로젝트 화면을 살펴보도록 하자.
 
@@ -430,7 +438,7 @@ plt.interactive(False)
 ## 디버깅(Debugging)
 
 PyCharm의 훌륭한 기능 중 하나이다. 사실 웬만한 코드 편집기에 있기는 한데, python을 쓰는 사람들 중에 이를 활용할 줄 알아서 쓰는 경우는 생각보다 많지 않은 것 같다.  
-(물론 알아서 디버깅을 해 주는 것은 아니다..)
+_(물론 알아서 코드를 수정해 주는 것은 아니다...)_
 
 예를 들어 다음과 같은 프로그램을 짰다고 생각해 보자.
 
@@ -515,7 +523,7 @@ fibonacci(3)	:        8
 
 이런 기능들을 활용하면서 디버깅하면 어느 단계에서 코드가 잘못 되었는지 확인할 수 있다.
 
-**Breakpoint**에는 한 가지 중요한 기능이 있다. 지금까지 설정한 것은 코드가 설정된 라인에 가면 무조건 멈추는데, 이 조건을 바꿀 수 있다. **Breakpoint**를 나타내는 빨간 원을 우클릭하자.
+**Breakpoint**에는 한 가지 중요한 기능이 있다. 지금까지 설정한 것은 코드가 설정된 라인에 가면 무조건 멈추는데, 이 조건을 바꿀 수 있다. 8번째 줄에 **Breakpoint**를 설정하고, **Breakpoint**를 나타내는 빨간 원을 우클릭하자.
 
 <center><img src="/public/img/2019-02-07-PyCharm-usage/44.PNG" width="60%"></center>
 
@@ -527,17 +535,44 @@ fibonacci(3)	:        8
 
 더 자세한 조건을 설정할 수 있다.
 
-예시를 한 개만 들어보겠다. `func(i)`에 걸린 Breakpoint를 해제하고, 아래처럼 설정한다. `idx == 5` 일 때만 Breakpoint가 작동할 것이다.
+예시를 한 개만 들어보겠다. 8번째 줄의 **Breakpoint**를 아래처럼 설정한다. `i == 5` 일 때만 Breakpoint가 작동할 것이다.
 
-<center><img src="/public/img/2019-02-07-PyCharm-usage/46.PNG" width="80%"></center>
+<center><img src="/public/img/2019-02-07-PyCharm-usage/46.PNG" width="85%"></center>
 
 조건을 설정하면 빨간 원 옆에 `?`가 생기면서 condition이 설정되었음을 나타낸다.  
 디버깅 모드를 종료했다가 다시 시작한 다음, 프로그램 끝에 커서를 놓고 `Run to Cursor`를 실행해 보자.  
-그러면 `idx == 5`일 때 `func` 함수 내부에 멈춰 있음을 볼 수 있다. 한 번 더 `Run to Cursor`로 이동하면 그때서야 끝부분으로 이동한다. 즉 `idx == 5`인 조건을 지났기 때문에 다시 발동하지 않는 것이다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/47.PNG" width="100%"></center>
+
+그러면 `i == 5`일 때 `func` 함수 내부에 멈춰 있음을 볼 수 있다. 한 번 더 `Run to Cursor`로 이동하면 그때서야 끝부분으로 이동한다. 즉 `i == 5`인 조건을 지났기 때문에 다시 발동하지 않는 것이다.
 
 이 기능은 반복문이 여러 차례 반복된 뒤에야(예: 1000번쯤, `Step Over`를 1000번씩 누르긴 싫을 것이다) 버그가 나타나는 경우 해당 지점 직전에까지 가도록 Breakpoint를 설정하는 방법으로 쉽게 탐색할 수 있다.
 
 잘 쓰면 꽤 유용하니 이것도 익혀 두도록 하자.
+
+---
+
+## Configurations
+
+실행(Run)이나, 디버깅(Debugging) 버튼을 통해서 실행하고자 할 때, 엉뚱한 파일이 실행되는 경우가 있다. 이는 실행 버튼 바로 옆의 실행 파일명 또는 configuration 이름을 살펴보고 원하는 부분이 아니라면 바꿔주도록 하자.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/49.PNG" width="70%"></center>
+
+참고로, `Run/Debug configuration` 설정 창에서는 실행 파일뿐 아니라 인자(argparse 등에서 사용하는 argument)를 설정해 줄 수도 있다. Python에서는 기본적으로 실행 시 인자를 주기 위해서는 명령창에서 `python <실행할 파일.py> --option1 <option1>` 형식으로 실행시켜야 하는데, PyCharm에서는 이 설정을 저장해두고 바로바로 쓸 수 있다. 위의 그림에서 `Edit Configurations`를 눌러보자.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/50.PNG" width="100%"></center>
+
+순서대로 설명하면,
+- (빨간색) configuration의 이름을 설정할 수 있다. 기본적으로 실행하고자 하는 파일명으로 설정되며, 파일명으로 뿐만 아니라 원하는 이름으로 변경할 수 있다.
+- (주황색) 실행하고자 하는 python 파일을 설정할 수 있다. 여기서 직접 추가하거나, 상단 메뉴 바의 `Run`에서 새로 파일을 설정하면 추가된다.
+- **(노란색) 딥러닝 등에서 보통 많이 쓰는 `argparse`에서 인자를 받곤 하는데 이를 여기서 추가할 수 있다. 물론 argparse 뿐만 아니라 `sys.argv[]`가 받는 것도 동일하다.** _사실 이게 제일 중요한 듯_
+- (초록색) 원하는 실행 환경을 바꿔줄 수 있다.
+- (파란색) 실행 폴더의 위치를 지정한다. 기본적으로 실행 파일과 같은 위치로 지정되며, Python 코드 내의 상대 경로는 이 경로의 영향을 받는다.
+- (남색) 콘솔에서 실행시킬지 등을 결정할 수 있다. 기본적으로는 해제되어 있다.
+- (보라색) 실행시키기 전에 tool window 등을 미리 활성화 할 수 있다. 가능한 메뉴는 다음과 같다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/51.PNG" width="40%"></center>
+
 
 ---
 
