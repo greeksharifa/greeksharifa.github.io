@@ -16,6 +16,8 @@ tags: [PyTorch]
 
 ---
 
+*2020.02.04 Updated*
+
 이 글에서는 PyTorch 프로젝트를 만드는 방법에 대해서 알아본다.
 
 사용되는 torch 함수들의 사용법은 [여기](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/)에서 확인할 수 있다.
@@ -83,10 +85,12 @@ y = torch.from_numpy(data['y'].values).unsqueeze(dim=1).float()
 
 참조: [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader)
 
-Pytorch는 `DataLoader`라고 하는 괜찮은 utility를 제공한다. DataLoader 객체는 학습에 쓰일 데이터를 batch size에 맞춰 잘라서 저장해 놓고, train 함수가 batch 하나를 요구하면 하나씩 꺼내서 준다고 보면 된다.  
-실제 DataLoader를 쓸 때는 다음과 같이 쓰기만 하면 된다.
+Pytorch는 `DataLoader`라고 하는 괜찮은 utility를 제공한다. 간단하게 생각하면 DataLoader 객체는 학습에 쓰일 데이터 전체를 보관했다가, train 함수가 batch 하나를 요구하면 batch size 개수만큼 데이터를 꺼내서 준다고 보면 된다.  
+- 실제로 `[batch size, num]`처럼 미리 잘라놓는 것은 아니고, 내부적으로 Iterator에 포함된 Index가 존재한다. train() 함수가 데이터를 요구하면 사전에 저장된 batch size만큼 return하는 형태이다.
+
+사용할 `torch.utils.data.Dataset`에 따라 반환하는 데이터(자연어, 이미지, 정답 label 등)는 조금씩 다르지만, 일반적으로 실제 DataLoader를 쓸 때는 다음과 같이 쓰기만 하면 된다.
 ```python
-for idx, (data, label) in enumerate(self.data_loader):
+for idx, (data, label) in enumerate(data_loader):
     ...
 ```
 
@@ -94,40 +98,46 @@ DataLoader 안에 데이터가 어떻게 들어있는지 확인하기 위해, MN
 각각의 사용법은 아래 절을 참조한다.
 
 ```python
+input_size = 28
+batch_size = 64
+
 transform = transforms.Compose([transforms.Resize((input_size, input_size)),
-                                transforms.ToTensor(),
-                                transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
+                                transforms.ToTensor()])
 data_loader = DataLoader(
     datasets.MNIST('data/mnist', train=True, download=True, transform=transform),
     batch_size=batch_size,
     shuffle=True)
 
-print('type:', type(data_loader))
-print(type(type(data_loader)))
+print('type:', type(data_loader), '\n')
 
 first_batch = data_loader.__iter__().__next__()
 print('{:15s} | {:<25s} | {}'.format('name', 'type', 'size'))
+print('{:15s} | {:<25s} | {}'.format('Num of Batch', '', len(data_loader)))
 print('{:15s} | {:<25s} | {}'.format('first_batch', str(type(first_batch)), len(first_batch)))
 print('{:15s} | {:<25s} | {}'.format('first_batch[0]', str(type(first_batch[0])), first_batch[0].shape))
 print('{:15s} | {:<25s} | {}'.format('first_batch[1]', str(type(first_batch[1])), first_batch[1].shape))
+```
 
-"""
-type: <class 'torch.utils.data.dataloader.DataLoader'>
-<class 'type'>
+결과:
+```
+type: <class 'torch.utils.data.dataloader.DataLoader'> 
+
 name            | type                      | size
+Num of Batch    |                           | 938
 first_batch     | <class 'list'>            | 2
 first_batch[0]  | <class 'torch.Tensor'>    | torch.Size([64, 1, 28, 28])
 first_batch[1]  | <class 'torch.Tensor'>    | torch.Size([64])
-"""
+# 총 데이터의 개수는 938 * 28 ~= 60000(마지막 batch는 32)이다.
 ```
 
-### Custom DataLoader 만들기
+### Custom Dataset 만들기
 
-**nn.Module**을 상속하는 Custom Model처럼, Custom DataLoader는 `torch.utils.data.Dataset`를 상속해야 한다. 또한 override해야 하는 것은 다음 두 가지다. `python dunder`를 모른다면 먼저 구글링해보도록 한다.
+**nn.Module**을 상속하는 Custom Model처럼, Custom DataSet은 `torch.utils.data.Dataset`를 상속해야 한다. 또한 override해야 하는 것은 다음 두 가지다. `python dunder`를 모른다면 먼저 구글링해보도록 한다.
 - `__len__(self)`: dataset의 전체 개수를 알려준다.
 - `__getitem__(self, idx)`: parameter로 idx를 넘겨주면 idx번째의 데이터를 반환한다.
 
-위의 두 가지만 기억하면 된다. 전체 데이터 개수와, i번째 데이터를 반환하는 함수만 구현하면 Custom DataLoader가 완성된다.
+위의 두 가지만 기억하면 된다. 전체 데이터 개수와, i번째 데이터를 반환하는 함수만 구현하면 Custom DataSet이 완성된다.  
+다음에는 완성된 DataSet을 `torch.utils.data.DataLoader`에 인자로 전달해주면 끝이다.
 
 완전 필수는 아니지만 `__init__()`도 구현하는 것이 좋다.
 
@@ -172,13 +182,25 @@ face_dataset = FaceLandmarksDataset(csv_file='data/faces/face_landmarks.csv',
 
 참조: [torchvision.datasets](https://pytorch.org/docs/stable/torchvision/datasets.html)
 
-Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이다. 2019.02.12 기준 dataset 목록은 다음과 같다.
+Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이다. 2020.02.04 기준 dataset 목록은 다음과 같다.
 
-- MNIST, Fashion-MNIST, KMNIST, EMNIST,  
-- COCO, Captions, Detection,  
-- LSUN,  
-- *ImageFolder*, *DatasetFolder*,  
-- Imagenet-12, CIFAR, STL10, SVHN, PhotoTour, SBU, Flickr, VOC, Cityscapes
+- MNIST
+    - MNIST(숫자 0~9에 해당하는 손글씨 이미지 6만(train) + 1만(test))
+    - Fashion-MNIST(간소화된 의류 이미지), 
+    - KMNIST(일본어=히라가나, 간지 손글씨), 
+    - EMNIST(영문자 손글씨), 
+    - QMNIST(MNIST를 재구성한 것)
+- MS COCO
+    - Captions(이미지 한 장과 이를 설명하는 한 영문장), 
+    - Detection(이미지 한 장과 여기에 있는 object들을 segmantation한 정보) 
+- LSUN(https://www.yf.io/p/lsun), 
+- *ImageFolder*, *DatasetFolder*, 
+- Image:
+    - ImageNet 2012,
+    - CIFAR10 & CIFAR100, 
+    - STL10, SVHN, PhotoTour, SBU 
+- Flickr8k & Flickr30k, VOC Segmantation & Detection, 
+- Cityscapes, SBD, USPS, Kinetics-400, HMDB51, UCF101
 
 각각의 dataset마다 필요한 parameter가 조금씩 다르기 때문에, [MNIST](https://pytorch.org/docs/stable/torchvision/datasets.html#mnist)만 간단히 설명하도록 하겠다. 사실 공식 홈페이지를 참조하면 어렵지 않게 사용 가능하다.
 
@@ -189,6 +211,7 @@ Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이�
 - download: true로 지정하면 알아서 다운로드해 준다. 이미 다운로드했다면 재실행해도 다시 받지 않는다.
 - transform: 지정하면 이미지 데이터에 어떤 변형을 가할지를 transform function의 묶음(Compose)로 전달한다.
 - target_transform: 보통 위의 transform까지만 쓰는 것 같다. 쓰고 싶다면 이것도 쓰자.
+
 
 ## torchvision.transforms
 
