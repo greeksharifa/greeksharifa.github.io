@@ -68,6 +68,10 @@ conda create -n myenv python=3.4 scipy=0.15.0 astroid babel
 # 가상환경 생성 시 이것저것 깔리는 것이 싫다면 다음 옵션을 주면 된다.
 conda create --no-default-packages -n myenv python
 
+# 새 가상환경을 만들 때 특정 가상환경 안에 설치된 패키지 전부를 설치하면서 생성할 수 있다.
+# base 가상환경에 있는 패키지를 전부 설치하면서 생성한다면, 
+conda create -n myenv --clone base
+
 # environment.yml 파일이 있다면 다음과 같이 생성할 수 있다.
 # 생성 방법은 이후에 설명한다.
 conda env create -f environment.yml
