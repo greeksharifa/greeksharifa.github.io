@@ -56,6 +56,46 @@ print(x)
 
 ![01_run_pytorch.PNG](/public/img/PyTorch/2018-11-02-pytorch-usage-01-Introduction/01_run_pytorch.PNG)
 
+---
+
+## GPU 사용을 위한 설치
+
+GPU 사용을 위한 필수 절차는 다음과 같다. _경우의 수가 너무 많아서 스크린샷은 생략_
+
+1. **호환성 체크**
+    1. 컴퓨터에 있는 GPU의 **compute capability** 확인
+        - [여기](https://developer.nvidia.com/cuda-gpus)에서 확인
+    2. compute capability에 맞는 CUDA SDK 버전 확인
+        - [여기](https://en.wikipedia.org/wiki/CUDA#GPUs_supported)에서 확인
+    3. Pytorch와 CUDA의 호환성 확인
+        - 설치하고자 하는 PyTorch(또는 Tensorflow)가 지원하는 최신 CUDA 버전이 있다. 이보다 상위 버전의 CUDA를 설치하면 PyTorch 코드가 제대로 돌아가지 않는다.
+        - [Pytorch 홈페이지](https://pytorch.org/)에서 정해주는 CUDA 버전을 설치하는 쪽이 편하다. 2020.02.13 기준 최신 버전은 10.1이다.
+    4. CUDA에 맞는 cuDNN 버전 확인
+        - [여기](https://developer.nvidia.com/rdp/cudnn-archive)에서 확인할 수 있다.
+2. **CUDA 설치**
+    1. [CUDA toolkit archive](https://developer.nvidia.com/cuda-toolkit-archive)에서 원하는 CUDA를 다운받는다. 운영체제와 버전 등을 체크하고, 가능하면 Installer Type은 network가 아닌 local로 받는다. 인터넷으로 설치하면서 받는 것이 아닌 한번에 설치파일을 받는 식이다.
+        - 같은 버전인데 update가 추가된 버전이 있다. 보통은 이것까지 추가로 설치해 주는 쪽이 좋다. base installer를 먼저 설치한 뒤에 추가로 설치해 주도록 하자.
+    2. 설치 파일로 CUDA를 설치한다. 설치 시에는 다른 프로그램을 설치하거나 제거하는 중이면 실행이 되지 않으니 주의하자.
+    3. cuda visual studio integration 관련해서 설치 실패가 뜨는 경우가 많은데, 이 부분이 필요한 코드를 실행할 일이 있다면 이 단계에서 설치해 주는 것이 좋다.
+3. **cuDNN 설치**
+    1. 우선 [cudnn-archive](https://developer.nvidia.com/rdp/cudnn-archive)에서 사용하고자 하는 CUDA에 맞는 버전을 찾아 다운받는다.
+    2. 윈도우의 경우 압축을 풀어 CUDA 설치 폴더(`C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1`)에 붙여넣기 하면 된다. 폴더 경로는 설치한 CUDA 버전에 따라 달라진다.
+    3. Ubuntu 등의 경우는 홈페이지에 명시된 절차를 따르도록 하자.
+4. **환경변수 등록**
+    1. 윈도우의 경우 `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin`을 등록하자.
+        - 실행이 잘 안 되는 경우 상위 또는 하위 폴더 몇 개를 추가 등록하면 되는 경우도 있다.
+    2. Ubuntu 등의 경우는 다음과 비슷하다. 자신의 OS에 맞춰서 구글링하자.
+        ```
+        export PATH=/usr/local/cuda-10.1/bin${PATH:+:${PATH}}
+        export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64\${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+        ```
+5. **설치 확인**
+    1. 다음 코드를 python을 실행하여 입력해보고 `True`가 뜨면 성공한 것이다.
+        ```python
+        import torch
+        torch.cuda.is_available()
+        ```
+
 
 ---
 
