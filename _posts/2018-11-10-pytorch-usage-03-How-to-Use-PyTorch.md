@@ -141,41 +141,31 @@ first_batch[1]  | <class 'torch.Tensor'>    | torch.Size([64])
 
 완전 필수는 아니지만 `__init__()`도 구현하는 것이 좋다.
 
-[Pytorch Tutorial](https://pytorch.org/tutorials/beginner/data_loading_tutorial.html?highlight=dataloader)의 예시는 다음과 같다.
-```python
-class FaceLandmarksDataset(Dataset):
-    """Face Landmarks dataset."""
+1차함수 선형회귀(Linear Regression)의 [예](https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#load-data)를 들면 다음과 같다.  
+데이터는 [여기](https://drive.google.com/file/d/1gVxV5eD5NfyEO4aHSyAGmsDgUco8FQPb/view?usp=sharing)에서 받을 수 있다.
 
-    def __init__(self, csv_file, root_dir, transform=None):
+```python
+class LinearRegressionDataset(Dataset):
+
+    def __init__(self, csv_file):
         """
         Args:
-            csv_file (string): Path to the csv file with annotations.
-            root_dir (string): Directory with all the images.
-            transform (callable, optional): Optional transform to be applied
-                on a sample.
+            csv_file (string): Path to the csv file. 
         """
-        self.landmarks_frame = pd.read_csv(csv_file)
-        self.root_dir = root_dir
-        self.transform = transform
+        data = pd.read_csv(csv_file)
+        self.x = torch.from_numpy(data['x'].values).unsqueeze(dim=1).float()
+        self.y = torch.from_numpy(data['y'].values).unsqueeze(dim=1).float()
 
     def __len__(self):
-        return len(self.landmarks_frame)
+        return len(self.x)
 
     def __getitem__(self, idx):
-        img_name = os.path.join(self.root_dir,
-                                self.landmarks_frame.iloc[idx, 0])
-        image = io.imread(img_name)
-        landmarks = self.landmarks_frame.iloc[idx, 1:].as_matrix()
-        landmarks = landmarks.astype('float').reshape(-1, 2)
-        sample = {'image': image, 'landmarks': landmarks}
+        x = self.x[idx]
+        y = self.y[idx]
 
-        if self.transform:
-            sample = self.transform(sample)
+        return x, y
 
-        return sample
-
-face_dataset = FaceLandmarksDataset(csv_file='data/faces/face_landmarks.csv',
-                                    root_dir='data/faces/')
+dataset = LinearRegressionDataset('02_Linear_Regression_Model_Data.csv')
 ```
 
 ## torchvision.datasets
@@ -194,7 +184,7 @@ Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이�
     - Captions(이미지 한 장과 이를 설명하는 한 영문장), 
     - Detection(이미지 한 장과 여기에 있는 object들을 segmantation한 정보) 
 - LSUN(https://www.yf.io/p/lsun), 
-- *ImageFolder*, *DatasetFolder*, 
+- *ImageFolder*, *DatasetFolder* 
 - Image:
     - ImageNet 2012,
     - CIFAR10 & CIFAR100, 
@@ -257,6 +247,27 @@ transforms.Compose([
 ```
 
 변환 순서는 보통 resize/crop, toTensor, Normalize 순서를 거친다. Normalize는 tensor에만 사용 가능하므로 이 부분은 순서를 지켜야 한다.
+
+## torchtext
+
+자연어처리(NLP)를 다룰 때 쓸 수 있는 좋은 라이브러리가 있다. 이는 자연어처리 데이터셋을 다루는 데 있어서 매우 편리한 기능을 제공한다.
+- 데이터셋 로드
+- 토큰화(Tokenization)
+- 단어장(Vocabulary) 생성
+- Index mapping: 각 단어를 해당하는 인덱스로 매핑
+- 단어 벡터(Word Vector): word embedding을 만들어준다. 0이나 랜덤 값 및 사전학습된 값으로 초기화할 수 있다.
+- Batch 생성 및 (자동) padding 수행
+
+설치는 다음과 같다.
+```
+pip install torchtext
+# conda 환경에선 다음과 같다.
+conda install -c pytorch torchtext
+```
+
+
+
+
 
 ---
 

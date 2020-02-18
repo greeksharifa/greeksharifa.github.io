@@ -78,6 +78,8 @@ import matplotlib.pyplot as plt
 지금의 경우는 전처리할 필요가 없으므로 그냥 데이터를 불러오기만 하면 된다. 데이터가 어떻게 생겼는지도 확인해 보자.  
 데이터가 어떤지 살펴보는 것은 모델을 결정하는 데 있어 매우 중요하다.
 
+다운로드는 [여기](https://drive.google.com/open?id=1gVxV5eD5NfyEO4aHSyAGmsDgUco8FQPb)에서 할 수 있다.
+
 ```python
 data = pd.read_csv('data/02_Linear_Regression_Model_Data.csv')
 # Avoid copy data, just refer
@@ -117,7 +119,7 @@ data.to_csv('data/02_Linear_Regression_Model_Data.csv', header=['x', 'y'])
 여기서는 여러분의 편의를 위해 함수들의 parameter 이름을 명시하도록 한다.
 
 PyTorch에서 Linear 모델은 `torch.nn.Linear` 클래스를 사용한다. 여기서는 단지 x를 y로 mapping하는 일차원 직선($ y = wx + b $)을 찾고 싶은 것이므로, `in_features`와 `out_features`는 모두 1이다.  
-**nn.Linear**은 **nn.Module**의 subclass로 in_features개의 input을 선형변환을 거쳐 out_features개의 output으로 변환한다. parameter 개수는 $ (in\_features \times out\_features [ + out\_features]) $ 개이다. 마지막 항은 **bias**이다.
+**nn.Linear**은 **nn.Module**의 subclass로 in_features개의 input을 선형변환을 거쳐 out_features개의 output으로 변환한다. parameter 개수는 $ (in \_ features \times out \_ features [ + out \_ features]) $ 개이다. 마지막 항은 **bias**이다.
 
 ```python
 from torch import nn
