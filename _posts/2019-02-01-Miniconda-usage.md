@@ -22,7 +22,7 @@ Not recommended라고 되어 있는 옵션이지만 체크하면 PATH에 등록�
 ![02_install](/public/img/conda/2019-02-01-Miniconda-usage/02.PNG)
 
 설치 후 다음 명령을 명령창(cmd / 터미널)에 입력해본다.
-```
+```python
 conda list
 ```
 
@@ -42,7 +42,7 @@ conda list
 ## 가상환경 목록 확인, 생성 및 삭제
 
 다음을 명령창에 입력한다.
-```
+```python
 conda env list
 # 또는,
 conda info --envs
@@ -92,6 +92,7 @@ conda env create -f environment.yml
 # 생성할 때와는 다르게 env를 앞에 적어주어야 한다.
 # 생성 시에는 env를 앞에 적으면 실행이 되지 않는다.
 # remove 앞에 env를 써 주지 않으면 가상환경 삭제가 아닌 패키지 삭제가 이루어진다.
+# conda env remove -n <environment_name>
 conda env remove -n condatorch
 # 다음도 가능하다.
 conda remove --name myenv --all
@@ -128,7 +129,8 @@ while read requirement; do conda install --yes $requirement
 ## 가상환경 활성화, 비활성화
 
 가상환경 활성화는 위에서도 설명했듯 다음과 같이 쓰면 된다.
-```
+```python
+activate <environment_name>
 activate condatorch
 ```
 Unix 등의 환경에서는 `activate`가 아닌 `source activate`를 써야 한다.
@@ -159,7 +161,7 @@ conda install numpy pandas
 ```
 
 설치된 패키지 목록을 보고 싶으면 다음을 입력한다.
-```
+```python
 conda list
 ```
 
@@ -199,6 +201,42 @@ prefix: C:\ProgramData\Miniconda3\envs\condatorch
 conda env create -f environment.yml -n myenv
 ```
 
+
+### 패키지 업데이트
+
+특정 환경 안의 특정 패키지를 업데이트하려면 다음과 같이 하면 된다.
+
+```python
+conda update -n <environment_name> spacy
+```
+
+특정 환경 안의 모든 패키지를 업데이트하려면 다음과 같이 하면 된다.
+
+```python
+conda update -n <environment_name> --all
+# 현재 환경 업데이트
+conda update --all
+```
+
+
+
+
+---
+
+## Conda 버전 확인 및 update
+
+명령창에서 Conda의 버전을 확인하는 방법은 다음과 같다.
+```
+conda -V
+conda --version
+```
+
+Conda 자체를 업데이트하는 방법은 다음과 같다.
+
+```
+conda update conda
+conda update anaconda
+```
 
 ---
 

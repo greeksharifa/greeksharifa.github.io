@@ -87,7 +87,7 @@ SVD를 기하학적으로 설명하면, $V^T, U$에 의해서 A 행렬의 방향
 
 ---
 ## 4. 잠재 요인 협업 필터링의 Matrix Factorization  
-위에서 설명한 SVD는 잠재요인을 밝혀내기에 아주 적합한 방법이지만, 실제 현실에서 원행렬 A에는 결측값이(당연히 모든 사용자가 모든 아이템에 대해 평점을 남겼다면, 굳이 추천 시스템이 필요하지 않을 것이다.) 많다. 따라서 이를 대체할 근사적인 방법이 필요하며, 그 방법에는 `SGD(Stochastic Gradient Descent)` 또는 `ALS(Alternating Least Squares)`가 있다. 이 방법들에 대해서는 [다음 글](2019-12-20-Matrix&#32;Factorization.md)을 참조하기 바란다.  
+위에서 설명한 SVD는 잠재요인을 밝혀내기에 아주 적합한 방법이지만, 실제 현실에서 원행렬 A에는 결측값이(당연히 모든 사용자가 모든 아이템에 대해 평점을 남겼다면, 굳이 추천 시스템이 필요하지 않을 것이다.) 많다. 따라서 이를 대체할 근사적인 방법이 필요하며, 그 방법에는 `SGD(Stochastic Gradient Descent)` 또는 `ALS(Alternating Least Squares)`가 있다. 이 방법들에 대해서는 [다음 글](https://greeksharifa.github.io/machine_learning/2019/12/20/Matrix-Factorization/)을 참조하기 바란다.  
 
 `SGD`를 이용해서 행렬을 분해하면 다음과 같다.
 

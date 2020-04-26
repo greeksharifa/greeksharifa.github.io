@@ -13,7 +13,7 @@ Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생 �
 
 글이 길기 때문에 사용법을 검색하고 싶다면 `Ctrl + F` 키를 누른 다음 검색해 보자.
 
-*2020.02.14 updated*
+*2020.05.10 updated*
 
 ---
 
@@ -51,11 +51,13 @@ PyCharm 홈페이지에서 설치 파일을 다운받는다.
 <center><img src="/public/img/2019-02-07-PyCharm-usage/05.png" width="100%"></center>
 
 `Keymap`에서는 단축키를 지정할 수 있다. PyCharm의 기본 단축키는 타 프로그램과 좀 다른 부분이 많아 필자는 일부를 바꿨다.  
-변경하고 싶은 단축키를 찾아서 더블클릭 또는 우클릭하면 기존에 지정되어 있는 단축키를 삭제하고 새 단축키를 지정할 수 있다. 이때 겹친다면 기존 단축키를 남겨둘지 제거할지 선택할 수 있다.
+변경하고 싶은 단축키를 찾아서 더블클릭 또는 우클릭하면 기존에 지정되어 있는 단축키를 삭제하고 새 단축키를 지정할 수 있다. 이때 겹친다면 기존 단축키를 남겨둘지 제거할지 선택할 수 있다. 또한 마우스와 조합한 단축키로 지정할 수도 있다.  
+그리고 검색창 옆에 `돋보기 + 네모 3개`로 이루어진 아이콘을 클릭하면 명령의 이름이 아닌 현재 지정되어 있는 단축키로 검색할 수 있다(예: Ctrl + W).
 
 <center><img src="/public/img/2019-02-07-PyCharm-usage/06.png" width="100%"></center>
 
-추천하는 변경할 단축키는 다음과 같다. 
+추천하는 변경할 단축키는 다음과 같다.  
+아래쪽은 필자가 지정하여 사용하는 단축키이다. 이외에도 유용한 기능을 몇 개 적어 놓았다.
 
 Menu | 변경 전 | 변경 후
 -------- | -------- | --------
@@ -66,6 +68,13 @@ Other > Terminal | | Alt + T
 Other > Python Console | | Alt + 8
 Other > SciView | | Alt + 0
 Show in Explorer | | Ctrl + Alt + Shift + E
+Window > Editor Tabs > Close | | Ctrl + W
+ | | 
+Type Info | | Ctrl + Alt + Button1 Click
+Split and Move Right | | Ctrl + Alt + Shift + R
+Go to Declaration or Usages | | Ctrl + Button1 Click
+
+
 
 필자의 경우 나머지 설정은 그대로 두는 편이나, `Ctrl + Enter`로 바꿀 때는 다른 곳에 할당된 것을 지운다(Already assigned 경고창에서 Leave 대신 Remove를 선택). 안 그러면 선택한 부분이 Python Console(대화형)에서 실행되지 않는다.
 
@@ -125,7 +134,8 @@ git repository는 그냥 여러분의 git 계정에서 빈 거 하나 만든 다
 <center><img src="/public/img/2019-02-07-PyCharm-usage/14.png" width="70%"></center>
 
 각 옵션을 대략 설명하면,
-- New: File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 자주 쓰는 기능이지만 안타깝게도 단축키는 설정이 어려운 것 같다.
+- New: File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 단축키 설정하는 방법은 다음과 같다.
+    - 새 Python 파일을 생성할 때는 `New > Python File`을 선택하면 된다. 단축키를 설정하는 방법은 `Settings > Keymap`의 검색창에서 `Python File`을 검색하면 아무 단축키가 지정되어 있지 않은 것을 볼 수 있다. `Add Keyboard Shortcut`을 눌러 원하는 키를 설정해주자.
 - Cut, Copy, Paste 등은 설명하지 않겠다.
 - Copy Path, Copy Relative Path: 각각 해당 디렉토리 또는 파일의 절대/상대 경로를 복사한다. 이미지나 데이터 파일 등의 경로를 써야 할 때 유용하게 쓸 수 있다. 단, 사용 환경에 따라 디렉토리 구분자가 `/`, `\`, `//` 등으로 달라지는 경우가 있으니 주의.
 - Refactor: 해당 디렉토리 또는 파일의 이름을 변경한다. 이때 이 파일명을 사용하는 코드(file open 등)이 있으면 그 코드를 자동으로 수정하게 할 수 있다.
@@ -191,6 +201,7 @@ print('Hello Pycharm!')
 
 - `Project` 창에서도 해당 파일을 `우클릭 > Run (파일명)`을 클릭하면 해당 파일의 코드 전체가 실행된다.
 - 편집 창에서도 파일명 탭을 `우클릭 > Run (파일명)`해도 된다. 실행 방법은 많다.
+- Terminal에서 Local Environment에서 실행되는 대신, Remote SSH session에서 실행시키는 방법은 [여기](https://greeksharifa.github.io/references/2019/02/07/PyCharm-usage/#terminal%EC%97%90%EC%84%9C-ssh-session%EC%9C%BC%EB%A1%9C-%EC%97%B4%EA%B8%B0)를 참고하면 된다.
 
 ---
 
@@ -203,7 +214,7 @@ print('Hello Pycharm!')
 위 그림의 오른쪽 부분을 보자. 경고인 듯한 느낌표와 함께 여러 색깔의 줄이 있다. 현재 커서는 9번째 라인의 `example` 변수에 위치해 있다.
 
 - 먼저 왼쪽에는 줄 번호(line number)라는 것을 다들 알 수 있을 것이다.
-    - 하지만 이 단축키는 모르는 사람이 많다. `Ctrl + G`를 누르면 원하는 라인으로 이동할 수 있다. 줄의 어느 부분으로 이동할지도 `line:column` 형식으로 정할 수 있다. 줄 번호만 지정하고 싶으면 그냥 숫자만 입력하라.
+    - 하지만 이 단축키는 모르는 사람이 많다. `Ctrl + G`를 누르면 원하는 라인으로 이동할 수 있다. 줄의 어느 부분으로 이동할지도 `line:column` 형식으로 정할 수 있다. 줄 번호만 지정하고 싶으면 그냥 숫자만 입력하면 된다.
 - 빨간 화살표가 가리키고 있는 경고 표시는 현재 이 파일에 **syntax error**가 있다는 뜻이다. 메인 화면에도 해당 부분에는 빨간 줄이 그어진다(`printf`). 그리고 오른쪽에도 빨간색 bar가 생긴다. 
     - 이 bar들은 현재 파일에서의 상대적 위치를 뜻한다. 즉, 예를 들어 맨 아래에 있는 오류 코드가 화면에 안 보이더라도 bar는 제일 아래쪽 근처에 표시된다.
 - 커서가 위치한 곳이 변수나 함수 등이라면 해당 파일의 모든 부분에서 같은 이름을 가진 변수(또는 함수)에는 옅은 초록색 배경색이 칠해진다. 그리고 해당 변수(함수)가 선언된 곳에는 옅은 주황색으로 배경색이 칠해진다(이 색깔은 `Settings`에서 바꿀 수 있다). 어디서 사용되고 있는지 쉽게 알 수 있다. 그리고 그림에서 오른쪽에도 주황색 또는 초록색 짧은 bar가 생긴 것을 볼 수 있다.
@@ -554,6 +565,47 @@ fibonacci(3)	:        8
 
 ---
 
+## Profilers(코드 실행시간 측정)
+
+코드 실행시간을 측정할 때 매번 코드 시작과 끝 지점에 `start_time`와 `end_time` 같은 코드를 삽입하지 않고도 특정 함수나 코드 일부분 등의 실행 시간을 측정하는 기능을 PyCharm에서 제공한다. 이는 Terminal이나 IPython 등으로 실행한 것이 아닌 PyCharm의 `Run` 과 같은 방식으로 파일을 실행시켰을 때([Configurations](https://greeksharifa.github.io/references/2019/02/07/PyCharm-usage/#configurations%EC%8B%A4%ED%96%89-%EC%8B%9C-parameter-%EC%84%A4%EC%A0%95)에서 설정 가능) 설정 가능하며, Professional 버전에서만 이용 가능하다.
+
+정확히는, `Configurations`에서 실행할 파일을 지정한 다음, `Run` 버튼이 아닌 `Profile` 버튼을 클릭한다.
+
+`temp.py` 파일을 다음과 같이 작성했다고 하자. 
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/69.png" width="80%"></center>
+
+이제 이 코드에서 어느 부분이 실행시간의 많은 부분을 차지하는지 알아보자. PyCharm의 우상단에 있는 `Profile` 버튼을 클릭한다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/70.png" width="80%"></center>
+
+그러면 실행창에는 다음과 같이 `Starting cProfile profiler`라는 문구가 출력되면서 실행이 된다. `done` 출력 이후에 한 줄이 더 출력되어 있는데, Snapshot(pstat 파일)이 지정된 경로에 저장되었다는 뜻이다. 
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/71.png" width="100%"></center>
+
+그리고 실행이 끝나면 확장자가 pstat인 파일이 열린다. 실행이 너무 오래 걸린다면, 위 그림의 빨간 박스(`Capture Snapshot`, 실행이 끝난 상태에서는 비활성화됨)를 클릭하면 snapshot이 바로 저장되면서 중간 결과를 볼 수 있다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/74.png" width="100%"></center>
+
+pstat 파일에는 2개의 탭이 있다. `Statistics` 탭에는 각 함수별로 
+- 실행 수
+- 해당 함수에 포함된 모든 함수의 실행 시간을 모두 더한 값
+- 해당 함수 자체만의 실행 시간의 총합(해당 함수가 여러 번 실행되었을 수 있으므로)
+이 나열되어 있다. 
+
+정확히는 사용자 정의 함수와 같은 일반 함수 외에도 Python 내장 함수(`print` 등) 및 기본(`__init__` 등) 함수, class, 실행 파일 등이 포함된다.
+
+원하는 함수명을 오른쪽 클릭하면 해당 함수가 위치한 곳으로 이동하거나, 아래의 `Call Graph`에서 찾아볼 수도 있다.
+
+`Call Graph` 탭에서는 어떤 파일/함수에서 어떤 함수가 실행(call)되었고, 각 함수의 실행 시간을 전부 볼 수 있다.  
+이 기능은 복잡한 코드가 어떤 과정으로 실행되는지를 대략 알아보는 데도 쓸 수도 있다(순서는 Traceback을 보는 것이 낫다).
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/73.png" width="100%"></center>
+
+왼쪽 위에 있는 `+`, `-` 등의 메뉴에서는 그림 확대/축소, 화면 맞추기, 이미지로 저장 등을 수행할 수 있다.
+
+---
+
 ## Configurations(실행 시 parameter 설정)
 
 실행(Run)이나, 디버깅(Debugging) 버튼을 통해서 실행하고자 할 때, 엉뚱한 파일이 실행되는 경우가 있다. 이는 실행 버튼 바로 옆의 실행 파일명 또는 configuration 이름을 살펴보고 원하는 부분이 아니라면 바꿔주도록 하자.
@@ -680,6 +732,13 @@ Interpreter 경로 지정은 오른쪽의 디렉토리 아이콘을 누르면 �
 - `Configuration`을 누르면 조금 전 보았던 `Mappings` 탭을 포함해 설정을 다시 할 수 있다.
 - `Automatic Upload`를 누르면 토글이 되며, 로컬 파일을 원격 서버에 자동으로 업데이트할지를 결정할 수 있다.
 
+### Terminal에서 SSH session으로 열기
+
+메뉴 바에서 `Tools > Start SSH session...`을 클릭하면 `Select host to connect` 창이 뜬다. 이때 아래쪽 목록에는 현재 프로젝트에 설정되어 있는 python environment들이 뜬다. SSH 연결을 추가하고 싶으면, `Edit credentials...`를 클릭한다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/68.png" width="100%"></center>
+
+그러면 위 그림과 같이 `SSH Session` 대화창이 뜬다. 여기서 보통 ssh 연결할 때처럼 서버 주소, 사용자명, 비밀번호 등을 입력하고 `OK`를 누르면 Terminal 창에서 로컬 환경 대신 SSH 환경에서 열리게 된다. 파일 접속은 물론이고 실행까지 원격 ssh 서버 상에서 이루어지게 된다. 
 
 ---
 
