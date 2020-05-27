@@ -14,6 +14,15 @@ tags: [GitHub, usage]
 
 ---
 
+명령어에 일반적으로 적용되는 규칙:
+
+- 각 명령에는 여러 종류의 옵션이 있다. ex) `git log`의 경우 `--oneline`, `-<number>`, `-p` 등의 옵션이 있다.
+- 각 옵션은 많은 경우 축약형이 존재한다. 일반형은 `-`가 2개 있으며, 축약형은 `-`가 1개이며 보통 첫 일반형의 첫 글자만 따온다. ex) `--patch` = `-p`. 축약형과 일반형은 효과가 같다.
+- 각 옵션의 순서는 상관없다. 명령의 필수 인자와 옵션의 순서를 바꾸어도 상관없다.
+- 각 명령에 대한 자세한 설명은 `git help <command-name>`으로 확인할 수 있다.
+
+---
+
 ## Git Directory 생성
 
 ### git init
@@ -57,6 +66,82 @@ Unpacking objects: 100% (56/56), done.
 ## Git Repository 연결
 
 로컬 저장소를 원격(remote) 저장소에 연결하는 방법은 다음과 같다.
+
+git add remote origin
+
+
+---
+
+## Git stage에 파일 추가
+
+로컬 저장소의 수정사항이 반영되는 과정은 총 3단계를 거쳐 이루어진다.
+
+1. `git add` 명령을 통해 stage에 변경된 파일을 추가하는 과정
+2. `git commit` 명령을 통해 여러 변경점을 하나의 commit으로 묶는 과정
+3. `git push` 명령을 통해 로컬 commit 내용을 원격 저장소에 올려 변경사항을 반영하는 과정
+
+이 중 `git add` 명령은 첫 단계인, **stage**에 파일을 추가하는 것이다.
+
+```git
+git add <filename1> [<filename2>, ...]
+git add <directory-name>
+git add *
+git add --all
+git add .
+
+# 명령어 예시
+git add third.py fourth.py
+git add temp_dir/*
+```
+
+`*`은 와일드카드로 그냥 쓰면 변경점이 있는 모든 파일을 stage에 추가한다(`git add *`). 특정 directory 뒤에 쓰면 해당 directory의 모든 파일을, `*.py`와 같이 쓰면 확장자가 `.py`인 모든 파일이 stage에 올라가게 된다.  
+`git add .`을 현재 directory(`.`)의 모든 파일을 추가하는 명령으로 `git add --all`과 효과가 같다. 
+
+`git add` 명령을 실행하고 이미 stage에 올라간 파일을 또 수정한 뒤 [`git status`]() 명령을 실행하면 같은 파일이 Changes to be committed 분류와 Changes not staged for commit 분류에 동시에 들어가 있을 수 있다. 딱히 오류는 아니고 해당 파일을 다음 commit에 반영할 계획이면 한번 더 `git add`를 실행시켜주자.
+
+### 한 파일 내 수정사항의 일부만 stage에 추가
+
+예를 들어 `fourth.py`를 다음과 같이 변경한다고 하자.
+
+```python
+# 변경 전
+print('hello')
+
+print(1)
+
+print('bye')
+
+#변경 후
+print('hello')
+print('git')
+
+print('bye')
+print('20000')
+```
+이 중 `print('20000')`을 제외한 나머지 변경사항만을 stage에 추가하고 싶다고 하자. 그러면 `git add <filename>` 명령에 다음과 같이 `--patch` 옵션을 붙인다.
+
+```diff
+git add --patch fourth.py
+git add fourth.py -p
+
+# 결과 예시
+diff --git a/fourth.py b/fourth.py
+index 13cc618..4c8cfb6 100644
+--- a/fourth.py
++++ b/fourth.py
+@@ -1,5 +1,5 @@
+ print('hello')
++print('git')
+
+-print(1)
+-
+-print('bye')
+\ No newline at end of file
++print('bye')
++print('20000')
+\ No newline at end of file
+Stage this hunk [y,n,q,a,d,s,e,?]? 
+```
 
 
 
@@ -150,7 +235,7 @@ Date:   Sun Aug 19 20:29:48 2018 +0900
 
 각 commit의 diff 결과(commit의 세부 변경사항, 변경된 파일의 변경된 부분들을 보여줌)를 보고 싶으면 다음을 입력한다.
 
-```vim
+```diff
 git log --patch
 
 # 결과 예시
@@ -308,6 +393,31 @@ Branch '2nd-branch' set up to track remote branch '2nd-branch' from 'origin'.
 
 ### 새 branch 생성
 
+```git
+git branch <new-branch-name>
+
+# 명령어 예시
+git branch fourth-branch
+```
+
+위 명령은 branch를 생성만 한다. 생성한 브랜치에서 작업을 시작하려면 checkout 과정을 거쳐야 한다.
+
+### branch 생성과 같이 checkout하기
+
+```git
+git checkout -b <new-branch-name> <parent-branch-name>
+
+# 명령어 예시
+git checkout -b fourth-branch master
+
+# 결과 예시
+Switched to a new branch 'fourth-branch'
+```
+
 
 
 새로운 branch는 부모 브랜치와
+
+
+
+git push --set-upstream origin fourth-branch

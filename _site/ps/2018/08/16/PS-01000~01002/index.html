@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      BOJ 01000(A+B), 01001(A-B), 01002(터렛) 문제 풀이
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">BOJ 01000(A+B), 01001(A-B), 01002(터렛) 문제 풀이</h1>
+  <span class="post-date">16 Aug 2018</span>
+   |
+  
+  <a href="/blog/tags/#ps" class="post-tag">PS</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#참조">참조</a></li>
+  <li><a href="#boj-1000ab">BOJ 1000(A+B)</a>
+    <ul>
+      <li><a href="#개요">개요</a>
+        <ul>
+          <li><a href="#시간복잡도--o1-">시간복잡도: $ O(1) $</a></li>
+          <li><a href="#공간복잡도--o1-">공간복잡도: $ O(1) $</a></li>
+        </ul>
+      </li>
+      <li><a href="#문제-풀이">문제 풀이</a></li>
+      <li><a href="#구현">구현</a></li>
+    </ul>
+  </li>
+  <li><a href="#boj-1001a-b">BOJ 1001(A-B)</a>
+    <ul>
+      <li><a href="#개요-1">개요</a>
+        <ul>
+          <li><a href="#시간복잡도--o1--1">시간복잡도: $ O(1) $</a></li>
+          <li><a href="#공간복잡도--o1--1">공간복잡도: $ O(1) $</a></li>
+        </ul>
+      </li>
+      <li><a href="#문제-풀이-1">문제 풀이</a></li>
+      <li><a href="#구현-1">구현</a></li>
+    </ul>
+  </li>
+  <li><a href="#boj-1002터렛">BOJ 1002(터렛)</a>
+    <ul>
+      <li><a href="#개요-2">개요</a>
+        <ul>
+          <li><a href="#시간복잡도--o1--2">시간복잡도: $ O(1) $</a></li>
+          <li><a href="#공간복잡도--o1--2">공간복잡도: $ O(1) $</a></li>
+        </ul>
+      </li>
+      <li><a href="#문제-풀이-2">문제 풀이</a></li>
+      <li><a href="#구현-2">구현</a></li>
+    </ul>
+  </li>
+</ul>
+
+    <h2 id="참조">참조</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>분류</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>문제</td>
+      <td><a href="https://www.acmicpc.net/problem/1000">A+B</a>, <a href="https://www.acmicpc.net/problem/1001">A-B</a>, <a href="https://www.acmicpc.net/problem/1002">터렛</a></td>
+    </tr>
+    <tr>
+      <td>이 글에서 설명하는 코드</td>
+      <td><a href="https://github.com/greeksharifa/ps_code/blob/master/BOJ/01000~01002.cpp">01000~01002</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="boj-1000ab">BOJ 1000(A+B)</h2>
+
+<h3 id="개요">개요</h3>
+
+<h4 id="시간복잡도--o1-">시간복잡도: $ O(1) $</h4>
+<h4 id="공간복잡도--o1-">공간복잡도: $ O(1) $</h4>
+
+<h3 id="문제-풀이">문제 풀이</h3>
+
+<p>단순 구현 문제이다. 이 문제는 여러분이 어떤 식으로 이 사이트에 제출해야 하는지를 시험할 수 있는 문제이다. 아래 구현과 같이 하면 된다.</p>
+
+<h3 id="구현">구현</h3>
+
+<p>다음과 같다. 이 문제는 C 스타일로 구현하였다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="boj-1001a-b">BOJ 1001(A-B)</h2>
+
+<h3 id="개요-1">개요</h3>
+
+<h4 id="시간복잡도--o1--1">시간복잡도: $ O(1) $</h4>
+<h4 id="공간복잡도--o1--1">공간복잡도: $ O(1) $</h4>
+
+<h3 id="문제-풀이-1">문제 풀이</h3>
+
+<p>이 문제 역시 단순 구현 문제이다. 이 문제도 여러분이 어떤 식으로 이 사이트에 제출해야 하는지를 시험할 수 있는 문제이다. 아래 구현과 같이 하면 된다.<br />
+사실 바로 위 문제에서 딱 한 글자만 바꿔도 된다.</p>
+
+<h3 id="구현-1">구현</h3>
+
+<p>다음과 같다. 이 문제는 C++ 스타일로 구현하였다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>참고로, <code class="highlighter-rouge">cin</code>, <code class="highlighter-rouge">cout</code> 함수는 <code class="highlighter-rouge">scanf</code>와 <code class="highlighter-rouge">printf</code>에 비해 느리기 때문에, main 함수 첫 줄과 같은 구문을 써 주어야 한다.<br />
+단 <code class="highlighter-rouge">ios::sync_with_stdio(false);</code>를 썼을 때는 <code class="highlighter-rouge">cin</code>과 <code class="highlighter-rouge">cout</code>을 <code class="highlighter-rouge">scanf</code>나 <code class="highlighter-rouge">printf</code>를 같이 쓰면 안 된다.</p>
+
+<hr />
+
+<h2 id="boj-1002터렛">BOJ 1002(터렛)</h2>
+
+<h3 id="개요-2">개요</h3>
+
+<h4 id="시간복잡도--o1--2">시간복잡도: $ O(1) $</h4>
+<h4 id="공간복잡도--o1--2">공간복잡도: $ O(1) $</h4>
+
+<h3 id="문제-풀이-2">문제 풀이</h3>
+
+<p>이 문제도 구현 문제지만, 알고리즘 문제를 풀어본 경험이 별로 없으면 충분히 헷갈릴 수 있는 문제이다.</p>
+
+<p>이 문제의 답의 종류는 4종류이다. 먼저 종이에 원 2개를 그려보고 답의 개수가 될 수 있는 가지수를 생각하면 답을 얻을 수 있다.</p>
+
+<ol>
+  <li>위치의 개수가 무한대인 경우는 터렛 2개가 같은 위치에 있는 경우이다. 사실은 문제 데이터가 잘못되지 않았다면 거리 r1과 r2도 같아야 한다. 답은 -1이다. 두 원이 완전히 일치하는 경우이다.</li>
+  <li>만약에 두 사람이 구한 거리의 합이 두 터렛의 거리보다 멀면 불가능하다. 비슷하게 거리의 차가 터렛의 거리보다 짧아도 불가능하다. 답은 0이다. 두 원이 만나지 않는 경우이다.</li>
+  <li>만약 터렛1, 터렛2, 마린이 일직선상에 있고 거리의 합 또는 차가 일치하면 답은 1이다. 두 원이 접하는 경우이다.</li>
+  <li>그 이외의 경우라면 답은 2이다. 두 원이 두 점에서 만나는 경우이다.</li>
+</ol>
+
+<h3 id="구현-2">구현</h3>
+
+<p>다음과 같다. R과 r은 각각 거리의 합의 제곱 또는 차의 제곱이다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">TC</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">TC</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">TC</span><span class="o">--</span><span class="p">){</span>
+        <span class="n">scanf</span><span class="p">(</span><span class="s">"%d%d%d%d%d%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r2</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">d_square</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">R_square</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span><span class="o">+</span><span class="n">r2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r1</span><span class="o">+</span><span class="n">r2</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">r_square</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span><span class="o">-</span><span class="n">r2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r1</span><span class="o">-</span><span class="n">r2</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">x1</span><span class="o">==</span><span class="n">x2</span> <span class="o">&amp;&amp;</span> <span class="n">y1</span><span class="o">==</span><span class="n">y2</span> <span class="o">&amp;&amp;</span> <span class="n">r1</span><span class="o">==</span><span class="n">r2</span><span class="p">)</span>
+            <span class="n">puts</span><span class="p">(</span><span class="s">"-1"</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">d_square</span> <span class="o">&gt;</span> <span class="n">R_square</span> <span class="o">||</span> <span class="n">d_square</span> <span class="o">&lt;</span> <span class="n">r_square</span><span class="p">)</span>
+            <span class="n">puts</span><span class="p">(</span><span class="s">"0"</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">d_square</span><span class="o">==</span><span class="n">R_square</span> <span class="o">||</span> <span class="n">d_square</span><span class="o">==</span><span class="n">r_square</span><span class="p">)</span>
+            <span class="n">puts</span><span class="p">(</span><span class="s">"1"</span><span class="p">);</span>
+        <span class="k">else</span> 
+            <span class="n">puts</span><span class="p">(</span><span class="s">"2"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github/2020/05/27/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/generative/model/2020/05/25/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/machine_learning/2020/05/01/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/ps/2018/08/16/PS-01000~01002/';
+    this.page.identifier = 'http://localhost:4000/ps/2018/08/16/PS-01000~01002/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

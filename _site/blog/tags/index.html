@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Tags
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub active" href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <div class="page">
+  <h1 class="page-title">Tags</h1>
+  <div class="tags-expo">
+  <div class="tags-expo-list">
+    
+    <a href="#usage" class="post-tag">usage</a>
+    
+    <a href="#keras" class="post-tag">Keras</a>
+    
+    <a href="#stack" class="post-tag">Stack</a>
+    
+    <a href="#equation" class="post-tag">Equation</a>
+    
+    <a href="#github" class="post-tag">GitHub</a>
+    
+    <a href="#markdown" class="post-tag">Markdown</a>
+    
+    <a href="#cnn" class="post-tag">CNN</a>
+    
+    <a href="#resnet" class="post-tag">Resnet</a>
+    
+    <a href="#matrix-power" class="post-tag">Matrix Power</a>
+    
+    <a href="#ps" class="post-tag">PS</a>
+    
+    <a href="#fft" class="post-tag">FFT</a>
+    
+    <a href="#fenwick-tree" class="post-tag">Fenwick Tree</a>
+    
+    <a href="#bit" class="post-tag">BIT</a>
+    
+    <a href="#tensorflow" class="post-tag">TensorFlow</a>
+    
+    <a href="#dinic" class="post-tag">Dinic</a>
+    
+    <a href="#network-flow" class="post-tag">Network Flow</a>
+    
+    <a href="#maximum-flow" class="post-tag">Maximum Flow</a>
+    
+    <a href="#regex" class="post-tag">Regex</a>
+    
+    <a href="#re" class="post-tag">re</a>
+    
+    <a href="#detection" class="post-tag">Detection</a>
+    
+    <a href="#lstm" class="post-tag">LSTM</a>
+    
+    <a href="#text" class="post-tag">Text</a>
+    
+    <a href="#generation" class="post-tag">Generation</a>
+    
+    <a href="#time-series" class="post-tag">Time Series</a>
+    
+    <a href="#paper-review" class="post-tag">Paper_Review</a>
+    
+    <a href="#sequence-modeling" class="post-tag">Sequence_Modeling</a>
+    
+    <a href="#rnn" class="post-tag">RNN</a>
+    
+    <a href="#nlp" class="post-tag">NLP</a>
+    
+    <a href="#pytorch" class="post-tag">PyTorch</a>
+    
+    <a href="#machine-learning" class="post-tag">Machine Learning</a>
+    
+    <a href="#jupyter" class="post-tag">Jupyter</a>
+    
+    <a href="#miniconda" class="post-tag">Miniconda</a>
+    
+    <a href="#pycharm" class="post-tag">PyCharm</a>
+    
+    <a href="#argparse" class="post-tag">Argparse</a>
+    
+    <a href="#gan" class="post-tag">GAN</a>
+    
+    <a href="#generative-model" class="post-tag">Generative Model</a>
+    
+    <a href="#dcgan" class="post-tag">DCGAN</a>
+    
+    <a href="#attention-mechanism" class="post-tag">Attention Mechanism</a>
+    
+    <a href="#vqa" class="post-tag">VQA</a>
+    
+    <a href="#task-proposal" class="post-tag">Task_Proposal</a>
+    
+    <a href="#deep-learning" class="post-tag">Deep Learning</a>
+    
+    <a href="#icml" class="post-tag">ICML</a>
+    
+    <a href="#contextual-bandit" class="post-tag">Contextual Bandit</a>
+    
+    <a href="#machine-learning" class="post-tag">Machine_Learning</a>
+    
+    <a href="#imbalanced-learning" class="post-tag">Imbalanced Learning</a>
+    
+    <a href="#visualization" class="post-tag">Visualization</a>
+    
+    <a href="#파이썬" class="post-tag">파이썬</a>
+    
+    <a href="#references" class="post-tag">References</a>
+    
+    <a href="#recommendation-system" class="post-tag">Recommendation System</a>
+    
+    <a href="#matrix-factorization" class="post-tag">Matrix Factorization</a>
+    
+    <a href="#latent-factor-collaborative-filtering" class="post-tag">Latent Factor Collaborative Filtering</a>
+    
+    <a href="#factorization-machines" class="post-tag">Factorization Machines</a>
+    
+    <a href="#강화학습" class="post-tag">강화학습</a>
+    
+    <a href="#field-aware-factorization-machines" class="post-tag">Field-aware Factorization Machines</a>
+    
+    <a href="#deepfm" class="post-tag">DeepFM</a>
+    
+    <a href="#afm" class="post-tag">AFM</a>
+    
+  </div>
+  <hr/>
+  <div class="tags-expo-section">
+    
+    <h2 id="usage">usage</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/github/2020/05/27/github-usage-09-overall/">
+      <li>
+        GitHub 사용법 - 09. Overall
+      <small class="post-date">27 May 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2019/02/12/argparse-usage/">
+      <li>
+        Python argparse 사용법
+      <small class="post-date">12 Feb 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2019/02/07/PyCharm-usage/">
+      <li>
+        PyCharm 사용법
+      <small class="post-date">07 Feb 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2019/02/01/Miniconda-usage/">
+      <li>
+        Miniconda(Anaconda) 사용법
+      <small class="post-date">01 Feb 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2019/01/26/Jupyter-usage/">
+      <li>
+        Jupyter Notebook 사용법
+      <small class="post-date">26 Jan 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/pytorch/2018/11/02/pytorch-usage-01-introduction/">
+      <li>
+        PyTorch 사용법 - 01. 소개 및 설치
+      <small class="post-date">02 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/pytorch/2018/11/02/pytorch-usage-00-references/">
+      <li>
+        PyTorch 사용법 - 00. References
+      <small class="post-date">02 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/19/github-usage-08-conflict/">
+      <li>
+        GitHub 사용법 - 08. Conflict
+      <small class="post-date">19 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/15/github-usage-07-diff-add-commit-gitignore-intermediate/">
+      <li>
+        GitHub 사용법 - 07. diff, add, commit, .gitignore 중급
+      <small class="post-date">15 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/12/github-usage-06-branch-intermediate/">
+      <li>
+        GitHub 사용법 - 06. branch 관리
+      <small class="post-date">12 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/11/github-usage-05-branch-basic/">
+      <li>
+        GitHub 사용법 - 05. branch 기본 2
+      <small class="post-date">11 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/07/github-usage-04-branch-basic/">
+      <li>
+        GitHub 사용법 - 04. branch 기본 1
+      <small class="post-date">07 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2018/07/13/it-will-update-soon/">
+      <li>
+        It will update soon...
+      <small class="post-date">13 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/07/08/github-usage-03-clone-log-gitignore/">
+      <li>
+        GitHub 사용법 - 03. 프로젝트 clone, status check, .gitignore
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2018/06/29/markdown-usage/">
+      <li>
+        Markdown 사용법
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/06/29/github-usage-02-create-project/">
+      <li>
+        GitHub 사용법 - 02. 프로젝트와 repository 생성
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/06/29/github-usage-01-introduction/">
+      <li>
+        GitHub 사용법 - 01. 소개
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/06/29/github-usage-00-command-list/">
+      <li>
+        GitHub 사용법 - 00. Command List
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2018/06/29/equation-usage/">
+      <li>
+        Github blog 수식 입력 방법
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/keras/2018/06/29/Keras-Tutorial/">
+      <li>
+        케라스 튜토리얼
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="keras">Keras</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/paper_review/2018/08/13/Fast_RCNN/">
+      <li>
+        Fast R-CNN
+      <small class="post-date">13 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/30/LSTM1/">
+      <li>
+        LSTM1
+      <small class="post-date">30 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/28/Text_Generation/">
+      <li>
+        Text_Generation
+      <small class="post-date">28 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/21/YOLO/">
+      <li>
+        YOLO
+      <small class="post-date">21 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/01/Residual-Neural-Network/">
+      <li>
+        Residual Neural Network with CNN
+      <small class="post-date">01 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/keras/2018/06/29/Keras-Tutorial/">
+      <li>
+        케라스 튜토리얼
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="stack">Stack</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/07/08/PS-10828/">
+      <li>
+        BOJ 10828(스택) 문제 풀이
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/08/PS-09012/">
+      <li>
+        BOJ 09012(괄호) 문제 풀이
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/07/PS-06549/">
+      <li>
+        BOJ 06549(히스토그램에서 가장 큰 직사각형) 문제 풀이
+      <small class="post-date">07 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/06/29/algorithm-stack/">
+      <li>
+        Stack(스택)
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="equation">Equation</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/references/2018/06/29/equation-usage/">
+      <li>
+        Github blog 수식 입력 방법
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="github">GitHub</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/github/2020/05/27/github-usage-09-overall/">
+      <li>
+        GitHub 사용법 - 09. Overall
+      <small class="post-date">27 May 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/19/github-usage-08-conflict/">
+      <li>
+        GitHub 사용법 - 08. Conflict
+      <small class="post-date">19 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/15/github-usage-07-diff-add-commit-gitignore-intermediate/">
+      <li>
+        GitHub 사용법 - 07. diff, add, commit, .gitignore 중급
+      <small class="post-date">15 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/12/github-usage-06-branch-intermediate/">
+      <li>
+        GitHub 사용법 - 06. branch 관리
+      <small class="post-date">12 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/11/github-usage-05-branch-basic/">
+      <li>
+        GitHub 사용법 - 05. branch 기본 2
+      <small class="post-date">11 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/08/07/github-usage-04-branch-basic/">
+      <li>
+        GitHub 사용법 - 04. branch 기본 1
+      <small class="post-date">07 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/07/08/github-usage-03-clone-log-gitignore/">
+      <li>
+        GitHub 사용법 - 03. 프로젝트 clone, status check, .gitignore
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/06/29/github-usage-02-create-project/">
+      <li>
+        GitHub 사용법 - 02. 프로젝트와 repository 생성
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/06/29/github-usage-01-introduction/">
+      <li>
+        GitHub 사용법 - 01. 소개
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/github/2018/06/29/github-usage-00-command-list/">
+      <li>
+        GitHub 사용법 - 00. Command List
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="markdown">Markdown</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/references/2018/06/29/markdown-usage/">
+      <li>
+        Markdown 사용법
+      <small class="post-date">29 Jun 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="cnn">CNN</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/generative%20model/2019/04/07/Pix2Pix/">
+      <li>
+        Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)
+      <small class="post-date">07 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/20/advanced-GANs/">
+      <li>
+        GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)
+      <small class="post-date">20 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/f-GAN/">
+      <li>
+        f-GAN
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/CGAN/">
+      <li>
+        CGAN(Conditional GAN)
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/17/DCGAN/">
+      <li>
+        DCGAN(Deep Convolutional GAN)
+      <small class="post-date">17 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/03/GAN/">
+      <li>
+        GAN(Generative Adversarial Networks)
+      <small class="post-date">03 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/10/26/YOLOv2/">
+      <li>
+        YOLOv2
+      <small class="post-date">26 Oct 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/09/07/Vehicle-Color-Recognition/">
+      <li>
+        Vehicle Color Recognition
+      <small class="post-date">07 Sep 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/08/13/Fast_RCNN/">
+      <li>
+        Fast R-CNN
+      <small class="post-date">13 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/21/YOLO/">
+      <li>
+        YOLO
+      <small class="post-date">21 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/01/Residual-Neural-Network/">
+      <li>
+        Residual Neural Network with CNN
+      <small class="post-date">01 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="resnet">Resnet</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/deep_learning/2018/07/01/Residual-Neural-Network/">
+      <li>
+        Residual Neural Network with CNN
+      <small class="post-date">01 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="matrix-power">Matrix Power</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/04/algorithm-matrix-power/">
+      <li>
+        행렬의 N 거듭제곱 빠르게 구하기
+      <small class="post-date">04 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="ps">PS</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/08/16/PS-01000~01002/">
+      <li>
+        BOJ 01000(A+B), 01001(A-B), 01002(터렛) 문제 풀이
+      <small class="post-date">16 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/12/PS-06086/">
+      <li>
+        BOJ 06086(최대 유량) 문제 풀이
+      <small class="post-date">12 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/11/PS-11658/">
+      <li>
+        BOJ 11658(구간 합 구하기 3) 문제 풀이
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/11/PS-01280/">
+      <li>
+        BOJ 01280(나무 심기) 문제 풀이
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/10/PS-02042/">
+      <li>
+        BOJ 02042(구간 합 구하기) 문제 풀이
+      <small class="post-date">10 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/08/PS-13277/">
+      <li>
+        BOJ 13277(큰 수 곱셈) 문제 풀이
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/08/PS-10828/">
+      <li>
+        BOJ 10828(스택) 문제 풀이
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/08/PS-09012/">
+      <li>
+        BOJ 09012(괄호) 문제 풀이
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/">
+      <li>
+        greeksharifa's Library
+      <small class="post-date">07 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/07/PS-06549/">
+      <li>
+        BOJ 06549(히스토그램에서 가장 큰 직사각형) 문제 풀이
+      <small class="post-date">07 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="fft">FFT</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/07/08/PS-13277/">
+      <li>
+        BOJ 13277(큰 수 곱셈) 문제 풀이
+      <small class="post-date">08 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/07/algorithm-FFT/">
+      <li>
+        고속 푸리에 변환(Fast Fourier Theorem, FFT). 큰 수의 곱셈
+      <small class="post-date">07 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="fenwick-tree">Fenwick Tree</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/07/11/PS-11658/">
+      <li>
+        BOJ 11658(구간 합 구하기 3) 문제 풀이
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/11/PS-01280/">
+      <li>
+        BOJ 01280(나무 심기) 문제 풀이
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/10/PS-02042/">
+      <li>
+        BOJ 02042(구간 합 구하기) 문제 풀이
+      <small class="post-date">10 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/09/algorithm-fenwick-tree/">
+      <li>
+        펜윅 트리(Fenwick Tree, Binary Indexed Tree, BIT)
+      <small class="post-date">09 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="bit">BIT</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/07/11/PS-11658/">
+      <li>
+        BOJ 11658(구간 합 구하기 3) 문제 풀이
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/11/PS-01280/">
+      <li>
+        BOJ 01280(나무 심기) 문제 풀이
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/ps/2018/07/10/PS-02042/">
+      <li>
+        BOJ 02042(구간 합 구하기) 문제 풀이
+      <small class="post-date">10 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/09/algorithm-fenwick-tree/">
+      <li>
+        펜윅 트리(Fenwick Tree, Binary Indexed Tree, BIT)
+      <small class="post-date">09 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="tensorflow">TensorFlow</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/pytorch/2018/11/02/pytorch-usage-01-introduction/">
+      <li>
+        PyTorch 사용법 - 01. 소개 및 설치
+      <small class="post-date">02 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2018/07/10/tensorflow-usage-01-Introduction/">
+      <li>
+        TensorFlow 사용법 - 01. 소개 및 설치
+      <small class="post-date">10 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="dinic">Dinic</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/07/12/PS-06086/">
+      <li>
+        BOJ 06086(최대 유량) 문제 풀이
+      <small class="post-date">12 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic/">
+      <li>
+        디닉 알고리즘(Dinic's Algorithm)
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="network-flow">Network Flow</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/07/12/PS-06086/">
+      <li>
+        BOJ 06086(최대 유량) 문제 풀이
+      <small class="post-date">12 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic/">
+      <li>
+        디닉 알고리즘(Dinic's Algorithm)
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="maximum-flow">Maximum Flow</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/ps/2018/07/12/PS-06086/">
+      <li>
+        BOJ 06086(최대 유량) 문제 풀이
+      <small class="post-date">12 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic/">
+      <li>
+        디닉 알고리즘(Dinic's Algorithm)
+      <small class="post-date">11 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="regex">Regex</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 09. 기타 기능
+      <small class="post-date">24 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)
+      <small class="post-date">06 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)
+      <small class="post-date">06 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문
+      <small class="post-date">05 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리
+      <small class="post-date">04 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처
+      <small class="post-date">28 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 03. OR, 반복
+      <small class="post-date">22 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags
+      <small class="post-date">21 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 01. Basic
+      <small class="post-date">20 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="re">re</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 09. 기타 기능
+      <small class="post-date">24 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)
+      <small class="post-date">06 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)
+      <small class="post-date">06 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문
+      <small class="post-date">05 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리
+      <small class="post-date">04 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처
+      <small class="post-date">28 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 03. OR, 반복
+      <small class="post-date">22 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags
+      <small class="post-date">21 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">
+      <li>
+        파이썬 정규표현식(re) 사용법 - 01. Basic
+      <small class="post-date">20 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="detection">Detection</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/paper_review/2018/08/13/Fast_RCNN/">
+      <li>
+        Fast R-CNN
+      <small class="post-date">13 Aug 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/21/YOLO/">
+      <li>
+        YOLO
+      <small class="post-date">21 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="lstm">LSTM</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/deep_learning/2018/07/30/LSTM1/">
+      <li>
+        LSTM1
+      <small class="post-date">30 Jul 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/deep_learning/2018/07/28/Text_Generation/">
+      <li>
+        Text_Generation
+      <small class="post-date">28 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="text">Text</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/deep_learning/2018/07/28/Text_Generation/">
+      <li>
+        Text_Generation
+      <small class="post-date">28 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="generation">Generation</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/deep_learning/2018/07/28/Text_Generation/">
+      <li>
+        Text_Generation
+      <small class="post-date">28 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="time-series">Time Series</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/deep_learning/2018/07/30/LSTM1/">
+      <li>
+        LSTM1
+      <small class="post-date">30 Jul 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="paper-review">Paper_Review</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/generative/model/2020/05/25/VAE/">
+      <li>
+        Variational AutoEncoder 설명
+      <small class="post-date">25 May 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2020/02/08/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/">
+      <li>
+        Explain Yourself! Leveraging Language Models for Commonsense Reasoning
+      <small class="post-date">08 Feb 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/10/01/Imbalanced-Learning/">
+      <li>
+        Imbalanced Learning
+      <small class="post-date">01 Oct 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/09/18/Contextual-Bandit-and-Tree-Heuristic/">
+      <li>
+        Contextual Bandit and Tree Heuristic
+      <small class="post-date">18 Sep 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/">
+      <li>
+        OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners
+      <small class="post-date">28 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/">
+      <li>
+        BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding
+      <small class="post-date">23 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/">
+      <li>
+        OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training
+      <small class="post-date">21 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/">
+      <li>
+        ELMo - Deep contextualized word representations
+      <small class="post-date">20 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/">
+      <li>
+        Attention Is All You Need
+      <small class="post-date">17 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/07/15/Generating-Sequences-WIth-Recurrent-Neural-Networks/">
+      <li>
+        Generating Sequences With Recurrent Neural Networks
+      <small class="post-date">15 Jul 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2019/07/11/2019-ICML-Papers/">
+      <li>
+        2019 ICML Papers
+      <small class="post-date">11 Jul 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/computer%20vision/2019/05/29/Movie-Question-Answering/">
+      <li>
+        MovieQA(Movie Question Answering)
+      <small class="post-date">29 May 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/computer%20vision/2019/04/17/Visual-Question-Answering/">
+      <li>
+        VQA(Visual Question Answering)
+      <small class="post-date">17 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/computer%20vision/2019/04/17/Dual-Attention-Networks/">
+      <li>
+        DANs(Dual Attention Networks for Multimodal Reasoning and Matching)
+      <small class="post-date">17 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/04/07/Pix2Pix/">
+      <li>
+        Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)
+      <small class="post-date">07 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/20/advanced-GANs/">
+      <li>
+        GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)
+      <small class="post-date">20 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/f-GAN/">
+      <li>
+        f-GAN
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/CGAN/">
+      <li>
+        CGAN(Conditional GAN)
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/17/DCGAN/">
+      <li>
+        DCGAN(Deep Convolutional GAN)
+      <small class="post-date">17 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/03/GAN/">
+      <li>
+        GAN(Generative Adversarial Networks)
+      <small class="post-date">03 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2018/11/06/TripleB/">
+      <li>
+        Bootstrap, Bagging, Boosting
+      <small class="post-date">06 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/11/01/RC-task/">
+      <li>
+        RC task using CNN/Daily dataset
+      <small class="post-date">01 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/10/29/Self-Attention/">
+      <li>
+        Self Attention
+      <small class="post-date">29 Oct 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/10/26/YOLOv2/">
+      <li>
+        YOLOv2
+      <small class="post-date">26 Oct 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/09/17/Attention/">
+      <li>
+        Attention
+      <small class="post-date">17 Sep 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/09/10/RNN-Encoder-Decoder/">
+      <li>
+        RNN Encoder-Decoder
+      <small class="post-date">10 Sep 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/09/07/Vehicle-Color-Recognition/">
+      <li>
+        Vehicle Color Recognition
+      <small class="post-date">07 Sep 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/09/07/GRU/">
+      <li>
+        GRU
+      <small class="post-date">07 Sep 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/08/13/Fast_RCNN/">
+      <li>
+        Fast R-CNN
+      <small class="post-date">13 Aug 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="sequence-modeling">Sequence_Modeling</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/paper_review/2018/09/07/GRU/">
+      <li>
+        GRU
+      <small class="post-date">07 Sep 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="rnn">RNN</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/paper_review/2018/09/10/RNN-Encoder-Decoder/">
+      <li>
+        RNN Encoder-Decoder
+      <small class="post-date">10 Sep 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/09/07/GRU/">
+      <li>
+        GRU
+      <small class="post-date">07 Sep 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="nlp">NLP</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2020/02/08/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/">
+      <li>
+        Explain Yourself! Leveraging Language Models for Commonsense Reasoning
+      <small class="post-date">08 Feb 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/">
+      <li>
+        OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners
+      <small class="post-date">28 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/">
+      <li>
+        BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding
+      <small class="post-date">23 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/">
+      <li>
+        OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training
+      <small class="post-date">21 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/">
+      <li>
+        ELMo - Deep contextualized word representations
+      <small class="post-date">20 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/">
+      <li>
+        Attention Is All You Need
+      <small class="post-date">17 Aug 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/nlp(natural%20language%20processing)%20/%20rnns/2019/07/15/Generating-Sequences-WIth-Recurrent-Neural-Networks/">
+      <li>
+        Generating Sequences With Recurrent Neural Networks
+      <small class="post-date">15 Jul 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/11/01/RC-task/">
+      <li>
+        RC task using CNN/Daily dataset
+      <small class="post-date">01 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/10/29/Self-Attention/">
+      <li>
+        Self Attention
+      <small class="post-date">29 Oct 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/paper_review/2018/09/17/Attention/">
+      <li>
+        Attention
+      <small class="post-date">17 Sep 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="pytorch">PyTorch</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/">
+      <li>
+        PyTorch 사용법 - 04. Recurrent Neural Network(RNN) Model
+      <small class="post-date">12 Jun 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2019/02/12/argparse-usage/">
+      <li>
+        Python argparse 사용법
+      <small class="post-date">12 Feb 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/">
+      <li>
+        PyTorch 사용법 - 03. How to Use PyTorch
+      <small class="post-date">10 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/">
+      <li>
+        PyTorch 사용법 - 02. Linear Regression Model
+      <small class="post-date">02 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/pytorch/2018/11/02/pytorch-usage-01-introduction/">
+      <li>
+        PyTorch 사용법 - 01. 소개 및 설치
+      <small class="post-date">02 Nov 2018</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/pytorch/2018/11/02/pytorch-usage-00-references/">
+      <li>
+        PyTorch 사용법 - 00. References
+      <small class="post-date">02 Nov 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="machine-learning">Machine Learning</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/generative/model/2020/05/25/VAE/">
+      <li>
+        Variational AutoEncoder 설명
+      <small class="post-date">25 May 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/09/18/Contextual-Bandit-and-Tree-Heuristic/">
+      <li>
+        Contextual Bandit and Tree Heuristic
+      <small class="post-date">18 Sep 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/04/07/Pix2Pix/">
+      <li>
+        Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)
+      <small class="post-date">07 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/20/advanced-GANs/">
+      <li>
+        GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)
+      <small class="post-date">20 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/f-GAN/">
+      <li>
+        f-GAN
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/CGAN/">
+      <li>
+        CGAN(Conditional GAN)
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/17/DCGAN/">
+      <li>
+        DCGAN(Deep Convolutional GAN)
+      <small class="post-date">17 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/03/GAN/">
+      <li>
+        GAN(Generative Adversarial Networks)
+      <small class="post-date">03 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2018/11/06/TripleB/">
+      <li>
+        Bootstrap, Bagging, Boosting
+      <small class="post-date">06 Nov 2018</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="jupyter">Jupyter</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/references/2019/01/26/Jupyter-usage/">
+      <li>
+        Jupyter Notebook 사용법
+      <small class="post-date">26 Jan 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="miniconda">Miniconda</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/references/2019/02/01/Miniconda-usage/">
+      <li>
+        Miniconda(Anaconda) 사용법
+      <small class="post-date">01 Feb 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/references/2019/01/26/Jupyter-usage/">
+      <li>
+        Jupyter Notebook 사용법
+      <small class="post-date">26 Jan 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="pycharm">PyCharm</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/references/2019/02/07/PyCharm-usage/">
+      <li>
+        PyCharm 사용법
+      <small class="post-date">07 Feb 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="argparse">Argparse</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/references/2019/02/12/argparse-usage/">
+      <li>
+        Python argparse 사용법
+      <small class="post-date">12 Feb 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="gan">GAN</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/generative%20model/2019/04/07/Pix2Pix/">
+      <li>
+        Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)
+      <small class="post-date">07 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/20/advanced-GANs/">
+      <li>
+        GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)
+      <small class="post-date">20 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/f-GAN/">
+      <li>
+        f-GAN
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/CGAN/">
+      <li>
+        CGAN(Conditional GAN)
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/17/DCGAN/">
+      <li>
+        DCGAN(Deep Convolutional GAN)
+      <small class="post-date">17 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/03/GAN/">
+      <li>
+        GAN(Generative Adversarial Networks)
+      <small class="post-date">03 Mar 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="generative-model">Generative Model</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/generative%20model/2019/04/07/Pix2Pix/">
+      <li>
+        Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)
+      <small class="post-date">07 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/20/advanced-GANs/">
+      <li>
+        GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)
+      <small class="post-date">20 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/f-GAN/">
+      <li>
+        f-GAN
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/19/CGAN/">
+      <li>
+        CGAN(Conditional GAN)
+      <small class="post-date">19 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/17/DCGAN/">
+      <li>
+        DCGAN(Deep Convolutional GAN)
+      <small class="post-date">17 Mar 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/generative%20model/2019/03/03/GAN/">
+      <li>
+        GAN(Generative Adversarial Networks)
+      <small class="post-date">03 Mar 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="dcgan">DCGAN</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/generative%20model/2019/03/17/DCGAN/">
+      <li>
+        DCGAN(Deep Convolutional GAN)
+      <small class="post-date">17 Mar 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="attention-mechanism">Attention Mechanism</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/computer%20vision/2019/04/17/Dual-Attention-Networks/">
+      <li>
+        DANs(Dual Attention Networks for Multimodal Reasoning and Matching)
+      <small class="post-date">17 Apr 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="vqa">VQA</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/computer%20vision/2019/05/29/Movie-Question-Answering/">
+      <li>
+        MovieQA(Movie Question Answering)
+      <small class="post-date">29 May 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/computer%20vision/2019/04/17/Visual-Question-Answering/">
+      <li>
+        VQA(Visual Question Answering)
+      <small class="post-date">17 Apr 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/computer%20vision/2019/04/17/Dual-Attention-Networks/">
+      <li>
+        DANs(Dual Attention Networks for Multimodal Reasoning and Matching)
+      <small class="post-date">17 Apr 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="task-proposal">Task_Proposal</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/computer%20vision/2019/05/29/Movie-Question-Answering/">
+      <li>
+        MovieQA(Movie Question Answering)
+      <small class="post-date">29 May 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/computer%20vision/2019/04/17/Visual-Question-Answering/">
+      <li>
+        VQA(Visual Question Answering)
+      <small class="post-date">17 Apr 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="deep-learning">Deep Learning</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/deep%20learning%20tutorial/2019/06/10/Deep-Learning-01/">
+      <li>
+        Deep Learning Tutorial(딥러닝 튜토리얼) 01. 소개
+      <small class="post-date">10 Jun 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="icml">ICML</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/paper_review/2019/07/11/2019-ICML-Papers/">
+      <li>
+        2019 ICML Papers
+      <small class="post-date">11 Jul 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="contextual-bandit">Contextual Bandit</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2019/09/18/Contextual-Bandit-and-Tree-Heuristic/">
+      <li>
+        Contextual Bandit and Tree Heuristic
+      <small class="post-date">18 Sep 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="machine-learning">Machine_Learning</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2020/05/01/AFM/">
+      <li>
+        추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+      <small class="post-date">01 May 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2020/04/07/DeepFM/">
+      <li>
+        추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현
+      <small class="post-date">07 Apr 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2020/04/05/FFM/">
+      <li>
+        추천 시스템의 기본 - 04. Field-aware Factorization Machines 설명 및 xlearn 실습
+      <small class="post-date">05 Apr 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/21/FM/">
+      <li>
+        추천 시스템의 기본 - 03. Factorization Machines 설명 및 Tensorflow 구현
+      <small class="post-date">21 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/20/Matrix-Factorization/">
+      <li>
+        추천 시스템의 기본 - 02. Matrix Factorization 논문 리뷰
+      <small class="post-date">20 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/17/Recommendation-System/">
+      <li>
+        추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)
+      <small class="post-date">17 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/09/Light-GBM/">
+      <li>
+        Light GBM 설명 및 사용법
+      <small class="post-date">09 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/05/Seaborn-Module/">
+      <li>
+        Seaborn Module 사용법
+      <small class="post-date">05 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/10/01/Imbalanced-Learning/">
+      <li>
+        Imbalanced Learning
+      <small class="post-date">01 Oct 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="imbalanced-learning">Imbalanced Learning</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2019/10/01/Imbalanced-Learning/">
+      <li>
+        Imbalanced Learning
+      <small class="post-date">01 Oct 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="visualization">Visualization</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2019/12/05/Seaborn-Module/">
+      <li>
+        Seaborn Module 사용법
+      <small class="post-date">05 Dec 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="파이썬">파이썬</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5/2020/03/15/DDQN/">
+      <li>
+        DDQN 알고리즘 설명
+      <small class="post-date">15 Mar 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/12/error/">
+      <li>
+        파이썬 Error 처리
+      <small class="post-date">12 Jan 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/11/zip/">
+      <li>
+        파이썬 압축 모듈 간단 예시
+      <small class="post-date">11 Jan 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/10/collections-heapq/">
+      <li>
+        파이썬 collections, heapq 모듈 설명
+      <small class="post-date">10 Jan 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/16/numba/">
+      <li>
+        파이썬 numba 모듈 설명
+      <small class="post-date">16 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/13/logging/">
+      <li>
+        파이썬 logging Module 설명
+      <small class="post-date">13 Dec 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="references">References</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/12/error/">
+      <li>
+        파이썬 Error 처리
+      <small class="post-date">12 Jan 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/11/zip/">
+      <li>
+        파이썬 압축 모듈 간단 예시
+      <small class="post-date">11 Jan 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/10/collections-heapq/">
+      <li>
+        파이썬 collections, heapq 모듈 설명
+      <small class="post-date">10 Jan 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/16/numba/">
+      <li>
+        파이썬 numba 모듈 설명
+      <small class="post-date">16 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/13/logging/">
+      <li>
+        파이썬 logging Module 설명
+      <small class="post-date">13 Dec 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="recommendation-system">Recommendation System</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2020/05/01/AFM/">
+      <li>
+        추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+      <small class="post-date">01 May 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2020/04/07/DeepFM/">
+      <li>
+        추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현
+      <small class="post-date">07 Apr 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2020/04/05/FFM/">
+      <li>
+        추천 시스템의 기본 - 04. Field-aware Factorization Machines 설명 및 xlearn 실습
+      <small class="post-date">05 Apr 2020</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/21/FM/">
+      <li>
+        추천 시스템의 기본 - 03. Factorization Machines 설명 및 Tensorflow 구현
+      <small class="post-date">21 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/20/Matrix-Factorization/">
+      <li>
+        추천 시스템의 기본 - 02. Matrix Factorization 논문 리뷰
+      <small class="post-date">20 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/17/Recommendation-System/">
+      <li>
+        추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)
+      <small class="post-date">17 Dec 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="matrix-factorization">Matrix Factorization</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2019/12/20/Matrix-Factorization/">
+      <li>
+        추천 시스템의 기본 - 02. Matrix Factorization 논문 리뷰
+      <small class="post-date">20 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/17/Recommendation-System/">
+      <li>
+        추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)
+      <small class="post-date">17 Dec 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="latent-factor-collaborative-filtering">Latent Factor Collaborative Filtering</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2019/12/20/Matrix-Factorization/">
+      <li>
+        추천 시스템의 기본 - 02. Matrix Factorization 논문 리뷰
+      <small class="post-date">20 Dec 2019</small>
+      </li>
+      </a>
+      
+        <a class="post-title" href="/machine_learning/2019/12/17/Recommendation-System/">
+      <li>
+        추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)
+      <small class="post-date">17 Dec 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="factorization-machines">Factorization Machines</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2019/12/21/FM/">
+      <li>
+        추천 시스템의 기본 - 03. Factorization Machines 설명 및 Tensorflow 구현
+      <small class="post-date">21 Dec 2019</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="강화학습">강화학습</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5/2020/03/15/DDQN/">
+      <li>
+        DDQN 알고리즘 설명
+      <small class="post-date">15 Mar 2020</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="field-aware-factorization-machines">Field-aware Factorization Machines</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2020/04/05/FFM/">
+      <li>
+        추천 시스템의 기본 - 04. Field-aware Factorization Machines 설명 및 xlearn 실습
+      <small class="post-date">05 Apr 2020</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="deepfm">DeepFM</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2020/04/07/DeepFM/">
+      <li>
+        추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현
+      <small class="post-date">07 Apr 2020</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+    <h2 id="afm">AFM</h2>
+    <ul class="tags-expo-posts">
+      
+        <a class="post-title" href="/machine_learning/2020/05/01/AFM/">
+      <li>
+        추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+      <small class="post-date">01 May 2020</small>
+      </li>
+      </a>
+      
+    </ul>
+    
+  </div>
+</div>
+
+</div>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

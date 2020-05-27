@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      BOJ 01280(나무 심기) 문제 풀이
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">BOJ 01280(나무 심기) 문제 풀이</h1>
+  <span class="post-date">11 Jul 2018</span>
+   |
+  
+  <a href="/blog/tags/#ps" class="post-tag">PS</a>
+  
+  <a href="/blog/tags/#fenwick-tree" class="post-tag">Fenwick Tree</a>
+  
+  <a href="/blog/tags/#bit" class="post-tag">BIT</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#참조">참조</a></li>
+  <li><a href="#개요">개요</a>
+    <ul>
+      <li><a href="#시간복잡도--on-log-m-">시간복잡도: $ O(N \log M) $</a></li>
+      <li><a href="#공간복잡도--om-">공간복잡도: $ O(M) $</a></li>
+    </ul>
+  </li>
+  <li><a href="#문제-풀이">문제 풀이</a></li>
+  <li><a href="#구현">구현</a></li>
+</ul>
+
+    <h2 id="참조">참조</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>분류</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>문제</td>
+      <td><a href="https://www.acmicpc.net/problem/1280">나무 심기</a></td>
+    </tr>
+    <tr>
+      <td>이 글에서 설명하는 코드</td>
+      <td><a href="https://github.com/greeksharifa/ps_code/blob/master/BOJ/01280_%EB%82%98%EB%AC%B4%20%EC%8B%AC%EA%B8%B0.cpp">01280_나무 심기</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="개요">개요</h2>
+
+<h3 id="시간복잡도--on-log-m-">시간복잡도: $ O(N \log M) $</h3>
+<h3 id="공간복잡도--om-">공간복잡도: $ O(M) $</h3>
+<ul>
+  <li>N은 원소의 수, M은 좌표의 범위이다.</li>
+</ul>
+
+<p>순서대로 하나씩 주어지고, $i$번째에 대한 비용이나 시간이 1부터 $(i-1)$번째까지에만 의존하는 형식이라면 
+<a href="https://greeksharifa.github.io/algorithm%20&amp;%20data%20structure/2018/07/09/algorithm-fenwick-tree/">BIT</a>, 
+<a href="https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/">IT</a>, 
+<a href="https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/">삽입 정렬</a>, 
+<a href="https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/">우선순위 큐</a>를
+ 한번쯤 떠올려 보는 것이 중요하다.</p>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<p>우선 문제의 정의에 따라, <strong>문제의 정답</strong>(=2번 나무부터 N번 나무까지 심는 비용의 곱)을 수식으로 정리하면 다음과 같다.</p>
+
+<p>$ A := $ <strong>문제의 정답</strong><br />
+$ p_i := i$번 나무가 심어진 위치<br />
+$ c_i := i$번 나무를 심는 비용</p>
+
+<p>$ c_i = \displaystyle\sum_{j=1}^{i-1}{\vert(p_i - p_j)\vert} $</p>
+
+<p>$ A = \displaystyle\prod_{i=2}^n{c_i} $</p>
+
+<p>이제 약간의 수식 변형을 시키자.</p>
+
+<p>$ c_i<br />
+= \displaystyle\sum_{j=1}^{i-1}{|(p_i - p_j)|} $</p>
+
+<p>$ = \displaystyle\sum_{j: p_j \le p_i, \ 1 \le j \le i-1}{(p_i - p_j)} +<br />
+\displaystyle\sum_{j: p_j \gt p_i, \ 1 \le j \le i-1}{(p_j - p_i)} $</p>
+
+<p>여기서 $ n_i := p_j &lt; p_i $인 $j$의 개수라고 하자. 그러면,</p>
+
+<p>$ c_i
+= ( n_i \cdot p_i - \displaystyle\sum_{j: p_j \le p_i, \ 1 \le j \le i-1}{p_j} ) +
+( \displaystyle\sum_{j: p_j \gt p_i, \ 1 \le j \le i-1}{p_j} - (i-1-n_i) \cdot p_i )$</p>
+
+<p>$ = (2n_i+1-i)\cdot p_i +
+\displaystyle\sum_{j: p_j \gt p_i, \ 1 \le j \le i-1}{p_j} -
+\displaystyle\sum_{j: p_j \le p_i, \ 1 \le j \le i-1}{p_j} $</p>
+
+<p>그러면 이제 문제는</p>
+
+<ol>
+  <li>$i$번째 나무보다 왼쪽에 심어져 있던 나무의 수와</li>
+  <li>$i$번째 나무보다 왼쪽에 심어져 있던 나무들의 좌표(위치)의 합</li>
+</ol>
+
+<p>을 알아야 하는 문제로 바뀐다($p_i$와 같은 나무는 어느 쪽에 넣어도 상관없다).</p>
+
+<ul>
+  <li>$i$번째 나무와 위치가 같은 경우는 어차피 0이 되니 처리를 해주든 말든 상관이 없다.</li>
+  <li>그리고 오른쪽에 있는 나무들은 전체 나무에서 왼쪽 부분을 빼면 얻을 수 있다(사실 그냥 오른쪽을 구해버려도 된다).</li>
+</ul>
+
+<p>이제 펜윅 트리를 쓸 차례다.
+펜윅 트리를 두 개 만든다. 하나는 위치에 따른 나무 수의 합을 세는 것이고, 하나는 위치에 따른 나무 좌표의 합을 세는 것이다. 맨 아래의 구현에서 각각 count[]와 summ[]으로 구현되어 있다.</p>
+
+<p>그리고 $i$번째 나무의 위치로 $p_i$가 들어오면, 왼쪽에 있는 나무의 수는 sum($p_i$, count=true)으로, 왼쪽에 있는 나무의 좌표의 합은 sum($p_i$, count=false)로 바로 구할 수 있다.</p>
+<ul>
+  <li>구현한 코드를 보면 이해할 수 있다. update의 코드 중복을 방지하기 위해 bool 형인 count 파라미터를 받는다.</li>
+  <li>구간 합(개수 혹은 좌표의 합)을 구하는 연산은 일반 펜윅 트리와 똑같다.</li>
+</ul>
+
+<p>그리고 업데이트를 할 때는 위치는 $p_i$로 하고 count[]는 +1, summ[]에는 $p_i$만큼 더해 준다(두 배열의 정의에 의해).</p>
+
+<p>오른쪽 나무에 대해 구할 때는 전체에서 왼쪽 나무들의 값을 빼면 어렵지 않게 구할 수 있다.</p>
+
+<h2 id="구현">구현</h2>
+
+<p>이번에는 펜윅 트리의 형태가 조금 다르기 때문에 따로 필자의 라이브러리를 사용하지 않았다.</p>
+
+<p>주의 사항이 조금 있다.</p>
+<ul>
+  <li>좌표가 0부터 시작하는데, 펜윅 트리는 인덱스 0을 쓰지 않는다. 따라서 $p_i$를 1씩 증가시켜서 구현해야 한다. MAX_X가 200000 + 1인 이유가 이것이다.</li>
+  <li>펜윅 트리의 크기는 원소의 수가 아닌 좌표의 범위이다.</li>
+  <li>MOD 연산은 그때그때 해주어야 한다. 그렇다고 남용해서 마이너스를 할 때 음수가 되어버리면 연산이 제대로 된다는 보장이 없다.</li>
+  <li>count[]는 int[]로 선언해도 되지만, int와 long long 사이에서 실수가 많다면 그냥 편하게 모든 것을 long long으로 해도 된다. 메모리가 아주 타이트한 것이 아니라면.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="cp">#define ll long long
+#define MOD 1000000007
+#define MAX_X 200001
+</span>
+<span class="k">class</span> <span class="nc">FenwickTree</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">count</span><span class="p">,</span> <span class="n">summ</span><span class="p">;</span>
+
+    <span class="n">FenwickTree</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">count</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_X</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">summ</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_X</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">MAX_X</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">++</span><span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+            <span class="n">summ</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
+            <span class="n">x</span> <span class="o">+=</span> <span class="p">(</span><span class="n">x</span><span class="o">&amp;-</span><span class="n">x</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">ll</span> <span class="n">sum</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">cnt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ll</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ret</span> <span class="o">+=</span> <span class="n">cnt</span><span class="o">?</span> <span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">:</span> <span class="n">summ</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+            <span class="n">x</span> <span class="o">&amp;=</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">FenwickTree</span> <span class="n">BIT</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">p_i</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main_01280</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//freopen("input.txt", "r", stdin);</span>
+    <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">p_i</span><span class="p">;</span>    <span class="o">++</span><span class="n">p_i</span><span class="p">;</span>
+
+    <span class="n">BIT</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">p_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">);</span>
+
+    <span class="n">ll</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">p_i_sum</span> <span class="o">=</span> <span class="n">p_i</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">N</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">p_i</span><span class="p">;</span> <span class="o">++</span><span class="n">p_i</span><span class="p">;</span>
+
+        <span class="n">ll</span> <span class="n">n_i</span> <span class="o">=</span> <span class="n">BIT</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p_i</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+        <span class="n">ll</span> <span class="n">smaller</span> <span class="o">=</span> <span class="n">BIT</span><span class="p">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p_i</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+
+        <span class="n">ll</span> <span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">p_i</span><span class="p">;</span>
+        <span class="n">cost</span> <span class="o">-=</span> <span class="n">smaller</span><span class="p">;</span>
+        <span class="n">cost</span> <span class="o">+=</span> <span class="n">p_i_sum</span> <span class="o">-</span> <span class="n">smaller</span><span class="p">;</span>
+        <span class="n">cost</span> <span class="o">%=</span> <span class="n">MOD</span><span class="p">;</span>
+
+        <span class="n">p_i_sum</span> <span class="o">+=</span> <span class="n">p_i</span><span class="p">;</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span><span class="o">*</span><span class="n">cost</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span>
+
+        <span class="n">BIT</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">p_i</span><span class="p">,</span> <span class="n">p_i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong><em>주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 저런 헤더 파일이 채점 사이트에 있던가?</em></strong></p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github/2020/05/27/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/generative/model/2020/05/25/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/machine_learning/2020/05/01/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/ps/2018/07/11/PS-01280/';
+    this.page.identifier = 'http://localhost:4000/ps/2018/07/11/PS-01280/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

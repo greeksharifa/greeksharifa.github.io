@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Markdown 사용법
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">Markdown 사용법</h1>
+  <span class="post-date">29 Jun 2018</span>
+   |
+  
+  <a href="/blog/tags/#markdown" class="post-tag">Markdown</a>
+  
+  <a href="/blog/tags/#usage" class="post-tag">usage</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#가장-큰-제목">가장 큰 제목</a>
+      - {:.} <a href="#적당한-제목">적당한 제목</a></li>
+</ul>
+
+    <p>마크다운을 쓸 때는 메모장으로도 되지만 JetBrains의 Webstorm에 Markdown support plugins을 설치하는 것이 도움이 된다.</p>
+
+<p>참조: <a href="https://simhyejin.github.io/2016/06/30/Markdown-syntax/">simhyejin.github.io</a></p>
+
+<hr />
+
+<p>위의 글에 잘 설명되어 있지만,
+복사해 놓고 쓰기 편하도록 본 글에 정리해 두었다.</p>
+
+<p>참고로 넓은 개행을 하려면 한 줄을 띄우고 작성해야 한다.</p>
+
+<p>좁은 개행은 문장 끝에 공백을 두 개 붙이면 된다.</p>
+
+<p>그러나 여러 줄을 띄워도 효과는 똑같다.
+공백 문자                   (스페이스바)            도 마찬가지이다.</p>
+
+<p>들여쓰기는 <code class="highlighter-rouge">&amp;nbsp;</code>을 사용한다. 하나당 하나의 공백이다.</p>
+
+<h1 id="가장-큰-제목">가장 큰 제목</h1>
+
+<h3 id="적당한-제목">적당한 제목</h3>
+
+<p>이 글은 보고 쓰기 위해 작성되었다.</p>
+
+<p><code class="highlighter-rouge">[링크](https://google.com/)</code></p>
+
+<p><a href="https://google.com/">링크</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[참조 링크][1]
+
+[1]:  https://greeksharifa.github.io/references/2018/06/29/markdown-usage/ "YW &amp; YY's blog: markdown-usage"
+</code></pre></div></div>
+
+<p><a href="https://greeksharifa.github.io/references/2018/06/29/markdown-usage/" title="YW &amp; YY's blog: markdown-usage">참조 링크</a></p>
+
+<p>빈 줄을 넣는 것을 추천한다.</p>
+
+<p><code class="highlighter-rouge">url 링크: &lt;https://google.com/&gt;</code></p>
+
+<p>url 링크: <a href="https://google.com/">https://google.com/</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>어쩐지 처음으로 돌아가고 싶은가? 내부 링크는 이렇게 사용한다. [가장 큰 제목](#가장-큰-제목)
+</code></pre></div></div>
+
+<p>어쩐지 처음으로 돌아가고 싶은가? 내부 링크는 이렇게 사용한다. <a href="#가장-큰-제목">가장 큰 제목</a></p>
+
+<p>내부 링크의 #id 규칙은 다음과 같다.</p>
+
+<ol>
+  <li>가능하면 괄호는 쓰지 않는다. 제대로 작동하지 않는다.</li>
+  <li>영문자는 lowercase로, 한글은 그대로 둔다.</li>
+  <li>문자/숫자/space/하이픈 외의 문자는 모두 제거한다.</li>
+  <li>space는 하이픈으로 대체한다.</li>
+  <li>만약 제목이 유일한 이름이 아니라면, <code class="highlighter-rouge">-1</code> <code class="highlighter-rouge">-2</code> <code class="highlighter-rouge">-3</code> 등을 붙인다.</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+&gt; 인용하려면 이와 같이 한다.
+&gt;&gt; 인용을 안에 또 하고 싶으면 이렇게 한다.
+&gt;&gt;&gt; 더 할 수 있다.
+</code></pre></div></div>
+
+<blockquote>
+  <p>인용하려면 이와 같이 한다.</p>
+  <blockquote>
+    <p>인용을 안에 또 하고 싶으면 이렇게 한다.</p>
+    <blockquote>
+      <p>더 할 수 있다.</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드 블럭이다. ```을 써도 되고 ~~~을 써도 된다.
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>greetings = input()
+print('Hello, Markdown!') # greetings는 안썼음
+</code></pre></div></div>
+<p><code class="highlighter-rouge">조그맣게 쓰고 싶다면 이렇게</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*기울여 쓰기*     _기울여 쓰기_
+
+**Bold로 쓰기**     __Bold로 쓰기__
+
+***기울이고 Bold로 쓰기*** ___기울이고 Bold로 쓰기___
+
+~~취소하기~~
+</code></pre></div></div>
+
+<p><em>기울여 쓰기</em>     <em>기울여 쓰기</em></p>
+
+<p><strong>Bold로 쓰기</strong>     <strong>Bold로 쓰기</strong></p>
+
+<p><strong><em>기울이고 Bold로 쓰기</em></strong> <strong><em>기울이고 Bold로 쓰기</em></strong></p>
+
+<p><del>취소하기</del></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+---
+
+수평선. 앞뒤로 빈 줄을 하나씩 넣는 것이 좋다.
+
+***
+
+다시 수평선
+
+___
+
+-------------
+
+* * *
+
+</code></pre></div></div>
+
+<hr />
+
+<p>수평선. 앞뒤로 빈 줄을 하나씩 넣는 것이 좋다.</p>
+
+<hr />
+
+<p>다시 수평선</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- [ ] 체크리스트
+- [x] 완료 리스트
+
+1. 순서 있는 리스트
+2. 순서 있는 리스트
+0. 사실 숫자는 순서가 없어도 된다.
+-1232. 물론 음수는 안 된다.
+11111111. 뭐 그래도 숫자는 맞춰 주는 것이 좋긴 하다.
+
+* 순서를 없애고 싶으면 이렇게
+  * 탭을 누르고 치면 이렇게 보인다.
+  - 사실 *, -, + 를 섞어서 써도 잘 보인다.
+  + 하지만 굳이 그렇게 할 필요는 없다.
+       * 탭은 적당히 쳐야 잘 보인다.
+                          * 너무 많이 하면 효과가 없다.
+                          - 이미 효과가 없다.
+</code></pre></div></div>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />체크리스트</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />완료 리스트</li>
+</ul>
+
+<ol>
+  <li>순서 있는 리스트</li>
+  <li>순서 있는 리스트</li>
+  <li>사실 숫자는 순서가 없어도 된다.
+-1232. 물론 음수는 안 된다.</li>
+  <li>뭐 그래도 숫자는 맞춰 주는 것이 좋긴 하다.</li>
+</ol>
+
+<ul>
+  <li>순서를 없애고 싶으면 이렇게
+    <ul>
+      <li>탭을 누르고 치면 이렇게 보인다.</li>
+      <li>사실 *, -, + 를 섞어서 써도 잘 보인다.</li>
+      <li>하지만 굳이 그렇게 할 필요는 없다.
+        <ul>
+          <li>탭은 적당히 쳐야 잘 보인다.
+                 * 너무 많이 하면 효과가 없다.
+                 - 이미 효과가 없다.
+```</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Header 1</th>
+      <th>Header 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Content 1</td>
+      <td>—의 개수는 상관없음.</td>
+    </tr>
+    <tr>
+      <td>Content 2</td>
+      <td>Content 4</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>| Header 1 | Header 2 | Header 3 |
+| :——– | :———-: | ——–: |
+| Left | Center | —의 개수가 달라도 됨. |</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Header 1 | Header 2
+------------------ | --------------------
+Content 1 | ---의 개수는 상관없음.
+Content 2 | Content 4
+
+| Header 1 | Header 2 | Header 3 |
+| :-------- | :----------: | --------: |
+| Left | Center | ---의 개수가 달라도 됨. |
+
+</code></pre></div></div>
+
+<p>이미지는 이렇게(링크랑 비슷)</p>
+
+<p><img src="/test1.png" alt="alt text" />
+<img src="image_URL" alt="alt text" />
+<img src="https://greeksharifa.github.io/references/2018/06/29/markdown-usage/" alt="alt text" title="YW &amp; YY's blog: markdown-usage" />
+<a href="https://greeksharifa.github.io/references/2018/06/29/markdown-usage/" title="YW &amp; YY's blog: markdown-usage">1</a>: /test3.png</p>
+
+<p>예시:</p>
+
+<center><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" width="50%" /></center>
+
+<p><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" alt="01_new_repository" /></p>
+
+<p>```
+이미지는 이렇게(링크랑 비슷)</p>
+
+<p><img src="/test1.png" alt="alt text" />
+<img src="image_URL" alt="alt text" />
+<img src="https://greeksharifa.github.io/references/2018/06/29/markdown-usage/" alt="alt text" title="YW &amp; YY's blog: markdown-usage" />
+<a href="https://greeksharifa.github.io/references/2018/06/29/markdown-usage/" title="YW &amp; YY's blog: markdown-usage">1</a>: /test3.png</p>
+
+<p>예시:</p>
+
+<center><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" width="50%" /></center>
+
+<p><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" alt="01_new_repository" /></p>
+
+<p>편하게 하려면,</p>
+
+<ul>
+  <li>/public/img directory 안에 /categories_name/post_file_name directory를 만든다.</li>
+  <li>만든 directory 안에 이미지를 붙여 넣는다.</li>
+  <li>WebStorm에 보이는 이미지에서 Ctrl + Shift + Alt + C 를 눌러 상대 경로를 복사한다.</li>
+  <li>그리고 위의 예시의 src 항목에다 붙여넣기 하면 된다. 이때 반드시 <code class="highlighter-rouge">/public/img/</code>으로 시작해야 한다.</li>
+</ul>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github/2020/05/27/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/generative/model/2020/05/25/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/machine_learning/2020/05/01/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/references/2018/06/29/markdown-usage/';
+    this.page.identifier = 'http://localhost:4000/references/2018/06/29/markdown-usage/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

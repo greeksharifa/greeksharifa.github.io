@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      PyTorch 사용법 - 03. How to Use PyTorch
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">PyTorch 사용법 - 03. How to Use PyTorch</h1>
+  <span class="post-date">10 Nov 2018</span>
+   |
+  
+  <a href="/blog/tags/#pytorch" class="post-tag">PyTorch</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#import">Import</a></li>
+  <li><a href="#argparse">argparse</a></li>
+  <li><a href="#load-data">Load Data</a>
+    <ul>
+      <li><a href="#단순한-방법">단순한 방법</a></li>
+      <li><a href="#torchutilsdatadataloader">torch.utils.data.DataLoader</a>
+        <ul>
+          <li><a href="#custom-dataset-만들기">Custom Dataset 만들기</a></li>
+        </ul>
+      </li>
+      <li><a href="#torchvisiondatasets">torchvision.datasets</a></li>
+      <li><a href="#torchvisiontransforms">torchvision.transforms</a></li>
+      <li><a href="#torchtext">torchtext</a></li>
+    </ul>
+  </li>
+  <li><a href="#define-and-load-model">Define and Load Model</a>
+    <ul>
+      <li><a href="#pytorch-model">Pytorch Model</a>
+        <ul>
+          <li><a href="#nnmodule">nn.Module</a></li>
+          <li><a href="#nnmodule-내장-함수">nn.Module 내장 함수</a></li>
+        </ul>
+      </li>
+      <li><a href="#pytorch-layer의-종류">Pytorch Layer의 종류</a></li>
+      <li><a href="#pytorch-activation-function의-종류">Pytorch Activation function의 종류</a></li>
+      <li><a href="#containers">Containers</a>
+        <ul>
+          <li><a href="#nnsequential">nn.Sequential</a></li>
+        </ul>
+      </li>
+      <li><a href="#모델-구성-방법">모델 구성 방법</a>
+        <ul>
+          <li><a href="#단순한-방법-1">단순한 방법</a></li>
+          <li><a href="#nnsequential을-사용하는-방법">nn.Sequential을 사용하는 방법</a></li>
+          <li><a href="#함수로-정의하는-방법">함수로 정의하는 방법</a></li>
+          <li><a href="#nnmodule을-상속한-클래스를-정의하는-방법">nn.Module을 상속한 클래스를 정의하는 방법</a></li>
+          <li><a href="#cfgconfig를-정의한-후-모델을-생성하는-방법">cfg(config)를 정의한 후 모델을 생성하는 방법</a></li>
+          <li><a href="#torchvisionmodels의-모델을-사용하는-방법">torchvision.models의 모델을 사용하는 방법</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#set-loss-functioncreterion-and-optimizer">Set Loss function(creterion) and Optimizer</a>
+    <ul>
+      <li><a href="#pytorch-loss-function의-종류">Pytorch Loss function의 종류</a></li>
+      <li><a href="#pytorch-optimizer의-종류">Pytorch Optimizer의 종류</a></li>
+      <li><a href="#pytorch-lrlearning-rate-scheduler의-종류">Pytorch LR(Learning Rate) Scheduler의 종류</a></li>
+    </ul>
+  </li>
+  <li><a href="#train-model">Train Model</a>
+    <ul>
+      <li><a href="#cuda-use-gpu">CUDA: use GPU</a></li>
+    </ul>
+  </li>
+  <li><a href="#visualize-and-save-results">Visualize and save results</a>
+    <ul>
+      <li><a href="#visualization-library">Visualization Library</a></li>
+      <li><a href="#save--load-model">Save &amp; Load Model</a>
+        <ul>
+          <li><a href="#torchsave--torchload">torch.save &amp; torch.load</a></li>
+          <li><a href="#nnmodulestate_dict--nnmoduleload_state_dict">nn.Module.state_dict &amp; nn.Module.load_state_dict</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#q--a">Q &amp; A</a></li>
+</ul>
+
+    <hr />
+
+<p><a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/">PyTorch 사용법 - 00. References</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-01-introduction/">PyTorch 사용법 - 01. 소개 및 설치</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/">PyTorch 사용법 - 02. Linear Regression Model</a><br />
+<strong><a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/">PyTorch 사용법 - 03. How to Use PyTorch</a></strong><br />
+<a href="https://greeksharifa.github.io/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/">PyTorch 사용법 - 04. Recurrent Neural Network Model</a></p>
+
+<hr />
+
+<p><em>2020.02.04 Updated</em></p>
+
+<p>이 글에서는 PyTorch 프로젝트를 만드는 방법에 대해서 알아본다.</p>
+
+<p>사용되는 torch 함수들의 사용법은 <a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/">여기</a>에서 확인할 수 있다.</p>
+
+<p>Pytorch의 학습 방법(loss function, optimizer, autograd, backward 등이 어떻게 돌아가는지)을 알고 싶다면 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#train-model">여기</a>로 바로 넘어가면 된다.</p>
+
+<p>Pytorch 사용법이 헷갈리는 부분이 있으면 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#q--a">Q&amp;A 절</a>을 참고하면 된다.</p>
+
+<p>예시 코드의 많은 부분은 링크와 함께 공식 Pytorch 홈페이지(pytorch.org/docs)에서 가져왔음을 밝힌다.</p>
+
+<p><em>주의: 이 글은 좀 길다. ㅎ</em></p>
+
+<hr />
+
+<h1 id="import">Import</h1>
+
+<script data-ad-client="ca-pub-9951774327887666" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># preprocess, set hyperparameter
+</span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># load data
+</span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
+
+<span class="c1"># train
+</span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+
+<span class="c1"># visualization
+</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="argparse">argparse</h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python train.py --epochs 50 --batch-size 64 --save-dir weights
+</code></pre></div></div>
+<p>Machine Learning을 포함해서, 위와 같은 실행 옵션은 많은 코드에서 볼 수 있었을 것이다. 학습 과정을 포함하여 대부분은 명령창 또는 콘솔에서 <code class="highlighter-rouge">python 파일 옵션들...</code>으로 실행시키기 때문에, argparse에 대한 이해는 필요하다.</p>
+
+<p>argparse에 대한 내용은 <a href="https://greeksharifa.github.io/references/2019/02/12/argparse-usage/">여기</a>를 참조하도록 한다.</p>
+
+<hr />
+
+<h1 id="load-data">Load Data</h1>
+
+<p>전처리하는 과정을 설명할 수는 없다. 데이터가 어떻게 생겼는지는 직접 봐야 알 수 있다.<br />
+다만 한 번 쓰고 말 것이 아니라면, 데이터가 추가되거나 변경점이 있더라도 전처리 코드의 대대적인 수정이 발생하도록 짜는 것은 본인 손해이다.</p>
+
+<h2 id="단순한-방법">단순한 방법</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/02_Linear_Regression_Model_Data.csv'</span><span class="p">)</span>
+<span class="c1"># Avoid copy data, just refer
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nb">float</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nb">float</span><span class="p">()</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">pandas</code>나 <code class="highlighter-rouge">csv</code> 패키지 등으로 그냥 불러오는 방법이다. 데이터가 복잡하지 않은 형태라면 단순하고 유용하게 쓸 수 있다. 그러나 이 글에서 중요한 부분은 아니다.</p>
+
+<h2 id="torchutilsdatadataloader">torch.utils.data.DataLoader</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader">torch.utils.data.DataLoader</a></p>
+
+<p>Pytorch는 <code class="highlighter-rouge">DataLoader</code>라고 하는 괜찮은 utility를 제공한다. 간단하게 생각하면 DataLoader 객체는 학습에 쓰일 데이터 전체를 보관했다가, train 함수가 batch 하나를 요구하면 batch size 개수만큼 데이터를 꺼내서 준다고 보면 된다.</p>
+<ul>
+  <li>실제로 <code class="highlighter-rouge">[batch size, num]</code>처럼 미리 잘라놓는 것은 아니고, 내부적으로 Iterator에 포함된 Index가 존재한다. train() 함수가 데이터를 요구하면 사전에 저장된 batch size만큼 return하는 형태이다.</li>
+</ul>
+
+<p>사용할 <code class="highlighter-rouge">torch.utils.data.Dataset</code>에 따라 반환하는 데이터(자연어, 이미지, 정답 label 등)는 조금씩 다르지만, 일반적으로 실제 DataLoader를 쓸 때는 다음과 같이 쓰기만 하면 된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div></div>
+
+<p>DataLoader 안에 데이터가 어떻게 들어있는지 확인하기 위해, MNIST 데이터를 가져와 보자. DataLoader는 <code class="highlighter-rouge">torchvision.datasets</code> 및 <code class="highlighter-rouge">torchvision.transforms</code>와 함께 자주 쓰이는데, 각각 Pytorch가 공식적으로 지원하는 <a href="https://pytorch.org/docs/stable/torchvision/datasets.html">dataset</a>, <a href="https://pytorch.org/docs/stable/torchvision/transforms.html?highlight=torchvision%20transforms">데이터 transformation 및 augmentation 함수들</a>(주로 이미지 데이터에 사용)를 포함한다.<br />
+각각의 사용법은 아래 절을 참조한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">input_size</span> <span class="o">=</span> <span class="mi">28</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
+
+<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="n">input_size</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)),</span>
+                                <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">()])</span>
+<span class="n">data_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s">'data/mnist'</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">),</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'type:'</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">data_loader</span><span class="p">),</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+
+<span class="n">first_batch</span> <span class="o">=</span> <span class="n">data_loader</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span><span class="o">.</span><span class="n">__next__</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:15s} | {:&lt;25s} | {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'type'</span><span class="p">,</span> <span class="s">'size'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:15s} | {:&lt;25s} | {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'Num of Batch'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_loader</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:15s} | {:&lt;25s} | {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'first_batch'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">first_batch</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="n">first_batch</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:15s} | {:&lt;25s} | {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'first_batch[0]'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">first_batch</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">first_batch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'{:15s} | {:&lt;25s} | {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'first_batch[1]'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">first_batch</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span> <span class="n">first_batch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>결과:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>type: &lt;class 'torch.utils.data.dataloader.DataLoader'&gt; 
+
+name            | type                      | size
+Num of Batch    |                           | 938
+first_batch     | &lt;class 'list'&gt;            | 2
+first_batch[0]  | &lt;class 'torch.Tensor'&gt;    | torch.Size([64, 1, 28, 28])
+first_batch[1]  | &lt;class 'torch.Tensor'&gt;    | torch.Size([64])
+# 총 데이터의 개수는 938 * 28 ~= 60000(마지막 batch는 32)이다.
+</code></pre></div></div>
+
+<h3 id="custom-dataset-만들기">Custom Dataset 만들기</h3>
+
+<p><strong>nn.Module</strong>을 상속하는 Custom Model처럼, Custom DataSet은 <code class="highlighter-rouge">torch.utils.data.Dataset</code>를 상속해야 한다. 또한 override해야 하는 것은 다음 두 가지다. <code class="highlighter-rouge">python dunder</code>를 모른다면 먼저 구글링해보도록 한다.</p>
+<ul>
+  <li><code class="highlighter-rouge">__len__(self)</code>: dataset의 전체 개수를 알려준다.</li>
+  <li><code class="highlighter-rouge">__getitem__(self, idx)</code>: parameter로 idx를 넘겨주면 idx번째의 데이터를 반환한다.</li>
+</ul>
+
+<p>위의 두 가지만 기억하면 된다. 전체 데이터 개수와, i번째 데이터를 반환하는 함수만 구현하면 Custom DataSet이 완성된다.<br />
+다음에는 완성된 DataSet을 <code class="highlighter-rouge">torch.utils.data.DataLoader</code>에 인자로 전달해주면 끝이다.</p>
+
+<p>완전 필수는 아니지만 <code class="highlighter-rouge">__init__()</code>도 구현하는 것이 좋다.</p>
+
+<p>1차함수 선형회귀(Linear Regression)의 <a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#load-data">예</a>를 들면 다음과 같다.<br />
+데이터는 <a href="https://drive.google.com/file/d/1gVxV5eD5NfyEO4aHSyAGmsDgUco8FQPb/view?usp=sharing">여기</a>에서 받을 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">LinearRegressionDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file</span><span class="p">):</span>
+        <span class="s">"""
+        Args:
+            csv_file (string): Path to the csv file. 
+        """</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nb">float</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nb">float</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">LinearRegressionDataset</span><span class="p">(</span><span class="s">'02_Linear_Regression_Model_Data.csv'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="torchvisiondatasets">torchvision.datasets</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/torchvision/datasets.html">torchvision.datasets</a></p>
+
+<p>Pytorch가 공식적으로 다운로드 및 사용을 지원하는 datasets이다. 2020.02.04 기준 dataset 목록은 다음과 같다.</p>
+
+<ul>
+  <li>MNIST
+    <ul>
+      <li>MNIST(숫자 0~9에 해당하는 손글씨 이미지 6만(train) + 1만(test))</li>
+      <li>Fashion-MNIST(간소화된 의류 이미지),</li>
+      <li>KMNIST(일본어=히라가나, 간지 손글씨),</li>
+      <li>EMNIST(영문자 손글씨),</li>
+      <li>QMNIST(MNIST를 재구성한 것)</li>
+    </ul>
+  </li>
+  <li>MS COCO
+    <ul>
+      <li>Captions(이미지 한 장과 이를 설명하는 한 영문장),</li>
+      <li>Detection(이미지 한 장과 여기에 있는 object들을 segmantation한 정보)</li>
+    </ul>
+  </li>
+  <li>LSUN(https://www.yf.io/p/lsun),</li>
+  <li><em>ImageFolder</em>, <em>DatasetFolder</em></li>
+  <li>Image:
+    <ul>
+      <li>ImageNet 2012,</li>
+      <li>CIFAR10 &amp; CIFAR100,</li>
+      <li>STL10, SVHN, PhotoTour, SBU</li>
+    </ul>
+  </li>
+  <li>Flickr8k &amp; Flickr30k, VOC Segmantation &amp; Detection,</li>
+  <li>Cityscapes, SBD, USPS, Kinetics-400, HMDB51, UCF101</li>
+</ul>
+
+<p>각각의 dataset마다 필요한 parameter가 조금씩 다르기 때문에, <a href="https://pytorch.org/docs/stable/torchvision/datasets.html#mnist">MNIST</a>만 간단히 설명하도록 하겠다. 사실 공식 홈페이지를 참조하면 어렵지 않게 사용 가능하다.</p>
+
+<p><img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/01.PNG" alt="01_MNIST" /></p>
+
+<ul>
+  <li>root: 데이터를 저장할 루트 폴더이다. 보통 <code class="highlighter-rouge">data/</code>나 <code class="highlighter-rouge">data/mnist/</code>를 많이 쓰는 것 같지만, 상관없다.</li>
+  <li>train: 학습 데이터를 받을지, 테스트 데이터를 받을지를 결정한다.</li>
+  <li>download: true로 지정하면 알아서 다운로드해 준다. 이미 다운로드했다면 재실행해도 다시 받지 않는다.</li>
+  <li>transform: 지정하면 이미지 데이터에 어떤 변형을 가할지를 transform function의 묶음(Compose)로 전달한다.</li>
+  <li>target_transform: 보통 위의 transform까지만 쓰는 것 같다. 쓰고 싶다면 이것도 쓰자.</li>
+</ul>
+
+<h2 id="torchvisiontransforms">torchvision.transforms</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/torchvision/transforms.html?highlight=torchvision%20transforms">torchvision.transforms</a></p>
+
+<ol>
+  <li>
+    <p>이미지 변환 함수들을 포함한다. 상대적으로 자주 쓰이는 함수는 다음과 같은 것들이 있다. 더 많은 목록은 홈페이지를 참조하면 된다. 참고로 parameter 중 <code class="highlighter-rouge">transforms</code>는 변환 함수들의 list 또는 tuple이다.</p>
+
+    <ul>
+      <li>transforms.CenterCrop(size): 이미지의 중앙 부분을 크롭하여 [size, size] 크기로 만든다.</li>
+      <li>transforms.Resize(size, interpolation=2): 이미지를 지정한 크기로 변환한다. 직사각형으로 자를 수 있다.
+        <ul>
+          <li>참고: transforms.Scale는 Resize에 의해 deprecated되었다.</li>
+        </ul>
+      </li>
+      <li>transforms.RandomCrop(size, padding=None, pad_if_needed=False, fill=0, padding_mode=’constant’): 이미지의 랜덤한 부분을 [size, size] 크기로 잘라낸다. input 이미지가 output 크기보다 작으면 padding을 추가할 수 있다.</li>
+      <li>transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 3/4), interpolation=2): 이미지를 랜덤한 크기 및 비율로 자른다.
+        <ul>
+          <li>참고: transforms.RandomSizedCrop는 RandomResizedCrop에 의해 deprecated되었다.</li>
+        </ul>
+      </li>
+      <li>transforms.RandomRotation(degrees, resample=False, expand=False, center=None): 이미지를 랜덤한 각도로 회전시킨다.</li>
+      <li>transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0): brightness, contrast 등을 변화시킨다.</li>
+    </ul>
+  </li>
+  <li>이미지를 torch.Tensor 또는 PILImage로 변환시킬 수 있다. 사용자 정의 변환도 가능하다.
+    <ul>
+      <li>transforms.ToPILImage(mode=None): PILImage로 변환시킨다.</li>
+      <li>transforms.ToTensor(): torch.Tensor로 변환시킨다.</li>
+      <li>transforms.Lambda(lambd): 사용자 정의 lambda function을 적용시킨다.</li>
+    </ul>
+  </li>
+  <li>torch.Tensor에 적용해야 하는 변환 함수들도 있다.
+    <ul>
+      <li>transforms.LinearTransformation(transformation_matrix): tensor로 표현된 이미지에 선형 변환을 시킨다.</li>
+      <li>transforms.Normalize(mean, std, inplace=False): tensor의 데이터 수치(또는 범위)를 정규화한다.</li>
+    </ul>
+  </li>
+  <li>brightness나 contrast 등을 바꿀 수도 있다.
+    <ul>
+      <li>transforms.functional.adjust_contrast(img, contrast_factor) 등</li>
+    </ul>
+  </li>
+  <li>
+    <p>위의 변환 함수들을 랜덤으로 적용할지 말지 결정할 수도 있다.</p>
+
+    <ul>
+      <li>transforms.RandomChoice(transforms): <code class="highlighter-rouge">transforms</code> 리스트에 포함된 변환 함수 중 랜덤으로 1개 적용한다.</li>
+      <li>transforms.RandomApply(transforms, p=0.5): <code class="highlighter-rouge">transforms</code> 리스트에 포함된 변환 함수들을 p의 확률로 적용한다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>위의 모든 변환 함수들을 하나로 조합하는 함수는 다음과 같다. 이 함수를 <code class="highlighter-rouge">dataloader</code>에 넘기면 이미지 변환 작업이 간단하게 완료된다.</p>
+
+    <ul>
+      <li>transforms.Compose(transforms)
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+ <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">(</span><span class="mi">14</span><span class="p">),</span>
+ <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+ <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">std</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="p">])</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>변환 순서는 보통 resize/crop, toTensor, Normalize 순서를 거친다. Normalize는 tensor에만 사용 가능하므로 이 부분은 순서를 지켜야 한다.</p>
+
+<h2 id="torchtext">torchtext</h2>
+
+<p>자연어처리(NLP)를 다룰 때 쓸 수 있는 좋은 라이브러리가 있다. 이는 자연어처리 데이터셋을 다루는 데 있어서 매우 편리한 기능을 제공한다.</p>
+<ul>
+  <li>데이터셋 로드</li>
+  <li>토큰화(Tokenization)</li>
+  <li>단어장(Vocabulary) 생성</li>
+  <li>Index mapping: 각 단어를 해당하는 인덱스로 매핑</li>
+  <li>단어 벡터(Word Vector): word embedding을 만들어준다. 0이나 랜덤 값 및 사전학습된 값으로 초기화할 수 있다.</li>
+  <li>Batch 생성 및 (자동) padding 수행</li>
+</ul>
+
+<p>설치는 다음과 같다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install torchtext
+# conda 환경에선 다음과 같다.
+conda install -c pytorch torchtext
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="define-and-load-model">Define and Load Model</h1>
+
+<h2 id="pytorch-model">Pytorch Model</h2>
+
+<p>gradient 계산 방식 등 Pytorch model의 작동 방식은 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#set-loss-functioncreterion-and-optimizer">Set Loss function(creterion) and Optimizer 절</a>을 보면 된다.</p>
+
+<p>Pytorch에서 쓰는 용어는 Module 하나에 가깝지만, 많은 경우 layer나 model 등의 용어도 같이 사용되므로 굳이 구분하여 적어 보았다.</p>
+
+<p><strong>Layer</strong> : Model 또는 Module을 구성하는 한 개의 층, Convolutional Layer, Linear Layer 등이 있다.<br />
+<strong>Module</strong> : 1개 이상의 Layer가 모여서 구성된 것. Module이 모여 새로운 Module을 만들 수도 있다.<br />
+<strong>Model</strong> : 여러분이 최종적으로 원하는 것. 당연히 한 개의 Module일 수도 있다.</p>
+
+<p>예를 들어 <strong>nn.Linear</strong>는 한 개의 layer이기도 하며, 이것 하나만으로도 module이나 Model을 구성할 수 있다. 단순 Linear Model이 필요하다면, <code class="highlighter-rouge"><span class="k">model</span> <span class="p">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nb">True</span><span class="p">)</span></code>처럼 사용해도 무방하다.</p>
+
+<p>PyTorch의 모든 모델은 기본적으로 다음 구조를 갖는다. PyTorch 내장 모델뿐 아니라 사용자 정의 모델도 반드시 이 정의를 따라야 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="n">F</span>
+
+<span class="k">class</span> <span class="nc">Model_Name</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Model_Name</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">module1</span> <span class="o">=</span> <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">module2</span> <span class="o">=</span> <span class="o">...</span>
+        <span class="s">"""
+        ex)
+        self.conv1 = nn.Conv2d(1, 20, 5)
+        self.conv2 = nn.Conv2d(20, 20, 5)
+        """</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">some_function1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">some_function2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="s">"""
+        ex)
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))
+        """</span>
+        <span class="k">return</span> <span class="n">x</span>
+</code></pre></div></div>
+
+<p>PyTorch 모델로 쓰기 위해서는 다음 조건을 따라야 한다. 내장된 모델들(<strong>nn.Linear</strong> 등)은 당연히 이 조건들을 만족한다.</p>
+
+<ol>
+  <li><strong>torch.nn.Module</strong>을 상속해야 한다.</li>
+  <li><code class="highlighter-rouge">__init__()</code>과 <code class="highlighter-rouge">forward()</code>를 override해야 한다.
+    <ul>
+      <li>사용자 정의 모델의 경우 init과 forward의 인자는 자유롭게 바꿀 수 있다. 이름이 x일 필요도 없으며, 인자의 개수 또한 달라질 수 있다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>이 두 가지 조건은 PyTorch의 기능들을 이용하기 위해 필수적이다.</p>
+
+<p>따르지 않는다고 해서 에러를 내뱉진 않지만, 다음 규칙들은 따르는 것이 좋다:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">__init__()</code>에서는 모델에서 사용될 module을 정의한다. module만 정의할 수도, activation function 등을 전부 정의할 수도 있다.
+    <ul>
+      <li>아래에서 설명하겠지만 module은 <strong>nn.Linear</strong>, <strong>nn.Conv2d</strong> 등을 포함한다.</li>
+      <li>activation function은 <strong>nn.functional.relu</strong>, <strong>nn.functional.sigmoid</strong> 등을 포함한다.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">forward()</code>에서는 모델에서 행해져야 하는 계산을 정의한다(대개 train할 때). 모델에서 forward 계산과 backward gradient 계산이 있는데, 그 중 forward 부분을 정의한다. input을 네트워크에 통과시켜 어떤 output이 나오는지를 정의한다고 보면 된다.
+    <ul>
+      <li><code class="highlighter-rouge">__init__()</code>에서 정의한 module들을 그대로 갖다 쓴다.</li>
+      <li>위의 예시에서는 <code class="highlighter-rouge">__init__()</code>에서 정의한 <code class="highlighter-rouge">self.conv1</code>과 <code class="highlighter-rouge">self.conv2</code>를 가져다 썼고, activation은 미리 정의한 것을 쓰지 않고 즉석에서 불러와 사용했다.</li>
+      <li>backward 계산은 PyTorch가 알아서 해 준다. <code class="highlighter-rouge">backward()</code> 함수를 호출하기만 한다면.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="nnmodule">nn.Module</h3>
+
+<p><a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import">여기</a>를 참고한다. 요약하면 <strong>nn.Module</strong>은 모든 PyTorch 모델의 base class이다.</p>
+
+<h3 id="nnmodule-내장-함수">nn.Module 내장 함수</h3>
+
+<p><a href="https://pytorch.org/docs/stable/nn.html#module">nn.Module</a>에 내장된 method들은 모델을 추가 구성/설정하거나, train/eval(test) 모드 변경, cpu/gpu 변경, 포함된 module 목록을 얻는 등의 활동에 초점이 맞춰져 있다.</p>
+
+<p>모델을 추가로 구성하려면,</p>
+<ul>
+  <li><code class="highlighter-rouge">add_module(name, module)</code>: 현재 module에 새로운 module을 추가한다.</li>
+  <li><code class="highlighter-rouge">apply(fn)</code>: 현재 module의 모든 submodule에 해당 함수(fn)을 적용한다. 주로 model parameter를 초기화할 때 자주 쓴다.</li>
+</ul>
+
+<p>모델이 어떻게 생겼는지 보려면,</p>
+<ul>
+  <li><code class="highlighter-rouge">children()</code>, <code class="highlighter-rouge">modules()</code>: 자식 또는 모델 전체의 모든 module에 대한 iterator를 반환한다.</li>
+  <li><code class="highlighter-rouge">named_buffers(), named_children(), named_modules(), named_parameters()</code>: 위 함수와 비슷하지만 이름도 같이 반환한다.</li>
+</ul>
+
+<p>모델을 통째로 저장 혹은 불러오려면,</p>
+<ul>
+  <li><code class="highlighter-rouge">state_dict(destination=None, prefix='', keep_vars=False)</code>: 모델의 모든 상태(parameter, running averages 등 buffer)를 딕셔너리 형태로 반환한다.</li>
+  <li><code class="highlighter-rouge">load_state_dict(state_dict, strict=True)</code>: parameter와 buffer 등 모델의 상태를 현 모델로 복사한다. <code class="highlighter-rouge">strict=True</code>이면 모든 module의 이름이 <em>정확히</em> 같아야 한다.</li>
+</ul>
+
+<p>학습 시에 필요한 함수들을 살펴보면,</p>
+<ul>
+  <li><code class="highlighter-rouge">cuda(device=None)</code>: 모든 model parameter를 GPU 버퍼에 옮기는 것으로 GPU를 쓰고 싶다면 이를 활성화해주어야 한다.
+    <ul>
+      <li>GPU를 쓰려면 두 가지에 대해서만 <code class="highlighter-rouge">.cuda()</code>를 call하면 된다. 그 두 개는 모든 input batch 또는 tensor, 그리고 모델이다.</li>
+      <li><code class="highlighter-rouge">.cuda()</code>는 optimizer를 설정하기 전에 실행되어야 한다. 잊어버리지 않으려면 모델을 생성하자마자 쓰는 것이 좋다.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">eval()</code>, <code class="highlighter-rouge">train()</code>: 모델을 train mode 또는 eval(test) mode로 변경한다. Dropout이나 BatchNormalization을 쓰는 모델은 학습시킬 때와 평가할 때 구조/역할이 다르기 때문에 반드시 이를 명시하도록 한다.</li>
+  <li><code class="highlighter-rouge">parameters(recurse=True)</code>: module parameter에 대한 iterator를 반환한다. 보통 optimizer에 넘겨줄 때 말고는 쓰지 않는다.</li>
+  <li><code class="highlighter-rouge">zero_grad()</code>: 모든 model parameter의 gradient를 0으로 설정한다.</li>
+</ul>
+
+<p>사용하는 법은 매우 간단히 나타내었다. Optimizer에 대한 설명은 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#set-loss-functioncreterion-and-optimizer">여기</a>를 참조하면 된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="k">def</span> <span class="nf">user_defined_initialize_function</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">vgg16</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1"># 예시는 예시일 뿐
+</span><span class="n">last_module</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s">'last_module'</span><span class="p">,</span> <span class="n">last_module</span><span class="p">)</span>
+<span class="n">last_module</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">user_defined_initialize_function</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+
+<span class="c1"># set optimizer. model.parameter를 넘겨준다.
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">betas</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">))</span>
+
+<span class="c1"># train
+</span><span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">[</span><span class="s">'train'</span><span class="p">]:</span>
+    <span class="o">...</span>
+
+<span class="c1"># test
+</span><span class="n">model</span><span class="o">.</span><span class="nb">eval</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">[</span><span class="s">'test'</span><span class="p">]:</span>
+    <span class="o">...</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="pytorch-layer의-종류">Pytorch Layer의 종류</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/nn.html#module">nn.module</a></p>
+
+<p>참고만 하도록 한다. 좀 많다. 쓰고자 하는 것과 이름이 비슷하다 싶으면 홈페이지를 참조해서 쓰면 된다.</p>
+
+<ol>
+  <li>Linear layers
+    <ul>
+      <li>nn.Linear</li>
+      <li>nn.Bilinear</li>
+    </ul>
+  </li>
+  <li>Convolution layers
+    <ul>
+      <li>nn.Conv1d, nn.Conv2d, nn.Conv3d</li>
+      <li>nn.ConvTranspose1d, nn.ConvTranspose2d, nn.ConvTranspose3d</li>
+      <li>nn.Unfold, nn.Fold</li>
+    </ul>
+  </li>
+  <li>Pooling layers
+    <ul>
+      <li>nn.MaxPool1d, nn.MaxPool2d, nn.MaxPool3d</li>
+      <li>nn.MaxUnpool1d, nn.MaxUnpool2d, nn.MaxUnpool3d</li>
+      <li>nn.AvgPool1d, nn.AvgPool2d, nn.AvgPool3d</li>
+      <li>nn.FractionalMaxPool2d</li>
+      <li>nn.LPPool1d, nn.LPPool2d</li>
+      <li>nn.AdaptiveMaxPool1d, nn.AdaptiveMaxPool2d, nn.AdaptiveMaxPool3d</li>
+      <li>nn.AdaptiveAvgPool1d, nn.AdaptiveAvgPool2d, nn.AdaptiveAvgPool3d</li>
+    </ul>
+  </li>
+  <li>Padding layers
+    <ul>
+      <li>nn.ReflectionPad1d, nn.ReflectionPad2d</li>
+      <li>nn.ReplicationPad1d, nn.ReplicationPad2d, nn.ReplicationPad3d</li>
+      <li>nn.ZeroPad2d</li>
+      <li>nn.ConstantPad1d, nn.ConstantPad2d, nn.ConstantPad3d</li>
+    </ul>
+  </li>
+  <li>Normalization layers
+    <ul>
+      <li>nn.BatchNorm1d, nn.BatchNorm2d, nn.BatchNorm3d</li>
+      <li>nn.GroupNorm</li>
+      <li>nn.InstanceNorm1d, nn.InstanceNorm2d, nn.InstanceNorm3d</li>
+      <li>nn.LayerNorm</li>
+      <li>nn.LocalResponseNorm</li>
+    </ul>
+  </li>
+  <li>Recurrent layers
+    <ul>
+      <li>nn.RNN, nn.RNNCell</li>
+      <li>nn.LSTM, nn.LSTMCell</li>
+      <li>nn.GRU, nn.GRUCell</li>
+    </ul>
+  </li>
+  <li>Dropout layers
+    <ul>
+      <li>nn.Dropout, nn.Dropout2d, nn.Dropout3d</li>
+      <li>nn.AlphaDropout</li>
+    </ul>
+  </li>
+  <li>Sparse layers
+    <ul>
+      <li>nn.Embedding</li>
+      <li>nn.EmbeddingBag</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="pytorch-activation-function의-종류">Pytorch Activation function의 종류</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity">Activation functions</a></p>
+
+<ol>
+  <li>Non-linear activations
+    <ul>
+      <li>nn.ELU, nn.SELU</li>
+      <li>nn.Hardshrink, nn.Hardtanh</li>
+      <li>nn.LeakyReLU, nn.PReLU, nn.ReLU, nn.ReLU6, nn.RReLU</li>
+      <li>nn.Sigmoid, nn.LogSigmoid</li>
+      <li>nn.Softplus, nn.Softshrink, nn.Softsign</li>
+      <li>nn.Tanh, nn.Tanhshrink</li>
+      <li>nn.Threshold</li>
+    </ul>
+  </li>
+  <li>Non-linear activations (other)
+    <ul>
+      <li>nn.Softmin</li>
+      <li>nn.Softmax, nn.Softmax2d, nn.LogSoftmax</li>
+      <li>nn.AdaptiveLogSoftmaxWithLoss</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="containers">Containers</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/nn.html#containers">Containers</a></p>
+
+<p>여러 layer들을 하나로 묶는 데 쓰인다.<br />
+종류는 다음과 같은 것들이 있는데, Module 설계 시 자주 쓰는 것으로 <strong>nn.Sequential</strong>이 있다.</p>
+<ul>
+  <li>nn.Module</li>
+  <li>nn.Sequential</li>
+  <li>nn.ModuleList</li>
+  <li>nn.ModuleDict</li>
+  <li>nn.ParameterList</li>
+  <li>nn.ParameterDict</li>
+</ul>
+
+<h3 id="nnsequential">nn.Sequential</h3>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/nn.html#sequential">nn.Sequential</a></p>
+
+<p>이름에서 알 수 있듯 여러 module들을 연속적으로 연결하는 모델이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example of using Sequential
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+          <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="p">)</span>
+<span class="s">"""
+이 경우 model(x)는 nn.ReLU(nn.Conv2d(20,64,5)(nn.ReLU(nn.Conv2d(1,20,5)(x))))와 같음.
+"""</span>
+
+<span class="c1"># Example of using Sequential with OrderedDict
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
+          <span class="p">(</span><span class="s">'conv1'</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s">'relu1'</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()),</span>
+          <span class="p">(</span><span class="s">'conv2'</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">5</span><span class="p">)),</span>
+          <span class="p">(</span><span class="s">'relu2'</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">())</span>
+        <span class="p">]))</span>
+</code></pre></div></div>
+
+<p>조금 다르지만 비슷한 역할을 할 수 있는 것으로는 nn.ModuleList, nn.ModuleDict가 있다.</p>
+
+<hr />
+
+<h2 id="모델-구성-방법">모델 구성 방법</h2>
+
+<p>크게 6가지 정도의 방법이 있다. <strong>nn</strong> 라이브러리를 잘 써서 직접 만들거나, 함수 또는 클래스로 정의, cfg파일 정의 또는 <a href="https://pytorch.org/docs/stable/torchvision/models.html">torchvision.models</a>에 미리 정의된 모델을 쓰는 방법이 있다.</p>
+
+<h3 id="단순한-방법-1">단순한 방법</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#define-and-load-model">이전 글</a>에서 썼던 방식이다. <em>매우</em> 단순한 모델을 만들 때는 굳이 nn.Module을 상속하는 클래스를 만들 필요 없이 바로 사용 가능하며, 단순하다는 장점이 있다.</p>
+
+<h3 id="nnsequential을-사용하는-방법">nn.Sequential을 사용하는 방법</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sequential_model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>여러 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#pytorch-layer%EC%9D%98-%EC%A2%85%EB%A5%98">Layer</a>와 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#pytorch-activation-function%EC%9D%98-%EC%A2%85%EB%A5%98">Activation function</a>들을 조합하여 하나의 sequential model을 만들 수 있다. 역시 상대적으로 복잡하지 않은 모델 중 모델의 구조가 sequential한 모델에만 사용할 수 있다.</p>
+
+<h3 id="함수로-정의하는-방법">함수로 정의하는 방법</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">TwoLayerNet</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hidden_features</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">in_features</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">hidden_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">activation</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">hidden_features</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="n">activation</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">net</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">TwoLayerNet</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>바로 위의 모델과 완전히 동일한 모델이다. 함수로 선언할 경우 변수에 저장해 놓은 layer들을 재사용하거나, skip-connection을 구현할 수도 있다. 하지만 그 정도로 복잡한 모델은 아래 방법을 쓰는 것이 낫다.</p>
+
+<h3 id="nnmodule을-상속한-클래스를-정의하는-방법">nn.Module을 상속한 클래스를 정의하는 방법</h3>
+
+<p>가장 정석이 되는 방법이다. 또한, 복잡한 모델을 구현하는 데 적합하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="n">F</span>
+
+<span class="k">class</span> <span class="nc">TwoLinearLayerNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_features</span><span class="p">,</span> <span class="n">hidden_features</span><span class="p">,</span> <span class="n">out_features</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TwoLinearLayerNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">in_features</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">hidden_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">hidden_features</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">TwoLinearLayerNet</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>역시 동일한 모델을 구현하였다. 여러분의 코딩 스타일에 따라, <a href="https://pytorch.org/docs/stable/nn.html#relu">ReLU</a> 등의 Activation function을 <code class="highlighter-rouge">forward()</code>에서 바로 정의해서 쓰거나, <code class="highlighter-rouge">__init__()</code>에 정의한 후 forward에서 갖다 쓰는 방법을 선택할 수 있다. 후자의 방법은 아래와 같다.<br />
+물론 변수명은 전적으로 여러분의 선택이지만, activation1, relu1 등의 이름을 보통 쓰는 것 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="k">class</span> <span class="nc">TwoLinearLayerNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_features</span><span class="p">,</span> <span class="n">hidden_features</span><span class="p">,</span> <span class="n">out_features</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TwoLinearLayerNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">in_features</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">hidden_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="n">hidden_features</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">TwoLinearLayerNet</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>두 코딩 스타일의 차이점 중 하나는 import하는 것이 다르다(F.relu와 nn.ReLU는 사실 거의 같다). Activation function 부분에서 <code class="highlighter-rouge">torch.nn.functional</code>은 <code class="highlighter-rouge">torch.nn</code>의 Module에 거의 포함되는데, <code class="highlighter-rouge">forward()</code>에서 정의해서 쓰느냐 마느냐에 따라 다르게 선택하면 되는 정도이다.</p>
+
+<h3 id="cfgconfig를-정의한-후-모델을-생성하는-방법">cfg(config)를 정의한 후 모델을 생성하는 방법</h3>
+
+<p>처음 보면 알아보기 까다로운 방법이지만, <em>매우</em> 복잡한 모델의 경우 <code class="highlighter-rouge">.cfg</code> 파일을 따로 만들어 모델의 구조를 정의하는 방법이 존재한다. 많이 쓰이는 방법은 대략 두 가지 정도인 것 같다.</p>
+
+<p>먼저 PyTorch documentation에서 찾을 수 있는 방법이 있다. 예로는 <a href="https://arxiv.org/abs/1409.1556">VGG</a>를 가져왔다. 코드는 <a href="https://pytorch.org/docs/0.4.0/_modules/torchvision/models/vgg.html">여기</a>에서 찾을 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">VGG</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">init_weights</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">VGG</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">init_weights</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_weights</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span><span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">_initialize_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span><span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">make_layers</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">batch_norm</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">in_channels</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">cfg</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s">'M'</span><span class="p">:</span>
+            <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span><span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">conv2d</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">batch_norm</span><span class="p">:</span>
+                <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span><span class="n">conv2d</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">layers</span> <span class="o">+=</span> <span class="p">[</span><span class="n">conv2d</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)]</span>
+            <span class="n">in_channels</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">layers</span><span class="p">)</span>
+
+<span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'A'</span><span class="p">:</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">],</span>
+    <span class="s">'B'</span><span class="p">:</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">],</span>
+    <span class="s">'D'</span><span class="p">:</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">],</span>
+    <span class="s">'E'</span><span class="p">:</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s">'M'</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">vgg16</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="s">"""VGG 16-layer model (configuration "D")"""</span>
+    <span class="k">if</span> <span class="n">pretrained</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s">'init_weights'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">VGG</span><span class="p">(</span><span class="n">make_layers</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s">'D'</span><span class="p">]),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pretrained</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">model_zoo</span><span class="o">.</span><span class="n">load_url</span><span class="p">(</span><span class="n">model_urls</span><span class="p">[</span><span class="s">'vgg16'</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">model</span>
+</code></pre></div></div>
+
+<p>여기서는 <code class="highlighter-rouge">.cfg</code> 파일이 사용되지는 않았으나, <code class="highlighter-rouge">cfg</code>라는 변수가 configuration을 담당하고 있다. VGG16 모델을 구성하기 위해 cfg 변수의 해당하는 부분을 읽어 <code class="highlighter-rouge">make_layer</code> 함수를 통해 모델을 구성한다.</p>
+
+<p>더 복잡한 모델은 아예 따로 <code class="highlighter-rouge">.cfg</code> 파일을 빼놓는다. <a href="https://greeksharifa.github.io/paper_review/2018/10/26/YOLOv2/">YOLO</a>의 경우 수백 라인이 넘기도 한다.</p>
+
+<p><code class="highlighter-rouge">.cfg</code> 파일은 대략 <a href="https://github.com/marvis/pytorch-yolo2/blob/master/cfg/yolo.cfg">다음</a>과 같이 생겼다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[net]
+# Testing
+batch=1
+subdivisions=1
+# Training
+# batch=64
+# subdivisions=8
+...
+
+[convolutional]
+batch_normalize=1
+filters=32
+size=3
+stride=1
+pad=1
+activation=leaky
+
+[maxpool]
+size=2
+stride=2
+...
+</code></pre></div></div>
+
+<p>이를 파싱하는 <a href="https://github.com/marvis/pytorch-yolo2/blob/master/cfg.py">코드</a>도 있어야 한다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">parse_cfg</span><span class="p">(</span><span class="n">cfgfile</span><span class="p">):</span>
+    <span class="n">blocks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">cfgfile</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+    <span class="n">block</span> <span class="o">=</span>  <span class="bp">None</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">line</span> <span class="o">!=</span> <span class="s">''</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s">''</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'#'</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">continue</span>        
+        <span class="k">elif</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'['</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">block</span><span class="p">:</span>
+                <span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="n">block</span><span class="p">[</span><span class="s">'type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">'['</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">']'</span><span class="p">)</span>
+            <span class="c1"># set default value
+</span>            <span class="k">if</span> <span class="n">block</span><span class="p">[</span><span class="s">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'convolutional'</span><span class="p">:</span>
+                <span class="n">block</span><span class="p">[</span><span class="s">'batch_normalize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'='</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s">'type'</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="s">'_type'</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">block</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">block</span><span class="p">:</span>
+        <span class="n">blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">blocks</span>
+</code></pre></div></div>
+
+<p>이 방법의 경우 대개 depth가 수십~수백에 이르는 아주 거대한 모델을 구성할 때 사용되는 방법이다. 많은 수의 github 코드들이 이런 방식을 사용하고 있는데, 그러면 그 모델은 굉장히 복잡하게 생겼다는 뜻이 된다.</p>
+
+<h3 id="torchvisionmodels의-모델을-사용하는-방법">torchvision.models의 모델을 사용하는 방법</h3>
+
+<p><a href="https://pytorch.org/docs/stable/torchvision/models.html">torchvision.models</a>에서는 미리 정의되어 있는 모델들을 사용할 수 있다. 이 모델들은 그 구조뿐 아니라 <code class="highlighter-rouge">pretrained=True</code> 인자를 넘김으로써 pretrained weights를 가져올 수도 있다.</p>
+
+<p>2019.02.12 시점에서 사용 가능한 모델 종류는 다음과 같다.</p>
+<ul>
+  <li>AlexNet</li>
+  <li>VGG-11, VGG-13, VGG-16, VGG-19</li>
+  <li>VGG-11, VGG-13, VGG-16, VGG-19 (with batch normalization)</li>
+  <li>ResNet-18, ResNet-34, ResNet-50, ResNet-101, ResNet-152</li>
+  <li>SqueezeNet 1.0, SqueezeNet 1.1</li>
+  <li>Densenet-121, Densenet-169, Densenet-201, Densenet-161</li>
+  <li>Inception v3</li>
+</ul>
+
+<p>모델에 따라 train mode와 eval mode가 정해진 경우가 있으므로 이는 주의해서 사용하도록 한다.</p>
+
+<p>모든 pretrained model을 쓸 때 이미지 데이터는 [3, W, H] 형식이어야 하고, W, H는 224 이상이어야 한다. 또 아래 코드처럼 정규화된 이미지 데이터로 학습된 것이기 때문에, 이 모델들을 사용할 때에는 데이터셋을 이와 같이 정규화시켜주어야 한다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span>
+                     <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>사용법은 대략 다음과 같다. 사실 이게 거의 끝이고, 나머지는 다른 일반 모델처럼 사용하면 된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torchvision.models</span> <span class="k">as</span> <span class="n">models</span>
+
+<span class="c1"># model load
+</span><span class="n">alexnet</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">alexnet</span><span class="p">()</span>
+<span class="n">vgg16</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">vgg16</span><span class="p">()</span>
+<span class="n">vgg16_bn</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">vgg16_bn</span><span class="p">()</span>
+<span class="n">resnet18</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">()</span>
+<span class="n">squeezenet</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">squeezenet1_0</span><span class="p">()</span>
+<span class="n">densenet</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">densenet161</span><span class="p">()</span>
+<span class="n">inception</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">inception_v3</span><span class="p">()</span>
+
+<span class="c1"># pretrained model load
+</span><span class="n">resnet18</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">vgg16</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">vgg16</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">...</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="set-loss-functioncreterion-and-optimizer">Set Loss function(creterion) and Optimizer</h1>
+
+<h2 id="pytorch-loss-function의-종류">Pytorch Loss function의 종류</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/nn.html#loss-functions">Loss functions</a></p>
+
+<p>Loss function은 모델이 추측한 결과(prediction 또는 output)과 실제 정답(label 또는 y 등)의 <em>loss</em>를 계산한다. 이는 loss function을 어떤 것을 쓰느냐에 따라 달라진다. 예를 들어 regression model에서 MSE(Mean Squared Error)를 쓸 경우 평균 제곱오차를 계산한다.</p>
+
+<p>사용법은 다른 함수들도 아래와 똑같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="n">criterion</span>  <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">52</span><span class="p">])</span> <span class="c1"># 예측값
+</span><span class="n">target</span>     <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span> <span class="c1"># 정답
+</span><span class="n">loss</span>       <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="c1"># tensor(2.)
+# loss = (2^2 + 1^2 + 0^2 + 1^2 + 2^2) / 5 = 2
+</span>
+<span class="n">criterion_reduction_none</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s">'none'</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">criterion_reduction_none</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="c1"># tensor([4., 1., 0., 1., 4.])
+</span></code></pre></div></div>
+
+<p>여러 코드들을 살펴보면, loss function을 정의할 때는 보통 <code class="highlighter-rouge">creterion</code>, <code class="highlighter-rouge">loss_fn</code>, <code class="highlighter-rouge">loss_function</code>등의 이름을 사용하니 참고하자.</p>
+
+<p>홈페이지를 참조하면 각 함수별 설명에 ‘Creates a criterion that measures…‘라 설명이 되어 있다. 위의 예시를 보면 알겠지만 해당 함수들이 당장 loss를 계산하는 것이 아니라 loss를 계산하는 기준을 정의한다는 뜻이다.<br />
+또 많은 함수들은 <code class="highlighter-rouge">reduce</code>와 <code class="highlighter-rouge">size_average</code> argument를 갖는다. loss를 계산하여 평균을 내는 것이 아니라 각 원소별로 따로 계산할 수 있게 해 준다. 그러나 2019.02.16 기준으로 다음과 비슷한 경고가 뜬다.</p>
+
+<blockquote>
+  <p>reduce args will be deprecated, please use reduction=’none’ instead.</p>
+</blockquote>
+
+<p>따라서 <code class="highlighter-rouge">reduction</code> argument를 쓰도록 하자. 지정할 수 있는 종류는 ‘none’ | ‘mean’ | ‘sum’ 세 가지이다. 기본값은 mean으로 되어 있다.</p>
+
+<ul>
+  <li><strong>nn.L1Loss</strong>: 각 원소별 차이의 절댓값을 계산한다.
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/02.PNG" alt="L1" /></li>
+  <li><strong>nn.MSELoss</strong>: Mean Squared Error(평균제곱오차) 또는 squared L2 norm을 계산한다.
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/03.PNG" alt="MSE" /></li>
+  <li><strong>nn.CrossEntropyLoss</strong>: Cross Entropy Loss를 계산한다. nn.LogSoftmax() and nn.NLLLoss()를 포함한다. weight argument를 지정할 수 있다.
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/04.PNG" alt="CE" /></li>
+  <li><strong>nn.CTCLoss</strong>: Connectionist Temporal Classification loss를 계산한다.</li>
+  <li><strong>nn.NLLLoss</strong>: Negative log likelihood loss를 계산한다.
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/05.PNG" alt="NLL" /></li>
+  <li><strong>nn.PoissonNLLLoss</strong>: target이 poission 분포를 가진 경우 Negative log likelihood loss를 계산한다.
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/06.PNG" alt="PNLL" /></li>
+  <li><strong>nn.KLDivLoss</strong>: Kullback-Leibler divergence Loss를 계산한다.
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/07.PNG" alt="KLDiv" /></li>
+  <li><strong>nn.BCELoss</strong>: Binary Cross Entropy를 계산한다. 
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/08.PNG" alt="BCE" /></li>
+  <li><strong>nn.BCEWithLogitsLoss</strong>: Sigmoid 레이어와 BCELoss를 하나로 합친 것인데, 홈페이지의 설명에 따르면 두 개를 따로 쓰는 것보다 이 함수를 쓰는 것이 조금 더 수치 안정성을 가진다고 한다.
+<img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/09.PNG" alt="BCE" /></li>
+  <li>이외에 <strong>MarginRankingLoss, HingeEmbeddingLoss, MultiLabelMarginLoss, SmoothL1Loss, SoftMarginLoss, MultiLabelSoftMarginLoss, CosineEmbeddingLoss, MultiMarginLoss, TripletMarginLoss</strong>를 계산하는 함수들이 있다. 필요하면 찾아보자.</li>
+</ul>
+
+<h2 id="pytorch-optimizer의-종류">Pytorch Optimizer의 종류</h2>
+
+<p>참조: <a href="https://pytorch.org/docs/stable/optim.html">torch.optim</a></p>
+
+<p><a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#nnmodule-%EB%82%B4%EC%9E%A5-%ED%95%A8%EC%88%98">여기</a>에도 간략하게 언급했었지만, GPU CUDA를 사용할 계획이라면 optimizer를 정의하기 전에 미리 해놓아야 한다(<code class="highlighter-rouge">model.cuda()</code>). 공식 홈페이지에 따르면,</p>
+
+<blockquote>
+  <p>If you need to move a model to GPU via .cuda(), please do so before constructing optimizers for it. Parameters of a model after .cuda() will be different objects with those before the call.
+In general, you should make sure that optimized parameters live in consistent locations when optimizers are constructed and used.</p>
+</blockquote>
+
+<p>이유를 설명하자면</p>
+
+<ol>
+  <li>optimizer는 argument로 model의 parameter를 입력받는다.</li>
+  <li><code class="highlighter-rouge">.cuda()</code>를 쓰면 모델의 parameter가 cpu 대신 gpu에 올라가는 것이므로 다른 object가 된다.</li>
+  <li>따라서 optimizer에 model parameter의 위치를 전달한 후 <code class="highlighter-rouge">.cuda()</code>를 실행하면, 학습시켜야 할 parameter는 GPU에 올라가 있는데 optimizer는 cpu에 올라간 엉뚱한 parameter 위치를 참조하고 있는 것이 된다.</li>
+</ol>
+
+<p>그러니 순서를 지키자.</p>
+
+<p>optimizer 정의는 다음과 같이 할 수 있다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">([</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">],</span> <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>optimizer에 대해 알아 두어야 할 것이 조금 있다.</p>
+<ol>
+  <li>optimizer는 <code class="highlighter-rouge">step()</code> method를 통해 argument로 전달받은 parameter를 업데이트한다.</li>
+  <li>모델의 parameter별로(per-parameter) 다른 기준(learning rate 등)을 적용시킬 수 있다. <a href="https://pytorch.org/docs/stable/optim.html#per-parameter-options">참고</a></li>
+  <li><code class="highlighter-rouge">torch.optim.Optimizer(params, defaults)</code>는 모든 optimizer의 base class이다.</li>
+  <li><code class="highlighter-rouge">nn.Module</code>과 같이 <code class="highlighter-rouge">state_dict()</code>와 <code class="highlighter-rouge">load_state_dict()</code>를 지원하여 optimizer의 상태를 저장하고 불러올 수 있다.</li>
+  <li><code class="highlighter-rouge">zero_grad()</code> method는 optimizer에 연결된 parameter들의 gradient를 0으로 만든다.</li>
+  <li><code class="highlighter-rouge">torch.optim.lr_scheduler</code>는 epoch에 따라 learning rate를 조절할 수 있다.</li>
+</ol>
+
+<p><strong>Optimizer의 종류:</strong></p>
+<ul>
+  <li>optim.Adadelta, optim.Adagrad, optim.Adam, optim.SparseAdam, optim.Adamax</li>
+  <li>optim.ASGD, <em>optim.LBFGS</em></li>
+  <li>optim.RMSprop, optim.Rprop</li>
+  <li>optim.SGD</li>
+</ul>
+
+<p>LBFGS는 per-parameter 옵션이 지원되지 않는다. 또한 memory를 다른 optimizer에 비해 많이 잡아먹는다고 한다.</p>
+
+<h2 id="pytorch-lrlearning-rate-scheduler의-종류">Pytorch LR(Learning Rate) Scheduler의 종류</h2>
+
+<p>LR(Learning Rate) Scheduler는 미리 지정한 횟수의 epoch이 지날 때마다 lr을 감소(decay)시켜준다.<br />
+이는 학습 초기에는 빠르게 학습을 진행시키다가 minimum 근처에 다다른 것 같으면 lr을 줄여서 더 최적점을 잘 찾아갈 수 있게 해주는 것이다.</p>
+
+<p>종류는 여러 개가 있는데, 마음에 드는 것을 선택하면 된다. 아래쪽에 어떻게 lr이 변화하는지 그림을 그려 놓았다.</p>
+
+<p><strong>lr Scheduler의 종류:</strong></p>
+<ul>
+  <li>optim.lr_scheduler.LambdaLR: lambda 함수를 하나 받아 그 함수의 결과를 lr로 설정한다.</li>
+  <li>optim.lr_scheduler.StepLR: 특정 step마다 lr을 gamma 비율만큼 감소시킨다.</li>
+  <li>optim.lr_scheduler.MultiStepLR: StepLR과 비슷한데 매 step마다가 아닌 지정된 epoch에만 gamma 비율로 감소시킨다.</li>
+  <li>optim.lr_scheduler.ExponentialLR: lr을 지수함수적으로 감소시킨다.</li>
+  <li>optim.lr_scheduler.CosineAnnealingLR: lr을 cosine 함수의 형태처럼 변화시킨다. lr이 커졌다가 작아졌다가 한다.</li>
+  <li><strong>optim.lr_scheduler.ReduceLROnPlateau</strong>: 이 scheduler는 다른 것들과는 달리 학습이 잘 되고 있는지 아닌지에 따라 동적으로 lr을 변화시킬 수 있다. 보통 validation set의 loss를 인자로 주어서 사전에 지정한 epoch동안 loss가 줄어들지 않으면 lr을 감소시키는 방식이다.</li>
+</ul>
+
+<p>각 scheduler는 공통적으로 <code class="highlighter-rouge">last_epoch</code> argument를 갖는다. Default value로 -1을 가지며, 이는 초기 lr을 optimizer에서 지정된 lr로 설정할 수 있도록 한다.</p>
+
+<center><img src="/public/img/PyTorch/2018-11-10-pytorch-usage-03-How-to-Use-PyTorch/10.PNG" width="100%" alt="10_Scheduler" /></center>
+
+<p>코드는 아래와 같이 작성하였다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+
+<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+
+<span class="n">scheduler_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                                         <span class="n">mode</span><span class="o">=</span><span class="s">'min'</span><span class="p">,</span>
+                                         <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                                         <span class="n">patience</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="p">),</span> <span class="c1"># 이외에도 인자가 많다. 찾아보자.
+</span>    <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">LambdaLR</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                                <span class="n">lr_lambda</span><span class="o">=</span><span class="k">lambda</span> <span class="n">epoch</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">StepLR</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                              <span class="n">step_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                              <span class="n">gamma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">MultiStepLR</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                                   <span class="n">milestones</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">],</span>
+                                   <span class="n">gamma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ExponentialLR</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                                     <span class="n">gamma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CosineAnnealingLR</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                                         <span class="n">T_max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                         <span class="n">eta_min</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'&lt;torch\.optim\.lr_scheduler\.(.+) object.*&gt;'</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scheduler</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scheduler_list</span><span class="p">):</span>
+    <span class="n">scheduler_name</span> <span class="o">=</span> <span class="n">reObj</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">scheduler</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">scheduler_name</span><span class="p">)</span>
+
+    <span class="n">lr_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">scheduler_name</span><span class="p">)</span> <span class="o">==</span> <span class="s">'ReduceLROnPlateau'</span><span class="p">:</span>
+            <span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'lr'</span><span class="p">]</span>
+        <span class="c1"># print('epoch: {:3d}, lr={:.6f}'.format(epoch, lr))
+</span>        <span class="n">lr_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lr</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">scheduler_name</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lr_list</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># plt.savefig('scheduler')
+</span></code></pre></div></div>
+
+<p>조금 더 자세한 설명은 <a href="https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate">홈페이지</a>를 참조하자.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+
+<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># 1.0은 보통 너무 크다. 하지만 예시이므로 1을 주었다.
+</span>
+<span class="c1"># Learning Rate가 scheduler에 따라 어떻게 변하는지 보려면 이곳을 바꾸면 된다.
+</span><span class="n">scheduler</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">LambdaLR</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+                                        <span class="n">lr_lambda</span><span class="o">=</span><span class="k">lambda</span> <span class="n">epoch</span><span class="p">:</span> <span class="mf">0.95</span> <span class="o">**</span> <span class="n">epoch</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">param_group</span><span class="p">[</span><span class="s">'lr'</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'epoch: {:3d}, lr={:.6f}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">lr</span><span class="p">))</span>
+    <span class="n">scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>결과:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>epoch:   1, lr=1.000000
+epoch:   2, lr=1.000000
+epoch:   3, lr=0.950000
+epoch:   4, lr=0.902500
+epoch:   5, lr=0.857375
+epoch:   6, lr=0.814506
+epoch:   7, lr=0.773781
+epoch:   8, lr=0.735092
+epoch:   9, lr=0.698337
+epoch:  10, lr=0.663420
+...
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="train-model">Train Model</h1>
+
+<p>일반적인 machine learning의 학습 방법은 다음과 같다. 입력은 input, 모델의 출력은 output, 정답은 target이라고 하자.</p>
+
+<ol>
+  <li>model structure, loss function, optimizer 등을 정한다.</li>
+  <li><strong>forward-propagation</strong>: input을 모델에 통과시켜 output을 계산한다.</li>
+  <li>loss function으로 output과 target 간 <strong>loss</strong>를 계산한다.</li>
+  <li><strong>back-propagation</strong>: loss와 chain rule을 활용하여 모델의 각 레이어에서 gradient($\Delta w$)를 계산한다.</li>
+  <li><strong>update</strong>: $ w \leftarrow w - \alpha\Delta w $식에 의해 모델의 parameter를 update한다.</li>
+</ol>
+
+<p>Pytorch의 학습 방법은 다음과 같다.</p>
+<ol>
+  <li>model structure, loss function, optimizer 등을 정한다.</li>
+  <li><code class="highlighter-rouge">optimizer.zero_grad()</code>: 이전 epoch에서 계산되어 있는 parameter의 gradient를 0으로 초기화한다.</li>
+  <li><code class="highlighter-rouge">output = model(input)</code>: input을 모델에 통과시켜 output을 계산한다.</li>
+  <li><code class="highlighter-rouge">loss = loss_fn(output, target)</code>: output과 target 간 <strong>loss</strong>를 계산한다.</li>
+  <li><code class="highlighter-rouge">loss.backward()</code>: loss와 chain rule을 활용하여 모델의 각 레이어에서 gradient($\Delta w$)를 계산한다.</li>
+  <li><code class="highlighter-rouge">optimizer.step()</code>: $w \leftarrow w - \alpha\Delta w$식에 의해 모델의 parameter를 update한다.</li>
+</ol>
+
+<p>거의 일대일 대응되지만 다른 점이 하나 있다.</p>
+<ul>
+  <li><code class="highlighter-rouge">optimizer.zero_grad()</code>: Pytorch는 gradient를 <code class="highlighter-rouge">loss.backward()</code>를 통해 계산하지만, 이 함수는 이전 gradient를 덮어쓴 뒤 새로 계산하는 것이 아니라, 이전 gradient에 <strong><em>누적하여</em></strong> 계산한다.
+    <ul>
+      <li><em>귀찮은데?</em> 라고 생각할 수는 있다. 그러나 이러한 누적 계산 방식은 RNN 모델을 구현할 때는 오히려 훨씬 편하게 코드를 작성할 수 있도록 도와준다.</li>
+      <li>그러니 gradient가 누적될 필요 없는 모델에서는 model에 input를 통과시키기 전 <code class="highlighter-rouge">optimizer.zero_grad()</code>를 한번 호출해 주기만 하면 된다고 생각하면 끝이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Pytorch가 대체 어떻게 <code class="highlighter-rouge">loss.backward()</code> 단 한번에 gradient를 자동 계산하는지에 대한 설명도 하면,</p>
+
+<ul>
+  <li>모든 Pytorch Tensor는 <code class="highlighter-rouge">requires_grad</code> argument를 가진다. 일반적으로 생성하는 Tensor는 기본적으로 해당 argument 값이 <code class="highlighter-rouge">False</code>이며, 따로 <code class="highlighter-rouge">True</code>로 설정해 주면 gradient를 계산해 주어야 한다. <code class="highlighter-rouge">nn.Linear</code> 등의 module은 생성할 때 기본적으로 <code class="highlighter-rouge">requires_grad=True</code>이기 때문에, 일반적으로 모델의 parameter는 gradient를 계산하게 된다.
+    <ul>
+      <li><a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import">참고(3번 항목)</a>: Pytorch 0.4.0 버전 이전에는 <code class="highlighter-rouge">Variable</code> class가 해당 역할을 수행하였지만, deprecated되었다.</li>
+    </ul>
+  </li>
+  <li>마지막 레이어만 원하는 것으로 바꿔서 그 레이어만 학습을 수행하는 형태의 transfer learning을 <code class="highlighter-rouge">requires_grad</code>를 이용해 손쉽게 구현할 수 있다. 이외에도 특정 레이어만 gradient를 계산하지 않게 하는 데에도 쓸 수 있다. 아래 예시는 512개의 class 대신 100개의 class를 구별하고자 할 때 resnet18을 기반으로 transfer learning을 수행하는 방식이다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">resnet18</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="c1"># Replace the last fully-connected layer
+# Parameters of newly constructed modules have requires_grad=True by default
+</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Optimize only the classifier
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="highlighter-rouge">requires_grad=True</code>인 Tensor로부터 연산을 통해 생성된 Tensor도 <code class="highlighter-rouge">requires_grad=True</code>이다.</li>
+  <li><code class="highlighter-rouge">with torch.no_grad():</code> 범위 안에서는 gradient 계산을 하지 않는다.</li>
+  <li><code class="highlighter-rouge">with torch.no_grad():</code> 안에서 선언된 <code class="highlighter-rouge">with torch.enable_grad():</code> 범위 안에서는 다시 gradient 계산을 한다. 이 두 가지 기능을 통해 국지적으로 gradient 계산을 수행하거나 수행하지 않을 수 있다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'x.requires_grad:'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y.requires_grad:'</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="mi">172</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z.requires_grad:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'z.requires_grad:'</span><span class="p">,</span> <span class="p">(</span><span class="n">z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">enable_grad</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'z.requires_grad:'</span><span class="p">,</span> <span class="p">(</span><span class="n">z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'z.grad_fn:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad_fn</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'x:'</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">y:'</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">z:'</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+<span class="n">z</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'y.grad:'</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'z.grad:'</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x.requires_grad: False
+y.requires_grad: True
+z.requires_grad: True
+z.requires_grad: False
+z.requires_grad: True
+z.grad_fn: &lt;AddBackward0 object at 0x0000028634614780&gt;
+x: tensor([1.4013e-45]) 
+y: tensor([1.], requires_grad=True) 
+z: tensor([175.], grad_fn=&lt;AddBackward0&gt;)
+y.grad: tensor([172.])
+z.grad: None
+</code></pre></div></div>
+
+<p>튜토리얼이 조금 더 궁금하다면 <a href="https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html">여기</a>를 참고해도 좋다.</p>
+
+<p>학습할 때 알아두면 괜찮은 것들을 대략 정리해보았다. 어떤 식으로 학습하는 것이 좋은지(learning rate 선택 기준 등)는 양이 너무 방대하기에 여기에는 적지 않는다.</p>
+
+<h2 id="cuda-use-gpu">CUDA: use GPU</h2>
+
+<p><strong><a href="https://pytorch.org/docs/stable/cuda.html">CUDA</a></strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">torch.cuda.is_available()</code>: 학습을 시킬 때는 GPU를 많이 사용한다. GPU가 사용가능한지 알 수 있다.</li>
+  <li><code class="highlighter-rouge">torch.cuda.device(device)</code>: 어느 device(GPU나 CPU)를 쓸 지 선택한다.</li>
+  <li><code class="highlighter-rouge">torch.cuda.device_count()</code>: 현재 선택된 device의 수를 반환한다.</li>
+  <li><code class="highlighter-rouge">torch.cuda.init()</code>: C API를 쓰는 경우 명시적으로 호출해야 한다.</li>
+  <li><code class="highlighter-rouge">torch.cuda.set_device(device)</code>: 현재 device를 설정한다.</li>
+  <li><code class="highlighter-rouge">torch.cuda.manual_seed(seed)</code>: 랜덤 숫자를 생성할 시드를 정한다. multi-gpu 환경에서는 <code class="highlighter-rouge">manual_seed_all</code> 함수를 사용한다.</li>
+  <li><code class="highlighter-rouge">torch.cuda.empty_cache()</code>: 사용되지 않는 cache를 release하나, 가용 메모리를 늘려 주지는 않는다.</li>
+</ul>
+
+<p>간단한 학습 과정은 다음 구조를 따른다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 변수명으로 input을 사용하는 것은 비추천. python 내장 함수 이름이다.
+</span><span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span> 
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> <span class="c1"># RNN에서는 생략될 수 있음
+</span>    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="visualize-and-save-results">Visualize and save results</h1>
+
+<h2 id="visualization-library">Visualization Library</h2>
+
+<p>Visualization은 이 글에서 설명하지 않겠다. 기본적으로 python의 그래프 패키지인 <code class="highlighter-rouge">matplotlib</code>을 많이 쓰며, <code class="highlighter-rouge">graphviz</code>, <code class="highlighter-rouge">seaborn</code> 등의 다른 라이브러리도 잘 보이는 편이다.</p>
+
+<h2 id="save--load-model">Save &amp; Load Model</h2>
+
+<p>모델을 저장하는 방법은 여러 가지가 있지만, pytorch를 사용할 때는 다음 방법이 가장 권장된다. 아주 유연하고 또 간단하기 때문이다.</p>
+
+<p><strong>Save</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">PATH</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Load</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">TheModelClass</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH</span><span class="p">))</span>
+<span class="c1"># model.eval() # 테스트 시
+</span>
+<span class="c1"># 참고로 model.load_state_dict(PATH)와 같이 쓸 수는 없다.
+</span></code></pre></div></div>
+
+<p>epoch별로 checkpoint를 쓰면서 저장할 때는 다음과 같이 혹은 비슷하게 쓰면 좋다. checkpoint를 쓸 때는 단순히 모델의 parameter뿐만 아니라 epoch, loss, optimizer 등을 저장할 필요가 있다.</p>
+
+<p><strong>Save</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span>
+            <span class="s">'epoch'</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+            <span class="s">'model_state_dict'</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+            <span class="s">'optimizer_state_dict'</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+            <span class="s">'loss'</span><span class="p">:</span> <span class="n">loss</span><span class="p">,</span>
+            <span class="o">...</span>
+            <span class="p">},</span> <span class="n">PATH</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Load</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">TheModelClass</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">TheOptimizerClass</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s">'model_state_dict'</span><span class="p">])</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s">'optimizer_state_dict'</span><span class="p">])</span>
+<span class="n">epoch</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s">'epoch'</span><span class="p">]</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">[</span><span class="s">'loss'</span><span class="p">]</span>
+<span class="c1"># model.train() or model.eval()
+</span></code></pre></div></div>
+
+<p>일반적으로 저장한 모델 파일명은 <code class="highlighter-rouge">.pt</code>나 <code class="highlighter-rouge">.pth</code> 확장자를 쓴다. 모델을 포함하여 여러 가지를 같이 저장할 때는 <code class="highlighter-rouge">.tar</code> 확장자를 자주 쓰는 편이다.</p>
+
+<p>모델을 불러오고 나서 계속 학습시킬 것이라면 <code class="highlighter-rouge">model.train()</code>, 테스트를 할 것이라면 <code class="highlighter-rouge">model.eval()</code>으로 모드를 설정하도록 한다. 이유는 이 글에 설명이 있다.</p>
+
+<p>모델이 여러 개라면</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">({</span>
+            <span class="s">'modelA_state_dict'</span><span class="p">:</span> <span class="n">modelA</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+            <span class="s">'modelB_state_dict'</span><span class="p">:</span> <span class="n">modelB</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+            <span class="o">...</span>
+</code></pre></div></div>
+<p>처럼 쓰면 그만이다.</p>
+
+<p>구조가 조금 다른 모델에다가 parameter를 load하고 싶을 경우 load할 때 다음처럼 쓴다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH</span><span class="p">),</span> <span class="n">strict</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">load_state_dict</code> 함수는 기본적으로 <code class="highlighter-rouge">strict=True</code> 옵션을 갖고 있으며, 이는 불러올 모델과 저장된 모델의 레이어의 개수와 이름 등이 <em>같아야만</em> 오류 없이 불러온다.</p>
+
+<p>따라서 transfer learning이나, 복잡한 모델을 새로 학습시키고 싶을 때 모델의 일부라도 parameter를 불러오고 싶다면 <code class="highlighter-rouge">strict=False</code> argument를 설정하면 된다.<br />
+이는 레이어들이 정확히 일치하지 않아도 매칭이 되는 레이어가 일부라도 있다면 그 레이어들에 한해서 parameter를 load한다.<br />
+또 parameter 개수는 같지만 이름은 다른 레이어에 parameter를 불러오고 싶을 때는, <code class="highlighter-rouge">state_dict</code>는 딕셔너리이기 때문에 그냥 해당 딕셔너리의 이름만 바꿔서 load하면 그만이다.</p>
+
+<p><code class="highlighter-rouge">pickle</code> 또는 <code class="highlighter-rouge">torch.save</code>를 통해 model 전체를 통째로 저장하는 방법은 간편하기는 하지만 이후 불러올 때는 해당 모델과 완전히 똑같이 생긴 모델에만 사용 가능하기 때문에 확장성과 재사용성이 떨어진다.<br />
+layer 이름과 parameter를 mapping하여 저장하는 <code class="highlighter-rouge">state_dict</code>를 쓰는 것이 transfer learinng을 쉽게 할 수 있는 등 범용성이 더 좋다.</p>
+
+<p>device를 바꿔서 저장하고 싶다면, <code class="highlighter-rouge">load_state_dict</code>에서 <code class="highlighter-rouge">map_location</code> argument를 설정하거나, <code class="highlighter-rouge">model.to(device)</code> 함수를 사용하면 된다. 자세한 것은 <a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html#saving-loading-model-across-devices">홈페이지</a>를 참조한다. GPU를 사용할 때 바꿔줘야 하는 부분은 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#nnmodule-%EB%82%B4%EC%9E%A5-%ED%95%A8%EC%88%98">여기</a>의 cuda 부분을 참고한다.</p>
+
+<h3 id="torchsave--torchload">torch.save &amp; torch.load</h3>
+
+<p>내부적으로 <code class="highlighter-rouge">pickle</code>을 사용하며, 따라서 모델뿐 아니라 일반 tensor, 기타 다른 모든 python 객체를 저장할 수 있다.</p>
+
+<h3 id="nnmodulestate_dict--nnmoduleload_state_dict">nn.Module.state_dict &amp; nn.Module.load_state_dict</h3>
+
+<p>우선 <code class="highlighter-rouge">state_dict</code>는 간단히 말해 모델의 상태를 딕셔너리 형태로 표현하는 것이다. 그러면 모델의 상태는 어떻게 정의되는가?<br />
+<code class="highlighter-rouge">state_dict</code>로 저장되는 모델의 상태는 learnable parameters이며, <code class="highlighter-rouge">state_dict</code>는 <code class="highlighter-rouge">{레이어 이름: parameter tensor}</code>의 형태를 갖는 딕셔너리이다.<br />
+딱 그뿐이다. 간단하지 않은가?</p>
+
+<p>Optimizer도 <code class="highlighter-rouge">state_dict</code>를 갖고 있는데, 이 경우는 사용된 hyperparameter 등의 상태가 저장된다.</p>
+
+<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html">공식 홈페이지</a>의 예시를 일부 가져오면 다음과 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 모델이 이렇게 생겼으면, 
+</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+
+<span class="c1"># 이 코드에 의해
+</span><span class="k">for</span> <span class="n">param_tensor</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">param_tensor</span><span class="p">,</span> <span class="s">"</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="n">param_tensor</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+
+<span class="c1"># 이렇게 출력된다.
+</span><span class="n">conv1</span><span class="o">.</span><span class="n">weight</span>     <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">conv1</span><span class="o">.</span><span class="n">bias</span>       <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">conv2</span><span class="o">.</span><span class="n">weight</span>     <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">conv2</span><span class="o">.</span><span class="n">bias</span>       <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">16</span><span class="p">])</span>
+<span class="n">fc1</span><span class="o">.</span><span class="n">weight</span>       <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">120</span><span class="p">,</span> <span class="mi">400</span><span class="p">])</span>
+<span class="n">fc1</span><span class="o">.</span><span class="n">bias</span>         <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">120</span><span class="p">])</span>
+
+<span class="c1"># optimizer는
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">var_name</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">var_name</span><span class="p">,</span> <span class="s">"</span><span class="se">\t</span><span class="s">"</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()[</span><span class="n">var_name</span><span class="p">])</span>
+
+<span class="c1"># 이렇다.
+</span><span class="n">state</span>    <span class="p">{}</span>
+<span class="n">param_groups</span>     <span class="p">[{</span><span class="s">'lr'</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s">'momentum'</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span> <span class="s">'dampening'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">'weight_decay'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+<span class="s">'nesterov'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> <span class="s">'params'</span><span class="p">:</span> <span class="p">[</span><span class="mi">4675713712</span><span class="p">,</span> <span class="mi">4675713784</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">4675714720</span><span class="p">]}]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="q--a">Q &amp; A</h1>
+
+<ul>
+  <li><code class="highlighter-rouge">model.train()</code>과 <code class="highlighter-rouge">model.eval()</code>은 모델이 학습 모드인지, 테스트 모드인지를 정하는 것이다. 이는 dropout이나 batchnorm이 있는 모델의 경우 학습할 때와 테스트할 때 모델이 달라지기 때문에 세팅하는 것이다(또한 필수이다). <code class="highlighter-rouge">torch.no_grad()</code>는 (대개 일시적으로) 해당 범위 안에서 gradient 계산을 중지시킴으로써 메모리 사용량을 줄이고 계산 속도를 빨리 하는 것이다. <a href="https://discuss.pytorch.org/t/model-eval-vs-with-torch-no-grad/19615">참고</a></li>
+  <li><code class="highlighter-rouge">optimizer.zero_grad()</code>를 사용하는 이유. <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/#train-model">참고</a></li>
+  <li>Pytorch 코드들 중에는 <code class="highlighter-rouge">torch.autograd.Variable</code>을 사용한 경우가 많다. Pytorch 0.4.0 버전 이후로는 Tensor 클래스에 통합되어 더 이상 쓸 필요가 없다. <a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/#import">참고(3번 항목)</a></li>
+  <li>역시 Pytorch 코드들 중에는 loss를 tensor가 아닌 그 값을 가져올 때 <code class="highlighter-rouge">loss.data[0]</code> 등의 표현식은 에러를 뱉는 경우가 많다. 이는 0.4 이후 버전의 PyTorch에서는 <code class="highlighter-rouge">loss.item()</code>으로 그 값을 가져오도록 변경되었기 때문이다.
+    <ul>
+      <li>Pytorch의 loss는 이전에는 <code class="highlighter-rouge">Variable</code>에 할당된 <code class="highlighter-rouge">size=(1, )</code>의 tensor였지만 이제는 scalar 형태이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>댓글로 문의하시면 확인 후 포스팅에 추가 가능합니다.</p>
+
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github/2020/05/27/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/generative/model/2020/05/25/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/machine_learning/2020/05/01/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/';
+    this.page.identifier = 'http://localhost:4000/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

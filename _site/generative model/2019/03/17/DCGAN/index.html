@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      DCGAN(Deep Convolutional GAN)
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">DCGAN(Deep Convolutional GAN)</h1>
+  <span class="post-date">17 Mar 2019</span>
+   |
+  
+  <a href="/blog/tags/#gan" class="post-tag">GAN</a>
+  
+  <a href="/blog/tags/#dcgan" class="post-tag">DCGAN</a>
+  
+  <a href="/blog/tags/#machine-learning" class="post-tag">Machine Learning</a>
+  
+  <a href="/blog/tags/#cnn" class="post-tag">CNN</a>
+  
+  <a href="/blog/tags/#generative-model" class="post-tag">Generative Model</a>
+  
+  <a href="/blog/tags/#paper-review" class="post-tag">Paper_Review</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#논문dcgan">논문(DCGAN)</a>
+    <ul>
+      <li><a href="#초록abstract">초록(Abstract)</a></li>
+      <li><a href="#서론introduction">서론(Introduction)</a></li>
+      <li><a href="#관련-연구related-works">관련 연구(Related Works)</a>
+        <ul>
+          <li><a href="#representation-learning-from-unlabeled-data">Representation Learning from Unlabeled Data</a></li>
+          <li><a href="#generating-natural-images">Generating Natural Images</a></li>
+          <li><a href="#visualizing-the-internals-of-cnns">Visualizing the Internals of CNNs</a></li>
+        </ul>
+      </li>
+      <li><a href="#접근법과-모델-아키텍처approach-and-model-architecture">접근법과 모델 아키텍처(Approach and Model Architecture)</a></li>
+      <li><a href="#적대적-학습-상세details-of-adversarial-training">적대적 학습 상세(Details of Adversarial Training)</a></li>
+      <li><a href="#dcgan의-능력의-경험적-검증empirical-validation-of-dcgans-capabilities">DCGAN의 능력의 경험적 검증(Empirical Validation of DCGANs Capabilities)</a></li>
+      <li><a href="#네트워크-내부-조사-및-시각화investigating-and-visualizing-the-internals-of-the-networks">네트워크 내부 조사 및 시각화(Investigating and Visualizing the Internals of the Networks)</a></li>
+      <li><a href="#결론-및-추후-연구conclusions-and-future-work">결론 및 추후 연구(Conclusions and future work)</a>
+        <ul>
+          <li><a href="#acknowledgments">Acknowledgments</a></li>
+        </ul>
+      </li>
+      <li><a href="#참고문헌references">참고문헌(References)</a></li>
+    </ul>
+  </li>
+  <li><a href="#튜토리얼">튜토리얼</a>
+    <ul>
+      <li><a href="#공식-튜토리얼">공식 튜토리얼</a></li>
+    </ul>
+  </li>
+  <li><a href="#이후-연구들">이후 연구들</a></li>
+</ul>
+
+    <hr />
+
+<p>이 글에서는 2015년 11월 <em>Alec Radford</em> 등이 발표한 DCGAN(Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks)를 살펴보도록 한다.</p>
+
+<p>DCGAN은 GAN의 개선 모델로 GAN과 다른 점은 다음과 같다.</p>
+
+<ul>
+  <li><strong>$D$</strong>
+    <ul>
+      <li>Strided Convolution을 사용한다.</li>
+      <li>Batch Normalization을 사용한다. 입력 레이어(첫 번째)에는 사용하지 않는다.</li>
+      <li>activation function으로 Leaky ReLU를 사용한다.</li>
+    </ul>
+  </li>
+  <li><strong>$G$</strong>
+    <ul>
+      <li>Fractional Strided Convolution(Transposed Convolution)을 사용한다.</li>
+      <li>Batch Normalization을 사용한다. 출력 레이어(마지막)에는 사용하지 않는다.</li>
+      <li>activation function으로 ReLU를 사용하고 마지막 레이어에는 tanh를 사용한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><em>참고</em>: 논문에서 deconvolution이라 되어 있는 것은 Transposed 또는 fractional strided convolution을 의미한다. 이 연산은 엄밀히 말해 convolution의 역연산이 아니기 때문에(그 비슷한 것을 의도하긴 했지만) deconvolution은 사실 틀린 표현이다.</p>
+
+<p>그래서 나아진 점, 혹은 알아낸 것은?</p>
+
+<ul>
+  <li>(흔히 생각하는 FHD를 넘는 고해상도랑은 거리가 멀지만) 고해상도 이미지를 생성할 수 있게 되었다.</li>
+  <li>거의 대부분의 상황에서 안정적인 학습이 가능하다.</li>
+  <li>단순히 이미지를 기억(overfitting)하는 것이 아님을 보였다.</li>
+  <li>convolution의 각 filter는 의미 있는 부분에 대한 정보를 갖고 있다. 논문에서는 침실 데이터를 사용하였는데, 어떤 필터는 창문에 대한 정보를 갖고 있는 식이다. 논문에서는 이를 시각화하여 보여주었다.</li>
+  <li>input인 noise($z$)는 별 의미 없는 값이 아니라, 이것이 생성될 이미지의 특징을 결정하는 벡터이다. 논문에서는,
+    <ul>
+      <li>웃는 여자를 생성한 noise $z_1$</li>
+      <li>무표정 여자를 생성한 noise $z_2$</li>
+      <li>무표정 남자를 생성한 noise $z_3$</li>
+      <li>$z_4 :=$ $z_1$ - $z_2$ + $z_3$이라 할 때</li>
+      <li>$z_4$를 noise로 쓰면 웃는 남자를 생성해낸다.</li>
+    </ul>
+  </li>
+  <li>또 왼쪽을 보는 사람과 오른쪽을 보는 사람을 생성한 두 벡터를 interpolating하면 마치 얼굴을 회전시킨 듯한 중간 결과들이 얻어진다.</li>
+</ul>
+
+<p>DCGAN은 GAN과 학습 방법 자체는 별로 다를 것이 없다(D 학습 후 G 학습시키는 것).</p>
+
+<p><em>참고</em>: $G$로 들어가는 입력 벡터를 뜻하는 noise는 latent variable이라고도 하며, Auto-encoder에서 출력 영상을 만들기 위한 source와 비슷하기에 이 표현도 사용된다.</p>
+
+<p>중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.</p>
+
+<hr />
+
+<h1 id="논문dcgan">논문(DCGAN)</h1>
+
+<p>논문 링크: <strong><a href="https://arxiv.org/abs/1511.06434">Deep Convolutional GAN</a></strong></p>
+
+<h2 id="초록abstract">초록(Abstract)</h2>
+
+<p>2015~2016년에 나온 논문임을 생각하라.</p>
+
+<p>최근에는 CNN을 통한 supervised learning 연구가 많이 이루어졌지만 unsupervised learning은 별 주목을 받지 못했다. 우리는 Deep Convolutional GANs를 소개하여 그 간극을 좁히고자 한다. 여러 이미지 데이터셋을 학습시키면서 우리는 DCGAN의 G와 D 모두가 object로부터 유의미한 표현 구조를 찾았음을 보였다. 또, 이를 일반적인(general) 이미지 표현에도 응용해 보았다.</p>
+
+<hr />
+
+<h2 id="서론introduction">서론(Introduction)</h2>
+
+<p>GAN은 최대우도(maximum likelihood) 테크닉의 매력적인 대체재이다. 또한 그 학습 방법과 heuristic cost function가 적다는 것 때문에 representation learning에도 훌륭히 잘 쓸 수 있다. 다만 학습이 불안정하고 G가 터무니없는 output을 내뱉을 때가 있다. 그래서 상당히 제한적으로 쓰일 수밖에 없었다.</p>
+
+<p>이 논문에서는, 우리는 다음과 같은 것들을 보일 것이다:</p>
+<ul>
+  <li>거의 대부분의 상황에서 학습이 안정적인 Convolutional GAN을 제안하고 평가한다. 이것이 DCGAN이다.</li>
+  <li>D에게 image classification를 시켜봤는데, 거의 state-of-the-art한 결과를 보인다.</li>
+  <li>특정 필터가 특정 object를 그려낸다는 것을 시각화한다.</li>
+  <li>G에 들어가는 noise에 산술 연산을 한 결과로 많은 의미있는 이미지를 생성함을 보인다.</li>
+</ul>
+
+<hr />
+
+<h2 id="관련-연구related-works">관련 연구(Related Works)</h2>
+
+<p>궁금하면 읽어보자.</p>
+
+<h3 id="representation-learning-from-unlabeled-data">Representation Learning from Unlabeled Data</h3>
+
+<p>Unsupervised representation learning은 꽤 잘 연구되었다. 전통적인 접근 방법으로는 clustering(K-means)이 있다.<br />
+이미지 쪽에서는 image representation을 학습하기 위한 구조적 clustering, auto-encoder를 학습시키는 것, what/where 분리 구조, image를 간략한 code로 encode하고 다시 이미지로 복원하는 decoder를 포함하는 사다리 구조 등등이 있었다.<br />
+Deep belief networks도 구조적 표현방식을 학습하는 데 좋은 성능을 보였다.</p>
+
+<h3 id="generating-natural-images">Generating Natural Images</h3>
+
+<p>이건 두 종류가 있다: parametric과 non-parametric.</p>
+
+<p>database에 존재하는 이미지 찾기 등을 수행하는 non-parametric 모델들은 texture synthesis, super-resolution, in-painting 등에 사용되었다.</p>
+
+<p>Parameteric 모델은 꽤 널리 알려졌지만(MNIST), 성공적인 것은 별로 없다. 대부분 흐린(blurry) 이미지만을 생성해냈다.<br />
+GAN이 생성한 것은 noise가 많고 이해하기 어려웠다. Laplcian pyramid extension, recurrent network, deconvolution network 등의 접근은 자연 이미지를 생성하는 데 성공적이었지만 supervised task에 generator를 활용하진 않았다.</p>
+
+<h3 id="visualizing-the-internals-of-cnns">Visualizing the Internals of CNNs</h3>
+
+<p>Neural Networks의 문제점은 너무 black-box같다는 것이다(<em>참고</em>: 네트워크의 각 필터 등이 정확히 무엇을 의미하는지 사람이 이해할 수가 없다). 다만 각 필터의 의미를 찾으려는 시도는 있었다.</p>
+
+<p>자세한 내용은 원문을 보고 각 논문을 찾아보라.</p>
+
+<hr />
+
+<h2 id="접근법과-모델-아키텍처approach-and-model-architecture">접근법과 모델 아키텍처(Approach and Model Architecture)</h2>
+
+<p>GAN에 CNN을 써서 이미지 품질을 높이려는 시도는 지금까지 성공적이지 못했다.</p>
+
+<p>우리는 많은 시도 끝에 다양한 데이터셋에서 안정적인 그리고 더 높은 해상도의 이미지를 생성하는 모델 구조를 찾아내었다.<br />
+핵심은 다음 3가지를 CNN 구조에 적용시키는 것이다.</p>
+
+<ol>
+  <li>max-pooling과 같은 미분불가능한 레이어를 strided convolution으로 바꿔 spatial downsampling이 가능하게 한 것이다. 이는 G에 사용된 것이고, D에는 upsampling이 가능하게 바꿨다.</li>
+  <li>요즘 트렌드는 FC(Fully Connected) Layer를 없애고 convolution layer로 바꾸는 것이다.</li>
+  <li>Batch Normalization을 사용하여 학습을 안정화시킨다(<em>참고</em>: 2019년 현재 BN은 거의 필수처럼 되어 있다). 이는 weight 초기화가 나쁘게 된 경우와 깊은 모델에서 gradient flow를 도우며, 이는 학습 초기에 잘못된 방향으로 학습이 진행되어 망하는 경우를 막아준다. 그러나 sample이 요동치는 것을 막기 위해 G의 출력 레이어와 D의 input layer에는 넣지 않았다(이건 많은 시도 끝에 알아낸 듯).</li>
+</ol>
+
+<p>G에서는 activation function으로 ReLU를 사용하고 마지막 레이어에는 tanh를 사용한다. Bounded activation(tanh)은 더 빠르게 수렴하고 학습샘플의 분포를 따라갔다. D에는 Leaky ReLU를 사용하여 높은 해상도를 만들 수 있게 하였다. 이는 GAN과 다른 부분이다.</p>
+
+<h2 id="적대적-학습-상세details-of-adversarial-training">적대적 학습 상세(Details of Adversarial Training)</h2>
+
+<p>우리는 Large-scale Scene Understanding(LSUN), Imagenet-1k, Faces 데이터셋으로 학습을 진행했다.</p>
+
+<ul>
+  <li>pre-processing은 쓰지 않았고</li>
+  <li>size 128인 mini-batch SGD</li>
+  <li>(0, 0.02) 정규분포를 따르는 초기화</li>
+  <li>Leaky ReLU의 기울기는 0.2</li>
+  <li>AdamOptimizer(0.0002, 0.9)</li>
+</ul>
+
+<p>로 했다. AdamOptimizer의 beta1을 0.5로 줄이는 것보다 학습 안정성이 좋았다.</p>
+
+<p>모델 구조는 아래와 같다.</p>
+
+<center><img src="/public/img/2019-03-18-DCGAN/01.png" width="100%" /></center>
+
+<p>단 1 epoch만 학습시켰을 때의 결과. minibatch SGD를 썼기 때문에 이미지를 기억한다고는 볼 수 없다. 따라서 overfitting 없이 잘 생성하고 있는 것이다.</p>
+
+<center><img src="/public/img/2019-03-18-DCGAN/02.png" width="100%" /></center>
+
+<p>5 epoch만 학습시켰을 때의 결과. 침대 근처 noise로 볼 때 오히려 underfitting이 일어난 것 같다.</p>
+
+<center><img src="/public/img/2019-03-18-DCGAN/03.png" width="100%" /></center>
+
+<hr />
+
+<h2 id="dcgan의-능력의-경험적-검증empirical-validation-of-dcgans-capabilities">DCGAN의 능력의 경험적 검증(Empirical Validation of DCGANs Capabilities)</h2>
+
+<p>Unsupervised representation learning 알고리즘을 평가하는 일반적인 방법은 supervised 데이터셋에 대해 특징 추출을 시킨 뒤 performance를 측정하는 것이다.</p>
+
+<p>검증 요약:</p>
+<ul>
+  <li>CIFAR-10 데이터셋에 대해 검증한 결과, 다른 방법들(K-means, Exemplar CNN 등)과 비교하여 정확도가 별 차이가 없었다!(80.6~84.3%, DCGAN은 82.8%)</li>
+  <li>StreetView House Numbers dataset(SVHN)은 state-of-the-art 결과를 얻었다.</li>
+</ul>
+
+<h2 id="네트워크-내부-조사-및-시각화investigating-and-visualizing-the-internals-of-the-networks">네트워크 내부 조사 및 시각화(Investigating and Visualizing the Internals of the Networks)</h2>
+
+<p>우리는 가장 가까운 학습 데이터 이미지를 찾거나, 최근접 픽셀이나 특징 혹은 log-likelihood metric 같은 방법은 별로이기 때문에 사용하지 않았다.</p>
+
+<p>생성된 2개의 이미지에 사용된 noise인 $z$를 선형 보간하며 그 보간된 $z$로 이미지를 생성시켜본 결과 한 이미지에서 다른 이미지로 서서히 변해가는 결과를 얻었다(아래 그림). 이미지를 보면 창문 없는 방이 거대한 창문이 있는 방으로 변해 가거나(6th row), TV가 창문으로 변해가는 과정(10th row)을 볼 수 있다.</p>
+
+<center><img src="/public/img/2019-03-18-DCGAN/04.png" width="100%" /></center>
+
+<p>벡터 산술 연산을 통해, vec(웃는 여자) $-$ vec(무표정 여자) $+$ vec(무표정 남자) $=$ vec(웃는 남자) 같은 결과를 얻을 수 있다.</p>
+
+<center><img src="/public/img/2019-03-18-DCGAN/05.png" width="100%" /></center>
+
+<center><img src="/public/img/2019-03-18-DCGAN/06.png" width="100%" /></center>
+
+<p>네트워크 내부의 각 필터는 이해할 수 없는 형식이 아닌 특정 object나 특징을 추출하였음을 알 수 있다.</p>
+
+<center><img src="/public/img/2019-03-18-DCGAN/07.png" width="100%" /></center>
+
+<hr />
+
+<h2 id="결론-및-추후-연구conclusions-and-future-work">결론 및 추후 연구(Conclusions and future work)</h2>
+
+<p>우리는 안정적인 생성모델을 제안하였고 이 적대정 생성모델은 image representation에 탁월함을 보여 주었다. 그러나 아직 오래 학습시킬 시 필터 일부가 요동치는 것 등 모델에 불안정성이 남아 있다.</p>
+
+<p>추후 연구는 이를 안정화하는 방법을 찾는 것이 될 것이다. 또한 이 framework를 영상 또는 음성 등의 다른 domain에도 확장시킬 수도 있다.</p>
+
+<h3 id="acknowledgments">Acknowledgments</h3>
+
+<p>Ian GoodFellow 등의 연구자와 Nvidia Titan-X GPU에 감사를 표한다.</p>
+
+<p><del>(광고인줄)</del></p>
+
+<h2 id="참고문헌references">참고문헌(References)</h2>
+
+<p>논문 참조!</p>
+
+<hr />
+
+<h1 id="튜토리얼">튜토리얼</h1>
+
+<h2 id="공식-튜토리얼">공식 튜토리얼</h2>
+
+<p>DCGAN이 특별히 중요하기 때문인지 Pytorch 공식 홈페이지에 튜토리얼이 있다.</p>
+
+<p>GAN의 핵심 부분을 제외한 부분은 <a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/">여기</a>를 참고하면 된다.</p>
+
+<p>https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html</p>
+
+<hr />
+
+<h1 id="이후-연구들">이후 연구들</h1>
+
+<p>GAN 이후로 수많은 발전된 GAN이 연구되어 발표되었다. 가장 중요한 것 두 개는 GAN의 학습 불안정성을 많이 개선시킨 DCGAN(Deep Convolutional GAN), 단순 생성이 목적이 아닌 원하는 형태의 이미지를 생성시킬 수 있게 하는 CGAN(Conditional GAN)일 듯 하다.</p>
+
+<p>많은 GAN들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN 등)에 대한 설명은 <a href="https://greeksharifa.github.io/generative%20model/2019/03/20/advanced-GANs/">여기</a>에서, CGAN에 대한 설명은 <a href="https://greeksharifa.github.io/generative%20model/2019/03/19/CGAN/">다음 글</a>에서 진행하도록 하겠다.</p>
+
+<hr />
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github/2020/05/27/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/generative/model/2020/05/25/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/machine_learning/2020/05/01/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/generative%20model/2019/03/17/DCGAN/';
+    this.page.identifier = 'http://localhost:4000/generative%20model/2019/03/17/DCGAN/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

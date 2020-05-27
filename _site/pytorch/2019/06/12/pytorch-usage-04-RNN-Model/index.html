@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      PyTorch 사용법 - 04. Recurrent Neural Network(RNN) Model
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">PyTorch 사용법 - 04. Recurrent Neural Network(RNN) Model</h1>
+  <span class="post-date">12 Jun 2019</span>
+   |
+  
+  <a href="/blog/tags/#pytorch" class="post-tag">PyTorch</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#프로젝트-구조">프로젝트 구조</a></li>
+  <li><a href="#import">Import</a></li>
+  <li><a href="#load-data">Load Data</a>
+    <ul>
+      <li><a href="#데이터-준비">데이터 준비</a></li>
+    </ul>
+  </li>
+  <li><a href="#define-and-load-model">Define and Load Model</a></li>
+  <li><a href="#set-loss-functioncreterion-and-optimizer">Set Loss function(creterion) and Optimizer</a></li>
+  <li><a href="#train-model">Train Model</a></li>
+  <li><a href="#visualize-and-save-results">Visualize and save results</a></li>
+</ul>
+
+    <hr />
+
+<p><a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/">PyTorch 사용법 - 00. References</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-01-introduction/">PyTorch 사용법 - 01. 소개 및 설치</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/">PyTorch 사용법 - 02. Linear Regression Model</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/">PyTorch 사용법 - 03. How to Use PyTorch</a><br />
+<strong><a href="https://greeksharifa.github.io/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/">PyTorch 사용법 - 04. Recurrent Neural Network Model</a></strong></p>
+
+<hr />
+
+<p>이 글에서는 RNN(Recurrent Neural Network) 기본 모델의 Pytorch 프로젝트를 살펴본다.</p>
+
+<p>사용되는 torch 함수들의 사용법은 <a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/">여기</a>에서 확인할 수 있다.</p>
+
+<hr />
+
+<h2 id="프로젝트-구조">프로젝트 구조</h2>
+
+<ul>
+  <li>02_Linear_Regression_Model/
+    <ul>
+      <li>main.py</li>
+      <li>data/
+        <ul>
+          <li>02_Linear_Regression_Model_Data.csv</li>
+        </ul>
+      </li>
+      <li>results/</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>일반적으로 데이터는 <code class="highlighter-rouge">data/</code> 디렉토리에 넣는다.</li>
+  <li>코드는 git에 두고, <code class="highlighter-rouge">data/</code>는 <code class="highlighter-rouge">.gitignore</code> 파일에 추가하여 데이터는 git에 올리지 않는다. 파일은 다른 서버에 두고 필요할 때 다운로드한다. 일반적으로 dataset은 그 크기가 수 GB 혹은 그 이상도 될 수 있기 때문에 upload/download 시간이 굉장히 길어지기도 하고, <a href="https://github.com/">Git</a>이 100MB 이상의 큰 파일은 업로드를 지원하지 않기 때문이기도 하다.</li>
+</ol>
+
+<p>물론 이 예제 프로젝트는 너무 간단하여 그냥 <code class="highlighter-rouge">data/</code> 디렉토리 없이 해도 상관없다.<br />
+그리고 <code class="highlighter-rouge">output/</code> 또는 <code class="highlighter-rouge">results/</code> 디렉토리를 만들도록 한다.</p>
+
+<hr />
+
+<h2 id="import">Import</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</code></pre></div></div>
+
+<p>다음 파일을 다운로드하여 <code class="highlighter-rouge">data/</code> 디렉토리에 넣는다.</p>
+
+<p><a href="https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model/data/02_Linear_Regression_Model_Data.csv">02_Linear_Regression_Model_Data.csv</a></p>
+
+<ol>
+  <li><a href="https://pytorch.org/">torch</a>: 설명이 필요없다.</li>
+  <li><a href="https://pytorch.org/docs/stable/nn.html">from torch import nn</a>: nn은 Neural Network의 약자이다. torch의 nn 라이브러리는 Neural Network의 모든 것을 포괄하며, Deep-Learning의 가장 기본이 되는 1-Layer Linear Model도 <code class="highlighter-rouge">nn.Linear</code> 클래스를 사용한다. 이 예제에서도 <strong>nn.Linear</strong>를 쓴다.
+    <ul>
+      <li><strong>nn.Module</strong>은 모든 Neural Network Model의 Base Class이다. 모든 Neural Network Model(흔히 Net이라고 쓴다)은 <strong>nn.Module</strong>의 subclass이다. nn.Module을 상속한 어떤 subclass가 Neural Network Model로 사용되려면 다음 두 메서드를 override해야 한다.
+        <ul>
+          <li><code class="highlighter-rouge">__init__(self)</code>: <strong><em>Initialize.</em></strong> 여러분이 사용하고 싶은, Model에 사용될 구성 요소들을 정의 및 초기화한다. 대개 다음과 같이 사용된다.
+            <ul>
+              <li>self.conv1 = nn.Conv2d(1, 20, 5)</li>
+              <li>self.conv2 = nn.Conv2d(20, 20, 5)</li>
+              <li>self.linear1 = nn.Linear(1, 20, bias=True)</li>
+            </ul>
+          </li>
+          <li><code class="highlighter-rouge">forward(self, x)</code>: <strong><em>Specify the connections.</em></strong> <code class="highlighter-rouge">__init__</code>에서 정의된 요소들을 잘 연결하여 모델을 구성한다. Nested Tree Structure가 될 수도 있다. 주로 다음처럼 사용된다.
+            <ul>
+              <li>x = F.relu(self.conv1(x))</li>
+              <li>return F.relu(self.conv2(x))</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>다른 말로는 위의 두 메서드를 override하기만 하면 손쉽게 Custom net을 구현할 수 있다는 뜻이기도 하다.</li>
+    </ul>
+  </li>
+  <li>참고: <strong>torch.autograd.Variable</strong>은 이전에는 auto gradient 계산을 위해 tensor에 필수적으로 씌워 주어야 했으나, PyTorch 0.4.0 버전 이후로 <code class="highlighter-rouge">torch.Tensor</code>와 <code class="highlighter-rouge">torch.autograd.Variable</code> 클래스가 통합되었다. 따라서 PyTorch 구버전을 사용할 예정이 아니라면 Variable은 쓸 필요가 전혀 없다.
+    <ul>
+      <li>인터넷에 돌아다니는 수많은 코드의 Variable Class는 0.4.0 버전 이전에 PyTorch를 시작한 사람들이 쓴 것이다.</li>
+      <li><a href="https://pytorch.org/docs/stable/autograd.html#variable-deprecated/">https://pytorch.org/docs/stable/autograd.html#variable-deprecated/</a></li>
+      <li><a href="https://pytorch.org/blog/pytorch-0_4_0-migration-guide/">https://pytorch.org/blog/pytorch-0_4_0-migration-guide/</a></li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="load-data">Load Data</h2>
+
+<h3 id="데이터-준비">데이터 준비</h3>
+
+<p>지금의 경우는 전처리할 필요가 없으므로 그냥 데이터를 불러오기만 하면 된다. 데이터가 어떻게 생겼는지도 확인해 보자.<br />
+데이터가 어떤지 살펴보는 것은 모델을 결정하는 데 있어 매우 중요하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/02_Linear_Regression_Model_Data.csv'</span><span class="p">)</span>
+<span class="c1"># Avoid copy data, just refer
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nb">float</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nb">float</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">);</span>    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'02_Linear_Regression_Model_Data'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/public/img/PyTorch/2018-11-02-pytorch-usage-02-Linear-Regression-Model/02_Linear_Regression_Model_Data.png" alt="02_Linear_Regression_Model_Data" /></p>
+
+<p><strong>from_numpy</strong>로 불러오는 이유는 데이터를 복사하여 새로 텐서를 생성하는 대신 원 데이터와 메모리를 공유하는 텐서를 쓰기 위함이다. 지금은 상관없지만 대용량의 데이터를 다룰 때에는 어떤 함수가 데이터를 복사하는지 아닌지를 확실하게 알아둘 필요가 있다.<br />
+물론, 정말 대용량의 데이터의 경우는 read_csv로 한번에 불러오지 못한다. 이는 데이터를 <em>batch</em>로 조금씩 가져오는 것으로 해결하는데, 이에 대해서는 나중에 살펴보자.</p>
+
+<p>참고: 이 데이터는 다음 코드를 통해 생성되었다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'data/02_Linear_Regression_Model_Data.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s">'x'</span><span class="p">,</span> <span class="s">'y'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="define-and-load-model">Define and Load Model</h2>
+
+<p>매우 간단한 모델이므로 코드도 짧다.<br />
+여기서는 여러분의 편의를 위해 함수들의 parameter 이름을 명시하도록 한다.</p>
+
+<p>PyTorch에서 Linear 모델은 <code class="highlighter-rouge">torch.nn.Linear</code> 클래스를 사용한다. 여기서는 단지 x를 y로 mapping하는 일차원 직선($ y = wx + b $)을 찾고 싶은 것이므로, <code class="highlighter-rouge">in_features</code>와 <code class="highlighter-rouge">out_features</code>는 모두 1이다.<br />
+<strong>nn.Linear</strong>은 <strong>nn.Module</strong>의 subclass로 in_features개의 input을 선형변환을 거쳐 out_features개의 output으로 변환한다. parameter 개수는 $ (in_features \times out_features [ + out_features]) $ 개이다. 마지막 항은 <strong>bias</strong>이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+
+<span class="s">"""
+Linear(in_features=1, out_features=1, bias=True)
+Parameter containing:
+tensor([[-0.9360]], requires_grad=True)
+Parameter containing:
+tensor([0.7960], requires_grad=True)
+"""</span>
+</code></pre></div></div>
+
+<p>별다른 utility 함수가 필요 없으므로 따로 <code class="highlighter-rouge">utils.py</code>는 만들지 않는다.</p>
+
+<hr />
+
+<h2 id="set-loss-functioncreterion-and-optimizer">Set Loss function(creterion) and Optimizer</h2>
+
+<p>적절한 모델을 선정할 때와 마찬가지로 loss function과 optimizer를 결정하는 것은 학습 속도와 성능을 결정짓는 중요한 부분이다.<br />
+지금과 같이 간단한 Linear Regression Model에서는 어느 것을 사용해도 학습이 잘 된다. 하지만, 일반적으로 성능이 좋은 <code class="highlighter-rouge">AdamOptimizer</code>를 사용하도록 하겠다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="s">"""
+tensor([[-0.1399],
+        [-1.0759],
+        [-2.0119],
+        [-2.9478],
+        [-3.8838],
+        [-4.8197],
+        [-5.7557],
+        [-6.6917],
+        [-7.6276],
+        [-8.5636]], grad_fn=&lt;ThAddmmBackward&gt;)
+"""</span>
+</code></pre></div></div>
+
+<p>참고: 보통 변수명은 criterion 혹은 loss_function 등을 이용한다.</p>
+
+<hr />
+
+<h2 id="train-model">Train Model</h2>
+
+<p>Train은 다음과 같이 이루어진다.</p>
+
+<ol>
+  <li>모델에 데이터를 통과시켜 예측값(현재 모델의 weights로 prediction)을 얻은 뒤</li>
+  <li>실제 정답과 loss를 비교하고</li>
+  <li>gradient를 계산한다.</li>
+  <li>이 값을 통해 weights를 업데이트한다(backpropagation).</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">prediction</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="s">"""
+        Show your intermediate results
+        """</span>
+        <span class="k">pass</span>
+</code></pre></div></div>
+
+<p>코드의 각 라인을 설명하면 다음과 같다.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">prediction</code>: 모델에 데이터(x)를 집어넣었을 때 예측값(y). 여기서는 $ y = wx + b $의 결과들이다.</li>
+  <li><code class="highlighter-rouge">loss</code>: criterion이 MSELoss로 설정되어 있으므로, prediction과 y의 평균제곱오차를 계산한다.</li>
+  <li><code class="highlighter-rouge">optimizer.zero_grad()</code>: optimizer의 grad를 0으로 설정한다. PyTorch는 parameter들의 gradient를 계산해줄 때 grad는 계속 누적되도록 되어 있다. 따라서 gradient를 다시 계산할 때에는 0으로 세팅해주어야 한다.</li>
+  <li><code class="highlighter-rouge">loss.backward()</code>: gradient 계산을 역전파(backpropagation)한다.</li>
+  <li><code class="highlighter-rouge">optimizer.step()</code>: 계산한 gradient를 토대로 parameter를 업데이트한다($ w \leftarrow w - \alpha \Delta w, b \leftarrow b - \alpha \Delta b $)</li>
+  <li>학습 결과를 중도에 확인하고 싶으면 그래프를 중간에 계속 그려주는 것도 한 방법이다.</li>
+</ol>
+
+<hr />
+
+<h2 id="visualize-and-save-results">Visualize and save results</h2>
+
+<p>결과를 그래프로 보여주는 부분은 <code class="highlighter-rouge">matplotlib.pyplot</code>에 대한 내용이므로 여기서는 넘어가도록 하겠다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">display_results</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">prediction</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">);</span>    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">prediction</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="s">'b--'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'loss={:.4}, w={:.4}, b={:.4}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">model</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">model</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c1"># plt.savefig('results/02_Linear_Regression_Model_trained.png')
+</span>
+<span class="n">display_results</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/public/img/PyTorch/2018-11-02-pytorch-usage-02-Linear-Regression-Model/02_Linear_Regression_Model_trained.png" alt="02_Linear_Regression_Model_Trained" /></p>
+
+<p>모델을 저장하려면 <code class="highlighter-rouge">torch.save</code> 함수를 이용한다. 저장할 모델은 대개 <code class="highlighter-rouge">.pt</code> 확장자를 사용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s">'02_Linear_Regression_Model.pt'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>참고: <code class="highlighter-rouge">.pt</code> 파일로 저장한 PyTorch 모델을 load해서 사용하려면 다음과 같이 한다. 이는 나중에 <strong>Transfer Learning</strong>과 함께 자세히 다루도록 하겠다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loaded_model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="s">'02_Linear_Regression_Model.pt'</span><span class="p">)</span>
+
+<span class="n">display_results</span><span class="p">(</span><span class="n">loaded_model</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>정확히 같은 결과를 볼 수 있을 것이다.</p>
+
+<hr />
+
+<p>전체 코드는 <a href="https://github.com/greeksharifa/Tutorial.code/blob/master/Python/PyTorch_Usage/02_Linear_Regression_Model/main.py">여기</a>에서 살펴볼 수 있다.</p>
+
+<hr />
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github/2020/05/27/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/generative/model/2020/05/25/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/machine_learning/2020/05/01/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/';
+    this.page.identifier = 'http://localhost:4000/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

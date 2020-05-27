@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Blog
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/deep_learning/2018/07/21/YOLO/">
+        YOLO
+      </a>
+    </h1>
+
+    <span class="post-date">21 Jul 2018</span>
+     |
+    
+    <a href="/blog/tags/#keras" class="post-tag">Keras</a>
+    
+    <a href="/blog/tags/#detection" class="post-tag">Detection</a>
+    
+    <a href="/blog/tags/#cnn" class="post-tag">CNN</a>
+    
+    
+
+    <article>
+      <h2 id="yolo-you-only-look-once">YOLO: You Only Look Once</h2>
+<blockquote>
+  <p>본 포스트는 아래의 논문, 코드와
+Joseph Redmon, Santosh Divvala, Ross Girshick, Ali Farhadi - You Only Look Once: Unified, Real-Time Object Detection (2015)
+Joseph Redmon, Ali Farhadi - YOLO9000: Better, Faster, Stronger (2016)
+Allan Zelener - YAD2K: Yet Another Darknet 2 Keras
+Andrew Ng의 Convolutional Neural Networks 강의의 내용을 토대로 정리한 것임을 밝힌다.</p>
+</blockquote>
+
+<p><strong>YOLO</strong> 알고리즘은 Sliding Window를 사용하여 이미지의 픽셀을 Stride 단위로 하나하나<br />
+살펴보는 것이 아니라 이미지를 Grid로 나누어 각각의 Grid Cell에 대해<br />
+Label(그 셀의 정보)를 부여함으로써 한 번에 이미지를 스캔한다.<br />
+이 때문에 YOLO 알고리즘은 빠른 속도라는 강점을 갖고 있다.</p>
+
+<p>알고리즘에 대해 세세하게 설명하기 전에 코딩을 위한 Setting부터 진행하도록 하겠다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span><span class="p">,</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">yad2k.utils.yolo_utils</span> <span class="kn">import</span> <span class="n">read_classes</span><span class="p">,</span> <span class="n">read_anchors</span><span class="p">,</span> <span class="n">generate_colors</span><span class="p">,</span> <span class="n">preprocess_image</span><span class="p">,</span> <span class="n">draw_boxes</span><span class="p">,</span> <span class="n">scale_boxes</span>
+<span class="kn">from</span> <span class="nn">yad2k.models.keras_yolo</span> <span class="kn">import</span> <span class="n">yolo_head</span><span class="p">,</span> <span class="n">yolo_boxes_to_corners</span><span class="p">,</span> <span class="n">preprocess_true_boxes</span><span class="p">,</span> <span class="n">yolo_loss</span><span class="p">,</span> <span class="n">yolo_body</span>
+</code></pre></div></div>
+
+<p>여기서 제일 아래 두 줄에 있는 yad2k 모듈은 터미널에서 바로 다운로드를 받을 수 없다.<br />
+아래 깃헙들을 통해서 다운을 받도록 하자.
+<a href="https://github.com/allanzelener/YAD2K/blob/master/yad2k/models/keras_yolo.py">yad2k-첫 번째</a>,
+<a href="https://github.com/tejaslodaya/car-detection-yolo">yad2k-두 번째</a></p>
+
+<p>첫 번째 깃헙에서는 아래에 보이는 것처럼 font와 yad2k폴더를 저장하면 된다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo01.PNG" width="90%" /></center>
+
+<p>두 번째 깃헙에서는 아래에 보이는 것처럼 yolo_uilts.py파일만 저장하여<br />
+위 코드에서 알 수 있듯이 yad2k.utils안에 넣어두어 편리하게 사용할 수 있다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo02.PNG" width="90%" /></center>
+
+<p>하지만 이 사용자 패키지를 그대로 Lib/site-packages에 집어넣는다고 모든 게 해결되지는 않는다.<br />
+폰트 설정 작업을 다시 해주어야 한다.</p>
+
+<p>첫 번째 깃헙에서 다운로드를 받은 font폴더를 열어보면 아래의 파일을 확인할 수 있다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo03.PNG" width="50%" /></center>
+<p>물론 다른 otf폰트를 사용해서 문제가 없을 것이다만, 나는 이 패키지를 만드신 분의 폰트를 그대로 따랐다.</p>
+
+<p>여기서 FiraMono-Medium.otf파일을 글꼴 설치해주자. 그러고 나서는 모듈 내 함수에서 2가지만  수정해주면 된다. 모듈 내에 있는 draw_boxes.py와 yolo_utils.py를 열어보자</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo04.PNG" width="80%" /></center>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo05.PNG" width="80%" /></center>
+<p>모두 draw_boxes란 함수를 포함하고 있는데, 여기서 <strong>font=” “</strong> 부분에 본인이 폰트를 저장한 경로로<br />
+수정을 해주어야만 한다.</p>
+
+<p><em>자 그럼 모듈 준비는 끝났다. 본격적으로 YOLO에 대해 탐구해볼까?</em></p>
+
+<h3 id="bounding-boxes-and-endocing-vector">Bounding Boxes and Endocing Vector</h3>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo06.PNG" width="100%" /></center>
+<p>YOLO 알고리즘을 사용하기 전에는 본인이 detect하고 싶은 물체를 구분할 수 있는 pre-trained된 CNN기반 모델이 필요하다. 즉, 내가 이미지에서 1개 이상의 차/보행자/오토바이를 구분하고 싶다면,<br />
+pre-trained된 모델은 이미지가 차인지 보행자인지 오토바이인지 하나의 Class로 구분할 수 있는 모델이어야 한다는 것이다.</p>
+
+<p><strong>Size가 608 X 608</strong>인 이미지 셋을 이용한다고 해보자.<br />
+그리고 우리는 여러 object를 detect하기 위해 5개 종류의 anchor box를 사용한다고 해보자.<br />
+그렇다면 처음 Input은 (m, 608, 608, 3)의 shape을 가질 것이고(m개의 이미지),<br />
+이 Input은 Deep CNN을 거쳐 (m, 19, 19, 5, 85)의 shape으로 인코딩된다.</p>
+
+<p>여기서 <strong>19, 19</strong>는 Grid의 Size를 말한다.<br />
+즉 아래의 그림처럼 19*19개의 각각의 Grid Cell이 어떤 object를 detect하고 있는지<br />
+각각의 sign을 남긴다는 뜻이다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo07.PNG" width="80%" /></center>
+
+<p>마지막 85의 길이를 가진 벡터는 아래와 같이 생겼다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo08.PNG" width="80%" /></center>
+<p>이러한 벡터가 각 anchor box별로 하나 씩 있기 때문에 shape의 마지막 부분이 5, 85)가 되는 것이다.</p>
+
+<p>(m, 19, 19, 5, 85)는 필요 이상으로 고차원이기 때문에 계산의 편리함을 위해<br />
+(m, 19, 19, 425)로 Unroll해주도록 한다.<br />
+다시 정리하자면, 위 matrix의 의미는, <strong>19X19</strong>개 각각의 Cell이 자기자신이 어떤 Label인지에<br />
+대한 정보를 425개의 숫자로 표현하고 있다는 것이다.</p>
+
+<p>마지막 425의 길이를 가진 벡터를 분리하여 다음과 같이 Score를 계산해주도록 한다.
+아래 코드에선 이를 <strong>box_scores</strong>라고 명명할 것이다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo09.PNG" width="80%" /></center>
+
+<p>이제 위에서 구한 box_scores를 바탕으로,<br />
+각 Grid Cell은 각각의 box(여기서는 5개의 anchor box가 있다.)와<br />
+각각의 class(여기서는 80개의 classes가 있다.)에 대해 maximum probability를 찾고<br />
+이를 토대로 자신의 정체성을 확립하게 된다. (나는 어떤 object이다라고 결정!)</p>
+
+<p>Cell의 중심에 앵커의 중심을 놓고 bbox를 그리면, 아래와 같은 그림을 얻을 수 있을 것이다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo10.PNG" width="30%" /></center>
+<p>Box가 너무 많기 때문에 일단 Score면에서 일정 수준 미달인 Box들을 제거해준다.<br />
+Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이 낮다는 것이다.<br />
+그러고 나서 최고 Score를 받은 Box와 너무 많이 겹치는 Box들을 제거해준다.
+(IOU가 높은 박스 제거) 이것이 바로 Non-max Suppression 과정이다.</p>
+
+<p>자 이제 본격적으로 코드로 구현해보자.</p>
+
+<h3 id="filtering-with-a-threshold-on-class-scores">Filtering with a threshold on class scores</h3>
+<p>앞서 언급한 과정 중 첫 번째 단계를 실현하는 과정이다.<br />
+아래 코드에 등장하는 객체에 대해 설명하자면,<br />
+<strong>box_confidence</strong>: (19<em>19, 5, 1) - $P_c$를 담고 있다. (타겟 Object가 존재할 확률)<br />
+<strong>boxes</strong>: (19</em>19, 5, 4) - Bounding Box 좌표 4개를 담고 있다.<br />
+<strong>box_class_probs</strong>: (19*19, 5, 80) - Class 80개에 대한 확률 값을 담고 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">yolo_filter_boxes</span><span class="p">(</span><span class="n">box_confidence</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">box_class_probs</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">):</span>
+    <span class="s">"""
+    threshold -- real value, if [highest class probability score &lt; threshold],
+    then get rid of the corresponding box
+
+    Returns:
+    몇 개의 박스를 선택하는지 모르기 때문에 None을 쓴다. 
+    이 개수는 설정된 threshold의 값에 달려 있다.
+    scores -- tensor of shape (None,), containing the class probability score for selected boxes
+    boxes -- tensor of shape (None, 4), containing (b_x, b_y, b_h, b_w)
+    classes -- tensor of shape (None,), containing the index of the class
+    detected by the selected boxes
+    """</span>
+
+    <span class="c1"># Step 1: Compute box scores
+</span>    <span class="n">box_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">box_confidence</span><span class="p">,</span> <span class="n">box_class_probs</span><span class="p">)</span>
+
+    <span class="c1"># Step 2: box_scores에서 제일 큰 스코어의 위치와 값을 찾는다.
+</span>    <span class="n">box_classes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">box_class_scores</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Step 3: 아래 필터링 마스크는 부울렌 tensor로 threshold보다 큰 score를 가지는
+</span>    <span class="c1"># box_class를 판별한다.
+</span>    <span class="n">filtering_mask</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+
+    <span class="c1"># Step 4: Apply the mask to scores, boxes and classes
+</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_classes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span>
+</code></pre></div></div>
+
+<p>위에서 tf.boolean_mask함수는 아래와 같은 형식을 갖는다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'boolean_mask'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+<p>해당 텐서에 True, False로 구성된 mask를 씌우면 True와 연결된 값만 남고 나머지는 지워진다.<br />
+예를 들어</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">])</span>
+<span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+</code></pre></div></div>
+<p>의 결과는 [0, 2]이다.</p>
+
+<h3 id="non-max-suppression">Non-max Suppression</h3>
+<p>이제 필요 없는 Box들을 제거해보자.<br />
+아래 함수에서 사용할 메서드 중 tf.image.non_max_suppression에 대해 설명하자면,</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_output_size</span><span class="p">,</span>
+    <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">score_threshold</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s">'-inf'</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+<p>아래와 같은 arguements를 가진다.<br />
+1) <strong>boxes</strong>: A 2-D float Tensor of shape [num_boxes, 4].<br />
+2) <strong>scores</strong>: A 1-D float Tensor of shape [num_boxes] representing a single score corresponding to each box.<br />
+3) <strong>max_output_size</strong>: NMS에 의해 선택될 box의 최대 개수 = num_boxes<br />
+4) <strong>iou_threshold</strong></p>
+
+<p>반환하는 객체는<br />
+<strong>Selected_indices</strong>: A 1-D integer Tensor of shape [M] representing the selected indices from the boxes tensor, where M &lt;= max_output_size. 사실상 shape은 (M, 1)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">yolo_non_max_suppression</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">max_boxes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="s">"""Applies NMS to set of boxes
+    scores -- tensor of shape (None,), output of yolo_filter_boxes()
+    boxes -- tensor of shape (None, 4), output of yolo_filter_boxes()
+    that have been scaled to the image size (see later)
+    classes -- tensor of shape (None,), output of yolo_filter_boxes()
+    max_boxes -- integer, maximum number of predicted boxes you'd like
+    iou_threshold -- real value, "intersection over union" threshold used for NMS
+
+    Returns:
+    scores -- tensor of shape (, None), predicted score for each box
+    boxes -- tensor of shape (4, None), predicted box coordinates
+    classes -- tensor of shape (, None), predicted class for each box
+
+    Note: 이 함수는 scores, boxes, classes의 shape을 편의를 위해 transpose 시킬 것이다.
+    """</span>
+    <span class="c1"># 내가 예측하고 싶은 박스 최대치
+</span>    <span class="n">max_boxes_tensor</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="n">max_boxes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int32'</span><span class="p">)</span>
+
+    <span class="c1"># initialize variable max_boxes_tensor
+</span>    <span class="n">K</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span> <span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">variables_initializer</span><span class="p">([</span><span class="n">max_boxes_tensor</span><span class="p">]))</span>
+
+    <span class="c1"># get the list of indices corresponding to boxes you keep
+</span>    <span class="n">nms_indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_boxes_tensor</span><span class="p">,</span> 
+    <span class="n">iou_threshold</span><span class="o">=</span><span class="n">iou_threshold</span><span class="p">)</span>
+
+    <span class="c1"># Use K.gather() to select only nms_indices from scores, boxes and classes
+</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span>
+</code></pre></div></div>
+<p>첫 줄부터 설명하면
+내가 만약 최대 10개의 Box를 선택하고 싶다면, arguement에서 max_boxes=10을 설정하고, 이 숫자를 tensor로 만든 것이 max_boxes_tensor이다.<br />
+다음 줄에서 위 텐서를 집어넣고 세션을 실행시킨다.<br />
+tf.image.non_max_suppression을 통해 nms_indices를 얻게 되는데 이는 선택할 Box의 indices를 의미한다.</p>
+
+<p>K.gather에 대해 설명하자면,</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">validate_indices</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+<p>여기서 <strong>params</strong>는 최소 axis+1의 rank를 갖는 텐서이다.<br />
+<strong>indices</strong>는 [0, params.shape[axis]) 범위 사이에 있는 텐서이다.</p>
+
+<p>이 함수는 아래와 같이 indices에 따라 결과 값을 직관적으로 반환한다.</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo11.PNG" width="30%" /></center>
+
+<p>이제 return되는 scores, boxes, classes에는 NMS를 거쳐 축소된 (max_boxes 이하로 줄어든)<br />
+값이 담겨 있다.</p>
+
+<h3 id="wrapping-up-the-filtering">Wrapping up the filtering</h3>
+<p>위에서 정의한 두 함수를 바탕으로 종합 함수를 만들어보자.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">yolo_eval</span><span class="p">(</span><span class="n">yolo_outputs</span><span class="p">,</span> <span class="n">image_shape</span><span class="o">=</span><span class="p">(</span><span class="mf">720.</span><span class="p">,</span> <span class="mf">1280.</span><span class="p">),</span> <span class="n">max_boxes</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+<span class="n">score_threshold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="s">"""
+    Converts the output of YOLO encoding (a lot of boxes) to your predicted boxes along 
+    with their scores, box coordinates and classes.
+
+    Arguments:
+    yolo_outputs -- output of the encoding model (for image_shape of (608, 608, 3)),
+    contains 4 tensors:
+                    box_confidence: tensor of shape (None, 19, 19, 5, 1)
+                    box_xy: tensor of shape (None, 19, 19, 5, 2)
+                    box_wh: tensor of shape (None, 19, 19, 5, 2)
+                    box_class_probs: tensor of shape (None, 19, 19, 5, 80)
+    image_shape -- Input shape을 담은 (2,) 텐서: 여기선 (608., 608.)이고 float32여야 함
+    max_boxes -- integer, maximum number of predicted boxes you'd like
+    score_threshold -- highest class probability score &lt; threshold이면, 그 Box 제거
+    iou_threshold -- IOU threshold used for NMS filtering
+
+    Returns:
+    scores -- tensor of shape (None, ), predicted score for each box
+    boxes -- tensor of shape (None, 4), predicted box coordinates
+    classes -- tensor of shape (None,), predicted class for each box
+    """</span>
+
+    <span class="c1"># Retrieve outputs of the YOLO model
+</span>    <span class="n">box_xy</span><span class="p">,</span> <span class="n">box_wh</span><span class="p">,</span> <span class="n">box_confidence</span><span class="p">,</span> <span class="n">box_class_probs</span> <span class="o">=</span> <span class="n">yolo_outputs</span>
+
+    <span class="c1"># Convert boxes to be ready for filtering functions
+</span>    <span class="n">boxes</span> <span class="o">=</span> <span class="n">yolo_boxes_to_corners</span><span class="p">(</span><span class="n">box_xy</span><span class="p">,</span> <span class="n">box_wh</span><span class="p">)</span>
+
+    <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">yolo_filter_boxes</span><span class="p">(</span><span class="n">box_confidence</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">box_class_probs</span><span class="p">,</span> 
+    <span class="n">threshold</span><span class="o">=</span><span class="n">score_threshold</span><span class="p">)</span>
+
+    <span class="c1"># Scale boxes back to original image shape.
+</span>    <span class="n">boxes</span> <span class="o">=</span> <span class="n">scale_boxes</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">)</span>
+
+    <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">yolo_non_max_suppression</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> 
+    <span class="n">max_boxes</span><span class="o">=</span><span class="n">max_boxes</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="o">=</span><span class="n">iou_threshold</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span>
+</code></pre></div></div>
+<p>두 번째 줄에 등장한 yolo_boxes_to_corners는 yad2모듈의 사용자 함수로,<br />
+height, width, x_center, y_center로 표기했던 좌표를 편의를 위해 코너 좌표로 바꿔준다.</p>
+
+<p>위에서 정의한 yolo_filter_boxes함수를 통해 수준 미달인 Box들을 제거해주고,<br />
+다음 단계를 위해 yad2k의 scale_boxes 메서드를 통해 scaling을 해준다.<br />
+다음 NMS를 적용하는 yolo_non_max_suppression함수를 통해 겹치는 Box들을 제거해준다.</p>
+
+<h3 id="test">Test</h3>
+<p>이제 실제 이미지에 적용해보자.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">yolo_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s">'C:/Users/YY/Documents/Winter Data/NN/Model/yolo.h5'</span><span class="p">)</span>
+<span class="n">yolo_model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'sgd'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">)</span>
+<span class="c1"># yolo_model.count_params()
+# yolo_model.summary()
+</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">get_session</span><span class="p">()</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">read_classes</span><span class="p">(</span><span class="s">"path/coco_classes.txt"</span><span class="p">)</span>
+<span class="n">anchors</span> <span class="o">=</span> <span class="n">read_anchors</span><span class="p">(</span><span class="s">"path/yolo_anchors.txt"</span><span class="p">)</span>
+<span class="n">image_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mf">720.</span><span class="p">,</span> <span class="mf">1280.</span><span class="p">)</span>
+
+<span class="n">yolo_outputs</span> <span class="o">=</span> <span class="n">yolo_head</span><span class="p">(</span><span class="n">yolo_model</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">anchors</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
+<span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">yolo_eval</span><span class="p">(</span><span class="n">yolo_outputs</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>적용을 위해선 class_names와 anchors가 필요하다. 각 txt파일의 내용은 아래와 같다.<br />
+<strong>coco_classes</strong>: person/bicycle/car/motorbike/aeroplane/bus/train … 등 80개 class<br />
+<strong>anchor</strong>: 0.57273, 0.677385, 1.87446, 2.06253, 3.33843, 5.47434, 7.88282, 3.52778, 9.77052, 9.16828 = 5개의 anchor box 길이</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">image_file</span><span class="p">):</span>
+    <span class="s">"""Runs the graph stored in "sess" to predict boxes for "image_file".
+    Prints and plots the preditions.
+
+    Returns:
+    out_scores -- tensor of shape (None, ), scores of the predicted boxes
+    out_boxes -- tensor of shape (None, 4), coordinates of the predicted boxes
+    out_classes -- tensor of shape (None, ), class index of the predicted boxes
+    """</span>
+
+    <span class="c1"># Preprocess your image
+</span>    <span class="n">image</span><span class="p">,</span> <span class="n">image_data</span> <span class="o">=</span> <span class="n">preprocess_image</span><span class="p">(</span><span class="n">image_file</span><span class="p">,</span> <span class="n">model_image_size</span><span class="o">=</span><span class="p">(</span><span class="mi">608</span><span class="p">,</span> <span class="mi">608</span><span class="p">))</span>
+
+    <span class="c1"># Run the session
+</span>    <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span> <span class="o">=</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span><span class="p">],</span>
+     <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">yolo_model</span><span class="o">.</span><span class="nb">input</span><span class="p">:</span> <span class="n">image_data</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="n">learning_phase</span><span class="p">(</span> <span class="p">):</span> <span class="mi">0</span><span class="p">})</span>
+
+    <span class="c1"># Print predictions info
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'Found {} boxes for {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_boxes</span><span class="p">),</span> <span class="n">image_file</span><span class="p">))</span>
+    <span class="c1"># Generate colors for drawing bounding boxes.
+</span>    <span class="n">colors</span> <span class="o">=</span> <span class="n">generate_colors</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+    <span class="c1"># Draw bounding boxes on the image file
+</span>    <span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span><span class="p">,</span> <span class="n">class_names</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
+    <span class="c1"># Save the predicted bounding box on the image
+</span>    <span class="c1"># image.save(os.path.join("out", image_file), quality=90)
+</span>    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'path/output01.jpg'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span>
+
+<span class="n">image_file</span> <span class="o">=</span> <span class="p">(</span><span class="s">"path/image01.jpg"</span><span class="p">)</span>
+<span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">image_file</span><span class="p">)</span>
+</code></pre></div></div>
+<p>image_file에 이미지가 있는 path를 입력하고 predict함수를 이용하면 원하는 결과물을 얻을 수 있다.</p>
+
+<p>위 함수들에 보충설명을 하자면, image, image_data라는 output을 반환하는 preprocess_image메서드는 원하는 size에 맞게 이미지를 조정해준다.</p>
+
+<p>image는 이미지 파일 자체를 말하며, image_file은 그 이미지의 RGB 데이터를 저장한다.<br />
+generate_colors를 통해 다양한 색깔을 미리 생성해두면,<br />
+draw_boxes는 찾고자하는 object 둘레에 bounding box를 그려준다.<br />
+quality 설정을 통해 저장하고자 하는 이미지의 화질을 조정할 수 있다.<br />
+image.save를 통해 자동으로 output 이미지를 저장할 수 있다.</p>
+
+<h3 id="check-the-result">Check the result</h3>
+<p>Input:</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo12.jpg" width="50%" /></center>
+
+<p>Output:</p>
+<center><img src="/public/img/Deep_Learning/2018_07_21_YOLO/yolo13.jpg" width="50%" /></center>
+
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/deep_learning/2018/07/21/YOLO/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/deep_learning/2018/07/21/YOLO/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">
+        파이썬 정규표현식(re) 사용법 - 01. Basic
+      </a>
+    </h1>
+
+    <span class="post-date">20 Jul 2018</span>
+     |
+    
+    <a href="/blog/tags/#regex" class="post-tag">Regex</a>
+    
+    <a href="/blog/tags/#re" class="post-tag">re</a>
+    
+    
+
+    <article>
+      <hr />
+
+<p><strong><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">파이썬 정규표현식(re) 사용법 - 01. Basic</a></strong><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">파이썬 정규표현식(re) 사용법 - 03. OR, 반복</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">파이썬 정규표현식(re) 사용법 - 09. 기타 기능</a></p>
+
+<hr />
+
+<p>이 글에서는 정규표현식 기초와 python library인 <code class="highlighter-rouge">re</code> 패키지 사용법에 대해서 설명한다.</p>
+
+<p>본 글에서 정규표현식은 <code class="highlighter-rouge">regex</code>와 같이, 일반 문자열은 ‘regex’와 같이 표시하도록 한다.</p>
+
+<p>파이썬 버전은 3.6을 기준으로 하나, 3.x 버전이면 (아마) 동일하게 쓸 수 있다.<br />
+2.7 버전은 한글을 포함한 비 알파벳 문자 처리가 다르다.</p>
+
+<hr />
+
+<h2 id="정규표현식의-기초">정규표현식의 기초</h2>
+
+<h3 id="일대일-매칭되는-문자">일대일 매칭되는 문자</h3>
+
+<p>정규표현식 안에서, 바로 다음 절에서 설명하는 메타문자를 제외한 모든 문자 하나는 일반 문자열 하나와 매칭된다. 예를 들어, <code class="highlighter-rouge">a</code>는 a와 매칭되고, <code class="highlighter-rouge">가</code>는 ‘가’와 매칭되는 식이다.<br />
+당연히 <code class="highlighter-rouge">a</code>가 ‘b’ 또는 ‘가’와 매칭되지는 않는다.</p>
+
+<h3 id="메타문자">메타문자</h3>
+
+<p>어떤 프로그래밍 언어의 정규표현식이든 메타문자라는 것이 존재한다.<br />
+이는 특수한 기능을 하는 문자로, <code class="highlighter-rouge">import</code> 등 파이썬의 예약어와 비슷한 역할을 맡는 문자라고 생각하면 된다.</p>
+
+<p>파이썬 re 모듈의 메타문자는 총 12개로 다음과 같은 것들이 있다.</p>
+
+<p><code class="highlighter-rouge"> $()*+.?[\^{| </code></p>
+
+<p>이들 메타문자는 각각의 문자 하나에 매칭되지 않는다.<br />
+예를 들어 일반 문자인 <code class="highlighter-rouge">a</code>는 문자 ‘a’에 매칭하지만, 여는 소괄호 <code class="highlighter-rouge">(</code>는 문자 ‘(‘와 매칭하지 않는다.</p>
+<blockquote>
+  <p>그럼 찾고자 하는 문자열에 소괄호가 있으면 어떻게 하나?</p>
+</blockquote>
+
+<p>위의 문자들의 앞에 백슬래시 <code class="highlighter-rouge">\</code>를 붙여 주면 일반 문자처럼 한 글자에 매칭된다. 
+예를 들어 <code class="highlighter-rouge">\(</code>는 문자 ‘(‘와 매칭된다.</p>
+
+<p>이들의 사용법은 차차 알아보도록 하자.</p>
+
+<h3 id="semi-메타문자">semi-메타문자</h3>
+
+<p>사실 이건 필자가 붙인 이름이지만… 이들 문자는 평소에는 메타문자가 아니지만, 특수한 상황에서는 메타문자 역할을 하는 문자들이다.<br />
+<code class="highlighter-rouge">]</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">)</code> 가 있다.</p>
+
+<p>닫는 괄호야 당연히 여는 괄호에 대응된다는 것은 알 수 있을 것이다. <code class="highlighter-rouge">-</code>는 이후에 설명한다.</p>
+
+<hr />
+
+<h2 id="re-패키지-기본-method">re 패키지 기본 method</h2>
+
+<h3 id="import">import</h3>
+
+<p>물론 <code class="highlighter-rouge">py</code> 파일에서는 <code class="highlighter-rouge">import re</code>를 해주어야 쓸 수 있다.</p>
+
+<h3 id="rematchpattern-string-flags">re.match(pattern, string, flags)</h3>
+
+<p><img src="/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/01_match.PNG" alt="01_match" /></p>
+
+<p><strong>re.match</strong> 함수는 “문자열의 처음”부터 시작하여 패턴이 일치되는 것이 있는지를 확인한다.<br />
+다음과 같이 사용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+<span class="c1"># 사실 match의 결과를 바로 print하지는 않는다. 결과를 활용하는 방법은 나중에 설명할 matchObj.group 함수를 쓰는 것이다.
+</span></code></pre></div></div>
+
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 1), match='a'&gt;
+&lt;_sre.SRE_Match object; span=(0, 1), match='a'&gt;
+None
+None
+</code></pre></div></div>
+
+<p><strong>re.match</strong> 함수는 문자열의 처음부터 시작하여 패턴이 일치되는 것이 있는지를 확인한다.<br />
+위의 예시에서 첫번째는 패턴과 문자열이 동일하므로 매치되는 것을 확인할 수 있다.<br />
+두번째 예시는 문자열이 ‘a’로 시작하기 때문에 매치가 된다.<br />
+나머지 두 개는 ‘a’로 시작하지 않아 패턴 <code class="highlighter-rouge">a</code>와 매치되지 않는다. 매치되지 않을 때 <strong>re.match</strong> 함수는 None을 반환한다.</p>
+
+<p>매치가 되었을 때는 match Object를 반환한다. 위의 결과에서 <code class="highlighter-rouge">_sre.SRE_Match object</code>를 확인할 수 있다.</p>
+
+<p><strong>re.match</strong> 함수는 인자로 1)pattern 2)string 3)flags를 받는다. 3번은 필수 인자는 아닌데, 어떤 옵션이 있는지는 뒤에서 설명한다.<br />
+각 인자는 각각 1)패턴 2)패턴을 찾을 문자열 3)옵션을 의미한다.</p>
+
+<h3 id="researchpattern-string-flags">re.search(pattern, string, flags)</h3>
+
+<p><img src="/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/02_search.PNG" alt="02_search" /></p>
+
+<p><strong>re.search</strong> 함수는 <strong>re.match</strong>와 비슷하지만, 반드시 문자열의 처음부터 일치해야 하는 것은 아니다.</p>
+
+<p>다음 예시를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 1), match='a'&gt;
+&lt;_sre.SRE_Match object; span=(0, 1), match='a'&gt;
+None
+&lt;_sre.SRE_Match object; span=(1, 2), match='a'&gt;
+</code></pre></div></div>
+
+<p>네 번째 결과가 달라졌음을 볼 수 있다. <strong>re.search</strong> 함수는 문자열의 처음뿐 아니라 중간부터라도 패턴과 일치되는 부분이 있는지를 찾는다.<br />
+따라서 네 번째 문자열 ‘baa’의 경우 1번째 index(두 번째 문자) ‘a’와 매치된다.</p>
+
+<p>위의 결과에서 <code class="highlighter-rouge">span=(0, 1)</code> 를 확인할 수 있다. 위의 두 결과는 <code class="highlighter-rouge">span=(0, 1)</code>인데,<br />
+이는 0번째 문자부터 1번째 문자 전까지(즉, 0번째 문자 하나인 ‘a’)가 패턴과 매치되었음을 뜻한다.<br />
+<code class="highlighter-rouge">span=(1, 2)</code>의 경우 1번째 문자(‘baa’ 의 첫 번째 ‘a’이다)가 패턴과 매치되었음을 볼 수 있다.</p>
+
+<h3 id="refindallpattern-string-flags">re.findall(pattern, string, flags)</h3>
+
+<p><img src="/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/03_findall.PNG" alt="03_findall" /></p>
+
+<p>이름에서 알 수 있듯이 <strong>re.findall</strong> 함수는 문자열 중 패턴과 일치되는 모든 부분을 찾는다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['a']
+['a', 'a']
+[]
+['a', 'a']
+['aaa']
+</code></pre></div></div>
+
+<p>각 예시에서, 문자열의 a의 개수를 세어 보면 잘 맞는다는 것을 확인할 수 있다.</p>
+
+<p>함수 설명을 잘 보면, “non-overlapping” 이라고 되어 있다. 즉 반환된 리스트는 서로 겹치지 않는다는 뜻이다.  마지막 예시가 이를 말해주고 있다. 겹치는 것을 포함한다면 두 개가 반환되어야 했다.</p>
+
+<h3 id="refinditerpattern-string-flags">re.finditer(pattern, string, flags)</h3>
+
+<p><img src="/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/04_finditer.PNG" alt="04_finditer" /></p>
+
+<p><strong>re.findall</strong>과 비슷하지만, 일치된 문자열의 리스트 대신 matchObj 리스트를 반환한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj_iter</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">matchObj</span> <span class="ow">in</span> <span class="n">matchObj_iter</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;callable_iterator object at 0x000002795899C550&gt;
+&lt;_sre.SRE_Match object; span=(1, 2), match='a'&gt;
+&lt;_sre.SRE_Match object; span=(2, 3), match='a'&gt;
+</code></pre></div></div>
+
+<p>iterator 객체 안에 matchObj가 여러 개 들어 있음을 확인할 수 있다.</p>
+
+<h3 id="refullmatchpattern-string-flags">re.fullmatch(pattern, string, flags)</h3>
+
+<p><img src="/public/img/정규표현식(re)/2018-07-20-regex-usage-01-basic/05_fullmatch.PNG" alt="05_fullmatch" /></p>
+
+<p><strong>re.fullmatch</strong>는 패턴과 문자열이 남는 부분 없이 완벽하게 일치하는지를 검사한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 1), match='a'&gt;
+None
+None
+None
+None
+</code></pre></div></div>
+
+<p>맨 위의 예시만 문자열이 남는 부분 없이 정확하게 일치하므로 매칭 결과를 반환했다. 나머지 예시는 문자열이 뒤에 남기 때문에 매치되는 결과 없이 None을 반환했다.</p>
+
+<h3 id="match-object의-메서드들">match Object의 메서드들</h3>
+
+<p>match Object를 그대로 출력해서 쓰고 싶은 사람은 별로 없을 것이다. <strong>re.match</strong> 등의 결과로 얻은 matchObj를 활용하는 방법을 정리하면 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Descrption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>group()</td>
+      <td>일치된 문자열을 반환한다.</td>
+    </tr>
+    <tr>
+      <td>start()</td>
+      <td>일치된 문자열의 시작 위치를 반환한다.</td>
+    </tr>
+    <tr>
+      <td>end()</td>
+      <td>일치된 문자열의 끝 위치를 반환한다.</td>
+    </tr>
+    <tr>
+      <td>span()</td>
+      <td>일치된 문자열의 (시작 위치, 끝 위치) 튜플을 반환한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">end</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(1, 6), match='match'&gt;
+match
+1
+6
+(1, 6)
+</code></pre></div></div>
+
+<p>잘 세어보면 ‘match’가 1번째 문자부터 6번째 문자 직전까지임을 알 수 있다. 인덱스는 0부터이다.</p>
+
+<hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">다음 글</a>에서는 정규표현식의 기초를 더 살펴보도록 한다.</p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/references/2018/07/13/it-will-update-soon/">
+        It will update soon...
+      </a>
+    </h1>
+
+    <span class="post-date">13 Jul 2018</span>
+     |
+    
+    <a href="/blog/tags/#usage" class="post-tag">usage</a>
+    
+    
+
+    <article>
+      <p>곧 업데이트됩니다…</p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/references/2018/07/13/it-will-update-soon/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/references/2018/07/13/it-will-update-soon/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/ps/2018/07/12/PS-06086/">
+        BOJ 06086(최대 유량) 문제 풀이
+      </a>
+    </h1>
+
+    <span class="post-date">12 Jul 2018</span>
+     |
+    
+    <a href="/blog/tags/#ps" class="post-tag">PS</a>
+    
+    <a href="/blog/tags/#dinic" class="post-tag">Dinic</a>
+    
+    <a href="/blog/tags/#network-flow" class="post-tag">Network Flow</a>
+    
+    <a href="/blog/tags/#maximum-flow" class="post-tag">Maximum Flow</a>
+    
+    
+
+    <article>
+      <h2 id="참조">참조</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>분류</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>문제</td>
+      <td><a href="https://www.acmicpc.net/problem/6086">최대 유량</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://greeksharifa.github.io/algorithm%20&amp;%20data%20structure/2018/07/07/algorithm-library/">참조 라이브러리</a></td>
+      <td><a href="https://github.com/greeksharifa/ps_code/blob/master/library/dinic.h">dinic.h</a>, <a href="https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h">sharifa_header.h</a></td>
+    </tr>
+    <tr>
+      <td>이 글에서 설명하는 코드</td>
+      <td><a href="https://github.com/greeksharifa/ps_code/blob/master/BOJ/06086_%EC%B5%9C%EB%8C%80%20%EC%9C%A0%EB%9F%89.cpp">06086_최대 유량</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="개요">개요</h2>
+
+<h3 id="시간복잡도--ov2-cdot-e-">시간복잡도: $ O(V^2 \cdot E) $</h3>
+<h3 id="공간복잡도--ov--e-">공간복잡도: $ O(V + E) $</h3>
+<ul>
+  <li>V는 정점의 수, E는 간선의 수이다. 복잡도는 <a href="https://greeksharifa.github.io/algorithm%20&amp;%20data%20structure/2018/07/11/algorithm-dinic/">디닉 알고리즘</a>과 같다.</li>
+</ul>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<p>이 문제는 생긴 것부터가 네트워크 플로우 문제이다. Maximum Flow를 찾는 많은 알고리즘이 있지만,
+<a href="https://greeksharifa.github.io/algorithm%20&amp;%20data%20structure/2018/07/11/algorithm-dinic/">디닉 알고리즘</a>이 가장 빠르기 때문에
+필자는 이 알고리즘을 사용하도록 하겠다.</p>
+
+<h2 id="구현">구현</h2>
+
+<p>네트워크 플로우 문제는 모델링이 굉장히 중요한데, 이 문제는 모델링이 어렵지는 않다.</p>
+
+<p>주의할 점으로는 간선을 입력받아 그래프를 생성할 때, 각 파이프가 양방향 수송이 가능하다고 하였으므로 최대 유량을 똑같이 (0이 아닌) cap으로 설정해주어야 한다는 것이다.
+또 문자를 정점 번호로 변환할 때 번호가 겹치지 않도록 주의한다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "../library/dinic.h"
+</span>
+<span class="cp">#define MAX_V 52
+#define S 0     // source
+#define T 25    // sink
+#define INF 1000000009
+</span>
+<span class="kt">int</span> <span class="n">E</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">Dinic</span> <span class="n">network</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main_06086</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">E</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">E</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="n">cap</span><span class="p">;</span>
+
+        <span class="n">u</span> <span class="o">=</span> <span class="sc">'A'</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="sc">'Z'</span> <span class="o">?</span> <span class="n">x</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">:</span> <span class="n">x</span> <span class="o">-</span> <span class="sc">'a'</span> <span class="o">+</span> <span class="mi">26</span><span class="p">;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="sc">'A'</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="sc">'Z'</span> <span class="o">?</span> <span class="n">y</span> <span class="o">-</span> <span class="sc">'A'</span> <span class="o">:</span> <span class="n">y</span> <span class="o">-</span> <span class="sc">'a'</span> <span class="o">+</span> <span class="mi">26</span><span class="p">;</span>
+
+        <span class="n">network</span><span class="p">.</span><span class="n">addEdge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">network</span><span class="p">.</span><span class="n">bfs</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">network</span><span class="p">.</span><span class="n">reset_next_v</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">flow</span> <span class="o">=</span> <span class="n">network</span><span class="p">.</span><span class="n">dfs</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">INF</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">flow</span><span class="p">)</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">flow</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong><em>주의: 이 코드를 그대로 복붙하여 채점 사이트에 제출하면 당연히 틀린다. 저런 헤더 파일이 채점 사이트에 있을까?</em></strong></p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/ps/2018/07/12/PS-06086/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/ps/2018/07/12/PS-06086/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic/">
+        디닉 알고리즘(Dinic's Algorithm)
+      </a>
+    </h1>
+
+    <span class="post-date">11 Jul 2018</span>
+     |
+    
+    <a href="/blog/tags/#dinic" class="post-tag">Dinic</a>
+    
+    <a href="/blog/tags/#network-flow" class="post-tag">Network Flow</a>
+    
+    <a href="/blog/tags/#maximum-flow" class="post-tag">Maximum Flow</a>
+    
+    
+
+    <article>
+      <h2 id="참조">참조</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>분류</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>문제</td>
+      <td><a href="https://www.acmicpc.net/problem/6086">최대 유량</a></td>
+    </tr>
+    <tr>
+      <td>응용 문제</td>
+      <td><a href="https://www.acmicpc.net/problem/11495">스포일러 1</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://greeksharifa.github.io/algorithm%20&amp;%20data%20structure/2018/07/07/algorithm-library/">참조 라이브러리</a></td>
+      <td><a href="https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h">sharifa_header.h</a>, <a href="https://github.com/greeksharifa/ps_code/blob/master/library/bit_library.h">bit_library.h</a></td>
+    </tr>
+    <tr>
+      <td>이 글에서 설명하는 라이브러리</td>
+      <td><a href="https://github.com/greeksharifa/ps_code/blob/master/library/dinic.h">dinic.h</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="highlighter-rouge">그림 출처: wikipedia</code></p>
+
+<hr />
+
+<h2 id="개요">개요</h2>
+
+<h3 id="시간복잡도--ov2-cdot-e-">시간복잡도: $ O(V^2 \cdot E) $</h3>
+<h3 id="공간복잡도--ov2--또는--ove-">공간복잡도: $ O(V^2) $ 또는 $ O(V+E) $</h3>
+<ul>
+  <li>V는 정점(vectex)의 수, E는 간선(edge)의 수이다.</li>
+</ul>
+
+<p>이 글에서는 네트워크 플로우(Network Flow) 분야에서 Maximum Flow를 구하는 알고리즘인
+<a href="https://en.wikipedia.org/wiki/Dinic%27s_algorithm">디닉 알고리즘</a>에 대해서 설명한다.</p>
+
+<p>Maximum Flow를 구하는 다른 대표적인 알고리즘으로
+<a href="https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm">에드몬드-카프 알고리즘(Edmonds–Karp algorithm)</a>,
+<a href="https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm">포드-풀커슨 알고리즘(Ford–Fulkerson algorithm)</a>이 있지만,
+현재 PS에서 구현할 만한 알고리즘 중 가장 빠른 알고리즘은 디닉 알고리즘이다.
+그래서 여러 개 외울 필요 없이 알고리즘 하나만 알아두는 것이 좋을 듯 하다.</p>
+
+<h2 id="network-flow네트워크-플로우">Network Flow(네트워크 플로우)</h2>
+
+<p>네트워크 플로우에 대한 기본적인 설명을 조금 적어 두려고 한다.
+예를 하나 들면, Network Flow는 파이프가 복잡하게 연결되어 있고, 각 파이프는 물이 흐를 수 있는 최대 양이 정해져 있고,
+source에서 sink방향으로 물이 흐를 때, 물이 흐를 수 있는 최대 양을 구하는 것이라고 보면 된다.</p>
+
+<p><img src="/public/img/Algorithm_and_Data_Structure/2018-07-11-algorithm-dinic/01_network_flow.png" alt="01_network_flow" /></p>
+
+<ul>
+  <li>s는 source를 의미한다. 물이 나오는 원천이라고 생각하면 된다.</li>
+  <li>t는 sink를 의미한다. 물이 최종적으로 들어가는 곳이라 생각하면 된다. 모든 물(유량)은 source에서 sink로 흐른다.</li>
+  <li>두 정점을 잇는 간선은 해당 정점 사이에 흐를 수 있는 최대 물(유량)을 의미한다. s에서 1번 정점으로 0/10이라고 적혀 있는데, 여기서 10이 최대 유량이다.</li>
+  <li>잔여유량은 최대유량에서 현재 유량을 뺀 값이다. s에서 1번 정점으로 0/10인 것은 현재 유량이 0이고 따라서 잔여유량은 10이다.</li>
+</ul>
+
+<p>네트워크 플로우의 Maximum Flow는 Minimum Cut과 깊은 연관이 있다.</p>
+
+<hr />
+
+<h2 id="알고리즘">알고리즘</h2>
+
+<p>디닉 알고리즘은 크게 두 단계로 이루어진다.</p>
+
+<ol>
+  <li><a href="https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/">BFS</a>를 써서 레벨 그래프(Level Graph)를 생성하는 것</li>
+  <li><a href="https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/">DFS</a>를 써서, 레벨 그래프에 기초한 차단 유량(Blocking Flow)의 규칙을 지키면서, 최대 유량을 흘려주는 것</li>
+</ol>
+
+<h3 id="레벨-그래프level-graph">레벨 그래프(Level Graph)</h3>
+
+<p>레벨 그래프는 각 정점들에 source로부터의 최단 거리를 레벨 값을 할당한 그래프이다.
+아래 그림에서 source의 레벨은 0이되고 source와 인접한 1번과 2번 정점의 레벨은 1, 이후는 2… 등이 된다.
+빨간색 숫자로 적혀 있는 것이 레벨이다.</p>
+
+<p><img src="/public/img/Algorithm_and_Data_Structure/2018-07-11-algorithm-dinic/02_residual_capacity.png" alt="02_residual_capacity" /></p>
+
+<p>레벨 그래프는 BFS로 구현한다.</p>
+
+<h3 id="차단-유량blocking-flow">차단 유량(Blocking Flow)</h3>
+
+<p>디닉 알고리즘에서는, 유량을 흘려보낼 때 레벨 차이가 딱 1이 나는 정점으로만 유량을 보낼 수 있다.
+즉 바로 위의 그림에서의 간선과 같은 곳으로만 보낼 수 있다. 레벨이 같아도 안 된다.</p>
+
+<p>유량을 흘려보내는 것은 DFS로 구현한다. source에서 시작하여, 차단 유량 규칙을 만족하는 정점으로만 따라가면서 최종적으로
+sink에 도달할 때까지 탐색하는 과정을 반복한다.</p>
+
+<p>위의 레벨 그래프에서는 다음 세 경로를 DFS로 찾을 수 있다.</p>
+
+<p>(s, 1, 3, 4): 유량 4<br />
+(s, 1, 4, t): 유량 6<br />
+(s, 2, 4, t): 유량 4</p>
+
+<h3 id="반복">반복</h3>
+
+<p>BFS 1번 그리고 DFS를 한번씩 해서는 최대 유량이 찾아지지 않는다. 다만 복잡한 것은 아니고, 위의 과정을 반복해주면 된다.</p>
+
+<p>다시 BFS를 돌려 레벨 그래프를 새로 생성한다.</p>
+
+<p><img src="/public/img/Algorithm_and_Data_Structure/2018-07-11-algorithm-dinic/03_residual_capacity.png" alt="03_residual_capacity" /></p>
+
+<p>위의 레벨 그래프에서는 다음 경로를 DFS로 찾을 수 있다.</p>
+
+<p>(s, 2, 4, 3, t): 유량 5</p>
+
+<p>다시 레벨 그래프를 그리면, 더 이상 sink로 가는 경로가 없음(sink의 레벨이 $\inf$)을 알 수 있다. 알고리즘을 종료한다.</p>
+
+<p><img src="/public/img/Algorithm_and_Data_Structure/2018-07-11-algorithm-dinic/04_residual_capacity.png" alt="04_residual_capacity" /></p>
+
+<h2 id="구현">구현</h2>
+
+<p>BFS는 어려운 부분이 아니기 때문에 설명은 생략하도록 하겠다.</p>
+
+<p>DFS의 구현은 조금 까다롭다.</p>
+
+<ol>
+  <li>우선 sink(T)에 도달하면 종료한다.</li>
+  <li>종료할 때 <code class="highlighter-rouge">max_flow</code>라는 것을 리턴한다. 이는 Network Flow에서 수송량은 경로에 포함된 파이프 최대 유량의 최솟값이기 때문이다. <code class="highlighter-rouge">flow</code>의 계산식을 잘 보면 최대 유량과 min 연산을 취하는 것을 볼 수 있다.</li>
+  <li>레벨 차이가 1 나는지를 먼저 검사한다. 그리고 그 정점의 잔여 용량이 0보다 큰지 또한 검사한다.</li>
+  <li>만약 그런 정점을 찾았으면, 재귀적으로 DFS를 수행한다.</li>
+  <li>DFS가 리턴되어 반환한 flow 값이 0보다 크면, 아직 DFS로 탐색할 수 있는 경로가 남아 있다는 뜻이다.</li>
+  <li>경로를 찾았으므로, 해당 경로를 따라서(스택에 재귀 호출로 쌓인 함수에 의해 자동으로 역추적됨) 잔여 용량을 줄여준다.</li>
+  <li>만약 어떤 flow도 0이라면, 경로를 찾지 못한 것이므로 종료한다.</li>
+  <li>next_v라는 배열(벡터)이 있다. 이는 DFS에서 다음 경로를 효율적으로 찾기 위해 존재하는 배열이다.
+    <ol>
+      <li>DFS로 경로를 탐색할 떄 정점 번호가 낮은 정점부터 탐색한다.</li>
+      <li>만약 처음에 1번 정점으로 가는 경로를 모두 찾았다면, 더 이상 1번 정점으로는 갈 필요가 없다. 이때 next_v[u]를 1 증가시켜, 다음부터는 2번 정점부터 탐색을 시작하도록 한다.</li>
+      <li>2번도 끝났으면 또 next_v[u]를 증가시킨다. 이를 반복한다.</li>
+      <li>코드 상으로는 <code class="highlighter-rouge">int &amp;i</code>로 되어 있다. i가 레퍼런스로 선언되어 있기 때문에 for loop의 <code class="highlighter-rouge">i++</code> 구문에 따라 같이 증가한다(i는 next_v[u]와 값을 공유한다)</li>
+    </ol>
+  </li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_flow</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">==</span> <span class="n">T</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">max_flow</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">i</span> <span class="o">=</span> <span class="n">next_v</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">,</span> <span class="n">cap</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">cap</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">level</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">cap</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">flow</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">max_flow</span><span class="p">,</span> <span class="n">cap</span><span class="p">));</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">flow</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">cap</span> <span class="o">-=</span> <span class="n">flow</span><span class="p">;</span>
+                    <span class="n">edges</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">ref</span><span class="p">].</span><span class="n">cap</span> <span class="o">+=</span> <span class="n">flow</span><span class="p">;</span>
+                    <span class="k">return</span> <span class="n">flow</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>addEdge 함수의 inv는 각 간선이 양방향 수송이 가능하면 <code class="highlighter-rouge">true</code>로 지정하면 된다.
+sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않고 대신 역방향 간선에 대한 참조를 저장하고 있다.
+이러면 정점이 많을 경우에도 메모리 사용량을 줄일 수 있다.</p>
+
+<p>구현은 다음과 같다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma once
+</span>
+<span class="cp">#include "sharifa_header.h"
+</span>
+<span class="k">struct</span> <span class="n">Edge</span> <span class="p">{</span>   <span class="c1">// u -&gt; v</span>
+    <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="n">ref</span><span class="p">;</span>
+    <span class="n">Edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cap</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ref</span><span class="p">)</span> <span class="o">:</span><span class="n">v</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">cap</span><span class="p">(</span><span class="n">cap</span><span class="p">),</span> <span class="n">ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Dinic</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">edges</span><span class="p">;</span>    <span class="c1">// graph</span>
+    <span class="c1">// level: 레벨 그래프, next_v: DFS에서 flow 계산 시 역추적에 사용</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">level</span><span class="p">,</span> <span class="n">next_v</span><span class="p">;</span>
+
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Dinic</span><span class="p">(</span><span class="kt">int</span> <span class="n">MAX_V</span><span class="p">,</span> <span class="kt">int</span> <span class="n">S</span><span class="p">,</span> <span class="kt">int</span> <span class="n">T</span><span class="p">)</span><span class="o">:</span><span class="n">S</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">edges</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">);</span>
+        <span class="n">level</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">);</span>
+        <span class="n">next_v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cap</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">inv</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">edges</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">size</span><span class="p">());</span>
+        <span class="n">edges</span><span class="p">[</span><span class="n">v</span><span class="p">].</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">inv</span> <span class="o">?</span> <span class="n">cap</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">bool</span> <span class="n">bfs</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">fill</span><span class="p">(</span><span class="n">level</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">level</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+        <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+        <span class="n">level</span><span class="p">[</span><span class="n">S</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>   <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">edge</span> <span class="o">:</span> <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">v</span><span class="p">,</span> <span class="n">cap</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="n">cap</span><span class="p">;</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">cap</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">level</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">level</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">level</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">reset_next_v</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">fill</span><span class="p">(</span><span class="n">next_v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">next_v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_flow</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">u</span> <span class="o">==</span> <span class="n">T</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">max_flow</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">i</span> <span class="o">=</span> <span class="n">next_v</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">v</span><span class="p">,</span> <span class="n">cap</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">cap</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">level</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">level</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">cap</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">flow</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">max_flow</span><span class="p">,</span> <span class="n">cap</span><span class="p">));</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">flow</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">cap</span> <span class="o">-=</span> <span class="n">flow</span><span class="p">;</span>
+                    <span class="n">edges</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">ref</span><span class="p">].</span><span class="n">cap</span> <span class="o">+=</span> <span class="n">flow</span><span class="p">;</span>
+                    <span class="k">return</span> <span class="n">flow</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<h3 id="boj-06086최대-유량">BOJ 06086(최대 유량)</h3>
+
+<p>문제: <a href="https://www.acmicpc.net/problem/6086">최대 유량</a></p>
+
+<p>풀이: <a href="https://greeksharifa.github.io/ps/2018/07/12/PS-06086/">BOJ 06086(최대 유량) 문제 풀이</a></p>
+
+<h3 id="스포일러-문제">스포일러 문제</h3>
+
+<p>문제: <a href="https://www.acmicpc.net/problem/11495">스포일러 문제</a></p>
+
+<p>풀이: <a href="">스포일러 풀이</a></p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/blog/page16">Older</a>
+  
+  
+    
+      <a class="pagination-item newer" href="/blog/page14">Newer</a>
+    
+  
+</div>
+
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

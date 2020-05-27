@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Blog
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/github/2018/08/07/github-usage-04-branch-basic/">
+        GitHub 사용법 - 04. branch 기본 1
+      </a>
+    </h1>
+
+    <span class="post-date">07 Aug 2018</span>
+     |
+    
+    <a href="/blog/tags/#github" class="post-tag">GitHub</a>
+    
+    <a href="/blog/tags/#usage" class="post-tag">usage</a>
+    
+    
+
+    <article>
+      <p><strong><em>주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.</em></strong></p>
+
+<p><a href="https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/">저번 글</a>에서 작업하던 것을 이어서 한다. 그때 master branch란 말을 잠깐 언급했었다.</p>
+
+<hr />
+
+<h2 id="branch">Branch</h2>
+
+<p>여러분은 별다른 설정을 하지 않았지만 master branch에서 계속 작업을 하고 있었다.<br />
+<strong>master branch</strong>란 모든 repository의 기본 혹은 메인이라고 보면 된다. 일반적으로 repo의 모든 것은 master branch를 중심으로 행해진다.</p>
+
+<p>큰 프로젝트든 개인 프로젝트이든 최종 결과물은 master branch에 있기 마련이며, master branch로부터 파생된 다른 branch들로부터 수정 사항을 만든 다음 master에 병합하는 과정을 거치게 된다.</p>
+
+<p>여러 사람이 협업할 경우 각자 따로 브랜치를 쓰게 되며, 각 브랜치에서는 새로운 기능을 개발하거나 버그 수정이 이루어진다. 물론 완료되면 master branch에 병합되게 된다.</p>
+
+<p>위의 설명이 정석적인 git repo의 운영방법이고, master branch에는 일반적으로 직접 수정을 가하지 않는다. 따라서 별다른 일이 없다면 본 글에서부터는 master branch에 직접 commit을 날리지 않고, branch를 만든 다음 병합하는 과정을 거칠 것이다.</p>
+
+<p>잠깐 브라우저를 켜서 브랜치 부분을 클릭해 보자.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/01_init_screen.PNG" alt="01_init_screen" /></p>
+
+<p>그러면 ‘Default’로 표시되어 있는 master branch 하나가 보일 것이다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/02_master.PNG" alt="02_master" /></p>
+
+<p>이제 명령어 입력을 시작하자.</p>
+
+<hr />
+
+<h3 id="branch-목록-보기">branch 목록 보기</h3>
+
+<p>목록을 보는 옵션은 여러 가지가 있다. <code class="highlighter-rouge">git branch</code> 혹은 <code class="highlighter-rouge">git branch --list</code>를 입력해 보자.</p>
+
+<blockquote>
+  <p>git branch</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/03_list.PNG" alt="03_list" /></p>
+
+<p>위 명령은 local repo에 저장되어 있는 branch들의 리스트를 보여 준다. 다른 branch를 만들지 않았기 때문에 master 하나밖에 보이지 않을 것이다.</p>
+
+<p>이제 여러분은 다음과 같은 형태의 트리를 갖고 있다.<br />
+그렇다. branch는 tree의 것이다.</p>
+
+<center><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/04_branch.png" width="50%" /></center>
+
+<p><br /></p>
+
+<p>조금 더 자세하게 그리기 위해, <code class="highlighter-rouge">git log --oneline</code>을 명령창에 입력한다. <a href="https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/#local-repo-%EC%83%81%ED%83%9C-%ED%99%95%EC%9D%B8%ED%95%98%EA%B3%A0-git-pull%EB%A1%9C-local-repo-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8%ED%95%98%EA%B8%B0">무엇을 하는 것</a>인지 잊어버리지는 않았을 것이다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/05_log.PNG" alt="05_log" /></p>
+
+<p>이제 트리를 다시 그려보자.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/06_branch.png" alt="06_branch" /></p>
+
+<p>앞으로 위와 비슷한 그림이 자주 나올 텐데, 각각의 의미를 정확히 알고 있는 것이 앞으로 git을 이해하는 데 큰 도움이 될 것이다.</p>
+
+<ol>
+  <li>저번 글에서 간략히 언급했는데, 앞의 복잡한 숫자는 16진수 숫자로서 각 커밋의 고유한 코드이다. 유일한 값이므로 어떤 커밋인지 분간할 때 도움이 될 것이다.
+    <ol>
+      <li>여러분이 커밋 메시지를 간략하게 작성할수록 16진수 코드를 봐야 하는 상황이 많아진다.</li>
+    </ol>
+  </li>
+  <li>16진수 코드 다음에는 여러분이 입력한 커밋 메시지가 나온다.</li>
+  <li>(HEAD -&gt; master, origin/master) 메시지는 이전 글에서 설명했다. 사실 1, 2번도 전부 설명했다.</li>
+</ol>
+
+<p>그런데 origin이 무엇인지 궁금하지 않은가?</p>
+
+<hr />
+
+<h3 id="옵션-origin">옵션: origin</h3>
+
+<p>저번 글에서는 일반적으로 remote repo의 이름은 origin으로 둔다고 하였다. 그러나 이는 사용자 마음이다.</p>
+
+<p>dummy repo를 하나 만들자.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/08_dummy.PNG" alt="08_dummy" /></p>
+
+<p>dummy local repo도 만들어 올려보자. 이때 origin 대신 dummy_origin으로 입력해 보자.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/10_dummy.PNG" alt="10_dummy" /></p>
+
+<p>그리고 파일을 수정하고 추가한 뒤 git push origin master를 입력하면 오류가 뜬다.<br />
+dummy_origin으로 입력하면 잘 되는 것을 확인할 수 있다.<br />
+즉 origin은 add나 commit 명령처럼 정해져 있는 것이 아니라 사용자가 마음대로 정하는 것이지만, 별다른 이유가 없다면 origin으로 두는 것이 괜찮다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/12_dummy.PNG" alt="12_dummy" /></p>
+
+<p>참고로 <code class="highlighter-rouge">git status -s</code>는 <code class="highlighter-rouge">git status</code>보다 간략한 버전이다.</p>
+
+<p>이제 dummy는 dummy니까 갖다 버리면 된다. Settings 탭의 맨 아래로 가보면 다음과 같은 부분이 있다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/14_dummy.PNG" alt="14_dummy" /></p>
+
+<p>삭제하면 된다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/15_dummy.PNG" alt="15_dummy" /></p>
+
+<hr />
+
+<h3 id="원격-branch-목록-보기">원격 branch 목록 보기</h3>
+
+<p>이제 dummy repo는 잊어버리고, 원래 하던 것으로 돌아오자.</p>
+
+<p>local repo 말고 remote repo의 브랜치를 알고 싶다면 다음 중 하나를 입력한다.</p>
+
+<blockquote>
+  <p>git branch -r<br />
+git branch –remote</p>
+</blockquote>
+
+<p>local이랑 remote 전부 보고 싶으면 다음을 입력한다.</p>
+
+<blockquote>
+  <p>git branch -a<br />
+git branch –all</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/07_branch_op.PNG" alt="07_branch_op" /></p>
+
+<p><code class="highlighter-rouge">-r</code> 옵션과 <code class="highlighter-rouge">-a</code> 옵션의 remote repo 표기가 조금 다르다.<br />
+<code class="highlighter-rouge">-a</code> 옵션은 local repo와 remote repo를 구분하기 위해 ‘remotes/’를 remote repo 앞에 붙인다.<br />
+<code class="highlighter-rouge">-r</code> 옵션은 remote repo만 보여주기 때문에 ‘remotes/’ 표시가 필요 없다.</p>
+
+<p>이제 local repo와 remote repo에 무엇이 있는지 알았으니, 브랜치를 새로 만들어 보자.<br />
+원래는 서브 브랜치를 새로 생성할 메인 브랜치(master일 필요는 없다)로 이동하는 과정이 우선되어야 하지만, 지금은 master branch 하나뿐이므로 그럴 이유가 없다.</p>
+
+<blockquote>
+  <p>git branch 1st-branch<br />
+git branch -a</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/16_create_branch.PNG" alt="16_create_branch" /></p>
+
+<p>현재 있는 브랜치 앞에는 ‘*‘이 있다. 여러분의 컴퓨터 환경에 따라 다를 수는 있으나, Windows cmd 기준으로는 현재 있는 브랜치는 초록색, remote repo의 브랜치는 빨간색으로 표시된다.</p>
+
+<h3 id="branch-이동-checkout">branch 이동: checkout</h3>
+
+<p>이제 새로운 브랜치로 이동해 보자.</p>
+
+<blockquote>
+  <p>git checkout 1st-branch</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/17_checkout.PNG" alt="17_checkout" /></p>
+
+<p><code class="highlighter-rouge">first.py</code>에 다음을 추가한다. 이제부터 여러분은 <code class="highlighter-rouge">first.py</code>를 수정한 다음, 커밋을 만들고, master branch에 병합하는 과정을 거칠 것이다.<br />
+앞서 설명했듯 서브 브랜치를 만들어서 그곳에서 작업한 후 master branch에 병합하는 것이 정석적인 방법이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"This is the 1st sentence written in 1st-branch."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>그리고 3종 세트를 입력한다. 싫으면 <a href="https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/#%EC%98%B5%EC%85%98-3%EC%A2%85-%EC%84%B8%ED%8A%B8-%EA%B0%84%ED%8E%B8-%EC%9E%85%EB%A0%A5%EC%9C%88%EB%8F%84%EC%9A%B0-%EA%B8%B0%EC%A4%80">옵션</a>에서 다루었던 <code class="highlighter-rouge">push.bat</code>을 입력해도 상관없다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/18_1st_commit.PNG" alt="18_1st_commit" /></p>
+
+<p>사실 그냥은 안 된다. remote repo 기준에서 여러분이 로컬에 만든 1st-branch라는 브랜치는 전혀 알 수 없는 것(정확히는 local repo에 upstream branch가 없는 것이다)이며, 연결 작업이 필요하다.<br />
+다행히 upstream branch(local branch와 연결할 remote branch)를 설정하는 방법을 명령창에서 친절히 알려 준다.</p>
+
+<blockquote>
+  <p>git push –set-upstream origin 1st-branch</p>
+</blockquote>
+
+<p>remote repo 이름이 origin이고 current branch의 이름이 1st-branch이기 때문에 저렇게 입력해주면 된다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/19_upstream.PNG" alt="19_upstream" /></p>
+
+<p>브라우저를 확인해보자.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/20_push.PNG" alt="20_push" /></p>
+
+<p>브랜치가 2개가 되었음을 확인할 수 있다.</p>
+
+<p>이제 다음과 같은 상태가 되었다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/21_log.PNG" alt="21_log" /></p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/22_branch.png" alt="22_branch" /></p>
+
+<p>참고로 1st-branch의 커밋들의 16진수 코드는 master branch의 같은 커밋의 16진수 코드와 똑같다.<br />
+master branch로부터 생성했으니 당연한 말이다.</p>
+
+<p>방금 수정했기 때문에, <code class="highlighter-rouge">first.py</code>의 현재 상태는 다음과 같을 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Hello, git!"</span><span class="p">)</span> <span class="c1"># instead of "Hello, World!"
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Hi, git!!"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"This is the 1st sentence written in 1st-branch."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>그럼 이제 master branch로 다시 돌아가 본다.</p>
+
+<blockquote>
+  <p>git checkout master</p>
+</blockquote>
+
+<p>그리고 <code class="highlighter-rouge">first.py</code>를 다시 확인해 보라.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Hello, git!"</span><span class="p">)</span> <span class="c1"># instead of "Hello, World!"
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Hi, git!!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>마지막 문장이 사라졌을 것이다. 편집기를 사용하고 있었다면 ‘다시 로드’를 클릭하라.</p>
+
+<p>여러분은 1st-branch에서 작업했을 뿐이다. master branch로부터 서브 브랜치를 생성하는 순간부터, 어떤 새로운 상호작용을 하기 전까지 1st-branch는 master branch와는 ‘거의’ 독립적인 공간에 가깝다. 따라서 branch를 checkout하는 순간 1st-branch에서 수정했던 사항이 보이지 않게 되는 것이다.</p>
+
+<p>물론 진짜로 사라진 것은 아니다. 다시 1st-branch로 checkout하면 내용이 돌아올 것이다.<br />
+아무튼 다시 master branch로 이동하자.</p>
+
+<h3 id="브랜치-병합-merge">브랜치 병합: merge</h3>
+
+<p>글의 윗부분에서 프로젝트 진행 과정을 설명하면서 다음과 비슷한 말을 했었다.</p>
+
+<ol>
+  <li>서브 브랜치를 만들어 작업한다.</li>
+  <li>메인 브랜치(master branch)로 이동한다.</li>
+  <li>서브 브랜치의 내용을 메인 브랜치에 병합한다.</li>
+</ol>
+
+<p>위 과정 중 여러분은 1, 2번을 완료했다. 이제 3번을 하기만 하면 된다.<br />
+현재 브랜치가 master branch인지 꼭 확인한 후 다음을 진행해야 한다.</p>
+
+<blockquote>
+  <p>git merge 1st-branch<br />
+git push</p>
+</blockquote>
+
+<p>참고로 merge한다고 remote repo에 절대로 자동으로 올라가지 않는다. 따라서 push를 해 주어야 한다. 이</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/23_merge.PNG" alt="23_merge" /></p>
+
+<p>그리고 <code class="highlighter-rouge">first.py</code>를 확인하면 1st-branch에서 추가했던 문장이 들어 있는 것을 확인할 수 있다.<br />
+또한 커밋의 16진수 코드도 1st-branch의 것과 같음을 확인할 수 있다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/24_log.PNG" alt="24_log" /></p>
+
+<p>즉 다음과 같은 상태이다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/25_branch.png" alt="25_branch" /></p>
+
+<p>위와 같이 병합하는 것을 fast-forward라 한다. fast-forward는 master branch에서 서브 브랜치(1st-branch)를 하나 만든 뒤 master에는 별다른 수정 사항이 없을 때 위 그림처럼 master branch에는 같은 코드의 커밋이 적용되며, 빨리감기하듯 따라간다는 점에서 이러한 이름이 붙었다.</p>
+
+<h3 id="branch-삭제-목록-업데이트">branch 삭제, 목록 업데이트</h3>
+
+<p>그런데 그림을 보면 master와 1st-branch는 모두 살아 있는 branch이다. 실제로 1st-branch에 커밋을 만들고 push하면 1st-branch만 업데이트된다.<br />
+이는 Merge 명령은 non-destructive operation으로, master branch에서 1st-branch의 내용을 가져간다 해도 1st-branch는 전혀 변경되지 않는다.<br />
+다른 블로그들에서는 완전히 같은 곳을 가리키는 것처럼 말하지만, 실제로는 “정말로” 같은 레퍼런스인 것은 아니다. git은 모든 걸 자동으로 해주지는 않기 때문이다.<br />
+그러나 bugfix같이 잠시 만들었다가 없앨 목적으로 만든 branch라면, 이 브랜치를 없앨 필요가 있다.<br />
+물론 이 예제의 경우 bugfix는 아니지만, 몇 줄짜리 코드에 bug가 있으면… 흠.</p>
+
+<p>브랜치를 제거할 때는 두 가지를 확인해야 한다. local branch와 remote branch이다.</p>
+
+<blockquote>
+  <p>git branch -d 1st-branch<br />
+git push -d origin 1st-branch<br />
+git fetch</p>
+</blockquote>
+
+<p>당연히 -d 대신 –delete도 가능하다.</p>
+
+<p>세 번째 명령 <strong>git fetch</strong>는 원격 브랜치 목록을 업데이트하는 것이다. 원격 브랜치 목록도 자동으로 업데이트되지 않기 때문이다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/26_delete.PNG" alt="26_delete" /></p>
+
+<p><img src="/public/img/GitHub/2018_08_07_github_usage_04_branch-basic/27_1.PNG" alt="27_1" /></p>
+
+<p>remote repo에도 master branch 하나만 남은 것을 확인할 수 있다.</p>
+
+<hr />
+
+<p><a href="https://greeksharifa.github.io/github/2018/08/11/github-usage-05-branch-basic/">다음 글</a>에서는 branch에 대해서 더 알아본다.</p>
+
+<hr />
+
+<h2 id="git-명령어">Git 명령어</h2>
+
+<p><a href="https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/">GitHub 사용법 - 00. Command List</a>에서 원하는 명령어를 찾아 볼 수 있다.</p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/github/2018/08/07/github-usage-04-branch-basic/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/github/2018/08/07/github-usage-04-branch-basic/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">
+        파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)
+      </a>
+    </h1>
+
+    <span class="post-date">06 Aug 2018</span>
+     |
+    
+    <a href="/blog/tags/#regex" class="post-tag">Regex</a>
+    
+    <a href="/blog/tags/#re" class="post-tag">re</a>
+    
+    
+
+    <article>
+      <hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">파이썬 정규표현식(re) 사용법 - 01. Basic</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">파이썬 정규표현식(re) 사용법 - 03. OR, 반복</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</a><br />
+<strong><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</a></strong><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">파이썬 정규표현식(re) 사용법 - 09. 기타 기능</a></p>
+
+<hr />
+
+<p>이 글에서는 정규표현식으로 처리할 수 있는 예제를 설명한다.</p>
+
+<p>본 글에서 정규표현식은 <code class="highlighter-rouge">regex</code>와 같이, 일반 문자열은 ‘regex’와 같이 표시하도록 한다.</p>
+
+<p>파이썬 버전은 3.6을 기준으로 하나, 3.x 버전이면 (아마) 동일하게 쓸 수 있다.<br />
+2.7 버전은 한글을 포함한 비 알파벳 문자 처리가 다르다.</p>
+
+<hr />
+
+<h2 id="단어">단어</h2>
+
+<h3 id="기초">기초</h3>
+
+<p>문제 1: colour, Color, color 등 모든 버전의 color에 일치되는 정규식을 작성하라.</p>
+<details>
+    <summary>문제 1 정답보기</summary>
+    <p>r'\b(?i)colou?r\b'</p>
+</details>
+
+<p><br /></p>
+
+<p><code class="highlighter-rouge">(?i)</code> 모드 변경자 대신에 <strong>re.IGNORECASE</strong> 옵션을 주어도 상관없다.</p>
+
+<p>다음 문제는 이전에 본 적이 있는 문제이다.</p>
+
+<p>문제 2: cat에는 일치되지 않고, cat을 포함하면서 그보다 긴 단어, staccato, cats, tomcat 등에 일치되는 정규식을 작성하라.</p>
+<details>
+    <summary>문제 2 정답보기</summary>
+    <p>r'\Bcat\B'</p>
+</details>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="특정-단어-배제">특정 단어 배제</h3>
+
+<p>문제 3: 이번에는 특정 단어를 제외시켜 보자. reg를 제외한 모든 단어에 일치되도록 하는 정규식을 작성하라.</p>
+<details>
+    <summary>문제 3 정답보기</summary>
+    <p>r'\b(?!reg\b)\w+'</p>
+</details>
+
+<p><br /></p>
+
+<p>생각하기 조금 어려웠을 것 같다.</p>
+
+<p>부정 전방탐색이 빛을 발하는 순간이다. 부정 전방탐색을 씀으로써 앞에 단어 경계가 있고(<code class="highlighter-rouge">\b</code>), ‘reg’로 이루어져 있으며(<code class="highlighter-rouge">reg</code>), 바로 뒤에 <code class="highlighter-rouge">\b</code>이 나와 끝나버리는, 즉 ‘reg’에 정확히 일치되는 순간이 되면 위 정규식은 일치에 실패한다.<br />
+따라서 특정 단어 ‘reg’를 배제할 수 있게 된다. 부정 전방탐색의 일치에 실패하면, 그 다음 부분인 <code class="highlighter-rouge">\w+</code>를 갖고 일치를 시도한다. 단어면 성공할 것이다.</p>
+
+<p>문제 4: 이번엔 특정 단어뿐 아니라 그 단어를 포함하는 단어도 제외시켜 보자. reg뿐만 아니라 regex, register, dreg 등은 모두 제외되어야 한다.</p>
+<details>
+    <summary>문제 4 정답보기</summary>
+    <p>r'\b(?:(?!cat)\w)+\b'</p>
+</details>
+
+<p><br /></p>
+
+<p>문제 3번을 생각해냈으면 이 문제도 풀 수 있을 것이라고 생각한다.</p>
+
+<p>주어진 조건은 프로그래밍이 가능한 다음 세 문장으로 압축할 수 있다.</p>
+<ol>
+  <li>단어 중간의 어떤 부분에서든 그 앞에 ‘reg’가 와서는 안 된다. <code class="highlighter-rouge">(?!cat)\w</code></li>
+  <li>1번을 만족했으면, 단어 문자가 1개 이상은 있어야 한다. <code class="highlighter-rouge">( ... \w)+</code></li>
+  <li>물론 양끝에 단어 경계는 있어야 한다. <code class="highlighter-rouge">\b ... \b</code></li>
+</ol>
+
+<p>위 세 조건을 적용시키면 ‘reg’가 단어에 포함된다면 일치되지 않는다는 사실을 알 수 있다.</p>
+
+<p>문제 5: 바로 뒤에 숫자가 따라오는 단어를 무시하는, 다른 모든 단어를 검색하는 정규식을 작성하라. 단어와 숫자 사이에는 비 단어 문자가 온다고 가정하자.</p>
+<details>
+    <summary>문제 5 정답보기</summary>
+    <p>r'\b\w+\b(?!\W+\d+\b'</p>
+</details>
+
+<p><br /></p>
+
+<p>이번에도 부정 전방탐색을 사용하면 된다. 무엇을 제외하고 싶다면 부정 양방탐색을, 다른 조건을 더 추가해야 한다면 긍정 양방탐색을 사용한다는 것을 기억하자.</p>
+
+<hr />
+
+<h2 id="행">행</h2>
+
+<h3 id="빈-행-제거">빈 행 제거</h3>
+
+<p>문제 6: 빈 행을 제거하자. 예컨대 ‘\n\n’ 을 ‘\n’ 하나로 치환하여 불필요한 행을 제거하는 식이다. 운영체제에 독립적으로 작성되어야 한다.</p>
+<details>
+    <summary>문제 6 정답보기</summary>
+    <p>re.sub(r'\n+', r'\n', string)</p>
+</details>
+
+<p><br /></p>
+
+<p>개행 문자 말고 모든 공백 문자를 하나로 치환하려면 다음을 쓰면 된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">s+'</span><span class="p">,</span> <span class="s">' '</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+</code></pre></div></div>
+<p>가로 공백 문자만 치환하려면 <code class="highlighter-rouge">\s</code> 대신 <code class="highlighter-rouge">[ \t]</code>를 사용하라.</p>
+
+<h3 id="중복-행-제거">중복 행 제거</h3>
+
+<p>문제 7: 중복 행을 제거하자. 똑같은 내용의 행이 두 번 이상 반복되는 행을 하나만 남겨두고 모두 제거하자.</p>
+<details>
+    <summary>문제 7 정답보기</summary>
+    <p>re.sub(r'^(.*)(?:(?:\r?\n|\r)\1)+$', r'\1', re.MULTILINE)</p>
+</details>
+
+<p><br /></p>
+
+<p>복잡해 보이지만 크게 어렵진 않다. 중복 행이란 다음과 같은 구조일 것이다.</p>
+
+<ol>
+  <li>행 내용</li>
+  <li>행 구분자</li>
+  <li>행 내용</li>
+  <li>행 구분자</li>
+  <li>행 내용
+…</li>
+</ol>
+
+<p>행 내용은 <code class="highlighter-rouge">(.*)</code>으로 간단히 해결된다. 나중에 똑같은 것을 일치시켜야 하므로 캡처 그룹을 사용한다.<br />
+그리고 행 구분자를 사용하는데, 운영체제에 상관없이 사용하기 위해 조금 복잡하게(<code class="highlighter-rouge">\r?\n|\r</code>)이 들어갔지만, 자신이 무슨 운영체제에서 프로그래밍하고 있으며 어떤 운영체제에서 작성된 파일을 갖고 있는지 안다면 하나만 써도 무방하다.<br />
+그 다음은 행 내용을 재사용하기 위한 <code class="highlighter-rouge">\1</code>, 1회 이상 반복을 위한 <code class="highlighter-rouge">+</code>, 그리고 한 행만 남겨두고 제거하기 위한 <code class="highlighter-rouge">r'\1'</code>을 사용하면 해결된다.</p>
+
+<p>주의할 점으로는 <strong>re.MULTILINE</strong> 옵션을 주어야 하며, <strong>re.DOTALL</strong>은 절대로 주어서는 안 되는 옵션이라는 점이다.</p>
+
+<hr />
+
+<p>조금 더 복잡한 예제를 정리해 두면 좋겠지만, 그때그때 맞게 쓰는 것이 더 나을 것 같아서 굳이 따로 정리할 필요는 없을 것 같다.</p>
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">다음 글</a>에서는 <strong>re</strong> 패키지에 포함된 다른 함수들을 다루도록 하겠다.</p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">
+        파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)
+      </a>
+    </h1>
+
+    <span class="post-date">06 Aug 2018</span>
+     |
+    
+    <a href="/blog/tags/#regex" class="post-tag">Regex</a>
+    
+    <a href="/blog/tags/#re" class="post-tag">re</a>
+    
+    
+
+    <article>
+      <hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">파이썬 정규표현식(re) 사용법 - 01. Basic</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">파이썬 정규표현식(re) 사용법 - 03. OR, 반복</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</a><br />
+<strong><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</a></strong><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">파이썬 정규표현식(re) 사용법 - 09. 기타 기능</a></p>
+
+<hr />
+
+<p>이 글에서는 정규표현식으로 처리할 수 있는 예제를 설명한다.</p>
+
+<p>본 글에서 정규표현식은 <code class="highlighter-rouge">regex</code>와 같이, 일반 문자열은 ‘regex’와 같이 표시하도록 한다.</p>
+
+<p>파이썬 버전은 3.6을 기준으로 하나, 3.x 버전이면 (아마) 동일하게 쓸 수 있다.<br />
+2.7 버전은 한글을 포함한 비 알파벳 문자 처리가 다르다.</p>
+
+<hr />
+
+<h2 id="숫자">숫자</h2>
+
+<h3 id="십진-정수">십진 정수</h3>
+
+<p>문제 1: 가장 간단한 십진 정수를 찾는 정규식을 작성하라.</p>
+<details>
+    <summary>문제 1 정답보기</summary>
+    <p>r'\b[0-9]+\b'</p>
+</details>
+
+<p><br /></p>
+
+<p>문제 2: 가장 일반적인 형태의 십진 정수를 찾는 정규식을 작성하라. 맨 앞에 ‘+’ 혹은 ‘-‘ 기호가 붙어 있을 수 있으며, 기호와 숫자 사이에는 공백이 하나 있을 수 있다.</p>
+<details>
+    <summary>문제 2 정답보기</summary>
+    <p>r'(?:[+-] ?)?\b\d+\b'</p>
+</details>
+
+<p>비 아스키 숫자를 포함하고 싶다면 <code class="highlighter-rouge">\d</code>를, 오로지 아라비아 숫자 10개만 숫자로 인식하게 하고 싶다면 <code class="highlighter-rouge">[0-9]</code>를 사용하도록 한다.<br />
+또한 문자열 전체에 일치되게 하고 싶다면 <code class="highlighter-rouge">\A</code>와 <code class="highlighter-rouge">\Z</code>를 사용하면 된다.</p>
+
+<p><br /></p>
+
+<h4 id="십진-정수의-leading-zero-제거">십진 정수의 leading-zero 제거</h4>
+
+<p>문제 3: 십진 정수의 앞에 오는 0들을 제거하는 정규식을 작성하라. 기호는 없다고 가정하자.</p>
+<details>
+    <summary>문제 3 정답보기</summary>
+    <p>re.sub(r'\b0*([1-9][0-9]*|0)\b', r'\1', string)</p>
+</details>
+
+<p><br /></p>
+
+<p>leading-zero가 될 수 있는 부분과 그렇지 않은 부분을 구분하기만 하면 이 문제는 풀린다. 그리고 leading-zero를 제거하는 것이 목표이므로 캡처된 부분으로 <strong>re.sub</strong> 메서드를 쓰면 해결된다.</p>
+
+<p>한 가지 주의점은 ‘0’ 또는 ‘00’ 등 진짜 0밖에 없는 경우이다. 이 경우 0을 하나 남겨두어야 하기 때문에, leading-zero 뒤 숫자 부분에서 0을 한 개 남겨 두었다(<code class="highlighter-rouge">|0</code>).</p>
+
+<hr />
+
+<h3 id="16진수">16진수</h3>
+
+<p>문제 4: 16진수를 찾는 정규식을 작성하라. 0-9의 숫자와 A-F 알파벳만 쓴다고 하자.</p>
+<details>
+    <summary>문제 4 정답보기</summary>
+    <p>r'\A[0-9A-F]+\Z'</p>
+</details>
+
+<p><br /></p>
+
+<p>문제 5: 16진수를 찾는 정규식을 작성하라. 16진수는 아라비아 숫자 10개 또는 A-F, a-f를 사용하되 대문자와 소문자를 섞어 쓰지는 않는다. 또한, 16진수임을 나타내기 위해 숫자 바로 앞에 ‘0x’나 ‘&amp;H’(hexa의 의미)를 붙이거나, 혹은 숫자 뒤에 ‘H’를 붙인다.</p>
+<details>
+    <summary>문제 5 정답보기</summary>
+    <p>r'(\b0x|&amp;H)?(?:[0-9A-F]+|[0-9a-f]+)(?(1)|H?)\b'</p>
+</details>
+
+<p><br /></p>
+
+<p>꽤 어려워 보일 것이다. 정규식은 복잡해지면 주석이 꼭 필요하다.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">(\b0x|&amp;H)?</code>: 보통 단어 경계를 맨 앞에 두는데, 이번엔 다자택일 중 하나에 두었다. 이유는 엠퍼샌드(‘&amp;’)는 문자 집합에 포함되지 않으므로 단어 경계를 쓰면 안 된다.
+    <ol>
+      <li>앞에 16진수 식별자를 두는 것은 선택적이므로 <code class="highlighter-rouge">?</code>를 쓴다.</li>
+      <li>그리고 이 부분은 첫 번째 캡처 그룹을 형성한다.</li>
+    </ol>
+  </li>
+  <li><code class="highlighter-rouge">(?:[0-9A-F]+|[0-9a-f]+)</code>: 16진수 숫자를 나타내는 부분만 빼고 싶다면 앞부분의 비 캡처 그룹임을 의미하는 <code class="highlighter-rouge">?:</code>를 빼면 된다.
+    <ol>
+      <li>대소문자 혼용을 허용하지 않았으므로 대문자를 쓸 때와 소문자를 쓸 때를 분리하였다.</li>
+    </ol>
+  </li>
+  <li><code class="highlighter-rouge">(?(1)|H?)</code>: 조건문이다. 첫 번째 캡처 그룹에서 만약에 ‘0x’나 ‘&amp;H’가 일치되었으면, 뒤에 또 ‘H’ 식별자를 두지는 않는다. 따라서 일치되었으면(‘맞으면’) 아무것도 없는 경우를, 일치되지 않았으면 ‘H’ 식별자를 선택적으로 일치시킬 수 있도록 한다.</li>
+  <li><code class="highlighter-rouge">\b</code>: 단어 경계이다.</li>
+</ol>
+
+<h3 id="참고-지정된-범위의-숫자인지-확인">참고: 지정된 범위의 숫자인지 확인</h3>
+
+<p>이는 정규식으로 작성하길 추천하지 않는다. 아니면 함수로 따로 빼 두는 것을 추천한다.<br />
+그냥 숫자인지만 정규식으로 확인하고, 주어진 범위인지는 다른 함수로 확인하자.</p>
+
+<p>그래도 예를 하나 들어 보겠다. 얼마나 복잡한지를 느끼면 된다.</p>
+
+<p>문제 6: 1 이상 365 이하의 정수인지를 확인하는 정규식을 작성하라.</p>
+<details>
+    <summary>문제 6 정답보기</summary>
+    <p>r'(36[0-5]|3[0-5][0-9]|[12][0-9]{2}|[1-9][0-9]?)'</p>
+</details>
+
+<p><br /></p>
+
+<p>그냥 따로 씁시다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d+'</span><span class="p">,</span> <span class="s">'몇 이상 몇 이하의 수 38개'</span><span class="p">)</span>
+<span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">365</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Yei!'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Yei!
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="부동소수점-수">부동소수점 수</h3>
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">3번째 글</a>의 끝에서 다음과 같은 문제가 있었다.</p>
+
+<p>문제 7: 1.2이나 3.72e3, 1.002e-12 같은 수를 부동소수점 수 또는 과학적 표기법으로 표기한 수라고 한다. 이와 같은 수에 일치하는 정규표현식을 작성하라.</p>
+<details>
+    <summary>문제 7 정답보기</summary>
+    <p>r'\b\d*\.\d+(e\d+)?'</p>
+</details>
+
+<p><br /></p>
+
+<p>조금 더 일반화한 버전을 문제로 하나 더 내 보았다.</p>
+
+<p>문제 8 : 다음 조건에 맞는 부동소수점 수를 찾는 정규식을 작성하라.</p>
+<ol>
+  <li>부호부, 정수부, 가수부는 선택이다.</li>
+  <li>지수부 역시 선택이다.</li>
+  <li>정수부가 없으면 가수부는 필수이다.</li>
+  <li>가수부가 없으면 소수점은 선택이다.</li>
+</ol>
+
+<details>
+    <summary>문제 8 정답보기</summary>
+    <p>r'[+-]?(\b[0-9]+(\.[0-9]*)?|\.[0-9]+)([eE][+-]?[0-9]+\b)?'</p>
+</details>
+
+<p><br /></p>
+
+<p>정수부와 가수부가 동시에 없으면 안 되는 조건은 조건문을 사용해도 되고, 다자택일을 사용해도 된다. 이 경우는 다자택일을 사용했다.</p>
+
+<hr />
+
+<h3 id="로마-숫자">로마 숫자</h3>
+
+<p>문제 9: 현대식 로마 숫자에 일치되는 정규식을 작성하라. ‘IV’는 가능하고, ‘IIII’는 불가능하다.</p>
+<details>
+    <summary>문제 9 정답보기</summary>
+    <p>r'\b(?=[MDCLXVI])M*(C[MD]|D?C*)(X[CL]|L?X*)(I[XV]|V?I*)\b'</p>
+</details>
+
+<p><br /></p>
+
+<ol>
+  <li><code class="highlighter-rouge">(?=[MDCLXVI])</code>: 로마 숫자는 0이 없기 때문에, 문자가 하나라도 있는지 체크하는 전방탐색 구문이다.</li>
+  <li><code class="highlighter-rouge">M*</code>: 로마 숫자에서 1000은 개수만큼 집어넣는다.</li>
+  <li><code class="highlighter-rouge"> (C[MD]|D?C*)</code>: 작은 숫자가 앞에 오는 경우를 따로 빼서 다자택일로 처리하였다. 로마 숫자의 규칙을 생각하면 그리 어려운 부분은 아니다.</li>
+  <li>나머지 부분은 3번과 같다.</li>
+</ol>
+
+<hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">다음 글</a>에서는 단어와 행 처리에 관한 예제를 다루도록 하겠다.</p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">
+        파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문
+      </a>
+    </h1>
+
+    <span class="post-date">05 Aug 2018</span>
+     |
+    
+    <a href="/blog/tags/#regex" class="post-tag">Regex</a>
+    
+    <a href="/blog/tags/#re" class="post-tag">re</a>
+    
+    
+
+    <article>
+      <hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">파이썬 정규표현식(re) 사용법 - 01. Basic</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">파이썬 정규표현식(re) 사용법 - 03. OR, 반복</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</a><br />
+<strong><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</a></strong><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">파이썬 정규표현식(re) 사용법 - 09. 기타 기능</a></p>
+
+<hr />
+
+<p>이 글에서는 정규표현식 고급 기술에 대해서 설명한다.</p>
+
+<p>본 글에서 정규표현식은 <code class="highlighter-rouge">regex</code>와 같이, 일반 문자열은 ‘regex’와 같이 표시하도록 한다.</p>
+
+<p>파이썬 버전은 3.6을 기준으로 하나, 3.x 버전이면 (아마) 동일하게 쓸 수 있다.<br />
+2.7 버전은 한글을 포함한 비 알파벳 문자 처리가 다르다.</p>
+
+<hr />
+
+<h2 id="정규표현식-고급-치환-함수-사용">정규표현식 고급: 치환 함수 사용</h2>
+
+<p><img src="\public\img\정규표현식(re)\2018-08-05-regex-usage-05-intermediate\01_sub.PNG" alt="01" /></p>
+
+<p>여러분은 <strong>re.sub</strong>을 쓸 때 특정 문자열 혹은 정규식 내의 일부분은 그대로 갖다 쓰는 법을 배웠다.</p>
+
+<p>그런데 일치부에 나타나지도 않고, literal text에도 나타나지 않는 문자열로 치환하고 싶은 경우가 있을 수 있다.<br />
+예를 들면 문자열 안에서 소수로 표현된 숫자를 찾은 다음 퍼센티지(%)로 변환하는 것을 정규식으로 쓴다고 하자.</p>
+
+<p><strong>re.sub</strong> 메서드는 인자 <strong>repl</strong>을 받을 때 정규식 일치부나 literal text 말고도 함수를 받을 수도 있다.<br />
+이 함수는 인자로 matchObj를 받으며, 문자열을 최종적으로 반환해야 한다.</p>
+
+<p>예시를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">convertToPercentage</span><span class="p">(</span><span class="n">matchObj</span><span class="p">):</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s">'</span><span class="si">%</span><span class="s">'</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">r'\b0\.\d+\b'</span><span class="p">,</span>
+             <span class="n">repl</span><span class="o">=</span><span class="n">convertToPercentage</span><span class="p">,</span>
+             <span class="n">string</span><span class="o">=</span><span class="s">'Red 0.250, Green 0.001, Blue 0.749, Black 1.5'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Red 25.0%, Green 0.1%, Blue 74.9%, Black 1.5
+</code></pre></div></div>
+
+<p>아주 어려운 내용이라서 advanced인 것은 아니고, 활용도가 높기 때문에 고급 기능으로 분류하였다.</p>
+
+<hr />
+
+<h2 id="정규표현식-중급-행-단위-검색">정규표현식 중급: 행 단위 검색</h2>
+
+<p>행 단위로 자르는 것은 사실 어렵지 않다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="o">=</span> <span class="s">'''java - Click on button until alert is present in Selenium	2017년 5월 23일
+Click OK on alert Selenium Webdriver	2016년 6월 5일
+python - Click the javascript popup through webdriver	2012년 5월 29일
+selenium - Read Message From Alert and click on OK	2012년 5월 17일
+stackoverflow.com 검색결과 더보기'''</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">?</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'(</span><span class="err">\</span><span class="s">d+)년</span><span class="err">\</span><span class="s">s+(</span><span class="err">\</span><span class="s">d+)월</span><span class="err">\</span><span class="s">s+(</span><span class="err">\</span><span class="s">d+)일'</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">matchObj</span><span class="p">:</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Not exists'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2017.5.23
+2016.6.5
+2012.5.29
+2012.5.17
+Not exists
+</code></pre></div></div>
+
+<p>그러나 한 가지 주의할 점은 운영체제(OS: Windows, Mac, Linux)별로 라인피드(개행문자)가 다르다는 것이다. Windows는 ‘\r\n’를 행 구분자로 가지며, 각각 캐리지 리턴과 라인피드이다. 유닉스 계열인 Mac과 Linux는 ‘\n’을 가진다.<br />
+이 구분이 절대적인 것은 아니지만, 운영체제의 개행문자가 뭔지 확신이 서지 않는다면 <code class="highlighter-rouge">\r?\n</code>으로 쓰는 것이 안전하다.</p>
+
+<hr />
+
+<h2 id="정규표현식-고급-전방탐색과-후방탐색">정규표현식 고급: 전방탐색과 후방탐색</h2>
+
+<p>먼저 전방탐색이란 정규표현식이 진행하는 (원래) 방향으로, 문자열 처음에서 끌으로 가는 방향으로 탐색하는 것이다.<br />
+물론 후방탐색은 그 반대이다.</p>
+
+<p>전방/후방탐색, 즉 양방탐색은 그 자체로 문자열에 일치된다기보다는, 문자열이 일치되기 위한 조건을 설정하는 것이다.<br />
+이미 여러분은 실제 문자열에 일치되지 않으면서 조건 설정을 하는 정규표현식을 몇 개 봐 왔다. <code class="highlighter-rouge">\b</code>, <code class="highlighter-rouge">\A</code>, <code class="highlighter-rouge">^</code> 등이 그 예이다.</p>
+
+<p>어쨌든 양방탐색의 종류는 네 가지이다. 각각 긍정/부정 전방/후방 탐색이다.</p>
+<ol>
+  <li>긍정 전방탐색은 <code class="highlighter-rouge">(?=&lt;regex&gt;)</code></li>
+  <li>긍정 후방탐색은 <code class="highlighter-rouge">(?&lt;=&lt;regex&gt;)</code></li>
+  <li>부정 전방탐색은 <code class="highlighter-rouge">(?!&lt;regex&gt;)</code></li>
+  <li>부정 후방탐색은 <code class="highlighter-rouge">(?&lt;!&lt;regex&gt;)</code></li>
+</ol>
+
+<p>으로 쓴다.</p>
+
+<p><code class="highlighter-rouge">&lt;p&gt;</code> 태그 안의 모든 텍스트를 검사한다고 하자. 그러나 여러분은 <code class="highlighter-rouge">&lt;p&gt;</code> 태그까지 문자열로 뽑아내고 싶지는 않을 것이므로, 이는 정규식의 일치부에 넣지 않도록 한다. 이때 후방탐색과 전방탐색을 문자 덩어리 앞뒤에 쓰면, <code class="highlighter-rouge">&lt;p&gt;</code> 태그 안이라는 조건을 설정하면서 동시에 <code class="highlighter-rouge">&lt;p&gt;</code> 태그는 일치부에서 제외시킬 수 있다.</p>
+
+<p>예시를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=&lt;p&gt;)</span><span class="err">\</span><span class="s">w+(?=&lt;/p&gt;)'</span><span class="p">,</span> 
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
+</code></pre></div></div>
+<p><code class="highlighter-rouge">&lt;p&gt;</code> 태그는 제외된 것을 볼 수 있다.<br />
+위의 예시를 해석하면, 단어 문자에 해당하는 연속된 글자를 찾는데(<code class="highlighter-rouge">\w+</code>), 그 앞에는 <code class="highlighter-rouge">&lt;p&gt;</code> 문자열이 반드시 있어야 하고, 문자열 바로 뒤에는 역시 <code class="highlighter-rouge">&lt;/p&gt;</code> 태그가 있어야 한다는 뜻이다.</p>
+
+<p>실제로 문자열이 일치되는 것은 아님을 보여주기 위해, 쓸데없이 복잡하게 만든 예시를 하나 만들어 보았다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(?&lt;=&lt;p&gt;)(</span><span class="err">\</span><span class="s">w+)(?=&lt;/p&gt;)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
+</code></pre></div></div>
+
+<p>이러한 양방탐색 조건을 지정하는 것도, 명시적인 캡처로 인식되지 않는다.</p>
+
+<p>부정 양방탐색도 사용법은 같다. 하지만 긍정 양방탐색은 <code class="highlighter-rouge">&lt;regex&gt;</code>에 해당하는 문자열이 있어야만 일치에 성공하는 데 반해, 부정 양방탐색은 <code class="highlighter-rouge">&lt;regex&gt;</code>와 일치에 실패해야만 그 다음 비교를 이어나간다.</p>
+
+<p>보통 사람들은 비밀번호를 설정할 때 영문자 몇 개, 숫자 몇 개(보통 생일과 관련이 있다), 그리고 특수문자를 넣으라는 홈페이지의 요구대로 느낌표 하나를 끝에 붙인다.<br />
+그런데 여기서는 특수문자조차 없는 비밀번호를 찾으려고 한다. 즉 마지막에 ‘!’가 없는 비밀번호를 모두 찾는다고 하자.</p>
+
+<p>이를 찾는 정규식은 다음과 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'[a-z]+\d+(?!!)\b'</span><span class="p">,</span> <span class="s">'tube1109! gorio303 ryan416'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['gorio303', 'ryan416']
+</code></pre></div></div>
+
+<p>느낌표가 없는 비밀번호는 두 개이다. 그리고 이를 잘 찾아 주었다.</p>
+
+<p>물론 이렇게 간단한 데 양방탐색을 지정하여 쓰면 오히려 더 귀찮다. 하지만 이 기능을 쓸 데가 언젠가는 있을 것이다.</p>
+
+<p>참고로, 파이썬의 후방탐색은 좀 비효율적으로 구현되어 있다고 알려져 있다. 따라서 후방탐색을 써야만 하는 경우에는 다음과 같이 대체하는 방법도 고려할 수 있다.</p>
+
+<p>조금 전 <code class="highlighter-rouge">&lt;p&gt;</code> 태그 예시를 대체한 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(</span><span class="err">\</span><span class="s">w+)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
+</code></pre></div></div>
+
+<p>이 방법이 더 깔끔할 수 있다.</p>
+
+<hr />
+
+<h2 id="정규표현식-고급-조건문">정규표현식 고급: 조건문</h2>
+
+<blockquote>
+  <p>이 부분은 한빛미디어의 ‘한 권으로 끝내는 정규표현식’ 책을 참고하였다.</p>
+</blockquote>
+
+<p>여러분은 프로그래밍 언어에서 삼항 연산자로 조건문을 쓰는 것을 본 적이 있을 것이다.</p>
+
+<p>C++의 예시는 다음과 같다.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">3</span> <span class="o">:</span> <span class="mi">4</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>파이썬은 다음과 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<p>정규표현식에서의 조건문은 다음과 같다. 조건문은, 캡처 그룹을 사용해 앞에서 문자열이 일치되었는지 아닌지에 따라 다음 부분에서는 다른 일치 조건을 제시해야 할 때 쓰인다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(?(숫자)맞으면|아니면)
+</code></pre></div></div>
+
+<p>맞으면 또는 아니면에는 어떤 정규식이든 사용할 수 있다. 다만 그 안에서도 다자택일(<code class="highlighter-rouge">|</code>, OR)을 사용하려면 그 전체를 <code class="highlighter-rouge">( )</code>로 묶어주어야 한다.</p>
+
+<p>참고로 (숫자)는 여러분이 알고 있는 그 캡처랑 비슷한 것이다. 재참조부를 쓸 때 <code class="highlighter-rouge">\1</code>과 같이 썼는데, 조건문에서는 단지 <code class="highlighter-rouge">(1)</code>로 바뀌었을 뿐이다.</p>
+
+<p>예시로, <code class="highlighter-rouge">(a)?b(?(1)c|d)</code>를 살펴보자. 이는 <code class="highlighter-rouge">abc|bd</code>와 같다.</p>
+
+<ol>
+  <li>먼저 <code class="highlighter-rouge">a</code>를 검사한다. 만약 찾는 문자열에 ‘a’가 있으면 첫 번째 명시적 캡처에는 ‘a’가 들어간다. 만약 ‘a’가 없으면, 빈 문자열이 (1)에 저장된다.</li>
+  <li>그 다음은 <code class="highlighter-rouge">b</code>이다. 만약 ‘b’가 없으면 일치에 실패하고 다음 위치로 넘어가게 된다. ‘b’가 있다고 가정하자.</li>
+  <li>그리고 이제 조건문이다. 만약 앞에서 ‘a’가 일치되었으면, 좀 전 일치된 ‘b’ 바로 다음에 ‘c’가 있는지를 검사한다. 만약 ‘a’가 없었으면, ‘b’ 다음에 ‘d’가 있는지를 찾게 된다.</li>
+</ol>
+
+<p>다른 굉장히 복잡한 예시를 하나 들도록 하겠다(출처는 위에서 밝힌 책이다).</p>
+<ol>
+  <li>콤마로 구분되고</li>
+  <li>one, two, three와 일치되되</li>
+  <li>각 단어는 최소 한번씩은 등장해야 하며</li>
+  <li>각 단어가 몇 개가 있든지 일치되어야 한다.</li>
+</ol>
+
+<p>정답은</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">r'\b(?:(?:(one)|(two)|(three))(?:,|\b)){3,}(?(1)|(?!))(?(2)|(?!))(?(3)|(?!))'</span>
+</code></pre></div></div>
+<p>이다.</p>
+
+<p>하나씩 살펴보면,</p>
+<ol>
+  <li><code class="highlighter-rouge">\b</code>: 단어 경계는 이제 알 것이다.</li>
+  <li><code class="highlighter-rouge">(?:(one)|(two)|(three))</code>: one이나 two이거나 three를 캡처한다. 각각 따로 캡처되도록 바깥쪽 캡처 그룹은 비 캡처 그룹으로 지정하였다.</li>
+  <li><code class="highlighter-rouge">(?:,|\b)</code>: 문제의 조건에서 각각의 단어는 콤마(‘,’)로 구분되고 마지막 단어 뒤에는 콤마가 없을 것이므로, <code class="highlighter-rouge">,</code> 또는 <code class="highlighter-rouge">\b</code> 다자택일로 묶어 놓았다. 콤마를 캡처하고 싶지는 않으므로 역시 비 캡처 그룹이다.</li>
+  <li><code class="highlighter-rouge">(?:2번 3번){3,}</code> 너무 길어서 2번과 3번을 따로 뺐다. 위에서 설명한 2번과 3번 전체를 감싸는 비 캡처 그룹이다. 세 단어가 각각 한 번씩은 나와야 하기 때문에, 반복 횟수는 최소 3이다.</li>
+  <li><code class="highlighter-rouge">(?(1)|(?!))</code>: 이제부터 조건문이다. 이 조건문은 캡처 그룹 1번(<code class="highlighter-rouge">(1)</code>, ‘one’)이 일치되었으면 그냥 일치되는 부분이다(‘맞으면’ 부분이 빈 문자열이다). ‘아니면’ 부분은 빈 부정 전방탐색 <code class="highlighter-rouge">(?!)</code>인데, 빈 정규식은 항상 일치되므로(즉, <code class="highlighter-rouge">(1)</code>에) 부정 전방탐색은 항상 실패한다. 따라서 이 조건문 <code class="highlighter-rouge">(?(1)|(?!))</code>는 <code class="highlighter-rouge">(1)</code>에 ‘one’이 일치되거나, 아니면 그냥 일치에 실패한다.</li>
+  <li>나머지 두 개의 조건문은 각각 ‘two’, ‘three’에 대응하며, 5번 설명과 같다. 이 세 가지 조건문을 조합하면, <code class="highlighter-rouge">(1)</code>, <code class="highlighter-rouge">(2)</code>, <code class="highlighter-rouge">(3)</code> 중 하나라도 일치에 실패한 단어가 있다면 이 전체 정규식은 일치에 실패한다. 따라서 세 단어가 한 번이라도 나와야 한다는 조건을 만족시킨다.</li>
+</ol>
+
+<p>조건문 안에 양방탐색을 사용할 수도 있다. 이는 보통의 정규식과 거의 비슷하게 작동한다. 정규식 대신 양방탐색 조건이 일치하면 ‘맞으면’ 부분이, 일치에 실패하면 ‘아니면’ 부분이 바로 다음 문자열에 일치되는지를 시도한다.<br />
+부정 양방탐색을 쓸 수도 있으나, ‘맞으면’과 ‘아니면’ 부분이 바뀌는 효과를 가져오므로 지양하자.</p>
+
+<hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">다음 글</a>부터는 예제를 다루도록 하겠다. 7번째 글은 숫자를 처리하는 예제에 관한 글이다.</p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">
+        파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리
+      </a>
+    </h1>
+
+    <span class="post-date">04 Aug 2018</span>
+     |
+    
+    <a href="/blog/tags/#regex" class="post-tag">Regex</a>
+    
+    <a href="/blog/tags/#re" class="post-tag">re</a>
+    
+    
+
+    <article>
+      <hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">파이썬 정규표현식(re) 사용법 - 01. Basic</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">파이썬 정규표현식(re) 사용법 - 03. OR, 반복</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</a><br />
+<strong><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</a></strong><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">파이썬 정규표현식(re) 사용법 - 09. 기타 기능</a></p>
+
+<hr />
+
+<p>이 글에서는 정규표현식 중급 기술과 python library인 <code class="highlighter-rouge">re</code> 패키지 사용법에 대해서 설명한다.</p>
+
+<p>본 글에서 정규표현식은 <code class="highlighter-rouge">regex</code>와 같이, 일반 문자열은 ‘regex’와 같이 표시하도록 한다.</p>
+
+<p>파이썬 버전은 3.6을 기준으로 하나, 3.x 버전이면 (아마) 동일하게 쓸 수 있다.<br />
+2.7 버전은 한글을 포함한 비 알파벳 문자 처리가 다르다.</p>
+
+<hr />
+
+<h2 id="정규표현식-중급-주석-추가">정규표현식 중급: 주석 추가</h2>
+
+<p>복잡한 정규식은 써 놓고 나중에 보면 한 줄밖에 안 되는 주제에 다른 스파게비 코드만큼이나 읽기 힘들다. 위에 주석으로 한 줄 이 정규식의 의미를 써놓는 게 부족한 경우가 있을지도 모른다. 그래서 정규식 내부에 주석을 넣는 기능이 있다.</p>
+
+<p>주석은 특별히 어려운 부분이 아니다. 단지 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/#%EB%A7%88%EC%B9%A8%ED%91%9C%EB%8A%94-%EA%B0%9C%ED%96%89-%EB%AC%B8%EC%9E%90%EC%99%80-%EC%9D%BC%EC%B9%98-%EC%98%B5%EC%85%98">옵션</a> 중 하나인 <code class="highlighter-rouge">re.VERBOSE</code> 옵션을 사용하기만 하면 된다. 약자는 <code class="highlighter-rouge">re.X</code>이다.</p>
+
+<p>위 옵션을 추가하면 정규식 내의 공백들이 무시된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'''
+010-# 핸드폰 앞자리 
+\d{4}-# 중간자리
+\d{4}# 뒷자리'''</span><span class="p">,</span>
+                <span class="s">'010-1234-5678'</span><span class="p">,</span>
+                <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>010-1234-5678
+</code></pre></div></div>
+
+<p>인라인으로 쓰기 위해서는 모드 변경자 <code class="highlighter-rouge">(?x)</code>를 쓰면 된다.</p>
+
+<p>위의 예시처럼 <code class="highlighter-rouge">re.VERBOSE</code>를 쓸 때는 삼중따옴표를 쓰는 것이 가장 좋다.<br />
+또 일반 공백 문자는 무시되기 때문에, 정규식 내에 공백문자를 넣고 싶으면 <code class="highlighter-rouge">\ </code>(공백문자를 이스케이프 처리)를 사용하거나 <code class="highlighter-rouge">[ ]</code>처럼 대괄호 내에 공백문자를 집어넣으면 된다.<br />
+탭 문자는 <code class="highlighter-rouge">\t</code>로 동일하고, 개행 문자는 <code class="highlighter-rouge">\n</code>은 무시되기 때문에(예시에선 개행을 했음에도 문자열이 이를 무시하고 일치되었다) <code class="highlighter-rouge">'\\n'</code> 또는 r<code class="highlighter-rouge">'\n'</code>으로 하는 것이 라인피드와 일치된다.</p>
+
+<hr />
+
+<h2 id="정규표현식-중급-치환">정규표현식 중급: 치환</h2>
+
+<p>사실 치환도 어려운 개념은 아니지만, 활용하는 방법은 꽤 많기 때문에 중급으로 분류하였다.</p>
+
+<p>치환은 말 그대로 정규식에 일치하는 부분 문자열을 원하는 문자열로 치환하는 것이다.<br />
+파이썬 문자열은 기본적으로 <code class="highlighter-rouge">replace</code> 메서드를 갖고 있기 때문에 일반적인 문자열은 그냥 치환이 가능하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">origin_str</span> <span class="o">=</span> <span class="s">'Ryan keep a straight face.'</span>
+<span class="n">edited_str</span> <span class="o">=</span> <span class="n">origin_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'keep'</span><span class="p">,</span> <span class="s">'kept'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">edited_str</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ryan kept a straight face.
+</code></pre></div></div>
+
+<p>그러나 이 <code class="highlighter-rouge">replace</code>는 정규식 패턴에 대응하는 문자열을 찾아주지는 못한다. 그래서 <strong>re.sub</strong> 메서드가 필요하다.</p>
+
+<h3 id="resubpattern-repl-string-count-flags">re.sub(pattern, repl, string, count, flags)</h3>
+
+<p><img src="\public\img\정규표현식(re)\2018-08-05-regex-usage-05-intermediate\01_sub.PNG" alt="01" /></p>
+
+<p>간단한 사용법은 다음과 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}'</span><span class="p">,</span> <span class="s">'XXXX'</span><span class="p">,</span> <span class="s">'010-1234-5678'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>010-XXXX-XXXX
+</code></pre></div></div>
+
+<p>인자만 보아도 대략 감이 올 것이다. pattern, string, flags는 우리가 지금까지 써 왔던 것들이다.</p>
+
+<p>나머지 두 개도 어려운 부분은 아니다. <strong>re.sub</strong>은 패턴에 일치되는 문자열은 다른 문자열로 바꿔주는 것이므로, repl은 당연히 그 ‘다른 문자열’에 해당하는 부분이다.</p>
+
+<p>count 인자는, 최대 몆 개까지 치환할 것인가를 지정한다. 만약 일치되는 문자열이 3인데 count=2로 지정되어 있으면 마지막 세 번째 문자열은 치환되지 않는다.<br />
+물론 일치되는 문자열이 count보다 적으면 그냥 전부 다 치환된다.</p>
+
+<script data-ad-client="ca-pub-9951774327887666" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
+             <span class="n">string</span><span class="o">=</span><span class="s">'Gorio, Gorio, Gorio keep a straight face.'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ryan, Ryan, Gorio keep a straight face.
+</code></pre></div></div>
+
+<p>인자가 많으므로 이번엔 파이썬의 특징인 인자 명시적 지정을 사용해 보았다.</p>
+
+<p>결과에서 이해되지 않는 부분은 딱히 없을 것이다.<br />
+참고로 <strong>re.sub</strong>은 일치된 위치를 따로 반환해 주지 않는다.</p>
+
+<h3 id="resubnpattern-repl-string-count-flags">re.subn(pattern, repl, string, count, flags)</h3>
+
+<p><img src="\public\img\정규표현식(re)\2018-08-05-regex-usage-05-intermediate\02_subn.PNG" alt="02" /></p>
+
+<p><strong>re.subn</strong>은 <strong>re.sub</strong>과 매우 유사하지만, 리턴하는 값이 치환된 문자열과 더불어 치환된 개수의 튜플이라는 것이 다른 점이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
+              <span class="n">string</span><span class="o">=</span><span class="s">'Gorio, Gorio, Gorio keep a straight face.'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>('Ryan, Ryan, Gorio keep a straight face.', 2)
+</code></pre></div></div>
+
+<p>문자열이 두 개 치환되었으므로 2를 같이 리턴한다.</p>
+
+<h3 id="정규식-일치부를-문자열에서-제거">정규식 일치부를 문자열에서 제거</h3>
+
+<p>왜 파이썬에서는 제거 메서드를 따로 만들지 않았는지는 잘 모르지만, <strong>re.sub</strong>으로 간단히 구현 가능하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'Tube'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="s">'Tube Ryan'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Ryan
+</code></pre></div></div>
+
+<p>문자열을 제거할 때 공백 문자 하나가 남는 것은 흔히 하는 실수이다. 결과를 보면 ‘Ryan’ 앞에 공백 문자가 하나 있는데, 이를 실제 상황에서 본다면 은근히 신경 쓰일 것이다. 제거할 문자열 앞이나 뒤에 공백 문자를 하나 넣어서 같이 제거하도록 하자.</p>
+
+<h3 id="치환-텍스트에-정규식-일치부-삽입">치환 텍스트에 정규식 일치부 삽입</h3>
+
+<p>이번에는 문자열 치환 시 그냥 literal text가 아닌 일치된 부분을 재사용하는 방법을 알아보겠다. <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/#-%EC%88%AB%EC%9E%90-%EC%95%9E%EC%84%9C-%EC%9D%BC%EC%B9%98%EB%90%9C-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-%EB%8B%A4%EC%8B%9C-%EB%B9%84%EA%B5%90">재참조부</a>와 약간 비슷한 개념이다.</p>
+
+<p>URL을 markdown link로 변환해 보겠다. Markdown link는</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">[이름](URL)</code></p>
+</blockquote>
+
+<p>이렇게 구성된다.</p>
+
+<p>파이썬에서 전체 일치부를 치환 텍스트에 삽입하려면 <code class="highlighter-rouge">\g&lt;0&gt;</code>이라는 토큰을 사용해야 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'https?://</span><span class="err">\</span><span class="s">S+'</span><span class="p">,</span>
+             <span class="s">'[링크](</span><span class="err">\</span><span class="s">g&lt;0&gt;)'</span><span class="p">,</span>
+             <span class="s">'http://www.google.com and https://greeksharifa.github.io'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[링크](http://www.google.com) and [링크](https://greeksharifa.github.io)
+</code></pre></div></div>
+
+<h3 id="치환-텍스트에-정규식-부분-일치부-삽입">치환 텍스트에 정규식 부분 일치부 삽입</h3>
+
+<p>여러분은 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/#-%EC%88%AB%EC%9E%90-%EC%95%9E%EC%84%9C-%EC%9D%BC%EC%B9%98%EB%90%9C-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-%EB%8B%A4%EC%8B%9C-%EB%B9%84%EA%B5%90">여기</a>에서 재참조부 일부를 사용하는 방법을 배웠다. 그러면 치환 텍스트에도 이처럼 일부분을 삽입하는 방법이 있을 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(</span><span class="err">\</span><span class="s">d{4})-(</span><span class="err">\</span><span class="s">d{2})-(</span><span class="err">\</span><span class="s">d{2})'</span><span class="p">,</span> 
+             <span class="s">r'\1.\2.\3'</span><span class="p">,</span>
+             <span class="s">'1900-01-01'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1900.01.01
+</code></pre></div></div>
+
+<p>yyyy-mm-dd 형식이 yyyy.mm.dd 형식으로 바뀌었다.<br />
+<code class="highlighter-rouge">\1</code>과 같은 문법을 쓸 때에는 <strong>r prefix</strong>를 붙여야 한다는 것을 기억하고 있을 것이다.</p>
+
+<p>만약 위와 같은 상황에서 <code class="highlighter-rouge">\4</code>를 사용한다면, 아무것도 캡처된 것이 없으므로 에러 메시지를 볼 수 있을 것이다.</p>
+
+<h4 id="명명-그룹을-사용한-경우">명명 그룹을 사용한 경우</h4>
+
+<p>조금 위에서 <code class="highlighter-rouge">\g&lt;0&gt;</code>을 사용했었다. 그러면 명명 그룹의 경우 <code class="highlighter-rouge">\g&lt;name&gt;</code>을 사용한다는 것을 눈치챌 수 있을 것이다. 
+비 명명 그룹은 <code class="highlighter-rouge">\g&lt;1&gt;</code>, <code class="highlighter-rouge">\g&lt;2&gt;</code>, … 을 사용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(?P&lt;year&gt;</span><span class="err">\</span><span class="s">d{4})-(?P&lt;month&gt;</span><span class="err">\</span><span class="s">d{2})-(?P&lt;day&gt;</span><span class="err">\</span><span class="s">d{2})'</span><span class="p">,</span>
+             <span class="s">'</span><span class="err">\</span><span class="s">g&lt;year&gt;.</span><span class="err">\</span><span class="s">g&lt;month&gt;.</span><span class="err">\</span><span class="s">g&lt;day&gt;'</span><span class="p">,</span>
+             <span class="s">'1900-01-01'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1900.01.01
+</code></pre></div></div>
+
+<p>물론 명명 그룹과 비 명명 그룹을 혼용하는 것은 여러 번 말했듯이 좋은 생각이 아니다.</p>
+
+<hr />
+
+<h2 id="정규표현식-중급-split">정규표현식 중급: split</h2>
+
+<p><strong>re.sub</strong> 말고도 유용한 함수는 <strong>re.split</strong>이다. 이 메서드는 파이썬 문자열의 기본 메서드인 split과 매우 유사하나, 정규식을 처리할 수 있다.</p>
+
+<p>이 역시 어려운 함수는 아니기 때문에, 예시 하나를 바로 보도록 하겠다.<br />
+html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
+               <span class="s">'&lt;html&gt; Wow &lt;head&gt; header &lt;/head&gt; &lt;body&gt; Hey &lt;/body&gt; &lt;/html&gt;'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', ' Wow ', ' header ', ' ', ' Hey ', ' ', '']
+</code></pre></div></div>
+
+<p>물론 이렇게만 하면 빈 문자열 등도 많이 나온다. 이는 정규식으로 따로 처리하거나, 다음과 같이 쓰면 된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
+                  <span class="s">'&lt;html&gt; Wow &lt;head&gt; header &lt;/head&gt; &lt;body&gt; Hey &lt;/body&gt; &lt;/html&gt;'</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">result</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="s">''</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['Wow', 'header', 'Hey']
+</code></pre></div></div>
+<p>정규식이 깔끔하긴 하지만, 한 번에 모든 것을 처리하려고 하면 힘들 수 있다. 파이썬 기본 기능도 잘 활용하자.</p>
+
+<hr />
+
+<h2 id="정규표현식-초급-recompile">정규표현식 초급: re.compile</h2>
+
+<p>여기서는 <strong>re.compile</strong> 메서드를 알아볼 것이다.</p>
+
+<p>여러분은 지금까지 <code class="highlighter-rouge">import re</code>를 사용하여 <code class="highlighter-rouge">re</code>로부터 직접 메서드를 호출해왔다. <strong>re.match</strong>, <strong>re.sub</strong> 등이 그 예시이다.</p>
+
+<p>이 방식은 한두번 쓰고 말기에는 괜찮지만, 같은 정규식 패턴을 반복문 내에서 반복적으로 사용해야 할 경우 성능상의 부담이 있다.<br />
+이는 정규식은 컴파일이란 과정을 거치기 때문인데, <code class="highlighter-rouge">re</code> 모듈로부터 직접 갖다 쓰면 매번 컴파일이란 비싼 계산을 해야 하기 때문에 성능이 떨어진다.</p>
+
+<p><strong>re.compile</strong>은 컴파일을 미리 해 두고 이를 저장할 수 있다. 예시를 보자.</p>
+
+<p>여러분은 지금까지 이렇게 해 왔다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">,</span> <span class="s">'Ryan 1 Tube 2 345'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>이를 한 번 정도 쓰는 것이 아닌, 반복문 내에서 여러 번 쓴다면 이렇게 쓰는 것이 좋다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'ryan.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
+    <span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="p">:</span>
+        <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>미리 컴파일해 두면 성능상의 이점이 있다.</p>
+
+<p>사용법이 조금 달라진 것이 눈에 띌 것이다.</p>
+
+<p>여러분은 지금까지,</p>
+<ol>
+  <li><code class="highlighter-rouge">re</code> 모듈로부터 직접 match, search 등 메서드를 써 왔다.
+    <ul>
+      <li>인자는 기본적으로 1) 정규식 패턴과 2) 찾을 문자열이 있었다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>컴파일을 미리 하는 버전은,</p>
+<ol>
+  <li>re.compile 메서드로부터 reObj를 만든다.
+    <ul>
+      <li>인자는 기본적으로 1) 정규식 패턴 하나이다.</li>
+    </ul>
+  </li>
+  <li>reObj.match 혹은 search 등으로 문자열을 찾는다.
+    <ul>
+      <li>인자는 정규식 패턴은 이미 저장되어 있으므로 search 메서드에는 1) 찾을 문자열 하나만 주면 된다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>reObj가 무슨 정규식 패턴을 가졌는지 보려면 다음을 수행해 보라.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d+'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>re.compile('\\d+')
+</code></pre></div></div>
+
+<p>’'를 구분하기 위해는 ‘' 도 <code class="highlighter-rouge">\</code>에 의해 이스케이프 처리되어야 하므로 ‘'가 두 개 있다는 점을 주의하라.</p>
+
+<hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">다음 글</a>에서는 정규표현식 고급 기술을 다루도록 하겠다.</p>
+
+    </article>
+    <div class="post-more">
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/#disqus_thread"> <i class="fa fa-comments" aria-hidden="true"></i>Comment</a>&nbsp;
+      
+      <a href="/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/"><i class="fa fa-plus-circle" aria-hidden="true"></i>Read more</a>
+    </div>
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/blog/page14">Older</a>
+  
+  
+    
+      <a class="pagination-item newer" href="/blog/page12">Newer</a>
+    
+  
+</div>
+
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

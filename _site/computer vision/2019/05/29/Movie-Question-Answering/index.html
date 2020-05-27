@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      MovieQA(Movie Question Answering)
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">MovieQA(Movie Question Answering)</h1>
+  <span class="post-date">29 May 2019</span>
+   |
+  
+  <a href="/blog/tags/#paper-review" class="post-tag">Paper_Review</a>
+  
+  <a href="/blog/tags/#vqa" class="post-tag">VQA</a>
+  
+  <a href="/blog/tags/#task-proposal" class="post-tag">Task_Proposal</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#movieqa-understanding-stories-in-movies-through-question-answering">MovieQA: Understanding Stories in Movies through Question-Answering</a>
+    <ul>
+      <li><a href="#초록abstract">초록(Abstract)</a></li>
+      <li><a href="#서론introduction">서론(Introduction)</a></li>
+      <li><a href="#관련-연구related-works">관련 연구(Related Works)</a></li>
+      <li><a href="#movieqa-데이터셋movieqa-dataset">MovieQA 데이터셋(MovieQA Dataset)</a></li>
+      <li><a href="#다지선다형-질문-답변multi-choice-question-answering">다지선다형 질문-답변(Multi-choice Question-Answering)</a></li>
+      <li><a href="#결론conclusion">결론(Conclusion)</a></li>
+      <li><a href="#참고문헌references">참고문헌(References)</a></li>
+    </ul>
+  </li>
+</ul>
+
+    <hr />
+
+<p>이 글에서는 MovieQA: Understanding Stories in Movies through Question-Answering에 대해 알아보고자 한다.</p>
+
+<p>VQA task는 이미지(Visual, 영상으로도 확장 가능)와 그 이미지에 대한 질문(Question)이 주어졌을 때, 해당 질문에 맞는 올바른 답변(Answer)을 만들어내는 task이다.</p>
+
+<p>MovieQA는 Vision QA의 확장판과 비슷한 것이라고 보면 된다. 그러나 크게 다른 점은 사진 한 장과 QA셋이 아닌 Movie Clip과 QA셋으로 학습 및 테스트를 진행한다는 것이다. 사진이 영상으로 바뀐 만큼 당연히 난이도 역시 증가하였다.</p>
+
+<p>MovieQA 홈페이지는 http://movieqa.cs.toronto.edu/home/ 이다.</p>
+
+<p>중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.</p>
+
+<hr />
+
+<h1 id="movieqa-understanding-stories-in-movies-through-question-answering">MovieQA: Understanding Stories in Movies through Question-Answering</h1>
+
+<p>논문 링크: <strong><a href="https://arxiv.org/abs/1512.02902">MovieQA: Understanding Stories in Movies through Question-Answering</a></strong></p>
+
+<h2 id="초록abstract">초록(Abstract)</h2>
+
+<p>우리는 video와 text 모두를 통해 자동적 스토리 이해를 평하가는 MovieQA 데이터셋을 소개할 것이다. 이 데이터셋은 408개의 영화(movie)에 대한 아주 다양한 의미의 14,944개의 질문으로 이루어져 있다. 이 질문들은 ‘누가’ ‘누구에게’ ‘무엇을’ ‘어떻게’ ‘왜’ 했는지까지의 범위를 포함한다. 각 질문에는 5개의 답이 있는데 1개만 맞는 답이며 4개는 사람이 직접 만든 가짜 답이다. 우리의 데이터셋은 영상클립, 줄거리, 제목, 자막, DVS 등 많은 소스들을 포함한다는 점에서 유일하다. 우리는 이 데이터셋을 다양한 통계적 방법으로 분석했으며 존재하는 QA 기술들을 확장하여 열린 의미의 QA로 하는 것은 어렵다는 것을 보일 것이다. 우리는 이 데이터셋을 평가방법과 함께 일반에 공개하여 도전을 장려할 것이다.</p>
+
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/01.png" width="100%" alt="ovieQA Dataset" /></center>
+
+<hr />
+
+<h2 id="서론introduction">서론(Introduction)</h2>
+
+<p>이미지 태깅, 물체인식 및 분할, 액션 인식, 이미지/비디오 캡셔닝 등 많은 시각적 task에서 레이블링된 많은 양의 데이터가 사용 가능해진 것과 함께 딥러닝에서 빠른 발전이 있었다. 우리는 시각장애가 있는 사람들을 위한 보조적인 해결책이나, 일반적인 framework에서 이런 모든 task들을 추론에 의해 실제 세계를 전체적으로 인식하는 인지로봇과 같은 application에 한 걸음 더 다가갔다. 그러나 정말 ‘지능적인’ 기계는 동기, 의도, 감정, 의사소통 등 높은 수준의 것을 포함한다. 이러한 주제들은 문학에서나 겨우 탐험이 시작되었다.</p>
+
+<p>(눈에 보이는) 장면을 이해하는 것을 보여주는 훌륭한 방법은 그것에 대한 질문-답변을 하는 것이다. 이러한 생각은 각 이미지에 대해 여러 질문들과 다지선다형 답변을 포함한 질문-답변 데이터셋을 만드는 것으로 이어졌다.<br />
+이러한 데이터셋은 RGB-D 이미지 또는 Microsoft COCO와 같은 정지 이미지의 거대한 모음집에 기반한다. 전형적인 질문으로는 ‘무엇이(what)’ 거기에 있고 ‘어디에(where)’ 그것이 있는지와 같은 것, 물체가 어떤 성질을 갖는지, 얼마나 많은 ‘특정 종류의 물건’이 있는지 등이 있다.<br />
+이러한 질문들은 전체적인 자연에 대한 우리의 시각적 알고리즘을 확인시켜주기는 하지만, 정지 이미지에 대해 물어볼 수 있는 태생적인 한계가 존재한다. 행동과 그 의도에 대한 높은 수준의 의미 이해는 오직 순간적, 또는 일생에 걸친 시각적 관찰에 의한 추론에 의해서만 가능하다.</p>
+
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/02.png" width="100%" alt="MovieQA Dataset" /></center>
+
+<p>영화(Movies)는 사람들의 삶과 이야기, 성격에 대한 높은 수준의 이해, 행동과 그 이면에 숨겨진 동기와 같은 것들을 이해할 수 있도록 하는 짤막한 정보를 우리에게 제공한다. 우리의 목표는 ‘복잡한 영상과 그에 맞는 텍스트(자막) 모두를 포함한 것을 이해하는 기계’를 측정하는 질문-답변 데이터셋을 만드는 것이다. 우리는 이 데이터셋이 다음 수준의 자동적인 ‘정말로’ 이해를 하는 기계를 만드는 것을 촉진하는 것이 되었으면 한다.</p>
+
+<p>이 논문은 영화에 대한 거대한 질문-답변 데이터셋, MovieQA를 소개한다. 이는 408개의 영화와 14,944개의 5지선다형 질문을 포함한다. 이 중 140개의 영화(6,462개의 질답)에는 영화의 질문-답변 부분에 해당하는 time stamp가 붙어 있다.<br />
+이 질문들은 ‘누가’ ‘무엇을’ ‘누구에게’ 같이 시각적으로만 풀 수 있는 것과 ‘왜’ ‘어떻게’ 무슨 일이 일어났냐는 시각정보와 대사(텍스트)를 모두 사용해야만 답을 추론할 수 있는 질문들을 포함한다.<br />
+우리의 데이터셋은 영상클립, 제목, 자막, 줄거리, DVS를 포함하는 다양한 출처의 정보를 포함하는 유일한 데이터셋이다. 우리는 이를 통계적으로 분석할 것이며 또한 존재하는 질답 기술을 우리의 데이터에 적용하고 이러한 open-ended 질답이 어려운 것을 보일 것이다.<br />
+우리는 leaderboard를 포함한 <a href="http://movieqa.cs.toronto.edu/leaderboard">온라인 벤치마크 사이트</a>를 만들어 두었다.</p>
+
+<hr />
+
+<h2 id="관련-연구related-works">관련 연구(Related Works)</h2>
+
+<ul>
+  <li><strong>Video understanding via language:</strong> 영상 범위에서 시각 및 언어정보를 통합시킨 연구는 더 적은 연구만이 존재한다. LSTM을 사용한 영상클립에 캡션을 다는 것 등이 있었다.</li>
+  <li><strong>Question-answering:</strong> 자연언어처리에서 인기 있는 task이다. Memory network나 deep LSTM, Bayesian approach 등이 사용되고 있다.</li>
+  <li><strong>QA Datasets:</strong> NYUv2 RGB-D와 같은 데이터셋이나, 100만 단위의 MS-COCO 데이터셋 등이 있다.</li>
+</ul>
+
+<hr />
+
+<h2 id="movieqa-데이터셋movieqa-dataset">MovieQA 데이터셋(MovieQA Dataset)</h2>
+
+<p>앞서 언급했듯이 408개의 영화와, 위키피디아에서 가져온 줄거리(시놉시스)를 포함한다. 또한 영상, 제목, DVS, 대사 스크립트를 포함한다.</p>
+
+<p>이 부분의 주된 내용은 영화, 질문, 답변에는 어떤 종류가 있고, 어느 비율만큼 어떤 것이 있는지에 대한 통계 자료들이다. 자세한 내용은 궁금하면 논문을 직접 읽어보는 것이 빠르다.</p>
+
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/03.png" width="70%" alt="MovieQA Dataset Statistics" /></center>
+
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/04.png" width="100%" alt="MovieQA Dataset Statistics" /></center>
+
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/05.png" width="70%" alt="MovieQA Dataset Statistics" /></center>
+
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/06.png" width="70%" alt="MovieQA Dataset Statistics" /></center>
+
+<h2 id="다지선다형-질문-답변multi-choice-question-answering">다지선다형 질문-답변(Multi-choice Question-Answering)</h2>
+
+<p>여기서는 질답을 위한 여러 지능적인 기준선(intelligent baselines)를 조사하려 한다.</p>
+
+<ul>
+  <li>$S$를 이야기(줄거리, 제목, 비디오 샷을 포함한 어떤 정보든 포함)라 한다.</li>
+  <li>$q^S$는 하나의 질문이다.</li>
+  <li>${a^S_j}^M_{j=1}$은 질문 $q^S$에 대한 여러 답변이다. 여기서 $M=5$이다(5지선다형이므로).</li>
+  <li>그러면 다지선다형 질답의 일반적인 문제느 3방향 득점 점수 $f(S, q^S, a^S)$로 나타낼 수 있다.
+    <ul>
+      <li>이 함수는 이야기와 질문이 주어졌을 때 답변의 “Quality”를 평가한다.</li>
+    </ul>
+  </li>
+  <li>우리의 목표는 이제 $f$를 최대화하는 질문 $q^S$에 대한 답변 $a^S$를 선택하는 것이다:</li>
+</ul>
+
+<script type="math/tex; mode=display">j^\ast = \text{argmax}_{j=1 ... M} \ f(S, q^S, a^S_j)</script>
+
+<p>아래는 모델의 한 예시이다.</p>
+
+<center><img src="/public/img/2019-05-29-Movie-Question-Answering/07.png" width="100%" alt="MovieQA Dataset Statistics" /></center>
+
+<p>모델은 ‘The Hasty Student’, ‘Searching Student’, ‘Memory Network’, ‘Video baselines’ 등을 포함한다.</p>
+
+<h2 id="결론conclusion">결론(Conclusion)</h2>
+
+<p>이 논문에서는 영상과 텍스트 모두를 아우르는 자동적 이야기 이해 평가를 목표로 하는 MovieQA 데이터셋을 소개하였다.
+우리의 데이터셋은 영상클립, 제목, 대사 스크립트, 줄거리, DVS 등 다양한 출처의 정보를 포함한다는 점에서 유일하다. 우리는 여러 지능적인 기준선과 우리의 task의 난이도를 분석하는 원래 존재하던 질답 기술을 연장시키기도 했다. 평가 서버를 포함한 우리의 벤치마크는 <a href="http://movieqa.cs.toronto.edu">온라인</a>에서 확인할 수 있다.</p>
+
+<hr />
+
+<h2 id="참고문헌references">참고문헌(References)</h2>
+
+<p>논문 참조!</p>
+
+<hr />
+
+<p>모델들에 대한 자세한 설명들은 생략하였다. Student 모델같은 경우에는 이름부터 꽤 흥미롭기 때문에 한번쯤 찾아보는 것을 추천한다.</p>
+
+<hr />
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github/2020/05/27/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/generative/model/2020/05/25/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/machine_learning/2020/05/01/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/computer%20vision/2019/05/29/Movie-Question-Answering/';
+    this.page.identifier = 'http://localhost:4000/computer%20vision/2019/05/29/Movie-Question-Answering/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>
