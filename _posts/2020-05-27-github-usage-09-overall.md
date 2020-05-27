@@ -118,7 +118,7 @@ print('git')
 print('bye')
 print('20000')
 ```
-이 중 `print('20000')`을 제외한 나머지 변경사항만을 stage에 추가하고 싶다고 하자. 그러면 `git add <filename>` 명령에 다음과 같이 `--patch` 옵션을 붙인다.
+이 중 `print('bye'); print('20000')`을 제외한 나머지 변경사항만을 stage에 추가하고 싶다고 하자. 그러면 `git add <filename>` 명령에 다음과 같이 `--patch` 옵션을 붙인다.
 
 ```diff
 git add --patch fourth.py
@@ -143,6 +143,26 @@ index 13cc618..4c8cfb6 100644
 Stage this hunk [y,n,q,a,d,s,e,?]? 
 ```
 
+그러면 수정된 코드 덩이(hunk)마다 선택할지를 물어본다. 인접한 초록색(+) 덩이 또는 인접한 빨간색 덩이(-)가 하나의 코드 덩이가 된다.
+
+각 옵션에 대한 설명은 다음과 같다. `?`를 입력해도 도움말을 볼 수 있다.
+
+| Option | Description |
+| -------- | -------- | 
+y | stage this hunk
+n | do not stage this hunk
+q | quit; do not stage this hunk or any of the remaining ones
+a | stage this hunk and all later hunks in the file
+d | do not stage this hunk or any of the later hunks in the file
+s | split the current hunk into smaller hunks
+e | manually edit the current hunk
+? | print help
+
+여기서는 `y`, `y`, `n`을 차례로 입력하면 원하는 대로 stage할 수 있다. (영어 원문을 보면 알 수 있듯이 stage하다 = stage에 추가하다와 같은 의미라고 보면 된다.)
+
+`-p` 옵션으로는 인접한 추가/삭제 줄들이 전부 하나의 덩이로 묶이기 때문에, 이를 더 세부적으로 하고 싶다면 위 옵션에서 `e`를 선택하면 된다. 
+
+`git add -p` 명령을 통해 stage에 파일의 일부 변경사항만 추가하고 나면 
 
 
 ---
