@@ -141,7 +141,7 @@ fork된 repo를 볼 수 있다. 여기서 여러분이 마음껏 작업하면 �
 
 ---
 
-[다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서는 작업을 취소하는 여러 방법에 대해 자세히 알아보겠다.
+[다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서는 github에 대한 총 정리를 다룬다.
 
 ---
 

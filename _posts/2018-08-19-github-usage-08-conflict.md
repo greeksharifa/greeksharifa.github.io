@@ -207,7 +207,7 @@ print("Desired sentence in 2nd-branch")
 
 ---
 
-[다음 글](https://greeksharifa.github.io/github/2018/08/20/github-usage-09-pull-request/)에서는 작업을 취소하는 여러 방법에 대해 자세히 알아보겠다.
+[다음 글](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/)에서는 Git 전체 명령어 사용법을 다룬다.
 
 ---
 
