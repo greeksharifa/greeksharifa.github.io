@@ -91,6 +91,120 @@ git remote -v
 origin  https://github.com/greeksharifa/git_tutorial.git (fetch)
 origin  https://github.com/greeksharifa/git_tutorial.git (push)
 ```
+
+`git remote -v`의 결과는 `<remote-name> <git-address> <fetch/push>`로 이루어져 있다.  
+`(fetch)`는 새 작업을 다운로드하는 장소이고, `(push)`는 새 작업을 업로드하는 장소이다.
+
+원격 저장소의 이름만을 보거나, 해당 이름의 자세한 정보를 알고 싶다면 `git remote show`나, `git remote show <remote-name>`을 입력한다.
+
+```vim
+git remote show
+---
+git remote show origin
+
+# 결과 예시
+origin
+---
+* remote origin
+  Fetch URL: https://github.com/greeksharifa/git_tutorial.git
+  Push  URL: https://github.com/greeksharifa/git_tutorial.git
+  HEAD branch: master
+  Remote branches:
+    2nd-branch    tracked
+    3rd-branch    tracked
+    fourth-branch tracked
+    master        tracked
+  Local branches configured for 'git pull':
+    2nd-branch merges with remote 2nd-branch
+    master     merges with remote master
+  Local refs configured for 'git push':
+    2nd-branch pushes to 2nd-branch (up to date)
+    master     pushes to master     (local out of date)
+```
+
+해당 원격 저장소의 url은 무엇인지, 어떤 branch가 있는지, 로컬 branch는 원격 저장소의 어떤 branch와 연결되어 있는지 등을 확인할 수 있다.
+
+### 원격 저장소 이름 변경
+
+```vim
+git remote rename <old-remote-name> <new-remote-name>
+
+# 명령어 예시
+git remote rename origin official
+```
+
+### 원격 연결 삭제
+
+```vim
+git remote remove <remote-name>
+```
+
+---
+
+## Git 설정하기
+
+git 설정에는 계정 설정이나 변경 등이 있다. 그리고, 모든 git 설정은 2종류가 있다. 
+
+1. 해당 컴퓨터의 모든 git 프로젝트에 적용되는 전역(global) 설정
+    - Linux에서는 `~/.gitconfig` 파일에 저장된다. 윈도우에서는 `C:/Users/<user-name>/.gitconfig`에 있다.
+2. 특정 프로젝트에만 적용되는 로컬(local) 설정
+    - 해당 프로젝트 root directory의 `.git/config` 파일에 저장된다.
+
+컴퓨터를 공유해서 쓰는 것이 아니라면 보통은 global 설정을 주로 다루게 될 것이다.
+
+설정된 값 보기: 
+```vim
+git config --get <setting-name>
+git config --get user.name
+
+# 모든 설정값 보기
+git config --list
+```
+
+설정값 설정하기: 보통 자신의 계정명과 계정을 설정하게 될 것이다. 최초 로그인 창이 뜰 수 있다.
+```vim
+git config --global <setting-name> <value>
+
+# 명령어 예시
+git config --global user.name 'greeksharifa'
+git config --global user.name 'greeksharifa@gmail.com'
+```
+
+전역 설정이 아닌 해당 프로젝트에만 적용시키고 싶다면 `--global` 대신 `--local`을 사용한다. 
+
+### git 기본 에디터 변경
+
+git의 기본 에디터는 **Vim**인데, 이를 변경할 수 있다. `bash` 등이 있다.
+```vim
+# 명령어 예시
+git config --global core.editor mate -w
+git config --global core.editor subl -n -w
+git config --global core.editor '"C:\Program Files\Vim\gvim.exe" --nofork'
+```
+
+더 자세한 설정들은 `git help config`를 입력해서 찾아보자.
+
+---
+
+## 인증 정보 저장: Credential
+
+SSH protocol을 사용하여 원격 저장소에 접근할 때는 암호를 매번 입력하지 않아도 되지만 HTTP protocol을 사용한다면 매번 인증 정보를 입력해야 한다.  
+하지만 git에는 이런 인증 정보(credential)을 저장해 둘 수 있다.
+
+인증 정보를 임시로(cache) 저장하려면 다음을 사용한다. 기본적으로 15분간 임시로 저장하며, `timeout` 시간을 설정해 줄 수도 있다. 아래는 1시간(3600초) 기준이다.
+```vim
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
+```
+
+임시가 아니라 계속 저장해 두려면 `cache` 대신 `store`를 사용한다. 저장할 파일을 지정할 수도 있다.
+```vim
+git config --global credential.helper store
+git config --global credential.helper 'store --file <file-path>'
+```
+
+
+
 ---
 
 ## Git 준비 영역(index)에 파일 추가
@@ -248,13 +362,18 @@ git commit --amend
 그러면 vim 에디터에서 수정할 수 있다.
 
 
+원래는 `git add` 후 `git commit`을 하는 것이 일반적이지만, 모든 파일을 추가하면서 commit을 한다면 다음 단축 명령을 쓸 수 있다: `-a` 옵션을 붙인다.
+```vim
+git commit -a -m "<commit-message>"
+```
+
 ---
 
 ## 수정사항을 원격저장소에 반영하기: git push
 
 ### upstream 연결
 
-`git remote add` 명령으로 원격저장소를 연결했으면 `git push <git-address>` 명령으로 로컬 저장소의 commit을 원격 저장소에 반영할 수 있다. 즉, 최종 반영이 되는 것이다.
+`git remote add` 명령으로 원격저장소를 연결했으면 `git push <git-address>` 명령으로 로컬 저장소의 commit을 원격 저장소에 반영할 수 있다. 즉, 최종 반영이다.
 
 ```vim
 git push <git-address>
@@ -270,6 +389,8 @@ To https://github.com/greeksharifa/gitgitgit.git
 ```
 
 그러나 매번 git address를 인자로 주어가며 변경사항을 저장하는 것은 매우 귀찮으니, 다음 명령을 통해 upstream 연결을 지정할 수 있다. 이는 `git remote add` 명령을 통해 원격 저장소의 이름을 이미 지정한 경우의 얘기이다.
+
+혹시 로컬에서 git을 처음 쓰거나 다른 사람의 작업트리를 처음 쓰는 경우라면 github id/pw를 입력해야 할 수 있다.
 
 ```vim
 git push --set-upstream <remote-name> <branch-name>
@@ -304,6 +425,66 @@ git push --delete <remote-name> <remote-branch-name>
 git push --delete origin ticket-branch
 git push -d origin ticket-branch
 ```
+
+### 수정사항 반영하기
+
+일반적으로 로컬 저장소의 commit을 원격 저장소에 반영하려면 다음 명령어를 입력한다.
+```vim
+git push <remote-name> <branch-name>
+
+# 명령어 예시
+git push origin master
+```
+
+위에서 `--set-upstream` 옵션을 사용해 업로드 branch와 장소를 지정했다면 `git push`만으로도 원격 저장소에 업로드가 가능하다.
+```vim
+git push
+```
+
+위와 같은 방식으로는 기본적으로 로컬 branch의 이름(`<branch-name>`)과 원격 저장소에 저장될 branch의 이름이 같게 된다. 이를 다르게 지정해서 업로드하려면 다음과 같이 쓴다.
+
+```vim
+git push <remote-name> <local-branch-name>:<remote-branch-name>
+
+# 명령어 예시
+git push origin fourth:ticket
+```
+
+목적지인 원격 저장소의 해당 branch에 현재 로컬 저장소에는 없는 commit이 존재한다면 push가 진행되지 않는다. 원격 저장소의 변경점을 먼저 로컬에 복사해야 한다. 이는 `git pull` 명령을 써서 해결한다. [여기](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#%EC%9B%90%EA%B2%A9-%EC%A0%80%EC%9E%A5%EC%86%8C%EC%9D%98-%EC%88%98%EC%A0%95%EC%82%AC%ED%95%AD%EC%9D%84-%EB%A1%9C%EC%BB%AC%EB%A1%9C-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0-git-pull)를 참고한다.
+
+### 모든 branch의 수정사항 반영하기
+
+```vim
+git push --all <remote-name>
+```
+모든 branch의 수정사항을 반영하므로 `<branch-name>`은 지정할 필요 없다.
+
+---
+
+## 원격 저장소의 수정사항을 로컬로 가져오기: git pull
+
+사실 `git pull` 명령은 `git fetch`와 `git merge FETCH_HEAD`를 합친 명령과 같다. 즉 원격 저장소의 수정사항을 먼저 확인한 다음, 로컬 저장소에는 없는 모든 commit들을 로컬로 가져오는 작업과 같다.
+
+다음 상황을 가정하자:
+
+```cmd
+	  A---B---C master on origin
+	 /
+    D---E---F---G master
+	^
+	origin/master in your repository
+```
+
+현재 로컬 저장소의 master branch에는 A, B, C commit이 존재하지 않는다. 이를 로컬에 반영하려면 `git pull`을 입력한다. 어디서 받아올지 지정되어 있지 않다면 `git pull <remote-name> <remote-branch-name>`을 입력한다.
+
+```cmd
+	  A---B---C origin/master
+	 /         \
+    D---E---F---G---H master
+```
+
+수정사항 사이에 충돌이 없다면 자동으로 진행된다. 만약 충돌이 일어났다면, 먼저 충돌 사항을 해결한 다음 add/commit/push 과정을 거치면 된다.
+
 
 ---
 
@@ -359,6 +540,22 @@ Untracked files:
 
 위와 같이 준비 영역 또는 tracked 목록에 올라왔는지가 1차 분류이고, 2차 분류는 해당 파일이 처음 생성되었는지(ex. `third.py`), 변경되었는지(modified), 삭제되었는지(deleted)로 나눈다.
 
+수정된 파일을 보다 간략히 보려면 `--short` 옵션을 사용한다.
+```vim
+git status --short
+git status -s
+
+# 결과 예시
+ M .gitignore
+A  doonggoos.py
+D  first.py
+ M fourth.py
+R  third.py -> what.py
+```
+
+추가된 파일은 `A`, 수정된 파일은 `M`, 삭제된 파일은 `D`, 이름이 바뀐 파일은 `R`로 표시된다.
+
+
 ---
 
 ## 특정 파일/디렉토리 무시하기: .gitignore
@@ -400,7 +597,7 @@ git config --global core.excludesfile C:\.gitignore
 
 ## History 검토
 
-### git log: 현재 존재하는 commit 검토
+### 현재 존재하는 commit 검토: git log
 
 저장소 commit 메시지의 모든 history를 역순으로 보여준다. 즉, 가장 마지막에 한 commit이 가장 먼저 보여진다.
 
@@ -428,12 +625,36 @@ Date:   Sun Aug 19 20:29:48 2018 +0900
 이때 commit의 수가 많으면 다음 명령을 기다리는 커서가 깜빡인다. 여기서 space bar를 누르면 다음 commit들을 계속해서 보여주고, 끝에 다다르면(저장소의 최초 commit에 도달하면) `(END)`가 표시된다.  
 끝에 도달했거나 이전 commit들을 더 볼 필요가 없다면, `q`를 누르면 log 보기를 중단한다(quit).
 
-#### git log 옵션: --patch(-p), --max-count(-\<number\>), --oneline(--pretty=oneline)
+#### git log 옵션: --patch(-p), --max-count(-\<number\>), --oneline(--pretty=oneline), --graph
 
 각 commit의 diff 결과(commit의 세부 변경사항, 변경된 파일의 변경된 부분들을 보여줌)를 보고 싶으면 다음을 입력한다.
 
 ```diff
 git log --patch
+
+# 결과 예시
+commit 2eae048f725c1d843cad359d655c193d9fd632b4
+Author: greeksharifa <greeksharifa@gmail.com>
+Date:   Sun Aug 19 20:29:48 2018 +0900
+
+    Unwanted commit from 2nd-branch
+
+diff --git a/first.py b/first.py
+index 2d61b9f..c73f054 100644
+--- a/first.py
++++ b/first.py
+@@ -9,3 +9,5 @@ print("This is the 1st sentence written in 3rd-branch.")
+ print('2nd')
+
+ print('test git add .')
++
++print("Unwanted sentence in 2nd-branch")
+```
+
+현재 branch가 아닌 다른 branch의 log를 보고 싶다면 `<branch-name>`을 추가 입력해 준다.
+
+```diff
+git log -p origin/master
 
 # 결과 예시
 commit 2eae048f725c1d843cad359d655c193d9fd632b4
@@ -484,7 +705,51 @@ da446019230a010bf333db9d60529e30bfa3d4e3 (HEAD -> master, origin/master, origin/
 git log --oneline -5
 ```
 
-### git reflog: commit과 commit의 변화 과정 전체를 검토
+`--graph` 옵션은 branch이 어디서 분기되고 합쳐졌는지와 같은 정보를 그래프로 보여준다. 분기된 지점이 없으면 일렬로 보인다.
+
+```vim
+git log --graph
+
+# 결과 예시
+* commit e8a20c960cfcd3f444d93b735f6bed7bd40ed7c5 (HEAD -> master, origin/master, origin/HEAD)
+| Author: greeksharifa <greeksharifa@gmail.com>
+| Date:   Fri May 29 23:25:35 2020 +0900
+|
+|     accelerate page load speed
+|
+* commit abbe725235f3144ef6df02c4b1b34cd1804ccd50
+| Author: greeksharifa <greeksharifa@gmail.com>
+| Date:   Fri May 29 22:22:49 2020 +0900
+|
+|     permalink test
+|
+...
+```
+
+`--merges`, `--no-merges` 옵션은 [여기](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#%EA%B3%B5%EC%9C%A0%EB%90%9C-branch-%EB%B3%91%ED%95%A9-%EC%B7%A8%EC%86%8C%ED%95%98%EA%B8%B0)를 참고한다.
+
+### commit 검색하기
+
+`-S` 옵션은 commit message나 수정사항 내에 주어진 문자열이 포함되어 있다면 해당 commit이 검색된다.  
+`-G` 옵션은 `-S`와 비슷하지만 정규식 표현으로 검색할 수 있다.
+
+```vim
+git log -S <string>
+git log -G <regex-expression>
+```
+
+
+
+### 일부 commit만 확인하기
+
+- 가장 최신 commit을 제외하고 log를 보려면 `git log HEAD^`를 사용한다.
+- 가장 최신 2개의 commit을 제외하고 보려면 `git log HEAD~2`를 사용한다.
+- 특정 범위의 commit을 확인하려면 `git log <commit-1>..<commit-2>`를 이용한다.
+- 2개의 branch 사이의 차이를 확인하려면 `git log <branch-name-1>..<branch-name-2>`를 이용한다. 원격 저장소의 branch도 확인 가능하다.
+
+
+
+### commit과 commit의 변화 과정 전체를 검토: git reflog
 
 ```vim
 git reflog
@@ -496,6 +761,121 @@ da44601 (origin/master, origin/HEAD) HEAD@{1}: clone: from https://github.com/gr
 ```
 
 위와 같이 `HEAD@{0}`: commit과 `HEAD@{1}`: clone 이라는 변화를 볼 수 있다. `git reflog`는 commit 뿐 아니라 commit이 삭제되었는지, 재배치했는지, clone이나 rebase 같은 변화가 있었는지 등등 git에서 일어난 모든 변화를 기록한다. 
+
+### 특정 파일의 수정사항 history 보기: git blame
+
+`git blame <filename>`의 형태로 사용한다. 파일 히스토리가 나타나는데,  
+해당 수정사항을 포함하는 commit id, 수정한 사람, 수정 일시, 줄 번호, 수정 내용을 볼 수 있다.
+
+`blame`이라고 해서 누군가를 비난하는 것은 아니다.
+
+```vim
+git blame fourth.py
+
+# 결과 예시
+8506cef2 (greeksharifa      2020-05-27 21:42:19 +0900 1) print('hello')
+dd65e051 (greeksharifa      2020-05-28 23:21:01 +0900 2) print('git')
+8506cef2 (greeksharifa      2020-05-27 21:42:19 +0900 3)
+dd65e051 (greeksharifa      2020-05-28 23:21:01 +0900 4) print('bye')
+00000000 (Not Committed Yet 2020-05-30 14:26:53 +0900 5) print('20000')
+00000000 (Not Committed Yet 2020-05-30 14:26:53 +0900 6)
+00000000 (Not Committed Yet 2020-05-30 14:26:53 +0900 7) print('for test')
+00000000 (Not Committed Yet 2020-05-30 14:26:53 +0900 8) print('for test 2')
+00000000 (Not Committed Yet 2020-05-30 14:26:53 +0900 9) print('repeating test')
+```
+
+단, 수정사항을 묶어서 보여주지는 않는다.
+
+---
+
+## 다른 commit / branch와의 자세한 차이 확인: git diff
+
+`git diff` 명령으로는 branch 간 차이를 확인하거나, commit 간 차이를 확인할 수 있다. 다음 예시들을 살펴보자.
+
+`git diff`는 최신 commit과 현재 상태를 비교한다. 수정된 파일이 있으면 내용이 뜨고, 없으면 아무것도 출력되지 않는다.
+```diff
+git diff
+
+# 결과 예시 1
+(빈 줄)
+
+# 결과 예시 2
+diff --git a/fourth.py b/fourth.py
+index 4c8cfb6..e69de29 100644
+--- a/fourth.py
++++ b/fourth.py
+@@ -1,5 +0,0 @@
+-print('hello')
+-print('git')
+-
+-print('bye')
+-print('20000')
+\ No newline at end of file
+```
+
+`git diff <commit>`은 해당 commit 이후 수정된 코드를 보여준다.
+
+`git diff <branch-name-1> <branch-name-2>`는 두 branch 간 차이를 전부 보여준다. branch를 지정할 때 두 branch의 순서를 바꾸면 추가된 줄과 삭제된 줄이 뒤바뀌니 주의하자.  
+`<branch-name-1>`에서 `<branch-name-2>`로 이동할 때의 변화를 기준으로 `+`, `-`가 보여진다. 즉 `<branch-name-1>`에는 없고 `<branch-name-2>`에는 있는 코드라면 `+`로 표시된다.
+
+```diff
+git diff master 2nd-branch
+
+# 결과 예시
+diff --git a/.gitignore b/.gitignore
+index 15c8c56..8d16a4b 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,3 @@
+-
++third.py
+ .idea/
+ *dummy*
+diff --git a/first.py b/first.py
+index baba21f..2d61b9f 100644
+--- a/first.py
++++ b/first.py
+@@ -1 +1,11 @@
+-print("Hello, git!") 
++print("Hello, git!") # instead of "Hello, World!"
+...
+```
+
+`<branch-name-2>`를 생략할 수도 있다. 위의 결과와는 `+`, `-`가 다르다.
+
+```diff
+git diff 2nd-branch
+
+# 결과 예시
+diff --git a/.gitignore b/.gitignore
+index 8d16a4b..15c8c56 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,3 @@
+-third.py
++
+ .idea/
+ *dummy*
+diff --git a/first.py b/first.py
+index 2d61b9f..baba21f 100644
+--- a/first.py
++++ b/first.py
+@@ -1,11 +1 @@
+-print("Hello, git!") # instead of "Hello, World!"
+-print("Hi, git!!")
+...
+```
+
+
+### difftool
+
+diff의 결과를 보거나 수정하고자 할 때 본인이 쓰는 에디터가 아니라 git bash 내에서 수행하려면 `difftool`을 사용한다.
+
+```vim
+git difftool <branch-name-1>..<branch-name-2>
+git difftool <commit-1>..<commit-2>
+```
+
 
 ---
 
@@ -627,6 +1007,18 @@ index 0000000..0360dad
 
 ## Git Branch
 
+### branch 목록 업데이트하기
+
+```vim
+git fetch --all
+git fetch -a
+```
+
+특정 원격 저장소의 것만을 업데이트하려면 다음과 같이 한다.
+```vim
+git fetch <remote-name>
+```
+
 ### branch 목록 보기
 
 로컬 branch 목록을 보려면 다음을 입력한다.
@@ -656,9 +1048,25 @@ git branch -a
   remotes/origin/master
 ```
 
-`remotes/`가 붙은 것은 원격 branch라는 뜻이며, branch의 이름에는 `remotes/`가 포함되지 않는다.
+`remotes/`가 붙은 것은 원격 branch라는 뜻이며, branch의 실제 이름에는 `remotes/`가 포함되지 않는다.
 
-원격 branch 목록 보기:
+`--verbose` 옵션을 붙이면 최신 commit까지 출력해 준다.
+```vim
+git branch --all --verbose
+
+# 결과 예시
+  2nd-branch                   1be03c8 Remove files that were uploaded incorrectly
+* master                       94d511c [ahead 3] fourth ticket
+  remotes/origin/2nd-branch    1be03c8 Remove files that were uploaded incorrectly
+  remotes/origin/3rd-branch    90ce4f2 Merge branch '3rd-branch'
+  remotes/origin/HEAD          -> origin/master
+  remotes/origin/fourth-branch 94d511c fourth tickek
+  remotes/origin/master        da44601 Merge branch '3rd-branch'
+```
+
+`master` branch의 설명에 붙어 있는 `[ahead 3]`이라는 문구는 현재 로컬 저장소에는 3개의 commit이 있지만 아직 원격 저장소에 psuh되지 않았음을 의미한다. 
+
+원격 branch 목록만 보기:
 
 ```vim
 git branch --remotes
@@ -684,6 +1092,9 @@ git fetch
 ---
 
 ### branch 전환
+
+branch를 전환하려면 저장되지 않은 수정사항이 없어야 한다.  
+수정사항을 다른 데다 임시로 저장하려면 [stash](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#%EC%88%98%EC%A0%95%EC%82%AC%ED%95%AD-%EC%9E%84%EC%8B%9C-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0-git-stash)를 참고한다.
 
 단순히 branch 간 전환을 하고 싶으면 다음 명령어를 입력한다.
 
@@ -750,9 +1161,39 @@ Switched to a new branch 'fourth-branch'
 
 새로운 branch는 생성 시점에서 parent branch와 같은 history(commit 기록들)을 갖는다.
 
-### branch 병합
+### 원격 저장소의 branch를 로컬 저장소에 복사하며 checkout하기
 
-`git merge <branch-name>`를 사용한다. `<branch-name>` branch의 수정 사항들(commit)을 **현재 branch**로 가져와 병합한다. 
+```vim
+git checkout -b <local-branch-name> --track <remote-branch-name>
+
+# 명령어 예시
+git branch -a
+git checkout -b 3rd-branch --track remotes/origin/3rd-branch
+git branch
+
+# 결과 예시
+  2nd-branch
+* master
+  remotes/origin/2nd-branch
+  remotes/origin/3rd-branch
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/fourth-branch
+  remotes/origin/master
+
+
+Switched to a new branch '3rd-branch'
+Branch '3rd-branch' set up to track remote branch '3rd-branch' from 'origin'.
+
+
+  2nd-branch
+* 3rd-branch
+  master
+```
+
+
+### branch 병합: git merge
+
+`git merge <branch-name>`를 사용한다. `<branch-name>` branch의 수정 사항들(commit)을 **현재 branch**로 가져와 병합한다. 이 방식은 완전 병합 방식이다.
 
 ```vim
 git merge <branch-name>
@@ -785,6 +1226,16 @@ git merge ticket-branch --squash
 `--squash` 옵션은 애초에 branch를 분리하지 말았어야 할 상황에서 쓰면 된다. 즉, 병합 후 parent branch 입장에서는 그냥 하나의 commit이 반영된 것과 같은 효과를 갖는다.
 
 위와 같이 처리했을 때는 ticket branch가 더 이상 필요 없으니 삭제하도록 하자.
+
+병합 시 현 branch의 작업만을 최우선으로 남겨둔다면 다음 옵션을 사용한다.
+```vim
+git merge -X ours <branch-name>
+```
+
+반대로 가져오고자 하는 branch의 작업을 최우선으로 남긴다면 다음을 쓴다.
+```vim
+git merge -X theirs <branch-name>
+```
 
 ### branch 삭제
 
@@ -827,7 +1278,8 @@ untracked 파일을 포함해 모든 수정사항을 되돌리기 | `git clean -
 
 여러 명이 협업하는 프로젝트에서 이미 원격 저장소에 잘못된 수정사항이 올라갔을 때, 이를 강제로 되돌리는 것은 금물이다. '잘못된 수정사항을 삭제하는' 새로운 commit을 만들어 반영시키는 쪽이 훨씬 낫다.
 
-물론 branch를 잘 만들고, pull request 시스템을 적극 활용해서 그러한 일이 일어나지 않도록 하는 것이 최선이다. 
+물론 branch를 잘 만들고, pull request 시스템을 적극 활용해서 그러한 일이 일어나지 않도록 하는 것이 최선이다.  
+혹시나 그런 일이 발생했다면, [revert](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#git-revert-commit%EC%9D%84-%EB%90%98%EB%8F%8C%EB%A6%AC%EB%8A%94-commit)를 사용하라. 다른 명령들은 아직 원격 저장소에 push하지 않았을 때 쓰는 명령들이다.
 
 
 ---
@@ -909,8 +1361,10 @@ git reset --merge ORIG_HEAD
 git reset <commit>
 ```
 
-어디인지 잘 모르겠으면 [reflog](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#git-reflog-commit%EA%B3%BC-commit%EC%9D%98-%EB%B3%80%ED%99%94-%EA%B3%BC%EC%A0%95-%EC%A0%84%EC%B2%B4%EB%A5%BC-%EA%B2%80%ED%86%A0)를 사용해보자.
+어디인지 잘 모르겠으면 [reflog](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#commit%EA%B3%BC-commit%EC%9D%98-%EB%B3%80%ED%99%94-%EA%B3%BC%EC%A0%95-%EC%A0%84%EC%B2%B4%EB%A5%BC-%EA%B2%80%ED%86%A0-git-reflog)를 사용해보자.
 
+
+이미 원격 저장소에 공유된 branch 병합을 취소하는 방법은 [여기](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#%EA%B3%B5%EC%9C%A0%EB%90%9C-branch-%EB%B3%91%ED%95%A9-%EC%B7%A8%EC%86%8C%ED%95%98%EA%B8%B0)를 참고한다.
 
 ---
 
@@ -952,9 +1406,9 @@ rebase는 일반적으로 history rearrange의 역할을 한다. 즉, 여러 com
 #### master branch의 commit을 topic branch로 가져오기
 
 다음과 같은 상황을 가정하자. 각 알파벳은 하나의 commit이며, 각 이름은 branch의 이름을 나타낸다.  
-아래 각 예시는 `git help`에 나오는 도움말을 이용하였다.
+아래 각 예시는 `git help`에 나오는 도움말을 이용하였다. 
 
-```
+```cmd
           A---B---C topic
          /
     D---E---F---G master
@@ -962,7 +1416,7 @@ rebase는 일반적으로 history rearrange의 역할을 한다. 즉, 여러 com
 
 commit F, G를 topic branch에 반영(포함)시키려 한다면,
 
-```
+```cmd
                   A'--B'--C' topic
                  /
     D---E---F---G master
@@ -982,13 +1436,13 @@ commit A, B, C가 F, G와 코드 상으로 동일한 파일 또는 다른 일부
 
 만약 topic branch에 이미 master branch로부터 가져온 commit이 일부 존재하면, 이 commit들은 새로 배치되지 않는다.
 
-```
+```cmd
           A---B---C topic
          /
     D---E---A'---F master
 ```
 에서
-```
+```cmd
                    B'---C' topic
                   /
     D---E---A'---F master
@@ -999,7 +1453,7 @@ commit A, B, C가 F, G와 코드 상으로 동일한 파일 또는 다른 일부
 
 topic을 next가 아닌 master에서 분기된 것처럼 바꾸고자 한다. 즉,
 
-```
+```cmd
     o---A---B---o---C  master
          \
           D---o---o---o---E  next
@@ -1009,7 +1463,7 @@ topic을 next가 아닌 master에서 분기된 것처럼 바꾸고자 한다. �
 
 이걸 아래와 같이 바꿔보자.
 
-```
+```cmd
     o---A---B---o---C  master
         |            \
         |             o'--o'--o'  topic
@@ -1027,7 +1481,7 @@ git rebase --onto master next topic
 
 다른 예시는:
 
-```
+```cmd
                             H---I---J topicB
                            /
                   E---F---G  topicA
@@ -1039,7 +1493,7 @@ git rebase --onto master next topic
 git rebase --onto master topicA topicB
 ```
 
-```
+```cmd
                  H'--I'--J'  topicB
                 /
                 | E---F---G  topicA
@@ -1049,7 +1503,7 @@ git rebase --onto master topicA topicB
 
 #### 특정 범위의 commit들 제거하기
 
-```
+```cmd
     E---F---G---H---I---J  topic
 ```
 
@@ -1062,7 +1516,7 @@ git rebase --onto <branch-name>~<start-number> <branch-name>~<end-number> <branc
 git rebase --onto topic~5 topic~3 topic
 ```
 
-```
+```cmd
     E---H'---I'---J'  topic
 ```
 
@@ -1173,13 +1627,320 @@ git rebase HEAD~4
 git add -p <filename>
 git commit -m <1st-commit-message>
 git add -p <filename1> <filename2>
-git commit -m "2nd-commit-message>
+git commit -m <2nd-commit-message>
 git rebase --continue
 ```
 
+---
+
+### commit을 되돌리는 commit: git revert
+
+예를 들어, `4a521c5`이라는 commit이 코드 3줄을 수정하고, 2줄을 제거하는 commit이라고 하자. 나중에, 이 commit이 완전히 잘못된 내용임을 알았으나, 이미 원격 저장소에 push되었다고 하자. 이럴 때 해당 commit을 취소하는 작업을 `git revert`로 수행할 수 있다.  
+아니, 정확히는 **commit을 되돌리는 역할을 하는 commit을 추가**하는 commit을 새로 생성할 수 있다. 
+
+```vim
+git revert <commit>
+
+# 명령어 예시
+git revert 4a521c5
+
+# 결과 예시
+[master 4a521c5] Revert "specific_commit_description"
+```
+
+---
+
+### 공유된 branch 병합 취소하기
+
+먼저 어디서 병합이 일어났는지를 살펴본다. `git log --merges`를 쓰면 병합 commit만을 볼 수 있다. 반대로 `--no-merges`는 병합 commit은 제외하고 log를 보여준다.
+
+```vim
+git log --merges
+
+# 결과 예시
+commit da446019230a010bf333db9d60529e30bfa3d4e3 (origin/master, origin/HEAD)
+Merge: 4a521c5 2eae048
+Author: greeksharifa <greeksharifa@gmail.com>
+Date:   Sun Aug 19 20:59:24 2018 +0900
+
+    Merge branch '3rd-branch'
+
+commit 90ce4f2ec8b5cd26af51e03401fb4541abfffbc2 (tag: v0.5, origin/3rd-branch)
+Merge: e934e3e 317200f
+Author: greeksharifa <greeksharifa.gmail.com>
+Date:   Sun Aug 12 15:42:06 2018 +0900
+
+    Merge branch '3rd-branch'
+```
+
+아니면 `git log --graph`나 `git reflog`를 활용한다. 
+
+이제 [다음 그림](https://www.amazon.com/Git-Teams-User-Centered-Efficient-Workflows/dp/1491911182)을 참고하자.
+
+<center><img src="/public/img/2020-05-27-github-usage-09-overall/03.png" width="100%"></center>  
+
+완전 병합인 경우 다음 명령을 사용한다.
+
+```vim
+git revert --mainline <branch-number> <commit>
+
+# 명령어 예시
+git revert --maineline 1 4a521c5
+```
+
+여기서 `<branch-number>`는 남길 branch의 번호이다. `git log --graph`에서 보여지는 선들 중에서 가장 왼쪽부터 1번이며, 보통은 1번을 남기게 된다.
+
+병합 commit이 따로 없다면 잘못된 commit들을 개별적으로 처리해야 한다. 
+
+특정 commit을 포함하는 모든 branch의 목록을 보자.
+```vim
+git branch --contains <commit>
+```
+
+취소할 commit들이 인접해 있다면 다음 명령으로 하나의 취소 commit을 생성할 수 있다.
+```vim
+git revert --no-commit <last commit to keep>..<newest commit to reject>
+
+# 결과 예시
+git revert --no-commit 4a521c5..2eae048
+```
+
+변경 사항을 검토하고 취소 과정을 끝내자.
+```vim
+git revert --continue
+```
+
+인접해 있지 않다면 각 commit을 하나씩 취소 작업을 해야 한다. 심심한 위로의 말을 전한다. 
+```vim
+git revert <commit-1>
+git revert <commit-2>
+...
+```
+
+---
+
+### history 완전 삭제하기: 완전범죄?
+
+혹시나 비밀번호 같은 걸 원격 저장소에 올려버렸다면, 다른 팀원들이 봤든 안 봤든 최대한 흔적도 없이 날려버려야 한다. 이 때는 다음 명령들을 실행한다. 삭제할 파일이 `password.crypt`라고 하자.
+
+```vim
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch password.crypt' HEAD
+git reflog expire --expire=now --all
+git gc --prune=now
+git push origin --force --all --tags
+```
+
+각각 특정 파일을 저장소에서 완전히 삭제하고, history에서 없애고, 모든 commit되지 않은 수정사항을 작업트리에서 삭제하는 명령이다.
+
+다른 팀원들에게는 rebase를 진행시키거나 아예 로컬 저장소를 밀어버린 다음 새로 clone해서 받으라고 말한다.
+```vim
+git pull --rebase=preserve
+```
+
+---
+
+## 수정사항 임시 저장하기: git stash
+
+지금 당장 branch를 전환해서 다른 branch의 내용을 봐야 하는데 commit할 만큼은 안 되는 수정사항이 작업트리에 남아 있을 때가 있다. 그럴 때는 잠시 넣어 두는 명령이 필요하다.
+
+```vim
+git stash
+git stash save
+git stash save "stash message"
+
+# 결과 예시
+Saved working directory and index state WIP on master: 94d511c fourth ticket
+```
+
+commit message처럼 간략한 메시지를 적고 싶다면 `git stash save "<stash-message>"`로 사용한다.
+
+그러나 `git stash [save]` 명령은 untracked 파일들은 저장하지 않는다. 이 파일들까지 임시 저장하라면 다음과 같이 쓴다.
+```vim
+git stash save --include-untracked
+git stash -u
+```
+
+반대로 stage된 파일을 stash하지 않으려면 `git stash --keep-index`로 사용한다.
+
+`git stash`도 `git add`와 비슷하게 `--patch` 옵션을 지원한다. 남길 부분을 파일 내에서 선택하고 싶다면 해당 옵션을 사용하라.
+
+stash로 저장한 목록을 보려면 다음 명령을 입력한다.
+```vim
+git stash list
+
+#결과 예시
+stash@{0}: WIP on master: 94d511c fourth ticket
+stash@{1}: WIP on master: 94d511c fourth ticket
+```
+
+stash의 내용이 기억나지 않으면 `git stash stash@{<number>}` 명령을 쓴다.
+```diff
+git stash stash@{1}
+
+# 결과 예시
+Merge: 94d511c 7060e4d f4a6d7f
+Author: greeksharifa <greeksharifa@gmail.com>
+Date:   Sat May 30 13:51:23 2020 +0900
+
+    WIP on master: 94d511c fourth tickek
+
+diff --cc .gitignore
+index 15c8c56,15c8c56,0000000..f6f1686
+mode 100644,100644,000000..100644
+--- a/.gitignore
++++ b/.gitignore
+@@@@ -1,3 -1,3 -1,0 +1,5 @@@@
+  +
+  +.idea/
+  +*dummy*
++++
++++*.txt
+diff --cc doonggoos.py
+...
+```
+
+잠시 넣어 둔 stash를 다시 작업트리로 꺼내오려면 `git stash apply stash@{<number>}`를 사용한다.
+```vim
+git stash apply stash@{0}
+
+# 결과 예시
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 3 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   doonggoos.py
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   .gitignore
+        modified:   fourth.py
+```
+
+어떤 파일들이 변경되었는지 알려준다.
+
+더 이상 안 쓸 stash를 제거하려면 `git stash drop stash@{<number>}`를 사용한다.
+```vim
+git stash drop stash@{0}
+
+#결과 예시
+Dropped stash@{0} (9f700348f8688c3cbc21c17e4bc3d231b3abd0c3)
+```
+
+---
+
+## 작업트리 청소하기: git clean
+
+untracked 파일을 그냥 없애버리고 싶다면 `git clean -d`를 쓴다.
+
+tracking하지 않는 모든 정보를 지워버리려면 `git clean -f -d`를 사용한다. 말 그대로 강제(`-f`, force)다.
+
+그냥 지워버려도 되는지 확인하고 싶다면 `-n` 옵션을 붙여서 실행시키면 된다. 그러면 어떤 파일들이 영향을 받는지 알려준다.
+```vim
+git clean -d -n
+```
+
+`.gitignore`에 명시한 등 무시되는 파일은 `git clean`으로 지워지지 않는다. 이런 파일들까지 싹 다 지우려면 `-x` 옵션을 붙인다.  
+대화형으로 실행하려면 `-i` 옵션을 붙이면 된다.
 
 
 ---
 
+## 최초의 오류 commit 찾기: git bisect
 
-git cherry-pick -x
+`git bisect`는 일종의 디버깅 툴이다. 코드에 어떤 버그가 있지만 그게 언제 추가됐는지 정확히 모를 때 쓴다.  
+`bisect`를 쓰려면 우선 다음 조건이 필요하다.
+
+- 어떤 문제가 있는 시점을 알고(보통은 현재일 것이다)
+- 해당 문제가 없는 과거의 어떤 commit 시점을 알고 있을 때
+
+그러면 `git bisect`를 통해 이분탐색을 수행하여 잘못된 코드가 어떤 commit에서 나타났는지 찾는다. 이분 탐색하며 중간 지점의 commit에서 다시 build해 보고, 
+
+- 문제가 있으면 `git bisect bad` 입력, 해당 commit 이전을 탐색하고, 
+- 문제가 없으면 `git bisect good` 입력, 해당 commit 이후를 탐색한다.
+
+```vim
+# 명령어 및 결과 예시
+git bisect start                        # 시작
+git bisect bad [<commit>]               # 어떤 시점(<commit>을 안 쓰면 현재)에 문제가 있고
+git bisect good <commit>                # 어떤 시점에는 문제가 없음을 git에 알리기
+
+Bisecting: 675 revisions left to test after this (roughly 10 steps)
+# 그러면 675개의 수정 사항 중 이분 탐색을 수행한다. 2^10 = 1024이니 10단계만 테스트하면 된다.
+
+git bisect good
+
+Bisecting: 337 revisions left to test after this (roughly 9 steps)
+
+git bisect <bad/good>
+...
+```
+
+bisect 세션을 끝내고 원래 상태로 돌아가려면 `git bisect reset`을 입력한다.   
+만약 중간 지점으로 선택된 commit이 테스트할 수 없다면 `bad / good` 대신 `git bisect skip`을 입력해서 잠시 패스하고 근처의 다른 commit을 테스트 대상으로 할 수 있다.
+
+
+---
+
+## branch에서 특정 commit만 다른 branch로 적용하기: git cherry-pick
+
+`git cherry-pick <commit>` 명령은 branch의 병합 없이도 다른 branch의 특정 commit을 가져올 수 있다. `ticket` branch에 있는 `96c99dc`라는 commit을 `master` branch로 가져오고자 한다.
+
+```vim
+# 명령어 예시
+git checkout master
+git cherry-pick 96c99dc
+
+# 결과 예시
+[3rd-branch 32d6b93] example commit message
+ Date: Sat May 30 18:51:51 2020 +0900
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+```
+
+
+---
+
+## 명령어 마음대로 설정하기: Git Alias
+
+`alias`는 단축만 가능한 것은 아니지만, 단축할 때 많이 쓴다.
+
+`git reset HEAD -- <filename>`이 입력하기 귀찮거나 자주 실수한다면, 직관적인 명령어로 바꿔 줄 수 있다.  
+`git config alias.<another-name> '<original-command>'` 형식으로 쓴다.
+
+```vim
+git config --global alias.unstage 'reset HEAD --'
+```
+
+이제 아래 두 명령은 동일한 효과를 갖는다.
+```vim
+git reset HEAD -- <filename>
+git unstage <filename>
+```
+
+
+---
+
+## 충돌 자동 해결: Reuse Recorded Resolution(git.rerere)
+
+정확히는 전부 자동으로 해 주는 것은 아니고, 예전에 비슷한 충돌을 해결한 적이 있다면 같은 방식으로 자동으로 해결하도록 설정할 수 있다.
+
+다음 설정으로 활성화한다.
+```vim
+git config --global rerere.enabled true
+```
+
+- 처음 충돌이 났을 때 `git rerere status`로 충돌 파일을 확인한다. `git rerere diff`로 충돌을 해결한다.
+- 이후 처리 과정은 일반 충돌 처리 과정과 같다. 
+    - commit하고 나면 `Recorded resolution for <filename>`이라는 메시지를 볼 수 있다.
+- 다음으로 비슷한 충돌이 났을 때에는 다음 메시지를 확인할 수 있다.
+    - `Resolved <filename> using previous resolution.` : 이미 충돌을 해결했다는 뜻이다.
+    - 충돌 파일을 확인해봐도 충돌된 부분을 찾을 수 없다. 그냥 commit하면 된다.
+
+
+
+---
