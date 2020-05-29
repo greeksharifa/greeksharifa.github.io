@@ -315,12 +315,12 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>위 옵션을 추가하면 정규식 내의 공백들이 무시된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'''
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'''
 010-# 핸드폰 앞자리 
 \d{4}-# 중간자리
 \d{4}# 뒷자리'''</span><span class="p">,</span>
                 <span class="s">'010-1234-5678'</span><span class="p">,</span>
-                <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+                <span class="n">re</span><span class="p">.</span><span class="n">VERBOSE</span><span class="p">).</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>010-1234-5678
@@ -342,7 +342,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 파이썬 문자열은 기본적으로 <code class="highlighter-rouge">replace</code> 메서드를 갖고 있기 때문에 일반적인 문자열은 그냥 치환이 가능하다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">origin_str</span> <span class="o">=</span> <span class="s">'Ryan keep a straight face.'</span>
-<span class="n">edited_str</span> <span class="o">=</span> <span class="n">origin_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'keep'</span><span class="p">,</span> <span class="s">'kept'</span><span class="p">)</span>
+<span class="n">edited_str</span> <span class="o">=</span> <span class="n">origin_str</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'keep'</span><span class="p">,</span> <span class="s">'kept'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">edited_str</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -357,7 +357,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>간단한 사용법은 다음과 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}'</span><span class="p">,</span> <span class="s">'XXXX'</span><span class="p">,</span> <span class="s">'010-1234-5678'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'\d{4}'</span><span class="p">,</span> <span class="s">'XXXX'</span><span class="p">,</span> <span class="s">'010-1234-5678'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>010-XXXX-XXXX
@@ -372,7 +372,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <script data-ad-client="ca-pub-9951774327887666" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
              <span class="n">string</span><span class="o">=</span><span class="s">'Gorio, Gorio, Gorio keep a straight face.'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -390,7 +390,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p><strong>re.subn</strong>은 <strong>re.sub</strong>과 매우 유사하지만, 리턴하는 값이 치환된 문자열과 더불어 치환된 개수의 튜플이라는 것이 다른 점이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">subn</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
               <span class="n">string</span><span class="o">=</span><span class="s">'Gorio, Gorio, Gorio keep a straight face.'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -403,7 +403,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>왜 파이썬에서는 제거 메서드를 따로 만들지 않았는지는 잘 모르지만, <strong>re.sub</strong>으로 간단히 구현 가능하다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'Tube'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="s">'Tube Ryan'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'Tube'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="s">'Tube Ryan'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Ryan
@@ -425,8 +425,8 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>파이썬에서 전체 일치부를 치환 텍스트에 삽입하려면 <code class="highlighter-rouge">\g&lt;0&gt;</code>이라는 토큰을 사용해야 한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'https?://</span><span class="err">\</span><span class="s">S+'</span><span class="p">,</span>
-             <span class="s">'[링크](</span><span class="err">\</span><span class="s">g&lt;0&gt;)'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'https?://\S+'</span><span class="p">,</span>
+             <span class="s">'[링크](\g&lt;0&gt;)'</span><span class="p">,</span>
              <span class="s">'http://www.google.com and https://greeksharifa.github.io'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -437,7 +437,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>여러분은 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/#-%EC%88%AB%EC%9E%90-%EC%95%9E%EC%84%9C-%EC%9D%BC%EC%B9%98%EB%90%9C-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-%EB%8B%A4%EC%8B%9C-%EB%B9%84%EA%B5%90">여기</a>에서 재참조부 일부를 사용하는 방법을 배웠다. 그러면 치환 텍스트에도 이처럼 일부분을 삽입하는 방법이 있을 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(</span><span class="err">\</span><span class="s">d{4})-(</span><span class="err">\</span><span class="s">d{2})-(</span><span class="err">\</span><span class="s">d{2})'</span><span class="p">,</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(\d{4})-(\d{2})-(\d{2})'</span><span class="p">,</span> 
              <span class="s">r'\1.\2.\3'</span><span class="p">,</span>
              <span class="s">'1900-01-01'</span><span class="p">))</span>
 </code></pre></div></div>
@@ -455,8 +455,8 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>조금 위에서 <code class="highlighter-rouge">\g&lt;0&gt;</code>을 사용했었다. 그러면 명명 그룹의 경우 <code class="highlighter-rouge">\g&lt;name&gt;</code>을 사용한다는 것을 눈치챌 수 있을 것이다. 
 비 명명 그룹은 <code class="highlighter-rouge">\g&lt;1&gt;</code>, <code class="highlighter-rouge">\g&lt;2&gt;</code>, … 을 사용한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(?P&lt;year&gt;</span><span class="err">\</span><span class="s">d{4})-(?P&lt;month&gt;</span><span class="err">\</span><span class="s">d{2})-(?P&lt;day&gt;</span><span class="err">\</span><span class="s">d{2})'</span><span class="p">,</span>
-             <span class="s">'</span><span class="err">\</span><span class="s">g&lt;year&gt;.</span><span class="err">\</span><span class="s">g&lt;month&gt;.</span><span class="err">\</span><span class="s">g&lt;day&gt;'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d{2})-(?P&lt;day&gt;\d{2})'</span><span class="p">,</span>
+             <span class="s">'\g&lt;year&gt;.\g&lt;month&gt;.\g&lt;day&gt;'</span><span class="p">,</span>
              <span class="s">'1900-01-01'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -474,7 +474,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>이 역시 어려운 함수는 아니기 때문에, 예시 하나를 바로 보도록 하겠다.<br />
 html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
                <span class="s">'&lt;html&gt; Wow &lt;head&gt; header &lt;/head&gt; &lt;body&gt; Hey &lt;/body&gt; &lt;/html&gt;'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -482,10 +482,10 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
 </code></pre></div></div>
 
 <p>물론 이렇게만 하면 빈 문자열 등도 많이 나온다. 이는 정규식으로 따로 처리하거나, 다음과 같이 쓰면 된다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
                   <span class="s">'&lt;html&gt; Wow &lt;head&gt; header &lt;/head&gt; &lt;body&gt; Hey &lt;/body&gt; &lt;/html&gt;'</span><span class="p">)</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">result</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">result</span><span class="p">))</span>
 <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="s">''</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div></div>
@@ -509,16 +509,16 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
 
 <p>여러분은 지금까지 이렇게 해 왔다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">,</span> <span class="s">'Ryan 1 Tube 2 345'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">,</span> <span class="s">'Ryan 1 Tube 2 345'</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>이를 한 번 정도 쓰는 것이 아닌, 반복문 내에서 여러 번 쓴다면 이렇게 쓰는 것이 좋다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'ryan.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
-    <span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">)</span>
+    <span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="p">:</span>
-        <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+        <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p>미리 컴파일해 두면 성능상의 이점이 있다.</p>
@@ -549,7 +549,7 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
 </ol>
 
 <p>reObj가 무슨 정규식 패턴을 가졌는지 보려면 다음을 수행해 보라.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d+'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'\d+'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>re.compile('\\d+')

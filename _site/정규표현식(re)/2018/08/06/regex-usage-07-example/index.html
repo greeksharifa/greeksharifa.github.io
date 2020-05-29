@@ -396,8 +396,8 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>그냥 따로 씁시다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d+'</span><span class="p">,</span> <span class="s">'몇 이상 몇 이하의 수 38개'</span><span class="p">)</span>
-<span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d+'</span><span class="p">,</span> <span class="s">'몇 이상 몇 이하의 수 38개'</span><span class="p">)</span>
+<span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">365</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s">'Yei!'</span><span class="p">)</span>

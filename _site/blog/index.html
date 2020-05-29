@@ -284,7 +284,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
 
 # 결과 예시
-Initialized empty Git repository <span class="k">in</span> blabla<span class="sr">/sample_directory/</span><span class="p">.</span>git/
+Initialized <span class="nb">empty</span> Git repository <span class="k">in</span> blabla<span class="sr">/sample_directory/</span><span class="p">.</span>git/
 </code></pre></div></div>
 
 <p>그러면 해당 디렉토리에는 <code class="highlighter-rouge">.git</code> 이라는 이름의 숨김처리된 디렉토리가 생성된다. 이 디렉토리 안에 든 것은 수동으로 건드리지 않도록 한다.</p>
@@ -303,7 +303,7 @@ git clone https<span class="p">:</span><span class="sr">//</span>github<span cla
 # 결과 예시
 Cloning into <span class="s1">'git_tutorial'</span><span class="p">...</span>
 remote<span class="p">:</span> Enumerating objects<span class="p">:</span> <span class="m">56</span><span class="p">,</span> done<span class="p">.</span>
-remote<span class="p">:</span> Total <span class="m">56</span> <span class="p">(</span>delta <span class="m">0</span><span class="p">),</span> reused <span class="m">0</span> <span class="p">(</span>delta <span class="m">0</span><span class="p">),</span> <span class="k">pack</span><span class="p">-</span>reused <span class="m">56</span>
+remote<span class="p">:</span> Total <span class="m">56</span> <span class="p">(</span>delta <span class="m">0</span><span class="p">),</span> reused <span class="m">0</span> <span class="p">(</span>delta <span class="m">0</span><span class="p">),</span> pack<span class="p">-</span>reused <span class="m">56</span>
 Unpacking objects<span class="p">:</span> <span class="m">100</span>% <span class="p">(</span><span class="m">56</span>/<span class="m">56</span><span class="p">),</span> done<span class="p">.</span>
 </code></pre></div></div>
 <p>그러면 현재 폴더에 해당 프로젝트 이름의 하위 디렉토리가 생성된다. 이 하위 디렉토리에는 인터넷에 올라와 있는 모든 내용물을 그대로 가져온다(<code class="highlighter-rouge">.git</code> 디렉토리 포함).<br />
@@ -319,10 +319,10 @@ Unpacking objects<span class="p">:</span> <span class="m">100</span>% <span clas
 
 <p>로컬 저장소를 원격저장소에 연결하는 방법은 다음과 같다.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add <span class="p">&lt;</span>remote<span class="p">-</span>name<span class="p">&gt;</span> <span class="p">&lt;</span>git address<span class="p">&gt;</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote <span class="nb">add</span> <span class="p">&lt;</span>remote<span class="p">-</span>name<span class="p">&gt;</span> <span class="p">&lt;</span>git address<span class="p">&gt;</span>
 
 # 명령어 예시
-git remote add origin https<span class="p">:</span><span class="sr">//</span>github<span class="p">.</span><span class="k">com</span><span class="sr">/greeksharifa/</span>git_tutorial<span class="p">.</span>git
+git remote <span class="nb">add</span> origin https<span class="p">:</span><span class="sr">//</span>github<span class="p">.</span><span class="k">com</span><span class="sr">/greeksharifa/</span>git_tutorial<span class="p">.</span>git
 </code></pre></div></div>
 
 <p><code class="highlighter-rouge">&lt;remote-name&gt;</code>은 원격 저장소에 대한 일종의 별명인데, 보통은 <code class="highlighter-rouge">origin</code>을 쓴다. 큰 프로젝트라면 여러 개를 쓸 수도 있다.</p>
@@ -352,15 +352,15 @@ origin  https<span class="p">:</span><span class="sr">//</span>github<span class
 
 <p>이 중 <code class="highlighter-rouge">git add</code> 명령은 첫 단계인, <strong>준비 영역</strong>에 파일을 추가하는 것이다.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="p">&lt;</span>filename1<span class="p">&gt;</span> <span class="p">[&lt;</span>filename2<span class="p">&gt;,</span> <span class="p">...]</span>
-git add <span class="p">&lt;</span>directory<span class="p">-</span>name<span class="p">&gt;</span>
-git add *
-git add <span class="p">--</span><span class="k">all</span>
-git add <span class="p">.</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">add</span> <span class="p">&lt;</span>filename1<span class="p">&gt;</span> <span class="p">[&lt;</span>filename2<span class="p">&gt;,</span> <span class="p">...]</span>
+git <span class="nb">add</span> <span class="p">&lt;</span><span class="nb">directory</span><span class="p">-</span>name<span class="p">&gt;</span>
+git <span class="nb">add</span> *
+git <span class="nb">add</span> <span class="p">--</span><span class="k">all</span>
+git <span class="nb">add</span> <span class="p">.</span>
 
 # 명령어 예시
-git add third<span class="p">.</span><span class="k">py</span> fourth<span class="p">.</span><span class="k">py</span>
-git add temp_dir/*
+git <span class="nb">add</span> third<span class="p">.</span><span class="k">py</span> fourth<span class="p">.</span><span class="k">py</span>
+git <span class="nb">add</span> temp_dir/*
 </code></pre></div></div>
 
 <p><code class="highlighter-rouge">*</code>은 와일드카드로 그냥 쓰면 변경점이 있는 모든 파일을 준비 영역에 추가한다(<code class="highlighter-rouge">git add *</code>). 특정 directory 뒤에 쓰면 해당 directory의 모든 파일을, <code class="highlighter-rouge">*.py</code>와 같이 쓰면 확장자가 <code class="highlighter-rouge">.py</code>인 모든 파일이 준비 영역에 올라가게 된다.<br />
@@ -388,27 +388,27 @@ git add temp_dir/*
 </code></pre></div></div>
 <p>이 중 <code class="highlighter-rouge">print('bye'); print('20000')</code>을 제외한 나머지 변경사항만을 준비 영역에 추가하고 싶다고 하자. 그러면 <code class="highlighter-rouge">git add &lt;filename&gt;</code> 명령에 다음과 같이 <code class="highlighter-rouge">--patch</code> 옵션을 붙인다.</p>
 
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add --patch fourth.py
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">git add --patch fourth.py
 git add fourth.py -p
-
+</span>
 # 결과 예시
 <span class="gh">diff --git a/fourth.py b/fourth.py
 index 13cc618..4c8cfb6 100644
 </span><span class="gd">--- a/fourth.py
 </span><span class="gi">+++ b/fourth.py
-</span><span class="gu">@@ -1,5 +1,5 @@
-</span> print('hello')
+</span><span class="p">@@ -1,5 +1,5 @@</span>
+ print('hello')
 <span class="gi">+print('git')
 </span>
-<span class="gd">-print(1)
--
+-print(1)
+<span class="gd">-
 -print('bye')
-</span>\ No newline at end of file
+</span><span class="err">\</span> No newline at end of file
 <span class="gi">+print('bye')
 +print('20000')
-</span>\ No newline at end of file
-stage this hunk [y,n,q,a,d,s,e,?]? 
-</code></pre></div></div>
+</span><span class="err">\</span> No newline at end of file
+<span class="p">stage this hunk [y,n,q,a,d,s,e,?]? 
+</span></code></pre></div></div>
 
 <p>그러면 수정된 코드 덩이(hunk)마다 선택할지를 물어본다. 인접한 초록색(+) 덩이 또는 인접한 빨간색 덩이(-)가 하나의 코드 덩이가 된다.</p>
 
@@ -476,19 +476,19 @@ stage this hunk [y,n,q,a,d,s,e,?]?
 <div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit
 
 # 결과 예시<span class="p">:</span>
-All text <span class="k">in</span> <span class="k">first</span> line will be showed at <span class="p">--</span>oneline
+All text <span class="k">in</span> <span class="k">first</span> <span class="nb">line</span> will be showed at <span class="p">--</span>oneline
 
 Maximum length <span class="k">is</span> <span class="m">50</span> characters<span class="p">.</span>
 Below<span class="p">,</span> <span class="k">is</span> <span class="k">for</span> detailed message<span class="p">.</span>
 
 # Please enter the commit message <span class="k">for</span> your <span class="k">changes</span><span class="p">.</span> Lines starting
-# with <span class="s1">'#'</span> will be ignored<span class="p">,</span> and an empty message aborts the commit<span class="p">.</span>
+# with <span class="s1">'#'</span> will be ignored<span class="p">,</span> <span class="nb">and</span> an <span class="nb">empty</span> message aborts the commit<span class="p">.</span>
 #
 # On branch master
 # Your branch <span class="k">is</span> <span class="k">up</span> <span class="k">to</span> date with <span class="s1">'origin/master'</span><span class="p">.</span>
 #
 # Changes <span class="k">to</span> be committed<span class="p">:</span>
-#       modified<span class="p">:</span>   <span class="p">.</span>gitignore
+#       <span class="nb">modified</span><span class="p">:</span>   <span class="p">.</span>gitignore
 #       <span class="k">new</span> <span class="k">file</span><span class="p">:</span>   third<span class="p">.</span><span class="k">py</span>
 #
 <span class="p">~</span>
@@ -575,10 +575,10 @@ git push origin ticket<span class="p">-</span>branch
 
 <p>더 이상 필요 없는 원격 branch를 삭제할 때는 다음 명령을 사용한다.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="p">--</span>delete <span class="p">&lt;</span>remote<span class="p">-</span>name<span class="p">&gt;</span> <span class="p">&lt;</span>remote<span class="p">-</span>branch<span class="p">-</span>name<span class="p">&gt;</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="p">--</span><span class="k">delete</span> <span class="p">&lt;</span>remote<span class="p">-</span>name<span class="p">&gt;</span> <span class="p">&lt;</span>remote<span class="p">-</span>branch<span class="p">-</span>name<span class="p">&gt;</span>
 
 # 명령어 예시
-git push <span class="p">--</span>delete origin ticket<span class="p">-</span>branch
+git push <span class="p">--</span><span class="k">delete</span> origin ticket<span class="p">-</span>branch
 git push <span class="p">-</span><span class="k">d</span> origin ticket<span class="p">-</span>branch
 </code></pre></div></div>
 
@@ -606,17 +606,17 @@ Your branch <span class="k">is</span> <span class="k">up</span> <span class="k">
 Changes <span class="k">to</span> be committed<span class="p">:</span>
   <span class="p">(</span>use <span class="s2">"git reset HEAD &lt;file&gt;..."</span> <span class="k">to</span> unstage<span class="p">)</span>
 
-        modified<span class="p">:</span>   <span class="k">first</span><span class="p">.</span><span class="k">py</span>
+        <span class="nb">modified</span><span class="p">:</span>   <span class="k">first</span><span class="p">.</span><span class="k">py</span>
 
 Changes not staged <span class="k">for</span> commit<span class="p">:</span>
   <span class="p">(</span>use <span class="s2">"git add/rm &lt;file&gt;..."</span> <span class="k">to</span> <span class="k">update</span> what will be committed<span class="p">)</span>
-  <span class="p">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> <span class="k">to</span> discard <span class="k">changes</span> <span class="k">in</span> working directory<span class="p">)</span>
+  <span class="p">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> <span class="k">to</span> discard <span class="k">changes</span> <span class="k">in</span> working <span class="nb">directory</span><span class="p">)</span>
 
-        modified<span class="p">:</span>   <span class="p">.</span>gitignore
+        <span class="nb">modified</span><span class="p">:</span>   <span class="p">.</span>gitignore
         deleted<span class="p">:</span>    second<span class="p">.</span><span class="k">py</span>
 
 Untracked <span class="k">files</span><span class="p">:</span>
-  <span class="p">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> <span class="k">to</span> include <span class="k">in</span> what will be committed<span class="p">)</span>
+  <span class="p">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> <span class="k">to</span> <span class="nb">include</span> <span class="k">in</span> what will be committed<span class="p">)</span>
 
         third<span class="p">.</span><span class="k">py</span>
 </code></pre></div></div>
@@ -671,7 +671,7 @@ data<span class="sr">/                   # data/</span> 디렉토리 전체를 �
 
 <p>특정 프로젝트가 아닌 모든 프로젝트 전체에 적용하고 싶으면 다음 명령을 입력한다.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="p">--</span>global core<span class="p">.</span>excludesfile <span class="p">&lt;.</span>gitignore<span class="p">-</span><span class="k">file</span><span class="p">-</span>path<span class="p">&gt;</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="p">--</span>global core<span class="p">.</span>excludesfile <span class="p">&lt;.</span>gitignore<span class="p">-</span><span class="k">file</span><span class="p">-</span><span class="nb">path</span><span class="p">&gt;</span>
 
 # 명령 예시
 git config <span class="p">--</span>global core<span class="p">.</span>excludesfile <span class="p">~</span>/<span class="p">.</span>gitignore
@@ -688,7 +688,7 @@ git config <span class="p">--</span>global core<span class="p">.</span>excludesf
 
 <p>저장소 commit 메시지의 모든 history를 역순으로 보여준다. 즉, 가장 마지막에 한 commit이 가장 먼저 보여진다.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">log</span>
 
 # 결과 예시
 commit da446019230a010bf333db9d60529e30bfa3d4e3 <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span class="p">,</span> origin<span class="sr">/master, origin/</span>HEAD<span class="p">)</span>
@@ -715,21 +715,21 @@ Date<span class="p">:</span>   Sun Aug <span class="m">19</span> <span class="m"
 
 <p>각 commit의 diff 결과(commit의 세부 변경사항, 변경된 파일의 변경된 부분들을 보여줌)를 보고 싶으면 다음을 입력한다.</p>
 
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log --patch
-
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">git log --patch
+</span>
 # 결과 예시
-commit 2eae048f725c1d843cad359d655c193d9fd632b4
+<span class="p">commit 2eae048f725c1d843cad359d655c193d9fd632b4
 Author: greeksharifa &lt;greeksharifa@gmail.com&gt;
 Date:   Sun Aug 19 20:29:48 2018 +0900
-
+</span>
     Unwanted commit from 2nd-branch
 
-<span class="gh">diff --git a/first.py b/first.py
-index 2d61b9f..c73f054 100644
+diff --git a/first.py b/first.py
+<span class="gh">index 2d61b9f..c73f054 100644
 </span><span class="gd">--- a/first.py
 </span><span class="gi">+++ b/first.py
-</span><span class="gu">@@ -9,3 +9,5 @@ print("This is the 1st sentence written in 3rd-branch.")
-</span> print('2nd')
+</span><span class="p">@@ -9,3 +9,5 @@</span> print("This is the 1st sentence written in 3rd-branch.")
+ print('2nd')
 
  print('test git add .')
 <span class="gi">+
@@ -737,11 +737,11 @@ index 2d61b9f..c73f054 100644
 </span></code></pre></div></div>
 
 <p>가장 최근의 commit들 3개만 보고 싶다면 다음과 같이 입력한다.</p>
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="m">-3</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">log</span> <span class="m">-3</span>
 </code></pre></div></div>
 
 <p>commit의 대표 메시지와 같은 핵심 내용만 보고자 한다면 다음과 같이 입력한다.</p>
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="p">--</span>oneline
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">log</span> <span class="p">--</span>oneline
 
 # 결과 예시
 da44601 <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span class="p">,</span> origin<span class="sr">/master, origin/</span>HEAD<span class="p">)</span> Merge branch <span class="s1">'3rd-branch'</span>
@@ -750,7 +750,7 @@ da44601 <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span cl
 </code></pre></div></div>
 
 <p>참고로, 다음과 같이 입력하면 commit의 고유 id의 전체가 출력된다.</p>
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="p">--</span>pretty<span class="p">=</span>oneline
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">log</span> <span class="p">--</span>pretty<span class="p">=</span>oneline
 
 # 결과 예시
 da446019230a010bf333db9d60529e30bfa3d4e3 <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span class="p">,</span> origin<span class="sr">/master, origin/</span>HEAD<span class="p">)</span> Merge branch <span class="s1">'3rd-branch'</span>
@@ -759,7 +759,7 @@ da446019230a010bf333db9d60529e30bfa3d4e3 <span class="p">(</span>HEAD <span clas
 </code></pre></div></div>
 
 <p>옵션들은 중복이 가능하다.</p>
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="p">--</span>oneline <span class="m">-5</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">log</span> <span class="p">--</span>oneline <span class="m">-5</span>
 </code></pre></div></div>
 
 <h3 id="git-reflog-commit과-commit의-변화-과정-전체를-검토">git reflog: commit과 commit의 변화 과정 전체를 검토</h3>
@@ -767,7 +767,7 @@ da446019230a010bf333db9d60529e30bfa3d4e3 <span class="p">(</span>HEAD <span clas
 <div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reflog
 
 # 결과 예시<span class="p">:</span>
-<span class="m">87</span>ab51e <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span class="p">,</span> tag<span class="p">:</span> specific_tag<span class="p">)</span> HEAD@<span class="p">{</span><span class="m">0</span><span class="p">}:</span> commit<span class="p">:</span> All text <span class="k">in</span> <span class="k">first</span> line will be showed at <span class="p">--</span>onel
+<span class="m">87</span>ab51e <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span class="p">,</span> <span class="k">tag</span><span class="p">:</span> specific_tag<span class="p">)</span> HEAD@<span class="p">{</span><span class="m">0</span><span class="p">}:</span> commit<span class="p">:</span> All text <span class="k">in</span> <span class="k">first</span> <span class="nb">line</span> will be showed at <span class="p">--</span>onel
 ine
 da44601 <span class="p">(</span>origin<span class="sr">/master, origin/</span>HEAD<span class="p">)</span> HEAD@<span class="p">{</span><span class="m">1</span><span class="p">}:</span> clone<span class="p">:</span> from https<span class="p">:</span><span class="sr">//</span>github<span class="p">.</span><span class="k">com</span><span class="sr">/greeksharifa/</span>git_tutorial<span class="p">.</span>git
 </code></pre></div></div>
@@ -798,15 +798,15 @@ da44601 <span class="p">(</span>origin<span class="sr">/master, origin/</span>HE
 <p>우선 태그를 붙이고 싶은 commit을 찾자.</p>
 
 <div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 명령어 예시 <span class="m">1</span>
-git log <span class="p">--</span>oneline <span class="m">-3</span>
+git <span class="nb">log</span> <span class="p">--</span>oneline <span class="m">-3</span>
 
 # 결과 예시 <span class="m">1</span>
-<span class="m">87</span>ab51e <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span class="p">)</span> All text <span class="k">in</span> <span class="k">first</span> line will be showed at <span class="p">--</span>oneline
+<span class="m">87</span>ab51e <span class="p">(</span>HEAD <span class="p">-&gt;</span> master<span class="p">)</span> All text <span class="k">in</span> <span class="k">first</span> <span class="nb">line</span> will be showed at <span class="p">--</span>oneline
 da44601 <span class="p">(</span>origin<span class="sr">/master, origin/</span>HEAD<span class="p">)</span> Merge branch <span class="s1">'3rd-branch'</span>
 <span class="m">2</span>eae048 Unwanted commit from <span class="m">2</span>nd<span class="p">-</span>branch
 
 # 명령어 예시 <span class="m">2</span>
-git log <span class="m">87</span>ab51e <span class="p">--</span>max<span class="p">-</span>count<span class="p">=</span><span class="m">1</span>
+git <span class="nb">log</span> <span class="m">87</span>ab51e <span class="p">--</span><span class="nb">max</span><span class="p">-</span><span class="nb">count</span><span class="p">=</span><span class="m">1</span>
 git show <span class="m">87</span>ab51e
 
 # 결과 예시 <span class="m">2</span>
@@ -814,7 +814,7 @@ commit <span class="m">87</span>ab51eecef1a526cb504846ddcaed0459f685c8 <span cla
 Author<span class="p">:</span> greeksharifa <span class="p">&lt;</span>greeksharifa@gmail<span class="p">.</span><span class="k">com</span><span class="p">&gt;</span>
 Date<span class="p">:</span>   Thu May <span class="m">28</span> <span class="m">14</span><span class="p">:</span><span class="m">49</span><span class="p">:</span><span class="m">13</span> <span class="m">2020</span> <span class="p">+</span><span class="m">0900</span>
 
-    All text <span class="k">in</span> <span class="k">first</span> line will be showed at <span class="p">--</span>oneline
+    All text <span class="k">in</span> <span class="k">first</span> <span class="nb">line</span> will be showed at <span class="p">--</span>oneline
 
     Maximum length <span class="k">is</span> <span class="m">50</span> characters<span class="p">.</span>
     Below<span class="p">,</span> <span class="k">is</span> <span class="k">for</span> detailed message<span class="p">.</span>
@@ -824,14 +824,14 @@ Date<span class="p">:</span>   Thu May <span class="m">28</span> <span class="m"
 
 <p>이제 태그를 commit에 붙여보자.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git tag <span class="p">&lt;</span>tag<span class="p">-</span>name<span class="p">&gt;</span> <span class="m">87</span>ab51e
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="k">tag</span> <span class="p">&lt;</span><span class="k">tag</span><span class="p">-</span>name<span class="p">&gt;</span> <span class="m">87</span>ab51e
 
 # 명령어 예시
-git tag specific_tag <span class="m">87</span>ab51e
+git <span class="k">tag</span> specific_tag <span class="m">87</span>ab51e
 </code></pre></div></div>
 
 <p>지금까지 붙인 태그 목록을 보려면 다음 명령을 입력한다.</p>
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git tag
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="k">tag</span>
 
 # 결과 예시
 specific_tag
@@ -847,14 +847,14 @@ specific_tag
 
 <p>commit id를 사용해서 특정 commit을 보고자 하면 다음과 같이 쓴다.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log <span class="m">87</span>ab51e <span class="p">--</span>max<span class="p">-</span>count<span class="p">=</span><span class="m">1</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nb">log</span> <span class="m">87</span>ab51e <span class="p">--</span><span class="nb">max</span><span class="p">-</span><span class="nb">count</span><span class="p">=</span><span class="m">1</span>
 git show <span class="m">87</span>ab51e
 
 # 결과 예시
 Author<span class="p">:</span> greeksharifa <span class="p">&lt;</span>greeksharifa@gmail<span class="p">.</span><span class="k">com</span><span class="p">&gt;</span>
 Date<span class="p">:</span>   Thu May <span class="m">28</span> <span class="m">14</span><span class="p">:</span><span class="m">49</span><span class="p">:</span><span class="m">13</span> <span class="m">2020</span> <span class="p">+</span><span class="m">0900</span>
 
-    All text <span class="k">in</span> <span class="k">first</span> line will be showed at <span class="p">--</span>oneline
+    All text <span class="k">in</span> <span class="k">first</span> <span class="nb">line</span> will be showed at <span class="p">--</span>oneline
 
     Maximum length <span class="k">is</span> <span class="m">50</span> characters<span class="p">.</span>
     Below<span class="p">,</span> <span class="k">is</span> <span class="k">for</span> detailed message<span class="p">.</span>
@@ -862,36 +862,36 @@ Date<span class="p">:</span>   Thu May <span class="m">28</span> <span class="m"
 
 <h4 id="git-show-tag-name">git show &lt;tag-name&gt;</h4>
 
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git show &lt;tag-name&gt;
-
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">git show &lt;tag-name&gt;
+</span>
 # 명령어 예시
-git show specific_tag
-
+<span class="p">git show specific_tag
+</span>
 # 결과 예시
-commit 87ab51eecef1a526cb504846ddcaed0459f685c8 (HEAD -&gt; master, tag: specific_tag)
+<span class="p">commit 87ab51eecef1a526cb504846ddcaed0459f685c8 (HEAD -&gt; master, tag: specific_tag)
 Author: greeksharifa &lt;greeksharifa@gmail.com&gt;
 Date:   Thu May 28 14:49:13 2020 +0900
-
+</span>
     All text in first line will be showed at --oneline
 
     Maximum length is 50 characters.
     Below, is for detailed message.
 
-<span class="gh">diff --git a/.gitignore b/.gitignore
-index 8d16a4b..6ec8ec8 100644
+diff --git a/.gitignore b/.gitignore
+<span class="gh">index 8d16a4b..6ec8ec8 100644
 </span><span class="gd">--- a/.gitignore
 </span><span class="gi">+++ b/.gitignore
-</span><span class="gu">@@ -1,3 +1,2 @@
-</span><span class="gd">-third.py
+</span><span class="p">@@ -1,3 +1,2 @@</span>
+<span class="gd">-third.py
 </span> .idea/
  *dummy*
 <span class="gh">diff --git a/third.py b/third.py
-</span>new file mode 100644
-<span class="gh">index 0000000..0360dad
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..0360dad
 </span><span class="gd">--- /dev/null
 </span><span class="gi">+++ b/third.py
-</span><span class="gu">@@ -0,0 +1 @@
-</span><span class="gi">+print('hello 3!')
+</span><span class="p">@@ -0,0 +1 @@</span>
+<span class="gi">+print('hello 3!')
 </span></code></pre></div></div>
 <hr />
 
@@ -902,7 +902,7 @@ index 8d16a4b..6ec8ec8 100644
 <p>로컬 branch 목록을 보려면 다음을 입력한다.</p>
 
 <div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch
-git branch <span class="p">--</span>list
+git branch <span class="p">--</span><span class="k">list</span>
 git branch <span class="p">-</span><span class="k">l</span>
 
 # 결과 예시
@@ -1032,7 +1032,7 @@ Fast<span class="p">-</span>forward
  third<span class="p">.</span><span class="k">py</span>   <span class="p">|</span> <span class="m">0</span>
  <span class="m">4</span> <span class="k">files</span> changed<span class="p">,</span> <span class="m">6</span> insertions<span class="p">(+),</span> <span class="m">10</span> deletions<span class="p">(-)</span>
  create <span class="k">mode</span> <span class="m">100644</span> fourth<span class="p">.</span><span class="k">py</span>
- delete <span class="k">mode</span> <span class="m">100644</span> second<span class="p">.</span><span class="k">py</span>
+ <span class="k">delete</span> <span class="k">mode</span> <span class="m">100644</span> second<span class="p">.</span><span class="k">py</span>
  create <span class="k">mode</span> <span class="m">100644</span> third<span class="p">.</span><span class="k">py</span>
 </code></pre></div></div>
 
@@ -1050,11 +1050,11 @@ git merge ticket<span class="p">-</span>branch <span class="p">--</span>squash
 
 <h3 id="branch-삭제">branch 삭제</h3>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="p">--</span>delete <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="p">--</span><span class="k">delete</span> <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;</span>
 git branch <span class="p">-</span><span class="k">d</span> <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;</span>
 
 # 명령어 예시
-git branch <span class="p">--</span>delete ticket<span class="p">-</span>branch
+git branch <span class="p">--</span><span class="k">delete</span> ticket<span class="p">-</span>branch
 
 # 결과 예시
 Deleted branch fourth<span class="p">-</span>branch <span class="p">(</span>was <span class="m">94</span>d511c<span class="p">).</span>
@@ -1137,11 +1137,11 @@ On branch master
 
 Changes not staged <span class="k">for</span> commit<span class="p">:</span>
   <span class="p">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> <span class="k">to</span> <span class="k">update</span> what will be committed<span class="p">)</span>
-  <span class="p">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> <span class="k">to</span> discard <span class="k">changes</span> <span class="k">in</span> working directory<span class="p">)</span>
+  <span class="p">(</span>use <span class="s2">"git checkout -- &lt;file&gt;..."</span> <span class="k">to</span> discard <span class="k">changes</span> <span class="k">in</span> working <span class="nb">directory</span><span class="p">)</span>
 
-        modified<span class="p">:</span>   third<span class="p">.</span><span class="k">py</span>
+        <span class="nb">modified</span><span class="p">:</span>   third<span class="p">.</span><span class="k">py</span>
 
-no <span class="k">changes</span> added <span class="k">to</span> commit <span class="p">(</span>use <span class="s2">"git add"</span> and/or <span class="s2">"git commit -a"</span><span class="p">)</span>
+no <span class="k">changes</span> added <span class="k">to</span> commit <span class="p">(</span>use <span class="s2">"git add"</span> <span class="nb">and</span>/<span class="nb">or</span> <span class="s2">"git commit -a"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>마지막 줄에서 아직 commit된 것이 없다는 것을 확인해야 한다.</p>
@@ -1187,7 +1187,7 @@ no <span class="k">changes</span> added <span class="k">to</span> commit <span c
 
 <p>모든 파일의 수정사항 되돌리기:</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset <span class="p">--</span><span class="k">hard</span> HEAD
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset <span class="p">--</span>hard HEAD
 </code></pre></div></div>
 
 <hr />
@@ -1337,7 +1337,7 @@ git rebase master topic
 
 <p>topic branch의 5번째 최신 commit부터, 3번째 최신 commit <strong>직전</strong>까지 commit을 topic branch에서 폐기하고 싶다고 하자. 그러면 다음 명령어로 사용 가능하다.</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase <span class="p">--</span>onto <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;~&lt;</span><span class="k">start</span><span class="p">-</span><span class="k">number</span><span class="p">&gt;</span> <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;~&lt;</span><span class="k">end</span><span class="p">-</span><span class="k">number</span><span class="p">&gt;</span> <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;</span>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase <span class="p">--</span>onto <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;~&lt;</span>start<span class="p">-</span><span class="k">number</span><span class="p">&gt;</span> <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;~&lt;</span>end<span class="p">-</span><span class="k">number</span><span class="p">&gt;</span> <span class="p">&lt;</span>branch<span class="p">-</span>name<span class="p">&gt;</span>
 
 # 명령어 예시
 git rebase <span class="p">--</span>onto topic<span class="p">~</span><span class="m">5</span> topic<span class="p">~</span><span class="m">3</span> topic
@@ -1383,7 +1383,7 @@ git rebase <span class="p">--</span>onto topic<span class="p">~</span><span clas
 f6c56ef what igt
 bd80626 github hem
 b7801a2 github overall
-<span class="m">608</span>a518 highlighter theme change
+<span class="m">608</span>a518 highlighter theme <span class="k">change</span>
 </code></pre></div></div>
 
 <p>여러 개의 commit들을 합치거나, commit message를 수정하거나 하는 작업은 모두 rebase로 가능하다.<br />
@@ -1408,19 +1408,19 @@ pick b7801a2 github overall
 #
 # Commands<span class="p">:</span>
 # <span class="k">p</span><span class="p">,</span> pick <span class="p">=</span> use commit
-# <span class="k">r</span><span class="p">,</span> reword <span class="p">=</span> use commit<span class="p">,</span> but edit the commit message
-# <span class="k">e</span><span class="p">,</span> edit <span class="p">=</span> use commit<span class="p">,</span> but stop <span class="k">for</span> amending
+# <span class="k">r</span><span class="p">,</span> reword <span class="p">=</span> use commit<span class="p">,</span> but <span class="k">edit</span> the commit message
+# <span class="k">e</span><span class="p">,</span> <span class="k">edit</span> <span class="p">=</span> use commit<span class="p">,</span> but <span class="k">stop</span> <span class="k">for</span> amending
 # s<span class="p">,</span> squash <span class="p">=</span> use commit<span class="p">,</span> but meld into <span class="k">previous</span> commit
-# <span class="k">f</span><span class="p">,</span> fixup <span class="p">=</span> like <span class="s2">"squash"</span><span class="p">,</span> but discard this commit's log message
-# <span class="k">x</span><span class="p">,</span> exec <span class="p">=</span> run command <span class="p">(</span>the rest of the line<span class="p">)</span> using <span class="k">shell</span>
+# <span class="k">f</span><span class="p">,</span> fixup <span class="p">=</span> like <span class="s2">"squash"</span><span class="p">,</span> but discard this commit's <span class="nb">log</span> message
+# <span class="k">x</span><span class="p">,</span> exec <span class="p">=</span> run command <span class="p">(</span>the rest of the <span class="nb">line</span><span class="p">)</span> using <span class="k">shell</span>
 #
-# These lines can be <span class="k">re</span><span class="p">-</span>ordered; they are executed from <span class="k">top</span> <span class="k">to</span> bottom<span class="p">.</span>
+# These <span class="nb">lines</span> can be <span class="nb">re</span><span class="p">-</span>ordered; they are executed from <span class="nb">top</span> <span class="k">to</span> bottom<span class="p">.</span>
 #
-# If you remove <span class="k">a</span> line here THAT COMMIT WILL BE LOST<span class="p">.</span>
+# If you <span class="nb">remove</span> <span class="k">a</span> <span class="nb">line</span> here THAT COMMIT WILL BE LOST<span class="p">.</span>
 #
-# However<span class="p">,</span> <span class="k">if</span> you remove everything<span class="p">,</span> the rebase will be aborted<span class="p">.</span>
+# However<span class="p">,</span> <span class="k">if</span> you <span class="nb">remove</span> everything<span class="p">,</span> the rebase will be aborted<span class="p">.</span>
 #
-# Note that empty commits are commented out
+# Note that <span class="nb">empty</span> commits are commented out
 </code></pre></div></div>
 
 <p>설명을 잘 살펴보면 다음을 알 수 있다:</p>
@@ -1449,12 +1449,12 @@ fixup b7801a2 github overall
 
 <div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 명령어 예시
 git rebase HEAD<span class="p">~</span><span class="m">4</span>
-# pick <span class="p">-&gt;</span> edit
-git add <span class="p">-</span><span class="k">p</span> <span class="p">&lt;</span>filename<span class="p">&gt;</span>
+# pick <span class="p">-&gt;</span> <span class="k">edit</span>
+git <span class="nb">add</span> <span class="p">-</span><span class="k">p</span> <span class="p">&lt;</span>filename<span class="p">&gt;</span>
 git commit <span class="p">-</span><span class="k">m</span> <span class="p">&lt;</span><span class="m">1</span><span class="k">st</span><span class="p">-</span>commit<span class="p">-</span>message<span class="p">&gt;</span>
-git add <span class="p">-</span><span class="k">p</span> <span class="p">&lt;</span>filename1<span class="p">&gt;</span> <span class="p">&lt;</span>filename2<span class="p">&gt;</span>
+git <span class="nb">add</span> <span class="p">-</span><span class="k">p</span> <span class="p">&lt;</span>filename1<span class="p">&gt;</span> <span class="p">&lt;</span>filename2<span class="p">&gt;</span>
 git commit <span class="p">-</span><span class="k">m</span> "<span class="m">2</span>nd<span class="p">-</span>commit<span class="p">-</span>message<span class="p">&gt;</span>
-git rebase <span class="p">--</span>continue
+git rebase <span class="p">--</span><span class="k">continue</span>
 </code></pre></div></div>
 
 <hr />
@@ -1739,40 +1739,40 @@ FM보다 표현력이 뛰어난 <strong>AFM</strong>이기에 더욱 과적합 �
 <span class="kn">import</span> <span class="nn">config</span>
 
 
-<span class="k">class</span> <span class="nc">Embedding_layer</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Embedding_layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_cont</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Embedding_layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_cont</span> <span class="o">=</span> <span class="n">num_cont</span>                <span class="c1"># 연속형 field 수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_cat</span>  <span class="o">=</span> <span class="n">num_field</span> <span class="o">-</span> <span class="n">num_cont</span>    <span class="c1"># 범주형 field 수
+        <span class="nb">super</span><span class="p">(</span><span class="n">Embedding_layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span> <span class="o">=</span> <span class="n">num_cont</span>                <span class="c1"># 연속형 field 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_cat</span>  <span class="o">=</span> <span class="n">num_field</span> <span class="o">-</span> <span class="n">num_cont</span>    <span class="c1"># 범주형 field 수
 </span>
         <span class="c1"># Parameters
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_feature</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_feature</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
                                               <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'V'</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
         <span class="c1"># inputs: (None, p, k), embeds: (None, m, k)
-</span>        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span>        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="c1"># 원핫인코딩으로 생성된 0을 제외한 값에 True를 부여한 mask(np.array): (None, m)
 </span>        <span class="c1"># indices: 그 mask의 indices
-</span>        <span class="n">cont_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_cont</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="n">cat_mask</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">not_equal</span><span class="p">(</span><span class="n">inputs</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_cont</span><span class="p">:],</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">cont_mask</span><span class="p">,</span> <span class="n">cat_mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span>        <span class="n">cont_mask</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">cat_mask</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">not_equal</span><span class="p">(</span><span class="n">inputs</span><span class="p">[:,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span><span class="p">:],</span> <span class="mf">0.0</span><span class="p">).</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">cont_mask</span><span class="p">,</span> <span class="n">cat_mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="n">_</span><span class="p">,</span> <span class="n">flatten_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="bp">True</span><span class="p">)</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="n">flatten_indices</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span><span class="p">))</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">flatten_indices</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">flatten_indices</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">))</span>
 
         <span class="c1"># embedding_matrix: (None, m, k)
-</span>        <span class="n">embedding_matrix</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="n">indices</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</span>        <span class="n">embedding_matrix</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">V</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="n">indices</span><span class="p">.</span><span class="n">tolist</span><span class="p">())</span>
 
         <span class="c1"># masked_inputs: (None, m, 1)
-</span>        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="p">),</span>
-                                   <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</span>        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="p">),</span>
+                                   <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
-        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">masked_inputs</span><span class="p">,</span> <span class="n">embedding_matrix</span><span class="p">)</span>    <span class="c1"># (None, m, k)
+        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">masked_inputs</span><span class="p">,</span> <span class="n">embedding_matrix</span><span class="p">)</span>    <span class="c1"># (None, m, k)
 </span>
         <span class="k">return</span> <span class="n">masked_inputs</span>
 </code></pre></div></div>
@@ -1785,11 +1785,11 @@ FM보다 표현력이 뛰어난 <strong>AFM</strong>이기에 더욱 과적합 �
 <span class="n">comb_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comb_list</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
-        <span class="n">interactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">inputs</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">comb_list</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
+        <span class="n">interactions</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">inputs</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]))</span>
 
-<span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">interactions</span><span class="p">),</span>
-                                    <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span><span class="p">))</span>
+<span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span><span class="n">interactions</span><span class="p">),</span>
+                                    <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>하지만 위와 같이 loop를 돌리게 되면, 속도가 현저하게 느려져서 실 사용이 불가능하다. 따라서 이 때는 Trick이 필요한데, 그림으로 설명하면 아래와 같다.</p>
@@ -1800,35 +1800,35 @@ FM보다 표현력이 뛰어난 <strong>AFM</strong>이기에 더욱 과적합 �
 
 <p>이를 코드를 구현한 것이 아래이다. <strong>tf.tile</strong>, <strong>tf.expand_dims</strong> 함수를 잘 이용하면 이 Trick을 코드로 구현할 수 있다. 직접 해보길 바란다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Pairwise_Interaction_Layer</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Pairwise_Interaction_Layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Pairwise_Interaction_Layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
+        <span class="nb">super</span><span class="p">(</span><span class="n">Pairwise_Interaction_Layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
 </span>
-        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">MASKS</span><span class="p">)</span>    <span class="c1"># (num_field**2)
-</span>        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>             <span class="c1"># (num_field**2, 1)
-</span>        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">])</span>   <span class="c1"># (num_field**2, embedding_size)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>         <span class="c1"># (1, num_field**2, embedding_size)
+        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">MASKS</span><span class="p">)</span>    <span class="c1"># (num_field**2)
+</span>        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>             <span class="c1"># (num_field**2, 1)
+</span>        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">])</span>   <span class="c1"># (num_field**2, embedding_size)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>         <span class="c1"># (1, num_field**2, embedding_size)
 </span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
-        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="c1"># a, b shape: (batch_size, num_field^2, embedding_size)
-</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span><span class="p">])</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># ab, mask_tensor: (batch_size, num_field^2, embedding_size)
-</span>        <span class="n">ab</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-        <span class="n">mask_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">masks</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</span>        <span class="n">ab</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">mask_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">masks</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># pairwise_interactions: (batch_size, num_field C 2, embedding_size)
-</span>        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">mask_tensor</span><span class="p">),</span>
-                                           <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span><span class="p">])</span>
+</span>        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">mask_tensor</span><span class="p">),</span>
+                                           <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">])</span>
 
         <span class="k">return</span> <span class="n">pairwise_interactions</span>
 </code></pre></div></div>
@@ -1838,36 +1838,36 @@ FM보다 표현력이 뛰어난 <strong>AFM</strong>이기에 더욱 과적합 �
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_FIELD</span><span class="p">):</span>
     <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span>
 
-    <span class="n">MASKS</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
-    <span class="n">MASKS</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">True</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">NUM_FIELD</span> <span class="o">-</span> <span class="n">flag</span><span class="p">))</span>
+    <span class="n">MASKS</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+    <span class="n">MASKS</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">True</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">NUM_FIELD</span> <span class="o">-</span> <span class="n">flag</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>다음으로는 마지막 <code class="highlighter-rouge">Attention Pooling Layer</code>이다. 설명할 것이 많지 않은 간단한 구조이다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Attention_Pooling_Layer</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Attention_Pooling_Layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Attention_Pooling_Layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+        <span class="nb">super</span><span class="p">(</span><span class="n">Attention_Pooling_Layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
 </span>
         <span class="c1"># Parameters
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">),</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">),</span>
                                               <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'h'</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
                                               <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'W_attention'</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
 
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
         <span class="c1"># 조합 수 = combinations(num_feauture, 2)
 </span>        <span class="c1"># inputs: (None, 조합 수, embedding_size)
 </span>        <span class="c1"># --&gt; (전치 후) (None, embedding_size, 조합 수)
-</span>        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</span>        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># e: (None, 조합 수, 1)
-</span>        <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">))</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</span>        <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">h</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">W</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">b</span><span class="p">))</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># Attention Score 산출
-</span>        <span class="n">attention_score</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span>        <span class="n">attention_score</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">attention_score</span>
 </code></pre></div></div>
@@ -1876,58 +1876,58 @@ FM보다 표현력이 뛰어난 <strong>AFM</strong>이기에 더욱 과적합 �
 <p>위에서 설명한 모든 Layer들을 이어 붙이면 <strong>AFM</strong> 모델이 완성된다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Model 정의
 </span><span class="kn">from</span> <span class="nn">layers</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">backend</span><span class="p">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">AFM</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">AFM</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_cont</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_cont</span> <span class="o">=</span> <span class="n">num_cont</span>                <span class="c1"># 연속형 field 수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>          <span class="c1"># Attention Pooling Layer Hidden Unit 수
+        <span class="nb">super</span><span class="p">(</span><span class="n">AFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span> <span class="o">=</span> <span class="n">num_cont</span>                <span class="c1"># 연속형 field 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>          <span class="c1"># Attention Pooling Layer Hidden Unit 수
 </span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_layer</span> <span class="o">=</span> <span class="n">Embedding_layer</span><span class="p">(</span><span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_layer</span> <span class="o">=</span> <span class="n">Embedding_layer</span><span class="p">(</span><span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span>
                                                <span class="n">num_cont</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pairwise_interaction_layer</span> <span class="o">=</span> <span class="n">Pairwise_Interaction_Layer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pairwise_interaction_layer</span> <span class="o">=</span> <span class="n">Pairwise_Interaction_Layer</span><span class="p">(</span>
             <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attention_pooling_layer</span> <span class="o">=</span> <span class="n">Attention_Pooling_Layer</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">attention_pooling_layer</span> <span class="o">=</span> <span class="n">Attention_Pooling_Layer</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
 
         <span class="c1"># Parameters
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">w_0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">num_feature</span><span class="p">]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">w_0</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">num_feature</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
                                               <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">DROPOUT_RATE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">DROPOUT_RATE</span><span class="p">)</span>
 
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">"AFM Model: embedding{}, hidden{}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">"AFM Model: embedding{}, hidden{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">hidden_size</span><span class="p">)</span>
 
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
         <span class="c1"># 1) Linear Term: (None, )
-</span>        <span class="n">linear_terms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_0</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</span>        <span class="n">linear_terms</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">w_0</span> <span class="o">+</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># 2) Interaction Term
-</span>        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pairwise_interaction_layer</span><span class="p">(</span><span class="n">masked_inputs</span><span class="p">)</span>
+</span>        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pairwise_interaction_layer</span><span class="p">(</span><span class="n">masked_inputs</span><span class="p">)</span>
 
         <span class="c1"># Dropout and Attention Score
-</span>        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">)</span>
-        <span class="n">attention_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention_pooling_layer</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">)</span>
+</span>        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">)</span>
+        <span class="n">attention_score</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">attention_pooling_layer</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">)</span>
 
         <span class="c1"># (None, 조합 수, embedding_size)
-</span>        <span class="n">attention_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">,</span> <span class="n">attention_score</span><span class="p">)</span>
+</span>        <span class="n">attention_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">,</span> <span class="n">attention_score</span><span class="p">)</span>
 
         <span class="c1"># (None, embedding_size)
-</span>        <span class="n">final_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">attention_interactions</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span>        <span class="n">final_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">attention_interactions</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># 3) Final: (None, )
-</span>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">linear_terms</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">final_interactions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+</span>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">linear_terms</span> <span class="o">+</span> <span class="n">tf</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">final_interactions</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">y_pred</span>
 </code></pre></div></div>
@@ -2081,7 +2081,7 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
              <span class="s">'sex'</span><span class="p">,</span> <span class="s">'capital-gain'</span><span class="p">,</span> <span class="s">'capital-loss'</span><span class="p">,</span> <span class="s">'hours-per-week'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">]</span>
 <span class="n">CONT_FIELDS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'age'</span><span class="p">,</span> <span class="s">'fnlwgt'</span><span class="p">,</span> <span class="s">'education-num'</span><span class="p">,</span>
                <span class="s">'capital-gain'</span><span class="p">,</span> <span class="s">'capital-loss'</span><span class="p">,</span> <span class="s">'hours-per-week'</span><span class="p">]</span>
-<span class="n">CAT_FIELDS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ALL_FIELDS</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">CONT_FIELDS</span><span class="p">))</span>
+<span class="n">CAT_FIELDS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ALL_FIELDS</span><span class="p">).</span><span class="n">difference</span><span class="p">(</span><span class="n">CONT_FIELDS</span><span class="p">))</span>
 
 <span class="c1"># Hyper-parameters for Experiment
 </span><span class="n">NUM_BIN</span> <span class="o">=</span> <span class="mi">10</span>
@@ -2104,11 +2104,11 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 <span class="k">def</span> <span class="nf">get_modified_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">all_fields</span><span class="p">,</span> <span class="n">continuous_fields</span><span class="p">,</span> <span class="n">categorical_fields</span><span class="p">,</span> <span class="n">is_bin</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="n">field_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="n">field_index</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">columns</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_fields</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"{} not included: Check your column list"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"{} not included: Check your column list"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
             <span class="k">raise</span> <span class="nb">ValueError</span>
 
         <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">continuous_fields</span><span class="p">:</span>
@@ -2116,30 +2116,30 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 
             <span class="c1"># 연속형 변수도 구간화 할 것인가?
 </span>            <span class="k">if</span> <span class="n">is_bin</span><span class="p">:</span>
-                <span class="n">X_bin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="n">col</span><span class="p">]])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">),</span> <span class="n">config</span><span class="o">.</span><span class="n">NUM_BIN</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-                <span class="n">X_bin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_bin</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'str'</span><span class="p">)</span>
+                <span class="n">X_bin</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="n">scaler</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="n">col</span><span class="p">]]).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">),</span> <span class="n">config</span><span class="p">.</span><span class="n">NUM_BIN</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                <span class="n">X_bin</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_bin</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="s">'str'</span><span class="p">)</span>
 
-                <span class="n">X_bin_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_bin</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">prefix_sep</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>
-                <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_bin_col</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-                <span class="n">field_index</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">X_bin_col</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-                <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_bin_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">X_bin_col</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_bin</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">prefix_sep</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>
+                <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_bin_col</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+                <span class="n">field_index</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">X_bin_col</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_bin_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">X_cont_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="n">col</span><span class="p">]]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+                <span class="n">X_cont_col</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="n">col</span><span class="p">]]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
                 <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span>
-                <span class="n">field_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-                <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_cont_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">field_index</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_cont_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_fields</span><span class="p">:</span>
-            <span class="n">X_cat_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">prefix_sep</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>
-            <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_cat_col</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-            <span class="n">field_index</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">X_cat_col</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-            <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_cat_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">X_cat_col</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">prefix_sep</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>
+            <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_cat_col</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">field_index</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">X_cat_col</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_cat_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="k">print</span><span class="p">(</span><span class="s">'Data Prepared...'</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'X shape: {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">X_modified</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'# of Feature: {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">field_index</span><span class="p">)))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'# of Field: {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">field_dict</span><span class="p">)))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'X shape: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">X_modified</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'# of Feature: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">field_index</span><span class="p">)))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'# of Field: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">field_dict</span><span class="p">)))</span>
 
     <span class="k">return</span> <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span><span class="p">,</span> <span class="n">X_modified</span>
 </code></pre></div></div>
@@ -2150,45 +2150,45 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 <p>Parameter $w$의 길이는 <code class="highlighter-rouge">num_feature(108)</code>이며, Parameter $V$의 shape은 <code class="highlighter-rouge">num_field(14), embedding_size(5)</code>이다. 그런데 아래 <strong>call</strong> 함수에서 보면 알 수 있듯이, 이 $V$행렬은 One-Hot 인코딩된 데이터에 곱해지는 구조이기 때문에 <code class="highlighter-rouge">tf.nn.embedding_lookup</code>이라는 함수를 통해 행이 복제된다. 즉, 앞서 생성한 <code class="highlighter-rouge">field_index</code>의 정보를 참조하여, 같은 field에서 나온 feature일 경우, 같은 Embedding Row($V$의 Row)를 공유하는 것이다.</p>
 
 <p><strong>new_inputs</strong>는 Deep Component의 Input으로 쓰일 개체이다. 코드를 살펴보면, $V$라는 행렬이 FM Component에도 쓰이지만, <strong>new_inputs</strong>를 만들어내면서 Deep Component에도 영향을 미치는 것을 알 수 있다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FM_layer</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FM_layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">field_index</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">FM_layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># f: 원래 feature 개수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: grouped field 개수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">field_index</span> <span class="o">=</span> <span class="n">field_index</span>          <span class="c1"># 인코딩된 X의 칼럼들이 본래 어디 소속이었는지
+        <span class="nb">super</span><span class="p">(</span><span class="n">FM_layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># f: 원래 feature 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: grouped field 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">field_index</span> <span class="o">=</span> <span class="n">field_index</span>          <span class="c1"># 인코딩된 X의 칼럼들이 본래 어디 소속이었는지
 </span>
         <span class="c1"># Parameters of FM Layer
 </span>        <span class="c1"># w: capture 1st order interactions
 </span>        <span class="c1"># V: capture 2nd order interactions
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">num_feature</span><span class="p">],</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">num_feature</span><span class="p">],</span>
                                               <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'w'</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
                                               <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'V'</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
-        <span class="n">x_batch</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">x_batch</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
         <span class="c1"># Parameter V를 field_index에 맞게 복사하여 num_feature에 맞게 늘림
-</span>        <span class="n">embeds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">field_index</span><span class="p">)</span>
+</span>        <span class="n">embeds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">V</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">field_index</span><span class="p">)</span>
 
         <span class="c1"># Deep Component에서 쓸 Input
 </span>        <span class="c1"># (batch_size, num_feature, embedding_size)
-</span>        <span class="n">new_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x_batch</span><span class="p">,</span> <span class="n">embeds</span><span class="p">)</span>
+</span>        <span class="n">new_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x_batch</span><span class="p">,</span> <span class="n">embeds</span><span class="p">)</span>
 
         <span class="c1"># (batch_size, )
-</span>        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span>
-            <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</span>        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
         <span class="c1"># (batch_size, )
-</span>        <span class="n">interactions</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span>
-            <span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])),</span>
-            <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</span>        <span class="n">interactions</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tf</span><span class="p">.</span><span class="n">subtract</span><span class="p">(</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])),</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
         <span class="p">)</span>
 
-        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">linear_terms</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-        <span class="n">interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">linear_terms</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
-        <span class="n">y_fm</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">linear_terms</span><span class="p">,</span> <span class="n">interactions</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_fm</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">linear_terms</span><span class="p">,</span> <span class="n">interactions</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">y_fm</span><span class="p">,</span> <span class="n">new_inputs</span>
 </code></pre></div></div>
@@ -2197,49 +2197,49 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
 <span class="kn">from</span> <span class="nn">layers</span> <span class="kn">import</span> <span class="n">FM_layer</span>
 
-<span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">backend</span><span class="p">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">DeepFM</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DeepFM</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">field_index</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DeepFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># f: 원래 feature 개수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: grouped field 개수
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">field_index</span> <span class="o">=</span> <span class="n">field_index</span>          <span class="c1"># 인코딩된 X의 칼럼들이 본래 어디 소속이었는지
+        <span class="nb">super</span><span class="p">(</span><span class="n">DeepFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># f: 원래 feature 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: grouped field 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">field_index</span> <span class="o">=</span> <span class="n">field_index</span>          <span class="c1"># 인코딩된 X의 칼럼들이 본래 어디 소속이었는지
 </span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fm_layer</span> <span class="o">=</span> <span class="n">FM_layer</span><span class="p">(</span><span class="n">num_feature</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">field_index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">fm_layer</span> <span class="o">=</span> <span class="n">FM_layer</span><span class="p">(</span><span class="n">num_feature</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">field_index</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">layers1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">layers2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">layers3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">layers1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">layers2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">layers3</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">final</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">"DeepFM Model: #Field: {}, #Feature: {}, ES: {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">num_field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">"DeepFM Model: #Field: {}, #Feature: {}, ES: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
         <span class="c1"># 1) FM Component: (num_batch, 2)
-</span>        <span class="n">y_fm</span><span class="p">,</span> <span class="n">new_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fm_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</span>        <span class="n">y_fm</span><span class="p">,</span> <span class="n">new_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">fm_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 
         <span class="c1"># retrieve Dense Vectors: (num_batch, num_feature*embedding_size)
-</span>        <span class="n">new_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_feature</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_size</span><span class="p">])</span>
+</span>        <span class="n">new_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span><span class="o">*</span><span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">])</span>
 
         <span class="c1"># 2) Deep Component
-</span>        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers1</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">)</span>
-        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout1</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
-        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers2</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
-        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout2</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
-        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers3</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+</span>        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">layers1</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dropout1</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">layers2</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dropout2</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">layers3</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
 
         <span class="c1"># Concatenation
-</span>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_fm</span><span class="p">,</span> <span class="n">y_deep</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
-        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">])</span>
+</span>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_fm</span><span class="p">,</span> <span class="n">y_deep</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">final</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">])</span>
 
         <span class="k">return</span> <span class="n">y_pred</span>
 </code></pre></div></div>
@@ -2259,41 +2259,41 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 
 
 <span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/adult.data'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">14</span><span class="p">]</span><span class="o">.</span><span class="nb">map</span><span class="p">({</span><span class="s">' &lt;=50K'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">' &gt;50K'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/adult.data'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">14</span><span class="p">].</span><span class="nb">map</span><span class="p">({</span><span class="s">' &lt;=50K'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">' &gt;50K'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
 
-    <span class="n">X</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">ALL_FIELDS</span>
+    <span class="n">X</span><span class="p">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">ALL_FIELDS</span>
     <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span><span class="p">,</span> <span class="n">X_modified</span> <span class="o">=</span> \
-        <span class="n">get_modified_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">ALL_FIELDS</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">CONT_FIELDS</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">CAT_FIELDS</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+        <span class="n">get_modified_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">ALL_FIELDS</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">CONT_FIELDS</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">CAT_FIELDS</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
 
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
 
-    <span class="n">train_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_train</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)))</span> \
-        <span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">30000</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+    <span class="n">train_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_train</span><span class="p">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_train</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)))</span> \
+        <span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">30000</span><span class="p">).</span><span class="n">batch</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
 
-    <span class="n">test_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)))</span> \
-        <span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+    <span class="n">test_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_test</span><span class="p">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)))</span> \
+        <span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">10000</span><span class="p">).</span><span class="n">batch</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">train_ds</span><span class="p">,</span> <span class="n">test_ds</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span>
 
 
 <span class="c1"># Batch 단위 학습
 </span><span class="k">def</span> <span class="nf">train_on_batch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="p">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">binary_crossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="n">binary_crossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
 
-    <span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">)</span>
+    <span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="p">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">)</span>
 
     <span class="c1"># apply_gradients()를 통해 processed gradients를 적용함
-</span>    <span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">))</span>
+</span>    <span class="n">optimizer</span><span class="p">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">))</span>
 
     <span class="c1"># accuracy &amp; auc
-</span>    <span class="n">acc</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">auc</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span>    <span class="n">acc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">auc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">loss</span>
 
@@ -2302,12 +2302,12 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 </span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
     <span class="n">train_ds</span><span class="p">,</span> <span class="n">test_ds</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">()</span>
 
-    <span class="n">model</span> <span class="o">=</span> <span class="n">DeepFM</span><span class="p">(</span><span class="n">embedding_size</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">,</span> <span class="n">num_feature</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">field_index</span><span class="p">),</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">DeepFM</span><span class="p">(</span><span class="n">embedding_size</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">,</span> <span class="n">num_feature</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">field_index</span><span class="p">),</span>
                    <span class="n">num_field</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">field_dict</span><span class="p">),</span> <span class="n">field_index</span><span class="o">=</span><span class="n">field_index</span><span class="p">)</span>
 
-    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s">"Start Training: Batch Size: {}, Embedding Size: {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Start Training: Batch Size: {}, Embedding Size: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
         <span class="n">acc</span> <span class="o">=</span> <span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -2316,23 +2316,23 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 
         <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_ds</span><span class="p">:</span>
             <span class="n">loss</span> <span class="o">=</span> <span class="n">train_on_batch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-            <span class="n">loss_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+            <span class="n">loss_history</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
 
-        <span class="k">print</span><span class="p">(</span><span class="s">"Epoch {:03d}: 누적 Loss: {:.4f}, Acc: {:.4f}, AUC: {:.4f}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span>
-            <span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss_history</span><span class="p">),</span> <span class="n">acc</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">auc</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Epoch {:03d}: 누적 Loss: {:.4f}, Acc: {:.4f}, AUC: {:.4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss_history</span><span class="p">),</span> <span class="n">acc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">auc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">()))</span>
 
     <span class="n">test_acc</span> <span class="o">=</span> <span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="n">test_auc</span> <span class="o">=</span> <span class="n">AUC</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_ds</span><span class="p">:</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">test_acc</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-        <span class="n">test_auc</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">test_acc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">test_auc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s">"테스트 ACC: {:.4f}, AUC: {:.4f}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">test_acc</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">test_auc</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Batch Size: {}, Embedding Size: {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"걸린 시간: {:.3f}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s">'weights/weights-epoch({})-batch({})-embedding({}).h5'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span>
-        <span class="n">epochs</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"테스트 ACC: {:.4f}, AUC: {:.4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">test_acc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">test_auc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">()))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Batch Size: {}, Embedding Size: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"걸린 시간: {:.3f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+    <span class="n">model</span><span class="p">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s">'weights/weights-epoch({})-batch({})-embedding({}).h5'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+        <span class="n">epochs</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
@@ -2600,49 +2600,49 @@ conference에서 논문이 통과될지에 대한 데이터가 있다고 하자.
 </span>    <span class="k">print</span><span class="p">(</span><span class="s">'convert_to_ffm - START'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">numerics</span><span class="p">:</span>
         <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">encoder</span><span class="p">[</span><span class="s">'catdict'</span><span class="p">]):</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'UPDATING CATDICT: numeric field - {x}'</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">f'UPDATING CATDICT: numeric field - </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
             <span class="n">encoder</span><span class="p">[</span><span class="s">'catdict'</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">:</span>
         <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">encoder</span><span class="p">[</span><span class="s">'catdict'</span><span class="p">]):</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'UPDATING CATDICT: categorical field - {x}'</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">f'UPDATING CATDICT: categorical field - </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
             <span class="n">encoder</span><span class="p">[</span><span class="s">'catdict'</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="n">nrows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nrows</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span> <span class="o">+</span> <span class="s">"_ffm.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">text_file</span><span class="p">:</span>
 
         <span class="c1"># Looping over rows to convert each row to libffm format
 </span>        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)):</span>
             <span class="n">datastring</span> <span class="o">=</span> <span class="s">""</span>
-            <span class="n">datarow</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+            <span class="n">datarow</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">].</span><span class="n">to_dict</span><span class="p">()</span>
             <span class="n">datastring</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">datarow</span><span class="p">[</span><span class="n">target</span><span class="p">]))</span>  <span class="c1"># Set Target Variable here
 </span>
             <span class="c1"># For numerical fields, we are creating a dummy field here
-</span>            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">encoder</span><span class="p">[</span><span class="s">'catdict'</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+</span>            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">encoder</span><span class="p">[</span><span class="s">'catdict'</span><span class="p">].</span><span class="n">keys</span><span class="p">()):</span>
                 <span class="k">if</span><span class="p">(</span><span class="n">encoder</span><span class="p">[</span><span class="s">'catdict'</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
                     <span class="c1"># Not adding numerical values that are nan
-</span>                    <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span><span class="p">:</span>
+</span>                    <span class="k">if</span> <span class="n">math</span><span class="p">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">True</span><span class="p">:</span>
                         <span class="n">datastring</span> <span class="o">=</span> <span class="n">datastring</span> <span class="o">+</span> <span class="s">" "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">":"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">":"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
 
                     <span class="c1"># For a new field appearing in a training example
 </span>                    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">encoder</span><span class="p">[</span><span class="s">'catcodes'</span><span class="p">]):</span>
-                        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'UPDATING CATCODES: categorical field - {x}'</span><span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s">f'UPDATING CATCODES: categorical field - </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
                         <span class="n">encoder</span><span class="p">[</span><span class="s">'catcodes'</span><span class="p">][</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
                         <span class="n">encoder</span><span class="p">[</span><span class="s">'currentcode'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-                        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'UPDATING CATCODES: categorical value for field {x} - {datarow[x]}'</span><span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s">f'UPDATING CATCODES: categorical value for field </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
                         <span class="n">encoder</span><span class="p">[</span><span class="s">'catcodes'</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">[</span><span class="s">'currentcode'</span><span class="p">]</span>  <span class="c1"># encoding the feature
 </span>
                     <span class="c1"># For already encoded fields
 </span>                    <span class="k">elif</span><span class="p">(</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">encoder</span><span class="p">[</span><span class="s">'catcodes'</span><span class="p">][</span><span class="n">x</span><span class="p">]):</span>
                         <span class="n">encoder</span><span class="p">[</span><span class="s">'currentcode'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-                        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'UPDATING CATCODES: categorical value for field {x} - {datarow[x]}'</span><span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s">f'UPDATING CATCODES: categorical value for field </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
                         <span class="n">encoder</span><span class="p">[</span><span class="s">'catcodes'</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">[</span><span class="s">'currentcode'</span><span class="p">]</span>  <span class="c1"># encoding the feature
 </span>
                     <span class="n">code</span> <span class="o">=</span> <span class="n">encoder</span><span class="p">[</span><span class="s">'catcodes'</span><span class="p">][</span><span class="n">x</span><span class="p">][</span><span class="n">datarow</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span>
                     <span class="n">datastring</span> <span class="o">=</span> <span class="n">datastring</span> <span class="o">+</span> <span class="s">" "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">":"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">code</span><span class="p">))</span><span class="o">+</span><span class="s">":1"</span>
 
             <span class="n">datastring</span> <span class="o">+=</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span>
-            <span class="n">text_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">datastring</span><span class="p">)</span>
+            <span class="n">text_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">datastring</span><span class="p">)</span>
 
     <span class="c1"># print('Encoder Summary:')
 </span>    <span class="c1"># print(json.dumps(encoder, indent=4))
@@ -2653,14 +2653,14 @@ conference에서 논문이 통과될지에 대한 데이터가 있다고 하자.
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">xlearn</span> <span class="k">as</span> <span class="n">xl</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">xl</span><span class="o">.</span><span class="n">create_ffm</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">xl</span><span class="p">.</span><span class="n">create_ffm</span><span class="p">()</span>
 
 <span class="c1"># 학습/테스트 데이터 path 연결
-</span><span class="n">model</span><span class="o">.</span><span class="n">setTrain</span><span class="p">(</span><span class="s">"data/train_ffm.txt"</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">setValidate</span><span class="p">(</span><span class="s">"data/test_ffm.txt"</span><span class="p">)</span>
+</span><span class="n">model</span><span class="p">.</span><span class="n">setTrain</span><span class="p">(</span><span class="s">"data/train_ffm.txt"</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="n">setValidate</span><span class="p">(</span><span class="s">"data/test_ffm.txt"</span><span class="p">)</span>
 
 <span class="c1"># Early Stopping 불가
-</span><span class="n">model</span><span class="o">.</span><span class="n">disableEarlyStop</span><span class="p">()</span>
+</span><span class="n">model</span><span class="p">.</span><span class="n">disableEarlyStop</span><span class="p">()</span>
 
 <span class="c1"># param 선언
 </span><span class="n">param</span> <span class="o">=</span> <span class="p">{</span><span class="s">'task'</span><span class="p">:</span> <span class="s">'binary'</span><span class="p">,</span> <span class="s">'lr'</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s">'lambda'</span><span class="p">:</span> <span class="mf">0.00002</span><span class="p">,</span>
@@ -2671,12 +2671,12 @@ conference에서 논문이 통과될지에 대한 데이터가 있다고 하자.
 # model.fit(param=param, model_path="model/model.out")
 </span>
 <span class="c1"># Cross-Validation 학습
-</span><span class="n">model</span><span class="o">.</span><span class="n">cv</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+</span><span class="n">model</span><span class="p">.</span><span class="n">cv</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
 
 <span class="c1"># Predict
-</span><span class="n">model</span><span class="o">.</span><span class="n">setTest</span><span class="p">(</span><span class="s">"data/test_ffm.txt"</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">setSigmoid</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="s">"model/model.out"</span><span class="p">,</span> <span class="s">"output/predictions.txt"</span><span class="p">)</span>
+</span><span class="n">model</span><span class="p">.</span><span class="n">setTest</span><span class="p">(</span><span class="s">"data/test_ffm.txt"</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="n">setSigmoid</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="s">"model/model.out"</span><span class="p">,</span> <span class="s">"output/predictions.txt"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>위와 같이 학습을 진행하면 된다. 간단하다.</p>

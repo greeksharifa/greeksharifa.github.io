@@ -670,7 +670,7 @@ git fetch</p>
 
 <p>개행 문자 말고 모든 공백 문자를 하나로 치환하려면 다음을 쓰면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">s+'</span><span class="p">,</span> <span class="s">' '</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'\s+'</span><span class="p">,</span> <span class="s">' '</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
 </code></pre></div></div>
 <p>가로 공백 문자만 치환하려면 <code class="highlighter-rouge">\s</code> 대신 <code class="highlighter-rouge">[ \t]</code>를 사용하라.</p>
 
@@ -848,8 +848,8 @@ git fetch</p>
 
 <p>그냥 따로 씁시다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d+'</span><span class="p">,</span> <span class="s">'몇 이상 몇 이하의 수 38개'</span><span class="p">)</span>
-<span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">number</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d+'</span><span class="p">,</span> <span class="s">'몇 이상 몇 이하의 수 38개'</span><span class="p">)</span>
+<span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">365</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s">'Yei!'</span><span class="p">)</span>
@@ -978,10 +978,10 @@ git fetch</p>
 <p>예시를 보자.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">convertToPercentage</span><span class="p">(</span><span class="n">matchObj</span><span class="p">):</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s">'</span><span class="si">%</span><span class="s">'</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s">'%'</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">r'\b0\.\d+\b'</span><span class="p">,</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">r'\b0\.\d+\b'</span><span class="p">,</span>
              <span class="n">repl</span><span class="o">=</span><span class="n">convertToPercentage</span><span class="p">,</span>
              <span class="n">string</span><span class="o">=</span><span class="s">'Red 0.250, Green 0.001, Blue 0.749, Black 1.5'</span><span class="p">))</span>
 </code></pre></div></div>
@@ -1003,13 +1003,13 @@ python - Click the javascript popup through webdriver	2012년 5월 29일
 selenium - Read Message From Alert and click on OK	2012년 5월 17일
 stackoverflow.com 검색결과 더보기'''</span>
 
-<span class="n">lines</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">?</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
-<span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'(</span><span class="err">\</span><span class="s">d+)년</span><span class="err">\</span><span class="s">s+(</span><span class="err">\</span><span class="s">d+)월</span><span class="err">\</span><span class="s">s+(</span><span class="err">\</span><span class="s">d+)일'</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">?</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'(\d+)년\s+(\d+)월\s+(\d+)일'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
+    <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
     <span class="k">if</span> <span class="n">matchObj</span><span class="p">:</span>
-        <span class="n">string</span> <span class="o">=</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
         <span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">'Not exists'</span><span class="p">)</span>
@@ -1049,8 +1049,8 @@ Not exists
 
 <p>예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=&lt;p&gt;)</span><span class="err">\</span><span class="s">w+(?=&lt;/p&gt;)'</span><span class="p">,</span> 
-                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=&lt;p&gt;)\w+(?=&lt;/p&gt;)'</span><span class="p">,</span> 
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
@@ -1060,8 +1060,8 @@ Not exists
 
 <p>실제로 문자열이 일치되는 것은 아님을 보여주기 위해, 쓸데없이 복잡하게 만든 예시를 하나 만들어 보았다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(?&lt;=&lt;p&gt;)(</span><span class="err">\</span><span class="s">w+)(?=&lt;/p&gt;)&lt;/p&gt;'</span><span class="p">,</span>
-                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(?&lt;=&lt;p&gt;)(\w+)(?=&lt;/p&gt;)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
@@ -1075,7 +1075,7 @@ Not exists
 그런데 여기서는 특수문자조차 없는 비밀번호를 찾으려고 한다. 즉 마지막에 ‘!’가 없는 비밀번호를 모두 찾는다고 하자.</p>
 
 <p>이를 찾는 정규식은 다음과 같다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'[a-z]+\d+(?!!)\b'</span><span class="p">,</span> <span class="s">'tube1109! gorio303 ryan416'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'[a-z]+\d+(?!!)\b'</span><span class="p">,</span> <span class="s">'tube1109! gorio303 ryan416'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['gorio303', 'ryan416']
@@ -1089,8 +1089,8 @@ Not exists
 
 <p>조금 전 <code class="highlighter-rouge">&lt;p&gt;</code> 태그 예시를 대체한 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(</span><span class="err">\</span><span class="s">w+)&lt;/p&gt;'</span><span class="p">,</span>
-                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(\w+)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
@@ -1220,12 +1220,12 @@ Not exists
 
 <p>위 옵션을 추가하면 정규식 내의 공백들이 무시된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'''
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'''
 010-# 핸드폰 앞자리 
 \d{4}-# 중간자리
 \d{4}# 뒷자리'''</span><span class="p">,</span>
                 <span class="s">'010-1234-5678'</span><span class="p">,</span>
-                <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+                <span class="n">re</span><span class="p">.</span><span class="n">VERBOSE</span><span class="p">).</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>010-1234-5678
@@ -1247,7 +1247,7 @@ Not exists
 파이썬 문자열은 기본적으로 <code class="highlighter-rouge">replace</code> 메서드를 갖고 있기 때문에 일반적인 문자열은 그냥 치환이 가능하다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">origin_str</span> <span class="o">=</span> <span class="s">'Ryan keep a straight face.'</span>
-<span class="n">edited_str</span> <span class="o">=</span> <span class="n">origin_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'keep'</span><span class="p">,</span> <span class="s">'kept'</span><span class="p">)</span>
+<span class="n">edited_str</span> <span class="o">=</span> <span class="n">origin_str</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'keep'</span><span class="p">,</span> <span class="s">'kept'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">edited_str</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1262,7 +1262,7 @@ Not exists
 
 <p>간단한 사용법은 다음과 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}'</span><span class="p">,</span> <span class="s">'XXXX'</span><span class="p">,</span> <span class="s">'010-1234-5678'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'\d{4}'</span><span class="p">,</span> <span class="s">'XXXX'</span><span class="p">,</span> <span class="s">'010-1234-5678'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>010-XXXX-XXXX
@@ -1277,7 +1277,7 @@ Not exists
 
 <script data-ad-client="ca-pub-9951774327887666" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
              <span class="n">string</span><span class="o">=</span><span class="s">'Gorio, Gorio, Gorio keep a straight face.'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1295,7 +1295,7 @@ Not exists
 
 <p><strong>re.subn</strong>은 <strong>re.sub</strong>과 매우 유사하지만, 리턴하는 값이 치환된 문자열과 더불어 치환된 개수의 튜플이라는 것이 다른 점이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">subn</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">'Gorio'</span><span class="p">,</span> <span class="n">repl</span><span class="o">=</span><span class="s">'Ryan'</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> \
               <span class="n">string</span><span class="o">=</span><span class="s">'Gorio, Gorio, Gorio keep a straight face.'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1308,7 +1308,7 @@ Not exists
 
 <p>왜 파이썬에서는 제거 메서드를 따로 만들지 않았는지는 잘 모르지만, <strong>re.sub</strong>으로 간단히 구현 가능하다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'Tube'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="s">'Tube Ryan'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'Tube'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="s">'Tube Ryan'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Ryan
@@ -1330,8 +1330,8 @@ Not exists
 
 <p>파이썬에서 전체 일치부를 치환 텍스트에 삽입하려면 <code class="highlighter-rouge">\g&lt;0&gt;</code>이라는 토큰을 사용해야 한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'https?://</span><span class="err">\</span><span class="s">S+'</span><span class="p">,</span>
-             <span class="s">'[링크](</span><span class="err">\</span><span class="s">g&lt;0&gt;)'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'https?://\S+'</span><span class="p">,</span>
+             <span class="s">'[링크](\g&lt;0&gt;)'</span><span class="p">,</span>
              <span class="s">'http://www.google.com and https://greeksharifa.github.io'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1342,7 +1342,7 @@ Not exists
 
 <p>여러분은 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/#-%EC%88%AB%EC%9E%90-%EC%95%9E%EC%84%9C-%EC%9D%BC%EC%B9%98%EB%90%9C-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%84-%EB%8B%A4%EC%8B%9C-%EB%B9%84%EA%B5%90">여기</a>에서 재참조부 일부를 사용하는 방법을 배웠다. 그러면 치환 텍스트에도 이처럼 일부분을 삽입하는 방법이 있을 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(</span><span class="err">\</span><span class="s">d{4})-(</span><span class="err">\</span><span class="s">d{2})-(</span><span class="err">\</span><span class="s">d{2})'</span><span class="p">,</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(\d{4})-(\d{2})-(\d{2})'</span><span class="p">,</span> 
              <span class="s">r'\1.\2.\3'</span><span class="p">,</span>
              <span class="s">'1900-01-01'</span><span class="p">))</span>
 </code></pre></div></div>
@@ -1360,8 +1360,8 @@ Not exists
 <p>조금 위에서 <code class="highlighter-rouge">\g&lt;0&gt;</code>을 사용했었다. 그러면 명명 그룹의 경우 <code class="highlighter-rouge">\g&lt;name&gt;</code>을 사용한다는 것을 눈치챌 수 있을 것이다. 
 비 명명 그룹은 <code class="highlighter-rouge">\g&lt;1&gt;</code>, <code class="highlighter-rouge">\g&lt;2&gt;</code>, … 을 사용한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(?P&lt;year&gt;</span><span class="err">\</span><span class="s">d{4})-(?P&lt;month&gt;</span><span class="err">\</span><span class="s">d{2})-(?P&lt;day&gt;</span><span class="err">\</span><span class="s">d{2})'</span><span class="p">,</span>
-             <span class="s">'</span><span class="err">\</span><span class="s">g&lt;year&gt;.</span><span class="err">\</span><span class="s">g&lt;month&gt;.</span><span class="err">\</span><span class="s">g&lt;day&gt;'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d{2})-(?P&lt;day&gt;\d{2})'</span><span class="p">,</span>
+             <span class="s">'\g&lt;year&gt;.\g&lt;month&gt;.\g&lt;day&gt;'</span><span class="p">,</span>
              <span class="s">'1900-01-01'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1379,7 +1379,7 @@ Not exists
 <p>이 역시 어려운 함수는 아니기 때문에, 예시 하나를 바로 보도록 하겠다.<br />
 html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
                <span class="s">'&lt;html&gt; Wow &lt;head&gt; header &lt;/head&gt; &lt;body&gt; Hey &lt;/body&gt; &lt;/html&gt;'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1387,10 +1387,10 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
 </code></pre></div></div>
 
 <p>물론 이렇게만 하면 빈 문자열 등도 많이 나온다. 이는 정규식으로 따로 처리하거나, 다음과 같이 쓰면 된다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'&lt;[^&lt;&gt;]*&gt;'</span><span class="p">,</span>
                   <span class="s">'&lt;html&gt; Wow &lt;head&gt; header &lt;/head&gt; &lt;body&gt; Hey &lt;/body&gt; &lt;/html&gt;'</span><span class="p">)</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">result</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">result</span><span class="p">))</span>
 <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="s">''</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div></div>
@@ -1414,16 +1414,16 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
 
 <p>여러분은 지금까지 이렇게 해 왔다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">,</span> <span class="s">'Ryan 1 Tube 2 345'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">,</span> <span class="s">'Ryan 1 Tube 2 345'</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>이를 한 번 정도 쓰는 것이 아닌, 반복문 내에서 여러 번 쓴다면 이렇게 쓰는 것이 좋다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'ryan.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
-    <span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">)</span>
+    <span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'\b\d+\b'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f_in</span><span class="p">:</span>
-        <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+        <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p>미리 컴파일해 두면 성능상의 이점이 있다.</p>
@@ -1454,7 +1454,7 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
 </ol>
 
 <p>reObj가 무슨 정규식 패턴을 가졌는지 보려면 다음을 수행해 보라.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d+'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'\d+'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>re.compile('\\d+')

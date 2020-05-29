@@ -310,10 +310,10 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>예시를 보자.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">convertToPercentage</span><span class="p">(</span><span class="n">matchObj</span><span class="p">):</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s">'</span><span class="si">%</span><span class="s">'</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s">'%'</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">r'\b0\.\d+\b'</span><span class="p">,</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">r'\b0\.\d+\b'</span><span class="p">,</span>
              <span class="n">repl</span><span class="o">=</span><span class="n">convertToPercentage</span><span class="p">,</span>
              <span class="n">string</span><span class="o">=</span><span class="s">'Red 0.250, Green 0.001, Blue 0.749, Black 1.5'</span><span class="p">))</span>
 </code></pre></div></div>
@@ -335,13 +335,13 @@ python - Click the javascript popup through webdriver	2012년 5월 29일
 selenium - Read Message From Alert and click on OK	2012년 5월 17일
 stackoverflow.com 검색결과 더보기'''</span>
 
-<span class="n">lines</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">?</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
-<span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'(</span><span class="err">\</span><span class="s">d+)년</span><span class="err">\</span><span class="s">s+(</span><span class="err">\</span><span class="s">d+)월</span><span class="err">\</span><span class="s">s+(</span><span class="err">\</span><span class="s">d+)일'</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">?</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'(\d+)년\s+(\d+)월\s+(\d+)일'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
+    <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
     <span class="k">if</span> <span class="n">matchObj</span><span class="p">:</span>
-        <span class="n">string</span> <span class="o">=</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
         <span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">'Not exists'</span><span class="p">)</span>
@@ -381,8 +381,8 @@ Not exists
 
 <p>예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=&lt;p&gt;)</span><span class="err">\</span><span class="s">w+(?=&lt;/p&gt;)'</span><span class="p">,</span> 
-                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=&lt;p&gt;)\w+(?=&lt;/p&gt;)'</span><span class="p">,</span> 
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
@@ -392,8 +392,8 @@ Not exists
 
 <p>실제로 문자열이 일치되는 것은 아님을 보여주기 위해, 쓸데없이 복잡하게 만든 예시를 하나 만들어 보았다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(?&lt;=&lt;p&gt;)(</span><span class="err">\</span><span class="s">w+)(?=&lt;/p&gt;)&lt;/p&gt;'</span><span class="p">,</span>
-                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(?&lt;=&lt;p&gt;)(\w+)(?=&lt;/p&gt;)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
@@ -407,7 +407,7 @@ Not exists
 그런데 여기서는 특수문자조차 없는 비밀번호를 찾으려고 한다. 즉 마지막에 ‘!’가 없는 비밀번호를 모두 찾는다고 하자.</p>
 
 <p>이를 찾는 정규식은 다음과 같다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'[a-z]+\d+(?!!)\b'</span><span class="p">,</span> <span class="s">'tube1109! gorio303 ryan416'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'[a-z]+\d+(?!!)\b'</span><span class="p">,</span> <span class="s">'tube1109! gorio303 ryan416'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['gorio303', 'ryan416']
@@ -421,8 +421,8 @@ Not exists
 
 <p>조금 전 <code class="highlighter-rouge">&lt;p&gt;</code> 태그 예시를 대체한 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(</span><span class="err">\</span><span class="s">w+)&lt;/p&gt;'</span><span class="p">,</span>
-                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(\w+)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan

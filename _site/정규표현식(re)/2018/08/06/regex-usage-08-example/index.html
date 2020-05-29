@@ -389,7 +389,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>개행 문자 말고 모든 공백 문자를 하나로 치환하려면 다음을 쓰면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">s+'</span><span class="p">,</span> <span class="s">' '</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'\s+'</span><span class="p">,</span> <span class="s">' '</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
 </code></pre></div></div>
 <p>가로 공백 문자만 치환하려면 <code class="highlighter-rouge">\s</code> 대신 <code class="highlighter-rouge">[ \t]</code>를 사용하라.</p>
 

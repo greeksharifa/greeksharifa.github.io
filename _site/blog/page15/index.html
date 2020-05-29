@@ -372,31 +372,31 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
     """</span>
 
     <span class="c1"># Step 1: Compute box scores
-</span>    <span class="n">box_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">box_confidence</span><span class="p">,</span> <span class="n">box_class_probs</span><span class="p">)</span>
+</span>    <span class="n">box_scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">box_confidence</span><span class="p">,</span> <span class="n">box_class_probs</span><span class="p">)</span>
 
     <span class="c1"># Step 2: box_scores에서 제일 큰 스코어의 위치와 값을 찾는다.
-</span>    <span class="n">box_classes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">box_class_scores</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="n">box_classes</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">box_class_scores</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Step 3: 아래 필터링 마스크는 부울렌 tensor로 threshold보다 큰 score를 가지는
 </span>    <span class="c1"># box_class를 판별한다.
-</span>    <span class="n">filtering_mask</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+</span>    <span class="n">filtering_mask</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
 
     <span class="c1"># Step 4: Apply the mask to scores, boxes and classes
-</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
-    <span class="n">boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
-    <span class="n">classes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_classes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_classes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span>
 </code></pre></div></div>
 
 <p>위에서 tf.boolean_mask함수는 아래와 같은 형식을 갖는다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'boolean_mask'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'boolean_mask'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 <p>해당 텐서에 True, False로 구성된 mask를 씌우면 True와 연결된 값만 남고 나머지는 지워진다.<br />
 예를 들어</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">])</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">])</span>
 <span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
 </code></pre></div></div>
 <p>의 결과는 [0, 2]이다.</p>
@@ -404,7 +404,7 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
 <h3 id="non-max-suppression">Non-max Suppression</h3>
 <p>이제 필요 없는 Box들을 제거해보자.<br />
 아래 함수에서 사용할 메서드 중 tf.image.non_max_suppression에 대해 설명하자면,</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_output_size</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_output_size</span><span class="p">,</span>
     <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">score_threshold</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s">'-inf'</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 <p>아래와 같은 arguements를 가진다.<br />
@@ -433,19 +433,19 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
     Note: 이 함수는 scores, boxes, classes의 shape을 편의를 위해 transpose 시킬 것이다.
     """</span>
     <span class="c1"># 내가 예측하고 싶은 박스 최대치
-</span>    <span class="n">max_boxes_tensor</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="n">max_boxes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int32'</span><span class="p">)</span>
+</span>    <span class="n">max_boxes_tensor</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">variable</span><span class="p">(</span><span class="n">max_boxes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int32'</span><span class="p">)</span>
 
     <span class="c1"># initialize variable max_boxes_tensor
-</span>    <span class="n">K</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span> <span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">variables_initializer</span><span class="p">([</span><span class="n">max_boxes_tensor</span><span class="p">]))</span>
+</span>    <span class="n">K</span><span class="p">.</span><span class="n">get_session</span><span class="p">(</span> <span class="p">).</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">variables_initializer</span><span class="p">([</span><span class="n">max_boxes_tensor</span><span class="p">]))</span>
 
     <span class="c1"># get the list of indices corresponding to boxes you keep
-</span>    <span class="n">nms_indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_boxes_tensor</span><span class="p">,</span> 
+</span>    <span class="n">nms_indices</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_boxes_tensor</span><span class="p">,</span> 
     <span class="n">iou_threshold</span><span class="o">=</span><span class="n">iou_threshold</span><span class="p">)</span>
 
     <span class="c1"># Use K.gather() to select only nms_indices from scores, boxes and classes
-</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
-    <span class="n">boxes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
-    <span class="n">classes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span>
 </code></pre></div></div>
@@ -455,7 +455,7 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
 tf.image.non_max_suppression을 통해 nms_indices를 얻게 되는데 이는 선택할 Box의 indices를 의미한다.</p>
 
 <p>K.gather에 대해 설명하자면,</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">validate_indices</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">validate_indices</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></div>
 <p>여기서 <strong>params</strong>는 최소 axis+1의 rank를 갖는 텐서이다.<br />
 <strong>indices</strong>는 [0, params.shape[axis]) 범위 사이에 있는 텐서이다.</p>
@@ -519,16 +519,16 @@ height, width, x_center, y_center로 표기했던 좌표를 편의를 위해 코
 <h3 id="test">Test</h3>
 <p>이제 실제 이미지에 적용해보자.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">yolo_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s">'C:/Users/YY/Documents/Winter Data/NN/Model/yolo.h5'</span><span class="p">)</span>
-<span class="n">yolo_model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'sgd'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">)</span>
+<span class="n">yolo_model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'sgd'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">)</span>
 <span class="c1"># yolo_model.count_params()
 # yolo_model.summary()
 </span>
-<span class="n">sess</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">get_session</span><span class="p">()</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">get_session</span><span class="p">()</span>
 <span class="n">class_names</span> <span class="o">=</span> <span class="n">read_classes</span><span class="p">(</span><span class="s">"path/coco_classes.txt"</span><span class="p">)</span>
 <span class="n">anchors</span> <span class="o">=</span> <span class="n">read_anchors</span><span class="p">(</span><span class="s">"path/yolo_anchors.txt"</span><span class="p">)</span>
 <span class="n">image_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mf">720.</span><span class="p">,</span> <span class="mf">1280.</span><span class="p">)</span>
 
-<span class="n">yolo_outputs</span> <span class="o">=</span> <span class="n">yolo_head</span><span class="p">(</span><span class="n">yolo_model</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">anchors</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
+<span class="n">yolo_outputs</span> <span class="o">=</span> <span class="n">yolo_head</span><span class="p">(</span><span class="n">yolo_model</span><span class="p">.</span><span class="n">output</span><span class="p">,</span> <span class="n">anchors</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
 <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">yolo_eval</span><span class="p">(</span><span class="n">yolo_outputs</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -551,18 +551,18 @@ height, width, x_center, y_center로 표기했던 좌표를 편의를 위해 코
 
     <span class="c1"># Run the session
 </span>    <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span> <span class="o">=</span>
-    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span><span class="p">],</span>
-     <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">yolo_model</span><span class="o">.</span><span class="nb">input</span><span class="p">:</span> <span class="n">image_data</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="n">learning_phase</span><span class="p">(</span> <span class="p">):</span> <span class="mi">0</span><span class="p">})</span>
+    <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span><span class="p">],</span>
+     <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">yolo_model</span><span class="p">.</span><span class="nb">input</span><span class="p">:</span> <span class="n">image_data</span><span class="p">,</span> <span class="n">K</span><span class="p">.</span><span class="n">learning_phase</span><span class="p">(</span> <span class="p">):</span> <span class="mi">0</span><span class="p">})</span>
 
     <span class="c1"># Print predictions info
-</span>    <span class="k">print</span><span class="p">(</span><span class="s">'Found {} boxes for {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_boxes</span><span class="p">),</span> <span class="n">image_file</span><span class="p">))</span>
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'Found {} boxes for {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_boxes</span><span class="p">),</span> <span class="n">image_file</span><span class="p">))</span>
     <span class="c1"># Generate colors for drawing bounding boxes.
 </span>    <span class="n">colors</span> <span class="o">=</span> <span class="n">generate_colors</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
     <span class="c1"># Draw bounding boxes on the image file
 </span>    <span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span><span class="p">,</span> <span class="n">class_names</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
     <span class="c1"># Save the predicted bounding box on the image
 </span>    <span class="c1"># image.save(os.path.join("out", image_file), quality=90)
-</span>    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'path/output01.jpg'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</span>    <span class="n">image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">'path/output01.jpg'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span>
 
@@ -685,12 +685,12 @@ image.save를 통해 자동으로 output 이미지를 저장할 수 있다.</p>
 <p><strong>re.match</strong> 함수는 “문자열의 처음”부터 시작하여 패턴이 일치되는 것이 있는지를 확인한다.<br />
 다음과 같이 사용한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
 <span class="c1"># 사실 match의 결과를 바로 print하지는 않는다. 결과를 활용하는 방법은 나중에 설명할 matchObj.group 함수를 쓰는 것이다.
 </span></code></pre></div></div>
 
@@ -719,12 +719,12 @@ None
 
 <p>다음 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>결과</p>
@@ -747,13 +747,13 @@ None
 
 <p>이름에서 알 수 있듯이 <strong>re.findall</strong> 함수는 문자열 중 패턴과 일치되는 모든 부분을 찾는다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>결과</p>
@@ -774,7 +774,7 @@ None
 
 <p><strong>re.findall</strong>과 비슷하지만, 일치된 문자열의 리스트 대신 matchObj 리스트를 반환한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj_iter</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">matchObj</span> <span class="ow">in</span> <span class="n">matchObj_iter</span><span class="p">:</span>
@@ -795,13 +795,13 @@ None
 
 <p><strong>re.fullmatch</strong>는 패턴과 문자열이 남는 부분 없이 완벽하게 일치하는지를 검사한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'aba'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'bbb'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'baa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'aaa'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>결과</p>
@@ -845,13 +845,13 @@ None
   </tbody>
 </table>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">end</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">start</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">span</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(1, 6), match='match'&gt;
@@ -979,7 +979,7 @@ match
 #define INF 1000000009
 </span>
 <span class="kt">int</span> <span class="n">E</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
-<span class="n">Dinic</span> <span class="n">network</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
+<span class="n">Dinic</span> <span class="nf">network</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
 
 <span class="kt">int</span> <span class="nf">main_06086</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>    <span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
@@ -1216,7 +1216,7 @@ sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않�
 </span>
 <span class="cp">#include "sharifa_header.h"
 </span>
-<span class="k">struct</span> <span class="n">Edge</span> <span class="p">{</span>   <span class="c1">// u -&gt; v</span>
+<span class="k">struct</span> <span class="nc">Edge</span> <span class="p">{</span>   <span class="c1">// u -&gt; v</span>
     <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="n">ref</span><span class="p">;</span>
     <span class="n">Edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cap</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ref</span><span class="p">)</span> <span class="o">:</span><span class="n">v</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">cap</span><span class="p">(</span><span class="n">cap</span><span class="p">),</span> <span class="n">ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span> <span class="p">{}</span>
 <span class="p">};</span>
@@ -1227,7 +1227,7 @@ sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않�
     <span class="c1">// level: 레벨 그래프, next_v: DFS에서 flow 계산 시 역추적에 사용</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">level</span><span class="p">,</span> <span class="n">next_v</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span>
+<span class="nl">public:</span>
     <span class="n">Dinic</span><span class="p">(</span><span class="kt">int</span> <span class="n">MAX_V</span><span class="p">,</span> <span class="kt">int</span> <span class="n">S</span><span class="p">,</span> <span class="kt">int</span> <span class="n">T</span><span class="p">)</span><span class="o">:</span><span class="n">S</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">edges</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">);</span>
         <span class="n">level</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">);</span>

@@ -1,3 +1,7 @@
 .idea/
+._site/
+
 algorithm/
 *vcxproj*
+
+Gemfile.lock

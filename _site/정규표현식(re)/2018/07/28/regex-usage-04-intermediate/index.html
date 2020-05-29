@@ -315,17 +315,17 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>그룹화는 말 그대로 그룹으로 묶어주는 것이다. 지금까지의 글에서는 정규식 메타문자들의 효력은 대개 한 문자에만 적용이 되었다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'12+'</span><span class="p">,</span> <span class="s">'12 1212 1222'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'12+'</span><span class="p">,</span> <span class="s">'12 1212 1222'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['12', '12', '12', '1222']
 </code></pre></div></div>
 <p>‘1212’와 같은 문자열을 찾고 싶었는데, ‘12’ 혹은 ‘1222’만 찾아진다. 즉 메타문자 <code class="highlighter-rouge">+</code>는 <code class="highlighter-rouge">2</code>에만 적용이 된 것이다. 이를 <code class="highlighter-rouge">12</code> 모두에 적용시키려면 소괄호 <code class="highlighter-rouge">( )</code>로 그룹화시켜주면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 4), match='1212'&gt;
@@ -336,10 +336,10 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>정규식은 항상 최대로 일치시키는 쪽으로 문자열은 탐색하기 때문에, ‘12’가 아닌 ‘1212’를 잘 찾았다. 그런데 한 가지 이상한 결과는 <strong>re.findall</strong> 결과이다.</p>
 
 <p>다른 예시를 한번 보자.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12B'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A1212B'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12121212B'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12B'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A1212B'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12121212B'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['12']
@@ -354,8 +354,8 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>캡처란 원하는 부분만을 추출하고 싶을 때 사용하는 것이다. 예를 들어 ‘yyyy-mm-dd’와 같이 날짜를 나타내는 문자열 중 월, 일을 각각 따로 빼서 쓰고 싶다고 하자.<br />
 그러면 따로 빼고 싶은 부분인 ‘mm’과 ‘dd’ 부분에만 소괄호의 캡처 기능을 사용하면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'2028-07-28'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'1999/05/21 2018-07-28 2018-06-31 2019.01.01'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\d{4}-(\d\d)-(\d\d)'</span><span class="p">,</span> <span class="s">'2028-07-28'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\d{4}-(\d\d)-(\d\d)'</span><span class="p">,</span> <span class="s">'1999/05/21 2018-07-28 2018-06-31 2019.01.01'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[('07', '28')]
@@ -369,13 +369,13 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>여러분은 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">첫 번째 글</a>에서 다음 예시를 보았을 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">end</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">start</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">span</span><span class="p">())</span>
 <span class="c1"># matchObj를 오랜만에 가져와 보았다. 캡처를 잘 쓰기 위해서는 matchObj가 필요하다.
 </span></code></pre></div></div>
 <p>결과</p>
@@ -388,19 +388,19 @@ match
 
 <p>이제 정규식을 캡처를 포함한 식으로 바꿔보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'# ---------------------------------------------------------------- #'</span><span class="p">)</span>
 
-<span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d{4}-(\d?\d)-(\d?\d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(1, 6), match='match'&gt;
@@ -422,15 +422,15 @@ match
 
 <p><img src="\public\img\정규표현식(re)\2018-07-20-regex-usage-04-intermediate\02_groups.PNG" width="75%" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d{4}-(\d?\d)-(\d?\d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">'m:'</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">'m.group():'</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'m.group():'</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'m.group({}): {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'m.group({}): {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">'m.groups():'</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'m.groups():'</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>m: &lt;_sre.SRE_Match object; span=(0, 10), match='1868-12-10'&gt;
@@ -457,12 +457,12 @@ m.groups(): ('12', '10')
 <h3 id="비-캡처-그룹">비 캡처 그룹</h3>
 
 <p>그룹화를 위해 소괄호를 반드시 써야 하는데, 굳이 캡처하고 싶지는 않을 때가 있다. 예를 들어 다음과 같이 쓴다고 하자.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((ab)+), ((123)+) is repetitive</span><span class="err">\</span><span class="s">.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># don't want
-</span><span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># don't want
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((ab)+), ((123)+) is repetitive\.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># don't want
+</span><span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> 
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># don't want
 </span></code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ababab, 123123 is repetitive.
@@ -476,10 +476,10 @@ ab
 
 <p>비 캡처 그룹은 <code class="highlighter-rouge">(?:&lt;regex&gt;)</code>와 같이 사용한다. 위의 예시를 다시 써 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((?:ab)+), ((?:123)+) is repetitive</span><span class="err">\</span><span class="s">.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((?:ab)+), ((?:123)+) is repetitive\.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ababab, 123123 is repetitive.
@@ -498,9 +498,9 @@ ababab
 <p><a href="">여기</a>에서 (?s)와 같은 모드 변경자를 본 적이 있을 것이다.</p>
 
 <p>이러한 모드 변경자는 소괄호를 쓰긴 하지만 캡처 그룹으로 작동하지 않는다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'case sensitive(?i) irrelevant'</span><span class="p">,</span> <span class="s">'case sensitive IrreLEVant'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'case sensitive(?i) irrelevant'</span><span class="p">,</span> <span class="s">'case sensitive IrreLEVant'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>case sensitive IrreLEVant
@@ -524,8 +524,8 @@ IndexError: no such group
 
 <p>우선 예시를 보자. 단어 경계는 정규식이 더 복잡해 보이므로 일부러 넣지 않았다. 분리된 단어만을 보고 싶다면, <code class="highlighter-rouge">\b</code>를 넣으면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">).</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>토마토
@@ -541,7 +541,7 @@ IndexError: no such group
 
 <p>두 번째는 캡처를 하나 더 만드는 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match_list</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">match_list</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -556,11 +556,11 @@ xyx
 <p>그러나 이 방법은 나쁘지 않지만, <strong>findall</strong>로 찾기 때문에 위치를 찾아주지는 않는다는 단점이 있다.<br />
 일치부의 시작/끝 위치까지 알고 싶을 때에는 <strong>finditer</strong>을 이용한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">matchObj</span> <span class="ow">in</span> <span class="n">matchObj_iter</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'string: {}, </span><span class="se">\t</span><span class="s"> start/end position={}, </span><span class="se">\t</span><span class="s"> 반복 부분: {}'</span><span class="o">.</span>
-          <span class="nb">format</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">span</span><span class="p">(),</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'string: {}, </span><span class="se">\t</span><span class="s"> start/end position={}, </span><span class="se">\t</span><span class="s"> 반복 부분: {}'</span><span class="p">.</span>
+          <span class="nb">format</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(),</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">span</span><span class="p">(),</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string: 토마토, 	 start/end position=(0, 3), 	 반복 부분: 토
@@ -582,13 +582,13 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 <p>예시를 하나 보자.<br />
 ‘2018-07-28 2018.07.28’처럼, 형식만 다른 똑같은 날짜가 있는지를 확인하는 상황을 생각하자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span>
     <span class="s">r'(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d\d)-(?P&lt;day&gt;\d\d) (?P=year)\.(?P=month)\.(?P=day)'</span><span class="p">,</span>
     <span class="s">'2018-07-28 2018.07.28'</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-07-28 2018.07.28
@@ -600,11 +600,11 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p>사실 명명 그룹과 비 명명 그룹을 섞어 쓸 수는 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span>
     <span class="s">r'(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d\d)-(?P&lt;day&gt;\d\d) (?P=year)\.\2\.\3'</span><span class="p">,</span>
     <span class="s">'2018-07-28 2018.07.28'</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-07-28 2018.07.28
@@ -619,7 +619,7 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/#%EA%B7%B8%EB%A3%B9%ED%99%94">이 글의 앞부분</a>에서 <code class="highlighter-rouge">12</code>를 반복시키려고 <code class="highlighter-rouge">(12)+</code> 정규식을 썼는데 원치 않는 결과가 나온 것을 보았을 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['12']
@@ -627,7 +627,7 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p>위의 예시처럼 문자가 한 종류(12)로 정해져 있으면 그냥 전체에다 캡처 그룹을 하나 더 만드는 것으로 해결 가능하지만, 정해진 것이 아닌 문자 집합 같은 것이라면 꽤 어려워진다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['25', '00']
@@ -638,10 +638,10 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p>이를 캡처 그룹으로 한번에 묶어내는 우아한 방법은 없지만, 다른 괜찮은 해결 방법은 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">matchObj</span> <span class="ow">in</span> <span class="n">matchObj_iter</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>25

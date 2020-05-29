@@ -465,7 +465,7 @@ sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않�
 </span>
 <span class="cp">#include "sharifa_header.h"
 </span>
-<span class="k">struct</span> <span class="n">Edge</span> <span class="p">{</span>   <span class="c1">// u -&gt; v</span>
+<span class="k">struct</span> <span class="nc">Edge</span> <span class="p">{</span>   <span class="c1">// u -&gt; v</span>
     <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">cap</span><span class="p">,</span> <span class="n">ref</span><span class="p">;</span>
     <span class="n">Edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cap</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ref</span><span class="p">)</span> <span class="o">:</span><span class="n">v</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">cap</span><span class="p">(</span><span class="n">cap</span><span class="p">),</span> <span class="n">ref</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span> <span class="p">{}</span>
 <span class="p">};</span>
@@ -476,7 +476,7 @@ sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않�
     <span class="c1">// level: 레벨 그래프, next_v: DFS에서 flow 계산 시 역추적에 사용</span>
     <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">level</span><span class="p">,</span> <span class="n">next_v</span><span class="p">;</span>
 
-<span class="k">public</span><span class="o">:</span>
+<span class="nl">public:</span>
     <span class="n">Dinic</span><span class="p">(</span><span class="kt">int</span> <span class="n">MAX_V</span><span class="p">,</span> <span class="kt">int</span> <span class="n">S</span><span class="p">,</span> <span class="kt">int</span> <span class="n">T</span><span class="p">)</span><span class="o">:</span><span class="n">S</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">T</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">edges</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">);</span>
         <span class="n">level</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">MAX_V</span><span class="p">);</span>

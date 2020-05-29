@@ -340,7 +340,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>정규표현식을 쓰면서 다른 것들은 거의 볼 일이 없을 것이지만, <code class="highlighter-rouge">\t</code>와 <code class="highlighter-rouge">\n</code>은 알아두는 것이 좋다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s"> '</span><span class="p">,</span> <span class="s">'a</span><span class="se">\t</span><span class="s">b</span><span class="se">\t</span><span class="s">c</span><span class="se">\t</span><span class="s"> </span><span class="se">\t</span><span class="s"> d'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s"> '</span><span class="p">,</span> <span class="s">'a</span><span class="se">\t</span><span class="s">b</span><span class="se">\t</span><span class="s">c</span><span class="se">\t</span><span class="s"> </span><span class="se">\t</span><span class="s"> d'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -369,7 +369,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>예를 들어 정규식 표현이 <code class="highlighter-rouge">[abc]</code>이고 문자열이 ‘a’이면 <strong>re.match</strong>는 매칭되었다고 할 것이다.<br />
 문자열이 ‘b’이거나 ‘c’이어도 매칭이 된다. 다만 문자열이 ‘d’이거나 ‘가나다’ 같은 것이면 매칭이 되지 않는다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">"You[;']re studying re module[.,]"</span><span class="p">,</span> \
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">"You[;']re studying re module[.,]"</span><span class="p">,</span> \
                         <span class="s">'You;re studying re module,'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
@@ -391,9 +391,9 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>캐릿(caret)<code class="highlighter-rouge">^</code> 문자가 여는 대괄호 바로 뒤에 있으면 문자가 반전된다. 바로 예시를 보도록 하자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [a-z]o serious</span><span class="err">\</span><span class="s">?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [a-z]o serious\?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [^0-9]o serious</span><span class="err">\</span><span class="s">?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [^0-9]o serious\?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -417,7 +417,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>개행문자를 제외한 모든 문자와 일치하는 정규표현식은 마침표 <code class="highlighter-rouge">.</code> 이다. 정말로 모든 문자와 일치되기 때문에 별다른 설명은 필요 없을 것 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'r..n[.]'</span><span class="p">,</span> <span class="s">'ryan. ruin rain round. reign'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'r..n[.]'</span><span class="p">,</span> <span class="s">'ryan. ruin rain round. reign'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -510,9 +510,9 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
   </tbody>
 </table>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">S</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['abc', 'a  ']
@@ -528,7 +528,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>아니면 다른 방법도 있다. 정규표현식 내에서 사용할 수도 있다.<br />
 문자열 앞에 <code class="highlighter-rouge">(?s)</code> 토큰을 넣으면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?s)a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?s)a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['abc', 'a  ', 'a\na']
@@ -536,8 +536,8 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>모드 변경자는 여러 개를 중첩하여 사용할 수도 있다.<br />
 또한 일부분에만 사용하고 싶으면 <code class="highlighter-rouge">(?s&lt;regex&gt;)</code>처럼 모드 변경자의 소괄호 안에 집어넣으면 된다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is)a..'</span><span class="p">,</span> <span class="s">'Abc'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is:a..) and abc is good'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is)a..'</span><span class="p">,</span> <span class="s">'Abc'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is:a..) and abc is good'</span><span class="p">,</span>
 <span class="s">'''
 Abc and abc is good.
 abc and Abc is good. 
@@ -561,9 +561,9 @@ abc and Abc is good.
 <p><code class="highlighter-rouge">\W</code>는 단어 문자 이외의 문자 1개에 일치된다. 즉 공백 문자, 특수 문자 등에 일치된다고 보면 된다.<br />
 <code class="highlighter-rouge">\w</code>와 정확히 반대의 역할을 한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">w</span><span class="err">\</span><span class="s">w</span><span class="err">\</span><span class="s">w'</span><span class="p">,</span> <span class="s">'a_가'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\w\w\w'</span><span class="p">,</span> <span class="s">'a_가'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">w</span><span class="err">\</span><span class="s">W</span><span class="err">\</span><span class="s">w'</span><span class="p">,</span> <span class="s">'a (9_a a'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\w\W\w'</span><span class="p">,</span> <span class="s">'a (9_a a'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -581,9 +581,9 @@ abc and Abc is good.
 
 <p><code class="highlighter-rouge">\d</code>는 숫자 문자 1개에 일치된다. 마찬가지로 <code class="highlighter-rouge">\D</code>는 비 숫자 문자 1개에 일치된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d'</span><span class="p">,</span> <span class="s">'12abc34'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d\d'</span><span class="p">,</span> <span class="s">'12abc34'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">D</span><span class="err">\</span><span class="s">D'</span><span class="p">,</span> <span class="s">'11aa11c1'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\d\d\D\D'</span><span class="p">,</span> <span class="s">'11aa11c1'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -597,8 +597,8 @@ abc and Abc is good.
 
 <p><code class="highlighter-rouge">\s</code>는 공백 문자(빈칸 ‘ ‘, 탭 ‘\t’, 개행 ‘\n’) 1개에 일치된다. 마찬가지로 <code class="highlighter-rouge">\S</code>는 <code class="highlighter-rouge">\s</code>의 반대 역할이다. 즉, 공백 문자 이외의 모든 문자 1개에 일치된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="s">'Oh</span><span class="err">\</span><span class="s">smy</span><span class="err">\</span><span class="s">sgod</span><span class="err">\</span><span class="s">s</span><span class="err">\</span><span class="s">S'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="s">'Oh\smy\sgod\s\S'</span><span class="p">,</span>
     <span class="s">'''Oh my</span><span class="se">\t</span><span class="s">god
 !'''</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
@@ -618,7 +618,7 @@ abc and Abc is good.
 <p>한 가지 주의할 점으로는 <code class="highlighter-rouge">\b</code>나 <code class="highlighter-rouge">\B</code>를 사용하기 위해서는 정규표현식 앞에 <code class="highlighter-rouge">r</code> prefix를 붙여줘야 한다는 것이다.<br />
 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\w\b\W\B'</span><span class="p">,</span> <span class="s">'ab  c d  == = e= =f'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\w\b\W\B'</span><span class="p">,</span> <span class="s">'ab  c d  == = e= =f'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -672,11 +672,11 @@ abc and Abc is good.
 
 <p>(헷갈리는) 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '']
@@ -779,13 +779,13 @@ SyntaxError: EOL while scanning string literal
 
 <p><code class="highlighter-rouge">^</code>와 <code class="highlighter-rouge">$</code>는 일반적으로 <code class="highlighter-rouge">\A</code>와 <code class="highlighter-rouge">\Z</code> 앵커와 효과가 같다. 다른 경우는 옵션을 설정하는 경우인데, re.MULTILINE 옵션을 설정하면 <code class="highlighter-rouge">^</code>와 <code class="highlighter-rouge">$</code>는 문자열 전체의 시작/끝이 아닌 행의 시작/끝에서 일치된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">Aryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ryan</span><span class="err">\</span><span class="s">d$'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\Aryan\d\Z'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ryan\d$'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">A ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\A ryan\d\s\Z'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">MULTILINE</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['ryan1']
@@ -800,11 +800,11 @@ SyntaxError: EOL while scanning string literal
 
 <p>응용으로, 빈 문자열 혹은 빈 행을 검사할 수 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">A</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">A</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'\A\Z'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'\A\Z'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 0), match=''&gt;
@@ -816,7 +816,7 @@ None
 
 <p><code class="highlighter-rouge">^</code>, <code class="highlighter-rouge">$</code>도 마침표 <code class="highlighter-rouge">.</code>처럼 옵션을 인라인으로 설정할 수 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?m)^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?m)^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '']
@@ -824,7 +824,7 @@ None
 
 <p>참고로, 옵션을 여러 개 쓰려면 <code class="highlighter-rouge">|</code>로 OR 연산을 시켜주면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> Ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> RYAN3 '</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> Ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> RYAN3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span> <span class="o">|</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[' ryan1 ', ' Ryan2 ', ' RYAN3 ']
@@ -836,7 +836,7 @@ None
 
 <p>한 글자 일치와 사용법은 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\u18ff</span><span class="err">\</span><span class="s">d'</span><span class="p">,</span> <span class="s">'0᣿1頶᣿2䅄ሲ᣿3456'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\u18ff</span><span class="s">\d'</span><span class="p">,</span> <span class="s">'0᣿1頶᣿2䅄ሲ᣿3456'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['\u18ff1', '\u18ff2', '\u18ff3']

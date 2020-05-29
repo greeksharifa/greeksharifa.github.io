@@ -395,31 +395,31 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
     """</span>
 
     <span class="c1"># Step 1: Compute box scores
-</span>    <span class="n">box_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">box_confidence</span><span class="p">,</span> <span class="n">box_class_probs</span><span class="p">)</span>
+</span>    <span class="n">box_scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">box_confidence</span><span class="p">,</span> <span class="n">box_class_probs</span><span class="p">)</span>
 
     <span class="c1"># Step 2: box_scores에서 제일 큰 스코어의 위치와 값을 찾는다.
-</span>    <span class="n">box_classes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">box_class_scores</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="n">box_classes</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">box_class_scores</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">box_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># Step 3: 아래 필터링 마스크는 부울렌 tensor로 threshold보다 큰 score를 가지는
 </span>    <span class="c1"># box_class를 판별한다.
-</span>    <span class="n">filtering_mask</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+</span>    <span class="n">filtering_mask</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">greater_equal</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
 
     <span class="c1"># Step 4: Apply the mask to scores, boxes and classes
-</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
-    <span class="n">boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
-    <span class="n">classes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_classes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_class_scores</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">box_classes</span><span class="p">,</span> <span class="n">filtering_mask</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span>
 </code></pre></div></div>
 
 <p>위에서 tf.boolean_mask함수는 아래와 같은 형식을 갖는다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'boolean_mask'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'boolean_mask'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 <p>해당 텐서에 True, False로 구성된 mask를 씌우면 True와 연결된 값만 남고 나머지는 지워진다.<br />
 예를 들어</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">])</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">])</span>
 <span class="n">boolean_mask</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
 </code></pre></div></div>
 <p>의 결과는 [0, 2]이다.</p>
@@ -427,7 +427,7 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
 <h3 id="non-max-suppression">Non-max Suppression</h3>
 <p>이제 필요 없는 Box들을 제거해보자.<br />
 아래 함수에서 사용할 메서드 중 tf.image.non_max_suppression에 대해 설명하자면,</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_output_size</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_output_size</span><span class="p">,</span>
     <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">score_threshold</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s">'-inf'</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 <p>아래와 같은 arguements를 가진다.<br />
@@ -456,19 +456,19 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
     Note: 이 함수는 scores, boxes, classes의 shape을 편의를 위해 transpose 시킬 것이다.
     """</span>
     <span class="c1"># 내가 예측하고 싶은 박스 최대치
-</span>    <span class="n">max_boxes_tensor</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="n">max_boxes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int32'</span><span class="p">)</span>
+</span>    <span class="n">max_boxes_tensor</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">variable</span><span class="p">(</span><span class="n">max_boxes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int32'</span><span class="p">)</span>
 
     <span class="c1"># initialize variable max_boxes_tensor
-</span>    <span class="n">K</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span> <span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">variables_initializer</span><span class="p">([</span><span class="n">max_boxes_tensor</span><span class="p">]))</span>
+</span>    <span class="n">K</span><span class="p">.</span><span class="n">get_session</span><span class="p">(</span> <span class="p">).</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">variables_initializer</span><span class="p">([</span><span class="n">max_boxes_tensor</span><span class="p">]))</span>
 
     <span class="c1"># get the list of indices corresponding to boxes you keep
-</span>    <span class="n">nms_indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_boxes_tensor</span><span class="p">,</span> 
+</span>    <span class="n">nms_indices</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">non_max_suppression</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">max_boxes_tensor</span><span class="p">,</span> 
     <span class="n">iou_threshold</span><span class="o">=</span><span class="n">iou_threshold</span><span class="p">)</span>
 
     <span class="c1"># Use K.gather() to select only nms_indices from scores, boxes and classes
-</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
-    <span class="n">boxes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
-    <span class="n">classes</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+</span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">nms_indices</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span>
 </code></pre></div></div>
@@ -478,7 +478,7 @@ Score가 낮다는 것은 Cell이 실제로 이 object를 detect했을 확률이
 tf.image.non_max_suppression을 통해 nms_indices를 얻게 되는데 이는 선택할 Box의 indices를 의미한다.</p>
 
 <p>K.gather에 대해 설명하자면,</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">validate_indices</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="p">.</span><span class="n">gather</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">validate_indices</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></div>
 <p>여기서 <strong>params</strong>는 최소 axis+1의 rank를 갖는 텐서이다.<br />
 <strong>indices</strong>는 [0, params.shape[axis]) 범위 사이에 있는 텐서이다.</p>
@@ -542,16 +542,16 @@ height, width, x_center, y_center로 표기했던 좌표를 편의를 위해 코
 <h3 id="test">Test</h3>
 <p>이제 실제 이미지에 적용해보자.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">yolo_model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s">'C:/Users/YY/Documents/Winter Data/NN/Model/yolo.h5'</span><span class="p">)</span>
-<span class="n">yolo_model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'sgd'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">)</span>
+<span class="n">yolo_model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'sgd'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">)</span>
 <span class="c1"># yolo_model.count_params()
 # yolo_model.summary()
 </span>
-<span class="n">sess</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">get_session</span><span class="p">()</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">K</span><span class="p">.</span><span class="n">get_session</span><span class="p">()</span>
 <span class="n">class_names</span> <span class="o">=</span> <span class="n">read_classes</span><span class="p">(</span><span class="s">"path/coco_classes.txt"</span><span class="p">)</span>
 <span class="n">anchors</span> <span class="o">=</span> <span class="n">read_anchors</span><span class="p">(</span><span class="s">"path/yolo_anchors.txt"</span><span class="p">)</span>
 <span class="n">image_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mf">720.</span><span class="p">,</span> <span class="mf">1280.</span><span class="p">)</span>
 
-<span class="n">yolo_outputs</span> <span class="o">=</span> <span class="n">yolo_head</span><span class="p">(</span><span class="n">yolo_model</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">anchors</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
+<span class="n">yolo_outputs</span> <span class="o">=</span> <span class="n">yolo_head</span><span class="p">(</span><span class="n">yolo_model</span><span class="p">.</span><span class="n">output</span><span class="p">,</span> <span class="n">anchors</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
 <span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">yolo_eval</span><span class="p">(</span><span class="n">yolo_outputs</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -574,18 +574,18 @@ height, width, x_center, y_center로 표기했던 좌표를 편의를 위해 코
 
     <span class="c1"># Run the session
 </span>    <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span> <span class="o">=</span>
-    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span><span class="p">],</span>
-     <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">yolo_model</span><span class="o">.</span><span class="nb">input</span><span class="p">:</span> <span class="n">image_data</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="n">learning_phase</span><span class="p">(</span> <span class="p">):</span> <span class="mi">0</span><span class="p">})</span>
+    <span class="n">sess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">scores</span><span class="p">,</span> <span class="n">boxes</span><span class="p">,</span> <span class="n">classes</span><span class="p">],</span>
+     <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">yolo_model</span><span class="p">.</span><span class="nb">input</span><span class="p">:</span> <span class="n">image_data</span><span class="p">,</span> <span class="n">K</span><span class="p">.</span><span class="n">learning_phase</span><span class="p">(</span> <span class="p">):</span> <span class="mi">0</span><span class="p">})</span>
 
     <span class="c1"># Print predictions info
-</span>    <span class="k">print</span><span class="p">(</span><span class="s">'Found {} boxes for {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_boxes</span><span class="p">),</span> <span class="n">image_file</span><span class="p">))</span>
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'Found {} boxes for {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">out_boxes</span><span class="p">),</span> <span class="n">image_file</span><span class="p">))</span>
     <span class="c1"># Generate colors for drawing bounding boxes.
 </span>    <span class="n">colors</span> <span class="o">=</span> <span class="n">generate_colors</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
     <span class="c1"># Draw bounding boxes on the image file
 </span>    <span class="n">draw_boxes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span><span class="p">,</span> <span class="n">class_names</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
     <span class="c1"># Save the predicted bounding box on the image
 </span>    <span class="c1"># image.save(os.path.join("out", image_file), quality=90)
-</span>    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'path/output01.jpg'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+</span>    <span class="n">image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">'path/output01.jpg'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">out_scores</span><span class="p">,</span> <span class="n">out_boxes</span><span class="p">,</span> <span class="n">out_classes</span>
 

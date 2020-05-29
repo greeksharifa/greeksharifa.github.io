@@ -387,8 +387,8 @@ YOLO의 핵심은 이미지를 Grid Cell로 나누어 각각의 Cell이 Object D
     :param box2: [..., 4]
     :return: [..., 1] X 8
     """</span>
-    <span class="n">b1_x</span><span class="p">,</span> <span class="n">b1_y</span><span class="p">,</span> <span class="n">b1_w</span><span class="p">,</span> <span class="n">b1_h</span> <span class="o">=</span> <span class="n">box1</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">box1</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">box1</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">box1</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-    <span class="n">b2_x</span><span class="p">,</span> <span class="n">b2_y</span><span class="p">,</span> <span class="n">b2_w</span><span class="p">,</span> <span class="n">b2_h</span> <span class="o">=</span> <span class="n">box2</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">box2</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">box2</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">box2</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">b1_x</span><span class="p">,</span> <span class="n">b1_y</span><span class="p">,</span> <span class="n">b1_w</span><span class="p">,</span> <span class="n">b1_h</span> <span class="o">=</span> <span class="n">box1</span><span class="p">[...,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">box1</span><span class="p">[...,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">box1</span><span class="p">[...,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">box1</span><span class="p">[...,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">b2_x</span><span class="p">,</span> <span class="n">b2_y</span><span class="p">,</span> <span class="n">b2_w</span><span class="p">,</span> <span class="n">b2_h</span> <span class="o">=</span> <span class="n">box2</span><span class="p">[...,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">box2</span><span class="p">[...,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">box2</span><span class="p">[...,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">box2</span><span class="p">[...,</span> <span class="mi">3</span><span class="p">]</span>
 
     <span class="n">b1_x1</span><span class="p">,</span> <span class="n">b1_x2</span> <span class="o">=</span> <span class="n">b1_x</span> <span class="o">-</span> <span class="n">b1_w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">b1_x</span> <span class="o">+</span> <span class="n">b1_w</span><span class="o">/</span><span class="mi">2</span>
     <span class="n">b1_y1</span><span class="p">,</span> <span class="n">b1_y2</span> <span class="o">=</span> <span class="n">b1_y</span> <span class="o">-</span> <span class="n">b1_h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">b1_y</span> <span class="o">+</span> <span class="n">b1_h</span><span class="o">/</span><span class="mi">2</span>
@@ -442,7 +442,7 @@ YOLO의 핵심은 이미지를 Grid Cell로 나누어 각각의 Cell이 Object D
  """</span>
  <span class="n">confidence</span><span class="p">[</span><span class="n">confidence</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
     
- <span class="p">(</span><span class="err">하략</span><span class="p">:</span> <span class="n">class_scores</span><span class="err">를</span> <span class="err">계산하여</span> <span class="err">반환함</span><span class="p">)</span>
+ <span class="p">(</span><span class="n">하략</span><span class="p">:</span> <span class="n">class_scores를</span> <span class="n">계산하여</span> <span class="n">반환함</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -461,14 +461,14 @@ YOLO의 핵심은 이미지를 Grid Cell로 나누어 각각의 Cell이 Object D
  """</span>
 
  <span class="k">for</span> <span class="n">class_number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
-     <span class="n">target</span> <span class="o">=</span> <span class="n">class_scores</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">class_number</span><span class="p">]</span>
+     <span class="n">target</span> <span class="o">=</span> <span class="n">class_scores</span><span class="p">[...,</span> <span class="n">class_number</span><span class="p">]</span>
 
      <span class="c1"># 현재 class 내에서 class_score를 기준으로 내림차순으로 정렬한다.
-</span>     <span class="n">sorted_class_score</span><span class="p">,</span> <span class="n">sorted_class_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>     <span class="n">sorted_class_score</span><span class="p">,</span> <span class="n">sorted_class_index</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
      <span class="c1"># idx: 아래 bbox_max의 Index
 </span>     <span class="c1"># bbox_max_idx: 정렬된 class_scores를 기준으로 가장 큰 score를 가지는 bbox Index
-</span>     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">bbox_max_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sorted_class_index</span><span class="o">.</span><span class="n">numpy</span><span class="p">())):</span>
+</span>     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">bbox_max_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">sorted_class_index</span><span class="p">.</span><span class="n">numpy</span><span class="p">())):</span>
          <span class="c1"># 기준 class_score가 0이라면 비교할 필요가 없다.
 </span>         <span class="c1"># 아래 threshold 필터링에서 0으로 바뀐 값이기 때문이다.
 </span>         <span class="k">if</span> <span class="n">class_scores</span><span class="p">[</span><span class="n">bbox_max_idx</span><span class="p">,</span> <span class="n">class_number</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
@@ -477,7 +477,7 @@ YOLO의 핵심은 이미지를 Grid Cell로 나누어 각각의 Cell이 Object D
 
              <span class="c1"># criterion_box(bbox_max)가 아닌 다른 box들을 리스트로 미리 지정한다.
 </span>             <span class="c1">#others = [index for index in list(sorted_class_index.numpy()) if index != i]
-</span>             <span class="n">others</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sorted_class_index</span><span class="o">.</span><span class="n">numpy</span><span class="p">())[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+</span>             <span class="n">others</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sorted_class_index</span><span class="p">.</span><span class="n">numpy</span><span class="p">())[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
 
              <span class="c1"># 비교 대상 box들에 대해서
 </span>             <span class="c1"># bbox_cur_idx: 비교 대상 bbox Index

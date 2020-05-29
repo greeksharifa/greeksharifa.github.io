@@ -288,20 +288,20 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
           <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
         <span class="c1"># 결과를 멤버 변수에 저장
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_test</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_test</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">X_train</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">X_test</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y_test</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span>
 
 
 <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">path</span> <span class="o">+</span> <span class="s">"/airplane.csv"</span><span class="p">):</span>
     <span class="c1"># skipfooter: Number of lines at bottom of file to skip
 </span>    <span class="c1"># 데이터 시트 중 승객 수에 해당하는 1번째 열만 로드
-</span>    <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">engine</span><span class="o">=</span><span class="s">'python'</span><span class="p">,</span> <span class="n">skipfooter</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span>    <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">engine</span><span class="o">=</span><span class="s">'python'</span><span class="p">,</span> <span class="n">skipfooter</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
     <span class="c1"># DataFrame에서 np.array로 바꿔줌: shape = (144, )
-</span>    <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="n">values</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="c1"># Data Normalize
-</span>    <span class="n">data_dn</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span>
+</span>    <span class="n">data_dn</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span>
     <span class="k">return</span> <span class="n">data_dn</span>
 
 
@@ -315,13 +315,13 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
     <span class="k">assert</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="n">D</span><span class="p">,</span> <span class="s">"N should be larger than D, where N is len(data)"</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">D</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">X_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="n">D</span><span class="p">])</span>
-        <span class="n">y_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">D</span><span class="p">])</span>
+        <span class="n">X_l</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="n">D</span><span class="p">])</span>
+        <span class="n">y_l</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">D</span><span class="p">])</span>
 
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_l</span><span class="p">)</span>    <span class="c1"># X.shape = (131, 12)
-</span>    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>    <span class="c1"># X.shape = (131, 12, 1)
-</span>    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_l</span><span class="p">)</span>    <span class="c1"># y.shape = (131, 1)
-</span>    <span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_l</span><span class="p">)</span>    <span class="c1"># X.shape = (131, 12)
+</span>    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>    <span class="c1"># X.shape = (131, 12, 1)
+</span>    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_l</span><span class="p">)</span>    <span class="c1"># y.shape = (131, 1)
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
 </code></pre></div></div>
@@ -334,10 +334,10 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
     <span class="n">m_x</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>    <span class="c1"># shape = X.shape[1: ]
 </span>    <span class="n">m_h</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">10</span><span class="p">)(</span><span class="n">m_x</span><span class="p">)</span>
     <span class="n">m_y</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">m_h</span><span class="p">)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">m_x</span><span class="p">,</span> <span class="n">m_y</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">(</span><span class="n">m_x</span><span class="p">,</span> <span class="n">m_y</span><span class="p">)</span>
 
-    <span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">"adam"</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">"mean_squared_error"</span><span class="p">)</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+    <span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">"adam"</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">"mean_squared_error"</span><span class="p">)</span>
+    <span class="n">model</span><span class="p">.</span><span class="n">summary</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">model</span>
 </code></pre></div></div>
 <p>모델은 간단한 LSTM이다. shape은 X_train의 1개 example의 shape이다.</p>
@@ -345,39 +345,39 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <h3 id="종합">종합</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Machine</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">()</span>
 
         <span class="c1"># example 수 빼고 나머지를 shape 기준으로 설정
-</span>        <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span> <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">rnn_model</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
+</span>        <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span> <span class="p">]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">rnn_model</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">400</span><span class="p">):</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
-        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">X_test</span>
-        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">y_train</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">y_test</span>
-        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">y</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">data</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">X_train</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">X_test</span>
+        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">y_train</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">y_test</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">y</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">model</span>
 
-        <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+        <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
                             <span class="n">validation_data</span><span class="o">=</span><span class="p">[</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="n">skeras</span><span class="o">.</span><span class="n">plot_loss</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">"History of training"</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">skeras</span><span class="p">.</span><span class="n">plot_loss</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"History of training"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 
-        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"Loss: "</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Original'</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Prediction"</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Validation Results"</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Loss: "</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Original'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Prediction"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Validation Results"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 
-        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"Loss: "</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">prediction</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Loss: "</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">prediction</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y_test</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
         <span class="c1"># 목표 결과와 예측 결과의 순서를 표시하는 칼럼: Sample
 </span>        <span class="c1"># 0 ~ len(y_test)-1까지 2번 반복되는데,
@@ -385,23 +385,23 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 </span>        <span class="n">df</span><span class="p">[</span><span class="s">'Sample'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)))</span> <span class="o">*</span> <span class="mi">2</span>
 
         <span class="c1"># 실제 목표 결과와 예측 결과를 순서대로 결합
-</span>        <span class="n">df</span><span class="p">[</span><span class="s">'Normalized # of Passengers'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span>        <span class="n">df</span><span class="p">[</span><span class="s">'Normalized # of Passengers'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
         <span class="c1"># 정보 표시 (문자열)
 </span>        <span class="n">df</span><span class="p">[</span><span class="s">'Type'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Original'</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="s">'Prediction'</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"Sample"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"Normalized # of Passengers"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">"Type"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Normalized # of Passengers"</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"Sample"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"Normalized # of Passengers"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">"Type"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Normalized # of Passengers"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 
         <span class="c1"># Training Data와 Validation Data를 합쳐서 시각화
-</span>        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Prediction'</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Original"</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">"All Results"</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span>        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Prediction'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"Original"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"All Results"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>중간에 matplotlib과 seaborn을 이용하여 결과를 시각화하도록 설계한 것 외에는<br />
@@ -412,7 +412,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <h3 id="run-code">Run Code</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">machine</span> <span class="o">=</span> <span class="n">Machine</span><span class="p">()</span>
-    <span class="n">machine</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">machine</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 
 <span class="c1"># Run Code
 </span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
@@ -484,17 +484,17 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>그룹화는 말 그대로 그룹으로 묶어주는 것이다. 지금까지의 글에서는 정규식 메타문자들의 효력은 대개 한 문자에만 적용이 되었다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'12+'</span><span class="p">,</span> <span class="s">'12 1212 1222'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'12+'</span><span class="p">,</span> <span class="s">'12 1212 1222'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['12', '12', '12', '1222']
 </code></pre></div></div>
 <p>‘1212’와 같은 문자열을 찾고 싶었는데, ‘12’ 혹은 ‘1222’만 찾아진다. 즉 메타문자 <code class="highlighter-rouge">+</code>는 <code class="highlighter-rouge">2</code>에만 적용이 된 것이다. 이를 <code class="highlighter-rouge">12</code> 모두에 적용시키려면 소괄호 <code class="highlighter-rouge">( )</code>로 그룹화시켜주면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'(12)+'</span><span class="p">,</span> <span class="s">'1212'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 4), match='1212'&gt;
@@ -505,10 +505,10 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>정규식은 항상 최대로 일치시키는 쪽으로 문자열은 탐색하기 때문에, ‘12’가 아닌 ‘1212’를 잘 찾았다. 그런데 한 가지 이상한 결과는 <strong>re.findall</strong> 결과이다.</p>
 
 <p>다른 예시를 한번 보자.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12B'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A1212B'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12121212B'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12B'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A1212B'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A12121212B'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['12']
@@ -523,8 +523,8 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>캡처란 원하는 부분만을 추출하고 싶을 때 사용하는 것이다. 예를 들어 ‘yyyy-mm-dd’와 같이 날짜를 나타내는 문자열 중 월, 일을 각각 따로 빼서 쓰고 싶다고 하자.<br />
 그러면 따로 빼고 싶은 부분인 ‘mm’과 ‘dd’ 부분에만 소괄호의 캡처 기능을 사용하면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'2028-07-28'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'1999/05/21 2018-07-28 2018-06-31 2019.01.01'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\d{4}-(\d\d)-(\d\d)'</span><span class="p">,</span> <span class="s">'2028-07-28'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\d{4}-(\d\d)-(\d\d)'</span><span class="p">,</span> <span class="s">'1999/05/21 2018-07-28 2018-06-31 2019.01.01'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[('07', '28')]
@@ -538,13 +538,13 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>여러분은 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">첫 번째 글</a>에서 다음 예시를 보았을 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">end</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">span</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">start</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">span</span><span class="p">())</span>
 <span class="c1"># matchObj를 오랜만에 가져와 보았다. 캡처를 잘 쓰기 위해서는 matchObj가 필요하다.
 </span></code></pre></div></div>
 <p>결과</p>
@@ -557,19 +557,19 @@ match
 
 <p>이제 정규식을 캡처를 포함한 식으로 바꿔보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'match'</span><span class="p">,</span> <span class="s">"'matchObj' is a good name, but 'm' is convenient."</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'# ---------------------------------------------------------------- #'</span><span class="p">)</span>
 
-<span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d{4}-(\d?\d)-(\d?\d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(1, 6), match='match'&gt;
@@ -591,15 +591,15 @@ match
 
 <p><img src="\public\img\정규표현식(re)\2018-07-20-regex-usage-04-intermediate\02_groups.PNG" width="75%" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{4}-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)-(</span><span class="err">\</span><span class="s">d?</span><span class="err">\</span><span class="s">d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d{4}-(\d?\d)-(\d?\d)'</span><span class="p">,</span> <span class="s">'1868-12-10'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">'m:'</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">'m.group():'</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'m.group():'</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'m.group({}): {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'m.group({}): {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">'m.groups():'</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'m.groups():'</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>m: &lt;_sre.SRE_Match object; span=(0, 10), match='1868-12-10'&gt;
@@ -626,12 +626,12 @@ m.groups(): ('12', '10')
 <h3 id="비-캡처-그룹">비 캡처 그룹</h3>
 
 <p>그룹화를 위해 소괄호를 반드시 써야 하는데, 굳이 캡처하고 싶지는 않을 때가 있다. 예를 들어 다음과 같이 쓴다고 하자.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((ab)+), ((123)+) is repetitive</span><span class="err">\</span><span class="s">.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># don't want
-</span><span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># don't want
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((ab)+), ((123)+) is repetitive\.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># don't want
+</span><span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> 
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span> <span class="c1"># don't want
 </span></code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ababab, 123123 is repetitive.
@@ -645,10 +645,10 @@ ab
 
 <p>비 캡처 그룹은 <code class="highlighter-rouge">(?:&lt;regex&gt;)</code>와 같이 사용한다. 위의 예시를 다시 써 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((?:ab)+), ((?:123)+) is repetitive</span><span class="err">\</span><span class="s">.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'((?:ab)+), ((?:123)+) is repetitive\.'</span><span class="p">,</span> <span class="s">'Hmm... ababab, 123123 is repetitive.'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ababab, 123123 is repetitive.
@@ -667,9 +667,9 @@ ababab
 <p><a href="">여기</a>에서 (?s)와 같은 모드 변경자를 본 적이 있을 것이다.</p>
 
 <p>이러한 모드 변경자는 소괄호를 쓰긴 하지만 캡처 그룹으로 작동하지 않는다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'case sensitive(?i) irrelevant'</span><span class="p">,</span> <span class="s">'case sensitive IrreLEVant'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'case sensitive(?i) irrelevant'</span><span class="p">,</span> <span class="s">'case sensitive IrreLEVant'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>case sensitive IrreLEVant
@@ -693,8 +693,8 @@ IndexError: no such group
 
 <p>우선 예시를 보자. 단어 경계는 정규식이 더 복잡해 보이므로 일부러 넣지 않았다. 분리된 단어만을 보고 싶다면, <code class="highlighter-rouge">\b</code>를 넣으면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">).</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'(\w)\w\1'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>토마토
@@ -710,7 +710,7 @@ IndexError: no such group
 
 <p>두 번째는 캡처를 하나 더 만드는 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">match_list</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">match_list</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -725,11 +725,11 @@ xyx
 <p>그러나 이 방법은 나쁘지 않지만, <strong>findall</strong>로 찾기 때문에 위치를 찾아주지는 않는다는 단점이 있다.<br />
 일치부의 시작/끝 위치까지 알고 싶을 때에는 <strong>finditer</strong>을 이용한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'((\w)\w\2)'</span><span class="p">,</span> <span class="s">'토마토 ABC aba xyxy '</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">matchObj</span> <span class="ow">in</span> <span class="n">matchObj_iter</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'string: {}, </span><span class="se">\t</span><span class="s"> start/end position={}, </span><span class="se">\t</span><span class="s"> 반복 부분: {}'</span><span class="o">.</span>
-          <span class="nb">format</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">span</span><span class="p">(),</span> <span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'string: {}, </span><span class="se">\t</span><span class="s"> start/end position={}, </span><span class="se">\t</span><span class="s"> 반복 부분: {}'</span><span class="p">.</span>
+          <span class="nb">format</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(),</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">span</span><span class="p">(),</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string: 토마토, 	 start/end position=(0, 3), 	 반복 부분: 토
@@ -751,13 +751,13 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 <p>예시를 하나 보자.<br />
 ‘2018-07-28 2018.07.28’처럼, 형식만 다른 똑같은 날짜가 있는지를 확인하는 상황을 생각하자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span>
     <span class="s">r'(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d\d)-(?P&lt;day&gt;\d\d) (?P=year)\.(?P=month)\.(?P=day)'</span><span class="p">,</span>
     <span class="s">'2018-07-28 2018.07.28'</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">groups</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-07-28 2018.07.28
@@ -769,11 +769,11 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p>사실 명명 그룹과 비 명명 그룹을 섞어 쓸 수는 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span>
     <span class="s">r'(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d\d)-(?P&lt;day&gt;\d\d) (?P=year)\.\2\.\3'</span><span class="p">,</span>
     <span class="s">'2018-07-28 2018.07.28'</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-07-28 2018.07.28
@@ -788,7 +788,7 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/#%EA%B7%B8%EB%A3%B9%ED%99%94">이 글의 앞부분</a>에서 <code class="highlighter-rouge">12</code>를 반복시키려고 <code class="highlighter-rouge">(12)+</code> 정규식을 썼는데 원치 않는 결과가 나온 것을 보았을 것이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'A(12)+B'</span><span class="p">,</span> <span class="s">'A121212B'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['12']
@@ -796,7 +796,7 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p>위의 예시처럼 문자가 한 종류(12)로 정해져 있으면 그냥 전체에다 캡처 그룹을 하나 더 만드는 것으로 해결 가능하지만, 정해진 것이 아닌 문자 집합 같은 것이라면 꽤 어려워진다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['25', '00']
@@ -807,10 +807,10 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 
 <p>이를 캡처 그룹으로 한번에 묶어내는 우아한 방법은 없지만, 다른 괜찮은 해결 방법은 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj_iter</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r'\b(\d\d)+\b'</span><span class="p">,</span> <span class="s">'1, 25, 301, 4000, 55555'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">matchObj</span> <span class="ow">in</span> <span class="n">matchObj_iter</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>25
@@ -879,8 +879,8 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 100만에 달하는 것이 가장 이상적이라고 본문에 적혀있다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">path</span> <span class="o">=</span> <span class="n">get_file</span><span class="p">(</span><span class="s">'nietzsche.txt'</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s">'https://s3.amazonaws.com/text-datasets/nietzsche.txt'</span><span class="p">)</span>
-<span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">io</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">lower</span><span class="p">()</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'corpus length:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
 <span class="n">corpus</span> <span class="n">length</span><span class="p">:</span> <span class="mi">600893</span>
@@ -912,8 +912,8 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
 <span class="n">next_chars</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="n">maxlen</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
-    <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">])</span>
-    <span class="n">next_chars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">])</span>
+    <span class="n">sentences</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">])</span>
+    <span class="n">next_chars</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">])</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'nb sequences:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">))</span>
 <span class="n">nb</span> <span class="n">sequences</span><span class="p">:</span> <span class="mi">200285</span>
@@ -937,11 +937,11 @@ text[0:40]을 sentences에 넣어주고, text[40]을 next_chars에 넣어준다.
 이렇게 형성된 sentences의 길이는 60만을 3으로 나눈 20만이다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Vectorization
-</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="nb">bool</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nb">bool</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="p">(</span><span class="mi">200285</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="p">(</span><span class="mi">200285</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
 </code></pre></div></div>
 <p>이제 feed할 Word Matrix를 만들 때가 되었다.<br />
@@ -956,13 +956,13 @@ np.zeros를 통해 initialize를 시켜주는데, 그 shape은 위에 보는 것
 
 <span class="c1"># 예시: x[3]을 보라
 </span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-<span class="p">[[</span> <span class="bp">True</span> <span class="bp">False</span> <span class="bp">False</span> <span class="o">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
- <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="o">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
- <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="o">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
- <span class="o">...</span>
- <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="o">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
- <span class="p">[</span><span class="bp">False</span>  <span class="bp">True</span> <span class="bp">False</span> <span class="o">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
- <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="o">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]]</span>
+<span class="p">[[</span> <span class="bp">True</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">...</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span>  <span class="bp">True</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]]</span>
 </code></pre></div></div>
 <p>위에서 만든 x, y 넘파이 배열은 현재 0, 즉 False로 채워져 있다.<br />
 sentences 리스트에 담겨 있는 각 문장에서 등장하는 ‘문자’의 위치에 1을 배정한다.<br />
@@ -974,12 +974,12 @@ y의 경우는 문장 단위가 아니라 각 문자 단위로 인코딩을 해�
 <h3 id="building-model">Building Model</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Build the model: a single LSTM
 </span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">))))</span>
-<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)))</span>  <span class="c1"># 최종 아웃풋은 길이 57의 벡터
-</span><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">'softmax'</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">))))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)))</span>  <span class="c1"># 최종 아웃풋은 길이 57의 벡터
+</span><span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">'softmax'</span><span class="p">))</span>
 
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">RMSprop</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="sampling-function">Sampling Function</h3>
@@ -990,13 +990,13 @@ y의 경우는 문장 단위가 아니라 각 문자 단위로 인코딩을 해�
     :return:
     """</span>
     <span class="c1"># helper function to sample an index from a probability array
-</span>    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'float64'</span><span class="p">)</span>
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span> <span class="o">/</span> <span class="n">temperature</span>
-    <span class="n">exp_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">exp_preds</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">exp_preds</span><span class="p">)</span>
-    <span class="n">probas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span>    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">preds</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="s">'float64'</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span> <span class="o">/</span> <span class="n">temperature</span>
+    <span class="n">exp_preds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">exp_preds</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">exp_preds</span><span class="p">)</span>
+    <span class="n">probas</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">multinomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>이 사용자 함수는 처음 보기엔 구조가 복잡해보인다.<br />
@@ -1008,10 +1008,10 @@ y의 경우는 문장 단위가 아니라 각 문자 단위로 인코딩을 해�
     각 epoch 끝에 발동하는 함수임. Generated Text를 반환한다.
     """</span>
     <span class="k">print</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'----- Generating text after Epoch: </span><span class="si">%</span><span class="s">d'</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'----- Generating text after Epoch: %d'</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span>
 
     <span class="c1"># 60만개의 전체 text에서 랜덤하게 번호를 하나 뽑아 start_index를 설정
-</span>    <span class="n">start_index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="n">maxlen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span>    <span class="n">start_index</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="n">maxlen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">diversity</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">'----- diversity:'</span><span class="p">,</span> <span class="n">diversity</span><span class="p">)</span>
@@ -1022,13 +1022,13 @@ y의 경우는 문장 단위가 아니라 각 문자 단위로 인코딩을 해�
 </span>        <span class="n">sentence</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span> <span class="n">start_index</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">]</span>
         <span class="n">generated</span> <span class="o">+=</span> <span class="n">sentence</span>
         <span class="k">print</span><span class="p">(</span><span class="s">'----- Generating with seed: "'</span> <span class="o">+</span> <span class="n">sentence</span> <span class="o">+</span> <span class="s">'"'</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">generated</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">generated</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">):</span>
             <span class="c1"># x_pred: Word Matrix
 </span>            <span class="c1"># x_pred.shape: (1, 40, 57) 가로는 행은 문자열 길이,
 </span>            <span class="c1"># 열은 57개의 기본 문자 종류
-</span>            <span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)))</span>
+</span>            <span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)))</span>
 
             <span class="c1"># 위와 마찬가지로 발견된 문자에 대해 one-hot 인코딩을 해준다.
 </span>            <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
@@ -1038,7 +1038,7 @@ y의 경우는 문장 단위가 아니라 각 문자 단위로 인코딩을 해�
 </span>            <span class="c1"># 왜 [0]으로 인덱싱 했는지는 모르겠다. 안해도 똑같은 넘파이 배열이다.
 </span>            <span class="c1"># preds.shape: (57, 1)
 </span>            <span class="c1"># 이 preds는 다음에 생성될 문자를 결정하는 확률값을 담은 배열이다.
-</span>            <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span>            <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="c1"># 이 preds를 바탕으로 sample함수를 돌려 next_index와 next_char을 얻는다.
 </span>            <span class="c1"># 이 next_index는 0 ~ len(char)-1 중 하나의 숫자를 반환함
@@ -1059,8 +1059,8 @@ y의 경우는 문장 단위가 아니라 각 문자 단위로 인코딩을 해�
 </span>            <span class="c1"># 총 4개의 글이 반환되는 셈이다.
 </span>            <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">next_char</span>
 
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">next_char</span><span class="p">)</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">next_char</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
         <span class="k">print</span><span class="p">()</span>
 </code></pre></div></div>
 <p>이 함수는 주석으로 대부분의 설명을 대체하겠다.<br />
@@ -1088,12 +1088,12 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <h3 id="results">Results</h3>
 <p>모델은 다음과 같이 fit한다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">print_callback</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">print_callback</span><span class="p">])</span>
 </code></pre></div></div>
 <p>그러면 자동으로 학습이 됨과 동시에 각 epoch마다 text를 생성할 것이다.</p>
 
 <p>다음은 모델 저장과 로드 코드이다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">niet</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'Path/Nietzsche.h5'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">niet</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">'Path/Nietzsche.h5'</span><span class="p">)</span>
 <span class="n">niet</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s">'Path/Nietzsche.h5'</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -1149,7 +1149,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p>단어 ‘one’, ‘two’, ‘three’ 중 하나에 대응하고 싶다면 <code class="highlighter-rouge">|</code>를 쓰면 된다(백슬래시 또는 원화로 되어 있는 <code class="highlighter-rouge">\</code> 키의 shift 버전이다).</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|two|three'</span><span class="p">,</span> <span class="s">'one four two three zero'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|two|three'</span><span class="p">,</span> <span class="s">'one four two three zero'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1171,7 +1171,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 <p>일반적으로 <code class="highlighter-rouge">|</code>로 나열한 단어들의 순서가 중요하지는 않다. 하지만 중요한 순간이 있다.<br />
 다음 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|oneself|onerous'</span><span class="p">,</span> <span class="s">'oneself is the one thing.'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|oneself|onerous'</span><span class="p">,</span> <span class="s">'oneself is the one thing.'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1192,13 +1192,13 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 <p>어떤 문자나 기호 뒤에 *(asterisk)를 붙이면 그 문자가 일치되는 만큼 일치된다. 예를 들어 <code class="highlighter-rouge">a*</code>의 경우 ‘a’나 ‘aaa’ 혹은 ‘‘(빈 문자열)과도 일치된다.</p>
 
 <p>예시를 보자.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
 
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1214,7 +1214,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p>그런데 한 가지 이상한 결과가 보인다. 다섯 번째 실행문이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
 <span class="c1"># ['aaa', '', 'aaa', '', 'aa', '', '', '']
 </span></code></pre></div></div>
 
@@ -1225,13 +1225,13 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p><code class="highlighter-rouge">*</code>과 비슷하지만 무조건 한 번이라도 등장해야 한다. 위와 거의 같은 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
 
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.+&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.+&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1259,10 +1259,10 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 <p>물론 n은 자연수, m은 n보다 큰 정수이다.
 그리 어렵지 않으므로 바로 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,4}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,4}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 3), match='aaa'&gt;
@@ -1281,7 +1281,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p>이 메타문자도 어렵지는 않을 것이라 생각된다. <code class="highlighter-rouge">?</code>는 <code class="highlighter-rouge">{0,1}</code>과 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'ab?a'</span><span class="p">,</span> <span class="s">'aa aba aaaa'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'ab?a'</span><span class="p">,</span> <span class="s">'aa aba aaaa'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['aa', 'aba', 'aa', 'aa']
@@ -1301,26 +1301,26 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 <p>말이 복잡한데, 예시를 보면서 천천히 설명하도록 하겠다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1번 예시
-</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'# ---------------------------------------------------------------- #'</span><span class="p">)</span>
 
 <span class="c1"># 2번 예시
-</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
+</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
 &lt;p&gt; part 1 &lt;/p&gt; part 2 &lt;/p&gt;
 &lt;p&gt; part 3 &lt;/p&gt; part 4 &lt;/p&gt;
-'''</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+'''</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'# ---------------------------------------------------------------- #'</span><span class="p">)</span>
 
 <span class="c1"># 3번 예시
-</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*?&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
+</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*?&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
 &lt;p&gt; part 1 &lt;/p&gt; part 2 &lt;/p&gt;
 &lt;p&gt; part 3 &lt;/p&gt; part 4 &lt;/p&gt;
-'''</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+'''</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;
@@ -1464,7 +1464,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p>정규표현식을 쓰면서 다른 것들은 거의 볼 일이 없을 것이지만, <code class="highlighter-rouge">\t</code>와 <code class="highlighter-rouge">\n</code>은 알아두는 것이 좋다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s"> '</span><span class="p">,</span> <span class="s">'a</span><span class="se">\t</span><span class="s">b</span><span class="se">\t</span><span class="s">c</span><span class="se">\t</span><span class="s"> </span><span class="se">\t</span><span class="s"> d'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s"> '</span><span class="p">,</span> <span class="s">'a</span><span class="se">\t</span><span class="s">b</span><span class="se">\t</span><span class="s">c</span><span class="se">\t</span><span class="s"> </span><span class="se">\t</span><span class="s"> d'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1493,7 +1493,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 <p>예를 들어 정규식 표현이 <code class="highlighter-rouge">[abc]</code>이고 문자열이 ‘a’이면 <strong>re.match</strong>는 매칭되었다고 할 것이다.<br />
 문자열이 ‘b’이거나 ‘c’이어도 매칭이 된다. 다만 문자열이 ‘d’이거나 ‘가나다’ 같은 것이면 매칭이 되지 않는다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">"You[;']re studying re module[.,]"</span><span class="p">,</span> \
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">"You[;']re studying re module[.,]"</span><span class="p">,</span> \
                         <span class="s">'You;re studying re module,'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
@@ -1515,9 +1515,9 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p>캐릿(caret)<code class="highlighter-rouge">^</code> 문자가 여는 대괄호 바로 뒤에 있으면 문자가 반전된다. 바로 예시를 보도록 하자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [a-z]o serious</span><span class="err">\</span><span class="s">?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [a-z]o serious\?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [^0-9]o serious</span><span class="err">\</span><span class="s">?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [^0-9]o serious\?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1541,7 +1541,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p>개행문자를 제외한 모든 문자와 일치하는 정규표현식은 마침표 <code class="highlighter-rouge">.</code> 이다. 정말로 모든 문자와 일치되기 때문에 별다른 설명은 필요 없을 것 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'r..n[.]'</span><span class="p">,</span> <span class="s">'ryan. ruin rain round. reign'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'r..n[.]'</span><span class="p">,</span> <span class="s">'ryan. ruin rain round. reign'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1634,9 +1634,9 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
   </tbody>
 </table>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">S</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['abc', 'a  ']
@@ -1652,7 +1652,7 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 <p>아니면 다른 방법도 있다. 정규표현식 내에서 사용할 수도 있다.<br />
 문자열 앞에 <code class="highlighter-rouge">(?s)</code> 토큰을 넣으면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?s)a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?s)a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['abc', 'a  ', 'a\na']
@@ -1660,8 +1660,8 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
 
 <p>모드 변경자는 여러 개를 중첩하여 사용할 수도 있다.<br />
 또한 일부분에만 사용하고 싶으면 <code class="highlighter-rouge">(?s&lt;regex&gt;)</code>처럼 모드 변경자의 소괄호 안에 집어넣으면 된다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is)a..'</span><span class="p">,</span> <span class="s">'Abc'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is:a..) and abc is good'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is)a..'</span><span class="p">,</span> <span class="s">'Abc'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is:a..) and abc is good'</span><span class="p">,</span>
 <span class="s">'''
 Abc and abc is good.
 abc and Abc is good. 
@@ -1685,9 +1685,9 @@ abc and Abc is good.
 <p><code class="highlighter-rouge">\W</code>는 단어 문자 이외의 문자 1개에 일치된다. 즉 공백 문자, 특수 문자 등에 일치된다고 보면 된다.<br />
 <code class="highlighter-rouge">\w</code>와 정확히 반대의 역할을 한다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">w</span><span class="err">\</span><span class="s">w</span><span class="err">\</span><span class="s">w'</span><span class="p">,</span> <span class="s">'a_가'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\w\w\w'</span><span class="p">,</span> <span class="s">'a_가'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">w</span><span class="err">\</span><span class="s">W</span><span class="err">\</span><span class="s">w'</span><span class="p">,</span> <span class="s">'a (9_a a'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\w\W\w'</span><span class="p">,</span> <span class="s">'a (9_a a'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1705,9 +1705,9 @@ abc and Abc is good.
 
 <p><code class="highlighter-rouge">\d</code>는 숫자 문자 1개에 일치된다. 마찬가지로 <code class="highlighter-rouge">\D</code>는 비 숫자 문자 1개에 일치된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d'</span><span class="p">,</span> <span class="s">'12abc34'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d\d'</span><span class="p">,</span> <span class="s">'12abc34'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">D</span><span class="err">\</span><span class="s">D'</span><span class="p">,</span> <span class="s">'11aa11c1'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\d\d\D\D'</span><span class="p">,</span> <span class="s">'11aa11c1'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1721,8 +1721,8 @@ abc and Abc is good.
 
 <p><code class="highlighter-rouge">\s</code>는 공백 문자(빈칸 ‘ ‘, 탭 ‘\t’, 개행 ‘\n’) 1개에 일치된다. 마찬가지로 <code class="highlighter-rouge">\S</code>는 <code class="highlighter-rouge">\s</code>의 반대 역할이다. 즉, 공백 문자 이외의 모든 문자 1개에 일치된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="s">'Oh</span><span class="err">\</span><span class="s">smy</span><span class="err">\</span><span class="s">sgod</span><span class="err">\</span><span class="s">s</span><span class="err">\</span><span class="s">S'</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="s">'Oh\smy\sgod\s\S'</span><span class="p">,</span>
     <span class="s">'''Oh my</span><span class="se">\t</span><span class="s">god
 !'''</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
@@ -1742,7 +1742,7 @@ abc and Abc is good.
 <p>한 가지 주의할 점으로는 <code class="highlighter-rouge">\b</code>나 <code class="highlighter-rouge">\B</code>를 사용하기 위해서는 정규표현식 앞에 <code class="highlighter-rouge">r</code> prefix를 붙여줘야 한다는 것이다.<br />
 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\w\b\W\B'</span><span class="p">,</span> <span class="s">'ab  c d  == = e= =f'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\w\b\W\B'</span><span class="p">,</span> <span class="s">'ab  c d  == = e= =f'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -1796,11 +1796,11 @@ abc and Abc is good.
 
 <p>(헷갈리는) 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '']
@@ -1903,13 +1903,13 @@ SyntaxError: EOL while scanning string literal
 
 <p><code class="highlighter-rouge">^</code>와 <code class="highlighter-rouge">$</code>는 일반적으로 <code class="highlighter-rouge">\A</code>와 <code class="highlighter-rouge">\Z</code> 앵커와 효과가 같다. 다른 경우는 옵션을 설정하는 경우인데, re.MULTILINE 옵션을 설정하면 <code class="highlighter-rouge">^</code>와 <code class="highlighter-rouge">$</code>는 문자열 전체의 시작/끝이 아닌 행의 시작/끝에서 일치된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">Aryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ryan</span><span class="err">\</span><span class="s">d$'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\Aryan\d\Z'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ryan\d$'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">A ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\A ryan\d\s\Z'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">MULTILINE</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['ryan1']
@@ -1924,11 +1924,11 @@ SyntaxError: EOL while scanning string literal
 
 <p>응용으로, 빈 문자열 혹은 빈 행을 검사할 수 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">A</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">A</span><span class="err">\</span><span class="s">Z'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'\A\Z'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'\A\Z'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 0), match=''&gt;
@@ -1940,7 +1940,7 @@ None
 
 <p><code class="highlighter-rouge">^</code>, <code class="highlighter-rouge">$</code>도 마침표 <code class="highlighter-rouge">.</code>처럼 옵션을 인라인으로 설정할 수 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?m)^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?m)^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '']
@@ -1948,7 +1948,7 @@ None
 
 <p>참고로, 옵션을 여러 개 쓰려면 <code class="highlighter-rouge">|</code>로 OR 연산을 시켜주면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan</span><span class="err">\</span><span class="s">d</span><span class="err">\</span><span class="s">s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> Ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> RYAN3 '</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> Ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> RYAN3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span> <span class="o">|</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[' ryan1 ', ' Ryan2 ', ' RYAN3 ']
@@ -1960,7 +1960,7 @@ None
 
 <p>한 글자 일치와 사용법은 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\u18ff</span><span class="err">\</span><span class="s">d'</span><span class="p">,</span> <span class="s">'0᣿1頶᣿2䅄ሲ᣿3456'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\u18ff</span><span class="s">\d'</span><span class="p">,</span> <span class="s">'0᣿1頶᣿2䅄ሲ᣿3456'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['\u18ff1', '\u18ff2', '\u18ff3']

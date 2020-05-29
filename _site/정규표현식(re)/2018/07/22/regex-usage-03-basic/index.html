@@ -305,7 +305,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>단어 ‘one’, ‘two’, ‘three’ 중 하나에 대응하고 싶다면 <code class="highlighter-rouge">|</code>를 쓰면 된다(백슬래시 또는 원화로 되어 있는 <code class="highlighter-rouge">\</code> 키의 shift 버전이다).</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|two|three'</span><span class="p">,</span> <span class="s">'one four two three zero'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|two|three'</span><span class="p">,</span> <span class="s">'one four two three zero'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -327,7 +327,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>일반적으로 <code class="highlighter-rouge">|</code>로 나열한 단어들의 순서가 중요하지는 않다. 하지만 중요한 순간이 있다.<br />
 다음 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|oneself|onerous'</span><span class="p">,</span> <span class="s">'oneself is the one thing.'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'one|oneself|onerous'</span><span class="p">,</span> <span class="s">'oneself is the one thing.'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -348,13 +348,13 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>어떤 문자나 기호 뒤에 *(asterisk)를 붙이면 그 문자가 일치되는 만큼 일치된다. 예를 들어 <code class="highlighter-rouge">a*</code>의 경우 ‘a’나 ‘aaa’ 혹은 ‘‘(빈 문자열)과도 일치된다.</p>
 
 <p>예시를 보자.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
 
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -370,7 +370,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>그런데 한 가지 이상한 결과가 보인다. 다섯 번째 실행문이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a*'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
 <span class="c1"># ['aaa', '', 'aaa', '', 'aa', '', '', '']
 </span></code></pre></div></div>
 
@@ -381,13 +381,13 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p><code class="highlighter-rouge">*</code>과 비슷하지만 무조건 한 번이라도 등장해야 한다. 위와 거의 같은 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a+'</span><span class="p">,</span> <span class="s">'aaabaaa aa  '</span><span class="p">))</span>
 
-<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.+&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.+&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -415,10 +415,10 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>물론 n은 자연수, m은 n보다 큰 정수이다.
 그리 어렵지 않으므로 바로 예시를 보자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,4}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{3}'</span><span class="p">,</span> <span class="s">'aaaaaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,4}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a{2,}'</span><span class="p">,</span> <span class="s">'a aa aaa aaaa aaaaa'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 3), match='aaa'&gt;
@@ -437,7 +437,7 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 
 <p>이 메타문자도 어렵지는 않을 것이라 생각된다. <code class="highlighter-rouge">?</code>는 <code class="highlighter-rouge">{0,1}</code>과 같다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'ab?a'</span><span class="p">,</span> <span class="s">'aa aba aaaa'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'ab?a'</span><span class="p">,</span> <span class="s">'aa aba aaaa'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['aa', 'aba', 'aa', 'aa']
@@ -457,26 +457,26 @@ MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], proces
 <p>말이 복잡한데, 예시를 보면서 천천히 설명하도록 하겠다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1번 예시
-</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'# ---------------------------------------------------------------- #'</span><span class="p">)</span>
 
 <span class="c1"># 2번 예시
-</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
+</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
 &lt;p&gt; part 1 &lt;/p&gt; part 2 &lt;/p&gt;
 &lt;p&gt; part 3 &lt;/p&gt; part 4 &lt;/p&gt;
-'''</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+'''</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s">'# ---------------------------------------------------------------- #'</span><span class="p">)</span>
 
 <span class="c1"># 3번 예시
-</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*?&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
+</span><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;.*?&lt;/p&gt;'</span><span class="p">,</span> <span class="s">'''
 &lt;p&gt; part 1 &lt;/p&gt; part 2 &lt;/p&gt;
 &lt;p&gt; part 3 &lt;/p&gt; part 4 &lt;/p&gt;
-'''</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+'''</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt; Lorem ipsum... is boring. &lt;/p&gt;

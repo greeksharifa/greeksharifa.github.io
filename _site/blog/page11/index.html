@@ -472,17 +472,17 @@ Segment의 수에 따라 마치 blur처리를 한 듯한 느낌이 들기도 한
 <p>이를 구현하는 방법은 여럿 있겠지만 skimage라는 파이썬 패키지가 매우 유용하다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">image_path</span> <span class="o">=</span> <span class="s">'~/target.jpg'</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">/</span><span class="mf">255.</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">/</span><span class="mf">255.</span>
 
 <span class="c1"># n_segments: 몇 개의 구역으로 나누고 싶은가?
-</span><span class="n">labels</span> <span class="o">=</span> <span class="n">segmentation</span><span class="o">.</span><span class="n">slic</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">compactness</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_segments</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="n">labels</span> <span class="o">=</span> <span class="n">segmentation</span><span class="p">.</span><span class="n">slic</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">compactness</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_segments</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">regions</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-<span class="n">input_img</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">'avg'</span><span class="p">)</span>
+<span class="n">input_img</span> <span class="o">=</span> <span class="n">color</span><span class="p">.</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">'avg'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 <p>위와 같은 코드를 이미지에 적용하면 Superpixel을 구현할 수 있다. 이렇게 유사한 Pixel들을 묶어 색깔의 다양성을 줄이고 나면, 색깔 판별에 좀 더 도움이 될 것으로 판단하였다.</p>
 
@@ -673,7 +673,7 @@ LSTM과 GRU가 기존의 traditional한 구조와 가장 차별화되는 포인�
 <p><strong>re.escape</strong> 함수는 문자열을 입력받으면 특수문자들을 이스케이프 처리시켜 준다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pattern</span> <span class="o">=</span> <span class="s">r'((\d)\2{4,})'</span>
-<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">escape</span><span class="p">(</span><span class="n">pattern</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\(\(\\d\)\\2\{4\,\}\)
@@ -686,7 +686,7 @@ LSTM과 GRU가 기존의 traditional한 구조와 가장 차별화되는 포인�
 
 <p><strong>re.purge</strong> 함수는 이 cache를 초기화하는 함수이다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re</span><span class="o">.</span><span class="n">purge</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">re</span><span class="p">.</span><span class="n">purge</span><span class="p">()</span>
 </code></pre></div></div>
 <p>결과</p>
 
@@ -700,7 +700,7 @@ LSTM과 GRU가 기존의 traditional한 구조와 가장 차별화되는 포인�
 
 <p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/#%EB%A7%88%EC%B9%A8%ED%91%9C%EB%8A%94-%EA%B0%9C%ED%96%89-%EB%AC%B8%EC%9E%90%EC%99%80-%EC%9D%BC%EC%B9%98-%EC%98%B5%EC%85%98">이전 글</a>에서 flags를 설명했었는데, 이 flag들이 어떤 것이 있는지 알려주는 객체가 re 안에 내장되어 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">RegexFlag</span><span class="p">:</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">re</span><span class="p">.</span><span class="n">RegexFlag</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
 </code></pre></div></div>
 <p>결과</p>
@@ -730,9 +730,9 @@ RegexFlag.DEBUG
 <p>reObj를 출력하면 컴파일한 정규식을 그대로 출력하던 것을 기억할 것이다. <strong>re.debug</strong>는 일종의 디버깅 모드로서, 정규식의 대략적인 구조를 알 수 있다.<br />
 말 그대로 디버깅용으로 쓰면 될 듯하다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'</span><span class="err">\</span><span class="s">d{3,6}'</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'\d{3,6}'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'AS 123123 ars'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'AS 123123 ars'</span><span class="p">))</span>
 </code></pre></div></div>
 <p>결과</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MAX_REPEAT 3 6
@@ -759,10 +759,10 @@ re.compile('\\d{3,6}', re.DEBUG)
 
 <span class="k">for</span> <span class="n">regex</span> <span class="ow">in</span> <span class="n">regex_list</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reObj</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">phi</span><span class="p">))))</span>
-    <span class="k">except</span> <span class="n">re</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"&lt;Invalid regular expression </span><span class="si">%</span><span class="s">s&gt;"</span> <span class="o">%</span> <span class="n">regex</span><span class="p">)</span>
+        <span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">regex</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">reObj</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">phi</span><span class="p">))))</span>
+    <span class="k">except</span> <span class="n">re</span><span class="p">.</span><span class="n">error</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"&lt;Invalid regular expression %s&gt;"</span> <span class="o">%</span> <span class="n">regex</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">'done'</span><span class="p">)</span>
 </code></pre></div></div>

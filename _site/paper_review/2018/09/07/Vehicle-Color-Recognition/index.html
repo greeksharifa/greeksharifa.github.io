@@ -301,17 +301,17 @@ Segment의 수에 따라 마치 blur처리를 한 듯한 느낌이 들기도 한
 <p>이를 구현하는 방법은 여럿 있겠지만 skimage라는 파이썬 패키지가 매우 유용하다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">image_path</span> <span class="o">=</span> <span class="s">'~/target.jpg'</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">/</span><span class="mf">255.</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">/</span><span class="mf">255.</span>
 
 <span class="c1"># n_segments: 몇 개의 구역으로 나누고 싶은가?
-</span><span class="n">labels</span> <span class="o">=</span> <span class="n">segmentation</span><span class="o">.</span><span class="n">slic</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">compactness</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_segments</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="n">labels</span> <span class="o">=</span> <span class="n">segmentation</span><span class="p">.</span><span class="n">slic</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">compactness</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_segments</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">regions</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
-<span class="n">input_img</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">'avg'</span><span class="p">)</span>
+<span class="n">input_img</span> <span class="o">=</span> <span class="n">color</span><span class="p">.</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">'avg'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 <p>위와 같은 코드를 이미지에 적용하면 Superpixel을 구현할 수 있다. 이렇게 유사한 Pixel들을 묶어 색깔의 다양성을 줄이고 나면, 색깔 판별에 좀 더 도움이 될 것으로 판단하였다.</p>
 

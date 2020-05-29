@@ -390,19 +390,19 @@ Alice와 Star Trek 사이의 상호작용을 추정하여 영화평점(Target y)
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="c1"># GPU 확인
-</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s">'GPU'</span><span class="p">)</span>
+</span><span class="n">tf</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s">'GPU'</span><span class="p">)</span>
 
 <span class="c1"># 자료형 선언
-</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
+</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">backend</span><span class="p">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
 
 <span class="c1"># 데이터 로드
 </span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
 <span class="nb">file</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="nb">file</span><span class="p">[</span><span class="s">'data'</span><span class="p">],</span> <span class="nb">file</span><span class="p">[</span><span class="s">'target'</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-<span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
@@ -411,26 +411,26 @@ Alice와 Star Trek 사이의 상호작용을 추정하여 영화평점(Target y)
 <p>데이터는 sklearn에 내장되어 있는 breast_cancer 데이터를 사용하였다. 30개의 변수를 바탕으로 암 발생 여부를 예측하는 데이터이다. <strong>p</strong>는 예측 변수의 개수이고, <strong>k</strong>는 잠재 변수의 개수이다.</p>
 
 <h3 id="22-fm-모델-선언">2.2. FM 모델 선언</h3>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FM</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FM</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">FM</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FM</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
 
         <span class="c1"># 모델의 파라미터 정의
-</span>        <span class="bp">self</span><span class="o">.</span><span class="n">w_0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">p</span><span class="p">]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">)))</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">w_0</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">p</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
-        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="n">interactions</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span>
-            <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="nb">pow</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
-            <span class="o">-</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="nb">pow</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="nb">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+        <span class="n">interactions</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="nb">pow</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">V</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">-</span> <span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="nb">pow</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="nb">pow</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">V</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
             <span class="mi">1</span><span class="p">,</span>
             <span class="n">keepdims</span><span class="o">=</span><span class="bp">False</span>
         <span class="p">)</span>
 
-        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_0</span> <span class="o">+</span> <span class="n">linear_terms</span> <span class="o">+</span> <span class="n">interactions</span><span class="p">)</span>
+        <span class="n">y_hat</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">w_0</span> <span class="o">+</span> <span class="n">linear_terms</span> <span class="o">+</span> <span class="n">interactions</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">y_hat</span>
 </code></pre></div></div>
@@ -454,20 +454,20 @@ Alice와 Star Trek 사이의 상호작용을 추정하여 영화평점(Target y)
 <h3 id="213-학습-코드">2.1.3. 학습 코드</h3>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Forward
 </span><span class="k">def</span> <span class="nf">train_on_batch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="p">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">binary_crossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="n">binary_crossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                                                    <span class="n">y_true</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span>
                                                    <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
     
     <span class="c1"># loss를 모델의 파라미터로 편미분하여 gradients를 구한다.
-</span>    <span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">)</span>
+</span>    <span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="p">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">)</span>
 
     <span class="c1"># apply_gradients()를 통해 processed gradients를 적용한다.
-</span>    <span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">))</span>
+</span>    <span class="n">optimizer</span><span class="p">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">))</span>
 
     <span class="c1"># accuracy: update할 때마다 정확도는 누적되어 계산된다.
-</span>    <span class="n">accuracy</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span>    <span class="n">accuracy</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">loss</span>
 
@@ -476,47 +476,47 @@ Alice와 Star Trek 사이의 상호작용을 추정하여 영화평점(Target y)
 </span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
 
-    <span class="n">train_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_train</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)))</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">train_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_train</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">))).</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="n">batch</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 
-    <span class="n">test_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)))</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">test_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">))).</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="n">batch</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 
     <span class="n">model</span> <span class="o">=</span> <span class="n">FM</span><span class="p">()</span>
-    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
     <span class="n">accuracy</span> <span class="o">=</span> <span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="n">loss_history</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_ds</span><span class="p">:</span>
           <span class="n">loss</span> <span class="o">=</span> <span class="n">train_on_batch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-          <span class="n">loss_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+          <span class="n">loss_history</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
 
       <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-          <span class="k">print</span><span class="p">(</span><span class="s">"스텝 {:03d}에서 누적 평균 손실: {:.4f}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss_history</span><span class="p">)))</span>
-          <span class="k">print</span><span class="p">(</span><span class="s">"스텝 {:03d}에서 누적 정확도: {:.4f}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"스텝 {:03d}에서 누적 평균 손실: {:.4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss_history</span><span class="p">)))</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"스텝 {:03d}에서 누적 정확도: {:.4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">()))</span>
 
 
     <span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_ds</span><span class="p">:</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">test_accuracy</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">test_accuracy</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s">"테스트 정확도: {:.4f}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">test_accuracy</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"테스트 정확도: {:.4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">()))</span>
 </code></pre></div></div>
 
 <p>epochs = 50으로 실행한 결과는 아래와 같다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">스텝</span> <span class="mi">000</span><span class="err">에서</span> <span class="err">누적</span> <span class="err">평균</span> <span class="err">손실</span><span class="p">:</span> <span class="mf">1.2317</span>
-<span class="err">스텝</span> <span class="mi">000</span><span class="err">에서</span> <span class="err">누적</span> <span class="n">train</span> <span class="err">정확도</span><span class="p">:</span> <span class="mf">0.5692</span>
-<span class="err">스텝</span> <span class="mi">002</span><span class="err">에서</span> <span class="err">누적</span> <span class="err">평균</span> <span class="err">손실</span><span class="p">:</span> <span class="mf">0.9909</span>
-<span class="err">스텝</span> <span class="mi">002</span><span class="err">에서</span> <span class="err">누적</span> <span class="n">train</span> <span class="err">정확도</span><span class="p">:</span> <span class="mf">0.6271</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">스텝</span> <span class="mi">000</span><span class="n">에서</span> <span class="n">누적</span> <span class="n">평균</span> <span class="n">손실</span><span class="p">:</span> <span class="mf">1.2317</span>
+<span class="n">스텝</span> <span class="mi">000</span><span class="n">에서</span> <span class="n">누적</span> <span class="n">train</span> <span class="n">정확도</span><span class="p">:</span> <span class="mf">0.5692</span>
+<span class="n">스텝</span> <span class="mi">002</span><span class="n">에서</span> <span class="n">누적</span> <span class="n">평균</span> <span class="n">손실</span><span class="p">:</span> <span class="mf">0.9909</span>
+<span class="n">스텝</span> <span class="mi">002</span><span class="n">에서</span> <span class="n">누적</span> <span class="n">train</span> <span class="n">정확도</span><span class="p">:</span> <span class="mf">0.6271</span>
 
-<span class="o">...</span>
+<span class="p">...</span>
 
-<span class="err">스텝</span> <span class="mi">048</span><span class="err">에서</span> <span class="err">누적</span> <span class="err">평균</span> <span class="err">손실</span><span class="p">:</span> <span class="mf">0.2996</span>
-<span class="err">스텝</span> <span class="mi">048</span><span class="err">에서</span> <span class="err">누적</span> <span class="n">train</span> <span class="err">정확도</span><span class="p">:</span> <span class="mf">0.8996</span>
+<span class="n">스텝</span> <span class="mi">048</span><span class="n">에서</span> <span class="n">누적</span> <span class="n">평균</span> <span class="n">손실</span><span class="p">:</span> <span class="mf">0.2996</span>
+<span class="n">스텝</span> <span class="mi">048</span><span class="n">에서</span> <span class="n">누적</span> <span class="n">train</span> <span class="n">정확도</span><span class="p">:</span> <span class="mf">0.8996</span>
 
-<span class="err">테스트</span> <span class="err">정확도</span><span class="p">:</span> <span class="mf">0.9500</span>
+<span class="n">테스트</span> <span class="n">정확도</span><span class="p">:</span> <span class="mf">0.9500</span>
 </code></pre></div></div>
 
 <hr />
@@ -800,16 +800,16 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
-<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">],</span>
-              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">]])</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">]])</span>
 
 <span class="c1"># 실제 R 행렬과 예측 행렬의 오차를 구하는 함수
 </span><span class="k">def</span> <span class="nf">calculate_rmse</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">non_zeros</span><span class="p">):</span>
     <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">full_pred_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">full_pred_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
 
     <span class="c1"># 여기서 non_zeros는 아래 함수에서 확인할 수 있다.
 </span>    <span class="n">x_non_zero_ind</span> <span class="o">=</span> <span class="p">[</span><span class="n">non_zeros</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">non_zeros</span> <span class="ow">in</span> <span class="n">non_zeros</span><span class="p">]</span>
@@ -822,17 +822,17 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 </span>    <span class="n">full_pred_matrix_non_zeros</span> <span class="o">=</span> <span class="n">full_pred_matrix</span><span class="p">[</span><span class="n">x_non_zero_ind</span><span class="p">,</span> <span class="n">y_non_zero_ind</span><span class="p">]</span>
 
     <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">R_non_zeros</span><span class="p">,</span> <span class="n">full_pred_matrix_non_zeros</span><span class="p">)</span>
-    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">rmse</span>
 
 
 <span class="k">def</span> <span class="nf">matrix_factorization</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">r_lambda</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
-    <span class="n">num_users</span><span class="p">,</span> <span class="n">num_items</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">num_users</span><span class="p">,</span> <span class="n">num_items</span> <span class="o">=</span> <span class="n">R</span><span class="p">.</span><span class="n">shape</span>
 
-    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_users</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
-    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_items</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
+    <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_users</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_items</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
 
     <span class="c1"># R&gt;0인 행 위치, 열 위치, 값을 non_zeros 리스트에 저장한다.
 </span>    <span class="n">non_zeros</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_users</span><span class="p">)</span>
@@ -842,7 +842,7 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 </span>    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">non_zeros</span><span class="p">:</span>
             <span class="c1"># 잔차 구함
-</span>            <span class="n">eij</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span>            <span class="n">eij</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:].</span><span class="n">T</span><span class="p">)</span>
 
             <span class="c1"># Regulation을 반영한 SGD 업데이터 적용
 </span>            <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">learning_rate</span><span class="o">*</span><span class="p">(</span><span class="n">eij</span> <span class="o">*</span> <span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">r_lambda</span><span class="o">*</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span>
@@ -850,12 +850,12 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 
         <span class="n">rmse</span> <span class="o">=</span> <span class="n">get_rmse</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">non_zeros</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"iter step: {0}, rmse: {1:4f}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">rmse</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"iter step: {0}, rmse: {1:4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">rmse</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span>
 
 <span class="n">P</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="n">matrix_factorization</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">pred_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">pred_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">pred_matrix</span><span class="p">)</span>
 
 <span class="p">[[</span><span class="mf">3.99062329</span> <span class="mf">0.89653623</span> <span class="mf">1.30649077</span> <span class="mf">2.00210666</span> <span class="mf">1.66340846</span><span class="p">]</span>
@@ -872,25 +872,25 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 </span><span class="kn">from</span> <span class="nn">surprise</span> <span class="kn">import</span> <span class="n">SVD</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">Reader</span>
 <span class="kn">from</span> <span class="nn">surprise.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">load_builtin</span><span class="p">(</span><span class="s">'ml-100k'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">.</span><span class="n">load_builtin</span><span class="p">(</span><span class="s">'ml-100k'</span><span class="p">)</span>
 </code></pre></div></div>
 <p>위에서 쓴 <code class="highlighter-rouge">load_builtin</code> 메서드는 Movielens 홈페이지에 들를 필요 없이 해당 사이트의 데이터를 다운로드 받고 로드하는 메서드인데, 사실 앞으로 다른 데이터를 쓴다면 크게 쓸 일이 없다. Surprise 모듈은 데이터 로드를 위해 2개의 메서드를 추가적으로 제공한다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># load_from_file: OS 파일 로딩
-</span><span class="n">ratings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/ratings.csv'</span><span class="p">)</span>
-<span class="n">ratings</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'data/ratings_noh.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</span><span class="n">ratings</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/ratings.csv'</span><span class="p">)</span>
+<span class="n">ratings</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'data/ratings_noh.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
 <span class="c1"># line_format: 칼럼을 순서대로 나열함. 공백으로 분리
 # rating_scale: 평점의 단위
 </span><span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="p">(</span><span class="n">line_format</span><span class="o">=</span><span class="s">'user item rating timestamp'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">','</span><span class="p">,</span>
                 <span class="n">rating_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">load_from_file</span><span class="p">(</span><span class="s">'data/ratings_noh.csv'</span><span class="p">,</span> <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">.</span><span class="n">load_from_file</span><span class="p">(</span><span class="s">'data/ratings_noh.csv'</span><span class="p">,</span> <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># load_from_df: Pandas DataFrame 으로 로딩
-</span><span class="n">ratings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/ratings.csv'</span><span class="p">)</span>
+</span><span class="n">ratings</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/ratings.csv'</span><span class="p">)</span>
 <span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="p">(</span><span class="n">rating_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">load_from_df</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">ratings</span><span class="p">[[</span><span class="s">'userId'</span><span class="p">,</span> <span class="s">'movieId'</span><span class="p">,</span> <span class="s">'rating'</span><span class="p">]],</span> <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">.</span><span class="n">load_from_df</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">ratings</span><span class="p">[[</span><span class="s">'userId'</span><span class="p">,</span> <span class="s">'movieId'</span><span class="p">,</span> <span class="s">'rating'</span><span class="p">]],</span> <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>이제 데이터셋을 훈련 데이터와 테스트 데이터로 분할한 뒤 적합을 해보자.</p>
@@ -899,28 +899,28 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 <span class="c1"># 알고리즘 객체 생성
 # SVD: n_factors(K), n_epochs(디폴트 20), biased=True(베이스라인 사용자 편향 적용 여부)
 </span><span class="n">algo</span> <span class="o">=</span> <span class="n">SVD</span><span class="p">(</span><span class="n">n_factors</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">algo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainset</span><span class="o">=</span><span class="n">trainset</span><span class="p">)</span>
+<span class="n">algo</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainset</span><span class="o">=</span><span class="n">trainset</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>예측을 위해선 <code class="highlighter-rouge">test</code> 메서드와 <code class="highlighter-rouge">predict</code> 메서드가 제공되는데, 전자의 경우 테스트 데이터셋 전체에 대한 예측 값을, 후자의 경우 하나의 개체에 대한 예측 값을 출력한다. 따라서 <code class="highlighter-rouge">predict</code>의 결과를 모은 것이 <code class="highlighter-rouge">test</code>의 결과라고 보면 이해하기 쉽다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">predictions</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">testset</span><span class="o">=</span><span class="n">testset</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">predictions</span> <span class="o">=</span> <span class="n">algo</span><span class="p">.</span><span class="n">test</span><span class="p">(</span><span class="n">testset</span><span class="o">=</span><span class="n">testset</span><span class="p">)</span>
 <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 
-<span class="p">[</span><span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'120'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'282'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">3.66</span><span class="o">...</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}),</span>
- <span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'882'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'291'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">3.97</span><span class="o">...</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}),</span>
- <span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'535'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'507'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">4.15</span><span class="o">...</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">})]</span>
+<span class="p">[</span><span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'120'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'282'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">3.66</span><span class="p">...,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}),</span>
+ <span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'882'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'291'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">3.97</span><span class="p">...,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}),</span>
+ <span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'535'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'507'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">4.15</span><span class="p">...,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">})]</span>
 
 <span class="c1"># userID, itemID 는 string 으로 입력해야 함
 </span><span class="n">uid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">196</span><span class="p">)</span>
 <span class="n">iid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">302</span><span class="p">)</span>
-<span class="n">pred</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">algo</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
 
 <span class="n">user</span><span class="p">:</span> <span class="mi">196</span>        <span class="n">item</span><span class="p">:</span> <span class="mi">302</span>        <span class="n">r_ui</span> <span class="o">=</span> <span class="bp">None</span>   <span class="n">est</span> <span class="o">=</span> <span class="mf">4.30</span>   <span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
 
 <span class="c1"># 정확도 평가
-</span><span class="n">accuracy</span><span class="o">.</span><span class="n">rmse</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class="n">accuracy</span><span class="p">.</span><span class="n">rmse</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>Cross-Validation</strong>을 통해 파라미터를 조정할 수도 있다. 코드 구현은 아래와 같다.</p>
@@ -929,10 +929,10 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 <span class="n">algo</span> <span class="o">=</span> <span class="n">SVD</span><span class="p">()</span>
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s">'n_epochs'</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span> <span class="s">'n_factors'</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]}</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVD</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">measures</span><span class="o">=</span><span class="p">[</span><span class="s">'RMSE'</span><span class="p">,</span> <span class="s">'MAE'</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">grid</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_score</span><span class="p">[</span><span class="s">'rmse'</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params</span><span class="p">[</span><span class="s">'rmse'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">best_score</span><span class="p">[</span><span class="s">'rmse'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">best_params</span><span class="p">[</span><span class="s">'rmse'</span><span class="p">])</span>
 </code></pre></div></div>
 <p>좀 더 자세한 정보와 다양한 기능에 대해 알아보고 싶다면 아래 공식 문서를 참조하길 바란다.</p>
 
@@ -1104,7 +1104,7 @@ Just apply one of the Numba decorators to your Python function, and Numba does t
     <span class="k">try</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="n">b</span>
     <span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">"Division by zero is not possible"</span><span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">exception</span><span class="p">(</span><span class="s">"Division by zero is not possible"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">result</span>
 </code></pre></div></div>
@@ -1189,7 +1189,7 @@ logging은 <strong>level</strong> 설정을 통해 메시지의 중요도를 구
 <h3 id="21-차례대로-logging-준비하기">2.1. 차례대로 logging 준비하기</h3>
 <h4 id="211-logger-생성">2.1.1. logger 생성</h4>
 <p>logging instance인 logger는 아래와 같은 구문으로 생성한다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">"name"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">"name"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>위 <strong>“name”</strong> 에는 String이 들어가는데, 아무것도 입력하지 않을 경우 <strong>root logger</strong>가 생성된다.</p>
@@ -1199,13 +1199,13 @@ logging은 <strong>level</strong> 설정을 통해 메시지의 중요도를 구
 <h4 id="212-logger에-level-부여하기">2.1.2. logger에 level 부여하기</h4>
 <p>logger를 생성했다면, 이제는 기본적인 <strong>level</strong>을 부여해줄 차례다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>앞서 생성한 logger에 INFO <strong>level</strong>을 부여하였다. 이제 이 logger 객체는 <strong>INFO</strong> 이상의 메시지를 출력할 수 있다.<br />
 <strong>level</strong>을 소문자로 바꾸어 메서드로 사용하면 메시지를 출력할 수 있다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Message"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Message"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>현재로서 이 logger는 오직 console에만 메시지를 출력할 수 있을 뿐이다. 더욱 정교하게 만들기 위해서는 <strong>handler</strong>가 필요하다.</p>
@@ -1220,39 +1220,39 @@ logging은 <strong>level</strong> 설정을 통해 메시지의 중요도를 구
 <p><strong>handler</strong> 객체의 level까지 설정했다면, 이제 이 메시지를 어떤 형식으로 출력할지에 대해 고민해야 한다.<br />
 이 때 필요한 것이 <strong>formatter</strong>이다. 아래와 같이 생성한다. format을 좀 더 편리하게 작성하는 방법에 대해서는 3장에서 설명하겠다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">(</span>
   <span class="n">fmt</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span>     <span class="c1"># 메시지 출력 형태. None일 경우 raw 메시지를 출력.
 </span>  <span class="n">datefmt</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="c1"># 날짜 출력 형태. None일 경우 '%Y-%m-%d %H:%M:%S'.
-</span>  <span class="n">style</span> <span class="o">=</span> <span class="s">'</span><span class="si">%</span><span class="s">'</span>     <span class="c1"># '%', '{', '$' 중 하나. `fmt`의 style을 결정.
+</span>  <span class="n">style</span> <span class="o">=</span> <span class="s">'%'</span>     <span class="c1"># '%', '{', '$' 중 하나. `fmt`의 style을 결정.
 </span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>이제 준비는 끝났다. handler 객체는 아래와 같이 만들어진다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># handler 객체 생성
-</span><span class="n">stream_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
-<span class="n">file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"information.log"</span><span class="p">)</span>
+</span><span class="n">stream_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+<span class="n">file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"information.log"</span><span class="p">)</span>
 
 <span class="c1"># formatter 객체 생성
-</span><span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="s">"</span><span class="si">%(asctime)</span><span class="s">s - </span><span class="si">%(name)</span><span class="s">s - </span><span class="si">%(levelname)</span><span class="s">s - </span><span class="si">%(message)</span><span class="s">s"</span><span class="p">)</span>
+</span><span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="s">"%(asctime)s - %(name)s - %(levelname)s - %(message)s"</span><span class="p">)</span>
 
 <span class="c1"># handler에 level 설정
-</span><span class="n">stream_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-<span class="n">file_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span class="n">stream_handler</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">file_handler</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
 <span class="c1"># handler에 format 설정
-</span><span class="n">stream_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
-<span class="n">file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</span><span class="n">stream_handler</span><span class="p">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<span class="n">file_handler</span><span class="p">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>부가적으로 하나 더 설명하자면, 위에 있는 간단한 예시의 경우 단지 하나의 logger를 생성했을 뿐이지만, 실제로는 여러개의 logger를 계층적으로 사용할 가능성이 높다. 이러한 계층적인 구조와 관련하여, 앞의 1.2장에서 언급한 부모-자식 관계와 관련하여 염두에 두어야 할 부분이 있다.</p>
 
 <p>자식 logger는 부모 logger와 관련된 handler로 메시지를 <strong>전파</strong>(propagate)한다. 즉, 부모 logger의 설정은 자식 logger과 연결되어 있다. 이 때문에 사실 모든 logger에 대해 handler를 일일히 정의하고 설정하는 것은 불필요한 일이라고 볼 수 있다. 따라서 가장 효율적인 방법은 최상위 logger에 대해 handler 설정을 완료하고 때에 따라 자식 logger를 생성하는 것이 될 것이다. 만약 이러한 연결을 원치 않는다면, 아래와 같이 logger의 propagate attribute를 False로 설정해주면 된다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">False</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="p">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="bp">False</span>
 </code></pre></div></div>
 
 <h4 id="214-logger에-생성한-handler-추가하기">2.1.4. logger에 생성한 handler 추가하기</h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stream_handler</span><span class="p">)</span>
+<span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>위 과정을 거치면, 지금까지 설정한 모든 것들이 logger에 담기게 된다.</p>
@@ -1268,7 +1268,7 @@ logging은 <strong>level</strong> 설정을 통해 메시지의 중요도를 구
     <span class="s">"version"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s">"formatters"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">"basic"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">"format"</span><span class="p">:</span> <span class="s">"</span><span class="si">%(asctime)</span><span class="s">s - </span><span class="si">%(name)</span><span class="s">s - </span><span class="si">%(levelname)</span><span class="s">s - </span><span class="si">%(message)</span><span class="s">s"</span>
+            <span class="s">"format"</span><span class="p">:</span> <span class="s">"%(asctime)s - %(name)s - %(levelname)s - %(message)s"</span>
         <span class="p">}</span>
     <span class="p">},</span>
 
@@ -1302,10 +1302,10 @@ logging은 <strong>level</strong> 설정을 통해 메시지의 중요도를 구
 
 <p>이제 json 파일을 읽어오자.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"logging.json"</span><span class="p">,</span> <span class="s">"rt"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h4 id="222-코드로-세팅">2.2.2. 코드로 세팅</h4>
@@ -1313,29 +1313,29 @@ logging은 <strong>level</strong> 설정을 통해 메시지의 중요도를 구
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">make_logger</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="c1">#1 logger instance를 만든다.
-</span>    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span>    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
     <span class="c1">#2 logger의 level을 가장 낮은 수준인 DEBUG로 설정해둔다.
-</span>    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span>    <span class="n">logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
     <span class="c1">#3 formatter 지정
-</span>    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s">"</span><span class="si">%(asctime)</span><span class="s">s - </span><span class="si">%(name)</span><span class="s">s - </span><span class="si">%(levelname)</span><span class="s">s - </span><span class="si">%(message)</span><span class="s">s"</span><span class="p">)</span>
+</span>    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s">"%(asctime)s - %(name)s - %(levelname)s - %(message)s"</span><span class="p">)</span>
     
     <span class="c1">#4 handler instance 생성
-</span>    <span class="n">console</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
-    <span class="n">file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"test.log"</span><span class="p">)</span>
+</span>    <span class="n">console</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="n">file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"test.log"</span><span class="p">)</span>
     
     <span class="c1">#5 handler 별로 다른 level 설정
-</span>    <span class="n">console</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-    <span class="n">file_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span>    <span class="n">console</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">file_handler</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
     <span class="c1">#6 handler 출력 format 지정
-</span>    <span class="n">console</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
-    <span class="n">file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</span>    <span class="n">console</span><span class="p">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">file_handler</span><span class="p">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
 
     <span class="c1">#7 logger에 handler 추가
-</span>    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">console</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
+</span>    <span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">console</span><span class="p">)</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">logger</span>
 </code></pre></div></div>
@@ -1346,9 +1346,9 @@ logging은 <strong>level</strong> 설정을 통해 메시지의 중요도를 구
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logger</span> <span class="o">=</span> <span class="n">make_logger</span><span class="p">()</span>
 
-<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+<span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+<span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
+<span class="n">logger</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"test"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>위와 같은 코드를 입력하면, <strong>console</strong> 창에는 아래와 같이 기록되지만,</p>
@@ -1451,13 +1451,13 @@ msg는 event description 메시지를 의미한다.</p>
 </table>
 
 <p>간단한 예는 아래와 같다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s">"[</span><span class="si">%(asctime)-10</span><span class="s">s] (줄 번호: </span><span class="si">%(lineno)</span><span class="s">d) </span><span class="si">%(name)</span><span class="s">s:</span><span class="si">%(levelname)</span><span class="s">s - </span><span class="si">%(message)</span><span class="s">s"</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="n">LOG_FORMAT</span><span class="p">)</span>
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">"setting"</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">"sth happened"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s">"[%(asctime)-10s] (줄 번호: %(lineno)d) %(name)s:%(levelname)s - %(message)s"</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="n">LOG_FORMAT</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">"setting"</span><span class="p">)</span>
+<span class="n">logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"sth happened"</span><span class="p">)</span>
 
-<span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">16</span> <span class="mi">13</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">29</span><span class="p">,</span><span class="mi">889</span><span class="p">]</span> <span class="p">(</span><span class="err">줄</span> <span class="err">번호</span><span class="p">:</span> <span class="mi">6</span><span class="p">)</span> <span class="n">setting</span><span class="p">:</span><span class="n">INFO</span> <span class="o">-</span> <span class="n">sth</span> <span class="n">happened</span>
+<span class="p">[</span><span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">16</span> <span class="mi">13</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">29</span><span class="p">,</span><span class="mi">889</span><span class="p">]</span> <span class="p">(</span><span class="n">줄</span> <span class="n">번호</span><span class="p">:</span> <span class="mi">6</span><span class="p">)</span> <span class="n">setting</span><span class="p">:</span><span class="n">INFO</span> <span class="o">-</span> <span class="n">sth</span> <span class="n">happened</span>
 </code></pre></div></div>
 
 <hr />

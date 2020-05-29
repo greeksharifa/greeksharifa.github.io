@@ -738,7 +738,7 @@ CAGE-reasoning과 CoS-E-open-ended 간 BLEU 점수는 4.1이며 perplexity는 32
     <span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="k">finally</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
 
 
 <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s">'nothing'</span>
@@ -782,14 +782,14 @@ CAGE-reasoning과 CoS-E-open-ended 간 BLEU 점수는 4.1이며 perplexity는 32
 
 <span class="c1"># 자식 class에서는 operate 메서드를 구현하지 않았으므로
 # 부모 class의 operate 메서드가 호출된다.
-</span><span class="n">tb</span><span class="o">.</span><span class="n">operate</span><span class="p">()</span>
+</span><span class="n">tb</span><span class="p">.</span><span class="n">operate</span><span class="p">()</span>
 
 <span class="c1"># 에러가 발생한다.
 </span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s">"C:</span><span class="err">\</span><span class="s">Users</span><span class="err">\</span><span class="s">...</span><span class="err">\</span><span class="s">interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
-    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_ns</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"C:\Users\...\interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_ns</span><span class="p">)</span>
   <span class="n">File</span> <span class="s">"&lt;ipython-input-17-fdf0f46c74b7&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-    <span class="n">tb</span><span class="o">.</span><span class="n">operate</span><span class="p">()</span>
+    <span class="n">tb</span><span class="p">.</span><span class="n">operate</span><span class="p">()</span>
   <span class="n">File</span> <span class="s">"&lt;ipython-input-12-af85936c9668&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="n">operate</span>
     <span class="k">raise</span> <span class="nb">NotImplementedError</span>
 <span class="nb">NotImplementedError</span>
@@ -811,7 +811,7 @@ CAGE-reasoning과 CoS-E-open-ended 간 BLEU 점수는 4.1이며 perplexity는 32
     <span class="nb">tuple</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 <span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"--- Exception Occured ---"</span><span class="p">)</span>
-    <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">traceback</span><span class="p">.</span><span class="n">print_exc</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># 출력 결과
 </span><span class="o">---</span> <span class="nb">Exception</span> <span class="n">Occured</span> <span class="o">---</span>
@@ -833,18 +833,18 @@ CAGE-reasoning과 CoS-E-open-ended 간 BLEU 점수는 4.1이며 perplexity는 32
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"example.log"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">"</span><span class="si">%(asctime)</span><span class="s">s </span><span class="si">%(levelname)</span><span class="s">s </span><span class="si">%(message)</span><span class="s">s"</span><span class="p">)</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"example.log"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">"%(asctime)s %(levelname)s %(message)s"</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="nb">tuple</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 <span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="n">traceback</span><span class="p">.</span><span class="n">format_exc</span><span class="p">())</span>
     <span class="k">raise</span>
 
 <span class="c1"># 출력 결과
 </span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s">"C:</span><span class="err">\</span><span class="s">Users</span><span class="err">\</span><span class="s">...</span><span class="err">\</span><span class="s">interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
-    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_ns</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"C:\Users\...\interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_ns</span><span class="p">)</span>
   <span class="n">File</span> <span class="s">"&lt;ipython-input-18-16da8da0daa5&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">6</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="nb">tuple</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 <span class="nb">IndexError</span><span class="p">:</span> <span class="nb">tuple</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
@@ -872,15 +872,15 @@ IndexError: tuple index out of range
         <span class="k">return</span> <span class="s">"Size does not fit"</span>
     
 <span class="c1"># 기준이 되는 base
-</span><span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1"># 비교대상인 data
-</span><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
-<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># np.array의 shape을 비교하는 함수이다.
 </span><span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">base</span> <span class="p">,</span><span class="n">data</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">base</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">base</span><span class="p">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">SizeError</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"All Clear"</span><span class="p">)</span>
@@ -890,8 +890,8 @@ IndexError: tuple index out of range
 
 <span class="c1"># 첫 번째 결과
 </span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s">"C:</span><span class="err">\</span><span class="s">Users</span><span class="err">\</span><span class="s">...</span><span class="err">\</span><span class="s">interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
-    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_ns</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"C:\Users\...\interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_ns</span><span class="p">)</span>
   <span class="n">File</span> <span class="s">"&lt;ipython-input-36-c1718418c4b8&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="n">compare</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data1</span><span class="p">)</span>
   <span class="n">File</span> <span class="s">"&lt;ipython-input-35-8ec7197ddfb7&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="n">compare</span>
@@ -945,12 +945,12 @@ IndexError: tuple index out of range
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">zlib</span>
 
-<span class="n">long_text</span> <span class="o">=</span> <span class="n">b</span><span class="s">"who are you"</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="n">long_text</span> <span class="o">=</span> <span class="s">b"who are you"</span> <span class="o">*</span> <span class="mi">1000</span>
 <span class="c1"># 압축하기
-</span><span class="n">compressed</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">long_text</span><span class="p">)</span>
+</span><span class="n">compressed</span> <span class="o">=</span> <span class="n">zlib</span><span class="p">.</span><span class="n">compress</span><span class="p">(</span><span class="n">long_text</span><span class="p">)</span>
 
 <span class="c1"># 압축 풀기
-</span><span class="n">decompressed</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span>
+</span><span class="n">decompressed</span> <span class="o">=</span> <span class="n">zlib</span><span class="p">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">compressed</span><span class="p">)</span>
 
 <span class="c1"># 동일한지 확인
 </span><span class="k">print</span><span class="p">(</span><span class="n">long_text</span> <span class="o">==</span> <span class="n">decompressed</span><span class="p">)</span>
@@ -965,8 +965,8 @@ IndexError: tuple index out of range
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gzip</span>
 
-<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s">"data.gz"</span><span class="p">,</span> <span class="s">"rt"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="s">"data.gz"</span><span class="p">,</span> <span class="s">"rt"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 </code></pre></div></div>
 
 <hr />
@@ -976,15 +976,15 @@ IndexError: tuple index out of range
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">zipfile</span>
 
 <span class="c1"># zip 파일이 맞는지 확인
-</span><span class="n">zipfile</span><span class="o">.</span><span class="n">is_zipfile</span><span class="p">(</span><span class="s">"trasnactions.zip"</span><span class="p">)</span>
+</span><span class="n">zipfile</span><span class="p">.</span><span class="n">is_zipfile</span><span class="p">(</span><span class="s">"trasnactions.zip"</span><span class="p">)</span>
 
 <span class="c1"># zip 파일 열기
-</span><span class="nb">zip</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s">"trasnactions.zip"</span><span class="p">)</span>
+</span><span class="nb">zip</span> <span class="o">=</span> <span class="n">zipfile</span><span class="p">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s">"trasnactions.zip"</span><span class="p">)</span>
 
 <span class="c1"># zip 파일 내 이름 확인 및 추후 사용을 위해 저장
 </span><span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
-    <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">.</span><span class="n">namelist</span><span class="p">():</span>
+    <span class="n">names</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
 
@@ -993,18 +993,18 @@ IndexError: tuple index out of range
 <span class="c1"># 첫 번째 파일 압축 해제 과정
 # 하나만 압축 해제할 때
 # ZipInfo 얻기
-</span><span class="n">zipinfo</span> <span class="o">=</span> <span class="nb">zip</span><span class="o">.</span><span class="n">getinfo</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Filename: "</span><span class="p">,</span> <span class="n">zipinfo</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s">"date_time: "</span><span class="p">,</span> <span class="n">zipinfo</span><span class="o">.</span><span class="n">date_time</span><span class="p">)</span>
+</span><span class="n">zipinfo</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">.</span><span class="n">getinfo</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Filename: "</span><span class="p">,</span> <span class="n">zipinfo</span><span class="p">.</span><span class="n">filename</span><span class="p">,</span> <span class="s">"date_time: "</span><span class="p">,</span> <span class="n">zipinfo</span><span class="p">.</span><span class="n">date_time</span><span class="p">)</span>
 
-<span class="n">Filename</span><span class="p">:</span>  <span class="n">transaction1</span><span class="o">.</span><span class="n">txt</span> <span class="n">date_time</span><span class="p">:</span>  <span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">Filename</span><span class="p">:</span>  <span class="n">transaction1</span><span class="p">.</span><span class="n">txt</span> <span class="n">date_time</span><span class="p">:</span>  <span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 
-<span class="nb">zip</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">zipinfo</span><span class="p">)</span>
+<span class="nb">zip</span><span class="p">.</span><span class="n">extract</span><span class="p">(</span><span class="n">zipinfo</span><span class="p">)</span>
 
 <span class="c1"># 전부 압축 해제할 때
-</span><span class="nb">zip</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+</span><span class="nb">zip</span><span class="p">.</span><span class="n">extractall</span><span class="p">()</span>
 
 <span class="c1"># 끝나고 닫아주기
-</span><span class="nb">zip</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class="nb">zip</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <hr />
@@ -1014,24 +1014,24 @@ IndexError: tuple index out of range
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tarfile</span>
 
 <span class="c1"># tarfile이 맞는지 확인
-</span><span class="n">tarfile</span><span class="o">.</span><span class="n">is_tarfile</span><span class="p">(</span><span class="s">"transactions.tar"</span><span class="p">)</span>
+</span><span class="n">tarfile</span><span class="p">.</span><span class="n">is_tarfile</span><span class="p">(</span><span class="s">"transactions.tar"</span><span class="p">)</span>
 
-<span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s">"transactions.tar"</span><span class="p">)</span>
-<span class="n">tar</span><span class="o">.</span><span class="n">getnames</span><span class="p">()</span>
+<span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="s">"transactions.tar"</span><span class="p">)</span>
+<span class="n">tar</span><span class="p">.</span><span class="n">getnames</span><span class="p">()</span>
 
 <span class="p">[</span><span class="s">'transaction1.txt'</span><span class="p">,</span> <span class="s">'transaction2.txt'</span><span class="p">]</span>
 
 <span class="c1"># 하나만 압축 해제
-</span><span class="n">tarinfo</span> <span class="o">=</span> <span class="n">tar</span><span class="o">.</span><span class="n">getmember</span><span class="p">(</span><span class="n">tar</span><span class="o">.</span><span class="n">getnames</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tarinfo</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">mtime</span><span class="p">,</span> <span class="n">tarinfo</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+</span><span class="n">tarinfo</span> <span class="o">=</span> <span class="n">tar</span><span class="p">.</span><span class="n">getmember</span><span class="p">(</span><span class="n">tar</span><span class="p">.</span><span class="n">getnames</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tarinfo</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tarinfo</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="n">tarinfo</span><span class="p">.</span><span class="n">mtime</span><span class="p">,</span> <span class="n">tarinfo</span><span class="p">.</span><span class="n">mode</span><span class="p">)</span>
 
-<span class="n">transaction1</span><span class="o">.</span><span class="n">txt</span> <span class="mi">74</span> <span class="mi">1578739467</span> <span class="mi">493</span>
+<span class="n">transaction1</span><span class="p">.</span><span class="n">txt</span> <span class="mi">74</span> <span class="mi">1578739467</span> <span class="mi">493</span>
 
-<span class="n">tar</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">tarinfo</span><span class="p">)</span>
+<span class="n">tar</span><span class="p">.</span><span class="n">extract</span><span class="p">(</span><span class="n">tarinfo</span><span class="p">)</span>
 
 <span class="c1"># 전체 압축 해제
-</span><span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
-<span class="n">tar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class="n">tar</span><span class="p">.</span><span class="n">extractall</span><span class="p">()</span>
+<span class="n">tar</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <hr />
@@ -1075,7 +1075,7 @@ https://docs.python.org/3/library/tarfile.html</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">collections</span>
 
-<span class="n">counter</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">Counter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="c1"># counter = collections.Counter({1: 1, 2: 2, 3: 1})
 </span><span class="k">print</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
 
@@ -1127,7 +1127,7 @@ https://docs.python.org/3/library/tarfile.html</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span><span class="s">'banana'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 <span class="n">dict2</span> <span class="o">=</span> <span class="p">{</span><span class="s">'apple'</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 
-<span class="n">counter</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">ChainMap</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">dict2</span><span class="p">)</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">ChainMap</span><span class="p">(</span><span class="n">dict1</span><span class="p">,</span> <span class="n">dict2</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">counter</span><span class="p">[</span><span class="s">'apple'</span><span class="p">])</span>
 
 <span class="mi">2</span>
@@ -1145,35 +1145,35 @@ https://docs.python.org/3/library/tarfile.html</p>
 
 <span class="c1"># 여기서 get_default_value와 같은 callable 객체나 None을 입력할 수 있다.
 # None을 입력할 경우 일반 사전과 마찬가지로 KeyError가 발생한다.
-</span><span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="n">get_default_value</span><span class="p">,</span> <span class="n">orange</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="n">get_default_value</span><span class="p">,</span> <span class="n">orange</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="s">'ham'</span><span class="p">])</span>
 
 <span class="s">'default-value'</span>
 </code></pre></div></div>
 
 <p>만약 기본 값으로 수치 0이나 빈 사전, 리스트를 반환하고 싶다면 int, dict, list형 객체를 지정하면 된다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="14-collectionsordereddict-순서가-있는-사전">1.4. collections.OrderedDict: 순서가 있는 사전</h3>
 <p><strong>for loop</strong>와 같은 과정 속에서 등록한 순서대로 요소를 추출하고 싶으면 이 class를 이용하면 좋다. 시퀀스를 이용하여 객체를 생성하면 순서대로 등록된 것을 확인할 수 있다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mydict</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s">"orange"</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">"banana"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mydict</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s">"orange"</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">"banana"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)])</span>
 <span class="k">print</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>
 
 <span class="n">OrderedDict</span><span class="p">([(</span><span class="s">'orange'</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">'banana'</span><span class="p">,</span> <span class="mi">20</span><span class="p">)])</span>
 </code></pre></div></div>
 
 <p>그러나 키워드 인수나 일반 사전으로 초깃값을 등록하면 순서가 무시된다. <code class="highlighter-rouge">OrderedDict</code> 객체에는 유용한 기능들이 있는데, 아래를 참조하면 좋을 것이다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mydict</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s">"orange"</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">"banana"</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s">"blueberry"</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s">"mango"</span><span class="p">,</span> <span class="mi">40</span><span class="p">)])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mydict</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">OrderedDict</span><span class="p">([(</span><span class="s">"orange"</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">"banana"</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s">"blueberry"</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s">"mango"</span><span class="p">,</span> <span class="mi">40</span><span class="p">)])</span>
 
 <span class="c1"># popitem 에서 last=True로 하면 마지막 요소를 사전에서 삭제하고 반환하고,
 # False로 하면 첫 요소에 효과를 적용한다.
-</span><span class="n">mydict</span><span class="o">.</span><span class="n">popitem</span><span class="p">(</span><span class="n">last</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class="n">mydict</span><span class="p">.</span><span class="n">popitem</span><span class="p">(</span><span class="n">last</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c1"># move_to_end에서 last=True로 하면 지정한 키를 맨 끝으로 이동시키고, False이면 맨 처음으로 이동시킨다.
-</span><span class="n">mydict</span><span class="o">.</span><span class="n">move_to_end</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">"banana"</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class="n">mydict</span><span class="p">.</span><span class="n">move_to_end</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s">"banana"</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">mydict</span><span class="p">)</span>
 
@@ -1182,9 +1182,9 @@ https://docs.python.org/3/library/tarfile.html</p>
 
 <h3 id="15-collectionsnamedtuple">1.5. collections.namedtuple</h3>
 <p>데이터를 효율적으로 관리하기에 적합한 class가 바로 namedtuple이다. 속성 이름을 지정하여 가독성을 높이고 튜플을 활용하여 원하는 요소를 쉽게 추출하도록 하게 해준다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">point</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s">"point"</span><span class="p">,</span> <span class="s">"X, Y, Z"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">point</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s">"point"</span><span class="p">,</span> <span class="s">"X, Y, Z"</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">point</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">Y</span><span class="p">)</span>
 
 <span class="mi">6</span>
 </code></pre></div></div>
@@ -1200,12 +1200,12 @@ https://docs.python.org/3/library/tarfile.html</p>
 
 <span class="c1"># heappush(heap, item): heap에 item을 추가함
 # 주의점: keyword 인자를 입력하면 Error가 발생함
-</span><span class="n">heaqp</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">heaqp</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class="n">heaqp</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">heaqp</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># heappop(heap): heap에서 최솟값을 삭제하고 그 값을 반환함
 # 최솟값을 삭제하지 않고 참조하고 싶다면 heap[0]을 쓰자
-</span><span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+</span><span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
 
 <span class="mi">1</span>
 </code></pre></div></div>
@@ -1214,16 +1214,16 @@ https://docs.python.org/3/library/tarfile.html</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">heap</span> <span class="o">=</span> <span class="p">[</span><span class="mi">79</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">62</span><span class="p">]</span>
 
 <span class="c1"># heapify(heap): heap의 요소를 정렬함
-</span><span class="n">heapq</span><span class="o">.</span><span class="n">heapify</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+</span><span class="n">heapq</span><span class="p">.</span><span class="n">heapify</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
 
 <span class="c1"># heappush(heap, item): heap에 item을 추가한 뒤, 최솟값을 삭제하고 그 값을 반환함
-</span><span class="n">heapq</span><span class="o">.</span><span class="n">heappushpop</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class="n">heapq</span><span class="p">.</span><span class="n">heappushpop</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
 <span class="mi">10</span>
 
 <span class="c1"># heapreplace(heap, item): 최솟값을 삭제한 뒤, heap에 item을 추가하고 삭제한 값을 반환함
 # 주의점: 추가한 값 아님
-</span><span class="n">heapq</span><span class="o">.</span><span class="n">heapreplace</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class="n">heapq</span><span class="p">.</span><span class="n">heapreplace</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
 <span class="mi">24</span>
 </code></pre></div></div>

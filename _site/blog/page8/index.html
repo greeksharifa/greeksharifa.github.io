@@ -890,42 +890,42 @@ JSD는 <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergenc
 <span class="kn">import</span> <span class="nn">imageio</span>
 
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'GAN tutorial: MNIST'</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'GAN tutorial: MNIST'</span><span class="p">)</span>
 
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--epochs'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'number of epochs'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--batch-size'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'size of mini-batch'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--noise-size'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'size of random noise vector'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--use-cuda'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">bool</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'use cuda if available'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--learning-rate'</span><span class="p">,</span> <span class="s">'-lr'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'learning rate of AdamOptimizer'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--beta1'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'parameter beta1 of AdamOptimizer'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--beta2'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'parameter beta2 of AdamOptimizer'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--output-dir'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'output/'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'directory path of output'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--log-file'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'log.txt'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'filename of logging'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--epochs'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'number of epochs'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--batch-size'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'size of mini-batch'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--noise-size'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'size of random noise vector'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--use-cuda'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">bool</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'use cuda if available'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--learning-rate'</span><span class="p">,</span> <span class="s">'-lr'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'learning rate of AdamOptimizer'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--beta1'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'parameter beta1 of AdamOptimizer'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--beta2'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'parameter beta2 of AdamOptimizer'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--output-dir'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'output/'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'directory path of output'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--log-file'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'log.txt'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'filename of logging'</span><span class="p">)</span>
 
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">use_cuda</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">use_cuda</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+<span class="n">use_cuda</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">use_cuda</span> <span class="ow">and</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="n">is_available</span><span class="p">()</span>
 
-<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
-    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,),</span> <span class="n">std</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,))</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="p">.</span><span class="n">Compose</span><span class="p">([</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+    <span class="n">transforms</span><span class="p">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,),</span> <span class="n">std</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,))</span>
 <span class="p">])</span>
 
-<span class="n">mnist</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s">'data'</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-<span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s">'data'</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+<span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Generator는 다음과 같이 선언한다. 레이어는 총 4개, activation function은 LeakyRELU와 Tanh를 사용하였다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">28</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear3</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear4</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">28</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
     
     
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -933,22 +933,22 @@ JSD는 <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergenc
         :param x: input tensor[batch_size * noise_size]
         :return: output tensor[batch_size * 1 * 28 * 28]
         """</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">()(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear4</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Tanh</span><span class="p">()(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear4</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Discriminator는 다음과 같다. Linear Layer는 G의 역방향으로 가는 것과 비슷하지만, activation function에는 차이가 있다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Discriminator</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Discriminator</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">28</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">linear4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear1</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">28</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear2</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear3</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">linear4</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     
     
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -956,14 +956,14 @@ JSD는 <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergenc
         :param x: input tensor[batch_size * 1 * 28 * 28]
         :return: possibility of that the image is real data
         """</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear4</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Dropout</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Dropout</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Dropout</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="p">.</span><span class="n">Sigmoid</span><span class="p">()(</span><span class="bp">self</span><span class="p">.</span><span class="n">linear4</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>GAN의 핵심 부분은 다음과 같다. 위의 Gaussian 분포 예제와 크게 다르지 않아서 크게 설명은 필요없을 듯 하다. 차이점을 조금 적어보자면</p>
@@ -972,50 +972,50 @@ JSD는 <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergenc
   <li>또 <code class="highlighter-rouge">.cuda()</code>와 <code class="highlighter-rouge">DataLoader</code>를 사용하는 것 정도가 있겠으나 GAN의 핵심 부분은 아니다.</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">epochs</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">epochs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">D_real_data</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
             
-            <span class="n">batch_size</span> <span class="o">=</span> <span class="n">D_real_data</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="n">D_real_data</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             
             <span class="c1"># Training D with real data
-</span>            <span class="n">D</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span>            <span class="n">D</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
             
-            <span class="n">target_real</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">target_fake</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">target_real</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">target_fake</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
             
             <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span>
                 <span class="n">D_real_data</span><span class="p">,</span> <span class="n">target_real</span><span class="p">,</span> <span class="n">target_fake</span> <span class="o">=</span> \
-                <span class="n">D_real_data</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">target_real</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">target_fake</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+                <span class="n">D_real_data</span><span class="p">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">target_real</span><span class="p">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">target_fake</span><span class="p">.</span><span class="n">cuda</span><span class="p">()</span>
             
             <span class="n">D_real_decision</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="n">D_real_data</span><span class="p">)</span>
             <span class="n">D_real_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">D_real_decision</span><span class="p">,</span> <span class="n">target_real</span><span class="p">)</span>
             
             <span class="c1"># Training D with fake data
 </span>            
-            <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">noise_size</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">randn</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">noise_size</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">cuda</span><span class="p">()</span>
             
             <span class="n">D_fake_data</span> <span class="o">=</span> <span class="n">G</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
             <span class="n">D_fake_decision</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="n">D_fake_data</span><span class="p">)</span>
             <span class="n">D_fake_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">D_fake_decision</span><span class="p">,</span> <span class="n">target_fake</span><span class="p">)</span>
             
             <span class="n">D_loss</span> <span class="o">=</span> <span class="n">D_real_loss</span> <span class="o">+</span> <span class="n">D_fake_loss</span>
-            <span class="n">D_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">D_loss</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>
             
-            <span class="n">D_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            <span class="n">D_optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
             
             <span class="c1"># Training G based on D's decision
-</span>            <span class="n">G</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span>            <span class="n">G</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
             
-            <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">noise_size</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">randn</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">noise_size</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">.</span><span class="n">cuda</span><span class="p">()</span>
             
             <span class="n">D_fake_data</span> <span class="o">=</span> <span class="n">G</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
             <span class="n">D_fake_decision</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="n">D_fake_data</span><span class="p">)</span>
             <span class="n">G_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">D_fake_decision</span><span class="p">,</span> <span class="n">target_real</span><span class="p">)</span>
-            <span class="n">G_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">G_loss</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>
             
-            <span class="n">G_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+            <span class="n">G_optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>전체 코드는 <a href="https://github.com/greeksharifa/Tutorial.code/blob/master/Python/GAN_tutorial/gan_tutorial.py">여기</a>를 참조하라.</p>
@@ -1110,15 +1110,15 @@ JSD는 <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergenc
 <p>argparse를 쓰려면 기본적으로 다음 코드가 필요하다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">argparse</span>
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Argparse Tutorial'</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Argparse Tutorial'</span><span class="p">)</span>
 <span class="c1"># argument는 원하는 만큼 추가한다.
-</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--print-number'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> 
+</span><span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--print-number'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> 
                     <span class="n">help</span><span class="o">=</span><span class="s">'an integer for printing repeatably'</span><span class="p">)</span>
 
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">print_number</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'print number {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">print_number</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'print number {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 <ol>
   <li>일단 <a href="https://docs.python.org/3/library/argparse.html?highlight=argparse#argparse.ArgumentParser">ArgumentParser</a>에 원하는 description을 입력하여 parser 객체를 생성한다. description 외에도 usage, default value 등을 지정할 수 있다.</li>
@@ -1157,7 +1157,7 @@ usage: argparseTest.py [-h] [--print-number PRINT_NUMBER]
 <h2 id="argument-이름-정의">argument 이름 정의</h2>
 <p>인자의 이름을 지정할 때 여러 이름을 짓는 것이 가능하다. 지정할 때 두 개를 연속해서 나열한다. 보통 1~2개를 지정하는데, <code class="highlighter-rouge">--help</code>와 <code class="highlighter-rouge">-h</code>같이 fullname과 약자를 하나씩 지정하는 편이다. 또 <code class="highlighter-rouge">help=</code>에서 description을 써줄 수 있다.<br />
 참고로 help 메시지는 % formatting을 지원한다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--print-number'</span><span class="p">,</span> <span class="s">'-p'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'an integer for printing repeatably'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--print-number'</span><span class="p">,</span> <span class="s">'-p'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'an integer for printing repeatably'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="type-지정">type 지정</h2>
@@ -1174,11 +1174,11 @@ usage: argparseTest.py [-h] [--print-number PRINT_NUMBER]
 단, positional 인자도 필수로 넣어야 하게끔 할 수 있다. <code class="highlighter-rouge">add_argument()</code> 함수에 <code class="highlighter-rouge">required=True</code>를 집어넣으면 된다. 그러나 C언어에서 <code class="highlighter-rouge">#define true false</code>같은 짓인 만큼 권장되지 않는다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># argparseTest.py
 # ...
-</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--foo'</span><span class="p">,</span> <span class="s">'-f'</span><span class="p">)</span> <span class="c1"># optional
-</span><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'bar'</span><span class="p">)</span>         <span class="c1"># positional
-</span><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'args.foo:'</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">foo</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'args.bar:'</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">bar</span><span class="p">)</span>
+</span><span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--foo'</span><span class="p">,</span> <span class="s">'-f'</span><span class="p">)</span> <span class="c1"># optional
+</span><span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'bar'</span><span class="p">)</span>         <span class="c1"># positional
+</span><span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'args.foo:'</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'args.bar:'</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">bar</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># optional 인자는 지정하지 않아도 되고, 그럴 경우 기본값이 저장된다.
 &gt; python argparseTest.py bar_value
@@ -1211,7 +1211,7 @@ args.bar: bar_value
 <h2 id="default-값-지정">default 값 지정</h2>
 <p>값을 저장할 때 명시적으로 지정하지 않았을 때 들어가는 기본값을 설정할 수 있다. <code class="highlighter-rouge">add_argument()</code>에서 <code class="highlighter-rouge">default=</code> 옵션을 지정한다.
     - <code class="highlighter-rouge">argparse.SUPPRESS</code>를 적을 경우, 인자를 적지 않았을 때 None이 들어가는 것이 아닌 아예 인자 자체가 생성되지 않는다. 또한 <code class="highlighter-rouge">--help</code>에도 표시되지 않는다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--foo'</span><span class="p">,</span> <span class="s">'-f'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--foo'</span><span class="p">,</span> <span class="s">'-f'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div></div>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; python argparseTest.py
 args.foo: 5
@@ -1283,15 +1283,15 @@ args.foo: ['1', '123', 'xyz']
 
 <h2 id="dest-적용-위치-지정">dest: 적용 위치 지정</h2>
 <p>argument를 지정할 때 store나 action의 저장 또는 적용 위치를 바꿔서 지정할 수 있다. 예를 들어 <code class="highlighter-rouge">--foo</code>의 <code class="highlighter-rouge">dest=</code> 옵션을 <code class="highlighter-rouge">--foo-list</code>로 지정하면, <code class="highlighter-rouge">args.foo_list</code>에 값이 저장되는 식이다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--foo'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'append'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'foo_list'</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--bar'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'bar_value'</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--foo'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'append'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'foo_list'</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--bar'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'bar_value'</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">'args.foo_list:'</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">foo_list</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'args.bar_value:'</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">bar_value</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'args.foo_list:'</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">foo_list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'args.bar_value:'</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">bar_value</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">foo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">foo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">'Hmm?'</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">AttributeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s">'Where are you gone?'</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
@@ -1906,7 +1906,7 @@ Professional 버전은 돈을 주고 구입하거나, 학생이라면 <a href="h
 
 <p>참고로 pycharm에서는 일반적으로 <code class="highlighter-rouge">plt.show()</code>를 그냥 하면 그림이 표시되지 않는 경우가 있다. 이에 대한 해결법은 <a href="https://stackoverflow.com/questions/24886625/pycharm-does-not-show-plot">링크</a>를 참고하자.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">interactive</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="c1"># plt.show(block=True)
 </span></code></pre></div></div>
 
@@ -1928,7 +1928,7 @@ Professional 버전은 돈을 주고 구입하거나, 학생이라면 <a href="h
     <span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
         
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'fibonacci({})</span><span class="se">\t</span><span class="s">: {:8d}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'fibonacci({})</span><span class="se">\t</span><span class="s">: {:8d}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>결과는 다음과 갈다.</p>
@@ -2319,7 +2319,7 @@ Not recommended라고 되어 있는 옵션이지만 체크하면 PATH에 등록�
 </span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">condatorch</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.6</span>
 
 <span class="c1"># 특정 패키지 버전을 지정하면서, 그리고 패키지를 설치하면서 생성하는 것도 가능하다.
-</span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">myenv</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.4</span> <span class="n">scipy</span><span class="o">=</span><span class="mf">0.15.0</span> <span class="n">astroid</span> <span class="n">babel</span>
+</span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">myenv</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.4</span> <span class="n">scipy</span><span class="o">=</span><span class="mf">0.15</span><span class="p">.</span><span class="mi">0</span> <span class="n">astroid</span> <span class="n">babel</span>
 
 <span class="c1"># 가상환경 생성 시 이것저것 깔리는 것이 싫다면 다음 옵션을 주면 된다.
 </span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">packages</span> <span class="o">-</span><span class="n">n</span> <span class="n">myenv</span> <span class="n">python</span>
@@ -2330,7 +2330,7 @@ Not recommended라고 되어 있는 옵션이지만 체크하면 PATH에 등록�
 
 <span class="c1"># environment.yml 파일이 있다면 다음과 같이 생성할 수 있다.
 # 생성 방법은 이후에 설명한다.
-</span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+</span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="p">.</span><span class="n">yml</span>
 </code></pre></div></div>
 
 <p>계속 진행하겠냐는 물음이 보이면 <code class="highlighter-rouge">y</code>를 입력한다.</p>
@@ -2418,7 +2418,7 @@ done &lt; requirements.txt 2&gt;error.log
 
 <p>설치된 패키지 목록을 <code class="highlighter-rouge">.yml</code> 파일로 저장하는 명령이다.<br />
 <code class="highlighter-rouge">pip freeze &gt; requirements.txt</code>와 같은 역할이다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conda</span> <span class="n">env</span> <span class="n">export</span> <span class="o">&gt;</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conda</span> <span class="n">env</span> <span class="n">export</span> <span class="o">&gt;</span> <span class="n">environment</span><span class="p">.</span><span class="n">yml</span>
 </code></pre></div></div>
 
 <p>만들어진 파일은 다음과 비슷하게 생겼다.</p>
@@ -2441,7 +2441,7 @@ prefix: C:\ProgramData\Miniconda3\envs\condatorch
 <p>만들어진 파일로 가상환경을 생성하는 방법은 위에서도 설명했지만 다음과 같다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 이 경우에는 env를 앞에 써 주어야 한다.
 # -f는 --file을 의미한다.
-</span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span> <span class="o">-</span><span class="n">n</span> <span class="n">myenv</span>
+</span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="p">.</span><span class="n">yml</span> <span class="o">-</span><span class="n">n</span> <span class="n">myenv</span>
 </code></pre></div></div>
 
 <h3 id="패키지-업데이트">패키지 업데이트</h3>
