@@ -4,11 +4,16 @@ tagline: "YW & YY's Python, Machine & Deep Learning"
 description: "YW & YY's ML blog powered by jekyll theme"
 baseurl: ""
 url: https://greeksharifa.github.io
-logo: '/public/img/logo.png'
+logo: '/public/img/logo.webp'
 
 # Site configurations
 gems:
   - jekyll-paginate
+  - jekyll-redirect-from
+
+whitelist:
+    - jekyll-redirect-from
+
 markdown: kramdown
 kramdown:
   input: GFM
@@ -19,6 +24,7 @@ sass:
 paginate: 5
 paginate_path: '/blog/page:num'
 permalink: pretty
+# permalink: /:title/
 
 version: 1.0.0
 
