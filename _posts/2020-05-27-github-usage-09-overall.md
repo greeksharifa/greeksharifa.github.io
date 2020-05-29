@@ -22,13 +22,13 @@ tags: [GitHub, usage]
 
 ---
 
-## Git Directory 생성
+## Working tree(작업트리) 생성
 
 ### git init
 
 빈 디렉토리나, 기존의 프로젝트를 **git 저장소**(=**git repository**)로 변환하고 싶다면 이 문단을 보면 된다.  
 
-일반적인 디렉토리(=git 저장소가 아닌 디렉토리)를 git 디렉토리로 만드는 방법은 다음과 같다. **명령창**(cmd / terminal)에서 다음을 입력한다.
+일반적인 디렉토리(=git 저장소가 아닌 디렉토리)를 git working tree로 만드는 방법은 다음과 같다. **명령창**(cmd / terminal)에서 다음을 입력한다.
 
 ```vim
 git init
@@ -43,7 +43,7 @@ Initialized empty Git repository in blabla/sample_directory/.git/
 
 ### git clone 
 
-인터넷에서 이미 만들어져 있는 git 디렉토리를 본인의 컴퓨터(=**로컬**)로 가져오고 싶을 때에는 해당 git repository의 `https://github.com/blabla.git` 주소를 복사한 뒤 다음과 같은 명령어를 입력한다.
+인터넷에서 이미 만들어져 있는 작업트리를 본인의 컴퓨터(=**로컬**)로 가져오고 싶을 때에는 해당 git repository의 `https://github.com/blabla.git` 주소를 복사한 뒤 다음과 같은 명령어를 입력한다.
 
 ```vim
 git clone <git-address>
@@ -79,7 +79,7 @@ git remote add origin https://github.com/greeksharifa/git_tutorial.git
 
 `<remote-name>`은 원격 저장소에 대한 일종의 별명인데, 보통은 `origin`을 쓴다. 큰 프로젝트라면 여러 개를 쓸 수도 있다.
 
-이것만으로는 완전히 연결되지는 않았다. [upstream 연결]()을 지정하는 `git push -u` 명령을 사용해야 수정사항이 원격 저장소에 반영된다.
+이것만으로는 완전히 연결되지는 않았다. [upstream 연결](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#upstream-%EC%97%B0%EA%B2%B0)을 지정하는 `git push -u` 명령을 사용해야 수정사항이 원격 저장소에 반영된다.
 
 ### 연결된 원격 저장소 확인
 
@@ -400,7 +400,7 @@ git config --global core.excludesfile C:\.gitignore
 
 ## History 검토
 
-### git log
+### git log: 현재 존재하는 commit 검토
 
 저장소 commit 메시지의 모든 history를 역순으로 보여준다. 즉, 가장 마지막에 한 commit이 가장 먼저 보여진다.
 
@@ -483,6 +483,35 @@ da446019230a010bf333db9d60529e30bfa3d4e3 (HEAD -> master, origin/master, origin/
 ```vim
 git log --oneline -5
 ```
+
+### git reflog: commit과 commit의 변화 과정 전체를 검토
+
+```vim
+git reflog
+
+# 결과 예시:
+87ab51e (HEAD -> master, tag: specific_tag) HEAD@{0}: commit: All text in first line will be showed at --onel
+ine
+da44601 (origin/master, origin/HEAD) HEAD@{1}: clone: from https://github.com/greeksharifa/git_tutorial.git
+```
+
+위와 같이 `HEAD@{0}`: commit과 `HEAD@{1}`: clone 이라는 변화를 볼 수 있다. `git reflog`는 commit 뿐 아니라 commit이 삭제되었는지, 재배치했는지, clone이나 rebase 같은 변화가 있었는지 등등 git에서 일어난 모든 변화를 기록한다. 
+
+---
+
+## HEAD: branch의 tip
+
+HEAD는 현 branch history의 가장 끝을 의미한다. 여기서 끝은 가장 최신 commit 쪽의 끝이다(시작점을 가리키지 않는다).  
+다른 의미로는 checkout된 commit, 또는 현재 작업중인 commit이다.
+
+예를 들어, `HEAD@{0}`은 1번째 최신 commit(즉, 가장 최신 commit)을 의미한다. index는 많은 프로그래밍 언어가 그렇듯 0부터 시작한다. 비슷하게, `HEAD@{1}`은 2번째 최신 commit을 의미한다.
+
+`HEAD^`는 HEAD의 직전, 즉 가장 최신 commit을 가리킨다.
+
+범위를 나타낼 땐 `~`를 사용한다. 예를 들어, `HEAD~3`은 가장 최신 commit(1번째)부터 3번째 commit까지를 가리킨다.
+
+`HEAD~2^`는 `HEAD^`(가장 최신, 즉 1번째 commit)보다 2번 더 이전 commit까지 간 것이고, 범위(`~`)를 나타내므로 1~3번째 commit을 가리킨다. 헷갈리니까 3개의 commit을 다루고 싶으면 그냥 `HEAD~3`을 쓰자.
+
 
 ---
 
@@ -784,24 +813,373 @@ branch 삭제는 해당 branch의 수정사항들이 다른 branch에 병합되�
 
 | 원하는 것 | 명령어 |
 | -------- | -------- | 
-특정 파일의 수정사항 폐기 | `git checkout -- <filename>`
-모든 수정사항을 폐기 | `git reset --hard`
-여러 commit 통합 | `git reset <commit>`
-untracked 파일을 포함해 모든 수정사항을 폐기 | `git clecn -fd`
+특정 파일의 수정사항 되돌리기 | `git checkout -- <filename>`
+모든 수정사항을 되돌리기 | `git reset --hard`
 준비 영역의 모든 수정사항을 삭제 | `git reset --hard <commit>`
+여러 commit 통합 | `git reset <commit>`
+이전 commit들을 수정 또는 통합, 혹은 분리 | `git rebase --interactive <commit>`
+untracked 파일을 포함해 모든 수정사항을 되돌리기 | `git clean -fd`
 이전 commit을 삭제하되 history는 그대로 두기 | `git revert <commit>`
-branch history에서 하나의 commit만 삭제 | `git rebased --interactive <commit>`
 
 아래는 [Git for Teams](https://www.amazon.com/Git-Teams-User-Centered-Efficient-Workflows/dp/1491911182)라는 책에서 가져온 flowchart이다. 뭔가 잘못되었을 때 사용해보도록 하자.
 
 <center><img src="/public/img/2020-05-27-github-usage-09-overall/01.png" width="100%"></center>  
 
-여러 명이 협업하는 프로젝트에서 이미 원격 저장소에 잘못된 수정사항이 올라갔을 때, 이를 강제로 폐기하는 것은 금물이다. '잘못된 수정사항을 삭제하는' 새로운 commit을 만들어 반영시키는 쪽이 훨씬 낫다.
+여러 명이 협업하는 프로젝트에서 이미 원격 저장소에 잘못된 수정사항이 올라갔을 때, 이를 강제로 되돌리는 것은 금물이다. '잘못된 수정사항을 삭제하는' 새로운 commit을 만들어 반영시키는 쪽이 훨씬 낫다.
 
 물론 branch를 잘 만들고, pull request 시스템을 적극 활용해서 그러한 일이 일어나지 않도록 하는 것이 최선이다. 
+
+
+---
+
+### 특정 파일의 수정사항 되돌리기: checkout, reset
+
+특정 파일을 지워 버렸거나 수정을 잘못했다고 하자. 이 때에는 다음 전제조건이 있다.
+
+> 수정사항을 commit하지 않았을 때
+
+commit하지 않았다면, 다음 두 가지 경우가 있다. `git status`를 입력하면 친절히 알려준다.
+
+```vim
+git status
+
+#결과 예시
+On branch master
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   third.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+마지막 줄에서 아직 commit된 것이 없다는 것을 확인해야 한다. 
+
+1. 수정사항을 준비 영역에 올리지 않았을 때(`git add`를 안 수행했을 때)
+    - `git checkout -- <filename>`
+    - 그러면 파일이 원래대로 복구된다. 
+2. 수정사항을 stage했을 때(`git add`를 수행했을 때)
+    - 그러면 위 결과 예시처럼 `no changes added to commit ...`이라는 메시지가 없다. 다음 두 명령을 입력한다.
+    - `git reset HEAD <filename>`
+    - `git checkout -- <filename>`
+    을 입력한다.
+    - 그러면 가장 최신(HEAD) commit에 저장되어 있는 파일의 원래 상태가 복구된다. commit하지 않았을 때 사용할 수 있는 이유가 이것이다.
+    - 아니면 명령어 두 개를 합친 다음 명령을 써도 된다.
+    - `git reset --hard HEAD -- <filename>`
+
+`git reset <filename>`은 `git add <filename>`의 역방향이라고 보면 된다. 물론 `git reset <commit> <filename>`은 파일을 여러 commit 이전으로 되돌릴 수 있기 때문에 상황에 따라서는 다른 작업일 수 있다.
+
+비슷하게, `git reset -p <filename>`은 `git add -p <filename>`의 역 작업이다.
+
+`git reset`의 옵션은 여러 개가 있다. 
+
+- `git reset [-q | -p] [--] <paths>`: `<paths>`는 `<filename>`을 포함한다. 즉, filename 뿐만 아니라 디렉토리 등도 가능하다. 이 명령의 효과는 `git add [-p]`의 역 작업이다.
+- `git reset [--soft | --mixed [-N] | --hard | --merge | --keep] -[q] [<commit>]`
+    - `--hard`: `<commit>` 이후 발생한 모든 수정사항과 준비 영역의 수정사항이 폐기된다. 
+    - `--soft`는 파일의 수정사항이 남아 있으며, 수정된 파일들이 모두 **Changes to be committed** 상태가 된다.
+    - `--mixed`는 파일의 수정사항은 남아 있으나 준비 영역의 수정사항은 폐기된다. mixed가 기본 옵션이다.
+    - `--merge`는 준비 영역의 수정사항은 폐기하고 `<commit>`과 `HEAD` 사이 수정된 파일들을 업데이트하지만 수정된 파일들은 stage되지 않는다.
+    - `--keep`은 `--merge`와 비슷하나 `<commit>`때와 `HEAD` 때가 다른 파일에 일부 변화가 있는 경우에는 `reset` 과정이 중단된다.
+
+모든 파일의 수정사항 되돌리기:
+
+```vim
+git reset --hard HEAD
+```
+
+---
+
+### branch 병합 취소하기
+
+먼저 다음 [flowchart](https://www.amazon.com/Git-Teams-User-Centered-Efficient-Workflows/dp/1491911182)를 살펴보자.
+
+<center><img src="/public/img/2020-05-27-github-usage-09-overall/02.png" width="100%"></center>  
+
+바로 직전에 한 병합(merge)를 취소하려면 다음 명령어를 입력한다.
+
+```vim
+git reset --merge ORIG_HEAD
+```
+
+병합 후 추가한 commit이 있으면 해당 지점의 commit을 지정해야 한다.
+
+```vim
+git reset <commit>
+```
+
+어디인지 잘 모르겠으면 [reflog](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#git-reflog-commit%EA%B3%BC-commit%EC%9D%98-%EB%B3%80%ED%99%94-%EA%B3%BC%EC%A0%95-%EC%A0%84%EC%B2%B4%EB%A5%BC-%EA%B2%80%ED%86%A0)를 사용해보자.
+
+
+---
+
+### 커밋 합치기: git reset \<commit\>
+
+기본적으로, `git reset`은 branch tip을 `<commit>`으로 옮기는 과정이다. 그래서, `git reset <option> HEAD`는 마지막 commit의 상태로 준비 영역 또는 파일 내용을 되돌리는(reset) 작업이다.  
+또한, 바로 위에서 살펴봤듯이, `git reset`은 기본 옵션이 `--mixed`이며, 이는 옵션을 따로 명시하지 않으면 `git reset`은 파일의 수정사항은 그대로 둔 채 준비 영역에는 추가된 수정사항이 없는 상태로 만든다.  
+
+그래서 특정 이전 commit을 지정하여 `git reset <commit>`을 수행하면 해당 `<commit>`부터 `HEAD`까지의 파일의 수정사항은 작업트리(=프로젝트 디렉토리 전체)에 그대로 남아 있지만, 준비 영역에는 아무런 변화도 기록되어 있지 않다.  
+먼저 어떤 커밋들을 합칠지 `git log --oneline`으로 확인해보자.
+
+```
+# 결과 예시
+c8c731b (HEAD -> master, origin/master, origin/HEAD) doong commit
+87ab51e (tag: specific_tag) All text in first line will be showed at --oneline
+da44601 Merge branch '3rd-branch'
+2eae048 Unwanted commit from 2nd-branch
+4a521c5 Desired commit from 2nd-branch
+```
+
+이제 가장 최신 2개의 commit을 합치고 싶으면, 현재 branch의 HEAD를 `c8c731b`에서 `da44601`로 옮기면 된다. 
+
+```vim
+git reset da44601
+```
+그러면 직전 2개의 commit의 수정사항이 파일에는 그대로 남아 있지만, 준비 영역이나 commit 내역에선 사라진다. 이제 stage, commit, push 3단계를 수행하면 최종적으로 commit 2개가 1개로 합쳐진다.
+
+`<commit>` id를 지정하는 것이 헷갈린다면 `git reset HEAD~2`로 실행하자. 이는 [여기](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#head-branch%EC%9D%98-tip)에서 볼 수 있듯이 범위로 2개의 commit을 포함한다.
+
+---
+
 
 ### git rebase
 
 rebase는 일반적으로 history rearrange의 역할을 한다. 즉, 여러 commit들의 순서를 재배치하는 작업이라 할 수 있다. 혹은 parent branch의 수정사항을 가져오면서 자신의 commit은 그 이후에 추가된 것처럼 하는, 마치 분기된 시점을 뒤로 미룬 듯한 작업을 수행할 수도 있다.
 
 그러나 rebase와 같은 기존 작업을 취소 또는 변경하는 명령은 일반적으로 충돌(conflict)이 일어나는 경우가 많다. 충돌이 발생하면 git은 작업을 일시 중지하고 사용자에게 충돌을 처리하라고 한다.
+
+#### master branch의 commit을 topic branch로 가져오기
+
+다음과 같은 상황을 가정하자. 각 알파벳은 하나의 commit이며, 각 이름은 branch의 이름을 나타낸다.  
+아래 각 예시는 `git help`에 나오는 도움말을 이용하였다.
+
+```
+          A---B---C topic
+         /
+    D---E---F---G master
+```
+
+commit F, G를 topic branch에 반영(포함)시키려 한다면,
+
+```
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+```
+
+commit A'와 A는 프로젝트에 동일한 수정사항을 적용시키지만, 16진수로 된 commit의 고유 id(`da44601` 같은)는 다르다. 즉, 엄밀히는 다른 commit이다.
+
+commit을 재배열하는 명령어는 다음과 같다. 현재 branch는 topic이라 가정한다.
+
+```vim
+git rebase master
+git rebase master topic
+```
+
+commit A, B, C가 F, G와 코드 상으로 동일한 파일 또는 다른 일부분을 수정하지 않았다면, 이 rebase 작업은 자동으로 완료된다.  
+
+
+만약 topic branch에 이미 master branch로부터 가져온 commit이 일부 존재하면, 이 commit들은 새로 배치되지 않는다.
+
+```
+          A---B---C topic
+         /
+    D---E---A'---F master
+```
+에서
+```
+                   B'---C' topic
+                  /
+    D---E---A'---F master
+```
+로 바뀐다.
+
+#### branch의 parent 바꾸기: --onto
+
+topic을 next가 아닌 master에서 분기된 것처럼 바꾸고자 한다. 즉,
+
+```
+    o---A---B---o---C  master
+         \
+          D---o---o---o---E  next
+                           \
+                            o---o---o  topic
+```
+
+이걸 아래와 같이 바꿔보자.
+
+```
+    o---A---B---o---C  master
+        |            \
+        |             o'--o'--o'  topic
+         \
+          D---o---o---o---E  next
+```
+
+topic branch의 history에는 이제 commit D~E 대신 commit A~B가 포함되어 있다.
+
+이는 다음과 같은 명령어로 수행할 수 있다:
+
+```
+git rebase --onto master next topic
+```
+
+다른 예시는:
+
+```
+                            H---I---J topicB
+                           /
+                  E---F---G  topicA
+                 /
+    A---B---C---D  master
+```
+
+```vim
+git rebase --onto master topicA topicB
+```
+
+```
+                 H'--I'--J'  topicB
+                /
+                | E---F---G  topicA
+                |/
+    A---B---C---D  master
+```
+
+#### 특정 범위의 commit들 제거하기
+
+```
+    E---F---G---H---I---J  topic
+```
+
+topic branch의 5번째 최신 commit부터, 3번째 최신 commit **직전**까지 commit을 topic branch에서 폐기하고 싶다고 하자. 그러면 다음 명령어로 사용 가능하다.
+
+```vim
+git rebase --onto <branch-name>~<start-number> <branch-name>~<end-number> <branch-name>
+
+# 명령어 예시
+git rebase --onto topic~5 topic~3 topic
+```
+
+```
+    E---H'---I'---J'  topic
+```
+
+여기서 5(번째 최신 commit, F)은 삭제되고, 3(번째 최신 commit, H)은 삭제되지 않음을 주의하라. rebase가 되기 때문에 commit의 고유 id는 바뀐다(H -> H')
+
+#### 충돌 시 해결법
+
+일반적으로 rebase에서 수정하는 2개 이상의 commit이 같은 파일을 수정하면 충돌이 발생한다.
+
+보통은 다음 과정을 거치면 해결된다.
+
+- 충돌이 일어난 파일에 적절한 조취를 취한다. 파일을 남기거나/삭제하거나, 또는 파일 일부분에서 남길 부분을 찾는다. 코드 중 다음과 비슷해 보이는 부분이 있을 것이다. 적절히 지워서 해결하자.
+
+```
+ㅤ<<<<<<<< HEAD
+ㅤ<current-code>
+ㅤ========
+ㅤ<incoming-code>
+ㅤ>>>>>>>> da446019230a010bf333db9d60529e30bfa3d4e3
+```
+
+- `git add <conflict-resolved-filename>`
+- `git rebase --continue`
+
+그냥 다 모르겠고(?) rebase 작업을 취소하고자 하면 다음을 입력한다.
+
+```
+git rebased --abort
+```
+
+#### rebase로 commit 합치거나 수정하기
+
+다음과 같은 history가 있다고 하자.
+
+```vim
+c3eace0 (HEAD -> master, origin/master, origin/HEAD) git checkout, reset, rebase
+f6c56ef what igt
+bd80626 github hem
+b7801a2 github overall
+608a518 highlighter theme change
+```
+
+여러 개의 commit들을 합치거나, commit message를 수정하거나 하는 작업은 모두 rebase로 가능하다.  
+실행하면, vim 에디터가 열릴 것이다(ubuntu의 경우 nano일 수 있다). vim을 쓰는 방법은 [여기](https://greeksharifa.github.io/github/2020/05/27/github-usage-09-overall/#git-commit--m-message-amend)를 참고한다.
+ 
+rebase하는 부분에서는 다른 git command들과는 달리 수정할 commit 중 가장 오래된 commit이 가장 위에 온다.
+
+```vim
+git rebase --interactive <commit>
+git rebase -i <commit>
+
+# 명령 예시
+git rebase -interactive 608a518
+git rebase -i HEAD~4
+
+# 결과 예시
+
+pick c3eace0 (HEAD -> master, origin/master, origin/HEAD) git checkout, reset, rebase
+pick f6c56ef what igt
+pick bd80626 github hem
+pick b7801a2 github overall
+# Rebase 608a518..c3eace0 onto 608a518
+#
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+```
+
+설명을 잘 살펴보면 다음을 알 수 있다:
+
+- `pick` = `p`는 수정 사항과 commit을 그대로 둔다. 각 commit의 맨 앞에는 기본적으로 `pick`으로 설정되어 있다. 이 상태에서 아무 것도 안 하고 나간다면 이번 `rebase`는 아무 효과도 없다. 
+- `reword` = `r`은 `pick`과 거의 같지만 commit message를 수정할 수 있다. commit message를 수정하고 앞의 `pick`을 `reword`나 `r`로 바꾸면 commit의 메시지를 수정할 수 있다. 가장 최신의 commit에 `r`을 붙였다면 `git commit --amend`와 효과가 같다.
+- `edit` = `e`는 해당 commit을 수정할 수 있다. reset 등의 작업이 가능하다.
+- `squash` = `s`는 해당 commit이 바로 이전 commit에 흡수되며, commit message 또한 합쳐져서 하나로 된다. 합친 메시지들이 존재하는 에디터가 다시 열린다.
+- `fixup` = `f`는 `squash`와 비슷하지만, 해당 commit의 message는 삭제된다.
+- `exec` = `x`는 commit들 아래 줄에 명령어를 추가하여 실행하게 할 수 있다. 
+
+수정한 예시는 다음과 같다. 약어를 써도 되고 안 써도 된다.
+
+```vim
+pick c3eace0 (HEAD -> master, origin/master, origin/HEAD) git checkout, reset, rebase
+f f6c56ef what igt
+f bd80626 github hem
+fixup b7801a2 github overall
+...(아래 주석은 지워도 되고 안 지워도 된다. 어차피 commit에서는 무시되는 도움말이다)
+```
+
+#### 하나의 commit을 2개로 분리하기
+
+가장 최신 commit이라면 `git reset HEAD~1`을 사용하여 직전 commit 상태로 되돌린 뒤 stage-commit을 2번 수행하면 되고, 그 이전 commit이라면 rebase에서 해당 commit을 `edit`으로 두고 같은 과정을 반복하면 된다.
+
+```vim
+# 명령어 예시
+git rebase HEAD~4
+# pick -> edit
+git add -p <filename>
+git commit -m <1st-commit-message>
+git add -p <filename1> <filename2>
+git commit -m "2nd-commit-message>
+git rebase --continue
+```
+
+
+
+---
+
+
+git cherry-pick -x
