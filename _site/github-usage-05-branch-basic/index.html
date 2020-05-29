@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      GitHub 사용법 - 05. branch 기본 2
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">GitHub 사용법 - 05. branch 기본 2</h1>
+  <span class="post-date">11 Aug 2018</span>
+   |
+  
+  <a href="/blog/tags/#github" class="post-tag">GitHub</a>
+  
+  <a href="/blog/tags/#usage" class="post-tag">usage</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#branch-생성-checkout-강제-삭제">Branch 생성, checkout, 강제 삭제</a>
+    <ul>
+      <li><a href="#옵션-branch-재생성-강제-삭제">옵션: Branch 재생성, 강제 삭제</a></li>
+    </ul>
+  </li>
+  <li><a href="#non-fast-forward-병합">Non fast-forward 병합</a></li>
+  <li><a href="#ticket-branch-업데이트">Ticket branch 업데이트</a></li>
+  <li><a href="#merge-vs-rebase">Merge vs Rebase</a></li>
+  <li><a href="#git-명령어">Git 명령어</a></li>
+</ul>
+
+    <p><strong><em>주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.</em></strong></p>
+
+<p><a href="https://greeksharifa.github.io/github/2018/08/07/github-usage-04-branch-basic/">저번 글</a>에서 작업하던 것을 이어서 한다. 저번 글에서 1st-branch를 만들고 master에 merge한 뒤 삭제하는 작업을 진행했었다.</p>
+
+<hr />
+
+<h2 id="branch-생성-checkout-강제-삭제">Branch 생성, checkout, 강제 삭제</h2>
+
+<p>현재 작업 트리의 상황은 다음과 같다. 1st-branch가 삭제되어 있다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/01.png" alt="01" /></p>
+
+<p>이제 브랜치 2개를 더 만들어 보자. 다음 명령을 입력한다.<br />
+2nd-branch는 여러분이 사용하는 브랜치이고, 3rd-branch는 여러분 말고 다른 팀원이 사용하는 branch라 생각하자.<br />
+물론 사람을 데려오긴 어렵기 때문에, 여러분이 직접 두 개를 다 만들도록 한다.</p>
+
+<blockquote>
+  <p>git branch 2nd-branch<br />
+git checkout -b 3rd-branch</p>
+</blockquote>
+
+<p>첫 번째 명령은 다 알 것이라고 생각하고, 두 번째 명령은 조금 다르다.<br />
+<code class="highlighter-rouge">git checkout</code>은 원래 다른 브랜치로 이동할 때 쓰는데, <code class="highlighter-rouge">-b</code> 옵션을 주면 해당 브랜치를 만들면서 checkout하는 효과를 갖는다. 즉, 여러분은 현재 3rd-branch 브랜치에 위치해 있다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/02_create.PNG" alt="02_create" /></p>
+
+<p>물론 위와 같이 이미 있는 이름으로 만드려고 하면 이미 존재한다고 오류를 뱉어낸다.</p>
+
+<p>이미 완전히 삭제해버린 브랜치 이름(1st-branch)로 만드는 것은 오류를 뱉어내지 않는다.<br />
+그러나 뭔가 확실하지 않은 부분이 있다면 똑같은 이름으로 재생성하는 것은 별로 추천되지 않는다.</p>
+
+<h3 id="옵션-branch-재생성-강제-삭제">옵션: Branch 재생성, 강제 삭제</h3>
+
+<p>하지만 예시를 보여주기 위해 만들어 보겠다.</p>
+
+<blockquote>
+  <p>git branch 1st-branch<br />
+git checkout 1st-branch</p>
+</blockquote>
+
+<p>그리고 <code class="highlighter-rouge">first.py</code> 파일을 생성하고 마지막 줄에 다음을 입력한다. 곧 삭제할 것이기 때문에 아무거나 입력해도 괜찮다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Dummy!'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>다음으로 여러분은 이 수정 사항이 쓸모 있는 것이라고 생각하고 다음 명령까지 진행했다고 하자.</p>
+
+<blockquote>
+  <p>git add first.py<br />
+git commit -m “dummy!”</p>
+</blockquote>
+
+<p>커밋 메시지가 너무 단순하다고 생각된다면, 다음 명령을 입력하라.</p>
+
+<blockquote>
+  <p>git commit –amend</p>
+</blockquote>
+
+<p>그러면 (아마도 vim이라고 하는) 편집기가 뜬다. 이 편집기의 사용법은 나중에 좀 더 자세히 다룰 텐데, 지금은 다음 과정만 따른다.</p>
+
+<ol>
+  <li>처음 편집기에 들어왔을 때는 ‘명령 모드’이다. 여기서 <code class="highlighter-rouge">i</code>를 누르면 <code class="highlighter-rouge">INSERT</code> 모드(명령창의 맨 아래에 뜬다)가 되어, 커밋 메시지를 수정할 수 있다.</li>
+  <li>다음으로 커밋 메시지를 바꾼다. <code class="highlighter-rouge">Dummy commit!</code></li>
+  <li>그리고 다음 키들을 차례로 입력한다. 하나도 틀려서는 안 된다.
+    <ol>
+      <li><code class="highlighter-rouge">ESC</code></li>
+      <li><code class="highlighter-rouge">:</code>   (콜론)</li>
+      <li><code class="highlighter-rouge">wq</code>  (영문자 두 개이다)</li>
+      <li><code class="highlighter-rouge">Enter</code></li>
+    </ol>
+  </li>
+</ol>
+
+<p>그러면 작성했던 커밋 메시지가 수정된다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/03_1st_branch.PNG" alt="03_1st_branch" /></p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/04_dummy_commit.PNG" alt="04_dummy_commit" /></p>
+
+<p>여기까지는 문제가 없다. 그러나 추천되지 않는 행동이기에, 바로 삭제하려고 한다.<br />
+여러분도 프로젝트를 진행하다 보면 브랜치를 만들고 작업을 하다가 필요가 없어져서 삭제하려고 하는 상황이 올 것이다.</p>
+
+<p>2nd-branch로 checkout을 하고 삭제 명령을 입력한다.</p>
+
+<blockquote>
+  <p>git checkout 2nd-branch<br />
+git branch -d 1st-branch</p>
+</blockquote>
+
+<p>그러나 에러가 뜬다. 변경된 작업사항을 push하거나 merge하지 않았기 때문에, 수정사항을 잃어버릴 수도 있다고 경고하는 것이다.<br />
+물론 여러분은 이것이 쓸모없는 브랜치인 것을 알기 때문에, 강제로라도 삭제하면 된다.</p>
+
+<p>친절하게도 강제 삭제 명령을 git에서 알려 주었다.</p>
+
+<blockquote>
+  <p>git branch -D 1st-branch</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/05_D.PNG" alt="05_D" /></p>
+
+<p>이제 2nd-branch에서 다시 시작하자.</p>
+
+<hr />
+
+<h2 id="non-fast-forward-병합">Non fast-forward 병합</h2>
+
+<p>이번엔 두 개의 서브 브랜치(참고로 티켓 브랜치라고도 부른다)에서 모두 master에 변경사항을 만들어 볼 것이다.<br />
+두 명의 사람이 각각 자신의 브랜치를 만들어서 master에 적용하려는 상황을 생각하라.<br />
+참고: 같은 컴퓨터에서는 명령창을 두 개 놓고 다른 브랜치에서 작업하는 것은 불가능하다.</p>
+
+<p>우선 2nd-branch에서, <code class="highlighter-rouge">second.py</code> 파일의 끝에 다음을 추가한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"This is the 1st sentence written in 2nd-branch."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>그리고 다음 명령들을 차례로 입력한다. 이 부분은 fast-forward 병합이다.<br />
+참고: 명령창에서 second.py를 입력할 때 ‘s’ 정도만 타이핑한 후 <code class="highlighter-rouge">Tab</code> 키를 누르면 파일(또는 디렉토리) 이름이 자동완성된다.</p>
+
+<blockquote>
+  <p>git add second.py<br />
+git commit -m “This is the 1st commit written in 2nd-branch”<br />
+git checkout master<br />
+git merge 2nd-branch</p>
+</blockquote>
+
+<p>파일 수정 시 빈 줄을 몇 개나 넣었느냐에 따라서 수정 사항(1 file changed, 3 insertions(+), 1 deletion(-)) 이 달라 보일 수 있으나, 여기선 별 상관 없다.<br />
+참고: 마지막 두 줄은 <code class="highlighter-rouge">git merge master 2nd-branch</code>로 가능하다. 그러나 해당 브랜치에서 추가 작업이 필요한 경우 별로 편리한 명령은 아니다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/06_fast.PNG" alt="06_fast" /></p>
+
+<p>그리고 이제 커밋 코드를 확인해 보자.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/07_log.PNG" alt="07_log" /></p>
+
+<p>16진수 코드가 같다. fast-forward 방식으로 병합되었기 때문임은 설명했다.</p>
+
+<p>이제 3rd-branch로 이동한다.<br />
+그리고 3rd-branch에서는 <code class="highlighter-rouge">first.py</code>에 다음을 추가한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"This is the 1st sentence written in 3rd-branch."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>그리고 다음 명령들을 입력한다. 조금 전과 매우 유사하다.</p>
+
+<blockquote>
+  <p>git add first.py<br />
+git commit -m “This is the 1st commit written in 3rd-branch”<br />
+git checkout master<br />
+git merge 3rd-branch</p>
+</blockquote>
+
+<p>세 브랜치의 로그를 확인해 보면 위와는 조금 차이가 있다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/08_log.PNG" alt="08_log" /></p>
+
+<p>작업 트리를 그려보면 다음과 같다. master로 checkout했을 때를 기준으로 하였다(HEAD).<br />
+또한 fast-forward와 non fast-forward를 구분하여 그렸다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/09.png" alt="09" /></p>
+
+<p>명령창에서 그래프를 그릴 수도 있다. 다음 둘 중 하나를 입력한다.</p>
+
+<blockquote>
+  <p>git log –graph<br />
+git log –graph –oneline</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/10_graph.PNG" alt="10_graph" /></p>
+
+<p>위의 그림들에서는 설명할 것이 많다.</p>
+
+<ol>
+  <li>2nd-branch merge 시: master에 새로운 수정사항이 없는 상태에서 다른 서브 브랜치의 커밋을 merge했을 때, fast-forward 방식으로 merge된다. 작업 트리에서 보듯이 master는 해당 브랜치의 커밋을 그대로 가져올 뿐이다.</li>
+  <li>3rd-branch merge 시: master에 수정사항이 있는 경우(2nd-branch로부터의 커밋 1개), non fast-forward 방식으로 merge된다. 이 때는 master가 3rd-branch의 커밋을 그대로 가져오기는 하지만, merge commit(90ce4f2)이라는 새로운 커밋이 생성된다.</li>
+</ol>
+
+<p>보충 설명은 다음과 같다.</p>
+
+<ol>
+  <li>빨간색 글씨로 (origin/master)이라 되어 있는 부분이 있다. 이는 remote repo의 HEAD가 현재 local repo의 어떤 커밋까지 적용되어 있는지를 의미한다. 여러분은 ‘This is 1st commit written in 1st-branch’까지만 remote repo에 push했기 때문에, 현재 remote repo는 그 위치에 멈춰 있다. 이후에 push를 하면 위치가 바뀔 것이다.</li>
+  <li>master의 로그를 보면,
+    <ol>
+      <li>(origin/master) 이후에 (2nd-branch)가 있다. 이는 2nd-branch로부터 (merge하여) 가져온 커밋임을 의미한다. 바로 다음의 (3rd-branch)도 마찬가지이다.</li>
+      <li>(HEAD -&gt; master)는 이전에 잠깐 설명했었는데, 현재 위치(HEAD)를 나타내는 동시에 현재 브랜치의 이름을 나타낸다.</li>
+    </ol>
+  </li>
+  <li>로그를 출력한 그림의 맨 윗부분을 보면, “Your branch is ahead of ‘origin/master’ by 3 commits”라는 문구가 있다. 이는 조금 전 설명과도 일치하는 부분인데, 여러분의 local repo의 master가 remote repo의 master보다 3개의 커밋만큼 수정사항이 더 많다는 뜻이다. 3개의 커밋은 각각 (origin/master) 커밋 이후의 커밋들 3개이다.
+    <ol>
+      <li>(2nd-branch) This is the 1st commit written in 2nd-branch</li>
+      <li>(3rd-branch) This is the 1st commit written in 3rd-branch</li>
+      <li>(HEAD -&gt; master) Merge branch ‘3rd-branch’</li>
+    </ol>
+  </li>
+  <li>그럼 왜 2nd-branch와 3rd-branch로 checkout했을 때는 그런 메시지가 없는지 알 수 있을 것이다.
+    <ol>
+      <li>2nd-branch와 3rd-branch는 push한 적이 전혀 없다. 즉, remote repo에는 해당 브랜치들에 대한 정보가 전혀 없다. 브라우저를 켜서 확인해보라.</li>
+    </ol>
+  </li>
+</ol>
+
+<p>이제 local repo의 master의 변경사항을 remote repo에 업데이트하자.</p>
+
+<blockquote>
+  <p>git status<br />
+git push</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/11_push.PNG" alt="11_push" /></p>
+
+<p>master에서는 파일을 직접 수정하지 않고 merge만 했기 때문에, <code class="highlighter-rouge">git add</code>나 <code class="highlighter-rouge">git commit</code> 명령이 따로 필요 없다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/12_browser.PNG" alt="12_browser" /></p>
+
+<hr />
+
+<h2 id="ticket-branch-업데이트">Ticket branch 업데이트</h2>
+
+<p>티켓 브랜치(서브 브랜치)의 로그는 master의 로그보다 조금씩 적었다. 그 이유는 master에는 모든 수정사항이 적용되었지만, 2nd-branch와 3rd-branch는 각각 상대 서브 브랜치의 수정사항이 적용되어있지 않기 때문이다.</p>
+
+<p>물론 2nd-branch와 3rd-branch는 각각 서로 부모 자식 간의 관계가 아니기 때문에, 서로 직접 상호작용할 이유는 없다.<br />
+상호작용은 직접 연관된 master와만 하면 된다.</p>
+
+<p>master에 적용된 수정사항(자신의 것이 아닌, 팀원이 만든 커밋을 가져온다)을 가져오고 싶으면 다음을 수행하라.<br />
+바로 push까지 수행한다.</p>
+
+<blockquote>
+  <p>git checkout 2nd-branch<br />
+git rebase master<br />
+git push –set-upstream origin 2nd-branch</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_11_github_usage_05_branch-basic/13_2nd.PNG" alt="13_2nd" /></p>
+
+<p>위의 그림에서 “Fast-forwarded 2nd-branch to master.”라는 문구를 볼 수 있다. 2nd-branch에서 더 이상의 수정사항이 발생하지 않은 상태에서 master의 커밋을 가져왔기 때문에 fast-forward 조건이 성립하고, 이를 확인할 수 있다.</p>
+
+<p>다음 명령들을 수행하여 master의 로그와 비교하면 2nd-branch의 로그와 커밋 코드가 완전히 같아졌음을 볼 수 있다.</p>
+
+<blockquote>
+  <p>git checkout master<br />
+git log –oneline</p>
+</blockquote>
+
+<p>팀원의 브랜치도 업데이트해 주자.</p>
+
+<blockquote>
+  <p>git checkout 3rd-branch<br />
+git merge master<br />
+git push –set-upstream origin 3rd-branch</p>
+</blockquote>
+
+<p>이 경우에는 merge나 rebase나 별다른 차이가 없다.</p>
+
+<p>이제 브랜치의 기본적인 내용은 끝났다.</p>
+
+<hr />
+
+<h2 id="merge-vs-rebase">Merge vs Rebase</h2>
+
+<p>브랜치 간 병합을 수행할 수 있는 명령은 merge와 rebase가 있는데, 간략히 차이를 적어 보면 다음과 같다.</p>
+
+<p>Merge: <code class="highlighter-rouge">git merge &lt;branch&gt;</code>로 사용. 해당 브랜치의 변경사항을 현재 브랜치로 (그대로) 가지고 온다. 이때 가져온 커밋들은 현재 HEAD의 위쪽에 그대로 쌓인다. 경우에 따라 Merge commit이 남을 수 있다.<br />
+Rebase: 이름 그대로 base를 바꾸는 것이다. base가 되는 커밋의 위치를 바꾼다.</p>
+
+<p>base를 예시를 들어 설명하면,</p>
+<ol>
+  <li>3rd-branch는 master에서 생성되었다. 이때 생성 시점은 master가 “6df3479 This is 1st commit written in 1st-branch” 커밋까지 포함한 상태였다. 여기서 3rd-branch의 base는 바로 이 커밋이다.</li>
+  <li><code class="highlighter-rouge">git rebase master</code> 명령을 실행하면, master의 tip(HEAD) 으로 base를 재설정한다. 그러면 master의 커밋들로부터 시작한 셈이 되므로, master의 커밋들을 가져온 결과와 같다.</li>
+</ol>
+
+<p>Merge와 rebase는 사용법이 조금 다르다. 이는 나중에 설명하도록 하겠다.<br />
+사람에 따라서는 별 구분 없이 사용하기도 한다.</p>
+
+<hr />
+
+<p>이제 git의 branch에 대한 기본적인 설명을 알아보았으니, <a href="https://greeksharifa.github.io/github/2018/08/12/github-usage-06-branch-intermediate/">다음 글</a>에서는 브랜치를 관리하는 법에 대해서 알아본다.</p>
+
+<hr />
+
+<h2 id="git-명령어">Git 명령어</h2>
+
+<p><a href="https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/">GitHub 사용법 - 00. Command List</a>에서 원하는 명령어를 찾아 볼 수 있다.</p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/github-usage-05-branch-basic/';
+    this.page.identifier = 'http://localhost:4000/github-usage-05-branch-basic/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

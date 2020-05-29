@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</h1>
+  <span class="post-date">21 Jul 2018</span>
+   |
+  
+  <a href="/blog/tags/#regex" class="post-tag">Regex</a>
+  
+  <a href="/blog/tags/#re" class="post-tag">re</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#특수문자">특수문자</a>
+    <ul>
+      <li><a href="#메타문자">메타문자</a></li>
+      <li><a href="#비인쇄-문자">비인쇄 문자</a></li>
+      <li><a href="#이스케이프-">이스케이프 <code class="highlighter-rouge">\</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#--대괄호여러-문자-중-하나와-일치">[ ] 대괄호:여러 문자 중 하나와 일치</a></li>
+  <li><a href="#-마침표-모든-문자와-일치">. 마침표: 모든 문자와 일치</a>
+    <ul>
+      <li><a href="#마침표는-개행-문자와-일치-옵션">마침표는 개행 문자와 일치 옵션</a>
+        <ul>
+          <li><a href="#모드-변경자">모드 변경자</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#문자-집합-w-w-d-d-s-s-b-b">문자 집합: \w \W, \d \D, \s \S, \b \B</a>
+    <ul>
+      <li><a href="#w-w-단어-문자-비-단어-문자">\w, \W: 단어 문자, 비 단어 문자</a></li>
+      <li><a href="#d-d-숫자-문자-비-숫자-문자">\d, \D: 숫자 문자, 비 숫자 문자</a></li>
+      <li><a href="#s-s-공백-문자-비-공백-문자">\s, \S: 공백 문자, 비 공백 문자</a></li>
+      <li><a href="#b-b-단어-경계-비-단어-경계">\b, \B: 단어 경계, 비 단어 경계</a>
+        <ul>
+          <li><a href="#응용-문제">응용 문제</a></li>
+        </ul>
+      </li>
+      <li><a href="#옵션-r-prefix">옵션: r prefix</a></li>
+      <li><a href="#unicodelocale-dependent-옵션">Unicode/Locale dependent 옵션</a></li>
+    </ul>
+  </li>
+  <li><a href="#--a-z-문자열-전체-또는-행의-시작이나-끝의-대상을-대조"><code class="highlighter-rouge">^</code>, $, \A, \Z: 문자열 전체 또는 행의 시작이나 끝의 대상을 대조</a></li>
+  <li><a href="#유니코드-번호">유니코드 번호</a></li>
+</ul>
+
+    <hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">파이썬 정규표현식(re) 사용법 - 01. Basic</a><br />
+<strong><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</a></strong><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">파이썬 정규표현식(re) 사용법 - 03. OR, 반복</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">파이썬 정규표현식(re) 사용법 - 09. 기타 기능</a></p>
+
+<hr />
+
+<p>이 글에서는 정규표현식 기초와 python library인 <code class="highlighter-rouge">re</code> 패키지 사용법에 대해서 설명한다.</p>
+
+<p>본 글에서 정규표현식은 <code class="highlighter-rouge">regex</code>와 같이, 일반 문자열은 ‘regex’와 같이 표시하도록 한다.</p>
+
+<p>파이썬 버전은 3.6을 기준으로 하나, 3.x 버전이면 (아마) 동일하게 쓸 수 있다.<br />
+2.7 버전은 한글을 포함한 비 알파벳 문자 처리가 다르다.</p>
+
+<hr />
+
+<h2 id="특수문자">특수문자</h2>
+
+<h3 id="메타문자">메타문자</h3>
+
+<p>메타문자에 대해서는 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/#%EB%A9%94%ED%83%80%EB%AC%B8%EC%9E%90">이전 글</a>에서 설명했다.</p>
+
+<h3 id="비인쇄-문자">비인쇄 문자</h3>
+
+<p>벨<code class="highlighter-rouge">\a</code>, 이스케이프<code class="highlighter-rouge">\e</code>, 폼 피드<code class="highlighter-rouge">\f</code>, 라인 피드(개행문자)<code class="highlighter-rouge">\n</code>, 캐리지 리턴<code class="highlighter-rouge">\r</code>, 가로 탭<code class="highlighter-rouge">\t</code>, 세로 탭<code class="highlighter-rouge">\v</code>는 다음 두 가지 방식으로 쓸 수 있다.</p>
+<blockquote>
+  <p>\a \e \f \n \r \t \v<br />
+\x07 \x1B \f \n \r \t \v</p>
+</blockquote>
+
+<p>정규표현식을 쓰면서 다른 것들은 거의 볼 일이 없을 것이지만, <code class="highlighter-rouge">\t</code>와 <code class="highlighter-rouge">\n</code>은 알아두는 것이 좋다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s"> '</span><span class="p">,</span> <span class="s">'a</span><span class="se">\t</span><span class="s">b</span><span class="se">\t</span><span class="s">c</span><span class="se">\t</span><span class="s"> </span><span class="se">\t</span><span class="s"> d'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['\t ', '\t ']
+</code></pre></div></div>
+
+<p>탭 문자와 공백 문자가 붙어 있는 것은 2개임을 확인할 수 있다.</p>
+
+<h3 id="이스케이프-">이스케이프 <code class="highlighter-rouge">\</code></h3>
+
+<p>이스케이프 문자 <code class="highlighter-rouge">\</code>는 메타문자를 일반 리터럴 문자로 취급하게끔 해 준다.<br />
+예를 들어 여는 괄호 <code class="highlighter-rouge">[</code>는 메타 문자지만, <code class="highlighter-rouge">\[</code>와 같이 처리하면 리터럴 문자인 일반 대괄호 문자 ‘[‘와 매칭될 수 있게 된다.</p>
+
+<p>하지만, 일반 영수 문자(알파벳 또는 숫자)를 이스케이프 처리하면 에러가 나거나 혹은 전혀 다른 의미의 정규식 토큰이 생성된다.<br />
+예를 들어 파이썬에서 <code class="highlighter-rouge">\1</code>의 경우에는 캡처한 문자열 중 첫번째를 재사용한다는 의미(나중에 자세히 설명할 것이다)가 되어 버린다. 따라서 <code class="highlighter-rouge">\</code>를 남용하면 안 된다.</p>
+
+<hr />
+
+<script data-ad-client="ca-pub-9951774327887666" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<h2 id="--대괄호여러-문자-중-하나와-일치">[ ] 대괄호:여러 문자 중 하나와 일치</h2>
+
+<p>대괄호 <code class="highlighter-rouge">[</code>와 <code class="highlighter-rouge">]</code> 사이에 원하는 문자를 여러 개 넣으면, 문자열이 넣은 문자 중 하나와 일치하면 매칭이 이루어진다. 즉 OR 개념이라고 할 수 있다.<br />
+여기서 중요한 것은 <code class="highlighter-rouge">[ ]</code> 안에 얼마나 많은 문자 종류가 있는지에 상관없이 딱 한 문자와 일치된다는 것이다.</p>
+
+<p>예를 들어 정규식 표현이 <code class="highlighter-rouge">[abc]</code>이고 문자열이 ‘a’이면 <strong>re.match</strong>는 매칭되었다고 할 것이다.<br />
+문자열이 ‘b’이거나 ‘c’이어도 매칭이 된다. 다만 문자열이 ‘d’이거나 ‘가나다’ 같은 것이면 매칭이 되지 않는다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">"You[;']re studying re module[.,]"</span><span class="p">,</span> \
+                        <span class="s">'You;re studying re module,'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 26), match='You;re studying re module,'&gt;
+</code></pre></div></div>
+
+<p>사용자의 오타를 잡기에 괜찮은 기능이다.</p>
+
+<p>대괄호 <code class="highlighter-rouge">[ ]</code>에는 다른 기능이 더 있다. 이전 글에서 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/#semi-%EB%A9%94%ED%83%80%EB%AC%B8%EC%9E%90">semi-메타문자</a>를 설명했었는데, 문자 <code class="highlighter-rouge">-</code>는 대괄호 안에서는 메타문자 역할을 한다.</p>
+
+<p>하이픈 <code class="highlighter-rouge">-</code>는 범위를 형성한다. 예를 들어 <code class="highlighter-rouge">[a-z]</code>는 알파벳 소문자 중 하나이기만 하면 매칭이 된다. 또 <code class="highlighter-rouge">[A-Z]</code>, <code class="highlighter-rouge">[0-9]</code>는 각각 알파벳 대문자와 숫자 하나에 매칭된다.<br />
+물론 위의 경우뿐만 아니라 넓은 범위도 가능하다. <code class="highlighter-rouge">[가-힣]</code>의 경우는 한글 한 글자에 일치된다.<br />
+<code class="highlighter-rouge">[A-z]</code>는 영문 대소문자와 몇 개의 특수문자를 포함한다. 하지만 여러분이 잘 모르는 문자까지 포함될 수 있으므로 영문자는 <code class="highlighter-rouge">[A-Za-z]</code>와 같이 쓰기를 권한다.</p>
+
+<p>참고로, 대괄호 안에서는 메타문자 역할을 하는 것은 오직 <code class="highlighter-rouge">\</code>, <code class="highlighter-rouge">^</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">]</code> 4개뿐이다. 즉, 이전에 메타문자라고 설명했었던 <code class="highlighter-rouge">.</code>, <code class="highlighter-rouge">*</code>, <code class="highlighter-rouge">+</code> 등은 대괄호 안에서는 그냥 문자 ‘.’, ‘*’, ‘+’ 하나에 매칭된다.<br />
+그러나 헷갈릴 소지가 다분하기 때문에 원래 메타문자인 문자들은 그냥 대괄호 안에서도 <code class="highlighter-rouge">\</code> 이스케이프 처리하는 것이 편할 것이다.<br />
+물론 IDE가 좋다면 redundant escape character라는 경고를 띄워 줄지도 모른다.</p>
+
+<p>캐릿(caret)<code class="highlighter-rouge">^</code> 문자가 여는 대괄호 바로 뒤에 있으면 문자가 반전된다. 바로 예시를 보도록 하자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [a-z]o serious\?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'Why [^0-9]o serious\?'</span><span class="p">,</span> <span class="s">'Why so serious?'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 15), match='Why so serious?'&gt;
+&lt;_sre.SRE_Match object; span=(0, 15), match='Why so serious?'&gt;
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">[a-z]</code>는 영문 소문자 하나(‘s’)와 일치되므로 매칭 결과가 반환되었다.<br />
+<code class="highlighter-rouge">[^0-9]</code>는 숫자를 제외한 문자 하나에 일치되므로, ‘s’는 숫자가 아니기에 매칭이 되었다.</p>
+
+<p><code class="highlighter-rouge">[z-a]</code>와 같이 거꾸로 쓰는 것은 불가능하다.</p>
+
+<p>대괄호 안의 <code class="highlighter-rouge">-</code>는 또 다른 기능이 있다. 바로 진짜 빼기(마이너스), 즉 차집합 연산이다.<br />
+대괄호 한 쌍을 집합으로 보면 차집합이란 말이 이해가 될 것이다. <code class="highlighter-rouge">[a-z-[g-z]]</code>의 경우 a-f와 같은 의미이다.<br />
+또 &amp;&amp;를 안에 쓰면 C언어 문법의 and 기능처럼 교집합을 의미한다고 한다.<br />
+하지만 필자가 글을 쓰는 시점에서 이 문법이 유효한지는 확인되지 않았다. 파이썬 버전에 따라 다를 수도 있고, 지원하지 않는 기능일 수도 있다.</p>
+
+<hr />
+
+<h2 id="-마침표-모든-문자와-일치">. 마침표: 모든 문자와 일치</h2>
+
+<p>개행문자를 제외한 모든 문자와 일치하는 정규표현식은 마침표 <code class="highlighter-rouge">.</code> 이다. 정말로 모든 문자와 일치되기 때문에 별다른 설명은 필요 없을 것 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'r..n[.]'</span><span class="p">,</span> <span class="s">'ryan. ruin rain round. reign'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['ryan.']
+</code></pre></div></div>
+
+<p>대괄호 <code class="highlighter-rouge">[ ]</code> 안에서는 <code class="highlighter-rouge">.</code>가 메타문자로 동작하지 않는다고 하였다. 따라서 일치되는 문자열은 ‘ryan’ 하나뿐이다.</p>
+
+<h3 id="마침표는-개행-문자와-일치-옵션">마침표는 개행 문자와 일치 옵션</h3>
+
+<p>파이썬 re 패키지의 많은 함수들은 다음과 같은 인자들을 받는다고 <a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/#rematchpattern-string-flags">이전 글</a>에서 설명했었다.</p>
+
+<blockquote>
+  <p>re.match(pattern, string, flags)</p>
+</blockquote>
+
+<p>여기서 flags는 다음과 같은 종류들이 있다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>syntax</th>
+      <th>long syntax</th>
+      <th style="text-align: center">inline flag</th>
+      <th>meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>re.I</td>
+      <td>re.IGNORECASE</td>
+      <td style="text-align: center">(?i)</td>
+      <td>대소문자 구분 없이 일치</td>
+    </tr>
+    <tr>
+      <td>re.M</td>
+      <td>re.MULTILINE</td>
+      <td style="text-align: center">(?m)</td>
+      <td>^와 $는 개행문자 위치에서 일치</td>
+    </tr>
+    <tr>
+      <td>re.S</td>
+      <td>re.DOTALL</td>
+      <td style="text-align: center">(?s)</td>
+      <td>마침표는 개행문자와 일치</td>
+    </tr>
+    <tr>
+      <td>re.A</td>
+      <td>re.ASCII</td>
+      <td style="text-align: center">(?a)</td>
+      <td>{\w, \W, \b, \B}는 ascii에만 일치</td>
+    </tr>
+    <tr>
+      <td>re.U</td>
+      <td>re.UNICODE</td>
+      <td style="text-align: center">(?u)</td>
+      <td>{\w, \W, \b, \B}는 Unicode에 일치</td>
+    </tr>
+    <tr>
+      <td>re.L</td>
+      <td>re.LOCALE</td>
+      <td style="text-align: center">(?L)</td>
+      <td>{\w, \W, \b, \B}는 locale dependent</td>
+    </tr>
+    <tr>
+      <td>re.X</td>
+      <td>re.VERBOSE</td>
+      <td style="text-align: center">(?x)</td>
+      <td>정규표현식에 주석을 달 수 있음</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>우선 다른 것들은 나중에 살펴보고, 마침표 옵션만을 보자.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>syntax</th>
+      <th>long syntax</th>
+      <th>meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>re.S</td>
+      <td>re.DOTALL</td>
+      <td>마침표는 개행문자와 일치</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">S</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['abc', 'a  ']
+['abc', 'a  ', 'a\na']
+['abc', 'a  ', 'a\na']
+</code></pre></div></div>
+
+<p>개행 문자도 마침표에 일치되는지를 설정할 수 있음을 확인하였다.<br />
+문자열을 행 단위로 처리하거나 아니면 전체 문자열을 대상으로 처리할 수 있다는 것에 이 옵션의 존재 의의가 있다.</p>
+
+<h4 id="모드-변경자">모드 변경자</h4>
+
+<p>아니면 다른 방법도 있다. 정규표현식 내에서 사용할 수도 있다.<br />
+문자열 앞에 <code class="highlighter-rouge">(?s)</code> 토큰을 넣으면 된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?s)a..'</span><span class="p">,</span> <span class="s">'abc a  a</span><span class="se">\n</span><span class="s">a'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['abc', 'a  ', 'a\na']
+</code></pre></div></div>
+
+<p>모드 변경자는 여러 개를 중첩하여 사용할 수도 있다.<br />
+또한 일부분에만 사용하고 싶으면 <code class="highlighter-rouge">(?s&lt;regex&gt;)</code>처럼 모드 변경자의 소괄호 안에 집어넣으면 된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is)a..'</span><span class="p">,</span> <span class="s">'Abc'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?is:a..) and abc is good'</span><span class="p">,</span>
+<span class="s">'''
+Abc and abc is good.
+abc and Abc is good. 
+'''</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['Abc']
+['Abc and abc is good']
+</code></pre></div></div>
+<p>두 번째 <strong>findall</strong>에서 문장을 한 개만 찾은 것을 유의하라.</p>
+
+<hr />
+
+<h2 id="문자-집합-w-w-d-d-s-s-b-b">문자 집합: \w \W, \d \D, \s \S, \b \B</h2>
+
+<h3 id="w-w-단어-문자-비-단어-문자">\w, \W: 단어 문자, 비 단어 문자</h3>
+
+<p><code class="highlighter-rouge">\w</code>는 단어 문자 1개와 일치된다. 단어 문자는 영문 대소문자, 숫자 0-9, 언더바 ‘_’ 를 포함한다.<br />
+한글 등 알파벳 이외의 단어는 파이썬 버전에 따라 다른데, Unicode를 기본으로 사용하는 파이썬 3이라면 아마 <code class="highlighter-rouge">\w</code>의 범위에 한글도 포함될 것이다. 여러분이 스스로 확인해 봐야 할 것이다.</p>
+
+<p><code class="highlighter-rouge">\W</code>는 단어 문자 이외의 문자 1개에 일치된다. 즉 공백 문자, 특수 문자 등에 일치된다고 보면 된다.<br />
+<code class="highlighter-rouge">\w</code>와 정확히 반대의 역할을 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\w\w\w'</span><span class="p">,</span> <span class="s">'a_가'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\w\W\w'</span><span class="p">,</span> <span class="s">'a (9_a a'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 3), match='a_가'&gt;
+['a a']
+</code></pre></div></div>
+<p>첫 번째 출력 결과의 경우 단어 3개를 나타내는 정규표현식에 ‘a_가’가 매칭되었다.
+두 번째 출력 결과는 잘 보면<br />
+1) 비 단어 문자<br />
+2) 단어 문자<br />
+3) 비 단어 문자<br />
+순으로 되어 있는데, 그런 결과는 ‘a a’ 하나뿐이다.</p>
+
+<h3 id="d-d-숫자-문자-비-숫자-문자">\d, \D: 숫자 문자, 비 숫자 문자</h3>
+
+<p><code class="highlighter-rouge">\d</code>는 숫자 문자 1개에 일치된다. 마찬가지로 <code class="highlighter-rouge">\D</code>는 비 숫자 문자 1개에 일치된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'\d\d'</span><span class="p">,</span> <span class="s">'12abc34'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+<span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\d\d\D\D'</span><span class="p">,</span> <span class="s">'11aa11c1'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 2), match='12'&gt;
+['11aa']
+</code></pre></div></div>
+<p>첫 번째 출력 결과는 매칭되는 문자열은 두 군데로 ‘12’와 ‘34’이다. 하지만 <strong>re.search</strong>는 제일 처음 하나만 찾아내기 때문에 하나만 반환하였다.
+두 번째 출력 결과는 숫자 2개에 비 숫자 문자 2개가 붙어 있는 문자열 ‘11aa’를 잘 찾아 주었다.</p>
+
+<h3 id="s-s-공백-문자-비-공백-문자">\s, \S: 공백 문자, 비 공백 문자</h3>
+
+<p><code class="highlighter-rouge">\s</code>는 공백 문자(빈칸 ‘ ‘, 탭 ‘\t’, 개행 ‘\n’) 1개에 일치된다. 마찬가지로 <code class="highlighter-rouge">\S</code>는 <code class="highlighter-rouge">\s</code>의 반대 역할이다. 즉, 공백 문자 이외의 모든 문자 1개에 일치된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="s">'Oh\smy\sgod\s\S'</span><span class="p">,</span>
+    <span class="s">'''Oh my</span><span class="se">\t</span><span class="s">god
+!'''</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 11), match='Oh my\tgod\n!'&gt;
+</code></pre></div></div>
+
+<h3 id="b-b-단어-경계-비-단어-경계">\b, \B: 단어 경계, 비 단어 경계</h3>
+
+<p>단어 경계 <code class="highlighter-rouge">\b</code> 는, 문자 하나와 일치되는 것이 아니라 정말로 단어 경계와 일치된다. 단어 문자와 비 단어 문자 사이와 매칭된다고 보면 된다.</p>
+
+<p>비 단어 경계 <code class="highlighter-rouge">\B</code> 는 마찬가지로 반대의 역할을 수행한다. 즉, 단어 문자와 단어 문자 사이 혹은 비 단어 문자와 비 단어 문자 사이와 일치된다.</p>
+
+<p>다른 말로는, <code class="highlighter-rouge">\b</code>는 <code class="highlighter-rouge">\w</code>에 일치되는 한 문자와 <code class="highlighter-rouge">\W</code>에 일치되는 한 문자 사이에서 일치되고, <code class="highlighter-rouge">\B</code>는 <code class="highlighter-rouge">\w</code>에 일치되는 두 문자 사이 또는 <code class="highlighter-rouge">\W</code>에 일치되는 두 문자 사이에서 일치된다.</p>
+
+<p>한 가지 주의할 점으로는 <code class="highlighter-rouge">\b</code>나 <code class="highlighter-rouge">\B</code>를 사용하기 위해서는 정규표현식 앞에 <code class="highlighter-rouge">r</code> prefix를 붙여줘야 한다는 것이다.<br />
+예시를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">matchObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\w\b\W\B'</span><span class="p">,</span> <span class="s">'ab  c d  == = e= =f'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">matchObj</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['b ', 'd ', 'e=']
+</code></pre></div></div>
+<p>위의 예시는<br />
+1) 단어 문자<br />
+2) 단어 경계<br />
+3) 비 단어 문자<br />
+4) 비 단어 경계</p>
+
+<p>순으로 되어 있는 문자열을 찾는다. 위의 조건을 만족시키려면 단어 문자 + 비 단어 문자 + 비 단어 문자 조합을 찾아야 한다. 그리고 실제로 매칭되는 문자열은 단어 문자 + 비 단어 문자이다.<br />
+(주: 여기서 2) 단어 경계는 쓸모가 없다. 이유는 여러분이 알아서 생각하면 된다.)</p>
+
+<h4 id="응용-문제">응용 문제</h4>
+
+<p>문제 1: ‘line’과는 일치하지만, ‘outline’나 ‘linear’ 등과는 일치하지 않는 정규표현식을 작성하라. 즉, 정확히 ‘line’ 단어와만 일치해야 한다.</p>
+<details>
+    <summary>문제 1 정답보기</summary>
+    <p>\bline\b</p>
+</details>
+
+<p><br /></p>
+
+<p>문제 2: ‘stacatto’에는 일치하지만, ‘cat’이나 ‘catch’, ‘copycat’ 등과는 일치하지 않는 정규표현식을 작성하라.</p>
+<details>
+    <summary>문제 2 정답보기</summary>
+    <p>\Bcat\B</p>
+</details>
+
+<p><br /></p>
+
+<p><code class="highlighter-rouge">\b</code>는 단어 경계로, 다음에 일치된다.</p>
+
+<ol>
+  <li>첫 문자가 단어 문자인 경우, 첫 문자 앞에서</li>
+  <li>인접한 두 문자 중 하나만 단어 문자인 경우, 그 사이에서</li>
+  <li>끝 문자가 단어 문자인 경우, 끝 문자 뒤에서</li>
+</ol>
+
+<p>즉 문자열의 맨 앞과 맨 끝은 비 단어인 것으로 처리된다.</p>
+
+<p><code class="highlighter-rouge">\B</code>는 비 단어 경계로, 다음에 일치된다.</p>
+
+<ol>
+  <li>첫 문자가 비 단어 문자인 경우, 첫 문자 앞에서</li>
+  <li>두 단어 문자 사이 또는 두 비 단어 문자 사이에서</li>
+  <li>끝 문자가 비 단어 문자인 경우, 끝 문자 뒤에서</li>
+  <li>빈 문자열에서</li>
+</ol>
+
+<p>(헷갈리는) 예시를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\b'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'\B'</span><span class="p">,</span> <span class="s">'a aa'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '']
+[]
+['', '', '', '']
+['']
+</code></pre></div></div>
+
+<p>각각 어디에서 일치된 것인지 이해해 보기 바란다.</p>
+
+<h3 id="옵션-r-prefix">옵션: r prefix</h3>
+
+<p>원래 r prefix란 이스케이프 문자 <code class="highlighter-rouge">\</code>를 이스케이프 처리 문자가 아닌 일반 리터럴 문자로 인식하게끔 하는 역할을 한다. <a href="https://stackoverflow.com/questions/2241600/python-regex-r-prefix">영문 설명</a>을 가져오면 아래와 같다.</p>
+
+<blockquote>
+  <p>When an “r” or “R” prefix is present, a character following a backslash is included in the string without change, and all backslashes are left in the string. For example, the string literal r”\n” consists of two characters: a backslash and a lowercase “n”. String quotes can be escaped with a backslash, but the backslash remains in the string; for example, r”"” is a valid string literal consisting of two characters: a backslash and a double quote; r”" is not a valid string literal (even a raw string cannot end in an odd number of backslashes). Specifically, a raw string cannot end in a single backslash (since the backslash would escape the following quote character). Note also that a single backslash followed by a newline is interpreted as those two characters as part of the string, not as a line continuation.</p>
+</blockquote>
+
+<p>해석하면,</p>
+<blockquote>
+  <p>“r”이나 “R” 접두사가 있으면, \ 뒤에 있는 문자는 문자열에 변화 없이 그대로 남아 있게 되고, 모든 \ 또한 문자열에 남아 있게 된다. 예를 들어, 리터럴 문자열 r”\n”은 \와 소문자 n 2개의 문자로 구성된다. 따옴표 문자열 역시 \가 있으면 이스케이프 처리될 수 있지만, \는 여전히 문자열에 남아 있게 된다. 예를 들어 r”\"”의 경우 \와 “ 두 개로 구성된 유효한 문자열이다. r”\“는 유효하지 않다(raw string은 홀수 개의 \로 끝날 수 없다). 특별히, raw string은 한 개의 \로 끝날 수 없다(\는 다음에 오는, 즉 문자열의 끝을 알리는 따옴표를 이스케이프 처리하므로). newline이 다음에 오는 한 개의 \는 문자열의 일부로서 두 개의 문자로 취급되지, 개행으로 처리되지 않는다.</p>
+</blockquote>
+
+<p>예시를 보자.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; r'\'
+SyntaxError: EOL while scanning string literal
+&gt;&gt;&gt; r'\''
+"\\'"
+&gt;&gt;&gt; '\'
+SyntaxError: EOL while scanning string literal
+&gt;&gt;&gt; '\''
+"'"
+&gt;&gt;&gt; 
+&gt;&gt;&gt; r'\\'
+'\\\\'
+&gt;&gt;&gt; '\\'
+'\\'
+&gt;&gt;&gt; print r'\\'
+\\
+&gt;&gt;&gt; print r'\'
+SyntaxError: EOL while scanning string literal
+&gt;&gt;&gt; print '\\'
+\
+</code></pre></div></div>
+
+<h3 id="unicodelocale-dependent-옵션">Unicode/Locale dependent 옵션</h3>
+
+<p>파이썬3은 기본적으로 한글도 “단어 문자”에 포함되기 때문에 쓸 일이 있을지는 모르지만, 이 옵션들도 소개해 본다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>syntax</th>
+      <th>long syntax</th>
+      <th style="text-align: center">inline flag</th>
+      <th>meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>re.A</td>
+      <td>re.ASCII</td>
+      <td style="text-align: center">(?a)</td>
+      <td>{\w, \W, \b, \B}는 ascii에만 일치</td>
+    </tr>
+    <tr>
+      <td>re.U</td>
+      <td>re.UNICODE</td>
+      <td style="text-align: center">(?u)</td>
+      <td>{\w, \W, \b, \B}는 Unicode에 일치</td>
+    </tr>
+    <tr>
+      <td>re.L</td>
+      <td>re.LOCALE</td>
+      <td style="text-align: center">(?L)</td>
+      <td>{\w, \W, \b, \B}는 locale dependent</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>파이썬3은 기본적으로 Unicode를 기준으로 처리되기 때문에 <code class="highlighter-rouge">re.U</code>는 쓸모가 없다. 그러나 호환성을 위해 아직까지는 살아 있는 옵션이다.<br />
+아스키에만 일치하는 옵션을 쓰고 싶으면 <code class="highlighter-rouge">re.ASCII</code> 옵션을 사용하면 된다.</p>
+
+<p>조금 더 자세한 설명은 <a href="https://docs.python.org/3/library/re.html#module-contents">여기</a>를 참조하라.</p>
+
+<p>다른 flags 사용법과 똑같으므로 생략하도록 하겠다.</p>
+
+<hr />
+
+<h2 id="--a-z-문자열-전체-또는-행의-시작이나-끝의-대상을-대조"><code class="highlighter-rouge">^</code>, $, \A, \Z: 문자열 전체 또는 행의 시작이나 끝의 대상을 대조</h2>
+
+<p><code class="highlighter-rouge">\A</code>는 문자열 시작을, <code class="highlighter-rouge">\Z</code>는 문자열 끝과 일치된다.</p>
+
+<p>이들은 일명 앵커라고 부르는데, 문자와 일치되는 것이 아니라 정규식 패턴을 특정 위치에 고정시켜서 그 위치에 일치시키는 역할을 한다.</p>
+
+<p><code class="highlighter-rouge">^</code>와 <code class="highlighter-rouge">$</code>는 기본적으로 행 시작과 행 끝에 일치된다.</p>
+
+<p>여기서 행은 문자열의 시작과 개행문자 사이, 개행문자와 개행문자 사이, 개행문자와 문자열의 끝 사이 부분이다. 문자열에 개행문자가 없으면 전체 문자열이 한 개의 행이 된다.</p>
+
+<p><code class="highlighter-rouge">^</code>와 <code class="highlighter-rouge">$</code>는 일반적으로 <code class="highlighter-rouge">\A</code>와 <code class="highlighter-rouge">\Z</code> 앵커와 효과가 같다. 다른 경우는 옵션을 설정하는 경우인데, re.MULTILINE 옵션을 설정하면 <code class="highlighter-rouge">^</code>와 <code class="highlighter-rouge">$</code>는 문자열 전체의 시작/끝이 아닌 행의 시작/끝에서 일치된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\Aryan\d\Z'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ryan\d$'</span><span class="p">,</span> <span class="s">'ryan1'</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'\A ryan\d\s\Z'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> ryan3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">MULTILINE</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['ryan1']
+['ryan1']
+[]
+[]
+[' ryan1 ', ' ryan2 ', ' ryan3 ']
+[' ryan1 ', ' ryan2 ', ' ryan3 ']
+</code></pre></div></div>
+
+<p>Java, .NET 등에서는 <code class="highlighter-rouge">\z</code> 옵션이 있지만, 파이썬에는 bad escape 에러를 보게 되므로 사용하지 말자.</p>
+
+<p>응용으로, 빈 문자열 혹은 빈 행을 검사할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'\A\Z'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'\A\Z'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;_sre.SRE_Match object; span=(0, 0), match=''&gt;
+None
+&lt;_sre.SRE_Match object; span=(0, 0), match=''&gt;
+None
+['', '']
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">^</code>, <code class="highlighter-rouge">$</code>도 마침표 <code class="highlighter-rouge">.</code>처럼 옵션을 인라인으로 설정할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'(?m)^$'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['', '']
+</code></pre></div></div>
+
+<p>참고로, 옵션을 여러 개 쓰려면 <code class="highlighter-rouge">|</code>로 OR 연산을 시켜주면 된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'^ ryan\d\s$'</span><span class="p">,</span> <span class="s">' ryan1 </span><span class="se">\n</span><span class="s"> Ryan2 </span><span class="se">\n</span><span class="s"> rain1 </span><span class="se">\n</span><span class="s"> RYAN3 '</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">M</span> <span class="o">|</span> <span class="n">re</span><span class="p">.</span><span class="n">IGNORECASE</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[' ryan1 ', ' Ryan2 ', ' RYAN3 ']
+</code></pre></div></div>
+
+<p>위의 예시처럼 full-name과 약자를 같이 써도 되지만, 가독성을 생각한다면 굳이 그렇게 할 이유는 없다.</p>
+
+<h2 id="유니코드-번호">유니코드 번호</h2>
+
+<p>한 글자 일치와 사용법은 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'</span><span class="se">\u18ff</span><span class="s">\d'</span><span class="p">,</span> <span class="s">'0᣿1頶᣿2䅄ሲ᣿3456'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['\u18ff1', '\u18ff2', '\u18ff3']
+</code></pre></div></div>
+
+<p>참고로 ‘\u18ff’는 ‘᣿’이다.</p>
+
+<hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">다음 글</a>에서는 다자택일(OR), 반복 등을 다루도록 하겠다.</p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/regex-usage-02-basic/';
+    this.page.identifier = 'http://localhost:4000/regex-usage-02-basic/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

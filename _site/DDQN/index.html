@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      DDQN 알고리즘 설명
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">DDQN 알고리즘 설명</h1>
+  <span class="post-date">15 Mar 2020</span>
+   |
+  
+  <a href="/blog/tags/#강화학습" class="post-tag">강화학습</a>
+  
+  <a href="/blog/tags/#파이썬" class="post-tag">파이썬</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#1-ddqn-논문-리뷰">1. DDQN 논문 리뷰</a>
+    <ul>
+      <li><a href="#11-abstract">1.1. Abstract</a></li>
+      <li><a href="#12-background">1.2. Background</a>
+        <ul>
+          <li><a href="#deep-q-networks">Deep Q Networks</a></li>
+          <li><a href="#double-q-learning">Double Q-learning</a></li>
+        </ul>
+      </li>
+      <li><a href="#13-overoptimism-due-to-estimation-errors">1.3. Overoptimism due to estimation errors</a></li>
+      <li><a href="#16-double-dqn">1.6. Double DQN</a></li>
+    </ul>
+  </li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+
+    <h2 id="1-ddqn-논문-리뷰">1. DDQN 논문 리뷰</h2>
+<p>Deep Reinforcement Learning with Double Q-learning
+<a href="https://arxiv.org/abs/1509.06461">논문 원본 링크</a></p>
+
+<h3 id="11-abstract">1.1. Abstract</h3>
+<p>Q-learning 알고리즘은 특정 조건 하에서 Action Value를 과대평가한다고 알려져있다. 본 논문에서는 먼저 DQN 알고리즘이 일부 게임 상황에서 중대한 과적합문제를 겪고 있다는 것을 밝힐 것이다. 이후 Double Q-learning이 large-scale function approximation에 적용될 수 있다는 것을 보여줄 것이다. 또한 이를 DQN에 적용하면, 과적합 문제를 해결할 수 있을 뿐만 아니라 몇몇 경우에 더 나은 퍼포먼스를 보여준다는 것을 보여줄 것이다.</p>
+
+<p>강화학습의 중요한 목표는 누적된 Future Reward Signal을 최적화하여 Sequential Decision Problems에 적합한 Policy를 학습하는 것이다. Q-learning은 이 문제에 적합한 알고리즘이지만, 추정된 Action Value 값에 대해 max step을 취함으로써 비정상적으로 높은 Action Value를 학습하여 과적합 문제를 야기한다.</p>
+
+<p>Overestimation이 Uniform한 분포를 띤다면 큰 문제가 되지 않겠지만, 일반적으로 Uniform하지 않으며 이는 알고리즘의 성능을 저해하는 요인이 된다. 본 논문에서는 <strong>Doulble DQN</strong>이 이 문제를 해결하여 더욱 정확한 추정값을 반환하고 더 나은 성능을 보인다는 것을 증명하고자 한다.</p>
+
+<h3 id="12-background">1.2. Background</h3>
+<p>Q함수는 state s에서 policy $\pi$에 따른 action a의 True Value로 정의된다.</p>
+
+<script type="math/tex; mode=display">Q_{\pi}(s, a) = E[R_1 + {\gamma}R_2 + ... | S_0 = s, A_0 = a, {\pi}]</script>
+
+<p>이 Q함수의 최적값은 아래와 같이 표현된다.</p>
+
+<script type="math/tex; mode=display">Q^*(s, a) = \max_{\pi} Q_{\pi}(s, a)</script>
+
+<p>이 최적 Policy는 각 state에서 가장 높은 값을 가지는 Action을 선택하여 derive할 수 있다. 수많은 state와 action 사이의 Q-value를 모두 학습하는 것은 불가능에 가깝기 때문에 우리는 <strong>Parameterized($\theta$) Value Function</strong>을 학습할 것이다. 표준 Q-learning의 업데이트 방식과 Target Y(True Value)는 아래와 같이 정의된다.</p>
+
+<script type="math/tex; mode=display">\theta_{t+1} = \theta_t + \alpha(TargetY - Q(S_t, A_t ; \theta_t)) \nabla_{\theta_t} Q(S_t, A_t ; \theta_t)</script>
+
+<script type="math/tex; mode=display">Target Y = Y^Q_t := R_{t+1} + \gamma \max_a Q(S_{t+1}, a; \theta_t)</script>
+
+<p>위 업데이트 과정은 Target Value $Y^Q_T$를 향해 현재의 추정값 $Q(S_t, A_t ; \Theta_t)$를 업데이트하게 되는데, 이는 Stocastic Gradient Descent와 닮아 있다.</p>
+
+<h4 id="deep-q-networks">Deep Q Networks</h4>
+<p>본 네트워크는 state space에서 action space로 연결하는 Mapping Function에 해당한다. 타겟 네트워크와 경험 리플레이라는 2가지 방식을 통해 효과적인 학습을 수행한다.</p>
+
+<h4 id="double-q-learning">Double Q-learning</h4>
+<p>Q-learning과 DQN의 <strong>Max Operator</strong>는 action을 선택하고 평가할 때 동일한 값을 사용한다. 이는 과적합을 유발하게 된다. 이를 해결하기 위해 선택과 과정을 분리할 수 있는데, 이것이 Double Q-learning의 기본적인 아이디어이다.</p>
+
+<p>초기의 Double Q-learning 알고리즘에서는 2개의 Value Function(Weight Sets: $\theta$ , $\theta$`)은 둘 중 하나만 업데이트하기 위해 각 experience를 랜덤하게 할당하는 방식으로 학습되었다. 각 업데이트에서 한 개의 Weight Set는 Greedy Policy를 결정하기 위해 사용되고 나머지 하나는 그 값을 결정하기 위해 사용되었다. 선택/평가를 분리하여 표현한 Target Y는 아래와 같다.</p>
+
+<script type="math/tex; mode=display">Y^Q_t = R_{t+1} + \gamma \max_a Q(S_{t+1}, \argmax_a Q(S_{t+1}, a ; \theta_t); \theta_t)</script>
+
+<p>Double Q-learning Error는 아래와 같다.</p>
+
+<script type="math/tex; mode=display">Y^{DoubleQ}_t = R_{t+1} + \gamma \max_a Q(S_{t+1}, \argmax_a Q(S_{t+1}, a ; \theta_t); \theta_t^`)</script>
+
+<p>action을 선택하는 부분(argmax 부분) 에서는 여전히 online weight인 $\theta_t$에 근거한다. 이는 여전히 $\theta_t$에 의해 정의된 현재 값들에 의해 Greedy Policy의 값을 추정한다는 뜻이다.</p>
+
+<p>그러나 우리는 2번째 weight set인 $\theta_t^<code class="highlighter-rouge">$를 이용하여 Policy를 평가한다. 이 2번째 set에 대해서는 $\theta$와 $\theta</code>$의 역할을 바꿔가면서 대칭적으로 업데이트가 진행된다.</p>
+
+<h3 id="13-overoptimism-due-to-estimation-errors">1.3. Overoptimism due to estimation errors</h3>
+<p>Q-learning의 Overestimation은 처음으로 Thrun과 Schwartz에 의해 연구되었는데, 그들은 action value가 [$-\epsilon$, $\epsilon$] 사이의 Uniform Distribution을 갖는 random error를 포함하면, 각 Target은 최대 $ \frac{m-1}{m+1} $ 까지 Overestimate된다고 밝혔다. (m=num of actions) 또한 이들은 이러한 overestimation이 <strong>sub-optimal policy</strong>로 인도할 수 있다고 하였다.</p>
+
+<p>이후 2010년에 Hasselt가 environment의 noise가 overestimation을 일으킬 수 있다고 하였고, Double Q-learning을 해결책으로 내놓았다.</p>
+
+<p>본 섹션에서는 우리는 어떠한 종류의 estimation error든(이 error가 environmental noise에서 온 것이든, function approximation에서 온 것이든…) upward bias를 야기할 수 있다는 것을 증명하고자 한다. 이것은 굉장히 중요한 데, 왜냐하면 실제로 이 문제는 어떠한 방식으로든 학습과정에 있어 정확도를 낮출 것이기 때문이다.</p>
+
+<p>Thrun과 Schwartz는 Overestimation의 Upper/Lower Bound를 구하는 방법을 제시했다. (논문 참조) 본 방법에서 우리는 다른 action에 대한 estimatino error가 독립적이라는 가정을 할 필요는 없다. 이 이론은 value에 대한 추정이 평균적으로 맞다하더라도, 어떤 source로 부터 온 estimation error라도 추정치를 끌어올려 True Optimal Value로 부터 멀어지게 만들 수 있다는 것을 보여준다.</p>
+
+<center><img src="/public/img/RL/2020-03-15-DDQN/01.JPG" width="100%" /></center>
+
+<p>위 그림을 보면 action의 수가 증가할 수록 Q-learning(빨간색)의 Overestimation은 증가하지만, Double Q-learning(파란색)은 Unbiased함을 알 수 있다.</p>
+
+<p>이제 Function Approximation으로 돌아와서 각 state 마다 10개의 이산적인 action을 행할 수 있는 연속적인 state space를 생각해보자. 간단히 말해서 이 예시에서 True Optimal action value는 오직 state에만 의존하기 때문에 각 state마다 모든 action은 같은 True Value를 갖게 된다.</p>
+
+<center><img src="/public/img/RL/2020-03-15-DDQN/02.JPG" width="100%" /></center>
+
+<p>위 그림을 보면, <strong>보라색 그래프</strong>가 위에서 말한 <strong>True Value</strong>를 나타내며 $Q_<em>(s, a) = sin(s) $(가장 위), $Q_</em>(s, a) = 2exp(-s^2)$(중간, 밑)과 같이 정의된다.</p>
+
+<p><strong>초록색 그래프</strong>는 <strong>State에 대한 함수로서의 single action의 근사값</strong>을 보여준다. 초록색 점으로 된 부분은 추정값이 기반이 되는 sample 값을 의미한다. 추정값은 sample state에서의 true value에 적합한 다항식으로 이루어지는데, 가장 아래 그래프는 9차, 나머지는 6차 방정식으로 구성된다. 각 sample state에서는 추정값이 정확히 True Value와 일치하기 때문에 이러한 sample state에서는 우리는 Ground Truth for action value를 갖고 있다고 판단한다.</p>
+
+<p>상대적으로 차수가 낮은 위와 중간 그래프를 보면 그래프가 충분히 유연하지 못하여 sampled state에서도 부정확한 것을 알 수 있고, 차수가 높은 가장 아래의 그래프는 sampled state에서는 정확도가 높지만 unsampled state에서는 오히려 부정확한 것을 알 수 있다.</p>
+
+<p>또한 sampled state들이 본 그래프에서는 더욱 서로 거리를 두고 있는 것을 확인할 수 있는데, 이러한 특성이 더욱 큰 Estimation Error를 발생시키게 되었다. 이렇게 특정 순간에 제한적인 데이터를 보유하게 되는 것은 실제 학습 상황에서 자주 발생하게 된다.</p>
+
+<p>Example을 살펴보면, Overestimation은 심지어 우리가 특정 state의 true action value에 대한 sample을 갖고 있더라도 발생할 수 있다. 비록 Uniformly Overestimating Value는 Policy의 학습을 방해하지는 않겠지만 실제로 Overesimation Error는 여러 state와 action에 따라 다르다.</p>
+
+<h3 id="16-double-dqn">1.6. Double DQN</h3>
+
+<hr />
+<h2 id="reference">Reference</h2>
+<blockquote>
+
+</blockquote>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/DDQN/';
+    this.page.identifier = 'http://localhost:4000/DDQN/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Vehicle Color Recognition
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">Vehicle Color Recognition</h1>
+  <span class="post-date">07 Sep 2018</span>
+   |
+  
+  <a href="/blog/tags/#cnn" class="post-tag">CNN</a>
+  
+  <a href="/blog/tags/#paper-review" class="post-tag">Paper_Review</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#vehicle-color-recognition-using-cnn">Vehicle Color Recognition using CNN</a></li>
+</ul>
+
+    <h3 id="vehicle-color-recognition-using-cnn">Vehicle Color Recognition using CNN</h3>
+<blockquote>
+  <p>본 글은 Reza Fuad Rachmadi, I Ketut Eddy Purnama가 2018년에 Publish한 위 논문을 리뷰한 것이다.</p>
+</blockquote>
+
+<p><strong>Introduction</strong><br />
+본 논문의 목표는 Color Distribution에 기반하여 CNN을 통해 색깔을 classify하는 것이다. RGB의 경우 정확히 분포로 분류할 수 없기 때문에 CIE Lab과 HSV로 변환 후 분석에 들어가도록 하였다. 데이터셋은 Vehicle(자동차)로 정하였다. (p1)</p>
+
+<p>Color Detection이 쉽지 않은 이유는 여러가지가 있지만 대표적인 예로, 날씨의 변화, 영상/이미지의 품질 차이, 문양/패턴의 차이 등을 들 수 있다.<br />
+또한 이와 더불어 명백한 단색을 제외하고는 사람에 따라 색깔 인식 내지는 분류를 하는 방식이 다르기 때문이다.<br />
+이렇기 때문에 사실 그 물체의 어떤 부분을 확인하여 색깔 구분의 핵심으로 삼는지가 굉장히 중요한 방법이다. 예를 들어 ‘차’의 색깔을 구분한다고 할 때, 타이어의 색깔로 구분을 짓는 사람은 별로 없을 것이다. 그보다는 차체의 보닛을 중심으로 색깔을 구분할 것이다.<br />
+이 때문에 Region Selection 역시 색깔 구분에 있어 핵심적인 역할을 수행한다.</p>
+
+<p><strong>CNN Architecture</strong><br />
+구조는 일반적인 CNN에서 특별히 변화된 부분이 없다. 사실 Alexnet과 거의 유사한 형태를 지녔고, 마지막에 많은 수의 Parameter를 포함하는 Fully Connected Layer를 삽입하였기 때문에, 학습에 시간이 조금 소요될 것으로 예상되었다.</p>
+
+<p><strong>Results and Discusssion</strong><br />
+결과는 나쁘지 않은 수준이다. 이 논문의 경우 특별히 다른 방법을 적용하였다기 보다는 기본 CNN을 적용하여 8개의 단색에 대해 Classification을 수행하였기 때문에, 기본적인 구조로도 충분한 결과를 얻은 것으로 보인다.<br />
+다만 Gray와 Green 색깔 구분에 있어 약간의 어려움을 겪었고 (정확도가 대략 10% 가까이 떨어짐), Gray와 White 색깔 구분 역시도 약간의 어려움을 겪은 것으로 결과가 나타났다.<br />
+이는 사실상 색깔이란 것이 이산형으로 보기 어려운 구분 방식을 따르기 때문으로 풀이된다.<br />
+논문은 구분 논리에 대해 자세히 설명하고 있지는 않지만, 첫 번째 CNN Layer가 low-level feature를 추출한다는 설명을 제공하고 있다. 이는 다른 Object Detection과 크게 다르지 않은 논리이다.<br />
+이후 Lyaer들은 차량의 전면 부분의 이미지를 추출하여 Color Detection의 핵심적인 부분으로 삼고 있는 것을 확인할 수 있었으며, 이는 사람의 인식 방법과 유사함을 알 수 있다.</p>
+
+<p><strong>추가적 논의</strong><br />
+이 부분은 논문에 게재된 내용이 아니고, 필자가 다른 작은 프로젝트를 수행하면서 다른 접근법에 대해 생각해보다가 이해한 내용을 덧붙인 것이다.</p>
+
+<p>Superpixel이란 개념이 있다. Segmentation에 있어 상당히 많이 사용되는 개념인데, 유사한 pixel 값들을 하나의 평균 값으로 묶어서 표현하는 것이다.<br />
+Segment의 수에 따라 마치 blur처리를 한 듯한 느낌이 들기도 한다.</p>
+
+<p>이를 구현하는 방법은 여럿 있겠지만 skimage라는 파이썬 패키지가 매우 유용하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">image_path</span> <span class="o">=</span> <span class="s">'~/target.jpg'</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">/</span><span class="mf">255.</span>
+
+<span class="c1"># n_segments: 몇 개의 구역으로 나누고 싶은가?
+</span><span class="n">labels</span> <span class="o">=</span> <span class="n">segmentation</span><span class="p">.</span><span class="n">slic</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">compactness</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_segments</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">regions</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">input_img</span> <span class="o">=</span> <span class="n">color</span><span class="p">.</span><span class="n">label2rgb</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s">'avg'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">input_img</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p>위와 같은 코드를 이미지에 적용하면 Superpixel을 구현할 수 있다. 이렇게 유사한 Pixel들을 묶어 색깔의 다양성을 줄이고 나면, 색깔 판별에 좀 더 도움이 될 것으로 판단하였다.</p>
+
+<p>이후에 색깔을 추출해 내는 방법은 크게 2가지가 있을 것으로 생각된다.<br />
+먼저 이후에 CNN을 적용하여 위 논문과 유사한 방식으로 색깔을 하나 판별해 내는 것인데, 이 역시 괜찮은 성능을 보이는 것으로 확인되었다.<br />
+그런데 만약 색깔이 여러개라면? 단색이 아니라, 줄무늬 내지는 물방울 문양을 가진 옷을 판별해야 하다면?<br />
+이 때는 Superpixel화 된 이미지 데이터에 Kmeans Clustering을 적용하여 유사한 색깔들을 소수의 군집으로 묶고, 이 중 높은 빈도수를 보이는 색깔들을 중심 색깔들로 추출할 수 있을 것이다.</p>
+
+<p>아래 블로그에서 예시를 찾을 수 있었다.<br />
+https://technology.condenast.com/story/handbag-brand-and-color-detection</p>
+
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/Vehicle-Color-Recognition/';
+    this.page.identifier = 'http://localhost:4000/Vehicle-Color-Recognition/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

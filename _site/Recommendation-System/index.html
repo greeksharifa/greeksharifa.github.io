@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)</h1>
+  <span class="post-date">17 Dec 2019</span>
+   |
+  
+  <a href="/blog/tags/#machine-learning" class="post-tag">Machine_Learning</a>
+  
+  <a href="/blog/tags/#recommendation-system" class="post-tag">Recommendation System</a>
+  
+  <a href="/blog/tags/#matrix-factorization" class="post-tag">Matrix Factorization</a>
+  
+  <a href="/blog/tags/#latent-factor-collaborative-filtering" class="post-tag">Latent Factor Collaborative Filtering</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#1-introduction">1. Introduction</a></li>
+  <li><a href="#2-추천-시스템의-개요">2. 추천 시스템의 개요</a>
+    <ul>
+      <li><a href="#21-컨텐츠-기반-필터링">2.1. 컨텐츠 기반 필터링</a></li>
+      <li><a href="#22-최근접-이웃-협업-필터링">2.2. 최근접 이웃 협업 필터링</a>
+        <ul>
+          <li><a href="#221-사용자-기반-최근접-이웃-협업-필터링">2.2.1. 사용자 기반 최근접 이웃 협업 필터링</a></li>
+          <li><a href="#222-아이템-기반-최근접-이웃-협업-필터링">2.2.2. 아이템 기반 최근접 이웃 협업 필터링</a></li>
+        </ul>
+      </li>
+      <li><a href="#23-잠재-요인-협업-필터링">2.3. 잠재 요인 협업 필터링</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-singular-value-decomposition">3. Singular Value Decomposition</a></li>
+  <li><a href="#4-잠재-요인-협업-필터링의-matrix-factorization">4. 잠재 요인 협업 필터링의 Matrix Factorization</a></li>
+  <li><a href="#5-간단한-예제">5. 간단한 예제</a></li>
+  <li><a href="#6-surprise-모듈을-활용한-예제">6. Surprise 모듈을 활용한 예제</a></li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+
+    <h2 id="1-introduction">1. Introduction</h2>
+<p>추천시스템은 이제는 너무 많은 산업에서 도입하고 있는 시스템이기에 웬만큼 참신하지 않은 이상 새롭게 들리지 않는 것이 현실이다. 그러나 소비자의 입장에서 추천시스템을 보는 것과, 이 시스템의 개발자가 추천시스템을 바라 보는 것에는 큰 차이가 있다. 성공적으로 추천 엔진을 도입한 산업, 기업들이 있는 반면 여러 가지 어려움으로 인해 실질적인 효과가 떨어지는 산업, 기업도 있기 마련이다.</p>
+
+<p>사용자(User)의 행동 양식, 인구학적(Demographic) 정보, 아이템(Item)의 특성, 외부 변수 등 수많은 변인들을 관리하고 분석해서 사용자에게 가장 알맞는 아이템을 추천해주는 일은 분명 쉬운 일은 아니다. 이러한 어려움을 극복하기 위해 연구자들은 과거부터 여러 종류의 추천 시스템을 개발해왔는데, 지금부터 그에 대해 조금씩 알아보고자 한다.</p>
+
+<p>추천 시스템을 만드는 방법에는 굉장히 다양한 방식이 존재하지만, 본 글에서는 가장 핵심이 되는 방법론들에 대해서만 간단히 언급하고자 한다. 추천 시스템은 크게 <code class="highlighter-rouge">컨텐츠 기반 필터링(Content Based Filtering)</code> 방식과 <code class="highlighter-rouge">협업 필터링(Collaborative Filterin)</code> 방식으로 나뉜다. 협업 필터링은 또 <code class="highlighter-rouge">최근접 이웃(Nearest Neighbor) 협업 필터링</code>과 <code class="highlighter-rouge">잠재 요인(Latent Factor) 협업 필터링</code>으로 나뉜다.</p>
+
+<p>과거에는 <code class="highlighter-rouge">컨텐츠 기반 필터링</code>과 <code class="highlighter-rouge">최근접 이웃 협업 필터링</code>이 더욱 주목을 받았지만, 2009년에 있었던 <strong>넷플릭스 추천 컴퍼티션</strong>에서 <strong>행렬 분해(Matrix Factorization)</strong>를 이용한 <code class="highlighter-rouge">잠재 요인 협업 필터링</code> 방식이 우승을 차지하면서, 연구자들은 이 방식에 큰 관심을 갖게 되었다. 현재로서는 많은 경우에 이 방식이 우위를 차지하지만, 상황에 따라서는 다른 방식이 더 좋은 결과를 낼 때도 많고, 하이브리드 형식으로 결합하는 방식 또한 좋은 효율을 보여주는 경우도 많다.</p>
+
+<p>아래에서 보충 설명을 하겠지만 추천 시스템의 대표적인 방법론들을 구조화하면 아래와 같다.</p>
+
+<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/01.JPG" width="80%" /></center>
+
+<p>앞으로 총 4개의 시리즈로 이어질 추천 시스템에 관한 글들은, 위에서 언급한 <code class="highlighter-rouge">잠재 요인 협업 필터링</code>과 이 방법론에서 출발하여 발전된 알고리즘에 대해 다룰 예정이다. 간단히 순서를 보면 아래와 같다.</p>
+
+<blockquote>
+  <ol>
+    <li>잠재요인 협업필터링</li>
+    <li>Matrix Factorization Techiques for Recommender Systems 논문 리뷰</li>
+    <li>Factorization Machines 설명</li>
+    <li>Field-aware Factorization machines 설명</li>
+  </ol>
+</blockquote>
+
+<p><strong>Matrix Factorization</strong> 개념에 <strong>Support Vector Machine</strong>의 개념을 결합한 것이 <strong>Factorization Machines</strong>이다. 여기서 더 나아가 개별 feature들의 메타정보(field)를 알고리즘에 반영한 것이 <strong>Field-aware Factorization Machines</strong>이다. 줄여서 각각 <strong>FM</strong>과 <strong>FFM</strong>이라고 부르는 것이 일반적이다.</p>
+
+<p>로지스틱 모델과 달리 <strong>FFM</strong>은 가중치를 latent vector화 했기 때문에 연산량과 메모리 사용량이 더 많은 단점이 있지만, 최근 여러 논문에서는 system tuning을 통해 실제 광고 서빙에 사용하는 데 큰 지장이 없음을 밝혔다. 여력이 될 때 더욱 최신 연구들에 대해서도 글을 추가하도록 할 것이다.</p>
+
+<hr />
+<h2 id="2-추천-시스템의-개요">2. 추천 시스템의 개요</h2>
+<h3 id="21-컨텐츠-기반-필터링">2.1. 컨텐츠 기반 필터링</h3>
+<p>어떤 사용자가 특정 아이템을 선호할 때, 그 아이템과 비슷한 컨텐츠를 가진 다른 아이템을 추천하는 것이 이 방식의 기본 아이디어이다. 추가적으로 설명하자면, 이 방식은 사용자와 아이템에 대한 프로필을 만들고 그 특징을 활용한다. 예를 들어 어떤 특정 영화는 장르, 출연배우, 박스오피스 인기도 등 여러 특성을 지니게 될 텐데 이 <strong>특성</strong>(<strong>컨텐츠</strong>)들이 이 영화의 프로필을 형성하는 것이다.</p>
+
+<h3 id="22-최근접-이웃-협업-필터링">2.2. 최근접 이웃 협업 필터링</h3>
+<p>모든 협업 필터링은 사용자-아이템 행렬 데이터에 의존한다. 사용자가 남긴 평점(rating) 데이터를 기반하여 남기지 않은 데이터를 추론하는 형식이다.</p>
+
+<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/02.JPG" width="60%" /></center>
+
+<h4 id="221-사용자-기반-최근접-이웃-협업-필터링">2.2.1. 사용자 기반 최근접 이웃 협업 필터링</h4>
+<p>특정 사용자와 유사한 사용자들을 선정하고, 이들을 TOP-N이라고 명명한 뒤 이들이 선호하는 아이템을 특정 사용자에게 추천하는 방식이다.</p>
+
+<h4 id="222-아이템-기반-최근접-이웃-협업-필터링">2.2.2. 아이템 기반 최근접 이웃 협업 필터링</h4>
+<p>어떤 사용자가 A라는 아이템을 선호한다고 할 때, 그 사용자는 A와 유사한 B라는 아이템 역시 선호할 것이라는 가정 하에 추천을 진행하는 방식이다. 아이템 기반 방식이 사용자 기반 방식 보다 정확도가 높은 것이 일반적이기에 본 방식이 더욱 자주 사용된다.</p>
+
+<h3 id="23-잠재-요인-협업-필터링">2.3. 잠재 요인 협업 필터링</h3>
+<p>사용자-아이템 평점 행렬에 잠재되어 있는 어떤 요인(factor)이 있다고 가정하고, 행렬 분해를 통해 그 요인들을 찾아내는 방식이다. 이 <strong>잠재 요인</strong>은 구체적으로 정의하는 것이 때로는 어렵지만, 실제 시스템에서는 추천의 근거를 마련하는 데에 있어 큰 역할을 수행한다.</p>
+
+<p>예를 들어보면, 영화 장르를 <strong>잠재 요인</strong>으로 설정할 수 있다. 어떤 사용자는 판타지 영화를 다른 어떤 영화보다 좋아한다고 하면, 이 사용자에게 있어 영화를 선택할 때 가장 중요한 기준(요인)은 판타지 영화이냐 아니냐가 될 가능성이 높다. 그리고 이 사용자에게 다른 영화를 추천해준다고 한다면, 판타지 영화를 추천하는 것이 가장 합리적일 가능성이 높다는 것이다. <code class="highlighter-rouge">잠재 요인 협업 필터링</code>은 이러한 <strong>요인</strong>들을 찾아 추천에 활용하게 된다.</p>
+
+<p>지금부터는 이 <strong>행렬 분해</strong>를 어떻게 진행하는지에 대해 알아보도록 하겠다.</p>
+
+<hr />
+<h2 id="3-singular-value-decomposition">3. Singular Value Decomposition</h2>
+<p><code class="highlighter-rouge">특이값 분해</code>는 <strong>Spectral Decomposition</strong>의 일반화 버전이라고 생각하면 쉽다. 즉, 정방행렬이라는 조건을 만족하지 않아도(행과 열의 개수가 달라도) 다차원 행렬을 저차원 행렬로 분해하는 차원 축소 기법이다.</p>
+
+<p><strong>Spectral Decomposition</strong>에 따르면 정방행렬 A는 아래와 같이 표현할 수 있다.</p>
+
+<script type="math/tex; mode=display">A = P\Lambda P' = P\Lambda P^T = \sum_{i=1}^{p} \lambda_i e_i e_i'</script>
+
+<p>여기서 $P$는 $\lambda$에 대응하는 고유벡터들을 열벡터로 가지는 <strong>직교행렬</strong>이다. $\Lambda$는 $A$의 고유값들을 대각원소로 가지는 <strong>대각행렬</strong>이다.</p>
+
+<p>(m, n), m&gt;n인 직사각 행렬 $A$에 대해 <code class="highlighter-rouge">특이값 분해</code>를 실시하면 아래와 같이 표현될 수 있다.</p>
+
+<script type="math/tex; mode=display">A = U\Sigma V^T</script>
+
+<ul>
+  <li>$U$: (m, m), $A$의 left singular 벡터로 구성된 직교행렬</li>
+  <li>$V$: (n, n), $A$의 right singular 벡터로 구성된 직교행렬</li>
+  <li>$\Sigma$: (m, n), 주 대각성분이 $\sqrt{\lambda_i}$인 직사각 대각행렬</li>
+</ul>
+
+<p>$AA^T$를 위 식으로 표현하면 아래와 같다.</p>
+
+<script type="math/tex; mode=display">AA^T = U\Sigma V^T V\Sigma U^T  = U(\Sigma \Sigma^T) U^T</script>
+
+<p>여기서 $\Sigma \Sigma^T$는 $\Lambda$이다. (직접 계산해보라) 이 때문에 결과적으로 식은 아래와 같이 정리된다.</p>
+
+<script type="math/tex; mode=display">AA^T = U\Lambda U^T</script>
+
+<p>여기서 $U$는 <strong>정방행렬</strong>이기에 위에서 본 <strong>Spectral Decomposition</strong>의 식을 참조하면, $U$는 $AA^T$를 <strong>Eigenvalue Decomposition</strong>으로 직교대각화하여 얻은 <strong>직교행렬</strong>임을 알 수 있다. $A$의 rank가 k일 때, 이 $U$의 왼쪽에서부터 k번째 열벡터까지를 <strong>좌특이벡터</strong>(Left Singular Vectors)라고 부른다.</p>
+
+<p>같은 방식으로 $A^TA = V\Lambda V^T$에서 $V$는 $A^TA$를 <strong>Eigenvalue Decomposition</strong>으로 직교대각화하여 얻은 <strong>직교행렬</strong>이 된다.</p>
+
+<p>SVD를 기하학적으로 설명하면, $V^T, U$에 의해서 A 행렬의 방향이 변화하게 되고 $\Sigma$에 의해서 scale이 조정된다고 볼 수 있다.</p>
+
+<hr />
+<h2 id="4-잠재-요인-협업-필터링의-matrix-factorization">4. 잠재 요인 협업 필터링의 Matrix Factorization</h2>
+<p>위에서 설명한 SVD는 잠재요인을 밝혀내기에 아주 적합한 방법이지만, 실제 현실에서 원행렬 A에는 결측값이(당연히 모든 사용자가 모든 아이템에 대해 평점을 남겼다면, 굳이 추천 시스템이 필요하지 않을 것이다.) 많다. 따라서 이를 대체할 근사적인 방법이 필요하며, 그 방법에는 <code class="highlighter-rouge">SGD(Stochastic Gradient Descent)</code> 또는 <code class="highlighter-rouge">ALS(Alternating Least Squares)</code>가 있다. 이 방법들에 대해서는 <a href="https://greeksharifa.github.io/machine_learning/2019/12/20/Matrix-Factorization/">다음 글</a>을 참조하기 바란다.</p>
+
+<p><code class="highlighter-rouge">SGD</code>를 이용해서 행렬을 분해하면 다음과 같다.</p>
+
+<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/03.JPG" width="100%" /></center>
+
+<p>이 때 요인의 개수는 하이퍼파라미터로 임의로 조정하거나, Cross-Validation을 통해 최적의 값을 찾을 수 있다. 위에서 분해된 행렬을 다시 내적하여 원 행렬을 예측해보면 아래와 같이 크게 차이가 나지 않음을 알 수 있다.</p>
+
+<center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/04.JPG" width="70%" /></center>
+
+<hr />
+<h2 id="5-간단한-예제">5. 간단한 예제</h2>
+<p>위에서 봤던 행렬 분해를 코드로 구현해보자. 좀 더 자세한 설명을 원한다면 아래 Reference에 있는 “파이썬 머신러닝 완벽 가이드”를 찾아보길 바란다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">NaN</span><span class="p">]])</span>
+
+<span class="c1"># 실제 R 행렬과 예측 행렬의 오차를 구하는 함수
+</span><span class="k">def</span> <span class="nf">calculate_rmse</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">non_zeros</span><span class="p">):</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">full_pred_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="c1"># 여기서 non_zeros는 아래 함수에서 확인할 수 있다.
+</span>    <span class="n">x_non_zero_ind</span> <span class="o">=</span> <span class="p">[</span><span class="n">non_zeros</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">non_zeros</span> <span class="ow">in</span> <span class="n">non_zeros</span><span class="p">]</span>
+    <span class="n">y_non_zero_ind</span> <span class="o">=</span> <span class="p">[</span><span class="n">non_zeros</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">non_zeros</span> <span class="ow">in</span> <span class="n">non_zeros</span><span class="p">]</span>
+
+    <span class="c1"># 원 행렬 R에서 0이 아닌 값들만 추출한다.
+</span>    <span class="n">R_non_zeros</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">x_non_zero_ind</span><span class="p">,</span> <span class="n">y_non_zero_ind</span><span class="p">]</span>
+
+    <span class="c1"># 예측 행렬에서 원 행렬 R에서 0이 아닌 위치의 값들만 추출하여 저장한다.
+</span>    <span class="n">full_pred_matrix_non_zeros</span> <span class="o">=</span> <span class="n">full_pred_matrix</span><span class="p">[</span><span class="n">x_non_zero_ind</span><span class="p">,</span> <span class="n">y_non_zero_ind</span><span class="p">]</span>
+
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">R_non_zeros</span><span class="p">,</span> <span class="n">full_pred_matrix_non_zeros</span><span class="p">)</span>
+    <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rmse</span>
+
+
+<span class="k">def</span> <span class="nf">matrix_factorization</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">r_lambda</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="n">num_users</span><span class="p">,</span> <span class="n">num_items</span> <span class="o">=</span> <span class="n">R</span><span class="p">.</span><span class="n">shape</span>
+
+    <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_users</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">num_items</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>
+
+    <span class="c1"># R&gt;0인 행 위치, 열 위치, 값을 non_zeros 리스트에 저장한다.
+</span>    <span class="n">non_zeros</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_users</span><span class="p">)</span>
+                  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_items</span><span class="p">)</span> <span class="k">if</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">]</span>
+
+    <span class="c1"># SGD 기법으로 P, Q 매트릭스를 업데이트 함
+</span>    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">non_zeros</span><span class="p">:</span>
+            <span class="c1"># 잔차 구함
+</span>            <span class="n">eij</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:].</span><span class="n">T</span><span class="p">)</span>
+
+            <span class="c1"># Regulation을 반영한 SGD 업데이터 적용
+</span>            <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">learning_rate</span><span class="o">*</span><span class="p">(</span><span class="n">eij</span> <span class="o">*</span> <span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">r_lambda</span><span class="o">*</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">learning_rate</span><span class="o">*</span><span class="p">(</span><span class="n">eij</span> <span class="o">*</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">r_lambda</span><span class="o">*</span><span class="n">Q</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:])</span>
+
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">get_rmse</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">non_zeros</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"iter step: {0}, rmse: {1:4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">rmse</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">P</span><span class="p">,</span> <span class="n">Q</span>
+
+<span class="n">P</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="n">matrix_factorization</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">pred_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pred_matrix</span><span class="p">)</span>
+
+<span class="p">[[</span><span class="mf">3.99062329</span> <span class="mf">0.89653623</span> <span class="mf">1.30649077</span> <span class="mf">2.00210666</span> <span class="mf">1.66340846</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">6.69571106</span> <span class="mf">4.97792757</span> <span class="mf">0.97850229</span> <span class="mf">2.98066034</span> <span class="mf">1.0028451</span> <span class="p">]</span>
+ <span class="p">[</span><span class="mf">6.67689303</span> <span class="mf">0.39076095</span> <span class="mf">2.98728588</span> <span class="mf">3.9769208</span>  <span class="mf">3.98610743</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">4.96790858</span> <span class="mf">2.00517956</span> <span class="mf">1.00634763</span> <span class="mf">2.01691675</span> <span class="mf">1.14044567</span><span class="p">]]</span>
+</code></pre></div></div>
+<hr />
+<h2 id="6-surprise-모듈을-활용한-예제">6. Surprise 모듈을 활용한 예제</h2>
+<p>Movielens 데이터를 이용하여 <code class="highlighter-rouge">잠재 요인 협업 필터링</code>을 간단히 시연해보도록 하겠다. 본 모듈은 추천 시스템에 널리 쓰이는 대표적인 알고리즘들을 패키지화한 것으로, 사이킷런의 API와 프레임워크와 굉장히 유사하다. 다만 엄격한 Input 체계를 갖추고 있는데, 반드시 <code class="highlighter-rouge">사용자 ID</code>, <code class="highlighter-rouge">아이템 ID</code>, <code class="highlighter-rouge">평점</code>만이 포함되어 있는 Row 레벨 형태의 데이터만 Input으로 받아들인다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Surprise 패키지: scikit-surprise
+</span><span class="kn">from</span> <span class="nn">surprise</span> <span class="kn">import</span> <span class="n">SVD</span><span class="p">,</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">Reader</span>
+<span class="kn">from</span> <span class="nn">surprise.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">.</span><span class="n">load_builtin</span><span class="p">(</span><span class="s">'ml-100k'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>위에서 쓴 <code class="highlighter-rouge">load_builtin</code> 메서드는 Movielens 홈페이지에 들를 필요 없이 해당 사이트의 데이터를 다운로드 받고 로드하는 메서드인데, 사실 앞으로 다른 데이터를 쓴다면 크게 쓸 일이 없다. Surprise 모듈은 데이터 로드를 위해 2개의 메서드를 추가적으로 제공한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># load_from_file: OS 파일 로딩
+</span><span class="n">ratings</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/ratings.csv'</span><span class="p">)</span>
+<span class="n">ratings</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'data/ratings_noh.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># line_format: 칼럼을 순서대로 나열함. 공백으로 분리
+# rating_scale: 평점의 단위
+</span><span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="p">(</span><span class="n">line_format</span><span class="o">=</span><span class="s">'user item rating timestamp'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">','</span><span class="p">,</span>
+                <span class="n">rating_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">.</span><span class="n">load_from_file</span><span class="p">(</span><span class="s">'data/ratings_noh.csv'</span><span class="p">,</span> <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># load_from_df: Pandas DataFrame 으로 로딩
+</span><span class="n">ratings</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/ratings.csv'</span><span class="p">)</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="n">Reader</span><span class="p">(</span><span class="n">rating_scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">.</span><span class="n">load_from_df</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">ratings</span><span class="p">[[</span><span class="s">'userId'</span><span class="p">,</span> <span class="s">'movieId'</span><span class="p">,</span> <span class="s">'rating'</span><span class="p">]],</span> <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이제 데이터셋을 훈련 데이터와 테스트 데이터로 분할한 뒤 적합을 해보자.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 알고리즘 객체 생성
+# SVD: n_factors(K), n_epochs(디폴트 20), biased=True(베이스라인 사용자 편향 적용 여부)
+</span><span class="n">algo</span> <span class="o">=</span> <span class="n">SVD</span><span class="p">(</span><span class="n">n_factors</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">algo</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainset</span><span class="o">=</span><span class="n">trainset</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>예측을 위해선 <code class="highlighter-rouge">test</code> 메서드와 <code class="highlighter-rouge">predict</code> 메서드가 제공되는데, 전자의 경우 테스트 데이터셋 전체에 대한 예측 값을, 후자의 경우 하나의 개체에 대한 예측 값을 출력한다. 따라서 <code class="highlighter-rouge">predict</code>의 결과를 모은 것이 <code class="highlighter-rouge">test</code>의 결과라고 보면 이해하기 쉽다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">predictions</span> <span class="o">=</span> <span class="n">algo</span><span class="p">.</span><span class="n">test</span><span class="p">(</span><span class="n">testset</span><span class="o">=</span><span class="n">testset</span><span class="p">)</span>
+<span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'120'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'282'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">3.66</span><span class="p">...,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}),</span>
+ <span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'882'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'291'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">3.97</span><span class="p">...,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}),</span>
+ <span class="n">Prediction</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">'535'</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="s">'507'</span><span class="p">,</span> <span class="n">r_ui</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">est</span><span class="o">=</span><span class="mf">4.15</span><span class="p">...,</span> <span class="n">details</span><span class="o">=</span><span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">})]</span>
+
+<span class="c1"># userID, itemID 는 string 으로 입력해야 함
+</span><span class="n">uid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">196</span><span class="p">)</span>
+<span class="n">iid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mi">302</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">algo</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+
+<span class="n">user</span><span class="p">:</span> <span class="mi">196</span>        <span class="n">item</span><span class="p">:</span> <span class="mi">302</span>        <span class="n">r_ui</span> <span class="o">=</span> <span class="bp">None</span>   <span class="n">est</span> <span class="o">=</span> <span class="mf">4.30</span>   <span class="p">{</span><span class="s">'was_impossible'</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
+
+<span class="c1"># 정확도 평가
+</span><span class="n">accuracy</span><span class="p">.</span><span class="n">rmse</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Cross-Validation</strong>을 통해 파라미터를 조정할 수도 있다. 코드 구현은 아래와 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#cross_validate(algo=algo, data=data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+</span>
+<span class="n">algo</span> <span class="o">=</span> <span class="n">SVD</span><span class="p">()</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s">'n_epochs'</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span> <span class="s">'n_factors'</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]}</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">SVD</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">measures</span><span class="o">=</span><span class="p">[</span><span class="s">'RMSE'</span><span class="p">,</span> <span class="s">'MAE'</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">grid</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">best_score</span><span class="p">[</span><span class="s">'rmse'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">best_params</span><span class="p">[</span><span class="s">'rmse'</span><span class="p">])</span>
+</code></pre></div></div>
+<p>좀 더 자세한 정보와 다양한 기능에 대해 알아보고 싶다면 아래 공식 문서를 참조하길 바란다.</p>
+
+<hr />
+<h2 id="reference">Reference</h2>
+<blockquote>
+  <p>파이썬 머신러닝 완벽 가이드, 권철민, 위키북스
+<a href="https://brunch.co.kr/@kakao-it/84">카카오 리포트</a>
+<a href="https://surprise.readthedocs.io/en/stable/getting_started.html">Surprise 모듈 문서</a>
+<a href="https://rfriend.tistory.com/185">SVD 설명</a></p>
+</blockquote>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/Recommendation-System/';
+    this.page.identifier = 'http://localhost:4000/Recommendation-System/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

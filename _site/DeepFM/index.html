@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현</h1>
+  <span class="post-date">07 Apr 2020</span>
+   |
+  
+  <a href="/blog/tags/#machine-learning" class="post-tag">Machine_Learning</a>
+  
+  <a href="/blog/tags/#recommendation-system" class="post-tag">Recommendation System</a>
+  
+  <a href="/blog/tags/#deepfm" class="post-tag">DeepFM</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#1-deepfm-a-factorization-machine-based-neural-network-for-ctr-prediction-논문-리뷰">1. DeepFM: A Factorization-Machine based Neural Network for CTR Prediction 논문 리뷰</a>
+    <ul>
+      <li><a href="#10-abstract">1.0. Abstract</a></li>
+      <li><a href="#11-introduction">1.1. Introduction</a></li>
+      <li><a href="#12-our-approach">1.2. Our Approach</a>
+        <ul>
+          <li><a href="#121-deepfm">1.2.1. DeepFM</a></li>
+          <li><a href="#15-conclusions">1.5. Conclusions</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#2-tensorflow-구현">2. Tensorflow 구현</a>
+    <ul>
+      <li><a href="#21-데이터-설명-및-데이터-변환">2.1. 데이터 설명 및 데이터 변환</a></li>
+      <li><a href="#22-모델-빌드">2.2. 모델 빌드</a></li>
+      <li><a href="#23-학습">2.3. 학습</a></li>
+    </ul>
+  </li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+
+    <p>본 글의 전반부에서는 먼저 <strong>DeepFM: A Factorization-Machine based Neural Network for CTR Prediction</strong> 논문을 리뷰하면서 본 모델에 대해 설명할 것이다. 후반부에서는 Tensorflow를 이용하여 직접 코딩을 하고 학습하는 과정을 소개할 것이다. 논문의 전문은 <a href="https://arxiv.org/pdf/1703.04247v1.pdf">이곳</a>에서 확인할 수 있다.</p>
+
+<hr />
+<h2 id="1-deepfm-a-factorization-machine-based-neural-network-for-ctr-prediction-논문-리뷰">1. DeepFM: A Factorization-Machine based Neural Network for CTR Prediction 논문 리뷰</h2>
+<h3 id="10-abstract">1.0. Abstract</h3>
+<p>추천 시스템에서 CTR을 최대화하는 것에 있어 사용자의 행동 속에 숨어있는 복잡한 feature interactions들을 학습하는 것은 매우 중요하다. 본 논문에서는 저차원 및 고차원 feature interactions를 모두 강조하면서 end-to-end 학습을 진행하는 모델에 대해 설명할 것이다. 이 <strong>DeepFM</strong>이라는 모델은 FM과 딥러닝을 결합한 것이다. 최근(2017년 기준) 구글에서 발표한 <strong>Wide &amp; Deep model</strong>에 비해 피쳐 엔지니어링이 필요 없고, wide하고 deep한 부분에서 공통된 Input을 가진다는 점이 특징적이다.</p>
+
+<h3 id="11-introduction">1.1. Introduction</h3>
+<p>추천 시스템에서 CTR은 매우 중요하다. 많은 경우에 추천시스템의 목표는 이 클릭 수를 증대하는 것인데, 따라서 CTR 추정값에 근거하여 아이템을 정렬한 뒤 아이템(기사, 영화 등)을 사용자에게 제시할 수 있다. 온라인 광고에서는 수익을 증가시키는 것이 가장 중요하기에, 이 상황에서는 <strong>CTR * bid</strong>라는 기준 아래 랭킹 전략을 세울 수 있을 것이다. 여기서 bid는 사용자가 아이템을 클릭할 경우 시스템이 수령하는 수입을 의미한다. 어떠한 케이스든, 이 CTR을 정확히 추정하는 것은 매우 중요할 것이다.</p>
+
+<p>CTR 예측에 있어 중요한 포인트는, 사용자의 클릭 행동 속에 숨어 있는 implicit feature interactions(암시적 피쳐 상호작용)를 학습할 줄 알아야 한다는 것이다.</p>
+
+<p>예를 들어 사람들이 식사 시간에 음식 배달을 위한 앱을 다운로드 받는다면, 이 때 앱 카테고리와 시간이라는 요소 사이의 2차 상호작용이 바로 <strong>클릭</strong>에 대한 신호가 될 수 있다는 것이다. 10대 남자아이가 RPG게임을 좋아한다고 하자, 이 때는 앱 카테고리-사용자의 성별-사용자의 나이라는 3개 요소의 관계가 <strong>클릭</strong>을 결정하는 요인이 될 수 있다. 즉, 사용자의 클릭 뒤에 숨어있는 이러한 상호작용들은 매우 복잡하여 저/고차원 <strong>모두</strong> 잘 잡아내는 것이 매우 중요하다.</p>
+
+<p>(중략)</p>
+
+<p>feature representation을 학습하는 방법으로써 Deep Neural Network가 복잡한 feature interactions를 학습하는 잠재력을 갖고 있다고 판단된다. 다만 CNN-based 모델의 경우 이웃한 feature들 사이에 발생하는 상호작용에 의해 편향된 경향을 보이고, RNN-based 모델의 경우 sequential dependency를 갖고 있는 클릭 데이터에 상대적으로 적합한 모습을 보였다. 이후에 FNN, PNN, Wide &amp; Deep 등 여러 모델들이 제안되었다. 본 논문에서는 이러한 모델들의 단점을 보완한 새로운 모델을 제시한다.</p>
+
+<p>1) <strong>DeepFM</strong>은 피쳐 엔지니어링 없이 end-to-end 학습을 진행할 수 있다. 저차원의 interaction들은 FM 구조를 통해 모델화하고, 고차원의 interaction들은 DNN을 통해 모델화한다.<br />
+2) <strong>DeepFM</strong>은 같은 Input과 Embedding 벡터를 공유하기 때문에 효과적으로 학습을 진행할 수 있다.<br />
+3) 본 논문에서 <strong>DeepFM</strong>은 벤치마크 데이터와 상업용 데이터 모두에서 평가될 것이다.</p>
+
+<hr />
+<h3 id="12-our-approach">1.2. Our Approach</h3>
+<p>$n$개의 instance를 가진 $(\chi, y)$ 학습 데이터셋이 있다고 하자. 이 때 $\chi$는 $m$개의 <strong>field</strong>를 지니고 있고, $y$는 0과 1의 값을 가진다. (1 = 클릭함)</p>
+
+<p>$\chi$에는 범주형 변수가 있을 수도 있고, 연속형 변수가 있을 수도 있다. 범주형 변수의 경우 원핫인코딩된 벡터로 표현되며, 연속형 변수의 경우 그 값 자체로 표현되거나 이산화되어 원핫인코딩된 벡터로 표현될 수도 있다.</p>
+
+<p>그렇다면 이제 데이터는 $(x, y)$로 표현할 수 있을 것이다. 여기서 $x$는 $[x_{field_1}, x_{field_2}, …, x_{field_m}]$의 구조를 갖게 되며 각각의 $x_{field_j}$는 $\chi$에서의 j번째 field의 벡터 표현을 의미하게 된다. 일반적으로 $x$는 굉장히 고차원이고 희소하다. CTR의 목적은 context가 주어졌을 때 사용자가 특정 어플을 클릭할 확률을 정확히 추정하는 것이다.</p>
+
+<h4 id="121-deepfm">1.2.1. DeepFM</h4>
+<center><img src="/public/img/Machine_Learning/2020-04-07-DeepFM/01.JPG" width="70%" /></center>
+
+<p>위 그림에서도 확인할 수 있다시피, <strong>DeepFM</strong>은 2가지 요소로 구성되어 있다. 이 요소들은 같은 Input을 공유한다.</p>
+
+<ul>
+  <li>$i$번재 피쳐에 대해 스칼라 $w_i$: 1차원 importance를 측정함</li>
+  <li>latent vector $V_i$: 다른 피쳐들과의 interaction의 영향을 측정</li>
+</ul>
+
+<p>$V_i$의 경우 FM요소에서는 2차원 interaction을 모델화하며, Deep요소에서는 고차원 피쳐 interaction을 모델화한다. 모든 파라미터들은 통합 예측모델에서 함께 학습된다. 즉 모델을 아주 간단히 표현하자면 아래와 같다.</p>
+
+<script type="math/tex; mode=display">\hat{y} = sigmoid(y_{FM} + y_{DNN})</script>
+
+<p><strong>FM Component</strong></p>
+<center><img src="/public/img/Machine_Learning/2020-04-07-DeepFM/02.JPG" width="60%" /></center>
+
+<p>FM요소는 Factorization Machine이다. FM모델에 대한 설명은 <a href="2019-12-21-FM.md">이글</a>에서 확인할 수 있다.</p>
+
+<p><strong>Deep Component</strong><br />
+CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고, 고차원이며, 범주형/연속형 변수가 섞여 있고, 일종의 field(성별, 위치, 나이 등)로 그룹화되어 있다는 특징을 지닌다. 따라서 <strong>Embedding Layer</strong>로 이러한 정보들을 압축하여 저차원의, dense한 실수 벡터를 만들어서 Input을 재가공할 필요가 있다.</p>
+
+<p>아래 그림은 <strong>Input Layer</strong>에서 <strong>Embedding Layer</strong>로 이어지는 보조 네트워크를 강조한 부분이다. 여기서 확인해야 할 부분은 2가지이다. 첫 번재는, Input으로 쓰이는 Input field 벡터가 각자 다른 길이를 갖고 있을 수 있기 때문에, 이들의 임베딩은 같은 크기(<strong>k</strong>)여야 한다는 것이다. 두 번재는, FM 모델에서 latent 벡터로 기능했던 $V$는 본 요소에서는 Input field 벡터를 Embedding 벡터로 압축하기 위해 사용되고 학습되는 네트워크 weight가 된다는 것이다.</p>
+
+<center><img src="/public/img/Machine_Learning/2020-04-07-DeepFM/06.JPG" width="60%" /></center>
+
+<p><strong>Embedding Layer</strong>의 Output은 아래와 같다.</p>
+
+<script type="math/tex; mode=display">a^0 = [e_1, e_2, ..., e_m]</script>
+
+<ul>
+  <li>$e_i$는 i번재 field의 Embedding</li>
+  <li>$m$은 field의 수</li>
+</ul>
+
+<p>$a^{(0)}$는 DNN에 투입되며 forward process는 다음과 같다.</p>
+
+<script type="math/tex; mode=display">a^{(l+1)} = \sigma{(W^{(l)}a^{(l)} + b^{(l)}})</script>
+
+<ul>
+  <li>$l$: layer의 깊이</li>
+</ul>
+
+<p>이렇게 Dense한 실수 피쳐 벡터가 생성되면 CTR prediction을 위해 최종적으로 sigmoid 함수에 투입되게 된다.</p>
+
+<script type="math/tex; mode=display">y_{DNN} = \sigma{(W^{|H|+1} a^{|H|} + b^{|H| + 1}})</script>
+
+<ul>
+  <li>$ㅣHㅣ$: hidden layer의 수</li>
+  <li>$ \vert H \vert $: hidden layer의 수</li>
+</ul>
+
+<center> (중략) </center>
+
+<h4 id="15-conclusions">1.5. Conclusions</h4>
+<p>DeepFM은 FM Component와 Deep Component를 함께 학습시킨다. 이러한 방식은 다음과 같은 장점을 지닌다.<br />
+1) pre-training이 필요 없다.<br />
+2) 저/고차원 feature를 모두 잘 학습한다.<br />
+3) feature embedding을 통해 피쳐 엔지니어링이 불필요하다.</p>
+
+<p>실험 결과를 확인하면, DeepFM이 최신 모델들을 압도하고 상당한 효율성을 지닌 것을 알 수 있다.</p>
+
+<hr />
+<h2 id="2-tensorflow-구현">2. Tensorflow 구현</h2>
+<h3 id="21-데이터-설명-및-데이터-변환">2.1. 데이터 설명 및 데이터 변환</h3>
+<p>구현의 핵심은 Parameter인 $w$와 $V$의 shape과 활용 방법에 대해 이해하는 것이다. 사실 구현하는 사람의 입장에서는 논문이 썩 친절하다고 느끼지는 못할 것이다. 다소 애매모호한 표현으로 읽는 사람으로 하여금 혼란을 일으키게 하는 문구나 그림 등도 존재한다. 그럼에도 침착하게 잘 생각해보면, 모델을 구축할 수 있을 것이다.</p>
+
+<p>학습 데이터로는 연봉이 5만 달러를 상회하는지의 여부를 예측하는 데이터를 사용하였고, <a href="https://archive.ics.uci.edu/ml/datasets/Adult">여기</a>에서 다운로드 받을 수 있다.</p>
+
+<p>데이터는 48,842개의 Instance로 구성되어 있고, 14개의 Feature를 갖고 있으며, 이 중 6개의 변수가 연속형 변수이다. 당연히 예측 과제는 <strong>Binary Classification</strong>이다. 0은 연봉 5만 달러 이하를 의미하며, 전체 데이터의 25% 정도를 차지한다. 1은 연봉 5만 달러 초과를 의미한다.</p>
+
+<p>앞에서 설명한 데이터를 예로 들어 설명하도록 하겠다. 이 데이터에는 총 14개의 변수가 있다. 이 14개는 곧, field의 개수가 된다. 이 중 범주형 변수를 One-Hot 인코딩을 통해 변환시키면(물론 연속형 변수도 필요에 따라 구간화하여 범주형 변수화해도 된다.) 본 데이터는 총 108개의 칼럼을 갖게 된다. 이 108개는 곧, feature의 개수가 된다. 즉, One-Hot 인코딩을 통해 변환시킨 칼럼의 개수를 feature의 개수로, 인코딩 이전의 데이터의 칼럼의 개수를 field의 개수로 이해하면 쉽다. 논문에서는 임베딩 스킬을 이용하고 있는데, 여기서 Embedding Matrix인 $V$의 칼럼의 개수는 Hyperparameter이다.</p>
+
+<p>본 프로젝트 파일은 다음과 같이 5개의 py파일로 구성되어 있다.</p>
+
+<center><img src="/public/img/Machine_Learning/2020-04-07-DeepFM/07.JPG" width="25%" /></center>
+
+<p>먼저 config파일을 보자. 이 파일에는 칼럼의 목록을 연속형/범주형을 구분하여 저장한 리스트와 Hyperparameter들이 저장되어 있다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># config.py
+</span><span class="n">ALL_FIELDS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'age'</span><span class="p">,</span> <span class="s">'workclass'</span><span class="p">,</span> <span class="s">'fnlwgt'</span><span class="p">,</span> <span class="s">'education'</span><span class="p">,</span> <span class="s">'education-num'</span><span class="p">,</span>
+             <span class="s">'marital-status'</span><span class="p">,</span> <span class="s">'occupation'</span><span class="p">,</span> <span class="s">'relationship'</span><span class="p">,</span> <span class="s">'race'</span><span class="p">,</span>
+             <span class="s">'sex'</span><span class="p">,</span> <span class="s">'capital-gain'</span><span class="p">,</span> <span class="s">'capital-loss'</span><span class="p">,</span> <span class="s">'hours-per-week'</span><span class="p">,</span> <span class="s">'country'</span><span class="p">]</span>
+<span class="n">CONT_FIELDS</span> <span class="o">=</span> <span class="p">[</span><span class="s">'age'</span><span class="p">,</span> <span class="s">'fnlwgt'</span><span class="p">,</span> <span class="s">'education-num'</span><span class="p">,</span>
+               <span class="s">'capital-gain'</span><span class="p">,</span> <span class="s">'capital-loss'</span><span class="p">,</span> <span class="s">'hours-per-week'</span><span class="p">]</span>
+<span class="n">CAT_FIELDS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ALL_FIELDS</span><span class="p">).</span><span class="n">difference</span><span class="p">(</span><span class="n">CONT_FIELDS</span><span class="p">))</span>
+
+<span class="c1"># Hyper-parameters for Experiment
+</span><span class="n">NUM_BIN</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">EMBEDDING_SIZE</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<p>이제 데이터를 가공할 시간이다. (데이터가 매우 커서 서버에서 데이터를 받아오는 상황이라면, 아래 코드를 pyspark로 짜면 좋을 것이다.) 지금부터 할 작업은 <code class="highlighter-rouge">field_index</code>와 <code class="highlighter-rouge">field_dict</code>를 만드는 것인데, 쉽게 말해서 아래와 같은 작업을 진행하는 것이다.</p>
+
+<center><img src="/public/img/Machine_Learning/2020-04-07-DeepFM/05.JPG" width="100%" /></center>
+
+<p>인코딩 이후의 데이터에 대해 각 칼럼이 본래 인코딩 이전에 몇 번째 field에 속했었는지에 대한 정보를 저장한 것이 <code class="highlighter-rouge">field_index</code>와 <code class="highlighter-rouge">field_dict</code>이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Preprocess
+</span><span class="kn">import</span> <span class="nn">config</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">repeat</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="k">def</span> <span class="nf">get_modified_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">all_fields</span><span class="p">,</span> <span class="n">continuous_fields</span><span class="p">,</span> <span class="n">categorical_fields</span><span class="p">,</span> <span class="n">is_bin</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">field_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">field_index</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">columns</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_fields</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"{} not included: Check your column list"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span>
+
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">continuous_fields</span><span class="p">:</span>
+            <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+            <span class="c1"># 연속형 변수도 구간화 할 것인가?
+</span>            <span class="k">if</span> <span class="n">is_bin</span><span class="p">:</span>
+                <span class="n">X_bin</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">cut</span><span class="p">(</span><span class="n">scaler</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="n">col</span><span class="p">]]).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">),</span> <span class="n">config</span><span class="p">.</span><span class="n">NUM_BIN</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                <span class="n">X_bin</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_bin</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="s">'str'</span><span class="p">)</span>
+
+                <span class="n">X_bin_col</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_bin</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">prefix_sep</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>
+                <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_bin_col</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+                <span class="n">field_index</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">X_bin_col</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_bin_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">X_cont_col</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="n">col</span><span class="p">]]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+                <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span>
+                <span class="n">field_index</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+                <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_cont_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_fields</span><span class="p">:</span>
+            <span class="n">X_cat_col</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">prefix_sep</span><span class="o">=</span><span class="s">'-'</span><span class="p">)</span>
+            <span class="n">field_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_cat_col</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">field_index</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">X_cat_col</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">X_modified</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">X_cat_col</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'Data Prepared...'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'X shape: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">X_modified</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'# of Feature: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">field_index</span><span class="p">)))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'# of Field: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">field_dict</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span><span class="p">,</span> <span class="n">X_modified</span>
+</code></pre></div></div>
+
+<h3 id="22-모델-빌드">2.2. 모델 빌드</h3>
+<p>먼저 FM Component에 대해 살펴보자. <strong>call</strong> 함수에서 y_fm을 어떤 shape으로 반환할 지는 그 task에 맞게 변환하면 된다. 아래 코드에서는 (None, 2)의 형태로 반환되어 최종적으로 Deep Component의 (None, 2)와 합쳐져 (None, 4)의 최종 Output을 반환하게 되는데, 이 수치는 성능 향상을 위해 변경이 가능하다.</p>
+
+<p>Parameter $w$의 길이는 <code class="highlighter-rouge">num_feature(108)</code>이며, Parameter $V$의 shape은 <code class="highlighter-rouge">num_field(14), embedding_size(5)</code>이다. 그런데 아래 <strong>call</strong> 함수에서 보면 알 수 있듯이, 이 $V$행렬은 One-Hot 인코딩된 데이터에 곱해지는 구조이기 때문에 <code class="highlighter-rouge">tf.nn.embedding_lookup</code>이라는 함수를 통해 행이 복제된다. 즉, 앞서 생성한 <code class="highlighter-rouge">field_index</code>의 정보를 참조하여, 같은 field에서 나온 feature일 경우, 같은 Embedding Row($V$의 Row)를 공유하는 것이다.</p>
+
+<p><strong>new_inputs</strong>는 Deep Component의 Input으로 쓰일 개체이다. 코드를 살펴보면, $V$라는 행렬이 FM Component에도 쓰이지만, <strong>new_inputs</strong>를 만들어내면서 Deep Component에도 영향을 미치는 것을 알 수 있다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FM_layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">field_index</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FM_layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># f: 원래 feature 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: grouped field 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">field_index</span> <span class="o">=</span> <span class="n">field_index</span>          <span class="c1"># 인코딩된 X의 칼럼들이 본래 어디 소속이었는지
+</span>
+        <span class="c1"># Parameters of FM Layer
+</span>        <span class="c1"># w: capture 1st order interactions
+</span>        <span class="c1"># V: capture 2nd order interactions
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">num_feature</span><span class="p">],</span>
+                                              <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'w'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
+                                              <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'V'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">x_batch</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="c1"># Parameter V를 field_index에 맞게 복사하여 num_feature에 맞게 늘림
+</span>        <span class="n">embeds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">V</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">field_index</span><span class="p">)</span>
+
+        <span class="c1"># Deep Component에서 쓸 Input
+</span>        <span class="c1"># (batch_size, num_feature, embedding_size)
+</span>        <span class="n">new_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x_batch</span><span class="p">,</span> <span class="n">embeds</span><span class="p">)</span>
+
+        <span class="c1"># (batch_size, )
+</span>        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="c1"># (batch_size, )
+</span>        <span class="n">interactions</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tf</span><span class="p">.</span><span class="n">subtract</span><span class="p">(</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])),</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="p">)</span>
+
+        <span class="n">linear_terms</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">linear_terms</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">y_fm</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">linear_terms</span><span class="p">,</span> <span class="n">interactions</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">y_fm</span><span class="p">,</span> <span class="n">new_inputs</span>
+</code></pre></div></div>
+
+<p>아래는 메인 모델에 대한 코드이다. 성능 향상을 위해 Deep Component를 수정하는 것은 연구자의 자유이다. Task에 따라 가볍게 설계할 수도, 복잡하게 설계할 수도 있을 것이다. 본 코드에서는 Dropout만을 추가하여 다소 가볍게 설계하였다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">layers</span> <span class="kn">import</span> <span class="n">FM_layer</span>
+
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">backend</span><span class="p">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">DeepFM</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">field_index</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DeepFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># f: 원래 feature 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: grouped field 개수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">field_index</span> <span class="o">=</span> <span class="n">field_index</span>          <span class="c1"># 인코딩된 X의 칼럼들이 본래 어디 소속이었는지
+</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">fm_layer</span> <span class="o">=</span> <span class="n">FM_layer</span><span class="p">(</span><span class="n">num_feature</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">field_index</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">layers1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">layers2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">layers3</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">final</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'sigmoid'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"DeepFM Model: #Field: {}, #Feature: {}, ES: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="c1"># 1) FM Component: (num_batch, 2)
+</span>        <span class="n">y_fm</span><span class="p">,</span> <span class="n">new_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">fm_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+        <span class="c1"># retrieve Dense Vectors: (num_batch, num_feature*embedding_size)
+</span>        <span class="n">new_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span><span class="o">*</span><span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">])</span>
+
+        <span class="c1"># 2) Deep Component
+</span>        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">layers1</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dropout1</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">layers2</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dropout2</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+        <span class="n">y_deep</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">layers3</span><span class="p">(</span><span class="n">y_deep</span><span class="p">)</span>
+
+        <span class="c1"># Concatenation
+</span>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_fm</span><span class="p">,</span> <span class="n">y_deep</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">final</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">y_pred</span>
+</code></pre></div></div>
+
+<h3 id="23-학습">2.3. 학습</h3>
+<p>학습 코드는 아래와 같다. 그리 무거운 모델은 아니므로 Autograph는 사용하지 않았다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">config</span>
+<span class="kn">from</span> <span class="nn">preprocess</span> <span class="kn">import</span> <span class="n">get_modified_data</span>
+<span class="kn">from</span> <span class="nn">DeepFM</span> <span class="kn">import</span> <span class="n">DeepFM</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.metrics</span> <span class="kn">import</span> <span class="n">BinaryAccuracy</span><span class="p">,</span> <span class="n">AUC</span>
+
+
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/adult.data'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">14</span><span class="p">].</span><span class="nb">map</span><span class="p">({</span><span class="s">' &lt;=50K'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">' &gt;50K'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+    <span class="n">X</span><span class="p">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">ALL_FIELDS</span>
+    <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span><span class="p">,</span> <span class="n">X_modified</span> <span class="o">=</span> \
+        <span class="n">get_modified_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">ALL_FIELDS</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">CONT_FIELDS</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">CAT_FIELDS</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_modified</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+
+    <span class="n">train_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_train</span><span class="p">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_train</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)))</span> \
+        <span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">30000</span><span class="p">).</span><span class="n">batch</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+
+    <span class="n">test_ds</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensor_slices</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">X_test</span><span class="p">.</span><span class="n">values</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)))</span> \
+        <span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">10000</span><span class="p">).</span><span class="n">batch</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">train_ds</span><span class="p">,</span> <span class="n">test_ds</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span>
+
+
+<span class="c1"># Batch 단위 학습
+</span><span class="k">def</span> <span class="nf">train_on_batch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="p">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="n">binary_crossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">y_true</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="p">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span> <span class="n">sources</span><span class="o">=</span><span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">)</span>
+
+    <span class="c1"># apply_gradients()를 통해 processed gradients를 적용함
+</span>    <span class="n">optimizer</span><span class="p">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">))</span>
+
+    <span class="c1"># accuracy &amp; auc
+</span>    <span class="n">acc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">auc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">loss</span>
+
+
+<span class="c1"># 반복 학습 함수
+</span><span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="n">train_ds</span><span class="p">,</span> <span class="n">test_ds</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">,</span> <span class="n">field_index</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">()</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">DeepFM</span><span class="p">(</span><span class="n">embedding_size</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">,</span> <span class="n">num_feature</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">field_index</span><span class="p">),</span>
+                   <span class="n">num_field</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">field_dict</span><span class="p">),</span> <span class="n">field_index</span><span class="o">=</span><span class="n">field_index</span><span class="p">)</span>
+
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">"Start Training: Batch Size: {}, Embedding Size: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">auc</span> <span class="o">=</span> <span class="n">AUC</span><span class="p">()</span>
+        <span class="n">loss_history</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_ds</span><span class="p">:</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">train_on_batch</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">auc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">loss_history</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">"Epoch {:03d}: 누적 Loss: {:.4f}, Acc: {:.4f}, AUC: {:.4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss_history</span><span class="p">),</span> <span class="n">acc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">auc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">()))</span>
+
+    <span class="n">test_acc</span> <span class="o">=</span> <span class="n">BinaryAccuracy</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">test_auc</span> <span class="o">=</span> <span class="n">AUC</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_ds</span><span class="p">:</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">test_acc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">test_auc</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">"테스트 ACC: {:.4f}, AUC: {:.4f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">test_acc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">test_auc</span><span class="p">.</span><span class="n">result</span><span class="p">().</span><span class="n">numpy</span><span class="p">()))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Batch Size: {}, Embedding Size: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"걸린 시간: {:.3f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+    <span class="n">model</span><span class="p">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s">'weights/weights-epoch({})-batch({})-embedding({}).h5'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+        <span class="n">epochs</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">EMBEDDING_SIZE</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">train</span><span class="p">(</span><span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Embedding Size를 변환하면서 진행한 테스트 결과는 아래와 같다. (Epoch: 100)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Embedding Size</th>
+      <th style="text-align: center">누적 Loss</th>
+      <th style="text-align: center">Train ACC</th>
+      <th style="text-align: center">Train AUC</th>
+      <th style="text-align: center">Test ACC</th>
+      <th style="text-align: center">Test AUC</th>
+      <th style="text-align: center">시간</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">0.3243</td>
+      <td style="text-align: center"><strong>0.8485</strong></td>
+      <td style="text-align: center"><strong>0.9038</strong></td>
+      <td style="text-align: center"><strong>0.8464</strong></td>
+      <td style="text-align: center">0.8991</td>
+      <td style="text-align: center">4분 0.78초</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">0.3386</td>
+      <td style="text-align: center">0.8382</td>
+      <td style="text-align: center">0.8954</td>
+      <td style="text-align: center">0.8402</td>
+      <td style="text-align: center">0.8975</td>
+      <td style="text-align: center">4분 3.64초</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">0.3704</td>
+      <td style="text-align: center">0.8240</td>
+      <td style="text-align: center">0.8729</td>
+      <td style="text-align: center">0.8260</td>
+      <td style="text-align: center">0.8745</td>
+      <td style="text-align: center">4분 2.79초</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">0.3248</td>
+      <td style="text-align: center">0.8471</td>
+      <td style="text-align: center">0.9033</td>
+      <td style="text-align: center">0.8424</td>
+      <td style="text-align: center">0.9013</td>
+      <td style="text-align: center">4분 0.84초</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">0.3305</td>
+      <td style="text-align: center">0.8433</td>
+      <td style="text-align: center">0.9001</td>
+      <td style="text-align: center">0.8416</td>
+      <td style="text-align: center"><strong>0.9041</strong></td>
+      <td style="text-align: center">4분 1.28초</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">0.3945</td>
+      <td style="text-align: center">0.8169</td>
+      <td style="text-align: center">0.8512</td>
+      <td style="text-align: center">0.8190</td>
+      <td style="text-align: center">0.8576</td>
+      <td style="text-align: center">4분 8.10초</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<h2 id="reference">Reference</h2>
+<p>https://github.com/ChenglongChen/tensorflow-DeepFM</p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/DeepFM/';
+    this.page.identifier = 'http://localhost:4000/DeepFM/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

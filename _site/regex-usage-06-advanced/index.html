@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</h1>
+  <span class="post-date">05 Aug 2018</span>
+   |
+  
+  <a href="/blog/tags/#regex" class="post-tag">Regex</a>
+  
+  <a href="/blog/tags/#re" class="post-tag">re</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#정규표현식-고급-치환-함수-사용">정규표현식 고급: 치환 함수 사용</a></li>
+  <li><a href="#정규표현식-중급-행-단위-검색">정규표현식 중급: 행 단위 검색</a></li>
+  <li><a href="#정규표현식-고급-전방탐색과-후방탐색">정규표현식 고급: 전방탐색과 후방탐색</a></li>
+  <li><a href="#정규표현식-고급-조건문">정규표현식 고급: 조건문</a></li>
+</ul>
+
+    <hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/">파이썬 정규표현식(re) 사용법 - 01. Basic</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/">파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/">파이썬 정규표현식(re) 사용법 - 03. OR, 반복</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/">파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/">파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</a><br />
+<strong><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/">파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</a></strong><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/">파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</a><br />
+<a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/">파이썬 정규표현식(re) 사용법 - 09. 기타 기능</a></p>
+
+<hr />
+
+<p>이 글에서는 정규표현식 고급 기술에 대해서 설명한다.</p>
+
+<p>본 글에서 정규표현식은 <code class="highlighter-rouge">regex</code>와 같이, 일반 문자열은 ‘regex’와 같이 표시하도록 한다.</p>
+
+<p>파이썬 버전은 3.6을 기준으로 하나, 3.x 버전이면 (아마) 동일하게 쓸 수 있다.<br />
+2.7 버전은 한글을 포함한 비 알파벳 문자 처리가 다르다.</p>
+
+<hr />
+
+<h2 id="정규표현식-고급-치환-함수-사용">정규표현식 고급: 치환 함수 사용</h2>
+
+<p><img src="\public\img\정규표현식(re)\2018-08-05-regex-usage-05-intermediate\01_sub.PNG" alt="01" /></p>
+
+<p>여러분은 <strong>re.sub</strong>을 쓸 때 특정 문자열 혹은 정규식 내의 일부분은 그대로 갖다 쓰는 법을 배웠다.</p>
+
+<p>그런데 일치부에 나타나지도 않고, literal text에도 나타나지 않는 문자열로 치환하고 싶은 경우가 있을 수 있다.<br />
+예를 들면 문자열 안에서 소수로 표현된 숫자를 찾은 다음 퍼센티지(%)로 변환하는 것을 정규식으로 쓴다고 하자.</p>
+
+<p><strong>re.sub</strong> 메서드는 인자 <strong>repl</strong>을 받을 때 정규식 일치부나 literal text 말고도 함수를 받을 수도 있다.<br />
+이 함수는 인자로 matchObj를 받으며, 문자열을 최종적으로 반환해야 한다.</p>
+
+<p>예시를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">convertToPercentage</span><span class="p">(</span><span class="n">matchObj</span><span class="p">):</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">number</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s">'%'</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">r'\b0\.\d+\b'</span><span class="p">,</span>
+             <span class="n">repl</span><span class="o">=</span><span class="n">convertToPercentage</span><span class="p">,</span>
+             <span class="n">string</span><span class="o">=</span><span class="s">'Red 0.250, Green 0.001, Blue 0.749, Black 1.5'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Red 25.0%, Green 0.1%, Blue 74.9%, Black 1.5
+</code></pre></div></div>
+
+<p>아주 어려운 내용이라서 advanced인 것은 아니고, 활용도가 높기 때문에 고급 기능으로 분류하였다.</p>
+
+<hr />
+
+<h2 id="정규표현식-중급-행-단위-검색">정규표현식 중급: 행 단위 검색</h2>
+
+<p>행 단위로 자르는 것은 사실 어렵지 않다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">string</span> <span class="o">=</span> <span class="s">'''java - Click on button until alert is present in Selenium	2017년 5월 23일
+Click OK on alert Selenium Webdriver	2016년 6월 5일
+python - Click the javascript popup through webdriver	2012년 5월 29일
+selenium - Read Message From Alert and click on OK	2012년 5월 17일
+stackoverflow.com 검색결과 더보기'''</span>
+
+<span class="n">lines</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">?</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<span class="n">reObj</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'(\d+)년\s+(\d+)월\s+(\d+)일'</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+    <span class="n">matchObj</span> <span class="o">=</span> <span class="n">reObj</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">matchObj</span><span class="p">:</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s">'.'</span> <span class="o">+</span> <span class="n">matchObj</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Not exists'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2017.5.23
+2016.6.5
+2012.5.29
+2012.5.17
+Not exists
+</code></pre></div></div>
+
+<p>그러나 한 가지 주의할 점은 운영체제(OS: Windows, Mac, Linux)별로 라인피드(개행문자)가 다르다는 것이다. Windows는 ‘\r\n’를 행 구분자로 가지며, 각각 캐리지 리턴과 라인피드이다. 유닉스 계열인 Mac과 Linux는 ‘\n’을 가진다.<br />
+이 구분이 절대적인 것은 아니지만, 운영체제의 개행문자가 뭔지 확신이 서지 않는다면 <code class="highlighter-rouge">\r?\n</code>으로 쓰는 것이 안전하다.</p>
+
+<hr />
+
+<h2 id="정규표현식-고급-전방탐색과-후방탐색">정규표현식 고급: 전방탐색과 후방탐색</h2>
+
+<p>먼저 전방탐색이란 정규표현식이 진행하는 (원래) 방향으로, 문자열 처음에서 끌으로 가는 방향으로 탐색하는 것이다.<br />
+물론 후방탐색은 그 반대이다.</p>
+
+<p>전방/후방탐색, 즉 양방탐색은 그 자체로 문자열에 일치된다기보다는, 문자열이 일치되기 위한 조건을 설정하는 것이다.<br />
+이미 여러분은 실제 문자열에 일치되지 않으면서 조건 설정을 하는 정규표현식을 몇 개 봐 왔다. <code class="highlighter-rouge">\b</code>, <code class="highlighter-rouge">\A</code>, <code class="highlighter-rouge">^</code> 등이 그 예이다.</p>
+
+<p>어쨌든 양방탐색의 종류는 네 가지이다. 각각 긍정/부정 전방/후방 탐색이다.</p>
+<ol>
+  <li>긍정 전방탐색은 <code class="highlighter-rouge">(?=&lt;regex&gt;)</code></li>
+  <li>긍정 후방탐색은 <code class="highlighter-rouge">(?&lt;=&lt;regex&gt;)</code></li>
+  <li>부정 전방탐색은 <code class="highlighter-rouge">(?!&lt;regex&gt;)</code></li>
+  <li>부정 후방탐색은 <code class="highlighter-rouge">(?&lt;!&lt;regex&gt;)</code></li>
+</ol>
+
+<p>으로 쓴다.</p>
+
+<p><code class="highlighter-rouge">&lt;p&gt;</code> 태그 안의 모든 텍스트를 검사한다고 하자. 그러나 여러분은 <code class="highlighter-rouge">&lt;p&gt;</code> 태그까지 문자열로 뽑아내고 싶지는 않을 것이므로, 이는 정규식의 일치부에 넣지 않도록 한다. 이때 후방탐색과 전방탐색을 문자 덩어리 앞뒤에 쓰면, <code class="highlighter-rouge">&lt;p&gt;</code> 태그 안이라는 조건을 설정하면서 동시에 <code class="highlighter-rouge">&lt;p&gt;</code> 태그는 일치부에서 제외시킬 수 있다.</p>
+
+<p>예시를 보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=&lt;p&gt;)\w+(?=&lt;/p&gt;)'</span><span class="p">,</span> 
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">())</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
+</code></pre></div></div>
+<p><code class="highlighter-rouge">&lt;p&gt;</code> 태그는 제외된 것을 볼 수 있다.<br />
+위의 예시를 해석하면, 단어 문자에 해당하는 연속된 글자를 찾는데(<code class="highlighter-rouge">\w+</code>), 그 앞에는 <code class="highlighter-rouge">&lt;p&gt;</code> 문자열이 반드시 있어야 하고, 문자열 바로 뒤에는 역시 <code class="highlighter-rouge">&lt;/p&gt;</code> 태그가 있어야 한다는 뜻이다.</p>
+
+<p>실제로 문자열이 일치되는 것은 아님을 보여주기 위해, 쓸데없이 복잡하게 만든 예시를 하나 만들어 보았다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(?&lt;=&lt;p&gt;)(\w+)(?=&lt;/p&gt;)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
+</code></pre></div></div>
+
+<p>이러한 양방탐색 조건을 지정하는 것도, 명시적인 캡처로 인식되지 않는다.</p>
+
+<p>부정 양방탐색도 사용법은 같다. 하지만 긍정 양방탐색은 <code class="highlighter-rouge">&lt;regex&gt;</code>에 해당하는 문자열이 있어야만 일치에 성공하는 데 반해, 부정 양방탐색은 <code class="highlighter-rouge">&lt;regex&gt;</code>와 일치에 실패해야만 그 다음 비교를 이어나간다.</p>
+
+<p>보통 사람들은 비밀번호를 설정할 때 영문자 몇 개, 숫자 몇 개(보통 생일과 관련이 있다), 그리고 특수문자를 넣으라는 홈페이지의 요구대로 느낌표 하나를 끝에 붙인다.<br />
+그런데 여기서는 특수문자조차 없는 비밀번호를 찾으려고 한다. 즉 마지막에 ‘!’가 없는 비밀번호를 모두 찾는다고 하자.</p>
+
+<p>이를 찾는 정규식은 다음과 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r'[a-z]+\d+(?!!)\b'</span><span class="p">,</span> <span class="s">'tube1109! gorio303 ryan416'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['gorio303', 'ryan416']
+</code></pre></div></div>
+
+<p>느낌표가 없는 비밀번호는 두 개이다. 그리고 이를 잘 찾아 주었다.</p>
+
+<p>물론 이렇게 간단한 데 양방탐색을 지정하여 쓰면 오히려 더 귀찮다. 하지만 이 기능을 쓸 데가 언젠가는 있을 것이다.</p>
+
+<p>참고로, 파이썬의 후방탐색은 좀 비효율적으로 구현되어 있다고 알려져 있다. 따라서 후방탐색을 써야만 하는 경우에는 다음과 같이 대체하는 방법도 고려할 수 있다.</p>
+
+<p>조금 전 <code class="highlighter-rouge">&lt;p&gt;</code> 태그 예시를 대체한 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">'&lt;p&gt;(\w+)&lt;/p&gt;'</span><span class="p">,</span>
+                <span class="s">'Kakao &lt;p&gt;ryan&lt;/p&gt; keep a straight face.'</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+<p>결과</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ryan
+</code></pre></div></div>
+
+<p>이 방법이 더 깔끔할 수 있다.</p>
+
+<hr />
+
+<h2 id="정규표현식-고급-조건문">정규표현식 고급: 조건문</h2>
+
+<blockquote>
+  <p>이 부분은 한빛미디어의 ‘한 권으로 끝내는 정규표현식’ 책을 참고하였다.</p>
+</blockquote>
+
+<p>여러분은 프로그래밍 언어에서 삼항 연산자로 조건문을 쓰는 것을 본 적이 있을 것이다.</p>
+
+<p>C++의 예시는 다음과 같다.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">3</span> <span class="o">:</span> <span class="mi">4</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>파이썬은 다음과 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<p>정규표현식에서의 조건문은 다음과 같다. 조건문은, 캡처 그룹을 사용해 앞에서 문자열이 일치되었는지 아닌지에 따라 다음 부분에서는 다른 일치 조건을 제시해야 할 때 쓰인다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(?(숫자)맞으면|아니면)
+</code></pre></div></div>
+
+<p>맞으면 또는 아니면에는 어떤 정규식이든 사용할 수 있다. 다만 그 안에서도 다자택일(<code class="highlighter-rouge">|</code>, OR)을 사용하려면 그 전체를 <code class="highlighter-rouge">( )</code>로 묶어주어야 한다.</p>
+
+<p>참고로 (숫자)는 여러분이 알고 있는 그 캡처랑 비슷한 것이다. 재참조부를 쓸 때 <code class="highlighter-rouge">\1</code>과 같이 썼는데, 조건문에서는 단지 <code class="highlighter-rouge">(1)</code>로 바뀌었을 뿐이다.</p>
+
+<p>예시로, <code class="highlighter-rouge">(a)?b(?(1)c|d)</code>를 살펴보자. 이는 <code class="highlighter-rouge">abc|bd</code>와 같다.</p>
+
+<ol>
+  <li>먼저 <code class="highlighter-rouge">a</code>를 검사한다. 만약 찾는 문자열에 ‘a’가 있으면 첫 번째 명시적 캡처에는 ‘a’가 들어간다. 만약 ‘a’가 없으면, 빈 문자열이 (1)에 저장된다.</li>
+  <li>그 다음은 <code class="highlighter-rouge">b</code>이다. 만약 ‘b’가 없으면 일치에 실패하고 다음 위치로 넘어가게 된다. ‘b’가 있다고 가정하자.</li>
+  <li>그리고 이제 조건문이다. 만약 앞에서 ‘a’가 일치되었으면, 좀 전 일치된 ‘b’ 바로 다음에 ‘c’가 있는지를 검사한다. 만약 ‘a’가 없었으면, ‘b’ 다음에 ‘d’가 있는지를 찾게 된다.</li>
+</ol>
+
+<p>다른 굉장히 복잡한 예시를 하나 들도록 하겠다(출처는 위에서 밝힌 책이다).</p>
+<ol>
+  <li>콤마로 구분되고</li>
+  <li>one, two, three와 일치되되</li>
+  <li>각 단어는 최소 한번씩은 등장해야 하며</li>
+  <li>각 단어가 몇 개가 있든지 일치되어야 한다.</li>
+</ol>
+
+<p>정답은</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">r'\b(?:(?:(one)|(two)|(three))(?:,|\b)){3,}(?(1)|(?!))(?(2)|(?!))(?(3)|(?!))'</span>
+</code></pre></div></div>
+<p>이다.</p>
+
+<p>하나씩 살펴보면,</p>
+<ol>
+  <li><code class="highlighter-rouge">\b</code>: 단어 경계는 이제 알 것이다.</li>
+  <li><code class="highlighter-rouge">(?:(one)|(two)|(three))</code>: one이나 two이거나 three를 캡처한다. 각각 따로 캡처되도록 바깥쪽 캡처 그룹은 비 캡처 그룹으로 지정하였다.</li>
+  <li><code class="highlighter-rouge">(?:,|\b)</code>: 문제의 조건에서 각각의 단어는 콤마(‘,’)로 구분되고 마지막 단어 뒤에는 콤마가 없을 것이므로, <code class="highlighter-rouge">,</code> 또는 <code class="highlighter-rouge">\b</code> 다자택일로 묶어 놓았다. 콤마를 캡처하고 싶지는 않으므로 역시 비 캡처 그룹이다.</li>
+  <li><code class="highlighter-rouge">(?:2번 3번){3,}</code> 너무 길어서 2번과 3번을 따로 뺐다. 위에서 설명한 2번과 3번 전체를 감싸는 비 캡처 그룹이다. 세 단어가 각각 한 번씩은 나와야 하기 때문에, 반복 횟수는 최소 3이다.</li>
+  <li><code class="highlighter-rouge">(?(1)|(?!))</code>: 이제부터 조건문이다. 이 조건문은 캡처 그룹 1번(<code class="highlighter-rouge">(1)</code>, ‘one’)이 일치되었으면 그냥 일치되는 부분이다(‘맞으면’ 부분이 빈 문자열이다). ‘아니면’ 부분은 빈 부정 전방탐색 <code class="highlighter-rouge">(?!)</code>인데, 빈 정규식은 항상 일치되므로(즉, <code class="highlighter-rouge">(1)</code>에) 부정 전방탐색은 항상 실패한다. 따라서 이 조건문 <code class="highlighter-rouge">(?(1)|(?!))</code>는 <code class="highlighter-rouge">(1)</code>에 ‘one’이 일치되거나, 아니면 그냥 일치에 실패한다.</li>
+  <li>나머지 두 개의 조건문은 각각 ‘two’, ‘three’에 대응하며, 5번 설명과 같다. 이 세 가지 조건문을 조합하면, <code class="highlighter-rouge">(1)</code>, <code class="highlighter-rouge">(2)</code>, <code class="highlighter-rouge">(3)</code> 중 하나라도 일치에 실패한 단어가 있다면 이 전체 정규식은 일치에 실패한다. 따라서 세 단어가 한 번이라도 나와야 한다는 조건을 만족시킨다.</li>
+</ol>
+
+<p>조건문 안에 양방탐색을 사용할 수도 있다. 이는 보통의 정규식과 거의 비슷하게 작동한다. 정규식 대신 양방탐색 조건이 일치하면 ‘맞으면’ 부분이, 일치에 실패하면 ‘아니면’ 부분이 바로 다음 문자열에 일치되는지를 시도한다.<br />
+부정 양방탐색을 쓸 수도 있으나, ‘맞으면’과 ‘아니면’ 부분이 바뀌는 효과를 가져오므로 지양하자.</p>
+
+<hr />
+
+<p><a href="https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/">다음 글</a>부터는 예제를 다루도록 하겠다. 7번째 글은 숫자를 처리하는 예제에 관한 글이다.</p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/regex-usage-06-advanced/';
+    this.page.identifier = 'http://localhost:4000/regex-usage-06-advanced/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

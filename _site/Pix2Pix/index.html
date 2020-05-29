@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)</h1>
+  <span class="post-date">07 Apr 2019</span>
+   |
+  
+  <a href="/blog/tags/#gan" class="post-tag">GAN</a>
+  
+  <a href="/blog/tags/#machine-learning" class="post-tag">Machine Learning</a>
+  
+  <a href="/blog/tags/#cnn" class="post-tag">CNN</a>
+  
+  <a href="/blog/tags/#generative-model" class="post-tag">Generative Model</a>
+  
+  <a href="/blog/tags/#paper-review" class="post-tag">Paper_Review</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#pix2piximage-to-image-translation-with-conditional-adversarial-networks">Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)</a>
+    <ul>
+      <li><a href="#초록abstract">초록(Abstract)</a></li>
+      <li><a href="#서론introduction">서론(Introduction)</a></li>
+      <li><a href="#관련-연구related-works">관련 연구(Related Works)</a></li>
+      <li><a href="#방법method">방법(Method)</a>
+        <ul>
+          <li><a href="#목적함수objective">목적함수(Objective)</a></li>
+          <li><a href="#네트워크-구조network-architectures">네트워크 구조(Network architectures)</a>
+            <ul>
+              <li><a href="#generator-with-skips">Generator with skips</a></li>
+              <li><a href="#markovian-discriminatorpatchgan">Markovian discriminator(PatchGAN)</a></li>
+            </ul>
+          </li>
+          <li><a href="#최적화-및-추론optimization-and-inference">최적화 및 추론(Optimization and inference)</a></li>
+        </ul>
+      </li>
+      <li><a href="#실험experiments">실험(Experiments)</a></li>
+      <li><a href="#결론conclusion">결론(Conclusion)</a>
+        <ul>
+          <li><a href="#acknowledgments">Acknowledgments</a></li>
+        </ul>
+      </li>
+      <li><a href="#참고문헌references">참고문헌(References)</a></li>
+      <li><a href="#부록">부록</a>
+        <ul>
+          <li><a href="#generator-architectures">Generator architectures</a></li>
+          <li><a href="#discriminator-architectures">Discriminator architectures</a></li>
+          <li><a href="#학습-상세">학습 상세</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+    <hr />
+
+<p>이 글에서는 2016년 11월 <em>Phillip Isola</em> 등이 발표한 Image-to-Image Translation with Conditional Adversarial Networks(Pix2Pix)를 살펴보도록 한다.</p>
+
+<p>Pix2Pix는 Berkeley AI Research(BAIR) Lab 소속 Phillip Isola 등이 2016 최초 발표(2018년까지 업데이트됨)한 논문이다.</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/01.png" width="100%" /></center>
+
+<p>Pix2Pix는 Image to Image Translation을 다루는 논문이다. 이러한 변환은 Colorization(black &amp; white $\rightarrow$ color image) 등을 포함하는데, Pix2Pix에서는 이미지 변환 문제를 colorization처럼 한 분야에만 국한되지 않고 좀 더 일반화한 문제를 풀고자 했다. 그리고 그 수단으로써 Conditional adversarial nets를 사용했다.</p>
+
+<p>중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.</p>
+
+<hr />
+
+<h1 id="pix2piximage-to-image-translation-with-conditional-adversarial-networks">Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)</h1>
+
+<p>논문 링크: <strong><a href="https://arxiv.org/abs/1611.07004">Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)</a></strong></p>
+
+<h2 id="초록abstract">초록(Abstract)</h2>
+
+<p>우리는 conditional adversarial networks를 일반화된 이미지 변환 문제에 테스트하였다. 이 네트워크는 단지 input-output mapping만 배우는 것이 아니라 이를 학습하기 위한 loss function까지 배운다. 따라서 전통적으로 매우 다른 loss function을 쓰던 문제에들도 이 접근법을 적용할 수 있다.<br />
+우리는 이 접근이 label과 동기화, 경계선만 있는 이미지를 복원, 흑백이미지에 색깔 입히기 등등의 문제에 효과적임을 보였다.</p>
+
+<hr />
+
+<h2 id="서론introduction">서론(Introduction)</h2>
+
+<p>이미지를 이미지로 변환할 뿐인 수많은 문제들은 그 세팅이 똑같음에도 각각 따로 연구되어 왔다(위에서 말한 이미지 변환 문제들). 우리는 이러한 변환 문제를 위한 일반적인 framework를 개발하는 것이 목표이다.</p>
+
+<p>이쪽 방향으로는 이미 CNN이라는 좋은 기계가 있다. CNN은 결과의 품질을 알려주는 loss function을 최소화한다. 그러나 학습 과정 자체는 자동화되어 있지만 결과를 잘 나오게 하기 위해서는 여전히 수동으로 조절해야 할 것이 많다. 즉, 우리는 <em>무엇을 최소화해야하는지</em> CNN에게 말해주어야 한다.<br />
+만약 우리가 단순히 결과와 정답 사이의 유클리드 거리를 최소화하라고만 하면 뿌연(blurry) 이미지를 생성하게 된다. 이는 유클리드 거리는 그럴듯한 결과를 평균했을 때 최소화되기 때문이고, 결과적으로 이미지가 흐려진다. 실제 같은(realistic) 이미지를 얻기 위해서는 더 전문 지식이 필요하다.</p>
+
+<p>만약 우리가 원하는 것을 고수준으로(high-level goal) 말할 수만 있다면, 네트워크는 스스로 그러한 목표에 맞게 loss를 줄여나갈 것이다. 운 좋게도, 최근에 정확히 이것을 해주는 GAN이 발표되었다. GAN은 실제와 가짜를 구분하지 못하도록 학습을 진행하며, 이는 흐린 이미지를 생성하지 않게 할 수 있다(뿌연 이미지는 실제 사진처럼 보일 리 없으므로).</p>
+
+<p>이 논문에서, 우리는 CGAN이라는 조건부 생성모델을 사용한다. 우리는 input image라는 조건을 줄 것이고 그에 맞는 output image를 생성할 것이기 때문에 이는 이미지 변환 문제에 잘 맞는다.</p>
+
+<p>이 논문이 기여하는 바는</p>
+
+<ul>
+  <li>conditional GAN이 넓은 범위의 문제에서 충분히 합리적인 결과를 가져다준다는 것을 밝혔고</li>
+  <li>좋은 결과를 얻기에 충분한 간단한 framework를 제안하고 여러 중요한 architecture의 효과를 분석하였다.</li>
+</ul>
+
+<hr />
+
+<h2 id="관련-연구related-works">관련 연구(Related Works)</h2>
+
+<ul>
+  <li><strong>Structures losses for image modeling:</strong> 이미지 변환 문제는 per-pixel 분류 또는 회귀 문제로 다뤄졌다. 이러한 공식화는 output space는 “unstructured”이며 각 결과 픽셀은 다른 픽셀에 독립적인 것처럼 다룬다. CGAN는 “structured loss”를 학습하며 많은 논문들이 이러한 loss를 다룬다. conditional random fields, SSIM metric, nonparametric losses 등등.</li>
+  <li><strong>Conditional GANs:</strong> 사실 이 논문에서 GAN을 처음 사용한 것은 아니다. 그러나 조건부 GAN을 이미지 변환 문제에 사용한 적은 없었다. CGAN에 대한 설명은 <a href="https://greeksharifa.github.io/generative%20model/2019/03/19/CGAN/">여기</a>를 참조하자.</li>
+</ul>
+
+<hr />
+
+<h2 id="방법method">방법(Method)</h2>
+
+<p>GAN은 random noise vector $z$로부터 output image $y$를 생성하는 $G: z \rightarrow y$를 학습하는 생성모델이다. 이에 비해 CGAN은 $z$와 observed image $x$로부터 $y$로의 mapping인 $G: {x, z} \rightarrow y$를 학습한다.</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/02.png" width="70%" /></center>
+
+<script type="math/tex; mode=display">\\</script>
+
+<h3 id="목적함수objective">목적함수(Objective)</h3>
+
+<p>CGAN의 목적함수는 다음과 같다.</p>
+
+<script type="math/tex; mode=display">\mathcal{L}_{\text{cGAN}}(G, D) = \mathbb{E}_{x , \ y}[log \ D(x,y)] + \mathbb{E}_{x , \ z}[log \ (1-D(G(x, z)))]</script>
+
+<p>D를 조건부로 학습시키는 것을 중요하게 여겨, D가 $x$를 관측하지 못하도록 unconditional variant를 비교하도록 했다:</p>
+
+<script type="math/tex; mode=display">\mathcal{L}_{\text{GAN}}(G, D) = \mathbb{E}_{ y}[log \ D(y)] + \mathbb{E}_{x , \ z}[log \ (1-D(G(x, z)))]</script>
+
+<p>D의 할일은 그대로이지만, G는 단지 D를 속이는 것뿐만 아니라 L2 distance에서의 ground truth에도 가깝도록 만들어야 한다.<br />
+사실 L2보다는 L1을 사용하는 것이 덜 흐린 이미지를 생성하는 데 도움이 되었다:</p>
+
+<script type="math/tex; mode=display">\mathcal{L}_{L1}(G) = \mathbb{E}_{x, \ y, \ z }[ \Vert y - G(x, z) \Vert_1 ]</script>
+
+<p>그래서 최종 목적함수는</p>
+
+<script type="math/tex; mode=display">G^\ast = arg \ min_G \ max_D \ \mathcal{L}_{\text{cGAN}}(G, D) + \lambda \mathcal{L}_{L1}(G)</script>
+
+<p>이다.</p>
+
+<p>$z$가 없이도 네트워크는 $x \rightarrow y$ mapping을 학습할 수 있지만, 결정론적인 결과를 생성할 수 있고, 따라서 delta function 이외의 어떤 분포와도 맞지 않을 수 있다. 과거의 conditional GAN은 이를 인정하여 $x$에 더해 Gaussian noise $z$를 입력으로 주었다.<br />
+초기 실험에서 우리는 noise를 단순히 무시하도록 했지만, 최종 모델에서는 dropout 시에만 noise를 제공하여 학습과 테스트 시 모두에 G의 여러 레이어에 적용되도록 만들었다. dropout noise에도 불구하고 우리는 매우 조금의 stochasiticity만을 관측하였다. 아주 stochastic한 결과를 생성하는 conditional GAN을 설계하는 것은 아주 중요한 문제이다.</p>
+
+<h3 id="네트워크-구조network-architectures">네트워크 구조(Network architectures)</h3>
+
+<p>우리는 DCGAN을 G와 D의 기본 모델로 하였고 둘 다 convolution-BatchNorm-ReLU 구조를 따른다.</p>
+
+<h4 id="generator-with-skips">Generator with skips</h4>
+
+<p>이미지 변환(image-to-image translation) 문제에서 어려운 점은 고해상도 input grid를 고해상도 output grid로 mapping하는 것이다. 심지어 표면의 외관은 다른데 각각 같은 근본적인 구조를 가진다는 것이다.<br />
+많은 이전 연구들은 encoder-decoder 네트워크를 사용한다. 이러한 네트워크에서는 bottleneck 레이어를 통과하기 때문에 정보의 손실이 필연적으로 발생할 수밖에 없다. 그래서, skip-connection을 추가한 <strong>U-Net</strong>이라는 구조를 사용했다.<br />
+정확히는, 전체 레이어 개수를 $n$이라 할 때 모든 $i$번째 레이어와 $n-i$번째 레이어를 연결했다. 각 연결은 단순히 concatenate한 것이다.</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/03.png" width="80%" /></center>
+
+<h4 id="markovian-discriminatorpatchgan">Markovian discriminator(PatchGAN)</h4>
+
+<p>high-frequency 모델링을 위해, 집중할 부분(attention)을 local image patch 단위로만 제한하는 것으로 충분하다. 그래서, 우리는 D를 PatchGAN(일반 GAN인데 단지 Patch 단위로만 보는 것) 구조로 만들었다.<br />
+그래서 우리의 D는 $N \times N$개의 각 Patch별로 이 부분이 진짜인지 가짜인지를 판별한다.</p>
+
+<p>실험 단계에서 우리는 $N$이 작아도 전체 이미지를 한번에 보는 것보다는 더 좋은 결과를 얻을 수 있음을 보였다. 이는 더 작은 PatchGAN은 더 적은 parameter를 가지고, 더 빠르며, 더 큰 이미지에 적용하는 데에서도 이점이 있음을 보여준다.</p>
+
+<p>D가 이미지를 Markov random field처럼 보는 것이 효과적인 모델링 방법이므로, patch의 지름보다 더 먼 pixel들은 독립적이라고 보았다. 이러한 접근은 이미 연구된 바 있고, texture/style 모델에서 꽤 흔하며 적절한 가정이다. 따라서 PatchGAN은 texture/style loss면에서 충분히 이해가능한 모델이다.</p>
+
+<h3 id="최적화-및-추론optimization-and-inference">최적화 및 추론(Optimization and inference)</h3>
+
+<p>일반적인 GAN 접근법을 따랐다. original GAN에서는 $log \ (1-D(x, G(x,z)))$를 최소화하는 대신 $log \ D(x, G(x,z))$를 최대화하는 것이 낫다고 했다.<br />
+그러나 우리는 D를 최적화하는 목적함수를 2로 나누어 D가 G보다 상대적으로 더 빠르게 학습되지 않도록 하였다.<br />
+또한 minibatch SGD와 Adam을 사용하였다($lr=0.0002, \beta_1 = 0.5, \beta_2 = 0.999$).  또한 batch size는 실험에 따라 1~10으로 조정하였다.</p>
+
+<hr />
+
+<h2 id="실험experiments">실험(Experiments)</h2>
+
+<p>conditional GAN의 보편성을 테스트하기 위해, 다양하게 진행하였다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Problem</th>
+      <th>Dataset</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Semantic labels $\leftrightarrow$ photo</td>
+      <td>Cityspaces dataset</td>
+    </tr>
+    <tr>
+      <td>Architectural labels $\leftrightarrow$ photo</td>
+      <td>CMP Facades</td>
+    </tr>
+    <tr>
+      <td>Map $\leftrightarrow$ aerial photo</td>
+      <td>Google Maps</td>
+    </tr>
+    <tr>
+      <td>BW $\rightarrow$ color photos</td>
+      <td>ImageNet</td>
+    </tr>
+    <tr>
+      <td>Edges $\rightarrow$ photo</td>
+      <td>Natural Image manifold</td>
+    </tr>
+    <tr>
+      <td>Sketch $\rightarrow$ photo</td>
+      <td>human sketches</td>
+    </tr>
+    <tr>
+      <td>Day $\rightarrow$ night</td>
+      <td>ACM Transactions on Graphics</td>
+    </tr>
+    <tr>
+      <td>Thermal $\rightarrow$ color photos</td>
+      <td>Benchmark dataset and baseline</td>
+    </tr>
+    <tr>
+      <td>Photo with missing pixels $\rightarrow$ inpainted photo</td>
+      <td>Paris StreetView</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>다른 네트워크보다 더 좋은 결과:</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/04.png" width="100%" /></center>
+
+<p>encoder-decoder보다 더 효과적인 U-Net:</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/05.png" width="70%" /></center>
+
+<p>Patch의 개수를 늘렸을 때의 선명도 상승:</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/06.png" width="100%" /></center>
+
+<p>구글맵 사진과 도식화한 그림 간 변환 결과:</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/07.png" width="100%" /></center>
+
+<p>Colorization과 이미지 도식화:</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/08.png" width="100%" /></center>
+
+<p>등등 많은 결과가 논문에 나타나 있다.</p>
+
+<p>사실 colorization 문제와 같은 것에서는 colorization에 특화된 네트워크가 더 좋은 결과를 내기는 한다.<br />
+그러나 이 Pix2Pix는 훨씬 더 넓은 범위의 문제를 커버할 수 있다는 점에서 의의가 있다.</p>
+
+<p>더 많은 결과에 대해서는 <a href="https://phillipi.github.io/pix2pix/">여기</a>를 참조하라.</p>
+
+<hr />
+
+<h2 id="결론conclusion">결론(Conclusion)</h2>
+
+<p>이 논문에서는 image-to-image translation 문제에 대해, 특히 고도로 구조화된 그래픽 결과에 대해 conditional adversarial networks가 괜찮은 접근법이라는 것을 보여주었다. 이 네트워크는 문제와 데이터에 대한 loss를 학습함으로써 넓은 범위의 문제에 대해 적합함을 보여주었다.</p>
+
+<h3 id="acknowledgments">Acknowledgments</h3>
+
+<p><del>매우 많다 ㅎㅎ</del></p>
+
+<hr />
+
+<h2 id="참고문헌references">참고문헌(References)</h2>
+
+<p>논문 참조!</p>
+
+<hr />
+
+<p>결론 이후에도 많은 실험 결과가 있으니 참조하시라. 매우 흥미로운 것들이 많다.</p>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/09.png" width="100%" /></center>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/10.png" width="100%" /></center>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/11.png" width="100%" /></center>
+
+<center><img src="/public/img/2019-04-07-Pix2Pix/12.png" width="100%" /></center>
+
+<hr />
+
+<h2 id="부록">부록</h2>
+
+<h3 id="generator-architectures">Generator architectures</h3>
+
+<p>코드는 <a href="https://github.com/phillipi/pix2pix">여기</a>에 있다.</p>
+
+<p>encoder는 C64-C128-C256-C512-C512-C512-C512-C512 구조이다(convolution layer).<br />
+decoder는 CD512-CD512-CD512-C512-C256-C128-C64  구조이다.</p>
+
+<p>decoder의 마지막 레이어 이후 output 채널에 맞게 mapping되고(3, colorization에서는 2), Tanh 함수가 그 뒤를 따른다.<br />
+또한 encoder의 C64에서는 BatchNorm이 없다.<br />
+encoder의 모든 ReLU는 기울기 0.2의 Leaky ReLU이며, decoder는 그냥 ReLU이다.</p>
+
+<p>U-Net decoder는 다음과 같이 생겼다. 앞서 언급했든 $i$와 $n-i$번째 레이어 사이에 skip-connection이 존재한다.  이는 decoder의 채널의 수를 변화시킨다.</p>
+
+<p>CD512-CD1024-CD1024-C1024-C1024-C512-C256-C128</p>
+
+<h3 id="discriminator-architectures">Discriminator architectures</h3>
+
+<p>$ 70 \times 70 $ discriminator의 구조는:</p>
+
+<p>C64-C128-C256-C512</p>
+
+<p>단 C64에는 BatchNorm이 적용되지 않는다.<br />
+마지막 레이어 이후 convolution을 통해 1차원으로 mapping하며 마지막에 sigmoid 함수가 적용된다.<br />
+0.2짜리 Leaky ReLU가 적용되었다.</p>
+
+<p>다른 크기의(patch) D들은 조금씩 깊이가 다르다.</p>
+
+<p>$ 1 \times 1 $ discriminator: C64-C128(convolution들은 $ 1 \times 1 $ spatial 필터를 사용)</p>
+
+<p>$ 16 \times 16 $ discriminator: C64-C128</p>
+
+<p>$ 286 \times 286 $ discriminator: C64-C128-C256-C512-C512-C512</p>
+
+<h3 id="학습-상세">학습 상세</h3>
+
+<ul>
+  <li>$ 256 \times 256 $ 이미지는 $ 286 \times 286 $ 크기로 resize되었다가 random cropping을 통해 다시 $ 256 \times 256 $가 되었다.</li>
+  <li>모든 네트워크는 scratch로부터 학습되었다.</li>
+  <li>weights는 (0, 0.02) 가우시안 분포를 따르는 랜덤 초기값을 가진다.</li>
+  <li>데이터셋마다 조금씩 다른 기타 설정은 논문을 참조하자.</li>
+</ul>
+
+<hr />
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/Pix2Pix/';
+    this.page.identifier = 'http://localhost:4000/Pix2Pix/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

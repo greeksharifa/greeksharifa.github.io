@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Text_Generation
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">Text_Generation</h1>
+  <span class="post-date">28 Jul 2018</span>
+   |
+  
+  <a href="/blog/tags/#keras" class="post-tag">Keras</a>
+  
+  <a href="/blog/tags/#lstm" class="post-tag">LSTM</a>
+  
+  <a href="/blog/tags/#text" class="post-tag">Text</a>
+  
+  <a href="/blog/tags/#generation" class="post-tag">Generation</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#text-generation-with-lstm">Text Generation with LSTM</a>
+    <ul>
+      <li><a href="#setting">Setting</a></li>
+      <li><a href="#preprocessing">Preprocessing</a></li>
+      <li><a href="#building-model">Building Model</a></li>
+      <li><a href="#sampling-function">Sampling Function</a></li>
+      <li><a href="#results">Results</a></li>
+    </ul>
+  </li>
+</ul>
+
+    <h2 id="text-generation-with-lstm">Text Generation with LSTM</h2>
+
+<blockquote>
+  <p>본 포스트는 https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py<br />
+의 코드를 전부를 이용한 것이며, 코드의 해석과 사용 방법을 설명하는 데에<br />
+주안점을 둔 것임을 밝힌다.</p>
+</blockquote>
+
+<h3 id="setting">Setting</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">keras.callbacks</span> <span class="kn">import</span> <span class="n">LambdaCallback</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Activation</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">RMSprop</span>
+<span class="kn">from</span> <span class="nn">keras.utils.data_utils</span> <span class="kn">import</span> <span class="n">get_file</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+</code></pre></div></div>
+<p>참고로 새로운 텍스트를 Feed할 때에는 Corpus의 크기가 적어도 10만 문자는 되어야 하며<br />
+100만에 달하는 것이 가장 이상적이라고 본문에 적혀있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">path</span> <span class="o">=</span> <span class="n">get_file</span><span class="p">(</span><span class="s">'nietzsche.txt'</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s">'https://s3.amazonaws.com/text-datasets/nietzsche.txt'</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">io</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'corpus length:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+<span class="n">corpus</span> <span class="n">length</span><span class="p">:</span> <span class="mi">600893</span>
+</code></pre></div></div>
+<p>영어 버전의 니체의 글을 이용할 것인데, 이 txt파일엔 약 60만개의 문자가 담겨 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 사용된 문자 수: 57개임
+</span><span class="n">chars</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'total chars:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">))</span>
+<span class="n">total</span> <span class="n">chars</span><span class="p">:</span> <span class="mi">57</span>
+
+<span class="c1"># 각각의 문자에 대해 위치 인자를 부여함: 0~56
+</span><span class="n">char_indices</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chars</span><span class="p">))</span>
+<span class="n">indices_char</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">chars</span><span class="p">))</span>
+</code></pre></div></div>
+<p>영어 알파벳 26개를 포함하여 이 글에는 총 57개의 문자가 사용되었는데,<br />
+이를 하나의 리스트로 만들어 놓은 것이 chars이다. set(text)를 통해 중복을 제거하였다.</p>
+
+<p>아래 <strong>char_indices</strong>와 <strong>indices_char</strong>은 방금 만든 chars의 element와 그 위치인자를<br />
+딕셔너리의 형태로 정리한 것이다. 이는 이후에 Word Matrix에 대해 <strong>one-hot인코딩</strong>을<br />
+할 때 편리하게 사용된다. 아래는 그 일 부를 나열한 것이다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">' '</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">'!'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">'"'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="preprocessing">Preprocessing</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">maxlen</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">next_chars</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="n">maxlen</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+    <span class="n">sentences</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">])</span>
+    <span class="n">next_chars</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'nb sequences:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">))</span>
+<span class="n">nb</span> <span class="n">sequences</span><span class="p">:</span> <span class="mi">200285</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="p">[</span><span class="s">'preface</span><span class="se">\n\n\n</span><span class="s">supposing that truth is a woma'</span><span class="p">,</span>
+<span class="s">'face</span><span class="se">\n\n\n</span><span class="s">supposing that truth is a woman--'</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">next_chars</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="p">[</span><span class="s">'n'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">,</span> <span class="s">'t'</span><span class="p">,</span> <span class="s">'h'</span><span class="p">,</span> <span class="s">'?'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>이제부터는 LSTM의 Input형식에 맞게 데이터를 정제하는 작업이다.<br />
+60만개의 문자를 단 한 번에 feed하는 것은 Sequential 데이터에 있어서는 아무 의미가<br />
+없기 때문에 여기서는 40개씩 분리를 해줄 것이다. 이를 한 문장이라고 생각하면 편하다.<br />
+(<strong>maxlen=40</strong>)<br />
+sentences와 nex_chars란 리스트를 채워나갈 것인데,<br />
+for loop를 보면, range(0, len(text)- maxlen, step)이라 되어 있다.<br />
+이를 숫자로 풀어 보면, range(0, 60만-40, 3)이다.<br />
+i가 0부터 시작하므로,<br />
+text[0:40]을 sentences에 넣어주고, text[40]을 next_chars에 넣어준다.<br />
+다음 반복 때에는 text[3: 43]을 sentences에 넣어주고, text[43]을 next_chars에 넣어준다.<br />
+이렇게 형성된 sentences의 길이는 60만을 3으로 나눈 20만이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Vectorization
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nb">bool</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">200285</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">200285</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+</code></pre></div></div>
+<p>이제 feed할 Word Matrix를 만들 때가 되었다.<br />
+np.zeros를 통해 initialize를 시켜주는데, 그 shape은 위에 보는 것과 같이<br />
+200285개의 example을 두고, x의 경우 행은 40, 열은 57이다.<br />
+40은 maxlen을, 57은 chars의 길이를 의미한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">char_indices</span><span class="p">[</span><span class="n">char</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">char_indices</span><span class="p">[</span><span class="n">next_chars</span><span class="p">[</span><span class="n">i</span><span class="p">]]]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># 예시: x[3]을 보라
+</span><span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="p">[[</span> <span class="bp">True</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">...</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span>  <span class="bp">True</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]</span>
+ <span class="p">[</span><span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span> <span class="p">...</span> <span class="bp">False</span> <span class="bp">False</span> <span class="bp">False</span><span class="p">]]</span>
+</code></pre></div></div>
+<p>위에서 만든 x, y 넘파이 배열은 현재 0, 즉 False로 채워져 있다.<br />
+sentences 리스트에 담겨 있는 각 문장에서 등장하는 ‘문자’의 위치에 1을 배정한다.<br />
+(True로 바꿔준다.)<br />
+즉 20285, 40, 57의 shape을 갖고 있는 x에서 (1, 40, 57)은 한 문장 내에서 등장하는<br />
+40개의 문자를 57개의 총 문자를 기준으로 <strong>one-hot 인코딩</strong>을 한 셈이다.<br />
+y의 경우는 문장 단위가 아니라 각 문자 단위로 인코딩을 해준다.</p>
+
+<h3 id="building-model">Building Model</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Build the model: a single LSTM
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">))))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)))</span>  <span class="c1"># 최종 아웃풋은 길이 57의 벡터
+</span><span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s">'softmax'</span><span class="p">))</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">RMSprop</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="sampling-function">Sampling Function</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="s">"""
+    :param preds: 확률 값을 담은 np.array
+    :param temperature: exp 승수의 분모
+    :return:
+    """</span>
+    <span class="c1"># helper function to sample an index from a probability array
+</span>    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">preds</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="s">'float64'</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span> <span class="o">/</span> <span class="n">temperature</span>
+    <span class="n">exp_preds</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">exp_preds</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">exp_preds</span><span class="p">)</span>
+    <span class="n">probas</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">multinomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">preds</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probas</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이 사용자 함수는 처음 보기엔 구조가 복잡해보인다.<br />
+다음 함수를 설명한 후에 그 구조를 설명하도록 하겠다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">logs</span><span class="p">):</span>
+    <span class="s">"""
+    LambdaCallback의 인자에 전달할 것임
+    각 epoch 끝에 발동하는 함수임. Generated Text를 반환한다.
+    """</span>
+    <span class="k">print</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'----- Generating text after Epoch: %d'</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span>
+
+    <span class="c1"># 60만개의 전체 text에서 랜덤하게 번호를 하나 뽑아 start_index를 설정
+</span>    <span class="n">start_index</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">-</span> <span class="n">maxlen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">diversity</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'----- diversity:'</span><span class="p">,</span> <span class="n">diversity</span><span class="p">)</span>
+
+        <span class="c1"># 빈 문자열을 만들고
+</span>        <span class="n">generated</span> <span class="o">=</span> <span class="s">''</span>
+        <span class="c1"># maxlen의 길이를 가진 text를 start_index부터 추출하여 sentence에 집어 넣는다.
+</span>        <span class="n">sentence</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span> <span class="n">start_index</span> <span class="o">+</span> <span class="n">maxlen</span><span class="p">]</span>
+        <span class="n">generated</span> <span class="o">+=</span> <span class="n">sentence</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'----- Generating with seed: "'</span> <span class="o">+</span> <span class="n">sentence</span> <span class="o">+</span> <span class="s">'"'</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">generated</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">):</span>
+            <span class="c1"># x_pred: Word Matrix
+</span>            <span class="c1"># x_pred.shape: (1, 40, 57) 가로는 행은 문자열 길이,
+</span>            <span class="c1"># 열은 57개의 기본 문자 종류
+</span>            <span class="n">x_pred</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chars</span><span class="p">)))</span>
+
+            <span class="c1"># 위와 마찬가지로 발견된 문자에 대해 one-hot 인코딩을 해준다.
+</span>            <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+                <span class="n">x_pred</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">char_indices</span><span class="p">[</span><span class="n">char</span><span class="p">]]</span> <span class="o">=</span> <span class="mf">1.</span>
+
+            <span class="c1"># x_pred를 Input으로 넣고 model이 이를 predict한 것을 preds라 한다.
+</span>            <span class="c1"># 왜 [0]으로 인덱싱 했는지는 모르겠다. 안해도 똑같은 넘파이 배열이다.
+</span>            <span class="c1"># preds.shape: (57, 1)
+</span>            <span class="c1"># 이 preds는 다음에 생성될 문자를 결정하는 확률값을 담은 배열이다.
+</span>            <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_pred</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># 이 preds를 바탕으로 sample함수를 돌려 next_index와 next_char을 얻는다.
+</span>            <span class="c1"># 이 next_index는 0 ~ len(char)-1 중 하나의 숫자를 반환함
+</span>            <span class="c1"># 이 next_char은 위 next_index에 해당하는 문자이다.
+</span>            <span class="n">next_index</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">diversity</span><span class="p">)</span>
+            <span class="n">next_char</span> <span class="o">=</span> <span class="n">indices_char</span><span class="p">[</span><span class="n">next_index</span><span class="p">]</span>
+
+            <span class="c1"># 이렇게 얻은 next_char은 generated의 다음 문자로 채택되어 추가된다.
+</span>            <span class="c1"># 1개의 문자가 늘어나는 셈
+</span>            <span class="c1"># 문장 역시 늘어나야 할 것이다.
+</span>            <span class="n">generated</span> <span class="o">+=</span> <span class="n">next_char</span>
+            <span class="c1"># sentence의 길이는 계속해서 maxlen으로 유지하고 제일 앞에 한 글자를 빼고
+</span>            <span class="c1"># 뒤에 하나를 추가한다.
+</span>            <span class="c1"># loop를 돌면서 sentence는 계속해서 뒤로 하나씩 밀리게 된다.
+</span>            <span class="c1"># (context: 기준이 변경되는 것)
+</span>            <span class="c1"># 이렇게 400개의 문자를 추가하고 나서 위로 올라가서
+</span>            <span class="c1"># 총 diversity의 갯수(4개)만큼 반환한다.
+</span>            <span class="c1"># 총 4개의 글이 반환되는 셈이다.
+</span>            <span class="n">sentence</span> <span class="o">=</span> <span class="n">sentence</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">next_char</span>
+
+            <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">next_char</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">()</span>
+</code></pre></div></div>
+<p>이 함수는 주석으로 대부분의 설명을 대체하겠다.<br />
+결과적으로 이 함수는 LambdaCallback의 on_epoch_end의 인자로 그대로 전달된다.<br />
+일단 위의 sample함수에 대해 설명을 하자면,<br />
+리턴하는 값이 <strong>np.argmax(probas)</strong>인데, 여기서 마지막 preds는</p>
+
+<p><script type="math/tex">preds = \frac{( e^{preds} )}{\sum e^{preds}}</script>
+<script type="math/tex">= \frac{e^{\frac{log(preds)}{temperature}}}{\sum e^{\frac{log(preds)}{temperature}}}</script></p>
+
+<p>softmax함수에서 그 확률을 구하는 과정이라고 생각하면 된다.<br />
+그리고 이 preds는 np.random.multinomial(1, preds, 1)에 인자로 삽입되는데,<br />
+이 preds가 이후 on_epoch_end함수에서 (57, 1)의 shape으로 만들어져 형성되기 때문에,<br />
+np.random.multinomial 메서드는 57개의 확률 값을 기준으로 다항 분포 추출을 하게 된다.<br />
+return 값으로는 그 중 가장 큰 index를 반환하게 된다.<br />
+즉, 다음에 올 문자로 가장 높은 문자를 확률 값에 근거하여 생성하는 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print_callback</span> <span class="o">=</span> <span class="n">LambdaCallback</span><span class="p">(</span><span class="n">on_epoch_end</span><span class="o">=</span><span class="n">on_epoch_end</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Callback은 트레이닝 과정에서 given stages에 적용될 수 있다.<br />
+트레이닝 중 내부의 state나 statistics를 확인할 수 있는 것이다.<br />
+사용을 위해서는 Sequential이나 Model 클래스의 fit 메서드에 list of callbacks을<br />
+전달해야 한다. 그러면 그 callback 방법은 트레이닝의 각 단계에서 called될 것이다.</p>
+
+<h3 id="results">Results</h3>
+<p>모델은 다음과 같이 fit한다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">print_callback</span><span class="p">])</span>
+</code></pre></div></div>
+<p>그러면 자동으로 학습이 됨과 동시에 각 epoch마다 text를 생성할 것이다.</p>
+
+<p>다음은 모델 저장과 로드 코드이다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">niet</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">'Path/Nietzsche.h5'</span><span class="p">)</span>
+<span class="n">niet</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s">'Path/Nietzsche.h5'</span><span class="p">)</span>
+</code></pre></div></div>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/Text_Generation/';
+    this.page.identifier = 'http://localhost:4000/Text_Generation/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

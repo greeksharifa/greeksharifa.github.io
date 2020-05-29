@@ -5,8 +5,8 @@
     <description>YW &amp; YY's ML blog powered by jekyll theme</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 May 2020 22:15:46 +0900</pubDate>
-    <lastBuildDate>Fri, 29 May 2020 22:15:46 +0900</lastBuildDate>
+    <pubDate>Fri, 29 May 2020 22:23:23 +0900</pubDate>
+    <lastBuildDate>Fri, 29 May 2020 22:23:23 +0900</lastBuildDate>
     <generator>Jekyll v3.8.7</generator>
     
       <item>
@@ -1218,8 +1218,8 @@ git rebase &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k
 &lt;p&gt;git cherry-pick -x&lt;/p&gt;
 </description>
         <pubDate>Wed, 27 May 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/github/2020/05/27/github-usage-09-overall/</link>
-        <guid isPermaLink="true">http://localhost:4000/github/2020/05/27/github-usage-09-overall/</guid>
+        <link>http://localhost:4000/github-usage-09-overall/</link>
+        <guid isPermaLink="true">http://localhost:4000/github-usage-09-overall/</guid>
         
         <category>GitHub</category>
         
@@ -1347,8 +1347,8 @@ $q(x)$라는 쉬운 분포를 통해 target 분포 $p(x)$를 근사 추론하는
 4)&lt;/p&gt;
 </description>
         <pubDate>Mon, 25 May 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/generative/model/2020/05/25/VAE/</link>
-        <guid isPermaLink="true">http://localhost:4000/generative/model/2020/05/25/VAE/</guid>
+        <link>http://localhost:4000/VAE/</link>
+        <guid isPermaLink="true">http://localhost:4000/VAE/</guid>
         
         <category>Machine Learning</category>
         
@@ -1667,8 +1667,8 @@ FM보다 표현력이 뛰어난 &lt;strong&gt;AFM&lt;/strong&gt;이기에 더욱
 
 </description>
         <pubDate>Fri, 01 May 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2020/05/01/AFM/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2020/05/01/AFM/</guid>
+        <link>http://localhost:4000/AFM/</link>
+        <guid isPermaLink="true">http://localhost:4000/AFM/</guid>
         
         <category>Machine_Learning</category>
         
@@ -2132,8 +2132,8 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
 &lt;p&gt;https://github.com/ChenglongChen/tensorflow-DeepFM&lt;/p&gt;
 </description>
         <pubDate>Tue, 07 Apr 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2020/04/07/DeepFM/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2020/04/07/DeepFM/</guid>
+        <link>http://localhost:4000/DeepFM/</link>
+        <guid isPermaLink="true">http://localhost:4000/DeepFM/</guid>
         
         <category>Machine_Learning</category>
         
@@ -2382,8 +2382,8 @@ conference에서 논문이 통과될지에 대한 데이터가 있다고 하자.
 &lt;p&gt;https://wngaw.github.io/field-aware-factorization-machines-with-xlearn/&lt;/p&gt;
 </description>
         <pubDate>Sun, 05 Apr 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2020/04/05/FFM/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2020/04/05/FFM/</guid>
+        <link>http://localhost:4000/FFM/</link>
+        <guid isPermaLink="true">http://localhost:4000/FFM/</guid>
         
         <category>Machine_Learning</category>
         
@@ -2480,8 +2480,8 @@ conference에서 논문이 통과될지에 대한 데이터가 있다고 하자.
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 15 Mar 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5/2020/03/15/DDQN/</link>
-        <guid isPermaLink="true">http://localhost:4000/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5/2020/03/15/DDQN/</guid>
+        <link>http://localhost:4000/DDQN/</link>
+        <guid isPermaLink="true">http://localhost:4000/DDQN/</guid>
         
         <category>강화학습</category>
         
@@ -2748,8 +2748,8 @@ CAGE-reasoning과 CoS-E-open-ended 간 BLEU 점수는 4.1이며 perplexity는 32
 &lt;hr /&gt;
 </description>
         <pubDate>Sat, 08 Feb 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2020/02/08/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/</link>
-        <guid isPermaLink="true">http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2020/02/08/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/</guid>
+        <link>http://localhost:4000/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/</link>
+        <guid isPermaLink="true">http://localhost:4000/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/</guid>
         
         <category>Paper_Review</category>
         
@@ -3031,8 +3031,8 @@ IndexError: tuple index out of range
 
 </description>
         <pubDate>Sun, 12 Jan 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/12/error/</link>
-        <guid isPermaLink="true">http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/12/error/</guid>
+        <link>http://localhost:4000/error/</link>
+        <guid isPermaLink="true">http://localhost:4000/error/</guid>
         
         <category>References</category>
         
@@ -3144,8 +3144,8 @@ https://docs.python.org/3/library/tarfile.html&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sat, 11 Jan 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/11/zip/</link>
-        <guid isPermaLink="true">http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/11/zip/</guid>
+        <link>http://localhost:4000/zip/</link>
+        <guid isPermaLink="true">http://localhost:4000/zip/</guid>
         
         <category>References</category>
         
@@ -3323,8 +3323,8 @@ https://docs.python.org/3/library/tarfile.html&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Fri, 10 Jan 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/10/collections-heapq/</link>
-        <guid isPermaLink="true">http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/10/collections-heapq/</guid>
+        <link>http://localhost:4000/collections-heapq/</link>
+        <guid isPermaLink="true">http://localhost:4000/collections-heapq/</guid>
         
         <category>References</category>
         
@@ -3602,8 +3602,8 @@ Alice와 Star Trek 사이의 상호작용을 추정하여 영화평점(Target y)
 
 </description>
         <pubDate>Sat, 21 Dec 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2019/12/21/FM/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2019/12/21/FM/</guid>
+        <link>http://localhost:4000/FM/</link>
+        <guid isPermaLink="true">http://localhost:4000/FM/</guid>
         
         <category>Machine_Learning</category>
         
@@ -3721,8 +3721,8 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 
 </description>
         <pubDate>Fri, 20 Dec 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2019/12/20/Matrix-Factorization/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2019/12/20/Matrix-Factorization/</guid>
+        <link>http://localhost:4000/Matrix-Factorization/</link>
+        <guid isPermaLink="true">http://localhost:4000/Matrix-Factorization/</guid>
         
         <category>Machine_Learning</category>
         
@@ -3988,8 +3988,8 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
 &lt;/blockquote&gt;
 </description>
         <pubDate>Tue, 17 Dec 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2019/12/17/Recommendation-System/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2019/12/17/Recommendation-System/</guid>
+        <link>http://localhost:4000/Recommendation-System/</link>
+        <guid isPermaLink="true">http://localhost:4000/Recommendation-System/</guid>
         
         <category>Machine_Learning</category>
         
@@ -4101,8 +4101,8 @@ Just apply one of the Numba decorators to your Python function, and Numba does t
 &lt;/blockquote&gt;
 </description>
         <pubDate>Mon, 16 Dec 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/16/numba/</link>
-        <guid isPermaLink="true">http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/16/numba/</guid>
+        <link>http://localhost:4000/numba/</link>
+        <guid isPermaLink="true">http://localhost:4000/numba/</guid>
         
         <category>References</category>
         
@@ -4489,8 +4489,8 @@ https://snowdeer.github.io/python/2017/11/17/python-logging-example/&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Fri, 13 Dec 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/13/logging/</link>
-        <guid isPermaLink="true">http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/13/logging/</guid>
+        <link>http://localhost:4000/logging/</link>
+        <guid isPermaLink="true">http://localhost:4000/logging/</guid>
         
         <category>파이썬</category>
         
@@ -4654,8 +4654,8 @@ https://snowdeer.github.io/python/2017/11/17/python-logging-example/&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 09 Dec 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2019/12/09/Light-GBM/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2019/12/09/Light-GBM/</guid>
+        <link>http://localhost:4000/Light-GBM/</link>
+        <guid isPermaLink="true">http://localhost:4000/Light-GBM/</guid>
         
         <category>Machine_Learning</category>
         
@@ -5137,8 +5137,8 @@ https://snowdeer.github.io/python/2017/11/17/python-logging-example/&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 05 Dec 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2019/12/05/Seaborn-Module/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2019/12/05/Seaborn-Module/</guid>
+        <link>http://localhost:4000/Seaborn-Module/</link>
+        <guid isPermaLink="true">http://localhost:4000/Seaborn-Module/</guid>
         
         <category>Machine_Learning</category>
         
@@ -5243,8 +5243,8 @@ $\delta$: 0 ~ 1 사이에서 생성된 난수&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Tue, 01 Oct 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2019/10/01/Imbalanced-Learning/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2019/10/01/Imbalanced-Learning/</guid>
+        <link>http://localhost:4000/Imbalanced-Learning/</link>
+        <guid isPermaLink="true">http://localhost:4000/Imbalanced-Learning/</guid>
         
         <category>Machine_Learning</category>
         
@@ -5814,8 +5814,8 @@ Tree Heuristic Implementation with Striatum Module
 
 </description>
         <pubDate>Wed, 18 Sep 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/machine_learning/2019/09/18/Contextual-Bandit-and-Tree-Heuristic/</link>
-        <guid isPermaLink="true">http://localhost:4000/machine_learning/2019/09/18/Contextual-Bandit-and-Tree-Heuristic/</guid>
+        <link>http://localhost:4000/Contextual-Bandit-and-Tree-Heuristic/</link>
+        <guid isPermaLink="true">http://localhost:4000/Contextual-Bandit-and-Tree-Heuristic/</guid>
         
         <category>Machine Learning</category>
         
@@ -6141,8 +6141,8 @@ Tree Heuristic Implementation with Striatum Module
 &lt;hr /&gt;
 </description>
         <pubDate>Wed, 28 Aug 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/</link>
-        <guid isPermaLink="true">http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/</guid>
+        <link>http://localhost:4000/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/</link>
+        <guid isPermaLink="true">http://localhost:4000/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/</guid>
         
         <category>Paper_Review</category>
         
@@ -6499,8 +6499,8 @@ fine-tuning 접근법을 피하기 위해, BERT의 어떤 parameter에 대해서
 &lt;hr /&gt;
 </description>
         <pubDate>Fri, 23 Aug 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</link>
-        <guid isPermaLink="true">http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</guid>
+        <link>http://localhost:4000/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</link>
+        <guid isPermaLink="true">http://localhost:4000/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</guid>
         
         <category>Paper_Review</category>
         
@@ -6803,8 +6803,8 @@ Transformer를 통한 언어모델의 사전학습이 효과적인지에 대한 
 &lt;hr /&gt;
 </description>
         <pubDate>Wed, 21 Aug 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/</link>
-        <guid isPermaLink="true">http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/</guid>
+        <link>http://localhost:4000/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/</link>
+        <guid isPermaLink="true">http://localhost:4000/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/</guid>
         
         <category>Paper_Review</category>
         
@@ -7057,8 +7057,8 @@ Dai and Le(2015)와 Ramachandran et al.(2017)에서는 언어모델(LM)로 인�
 &lt;hr /&gt;
 </description>
         <pubDate>Tue, 20 Aug 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/</link>
-        <guid isPermaLink="true">http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/</guid>
+        <link>http://localhost:4000/ELMo-Deep-contextualized-word-representations/</link>
+        <guid isPermaLink="true">http://localhost:4000/ELMo-Deep-contextualized-word-representations/</guid>
         
         <category>Paper_Review</category>
         
@@ -7325,8 +7325,8 @@ query와 모든 key의 내적(dot product)을 계산하고, 각각 $\sqrt{d_k}$�
 
 </description>
         <pubDate>Sat, 17 Aug 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/</link>
-        <guid isPermaLink="true">http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/</guid>
+        <link>http://localhost:4000/Attention-Is-All-You-Need/</link>
+        <guid isPermaLink="true">http://localhost:4000/Attention-Is-All-You-Need/</guid>
         
         <category>Paper_Review</category>
         
@@ -7572,8 +7572,8 @@ IAM-OnDB 데이터셋은 221명의 사람이 Lancaster-Oslo-Bergen 말뭉치를 
 
 </description>
         <pubDate>Mon, 15 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/07/15/Generating-Sequences-WIth-Recurrent-Neural-Networks/</link>
-        <guid isPermaLink="true">http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/07/15/Generating-Sequences-WIth-Recurrent-Neural-Networks/</guid>
+        <link>http://localhost:4000/Generating-Sequences-WIth-Recurrent-Neural-Networks/</link>
+        <guid isPermaLink="true">http://localhost:4000/Generating-Sequences-WIth-Recurrent-Neural-Networks/</guid>
         
         <category>Paper_Review</category>
         
@@ -7816,8 +7816,8 @@ $\epsilon$은 초기품질을 결정짓는 인자로서 약간의 계산을 추�
 &lt;hr /&gt;
 </description>
         <pubDate>Thu, 11 Jul 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/paper_review/2019/07/11/2019-ICML-Papers/</link>
-        <guid isPermaLink="true">http://localhost:4000/paper_review/2019/07/11/2019-ICML-Papers/</guid>
+        <link>http://localhost:4000/2019-ICML-Papers/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-ICML-Papers/</guid>
         
         <category>ICML</category>
         
@@ -8095,8 +8095,8 @@ tensor([[-0.1399],
 &lt;hr /&gt;
 </description>
         <pubDate>Wed, 12 Jun 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/</link>
-        <guid isPermaLink="true">http://localhost:4000/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/</guid>
+        <link>http://localhost:4000/pytorch-usage-04-RNN-Model/</link>
+        <guid isPermaLink="true">http://localhost:4000/pytorch-usage-04-RNN-Model/</guid>
         
         <category>PyTorch</category>
         
@@ -8264,8 +8264,8 @@ tensor([[-0.1399],
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/&quot;&gt;다음 글&lt;/a&gt;에서는 더 살펴보도록 한다.&lt;/p&gt;
 </description>
         <pubDate>Mon, 10 Jun 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/deep%20learning%20tutorial/2019/06/10/Deep-Learning-01/</link>
-        <guid isPermaLink="true">http://localhost:4000/deep%20learning%20tutorial/2019/06/10/Deep-Learning-01/</guid>
+        <link>http://localhost:4000/Deep-Learning-01/</link>
+        <guid isPermaLink="true">http://localhost:4000/Deep-Learning-01/</guid>
         
         <category>Deep Learning</category>
         
@@ -8387,8 +8387,8 @@ tensor([[-0.1399],
 &lt;hr /&gt;
 </description>
         <pubDate>Wed, 29 May 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/computer%20vision/2019/05/29/Movie-Question-Answering/</link>
-        <guid isPermaLink="true">http://localhost:4000/computer%20vision/2019/05/29/Movie-Question-Answering/</guid>
+        <link>http://localhost:4000/Movie-Question-Answering/</link>
+        <guid isPermaLink="true">http://localhost:4000/Movie-Question-Answering/</guid>
         
         <category>Paper_Review</category>
         
@@ -8591,8 +8591,8 @@ VQA를 성공적으로 수행하기 위한 시스템은 이미지 captioning을 
 &lt;hr /&gt;
 </description>
         <pubDate>Wed, 17 Apr 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/computer%20vision/2019/04/17/Visual-Question-Answering/</link>
-        <guid isPermaLink="true">http://localhost:4000/computer%20vision/2019/04/17/Visual-Question-Answering/</guid>
+        <link>http://localhost:4000/Visual-Question-Answering/</link>
+        <guid isPermaLink="true">http://localhost:4000/Visual-Question-Answering/</guid>
         
         <category>Paper_Review</category>
         

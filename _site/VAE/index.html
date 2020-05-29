@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Variational AutoEncoder 설명
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">Variational AutoEncoder 설명</h1>
+  <span class="post-date">25 May 2020</span>
+   |
+  
+  <a href="/blog/tags/#machine-learning" class="post-tag">Machine Learning</a>
+  
+  <a href="/blog/tags/#paper-review" class="post-tag">Paper_Review</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#1-auto-encoding-variational-bayes-논문-리뷰">1. Auto-Encoding Variational Bayes 논문 리뷰</a>
+    <ul>
+      <li><a href="#11-introduction">1.1. Introduction</a></li>
+      <li><a href="#12-method">1.2. Method</a>
+        <ul>
+          <li><a href="#121-problem-scenario">1.2.1. Problem Scenario</a></li>
+        </ul>
+      </li>
+      <li><a href="#22-the-variational-bound">2.2. The Variational Bound</a></li>
+    </ul>
+  </li>
+  <li><a href="#2-이론에-대한-보충-설명">2. 이론에 대한 보충 설명</a>
+    <ul>
+      <li><a href="#21-용어-정리">2.1. 용어 정리</a></li>
+      <li><a href="#22">2.2.</a></li>
+    </ul>
+  </li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+
+    <p>본 글의 주제는  2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다.</p>
+
+<h2 id="1-auto-encoding-variational-bayes-논문-리뷰">1. Auto-Encoding Variational Bayes 논문 리뷰</h2>
+<h3 id="11-introduction">1.1. Introduction</h3>
+<p>연속형 잠재 변수와 파라미터가 다루기 힘든 사후 분포를 갖는 방향성 확률 모델에 대해 효율적인 근사 추론 및 학습을 수행할 수 있는 방법이 없을까? <strong>Variational Bayesian</strong> 접근법은 다루기 힘든 사후 분포에 대한 근사의 최적화를 내포한다.</p>
+
+<p>불행히도, 일반적인 평균 필드(mean-field) 접근법은 근사적 사후 분포에 대해 기댓값의 분석적 해결법을 요구하는데 이는 보통 굉장히 다루기 어려운 방법이다. 본 논문은 Variational Lower Bound의 <strong>Reparameterization</strong>이 Lower Bound의 미분 가능한 불편향 estimator를 만드는 방법에 대해 보여줄 것이다. 이 <strong>Stochastic Gradient Variational Bayes: SGVB estimator</strong>는 연속형 잠재변수나 파라미터를 갖고 있는 대부분의 모델에 대해 효율적인 근사 사후 추론을 가능하게 하며, 표준 Stochastic Gradient Ascent 스킬을 사용하여 최적화하기에 굉장히 편리하다.</p>
+
+<p>IID 데이터셋이고, 데이터포인트 별로 연속형 잠재변수를 갖고 있는 경우에 대해 본 논문은 <code class="highlighter-rouge">Auto-Encoding VB</code> 알고리즘을 제안한다. 이 알고리즘에서는 <strong>Simple Ancestral Sampling</strong>을 이용하여 근사 사후 추론을 하는 인식 모델을 최적화하기 위해 SGVB estimator를 사용하여 추론과 학습을 효율적으로 해낸다. 이 과정은 MCMC와 같이 데이터포인트 별로 반복적인 추론을 행하여 많은 연산량을 요구하지 않는 장점을 가진다.</p>
+
+<p>학습된 근사 사후 추론 모델은 recognition, denoising, representation, visualization의 목적으로 활용될 수 있다. 본 알고리즘이 인식(recognition) 모델에 사용될 때, 이를 <code class="highlighter-rouge">Variational Auto-Encoder</code>라고 부를 것이다.</p>
+
+<h3 id="12-method">1.2. Method</h3>
+<p>본 섹션에서는 연속형 잠재 변수를 내포하는 다양한 방향성 그래픽 모델에서 Stochastic 목적 함수인 <strong>Lower Bound Estimator</strong>를 끌어내는 과정을 설명할 것이다. 데이터포인트 별 잠재변수는 iid한 상황이라는 가정 하에 본 논문에서는 파라미터에 대해 Maximul Likelihood와 Maximum Posteriori 추론을 수행하고 잠재변수에 대해 <strong>Variational Inference</strong>를 수행할 것이다. 이러한 방법은 온라인 러닝에도 사용될 수 있지만 본 논문에서는 간단히 하기 위해 고정된 데이터셋을 사용할 것이다.</p>
+
+<h4 id="121-problem-scenario">1.2.1. Problem Scenario</h4>
+<p>N개의 Sample을 가진 $X$라는 데이터가 있다고 해보자. 본 논문은 이 데이터가 관측되지 않은 연속형 확률 변수 $z$를 내포하는 어떤 Random Process에 의해 형성되었다고 가정한다.</p>
+
+<p>이 과정은 2가지 단계로 구성된다.<br />
+1) $z^{i}$라는 값은 어떤 사전 분포 $p_{\theta ^<em>}(z)$에서 발생한다.<br />
+2) $x^{i}$라는 값은 어떤 조건부 분포 $p_{\theta ^</em>}(x|z)$에서 발생한다.</p>
+
+<p>(여기서 $z$는 원인, $x$는 결과라고 보면 이해가 쉬울 것이다.)</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>우리는 사전확률 $p_{\theta <em>}(z)$와 Likelihood $p_{\theta ^</em>}(x</td>
+      <td>z)$가 $p_{\theta}(z)$, $p_{\theta}(x</td>
+      <td>z)$의 parametric families of distributions에서 왔다고 가정하고, 이들의 확률밀도함수는 거의 모든 $\theta, z$에 대해 미분가능하다고 전제한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>불행히도, 이러한 과정의 많은 부분은 우리가 직접 확인하기 어렵다. True 파라미터인 $\theta ^*$와 잠재 변수의 값 $z^{i}$은 우리에게 알려져 있지 않다.</p>
+
+<p>본 논문은 주변 확률이나 사후 확률에 대한 단순화를 위한 일반적인 가정을 취하지 않고 분포가 다루기 힘들고 큰 데이터셋을 마주하였을 경우를 위한 효율적인 알고리즘에 대해 이야기하고자 한다.</p>
+
+<p><strong>1) Intractability</strong>(다루기 힘듦)<br />
+(1) marginal likelihood $p_{\theta}(x)$의 적분인 $\int p_{\theta}(x) p_{\theta}(x|z) dz $가 다루기 힘든 경우</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>(2) true posterior density $p_{\theta}(z</td>
+      <td>x) = p_{\theta}(x</td>
+      <td>z)p_{\theta}(z)/p_{\theta}(x)$가 다루기 힘들어 EM 알고리즘이 사용될 수 없는 경우</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(3) 어떠한 합리적인 평균-필드 VB알고리즘을 위한 적분이 다루기 힘든 경우</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>이러한 Intractability는 굉장히 흔하며, 복잡한 우도(likelihood) 함수 $p_{\theta}(x</td>
+      <td>z)$를 갖는 신경망 네트워크에서 발견할 수 있다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>2) A Large Dataset</strong><br />
+데이터가 너무 크면 배치 최적화는 연산량이 매우 많다. MC-EM과 같은 Sampling Based Solution은 데이터 포인트별로 Sampling Loop를 돌기 때문에 너무 느리다.</p>
+
+<p>위 시나리오에서 설명한 문제들에 대해 본 논문은 아래와 같은 해결책을 제시한다.</p>
+
+<p>1) 파라미터 $\theta$에 대한 효율적인 근사 ML/MAP estimation. 이 파라미터들은 숨겨진 랜덤 과정을 흉내내고 실제 데이터를 닮은 인공적인 데이터를 생성할 수 있게 해준다.<br />
+2) 파라미터 $\theta$의 선택에 따라 관측값 $x$이 주어졌을 때 잠재 변수 $z$에 대한 효율적인 근사 사후 추론<br />
+3) 변수 $x$에 대해 효율적인 근사 주변 추론. 이는 $x$에 대한 prior이 필요한 모든 추론 task를 수행할 수 있게 해준다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>위 문제를 해결하기 위해 인식 모델 $q_{\phi}(z</td>
+      <td>x)$이 필요하다. 이 모델은 다루기 힘든 True Posterior $p_{\theta}(z</td>
+      <td>x)$의 근사 버전이라고 할 수 있다. 본 논문에서는 인식 모델 파라미터인 $\phi$와 생성 모델 파라미터인 $\theta$를 동시에 학습하는 방법에 대해 이야기할 것이다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>코딩 이론의 관점에서 보면, 관측되지 않은 변수 $z$는 잠재 표현 또는 <em>code</em>라고 해석될 수 있다. 본 논문에서는 따라서 인식 모델 $q_{\phi}(z</td>
+      <td>x)$를 <strong>encoder</strong>라고 부를 것인데, 왜냐하면 데이터 포인트 $x$가 주어졌을 때 이 <strong>encoder</strong>가 데이터 포인트 $x$가 발생할 수 code $z$의 가능한 값에 대한 분포를 생산하기 때문이다. 비슷한 맥락에서 우리는 $q_{\theta}(x</td>
+      <td>z)$를 <strong>확률적 decoder</strong>라고 명명할 것인데, 왜냐하면 code $z$가 주어졌을 때 이 <strong>decoder</strong>가 상응하는 가능한 $x$의 값에 대해 분포를 생산하기 때문이다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="22-the-variational-bound">2.2. The Variational Bound</h3>
+
+<hr />
+<h2 id="2-이론에-대한-보충-설명">2. 이론에 대한 보충 설명</h2>
+<h3 id="21-용어-정리">2.1. 용어 정리</h3>
+<p><strong>1) Variational Inference</strong><br />
+$q(x)$라는 쉬운 분포를 통해 target 분포 $p(x)$를 근사 추론하는 방법론이다.</p>
+
+<script type="math/tex; mode=display">q^* = argmin_{q \in Q} KL(q||p)</script>
+
+<p><strong>2) KL Divergence</strong></p>
+
+<p><strong>3) s</strong></p>
+
+<h3 id="22">2.2.</h3>
+
+<hr />
+<h2 id="reference">Reference</h2>
+<p>1) https://ratsgo.github.io/generative%20model/2018/01/27/VAE/<br />
+2) https://www.youtube.com/watch?v=SAfJz_uzaa8<br />
+3) https://taeu.github.io/paper/deeplearning-paper-vae/
+4)</p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/DeepFM/">
+          추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현
+          <small>07 Apr 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/VAE/';
+    this.page.identifier = 'http://localhost:4000/VAE/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

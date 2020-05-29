@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현</h1>
+  <span class="post-date">01 May 2020</span>
+   |
+  
+  <a href="/blog/tags/#machine-learning" class="post-tag">Machine_Learning</a>
+  
+  <a href="/blog/tags/#recommendation-system" class="post-tag">Recommendation System</a>
+  
+  <a href="/blog/tags/#afm" class="post-tag">AFM</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#1-attentional-factorization-machines-learning-theweight-of-feature-interactions-via-attention-networks-논문-리뷰">1. Attentional Factorization Machines: Learning theWeight of Feature Interactions via Attention Networks 논문 리뷰</a>
+    <ul>
+      <li><a href="#10-absbract">1.0. Absbract</a></li>
+      <li><a href="#11-introduction">1.1. Introduction</a></li>
+      <li><a href="#12-factorization-machines">1.2. Factorization Machines</a></li>
+      <li><a href="#13-attentioanl-factorization-machines">1.3. Attentioanl Factorization Machines</a>
+        <ul>
+          <li><a href="#131-model">1.3.1. Model</a></li>
+          <li><a href="#132-learning">1.3.2. Learning</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#2-tensorflow를-활용한-구현">2. Tensorflow를 활용한 구현</a>
+    <ul>
+      <li><a href="#21-데이터-준비">2.1. 데이터 준비</a></li>
+      <li><a href="#22-layer-정의">2.2. Layer 정의</a></li>
+      <li><a href="#23-model-build">2.3. Model Build</a></li>
+      <li><a href="#24-코드-전문">2.4. 코드 전문</a></li>
+    </ul>
+  </li>
+</ul>
+
+    <p>본 글의 전반부에서는 먼저 <strong>Attentional Factorization Machines: Learning theWeight of Feature Interactions via Attention Networks</strong> 논문을 리뷰하면서 본 모델에 대해 설명할 것이다. 후반부에서는 Tensorflow를 이용하여 직접 코딩을 하고 학습하는 과정을 소개할 것이다. 논문의 전문은 <a href="https://www.ijcai.org/Proceedings/2017/0435.pdf">이곳</a>에서 확인할 수 있다.</p>
+
+<hr />
+<h2 id="1-attentional-factorization-machines-learning-theweight-of-feature-interactions-via-attention-networks-논문-리뷰">1. Attentional Factorization Machines: Learning theWeight of Feature Interactions via Attention Networks 논문 리뷰</h2>
+
+<h3 id="10-absbract">1.0. Absbract</h3>
+<p>FM은 2차원 피쳐 상호작용을 잘 통합하여 선형 회귀를 개선한 지도학습 알고리즘이다. 이 알고리즘은 효과적이긴 하지만, 모든 피쳐에 대해 같은 weight로 학습을 진행시킨다는 점에서 비효율적이다. 왜냐하면 종종 일부 피쳐는 학습에 있어 필수적이지 않은 경우가 있기 때문이다. 오히려 이러한 피쳐들의 존재는 모델의 성능을 떨어트릴 수 있다. 따라서 우리는 여러 피쳐 상호작용 속에서 중요한 피쳐들을 구분해내는 새로운 모델, <strong>Attentional Factorization Machine (AFM)</strong>을 소개한다.</p>
+
+<h3 id="11-introduction">1.1. Introduction</h3>
+<center> (전략) </center>
+
+<p>FM은 피쳐 상호작용의 중요성을 구분하는 능력이 부족하기 때문에(피쳐의 중요성을 파악하는 능력) suboptimal 문제에 빠질 수 있다. <strong>AFM</strong>은 이러한 문제를 해결하기 위해 도입한 모델이다.</p>
+
+<h3 id="12-factorization-machines">1.2. Factorization Machines</h3>
+<p>FM 모델에 대한 설명은 <a href="2019-12-21-FM.md">이곳</a>을 참조하길 바란다. 기호에 대해서만 설명을 추가하면, $v_i$는 피쳐 $i$에 대한 임베딩 벡터이며, $k$는 임베딩 크기를 의미한다.</p>
+
+<h3 id="13-attentioanl-factorization-machines">1.3. Attentioanl Factorization Machines</h3>
+<h4 id="131-model">1.3.1. Model</h4>
+<center><img src="/public/img/Machine_Learning/2020-05-01-AFM/01.JPG" width="100%" /></center>
+
+<p>위 그림은 <strong>AFM</strong>의 구조를 보여준다. 선명히 보여주기 위해 그림에서는 선형 회귀 부분을 생략하였다. Input Layer와 Embedding Layer의 경우 FM과 같은 구조를 지니는데, Input 피쳐들은 sparse하게 이루어져있고 이들은 dense vector로 임베딩된다. 지금부터는 본 모델의 핵심인 <code class="highlighter-rouge">pair-wise interaction layer</code>과 <code class="highlighter-rouge">attention-based pooling layer</code>를 설명할 것이다.</p>
+
+<p><strong>Pair-wise Interaction Layer</strong><br />
+상호작용을 포착하기 위해 내적을 사용하는 FM을 참고하여, 본 논문에서는 신경망 모델링에서 새로운 <code class="highlighter-rouge">Pair-wise Interaction Layer</code>를 제시한다. $m$개의 벡터를 $\frac{m(m-1)}{2}$개의 interacted 벡터로 만드는데, 이 때 각 interacted 벡터는 상호작용을 포착하기 위해 2개의 다른 벡터들의 원소곱으로 계산된다.</p>
+
+<p>정확히 말하면, 피쳐 벡터 $x$의 0이 아닌 피쳐의 집합을 $\chi$라고 하자. 그리고 <code class="highlighter-rouge">Embedding Layer</code>의 결과물을 $\epsilon = {{v_i x_i}}_{i \in \chi} $라고 하자. 우리는 아래와 같이 <code class="highlighter-rouge">Pair-wise Interaction Layer</code>의 결과물을 아래와 같은 벡터의 집합으로 표현할 수 있다.</p>
+
+<script type="math/tex; mode=display">f_{PI}(\epsilon) = \{ (v_i \odot v_j) x_i x_j \}_{(i, j \in R_x)}</script>
+
+<ul>
+  <li>$\odot$ 기호: 원소곱</li>
+  <li>$ R_x = { (i, j) }_{i, j \in \chi, j&gt;i} $</li>
+</ul>
+
+<p>이 Layer를 정의하면서 우리는 FM을 신경망 구조로 표현할 있게 된다. 먼저 $f_{PI}(\epsilon)$를 <strong>sum pooling</strong>으로 압축한다음, <strong>Fully Connected Layer</strong>를 사용하여 prediction score에 투사(project)한다.</p>
+
+<script type="math/tex; mode=display">\hat{y} = p^T \sum_{(i, j) \in R_x} (v_i \odot v_j) x_i x_j + b</script>
+
+<ul>
+  <li>$p \in R^k$</li>
+  <li>$b \in R$</li>
+</ul>
+
+<p>위에서 등장한 <strong>p, b</strong>는 <code class="highlighter-rouge">Prediction Layer</code>의 weight과 bias이다. 물론 p=1, b=0으로 값을 고정한다면 이는 FM과 동일한 형상을 취하게 될 것이다.</p>
+
+<p><strong>Attention-based Pooling Layer</strong><br />
+Attention의 기본 아이디어는, 여러 개의 부분이 압축 과정에 있어서 각각 다르게 기여하여 하나로 표현되게 만드는 것이다. interacted 벡터들의 가중 합을 수행하여 피쳐 상호작용에 대해 Attention 메커니즘을 적용하였다.</p>
+
+<script type="math/tex; mode=display">f_{Att}(f_{PI}(\epsilon)) = a_{i,j} \sum_{(i, j) \in R_x} (v_i \odot v_j) x_i x_j</script>
+
+<p>여기서 $a_{i, j}$는 피쳐 상호작용 $\hat{w}_{ij}$의 <strong>Attention Score</strong>이다.</p>
+
+<p>Prediction Loss를 최소화하여 직접적으로 학습을 진행하여 $a_{i,j}$를 추정하는 것이 기술적으로는 맞게 느껴지지만, 학습 데이터에서 한 번도 동시에 등장한 적이 없는 피쳐들의 경우, 이들의 상호작용에 대한 <strong>Attention Score</strong>는 추정될 수 없다.</p>
+
+<p>이러한 일반화 문제를 해결하기 위해 MLP를 통해 <strong>Attention Score</strong>를 파라미터화 하는 <strong>Attention Network</strong>를 추가하였다. 이 네트워크의 Input은 2개의 피쳐의 interacted 벡터인데, 이들의 상호작용 정보는 임베딩 공간에 인코딩된다.</p>
+
+<p><script type="math/tex">e_{ij} = h^T ReLU(W (v_i \odot v_j) x_i x_j + b)</script><br />
+<script type="math/tex">a_{ij} = \frac {exp(e_{ij})} { \sum_{(i, j) \in R_x} exp(e_{ij}) }</script></p>
+
+<ul>
+  <li>$W \in R^{t*k}, b \in R^t, h \in R^t$</li>
+  <li>$t$: Attention Network의 hidden layer의 크기(Attention Factor)</li>
+</ul>
+
+<p><strong>Attention Score</strong>는 softmax 함수를 통해 정규화된다. 이 <code class="highlighter-rouge">Attention-based Pooling Layer</code>의 결과물은 k 차원의 벡터로, 중요성을 구별하여 임베딩 공간에서의 모든 피쳐 상호작용을 압축한 것이다. 요약하자면, <strong>AFM</strong> 모델의 최종 공식은 아래와 같다.</p>
+
+<script type="math/tex; mode=display">\hat{y}_{AFM}(x) = w_0 + \sum_{i=1}^n w_i x_i + p^T \sum_{i=1}^n \sum_{j=i+1}^n a_{ij} (v_i \odot v_j) x_i x_j</script>
+
+<p>모델 파라미터들은 $ w_0, w, v, p, W, b, h $이다.</p>
+
+<h4 id="132-learning">1.3.2. Learning</h4>
+<p><strong>AFM</strong>이 데이터 모델링의 관점에서 FM을 개선함에 따라 본 모델은 예측, 회귀, 분류, 랭킹 문제 등에 다양하게 적용될 수 있다. 목적 함수를 최적화하기 위해 SGD를 사용하였다. SGD 알고리즘 적용의 핵심은, 각 파라미터를 기준으로 예측 모델 <strong>AFM</strong>의 derivative를 구하는 것이다.</p>
+
+<p><strong>과적합 문제</strong><br />
+FM보다 표현력이 뛰어난 <strong>AFM</strong>이기에 더욱 과적합 문제에 민감할 수 있다. 따라서 본 모델에서는 dropout과 L2 Regularization 테크닉이 사용되었다.</p>
+
+<p>(후략)</p>
+
+<hr />
+<h2 id="2-tensorflow를-활용한-구현">2. Tensorflow를 활용한 구현</h2>
+<h3 id="21-데이터-준비">2.1. 데이터 준비</h3>
+<p>본 모델의 경우 Dataset에 대한 Domain 지식이 필요하다고 볼 수는 없지만, 학습을 진행하기에 앞서 기본적으로 직접 전처리를 해주어야 하는 부분들이 있다. One-Hot 인코딩 외에도, 본 모델은 앞서 논문 리뷰에서도 확인하였듯이 0이 아닌 값에 대해서만 Lookup을 수행하여 실제 학습 데이터를 사용하기 때문에 이에 대한 정보를 저장해야할 필요가 있다. 아래 예시를 잠시 살펴보면,</p>
+
+<center><img src="/public/img/Machine_Learning/2020-05-01-AFM/02.JPG" width="100%" /></center>
+
+<p>만약 연속형 변수 중에 0.0이라는 값이 존재하더라도 사실 이 값은 중요한 특성을 나타낼 수도 있다. 그러나 논문의 기본 논조대로라면, 0인 값이기 때문에 학습에서 제외되게 된다. 이렇게 0이라고 해서 중요한 값이 학습에서 제외되는 현상을 막기 위해 본 구현에서는 One-Hot 인코딩 이후의 데이터에 대하여 중요한 정보의 위치를 저장하는 masking 작업을 진행하게 된다.</p>
+
+<p>데이터는 <a href="2020-04-07-DeepFM.md">DeepFM 구현글</a>에서 사용한 것과 동일하다. 데이터 전처리는 연속형 변수에 대해서는 MinMaxScale, 범주형 변수에 대해서는 One-Hot 인코딩만을 진행하게 된다.</p>
+
+<h3 id="22-layer-정의">2.2. Layer 정의</h3>
+<p><strong>AFM</strong> 모델에서는 크게 3개의 Layer가 필요하다. <code class="highlighter-rouge">Embedding Layer</code>, <code class="highlighter-rouge">Pairwise Interaction Layer</code>, <code class="highlighter-rouge">Attention Pooling Layer</code>가 바로 그 3가지이다. <code class="highlighter-rouge">Embedding Layer</code> 부분은 이전 글(논문)들을 읽었다면, 굉장히 익숙하게 받아들여 질 것이다. 다만 이전 <a href="2020-04-07-DeepFM.md">DeepFM 구현글</a>에서는 하나의 Field에 대해 하나의 Embedding Row가 학습되었다면, 본 글에서는 하나의 Feature에 대해 하나의 Embedding Row가 학습되도록 코드를 수정하였다.</p>
+
+<p>앞서 언급하였듯이 One-Hot 인코딩으로 생성된 0 값을 갖는 feature를 제외한 feature들만 실제 학습에 사용되는데(예를 들어 One-Hot 인코딩 이후에 0.2, 7.4, 0, 1, … 0, 1와 같은 데이터로 변환되었다면 실제 학습에 사용되는 데이터는 0.2, 7.4, 1, … 1이라는 뜻이다.)</p>
+
+<p>위와 같은 논리를 구현하는 방법에는 여러가지가 있을 수 있겠지만 본 구현에서는 다음과 같은 논리를 따랐다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1) 연속형 변수들은 모두 앞쪽에 배치한 후, 이들에게는 무조건 True Mask를 씌워 학습 데이터로 활용한다.  
+2) 범주형 변수들에 대해서는 0이 아닌 값들에 대해서 True Mask를 씌워 학습 데이터로 활용한다.  
+</code></pre></div></div>
+
+<p>논리 자체는 간단하며, 아래 call 메서드에서 그 논리가 구현되어 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">config</span>
+
+
+<span class="k">class</span> <span class="nc">Embedding_layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_cont</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Embedding_layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span> <span class="o">=</span> <span class="n">num_cont</span>                <span class="c1"># 연속형 field 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_cat</span>  <span class="o">=</span> <span class="n">num_field</span> <span class="o">-</span> <span class="n">num_cont</span>    <span class="c1"># 범주형 field 수
+</span>
+        <span class="c1"># Parameters
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">V</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_feature</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
+                                              <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'V'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="c1"># inputs: (None, p, k), embeds: (None, m, k)
+</span>        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># 원핫인코딩으로 생성된 0을 제외한 값에 True를 부여한 mask(np.array): (None, m)
+</span>        <span class="c1"># indices: 그 mask의 indices
+</span>        <span class="n">cont_mask</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span><span class="p">),</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">cat_mask</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">not_equal</span><span class="p">(</span><span class="n">inputs</span><span class="p">[:,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span><span class="p">:],</span> <span class="mf">0.0</span><span class="p">).</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">cont_mask</span><span class="p">,</span> <span class="n">cat_mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">_</span><span class="p">,</span> <span class="n">flatten_indices</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">flatten_indices</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">))</span>
+
+        <span class="c1"># embedding_matrix: (None, m, k)
+</span>        <span class="n">embedding_matrix</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">V</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="n">indices</span><span class="p">.</span><span class="n">tolist</span><span class="p">())</span>
+
+        <span class="c1"># masked_inputs: (None, m, 1)
+</span>        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="p">),</span>
+                                   <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">masked_inputs</span><span class="p">,</span> <span class="n">embedding_matrix</span><span class="p">)</span>    <span class="c1"># (None, m, k)
+</span>
+        <span class="k">return</span> <span class="n">masked_inputs</span>
+</code></pre></div></div>
+
+<p>다음은 <code class="highlighter-rouge">Pairwise Interaction Layer</code>에 대한 설명이다. 만약 14개의 Row가 존재한다면 이에 대한 모든 조합을 구하여 91 = $14\choose2$ 개의 Row를 생성하는 Layer인데, 간단하게 생각해보면 아래와 같이 코드를 짜고 싶을 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="n">interactions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">comb_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">comb_list</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
+        <span class="n">interactions</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">inputs</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]))</span>
+
+<span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">stack</span><span class="p">(</span><span class="n">interactions</span><span class="p">),</span>
+                                    <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>하지만 위와 같이 loop를 돌리게 되면, 속도가 현저하게 느려져서 실 사용이 불가능하다. 따라서 이 때는 Trick이 필요한데, 그림으로 설명하면 아래와 같다.</p>
+
+<center><img src="/public/img/Machine_Learning/2020-05-01-AFM/03.JPG" width="100%" /></center>
+
+<p>위 그림에서 14는 <code class="highlighter-rouge">num_field</code>의 예시이고, 5는 <code class="highlighter-rouge">embedding_size</code>의 예시이다. 가장 왼쪽에 있는 그림은 <code class="highlighter-rouge">Embedding Layer</code>를 통과한 Input 행렬을 그대로 <code class="highlighter-rouge">num_field</code> 수 만큼 쌓은 형태이이고, 그 오른쪽 그림은 똑같은 행들을 <code class="highlighter-rouge">num_field</code> 수만큼 쌓은 형태이다. 이렇게 쌓은 두 행렬 집단을 그대로 원소곱을 하게 되면 마치 조합을 구해서 곱을 한 것과 같은 형태가 나온다. 여기서 필요한 행들만 masking을 통해 취하면, 제일 오른쪽과 같은 결과물을 얻을 수 있다.</p>
+
+<p>이를 코드를 구현한 것이 아래이다. <strong>tf.tile</strong>, <strong>tf.expand_dims</strong> 함수를 잘 이용하면 이 Trick을 코드로 구현할 수 있다. 직접 해보길 바란다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Pairwise_Interaction_Layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Pairwise_Interaction_Layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
+</span>
+        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">MASKS</span><span class="p">)</span>    <span class="c1"># (num_field**2)
+</span>        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>             <span class="c1"># (num_field**2, 1)
+</span>        <span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">])</span>   <span class="c1"># (num_field**2, embedding_size)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">masks</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>         <span class="c1"># (1, num_field**2, embedding_size)
+</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># a, b shape: (batch_size, num_field^2, embedding_size)
+</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">])</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># ab, mask_tensor: (batch_size, num_field^2, embedding_size)
+</span>        <span class="n">ab</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">mask_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tile</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">masks</span><span class="p">,</span> <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># pairwise_interactions: (batch_size, num_field C 2, embedding_size)
+</span>        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">boolean_mask</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">mask_tensor</span><span class="p">),</span>
+                                           <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">pairwise_interactions</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">config.MASKS</code>는 아래와 같이 구현되어 있다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MASKS</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_FIELD</span><span class="p">):</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span>
+
+    <span class="n">MASKS</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+    <span class="n">MASKS</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">True</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">NUM_FIELD</span> <span class="o">-</span> <span class="n">flag</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>다음으로는 마지막 <code class="highlighter-rouge">Attention Pooling Layer</code>이다. 설명할 것이 많지 않은 간단한 구조이다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Attention_Pooling_Layer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Attention_Pooling_Layer</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>
+        <span class="c1"># Parameters
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">),</span>
+                                              <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'h'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">),</span>
+                                              <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s">'W_attention'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="c1"># 조합 수 = combinations(num_feauture, 2)
+</span>        <span class="c1"># inputs: (None, 조합 수, embedding_size)
+</span>        <span class="c1"># --&gt; (전치 후) (None, embedding_size, 조합 수)
+</span>        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># e: (None, 조합 수, 1)
+</span>        <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">h</span><span class="p">,</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">W</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">b</span><span class="p">))</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># Attention Score 산출
+</span>        <span class="n">attention_score</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">attention_score</span>
+</code></pre></div></div>
+
+<h3 id="23-model-build">2.3. Model Build</h3>
+<p>위에서 설명한 모든 Layer들을 이어 붙이면 <strong>AFM</strong> 모델이 완성된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Model 정의
+</span><span class="kn">from</span> <span class="nn">layers</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">backend</span><span class="p">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AFM</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">num_cont</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AFM</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span> <span class="o">=</span> <span class="n">embedding_size</span>    <span class="c1"># k: 임베딩 벡터의 차원(크기)
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_field</span> <span class="o">=</span> <span class="n">num_field</span>              <span class="c1"># m: 인코딩 이전 feature 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_feature</span> <span class="o">=</span> <span class="n">num_feature</span>          <span class="c1"># p: 인코딩 이후 feature 수, m &lt;= p
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">num_cont</span> <span class="o">=</span> <span class="n">num_cont</span>                <span class="c1"># 연속형 field 수
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>          <span class="c1"># Attention Pooling Layer Hidden Unit 수
+</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">embedding_layer</span> <span class="o">=</span> <span class="n">Embedding_layer</span><span class="p">(</span><span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span>
+                                               <span class="n">num_cont</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pairwise_interaction_layer</span> <span class="o">=</span> <span class="n">Pairwise_Interaction_Layer</span><span class="p">(</span>
+            <span class="n">num_field</span><span class="p">,</span> <span class="n">num_feature</span><span class="p">,</span> <span class="n">embedding_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">attention_pooling_layer</span> <span class="o">=</span> <span class="n">Attention_Pooling_Layer</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+
+        <span class="c1"># Parameters
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">w_0</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">num_feature</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">embedding_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                                              <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">config</span><span class="p">.</span><span class="n">DROPOUT_RATE</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"AFM Model: embedding{}, hidden{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">embedding_size</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">hidden_size</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="c1"># 1) Linear Term: (None, )
+</span>        <span class="n">linear_terms</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">w_0</span> <span class="o">+</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">inputs</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 2) Interaction Term
+</span>        <span class="n">masked_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">embedding_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pairwise_interaction_layer</span><span class="p">(</span><span class="n">masked_inputs</span><span class="p">)</span>
+
+        <span class="c1"># Dropout and Attention Score
+</span>        <span class="n">pairwise_interactions</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">)</span>
+        <span class="n">attention_score</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">attention_pooling_layer</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">)</span>
+
+        <span class="c1"># (None, 조합 수, embedding_size)
+</span>        <span class="n">attention_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">pairwise_interactions</span><span class="p">,</span> <span class="n">attention_score</span><span class="p">)</span>
+
+        <span class="c1"># (None, embedding_size)
+</span>        <span class="n">final_interactions</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">attention_interactions</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># 3) Final: (None, )
+</span>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">linear_terms</span> <span class="o">+</span> <span class="n">tf</span><span class="p">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">final_interactions</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">p</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">y_pred</span>
+</code></pre></div></div>
+
+<h3 id="24-코드-전문">2.4. 코드 전문</h3>
+<p>코드의 전문은 <a href="https://github.com/ocasoyy/Recommendation-Algorithms">깃헙</a>에서 확인할 수 있다.</p>
+
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/DeepFM/">
+          추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현
+          <small>07 Apr 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/AFM/';
+    this.page.identifier = 'http://localhost:4000/AFM/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

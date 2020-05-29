@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      PyTorch 사용법 - 00. References
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">PyTorch 사용법 - 00. References</h1>
+  <span class="post-date">02 Nov 2018</span>
+   |
+  
+  <a href="/blog/tags/#pytorch" class="post-tag">PyTorch</a>
+  
+  <a href="/blog/tags/#usage" class="post-tag">usage</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#데이터-타입dtype"><a href="https://pytorch.org/docs/stable/tensor_attributes.html?highlight=dtype#torch.torch.dtype">데이터 타입(dtype)</a></a></li>
+  <li><a href="#tensor-creation">Tensor Creation</a>
+    <ul>
+      <li><a href="#torcharange"><a href="https://pytorch.org/docs/stable/torch.html?highlight=arange#torch.arange">torch.arange</a></a></li>
+      <li><a href="#torchlinspace"><a href="https://pytorch.org/docs/stable/torch.html?highlight=linspace#torch.linspace">torch.linspace</a></a></li>
+      <li><a href="#torchfrom_numpy"><a href="https://pytorch.org/docs/stable/torch.html?highlight=from_numpy#torch.from_numpy">torch.from_numpy</a></a></li>
+      <li><a href="#torchrandn"><a href="https://pytorch.org/docs/stable/torch.html?highlight=randn#torch.randn">torch.randn</a></a></li>
+    </ul>
+  </li>
+  <li><a href="#tensor-reshape">Tensor Reshape</a>
+    <ul>
+      <li><a href="#torchunsqueezetensorunsqueeze"><a href="https://pytorch.org/docs/stable/torch.html#torch.unsqueeze">torch.unsqueeze(Tensor.unsqueeze)</a></a></li>
+    </ul>
+  </li>
+  <li><a href="#tensor-operation">Tensor Operation</a>
+    <ul>
+      <li><a href="#torchcat"><a href="https://pytorch.org/docs/stable/torch.html?highlight=cat#torch.cat">torch.cat</a></a></li>
+      <li><a href="#torchtensorbackward"><a href="https://pytorch.org/docs/stable/autograd.html?highlight=backward#torch.Tensor.backward">torch.Tensor.backward</a></a></li>
+    </ul>
+  </li>
+  <li><a href="#torchnn">torch.nn</a>
+    <ul>
+      <li><a href="#torchnnlinear"><a href="https://pytorch.org/docs/stable/nn.html?highlight=linear#torch.nn.Linear">torch.nn.Linear</a></a></li>
+      <li><a href="#torchnnmseloss"><a href="https://pytorch.org/docs/stable/nn.html?highlight=mseloss#torch.nn.MSELoss">torch.nn.MSELoss</a></a></li>
+    </ul>
+  </li>
+  <li><a href="#torchoptim">torch.optim</a>
+    <ul>
+      <li><a href="#torchoptimadam"><a href="https://pytorch.org/docs/stable/optim.html?highlight=adam#torch.optim.Adam">torch.optim.Adam</a></a></li>
+      <li><a href="#torchoptimoptimizerzero_grad"><a href="https://pytorch.org/docs/stable/optim.html?highlight=zero_grad#torch.optim.Optimizer.zero_grad">torch.optim.Optimizer.zero_grad</a></a></li>
+      <li><a href="#torchoptimoptimizerstep"><a href="https://pytorch.org/docs/stable/optim.html?highlight=optimizer%20step#torch.optim.Optimizer.step">torch.optim.Optimizer.step</a></a></li>
+    </ul>
+  </li>
+  <li><a href="#save-and-load">Save and Load</a>
+    <ul>
+      <li><a href="#torchsave"><a href="https://pytorch.org/docs/stable/torch.html?highlight=save#torch.save">torch.save</a></a></li>
+    </ul>
+  </li>
+</ul>
+
+    <hr />
+
+<p><strong><a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/">PyTorch 사용법 - 00. References</a></strong><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-01-introduction/">PyTorch 사용법 - 01. 소개 및 설치</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/">PyTorch 사용법 - 02. Linear Regression Model</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/">PyTorch 사용법 - 03. How to Use PyTorch</a><br />
+<a href="https://greeksharifa.github.io/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/">PyTorch 사용법 - 04. Recurrent Neural Network Model</a></p>
+
+<hr />
+
+<p>본 글의 일부 예제는 <a href="https://pytorch.org/docs/stable/index.html">Pytorch Documentation</a>에서 가져왔음을 밝힙니다.</p>
+
+<hr />
+
+<h2 id="데이터-타입dtype"><a href="https://pytorch.org/docs/stable/tensor_attributes.html?highlight=dtype#torch.torch.dtype">데이터 타입(dtype)</a></h2>
+
+<p>모든 텐서는 기본적으로 dtype을 갖고 있다. 데이터 타입(dtype)이란 데이터가 정수형인지, 실수형인지, 얼마나 큰 범위를 가질 수 있는지 등을 나타낸다.<br />
+종류는 아래 표와 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data type</th>
+      <th>dtype</th>
+      <th>CPU tensor</th>
+      <th>GPU tensor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>32-bit floating point</td>
+      <td>torch.float32 or torch.float</td>
+      <td>torch.FloatTensor</td>
+      <td>torch.cuda.FloatTensor</td>
+    </tr>
+    <tr>
+      <td>64-bit floating point</td>
+      <td>torch.float64 or torch.double</td>
+      <td>torch.DoubleTensor</td>
+      <td>torch.cuda.DoubleTensor</td>
+    </tr>
+    <tr>
+      <td>16-bit floating point</td>
+      <td>torch.float16 or torch.half</td>
+      <td>torch.HalfTensor</td>
+      <td>torch.cuda.HalfTensor</td>
+    </tr>
+    <tr>
+      <td>8-bit integer (unsigned)</td>
+      <td>torch.uint8</td>
+      <td>torch.ByteTensor</td>
+      <td>torch.cuda.ByteTensor</td>
+    </tr>
+    <tr>
+      <td>8-bit integer (signed)</td>
+      <td>torch.int8</td>
+      <td>torch.CharTensor</td>
+      <td>torch.cuda.CharTensor</td>
+    </tr>
+    <tr>
+      <td>16-bit integer (signed)</td>
+      <td>torch.int16 or torch.short</td>
+      <td>torch.ShortTensor</td>
+      <td>torch.cuda.ShortTensor</td>
+    </tr>
+    <tr>
+      <td>32-bit integer (signed)</td>
+      <td>torch.int32 or torch.int</td>
+      <td>torch.IntTensor</td>
+      <td>torch.cuda.IntTensor</td>
+    </tr>
+    <tr>
+      <td>64-bit integer (signed)</td>
+      <td>torch.int64 or torch.long</td>
+      <td>torch.LongTensor</td>
+      <td>torch.cuda.LongTensor</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>사용법은 어렵지 않다. 텐서 생성시 <code class="highlighter-rouge">dtype=torch.float</code>과 같이 parameter를 지정해 주기만 하면 된다.</p>
+
+<hr />
+
+<h2 id="tensor-creation">Tensor Creation</h2>
+
+<h3 id="torcharange"><a href="https://pytorch.org/docs/stable/torch.html?highlight=arange#torch.arange">torch.arange</a></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># torch.arange(start=0, end, step=1, out=None, dtype=None, 
+#              layout=torch.strided, device=None, requires_grad=False) → Tensor
+</span></code></pre></div></div>
+
+<p>start 이상 end 미만까지 step 간격으로 dtype 타입인 1차원 텐서를 <strong>생성</strong>한다.</p>
+
+<p><code class="highlighter-rouge">out</code> parameter로 결과 텐서를 저장할 변수(텐서)를 지정할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="torchlinspace"><a href="https://pytorch.org/docs/stable/torch.html?highlight=linspace#torch.linspace">torch.linspace</a></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># torch.linspace(start, end, steps=100, out=None, dtype=None, 
+#                layout=torch.strided, device=None, requires_grad=False) → Tensor
+</span></code></pre></div></div>
+
+<p>start 이상 end 미만까지 총 steps 개수의 dtype 타입인 1차원 텐서를 <strong>생성</strong>한다.<br />
+<strong>torch.arange</strong>에서 step은 간격을, <strong>torch.linspace</strong>에서 steps는 개수를 의미한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">10.</span><span class="p">,</span>  <span class="o">-</span><span class="mf">5.</span><span class="p">,</span>   <span class="mf">0.</span><span class="p">,</span>   <span class="mf">5.</span><span class="p">,</span>  <span class="mf">10.</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([</span> <span class="mf">0.0000</span><span class="p">,</span>  <span class="mf">1.1111</span><span class="p">,</span>  <span class="mf">2.2222</span><span class="p">,</span>  <span class="mf">3.3333</span><span class="p">,</span>  <span class="mf">4.4444</span><span class="p">,</span>  
+         <span class="mf">5.5556</span><span class="p">,</span>  <span class="mf">6.6667</span><span class="p">,</span>  <span class="mf">7.7778</span><span class="p">,</span>  <span class="mf">8.8889</span><span class="p">,</span> <span class="mf">10.0000</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="torchfrom_numpy"><a href="https://pytorch.org/docs/stable/torch.html?highlight=from_numpy#torch.from_numpy">torch.from_numpy</a></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># torch.from_numpy(ndarray) → Tensor
+</span></code></pre></div></div>
+
+<p>numpy array인 ndarray로부터 텐서를 만든다. 이 함수는 데이터를 <strong>복사가 아닌 참조</strong>를 한다.<br />
+<code class="highlighter-rouge">from_numpy</code>로 만들어진 텐서는 해당 ndarray와 메모리를 공유하며, 어느 한쪽의 데이터를 변경 시 둘 다 변경된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="torchrandn"><a href="https://pytorch.org/docs/stable/torch.html?highlight=randn#torch.randn">torch.randn</a></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># torch.randn(*sizes, out=None, dtype=None, 
+#             layout=torch.strided, device=None, requires_grad=False) → Tensor
+</span></code></pre></div></div>
+
+<p>N(0, 1) 정규분포를 따르는 sizes 크기의 텐서를 <strong>생성</strong>한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([[</span> <span class="mf">1.5954</span><span class="p">,</span>  <span class="mf">2.8929</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0923</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">1.1719</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4709</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1996</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="tensor-reshape">Tensor Reshape</h2>
+
+<h3 id="torchunsqueezetensorunsqueeze"><a href="https://pytorch.org/docs/stable/torch.html#torch.unsqueeze">torch.unsqueeze(Tensor.unsqueeze)</a></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># torch.unsqueeze(input, dim, out=None) → Tensor
+</span></code></pre></div></div>
+
+<p><code class="highlighter-rouge">dim</code> parameter 위치에 길이 1짜리 차원을 추가한 텐서를 만든다. 이 함수는 데이터를 <strong>복사가 아닌 참조</strong>를 한다. 원본 텐서와 메모리를 공유하며, 어느 한쪽의 데이터를 변경 시 둘 다 변경된다.</p>
+
+<p><code class="highlighter-rouge">dim</code>은 [ -input.dim() - 1, input.dim() + 1] 범위를 갖는다. 음수 dim은 dim + input.dim() + 1과 같다.<br />
+원본 텐서의 size가 (2, 3, 4)라면, unsqueeze(1) 버전은 (2, 1, 3, 4), unsqueeze(2) 버전은 (2, 3, 1, 4)이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span>
+<span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">y</span><span class="p">.</span><span class="n">size</span><span class="p">()</span>
+<span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">3</span><span class="p">]),</span> <span class="n">torch</span><span class="p">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span>
+<span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h2 id="tensor-operation">Tensor Operation</h2>
+
+<h3 id="torchcat"><a href="https://pytorch.org/docs/stable/torch.html?highlight=cat#torch.cat">torch.cat</a></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># torch.cat(seq, dim=0, out=None) → Tensor
+</span></code></pre></div></div>
+
+<p>두 텐서를 이어 붙인다(concatenate). 데이터를 <strong>복사</strong>한다.<br />
+concatenate하는 차원을 제외하고는 size가 같거나 empty여야 한다. 즉 shape=(2, 3, 4)인 텐서는 shape=(2, 1, 4)와는 <code class="highlighter-rouge">dim=1</code>일 때만 concatenate가 가능하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">104</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">102</span><span class="p">,</span> <span class="mi">103</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tensor</span><span class="p">([[</span>  <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">],</span>
+        <span class="p">[</span>  <span class="mi">3</span><span class="p">,</span>   <span class="mi">4</span><span class="p">,</span>   <span class="mi">5</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">103</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<h3 id="torchtensorbackward"><a href="https://pytorch.org/docs/stable/autograd.html?highlight=backward#torch.Tensor.backward">torch.Tensor.backward</a></h3>
+
+<hr />
+
+<h2 id="torchnn">torch.nn</h2>
+
+<h3 id="torchnnlinear"><a href="https://pytorch.org/docs/stable/nn.html?highlight=linear#torch.nn.Linear">torch.nn.Linear</a></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># class torch.nn.Linear(in_features, out_features, bias=True)
+</span></code></pre></div></div>
+
+<p>Linear 모델 클래스를 생성한다.<br />
+<code class="highlighter-rouge">in_features</code> 길이의 데이터를 Linear Transformation을 통해 <code class="highlighter-rouge">out_features</code> 길이의 데이터로 변환할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">weight</span><span class="p">)</span>
+<span class="n">Parameter</span> <span class="n">containing</span><span class="p">:</span>
+<span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.3469</span><span class="p">,</span>  <span class="mf">0.1542</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4830</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mf">0.2903</span><span class="p">,</span>  <span class="mf">0.4949</span><span class="p">,</span>  <span class="mf">0.4592</span><span class="p">]],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">bias</span><span class="p">)</span>
+<span class="n">Parameter</span> <span class="n">containing</span><span class="p">:</span>
+<span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">0.0965</span><span class="p">,</span>  <span class="mf">0.5427</span><span class="p">],</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="torchnnmseloss"><a href="https://pytorch.org/docs/stable/nn.html?highlight=mseloss#torch.nn.MSELoss">torch.nn.MSELoss</a></h3>
+
+<hr />
+
+<h2 id="torchoptim">torch.optim</h2>
+
+<h3 id="torchoptimadam"><a href="https://pytorch.org/docs/stable/optim.html?highlight=adam#torch.optim.Adam">torch.optim.Adam</a></h3>
+
+<h3 id="torchoptimoptimizerzero_grad"><a href="https://pytorch.org/docs/stable/optim.html?highlight=zero_grad#torch.optim.Optimizer.zero_grad">torch.optim.Optimizer.zero_grad</a></h3>
+
+<h3 id="torchoptimoptimizerstep"><a href="https://pytorch.org/docs/stable/optim.html?highlight=optimizer%20step#torch.optim.Optimizer.step">torch.optim.Optimizer.step</a></h3>
+
+<hr />
+
+<h2 id="save-and-load">Save and Load</h2>
+
+<h3 id="torchsave"><a href="https://pytorch.org/docs/stable/torch.html?highlight=save#torch.save">torch.save</a></h3>
+
+<hr />
+
+<center><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" width="50%" /></center>
+
+<p><img src="/public/img/Andre_Derain_Fishing_Boats_Collioure.jpg" alt="01_new_repository" /></p>
+
+<hr />
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/pytorch-usage-00-references/';
+    this.page.identifier = 'http://localhost:4000/pytorch-usage-00-references/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

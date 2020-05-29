@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      파이썬 Error 처리
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">파이썬 Error 처리</h1>
+  <span class="post-date">12 Jan 2020</span>
+   |
+  
+  <a href="/blog/tags/#references" class="post-tag">References</a>
+  
+  <a href="/blog/tags/#파이썬" class="post-tag">파이썬</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#1-introduction">1. Introduction</a></li>
+  <li><a href="#2-exception-처리-try-except-finally">2. Exception 처리: try, except, finally</a>
+    <ul>
+      <li><a href="#21-일반적인-처리">2.1. 일반적인 처리</a></li>
+      <li><a href="#22-특별한-요청">2.2. 특별한 요청</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-exception-추적">3. Exception 추적</a></li>
+  <li><a href="#4-exception-만들기">4. Exception 만들기</a></li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+
+    <h2 id="1-introduction">1. Introduction</h2>
+<p>파이썬에서 에러를 처리하고 관리하는 데에는 다양한 이유가 있다. 실제 Applicaion 상에서 에러가 발생하지 않도록 개발과 테스트 단계에서 미리 에러를 식별하고 수정하는 것은, 어떤 프로그램을 만들 때 굉장히 중요한 과정이라고 할 수 있다.</p>
+
+<p>기본적으로 파이썬에서는 <code class="highlighter-rouge">BaseException</code>이라는 class를 통해 에러를 관리하도록 도와준다. 이 class는 모든 내장 exception들의 base class이다. 만약 사용자가 직접 에러 class를 만들고 싶을 때는 이 에러를 사용하는 것이 <strong>아니라</strong> <code class="highlighter-rouge">Exception</code> class를 사용해야 한다.</p>
+
+<p>코딩을 하다보면 여러 종류의 에러를 보았을 것이다. 예를 들어 아래와 같은 에러가 대표적일 것이다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ValueError</span>
+<span class="nb">AssertionError</span>
+<span class="nb">FileNotFoundError</span>
+<span class="nb">SyntaxError</span>
+</code></pre></div></div>
+
+<p>대체 이 에러들은 다 어떻게 만들어지고, 어떻게 구성되는 것일까? 사실 이 에러들은 앞서 설명한 <code class="highlighter-rouge">BaseException</code> class의 하위 class로 이루어진다. 그 전체 구조는 아래와 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">BaseException</span>
+ <span class="o">+--</span> <span class="nb">SystemExit</span>
+ <span class="o">+--</span> <span class="nb">KeyboardInterrupt</span>
+ <span class="o">+--</span> <span class="nb">GeneratorExit</span>
+ <span class="o">+--</span> <span class="nb">Exception</span>
+      <span class="o">+--</span> <span class="nb">StopIteration</span>
+      <span class="o">+--</span> <span class="nb">StopAsyncIteration</span>
+      <span class="o">+--</span> <span class="nb">ArithmeticError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">FloatingPointError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">OverflowError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ZeroDivisionError</span>
+      <span class="o">+--</span> <span class="nb">AssertionError</span>
+      <span class="o">+--</span> <span class="nb">AttributeError</span>
+      <span class="o">+--</span> <span class="nb">BufferError</span>
+      <span class="o">+--</span> <span class="nb">EOFError</span>
+      <span class="o">+--</span> <span class="nb">ImportError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ModuleNotFoundError</span>
+      <span class="o">+--</span> <span class="nb">LookupError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">IndexError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">KeyError</span>
+      <span class="o">+--</span> <span class="nb">MemoryError</span>
+      <span class="o">+--</span> <span class="nb">NameError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">UnboundLocalError</span>
+      <span class="o">+--</span> <span class="nb">OSError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">BlockingIOError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ChildProcessError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">BrokenPipeError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionAbortedError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionRefusedError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionResetError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">FileExistsError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">FileNotFoundError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">InterruptedError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">IsADirectoryError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">NotADirectoryError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="n">PermissionError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ProcessLookupError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">TimeoutError</span>
+      <span class="o">+--</span> <span class="nb">ReferenceError</span>
+      <span class="o">+--</span> <span class="nb">RuntimeError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">NotImplementedError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">RecursionError</span>
+      <span class="o">+--</span> <span class="nb">SyntaxError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">IndentationError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">TabError</span>
+      <span class="o">+--</span> <span class="nb">SystemError</span>
+      <span class="o">+--</span> <span class="nb">TypeError</span>
+      <span class="o">+--</span> <span class="nb">ValueError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">UnicodeError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">UnicodeDecodeError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">UnicodeEncodeError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">UnicodeTranslateError</span>
+      <span class="o">+--</span> <span class="nb">Warning</span>
+           <span class="o">+--</span> <span class="nb">DeprecationWarning</span>
+           <span class="o">+--</span> <span class="nb">PendingDeprecationWarning</span>
+           <span class="o">+--</span> <span class="nb">RuntimeWarning</span>
+           <span class="o">+--</span> <span class="nb">SyntaxWarning</span>
+           <span class="o">+--</span> <span class="nb">UserWarning</span>
+           <span class="o">+--</span> <span class="nb">FutureWarning</span>
+           <span class="o">+--</span> <span class="nb">ImportWarning</span>
+           <span class="o">+--</span> <span class="nb">UnicodeWarning</span>
+           <span class="o">+--</span> <span class="nb">BytesWarning</span>
+           <span class="o">+--</span> <span class="nb">ResourceWarning</span>
+</code></pre></div></div>
+
+<p>굉장히 많다. 이 에러와 경고(Warning)들을 다 외우고 있을 필요는 없을 것이다. 하지만 인지는 하고 있는 편이 좋다.</p>
+
+<hr />
+<h2 id="2-exception-처리-try-except-finally">2. Exception 처리: try, except, finally</h2>
+<h3 id="21-일반적인-처리">2.1. 일반적인 처리</h3>
+<p>try 블록을 수행하는 과정에서 에러가 발생하면 except 블록이 수행된다. 만약 에러가 발생하지 않았다면, except 블록은 수행되지 않는다. 만약 에러의 발생 유무와 상관없이 꼭 어떤 과정을 수행하고 싶다면 finally 블록에 이를 담으면 된다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 예시 1
+</span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">nothing</span>
+<span class="k">except</span> <span class="nb">ImportError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+
+
+<span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s">'nothing'</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># 예시 2
+</span><span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Error: You cannot divide integer by zero"</span><span class="p">)</span>
+
+<span class="n">Error</span><span class="p">:</span> <span class="n">You</span> <span class="n">cannot</span> <span class="n">divide</span> <span class="n">integer</span> <span class="n">by</span> <span class="n">zero</span>
+</code></pre></div></div>
+
+<p>참고로 <code class="highlighter-rouge">assert 조건, "에러 메시지"</code> 인 <strong>assert 구문</strong>을 통해 에러를 관리할 수도 있다.</p>
+
+<h3 id="22-특별한-요청">2.2. 특별한 요청</h3>
+<p>아래에는 위와는 다르게 조금은 특별한(?) 요청을 하고 싶을 때 사용할 수 있는 기능들이다.</p>
+
+<ul>
+  <li>만약 에러를 그냥 회피하고 싶다면 except 블록에 <code class="highlighter-rouge">pass</code>를 입력하면 된다.</li>
+  <li><code class="highlighter-rouge">Exception</code>이 발생하였을 때 프로그램을 중단하고 싶으면 <code class="highlighter-rouge">raise SystemExit</code>을 except 블록에 입력하면 된다.</li>
+  <li><code class="highlighter-rouge">Exception</code>을 일부러 발생하고 싶을 때에도 <code class="highlighter-rouge">raise</code> 구문을 사용하면 된다.</li>
+</ul>
+
+<p>3번 째 경우에 대한 예시를 첨부하겠다. <code class="highlighter-rouge">BaseBandit</code>이라는 부모 class가 있고, 사용자는 이 부모 class를 상속받아 <code class="highlighter-rouge">TalkativeBandit</code>이라는 자식 class를 만들고 싶다고 하자.</p>
+
+<p>그런데 이 때, 자식 class에 반드시 <code class="highlighter-rouge">operate</code>이란 메서드를 구현하도록 미리 설정을 해두고 싶다. 모니터 구석에 메모를 해두는 것 외에 방법이 없을까? 이 때 부모 class인 <code class="highlighter-rouge">BaseBandit</code>에 미리 아래와 같은 코드를 구현해 놓으면 원하는 바를 쟁취할 수 있을 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 부모 class 구현
+</span><span class="k">class</span> <span class="nc">BaseBandit</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">operate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="nb">NotImplementedError</span>
+
+<span class="c1"># 자식 class 구현
+</span><span class="k">class</span> <span class="nc">TalkativeBandit</span><span class="p">(</span><span class="n">BaseBandit</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">stay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Don't talk"</span><span class="p">)</span>
+
+<span class="n">tb</span> <span class="o">=</span> <span class="n">TalkativeBandit</span><span class="p">()</span>
+
+<span class="c1"># 자식 class에서는 operate 메서드를 구현하지 않았으므로
+# 부모 class의 operate 메서드가 호출된다.
+</span><span class="n">tb</span><span class="p">.</span><span class="n">operate</span><span class="p">()</span>
+
+<span class="c1"># 에러가 발생한다.
+</span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"C:\Users\...\interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_ns</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"&lt;ipython-input-17-fdf0f46c74b7&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">tb</span><span class="p">.</span><span class="n">operate</span><span class="p">()</span>
+  <span class="n">File</span> <span class="s">"&lt;ipython-input-12-af85936c9668&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="n">operate</span>
+    <span class="k">raise</span> <span class="nb">NotImplementedError</span>
+<span class="nb">NotImplementedError</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">operate</code> 메서드를 제대로 구현한다면, 별 문제 없이 코드를 진행할 수 있을 것이다.</p>
+
+<hr />
+<h2 id="3-exception-추적">3. Exception 추적</h2>
+<p>바로 위의 예시를 보자. <code class="highlighter-rouge">Traceback (most recent call last)</code>란 문구를 볼 수 있을 것이다. 이는 Exception을 역으로 추적한다는 뜻이다.</p>
+
+<p>사용자가 직접 추적 과정을 만들고 싶을 때 stack trace를 표시하고 출력하는 <code class="highlighter-rouge">traceback</code> 모듈과 로그 기록을 관리하는 <code class="highlighter-rouge">logging</code> 모듈을 사용하면 편리하다.</p>
+
+<p>가장 기초적인 추적 방법은 아래와 같다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">traceback</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">tuple</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"--- Exception Occured ---"</span><span class="p">)</span>
+    <span class="n">traceback</span><span class="p">.</span><span class="n">print_exc</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 출력 결과
+</span><span class="o">---</span> <span class="nb">Exception</span> <span class="n">Occured</span> <span class="o">---</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;ipython-input-19-0acccd16d042&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="nb">tuple</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">IndexError</span><span class="p">:</span> <span class="nb">tuple</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>    
+</code></pre></div></div>
+
+<p>빈 튜플에 indexing을 시도했으므로 에러가 발생하는 것은 당연하다.<br />
+그 에러는 <code class="highlighter-rouge">IndexError</code> 인데, 우리는 <code class="highlighter-rouge">traceback.print_exc</code> 메서드를 통해 stack trace 정보를 출력할 수 있다.</p>
+
+<p><code class="highlighter-rouge">limit=None</code>이 기본이며 이 때는 제한 없이 stack trace를 출력한다. 위 예시와 같이 1을 입력하면 단 한 개의 stack trace 정보를 출력한다는 뜻이다. <code class="highlighter-rouge">file, chain</code> argument 설정을 통해 파일 출력 위치를 설정하거나 연쇄적인 Exception 출력 설정을 관리할 수 있다.</p>
+
+<p>왜 이런 과정을 거쳐야 할까? 만약 이와 같이 try-except를 통해 Exception을 관리해주지 않는다면, 우리는 모든 에러를 잡기 전까지 프로그램 전체를 돌릴 수 없을 것이다.</p>
+
+<p>이번에는 logging 모듈과 합작하여 Exception을 추적해보자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"example.log"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">"%(asctime)s %(levelname)s %(message)s"</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">tuple</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="n">traceback</span><span class="p">.</span><span class="n">format_exc</span><span class="p">())</span>
+    <span class="k">raise</span>
+
+<span class="c1"># 출력 결과
+</span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"C:\Users\...\interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_ns</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"&lt;ipython-input-18-16da8da0daa5&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">6</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="nb">tuple</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">IndexError</span><span class="p">:</span> <span class="nb">tuple</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+</code></pre></div></div>
+
+<p>logging 모듈을 통해 우리는 <code class="highlighter-rouge">example.log</code>라는 파일에 에러에 관한 기록을 해둘 수 있었다.<br />
+이 파일에는 다음과 같은 로그 기록이 남아있다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2020-01-12 18:38:50,633 ERROR Traceback (most recent call last):
+  File "&lt;ipython-input-18-16da8da0daa5&gt;", line 6, in &lt;module&gt;
+    tuple()[0]
+IndexError: tuple index out of range
+</code></pre></div></div>
+
+<hr />
+<h2 id="4-exception-만들기">4. Exception 만들기</h2>
+<p><code class="highlighter-rouge">Exception</code> class 상속을 통해 Exception을 직접 만들 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">class</span> <span class="nc">SizeError</span><span class="p">(</span><span class="nb">Exception</span><span class="p">):</span>
+    <span class="c1"># 에러 메시지를 출력하고 싶으면 아래와 같은 특별 메서드를 구현해야 한다.
+</span>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">"Size does not fit"</span>
+    
+<span class="c1"># 기준이 되는 base
+</span><span class="n">base</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># 비교대상인 data
+</span><span class="n">data1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># np.array의 shape을 비교하는 함수이다.
+</span><span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">base</span> <span class="p">,</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">base</span><span class="p">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">data</span><span class="p">.</span><span class="n">shape</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">SizeError</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"All Clear"</span><span class="p">)</span>
+
+<span class="c1"># 첫 번째 테스트
+</span><span class="n">compare</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data1</span><span class="p">)</span>
+
+<span class="c1"># 첫 번째 결과
+</span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"C:\Users\...\interactiveshell.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2961</span><span class="p">,</span> <span class="ow">in</span> <span class="n">run_code</span>
+    <span class="k">exec</span><span class="p">(</span><span class="n">code_obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">user_ns</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"&lt;ipython-input-36-c1718418c4b8&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data1</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"&lt;ipython-input-35-8ec7197ddfb7&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="n">compare</span>
+    <span class="k">raise</span> <span class="n">SizeError</span><span class="p">()</span>
+<span class="n">SizeError</span><span class="p">:</span> <span class="n">Size</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">fit</span>
+
+<span class="c1"># 두 번째 테스트
+</span><span class="n">compare</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data2</span><span class="p">)</span>
+
+<span class="c1"># 두 번째 결과
+</span><span class="n">All</span> <span class="n">Clear</span>
+</code></pre></div></div>
+
+<hr />
+<h2 id="reference">Reference</h2>
+<blockquote>
+  <p><a href="https://docs.python.org/3/library/exceptions.html">파이썬 공식문서</a><br />
+<a href="https://m.blog.naver.com/PostView.nhn?blogId=wideeyed&amp;logNo=221576227901&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F">참고 블로그1</a>
+<a href="https://wikidocs.net/30">참고 블로그2</a></p>
+</blockquote>
+
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/error/';
+    this.page.identifier = 'http://localhost:4000/error/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

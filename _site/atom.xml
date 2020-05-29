@@ -4,7 +4,7 @@
  <title>YW & YY</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2020-05-29T22:15:46+09:00</updated>
+ <updated>2020-05-29T22:23:23+09:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>YW & YY</name>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>GitHub 사용법 - 09. Overall</title>
-   <link href="http://localhost:4000/github/2020/05/27/github-usage-09-overall/"/>
+   <link href="http://localhost:4000/github-usage-09-overall/"/>
    <updated>2020-05-27T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2020/05/27/github-usage-09-overall</id>
+   <id>http://localhost:4000/github-usage-09-overall</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/github/2018/08/19/github-usage-08-conflict/&quot;&gt;저번 글&lt;/a&gt;에서는 Conflict에 대해서 알아보았다.&lt;br /&gt;
 이번 글에서는, 전체 Git 명령어들의 사용법을 살펴본다.&lt;/p&gt;
 
@@ -1227,9 +1227,9 @@ git rebase &lt;span class=&quot;p&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k
  
  <entry>
    <title>Variational AutoEncoder 설명</title>
-   <link href="http://localhost:4000/generative/model/2020/05/25/VAE/"/>
+   <link href="http://localhost:4000/VAE/"/>
    <updated>2020-05-25T00:00:00+09:00</updated>
-   <id>http://localhost:4000/generative/model/2020/05/25/VAE</id>
+   <id>http://localhost:4000/VAE</id>
    <content type="html">&lt;p&gt;본 글의 주제는  2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다.&lt;/p&gt;
 
 &lt;h2 id=&quot;1-auto-encoding-variational-bayes-논문-리뷰&quot;&gt;1. Auto-Encoding Variational Bayes 논문 리뷰&lt;/h2&gt;
@@ -1348,9 +1348,9 @@ $q(x)$라는 쉬운 분포를 통해 target 분포 $p(x)$를 근사 추론하는
  
  <entry>
    <title>추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현</title>
-   <link href="http://localhost:4000/machine_learning/2020/05/01/AFM/"/>
+   <link href="http://localhost:4000/AFM/"/>
    <updated>2020-05-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2020/05/01/AFM</id>
+   <id>http://localhost:4000/AFM</id>
    <content type="html">&lt;p&gt;본 글의 전반부에서는 먼저 &lt;strong&gt;Attentional Factorization Machines: Learning theWeight of Feature Interactions via Attention Networks&lt;/strong&gt; 논문을 리뷰하면서 본 모델에 대해 설명할 것이다. 후반부에서는 Tensorflow를 이용하여 직접 코딩을 하고 학습하는 과정을 소개할 것이다. 논문의 전문은 &lt;a href=&quot;https://www.ijcai.org/Proceedings/2017/0435.pdf&quot;&gt;이곳&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -1658,9 +1658,9 @@ FM보다 표현력이 뛰어난 &lt;strong&gt;AFM&lt;/strong&gt;이기에 더욱
  
  <entry>
    <title>추천 시스템의 기본 - 05. DeepFM 논문 리뷰 및 Tensorflow 구현</title>
-   <link href="http://localhost:4000/machine_learning/2020/04/07/DeepFM/"/>
+   <link href="http://localhost:4000/DeepFM/"/>
    <updated>2020-04-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2020/04/07/DeepFM</id>
+   <id>http://localhost:4000/DeepFM</id>
    <content type="html">&lt;p&gt;본 글의 전반부에서는 먼저 &lt;strong&gt;DeepFM: A Factorization-Machine based Neural Network for CTR Prediction&lt;/strong&gt; 논문을 리뷰하면서 본 모델에 대해 설명할 것이다. 후반부에서는 Tensorflow를 이용하여 직접 코딩을 하고 학습하는 과정을 소개할 것이다. 논문의 전문은 &lt;a href=&quot;https://arxiv.org/pdf/1703.04247v1.pdf&quot;&gt;이곳&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -2113,9 +2113,9 @@ CTR 예측에 사용되는 Raw 데이터는 일반적으로 매우 희소하고,
  
  <entry>
    <title>추천 시스템의 기본 - 04. Field-aware Factorization Machines 설명 및 xlearn 실습</title>
-   <link href="http://localhost:4000/machine_learning/2020/04/05/FFM/"/>
+   <link href="http://localhost:4000/FFM/"/>
    <updated>2020-04-05T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2020/04/05/FFM</id>
+   <id>http://localhost:4000/FFM</id>
    <content type="html">&lt;p&gt;본 글의 전반부에서는 먼저 &lt;strong&gt;Field-aware Factorization Machines for CTR prediction&lt;/strong&gt; 논문을 리뷰하면서 본 모델에 대해 설명할 것이다. 후반부에서는 간단한 xlearn코드 역시 소개할 예정이다. 논문의 전문은 &lt;a href=&quot;https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf&quot;&gt;이곳&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -2353,9 +2353,9 @@ conference에서 논문이 통과될지에 대한 데이터가 있다고 하자.
  
  <entry>
    <title>DDQN 알고리즘 설명</title>
-   <link href="http://localhost:4000/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5/2020/03/15/DDQN/"/>
+   <link href="http://localhost:4000/DDQN/"/>
    <updated>2020-03-15T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EA%B0%95%ED%99%94%ED%95%99%EC%8A%B5/2020/03/15/DDQN</id>
+   <id>http://localhost:4000/DDQN</id>
    <content type="html">&lt;h2 id=&quot;1-ddqn-논문-리뷰&quot;&gt;1. DDQN 논문 리뷰&lt;/h2&gt;
 &lt;p&gt;Deep Reinforcement Learning with Double Q-learning
 &lt;a href=&quot;https://arxiv.org/abs/1509.06461&quot;&gt;논문 원본 링크&lt;/a&gt;&lt;/p&gt;
@@ -2441,9 +2441,9 @@ conference에서 논문이 통과될지에 대한 데이터가 있다고 하자.
  
  <entry>
    <title>Explain Yourself! Leveraging Language Models for Commonsense Reasoning</title>
-   <link href="http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2020/02/08/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/"/>
+   <link href="http://localhost:4000/Explain-Yourself-Leveraging-Language-Models-for-Commonsense-Reasoning/"/>
    <updated>2020-02-08T00:00:00+09:00</updated>
-   <id>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2020/02/08/Explain Yourself - Leveraging Language Models for Commonsense Reasoning</id>
+   <id>http://localhost:4000/Explain Yourself - Leveraging Language Models for Commonsense Reasoning</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2019년 6월 &lt;em&gt;Nazneen Fatema Fajani&lt;/em&gt; 등이 발표한 &lt;strong&gt;Explain Yourself! Leveraging Language Models for Commonsense Reasoning&lt;/strong&gt; 논문을 살펴보도록 한다.&lt;/p&gt;
@@ -2701,9 +2701,9 @@ CAGE-reasoning과 CoS-E-open-ended 간 BLEU 점수는 4.1이며 perplexity는 32
  
  <entry>
    <title>파이썬 Error 처리</title>
-   <link href="http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/12/error/"/>
+   <link href="http://localhost:4000/error/"/>
    <updated>2020-01-12T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/12/error</id>
+   <id>http://localhost:4000/error</id>
    <content type="html">&lt;h2 id=&quot;1-introduction&quot;&gt;1. Introduction&lt;/h2&gt;
 &lt;p&gt;파이썬에서 에러를 처리하고 관리하는 데에는 다양한 이유가 있다. 실제 Applicaion 상에서 에러가 발생하지 않도록 개발과 테스트 단계에서 미리 에러를 식별하고 수정하는 것은, 어떤 프로그램을 만들 때 굉장히 중요한 과정이라고 할 수 있다.&lt;/p&gt;
 
@@ -2976,9 +2976,9 @@ IndexError: tuple index out of range
  
  <entry>
    <title>파이썬 압축 모듈 간단 예시</title>
-   <link href="http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/11/zip/"/>
+   <link href="http://localhost:4000/zip/"/>
    <updated>2020-01-11T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/11/zip</id>
+   <id>http://localhost:4000/zip</id>
    <content type="html">&lt;h2 id=&quot;1-zlib-모듈&quot;&gt;1. zlib 모듈&lt;/h2&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;zlib&lt;/span&gt;
@@ -3081,9 +3081,9 @@ https://docs.python.org/3/library/tarfile.html&lt;/p&gt;
  
  <entry>
    <title>파이썬 collections, heapq 모듈 설명</title>
-   <link href="http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/10/collections-heapq/"/>
+   <link href="http://localhost:4000/collections-heapq/"/>
    <updated>2020-01-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2020/01/10/collections-heapq</id>
+   <id>http://localhost:4000/collections-heapq</id>
    <content type="html">&lt;h2 id=&quot;1-collections-모듈&quot;&gt;1. collections 모듈&lt;/h2&gt;
 &lt;h3 id=&quot;11-collectionscounter-객체&quot;&gt;1.1. collections.Counter 객체&lt;/h3&gt;
 &lt;p&gt;collections 모듈에서 가장 기본을 이루는 class는 &lt;code class=&quot;highlighter-rouge&quot;&gt;collections.Counter&lt;/code&gt;이다. 이 class에 argument로 반복 가능한 (iterable) 객체를 지정하거나 dictionary와 같은 mapping 객체를 지정하면 Counter 객체를 생성할 수 있다. 예를 들어보면,&lt;/p&gt;
@@ -3252,9 +3252,9 @@ https://docs.python.org/3/library/tarfile.html&lt;/p&gt;
  
  <entry>
    <title>추천 시스템의 기본 - 03. Factorization Machines 설명 및 Tensorflow 구현</title>
-   <link href="http://localhost:4000/machine_learning/2019/12/21/FM/"/>
+   <link href="http://localhost:4000/FM/"/>
    <updated>2019-12-21T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2019/12/21/FM</id>
+   <id>http://localhost:4000/FM</id>
    <content type="html">&lt;p&gt;본 글의 전반부에서는 먼저 &lt;strong&gt;Factorization Machines&lt;/strong&gt; 논문을 리뷰하면서 본 모델에 대해 설명할 것이다. 후반부에서는 텐서플로를 활용하여 &lt;strong&gt;FM&lt;/strong&gt; 모델을 구현해 볼 것이다. 논문의 전문은 &lt;a href=&quot;https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf&quot;&gt;이곳&lt;/a&gt;에서 확인할 수 있다.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -3523,9 +3523,9 @@ Alice와 Star Trek 사이의 상호작용을 추정하여 영화평점(Target y)
  
  <entry>
    <title>추천 시스템의 기본 - 02. Matrix Factorization 논문 리뷰</title>
-   <link href="http://localhost:4000/machine_learning/2019/12/20/Matrix-Factorization/"/>
+   <link href="http://localhost:4000/Matrix-Factorization/"/>
    <updated>2019-12-20T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2019/12/20/Matrix Factorization</id>
+   <id>http://localhost:4000/Matrix Factorization</id>
    <content type="html">&lt;p&gt;본 글은 2009년에 발표된 &lt;strong&gt;Matrix Factorization Techniques for Recommender Systems&lt;/strong&gt; 논문을 리뷰하고 간단히 요약 정리한 글이다. 논문 원본은 &lt;a href=&quot;https://datajobs.com/data-science-repo/Recommender-Systems-[Netflix].pdf&quot;&gt;이곳&lt;/a&gt;에서 다운 받을 수 있다.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -3632,9 +3632,9 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
  
  <entry>
    <title>추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)</title>
-   <link href="http://localhost:4000/machine_learning/2019/12/17/Recommendation-System/"/>
+   <link href="http://localhost:4000/Recommendation-System/"/>
    <updated>2019-12-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2019/12/17/Recommendation System</id>
+   <id>http://localhost:4000/Recommendation System</id>
    <content type="html">&lt;h2 id=&quot;1-introduction&quot;&gt;1. Introduction&lt;/h2&gt;
 &lt;p&gt;추천시스템은 이제는 너무 많은 산업에서 도입하고 있는 시스템이기에 웬만큼 참신하지 않은 이상 새롭게 들리지 않는 것이 현실이다. 그러나 소비자의 입장에서 추천시스템을 보는 것과, 이 시스템의 개발자가 추천시스템을 바라 보는 것에는 큰 차이가 있다. 성공적으로 추천 엔진을 도입한 산업, 기업들이 있는 반면 여러 가지 어려움으로 인해 실질적인 효과가 떨어지는 산업, 기업도 있기 마련이다.&lt;/p&gt;
 
@@ -3887,9 +3887,9 @@ $ p_u(t) $: 시간이 흐름에 따라 아이템에 대한 사용자의 선호�
  
  <entry>
    <title>파이썬 numba 모듈 설명</title>
-   <link href="http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/16/numba/"/>
+   <link href="http://localhost:4000/numba/"/>
    <updated>2019-12-16T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/16/numba</id>
+   <id>http://localhost:4000/numba</id>
    <content type="html">&lt;h2 id=&quot;1-introduction&quot;&gt;1. Introduction&lt;/h2&gt;
 &lt;p&gt;파이썬을 사용하다 보면 편리한 기능에 감탄하는 경우가 많지만 종종 속도에 대한 아쉬움을 느낄 때가 있다. 특히 머신러닝과 관련된 작업들을 하다 보면, 데이터 처리를 하는 과정에 있어서 좀 더 빠른 진행을 요구하는 경우가 많은데, 이를 위한 모듈 중 하나가 &lt;strong&gt;Numba&lt;/strong&gt;이다.&lt;/p&gt;
 
@@ -3988,9 +3988,9 @@ Just apply one of the Numba decorators to your Python function, and Numba does t
  
  <entry>
    <title>파이썬 logging Module 설명</title>
-   <link href="http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/13/logging/"/>
+   <link href="http://localhost:4000/logging/"/>
    <updated>2019-12-13T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%ED%8C%8C%EC%9D%B4%EC%8D%AC/2019/12/13/logging</id>
+   <id>http://localhost:4000/logging</id>
    <content type="html">&lt;h2 id=&quot;1-logging-module-소개&quot;&gt;1. logging Module 소개&lt;/h2&gt;
 &lt;h3 id=&quot;11-introduction&quot;&gt;1.1. Introduction&lt;/h3&gt;
 &lt;p&gt;logging 모듈은 파이썬 자체에 내장되어 있는 모듈로 사용이 간편함에도 불구하고 훌륭한 기능으로 널리 사용되고 있다. logging은 소프트웨어가 작동 중일 때 발생하는 여러 ‘사건’을 추적하고, 개발자는 이를 통해 어떤 ‘사건’이 발생하였고 따라서 앞으로 어떤 해결책을 강구해야 할지 판단하게 된다. 이러한 ‘사건’들은 각각 중요도가 다를 것인데, 본 logging 모듈은 이 중요도를 &lt;strong&gt;level&lt;/strong&gt;이라고 정의하고 있다. &lt;strong&gt;level&lt;/strong&gt;에 대한 설명은 아래 1.2장에서 확인할 수 있다.&lt;/p&gt;
@@ -4368,9 +4368,9 @@ https://snowdeer.github.io/python/2017/11/17/python-logging-example/&lt;/p&gt;
  
  <entry>
    <title>Light GBM 설명 및 사용법</title>
-   <link href="http://localhost:4000/machine_learning/2019/12/09/Light-GBM/"/>
+   <link href="http://localhost:4000/Light-GBM/"/>
    <updated>2019-12-09T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2019/12/09/Light GBM</id>
+   <id>http://localhost:4000/Light GBM</id>
    <content type="html">&lt;h2 id=&quot;1-light-gbm-a-highly-efficient-gradient-boosting-decision-tree-논문-리뷰&quot;&gt;1. Light GBM: A Highly Efficient Gradient Boosting Decision Tree 논문 리뷰&lt;/h2&gt;
 &lt;h3 id=&quot;11-background-and-introduction&quot;&gt;1.1. Background and Introduction&lt;/h3&gt;
 &lt;p&gt;다중 분류, 클릭 예측, 순위 학습 등에 주로 사용되는 &lt;strong&gt;Gradient Boosting Decision Tree (GBDT)&lt;/strong&gt;는 굉장히 유용한 머신러닝 알고리즘이며, XGBoost나 pGBRT 등 효율적인 기법의 설계를 가능하게 하였다. 이러한 구현은 많은 엔지니어링 최적화를 이룩하였지만 고차원이고 큰 데이터 셋에서는 만족스러운 결과를 내지 못하는 경우도 있었다. 왜냐하면 모든 가능한 분할점에 대해 정보 획득을 평가하기 위해 데이터 개체 전부를 스캔해야 했기 때문이다. 이는 당연하게도, 굉장히 시간 소모적이다.&lt;/p&gt;
@@ -4525,9 +4525,9 @@ https://snowdeer.github.io/python/2017/11/17/python-logging-example/&lt;/p&gt;
  
  <entry>
    <title>Seaborn Module 사용법</title>
-   <link href="http://localhost:4000/machine_learning/2019/12/05/Seaborn-Module/"/>
+   <link href="http://localhost:4000/Seaborn-Module/"/>
    <updated>2019-12-05T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2019/12/05/Seaborn Module</id>
+   <id>http://localhost:4000/Seaborn Module</id>
    <content type="html">&lt;h2 id=&quot;1-seaborn-모듈-개요&quot;&gt;1. Seaborn 모듈 개요&lt;/h2&gt;
 &lt;p&gt;Seaborn은 Matplotlib에 기반하여 제작된 파이썬 데이터 시각화 모듈이다. 고수준의 인터페이스를 통해 직관적이고 아름다운 그래프를 그릴 수 있다. 본 글은 Seaborn 공식 문서의 Tutorial 과정을 정리한 것임을 밝힌다.&lt;/p&gt;
 
@@ -5002,9 +5002,9 @@ https://snowdeer.github.io/python/2017/11/17/python-logging-example/&lt;/p&gt;
  
  <entry>
    <title>Imbalanced Learning</title>
-   <link href="http://localhost:4000/machine_learning/2019/10/01/Imbalanced-Learning/"/>
+   <link href="http://localhost:4000/Imbalanced-Learning/"/>
    <updated>2019-10-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2019/10/01/Imbalanced Learning</id>
+   <id>http://localhost:4000/Imbalanced Learning</id>
    <content type="html">&lt;h2 id=&quot;1-imbalanced-learning-불균형-학습-개요&quot;&gt;1. Imbalanced Learning (불균형 학습) 개요&lt;/h2&gt;
 
 &lt;p&gt;비정상 거래 탐지와 같은 케이스의 경우, 정상적인 거래 보다는 정상 범위에서 벗어난 것으로 판단되는 거래 기록의 비중이 현저하게 작을 것이다. 그런데 보통의 알고리즘으로 이러한 비정상 거래를 찾아내기 에는 이러한 데이터의 불균형이 중요한 이슈로 작용하는데, 본 글에서는 이러한 불균형 학습과 관련된 논의를 해보고자 한다.&lt;/p&gt;
@@ -5100,9 +5100,9 @@ $\delta$: 0 ~ 1 사이에서 생성된 난수&lt;/p&gt;
  
  <entry>
    <title>Contextual Bandit and Tree Heuristic</title>
-   <link href="http://localhost:4000/machine_learning/2019/09/18/Contextual-Bandit-and-Tree-Heuristic/"/>
+   <link href="http://localhost:4000/Contextual-Bandit-and-Tree-Heuristic/"/>
    <updated>2019-09-18T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2019/09/18/Contextual Bandit and Tree Heuristic</id>
+   <id>http://localhost:4000/Contextual Bandit and Tree Heuristic</id>
    <content type="html">&lt;h2 id=&quot;1-contextual-bandit의-개념&quot;&gt;1. Contextual Bandit의 개념&lt;/h2&gt;
 &lt;p&gt;Contextual Bandit 문제를 알기 위해선 Multi-Armed Bandit 문제의 개념에 대해 숙지하고 있어야 한다.&lt;br /&gt;
 위 개념에 대해 알기를 원한다면 &lt;a href=&quot;https://sumniya.tistory.com/9&quot;&gt;여기&lt;/a&gt;를 참고하기 바란다.&lt;/p&gt;
@@ -5661,9 +5661,9 @@ Tree Heuristic Implementation with Striatum Module
  
  <entry>
    <title>OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners</title>
-   <link href="http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/"/>
+   <link href="http://localhost:4000/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/"/>
    <updated>2019-08-28T00:00:00+09:00</updated>
-   <id>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners</id>
+   <id>http://localhost:4000/OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2019년 2월 &lt;em&gt;Alec Radford&lt;/em&gt; 등이 발표한 OpenAI GPT-2: Language Models are Unsupervised Multitask Learners를 살펴보도록 한다.&lt;/p&gt;
@@ -5978,9 +5978,9 @@ Tree Heuristic Implementation with Striatum Module
  
  <entry>
    <title>BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
-   <link href="http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/"/>
+   <link href="http://localhost:4000/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/"/>
    <updated>2019-08-23T00:00:00+09:00</updated>
-   <id>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding</id>
+   <id>http://localhost:4000/BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2018년 10월 &lt;em&gt;Jacob Devlin&lt;/em&gt; 등이 발표한 BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding를 살펴보도록 한다.&lt;/p&gt;
@@ -6328,9 +6328,9 @@ fine-tuning 접근법을 피하기 위해, BERT의 어떤 parameter에 대해서
  
  <entry>
    <title>OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training</title>
-   <link href="http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/"/>
+   <link href="http://localhost:4000/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/"/>
    <updated>2019-08-21T00:00:00+09:00</updated>
-   <id>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training</id>
+   <id>http://localhost:4000/OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2018년 6월 &lt;em&gt;Alec Radford&lt;/em&gt; 등이 발표한 OpenAI GPT-1: Improving Language Understanding by Generative Pre-Training를 살펴보도록 한다.&lt;/p&gt;
@@ -6624,9 +6624,9 @@ Transformer를 통한 언어모델의 사전학습이 효과적인지에 대한 
  
  <entry>
    <title>ELMo - Deep contextualized word representations</title>
-   <link href="http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/"/>
+   <link href="http://localhost:4000/ELMo-Deep-contextualized-word-representations/"/>
    <updated>2019-08-20T00:00:00+09:00</updated>
-   <id>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo - Deep contextualized word representations</id>
+   <id>http://localhost:4000/ELMo - Deep contextualized word representations</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2018년 2월 &lt;em&gt;Matthew E. Peters&lt;/em&gt; 등이 발표한 Deep contextualized word representations를 살펴보도록 한다.&lt;/p&gt;
@@ -6870,9 +6870,9 @@ Dai and Le(2015)와 Ramachandran et al.(2017)에서는 언어모델(LM)로 인�
  
  <entry>
    <title>Attention Is All You Need</title>
-   <link href="http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/"/>
+   <link href="http://localhost:4000/Attention-Is-All-You-Need/"/>
    <updated>2019-08-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention Is All You Need</id>
+   <id>http://localhost:4000/Attention Is All You Need</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2017년 6월(v1) &lt;em&gt;Ashish Vaswani&lt;/em&gt; 등이 발표한 Attention Is All You Need를 살펴보도록 한다.&lt;/p&gt;
@@ -7130,9 +7130,9 @@ query와 모든 key의 내적(dot product)을 계산하고, 각각 $\sqrt{d_k}$�
  
  <entry>
    <title>Generating Sequences With Recurrent Neural Networks</title>
-   <link href="http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/07/15/Generating-Sequences-WIth-Recurrent-Neural-Networks/"/>
+   <link href="http://localhost:4000/Generating-Sequences-WIth-Recurrent-Neural-Networks/"/>
    <updated>2019-07-15T00:00:00+09:00</updated>
-   <id>http://localhost:4000/nlp(natural%20language%20processing)%20/%20rnns/2019/07/15/Generating Sequences WIth Recurrent Neural Networks</id>
+   <id>http://localhost:4000/Generating Sequences WIth Recurrent Neural Networks</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2013년 8월(v1) Alex Graves가 발표한 Generating Sequences With Recurrent Neural Networks를 살펴보도록 한다.&lt;/p&gt;
@@ -7369,9 +7369,9 @@ IAM-OnDB 데이터셋은 221명의 사람이 Lancaster-Oslo-Bergen 말뭉치를 
  
  <entry>
    <title>2019 ICML Papers</title>
-   <link href="http://localhost:4000/paper_review/2019/07/11/2019-ICML-Papers/"/>
+   <link href="http://localhost:4000/2019-ICML-Papers/"/>
    <updated>2019-07-11T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2019/07/11/2019-ICML-Papers</id>
+   <id>http://localhost:4000/2019-ICML-Papers</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2019년 ICML(International Conference on Machine Learning)에서 어떤 논문들이 accept되어 발표되었는지를 알아볼 것이다. 3424개의 논문이 접수되어 774개의 논문만이 구두 및 포스터 발표로 진행되었다.&lt;/p&gt;
@@ -7605,9 +7605,9 @@ $\epsilon$은 초기품질을 결정짓는 인자로서 약간의 계산을 추�
  
  <entry>
    <title>PyTorch 사용법 - 04. Recurrent Neural Network(RNN) Model</title>
-   <link href="http://localhost:4000/pytorch/2019/06/12/pytorch-usage-04-RNN-Model/"/>
+   <link href="http://localhost:4000/pytorch-usage-04-RNN-Model/"/>
    <updated>2019-06-12T00:00:00+09:00</updated>
-   <id>http://localhost:4000/pytorch/2019/06/12/pytorch-usage-04-RNN-Model</id>
+   <id>http://localhost:4000/pytorch-usage-04-RNN-Model</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/&quot;&gt;PyTorch 사용법 - 00. References&lt;/a&gt;&lt;br /&gt;
@@ -7876,9 +7876,9 @@ tensor([[-0.1399],
  
  <entry>
    <title>Deep Learning Tutorial(딥러닝 튜토리얼) 01. 소개</title>
-   <link href="http://localhost:4000/deep%20learning%20tutorial/2019/06/10/Deep-Learning-01/"/>
+   <link href="http://localhost:4000/Deep-Learning-01/"/>
    <updated>2019-06-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/deep%20learning%20tutorial/2019/06/10/Deep-Learning-01</id>
+   <id>http://localhost:4000/Deep-Learning-01</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://greeksharifa.github.io/&quot;&gt;Deep Learning Tutorial(딥러닝 튜토리얼) 01. 소개&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -8039,9 +8039,9 @@ tensor([[-0.1399],
  
  <entry>
    <title>MovieQA(Movie Question Answering)</title>
-   <link href="http://localhost:4000/computer%20vision/2019/05/29/Movie-Question-Answering/"/>
+   <link href="http://localhost:4000/Movie-Question-Answering/"/>
    <updated>2019-05-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/computer%20vision/2019/05/29/Movie-Question-Answering</id>
+   <id>http://localhost:4000/Movie-Question-Answering</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 MovieQA: Understanding Stories in Movies through Question-Answering에 대해 알아보고자 한다.&lt;/p&gt;
@@ -8156,9 +8156,9 @@ tensor([[-0.1399],
  
  <entry>
    <title>VQA(Visual Question Answering)</title>
-   <link href="http://localhost:4000/computer%20vision/2019/04/17/Visual-Question-Answering/"/>
+   <link href="http://localhost:4000/Visual-Question-Answering/"/>
    <updated>2019-04-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/computer%20vision/2019/04/17/Visual-Question-Answering</id>
+   <id>http://localhost:4000/Visual-Question-Answering</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 VQA: Visual Question Answering에 대해 알아보고자 한다.&lt;/p&gt;
@@ -8350,9 +8350,9 @@ VQA를 성공적으로 수행하기 위한 시스템은 이미지 captioning을 
  
  <entry>
    <title>DANs(Dual Attention Networks for Multimodal Reasoning and Matching)</title>
-   <link href="http://localhost:4000/computer%20vision/2019/04/17/Dual-Attention-Networks/"/>
+   <link href="http://localhost:4000/Dual-Attention-Networks/"/>
    <updated>2019-04-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/computer%20vision/2019/04/17/Dual-Attention-Networks</id>
+   <id>http://localhost:4000/Dual-Attention-Networks</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 네이버랩스(Naver Corp.)에서 2017년 발표한 논문인 Dual Attention Networks for Multimodal Reasoning and Matching에 대해 알아보고자 한다.&lt;br /&gt;
@@ -8554,9 +8554,9 @@ minibatch=128 $\times$ 128 quadruplets(긍정 이미지, 긍정 문장, 부정 �
  
  <entry>
    <title>Pix2Pix(Image-to-Image Translation with Conditional Adversarial Networks)</title>
-   <link href="http://localhost:4000/generative%20model/2019/04/07/Pix2Pix/"/>
+   <link href="http://localhost:4000/Pix2Pix/"/>
    <updated>2019-04-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/generative%20model/2019/04/07/Pix2Pix</id>
+   <id>http://localhost:4000/Pix2Pix</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2016년 11월 &lt;em&gt;Phillip Isola&lt;/em&gt; 등이 발표한 Image-to-Image Translation with Conditional Adversarial Networks(Pix2Pix)를 살펴보도록 한다.&lt;/p&gt;
@@ -8830,9 +8830,9 @@ encoder의 모든 ReLU는 기울기 0.2의 Leaky ReLU이며, decoder는 그냥 R
  
  <entry>
    <title>GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)</title>
-   <link href="http://localhost:4000/generative%20model/2019/03/20/advanced-GANs/"/>
+   <link href="http://localhost:4000/advanced-GANs/"/>
    <updated>2019-03-20T00:00:00+09:00</updated>
-   <id>http://localhost:4000/generative%20model/2019/03/20/advanced-GANs</id>
+   <id>http://localhost:4000/advanced-GANs</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN 등에 대해 알아보도록 하겠다.&lt;/p&gt;
@@ -9561,9 +9561,9 @@ GAN 학습에 관한 내용을 정리한 것으로는 다음 논문이 있다. &
  
  <entry>
    <title>f-GAN</title>
-   <link href="http://localhost:4000/generative%20model/2019/03/19/f-GAN/"/>
+   <link href="http://localhost:4000/f-GAN/"/>
    <updated>2019-03-19T00:00:00+09:00</updated>
-   <id>http://localhost:4000/generative%20model/2019/03/19/f-GAN</id>
+   <id>http://localhost:4000/f-GAN</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2016년 6월 &lt;em&gt;Sebastian Nowozin&lt;/em&gt; 등이 발표한 &lt;em&gt;f&lt;/em&gt;-GAN - Training Generative Neural Samplers using Variational Divergence Minimization를 살펴보도록 한다.&lt;/p&gt;
@@ -9829,9 +9829,9 @@ $ z \rightarrow Linear(100, 6\ast6\ast512)  \rightarrow BN \rightarrow ReLU \rig
  
  <entry>
    <title>CGAN(Conditional GAN)</title>
-   <link href="http://localhost:4000/generative%20model/2019/03/19/CGAN/"/>
+   <link href="http://localhost:4000/CGAN/"/>
    <updated>2019-03-19T00:00:00+09:00</updated>
-   <id>http://localhost:4000/generative%20model/2019/03/19/CGAN</id>
+   <id>http://localhost:4000/CGAN</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2014년 11월 &lt;em&gt;Mehdi Mirza&lt;/em&gt; 등이 발표한 Conditional Generative Adversarial Nets(CGAN)를 살펴보도록 한다.&lt;/p&gt;
@@ -10031,9 +10031,9 @@ D에서는 $x$와 $y$가 input으로써 들어가게 된다.&lt;/p&gt;
  
  <entry>
    <title>DCGAN(Deep Convolutional GAN)</title>
-   <link href="http://localhost:4000/generative%20model/2019/03/17/DCGAN/"/>
+   <link href="http://localhost:4000/DCGAN/"/>
    <updated>2019-03-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/generative%20model/2019/03/17/DCGAN</id>
+   <id>http://localhost:4000/DCGAN</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2015년 11월 &lt;em&gt;Alec Radford&lt;/em&gt; 등이 발표한 DCGAN(Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks)를 살펴보도록 한다.&lt;/p&gt;
@@ -10254,9 +10254,9 @@ GAN이 생성한 것은 noise가 많고 이해하기 어려웠다. Laplcian pyra
  
  <entry>
    <title>GAN(Generative Adversarial Networks)</title>
-   <link href="http://localhost:4000/generative%20model/2019/03/03/GAN/"/>
+   <link href="http://localhost:4000/GAN/"/>
    <updated>2019-03-03T00:00:00+09:00</updated>
-   <id>http://localhost:4000/generative%20model/2019/03/03/GAN</id>
+   <id>http://localhost:4000/GAN</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 2014년 6월 &lt;em&gt;Ian J. Goodfellow&lt;/em&gt; 등이 발표한 Generative Adversarial Networks(GAN, 생성적 적대신경망)를 살펴보도록 한다.&lt;/p&gt;
@@ -10794,9 +10794,9 @@ JSD는 &lt;a href=&quot;https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_d
  
  <entry>
    <title>Python argparse 사용법</title>
-   <link href="http://localhost:4000/references/2019/02/12/argparse-usage/"/>
+   <link href="http://localhost:4000/argparse-usage/"/>
    <updated>2019-02-12T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2019/02/12/argparse-usage</id>
+   <id>http://localhost:4000/argparse-usage</id>
    <content type="html">&lt;p&gt;이 글에서는 Python 패키지인 argparse에 대해 알아본다. Machine Learning 코드를 볼 때 꽤 자주 볼 수 있을 것이다.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -11068,9 +11068,9 @@ invalid choice: '5' (choose from 1, 2, 3, 4)
  
  <entry>
    <title>PyCharm 사용법</title>
-   <link href="http://localhost:4000/references/2019/02/07/PyCharm-usage/"/>
+   <link href="http://localhost:4000/PyCharm-usage/"/>
    <updated>2019-02-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2019/02/07/PyCharm-usage</id>
+   <id>http://localhost:4000/PyCharm-usage</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;PyCharm(파이참)은 Jetbrains 사에서 제작 및 배포하는 &lt;strong&gt;유료&lt;/strong&gt;/무료 프로그램이다.&lt;br /&gt;
@@ -11947,9 +11947,9 @@ fibonacci(3)	:        8
  
  <entry>
    <title>Miniconda(Anaconda) 사용법</title>
-   <link href="http://localhost:4000/references/2019/02/01/Miniconda-usage/"/>
+   <link href="http://localhost:4000/Miniconda-usage/"/>
    <updated>2019-02-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2019/02/01/Miniconda-usage</id>
+   <id>http://localhost:4000/Miniconda-usage</id>
    <content type="html">&lt;p&gt;Anaconda는 Continuum Analytics라는 곳에서 만든 파이썬 배포판으로 수백 개의 파이썬 패키지를 포함하는 환경을 구성한다. Anaconda로는 virtualenv와 같은 여러 개의 가상환경을 만들어 각각의 환경을 따로 관리할 수 있다.&lt;br /&gt;
 그 중 Miniconda는 이것저것 설치할 것이 많은 Anaconda에서 패키지를 다르게 설치할 여러 환경들을 관리한다는 최소한의 기능만 가진 부분만 포함하는 mini 버전이다. 따라서 이 글에서는 Miniconda를 설치하여 가상환경을 관리하는 법을 알아보겠다.&lt;/p&gt;
 
@@ -12168,9 +12168,9 @@ conda update anaconda
  
  <entry>
    <title>Jupyter Notebook 사용법</title>
-   <link href="http://localhost:4000/references/2019/01/26/Jupyter-usage/"/>
+   <link href="http://localhost:4000/Jupyter-usage/"/>
    <updated>2019-01-26T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2019/01/26/Jupyter-usage</id>
+   <id>http://localhost:4000/Jupyter-usage</id>
    <content type="html">&lt;p&gt;Jupyter notebook은 대화형 파이썬 인터프리터(Interpreter)로서 웹 브라우저 환경에서 파이썬 코드를 작성 및 실행할 수 있는 툴이다.&lt;br /&gt;
 서버에 Jupyter notebook을 설치하여 포트를 개방한 후 해당 url에 접속하여 원격으로 사용하거나, 로컬 환경에서 브라우저를 띄워 대화형 환경에서 코드를 작성 및 실행할 수 있다.&lt;/p&gt;
 
@@ -12619,9 +12619,9 @@ Markdown 타입은 &lt;a href=&quot;https://greeksharifa.github.io/references/20
  
  <entry>
    <title>PyTorch 사용법 - 03. How to Use PyTorch</title>
-   <link href="http://localhost:4000/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch/"/>
+   <link href="http://localhost:4000/pytorch-usage-03-How-to-Use-PyTorch/"/>
    <updated>2018-11-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/pytorch/2018/11/10/pytorch-usage-03-How-to-Use-PyTorch</id>
+   <id>http://localhost:4000/pytorch-usage-03-How-to-Use-PyTorch</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/&quot;&gt;PyTorch 사용법 - 00. References&lt;/a&gt;&lt;br /&gt;
@@ -13950,9 +13950,9 @@ layer 이름과 parameter를 mapping하여 저장하는 &lt;code class=&quot;hig
  
  <entry>
    <title>Bootstrap, Bagging, Boosting</title>
-   <link href="http://localhost:4000/machine_learning/2018/11/06/TripleB/"/>
+   <link href="http://localhost:4000/TripleB/"/>
    <updated>2018-11-06T00:00:00+09:00</updated>
-   <id>http://localhost:4000/machine_learning/2018/11/06/TripleB</id>
+   <id>http://localhost:4000/TripleB</id>
    <content type="html">&lt;h2 id=&quot;bootstrap-부트스트랩의-개념&quot;&gt;Bootstrap: 부트스트랩의 개념&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;통계학에서의 부트스트랩과 기계학습에서의 부트스트랩은 그 의미가 다른 점도 있지만 본질적으로는 같다고 할 수 있다. 통계학적으로는 정확한 분포를 모르는 데이터의 통계치의 분포를 알아내기 위하여 Random Sampling을 하는 경우를 말하며, 종종 측정된 샘플이 부족한 경우에도 사용된다.&lt;br /&gt;
@@ -14451,9 +14451,9 @@ AdaBoost는 이 게임에 반복적으로 참여하여 근사적으로 게임을
  
  <entry>
    <title>PyTorch 사용법 - 02. Linear Regression Model</title>
-   <link href="http://localhost:4000/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model/"/>
+   <link href="http://localhost:4000/pytorch-usage-02-Linear-Regression-Model/"/>
    <updated>2018-11-02T00:00:00+09:00</updated>
-   <id>http://localhost:4000/pytorch/2018/11/02/pytorch-usage-02-Linear-Regression-Model</id>
+   <id>http://localhost:4000/pytorch-usage-02-Linear-Regression-Model</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/&quot;&gt;PyTorch 사용법 - 00. References&lt;/a&gt;&lt;br /&gt;
@@ -14724,9 +14724,9 @@ tensor([[-0.1399],
  
  <entry>
    <title>PyTorch 사용법 - 01. 소개 및 설치</title>
-   <link href="http://localhost:4000/pytorch/2018/11/02/pytorch-usage-01-introduction/"/>
+   <link href="http://localhost:4000/pytorch-usage-01-introduction/"/>
    <updated>2018-11-02T00:00:00+09:00</updated>
-   <id>http://localhost:4000/pytorch/2018/11/02/pytorch-usage-01-introduction</id>
+   <id>http://localhost:4000/pytorch-usage-01-introduction</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/&quot;&gt;PyTorch 사용법 - 00. References&lt;/a&gt;&lt;br /&gt;
@@ -14901,9 +14901,9 @@ torchvision을 설치할 경우에 무슨 라이브러리가 없다면서 에러
  
  <entry>
    <title>PyTorch 사용법 - 00. References</title>
-   <link href="http://localhost:4000/pytorch/2018/11/02/pytorch-usage-00-references/"/>
+   <link href="http://localhost:4000/pytorch-usage-00-references/"/>
    <updated>2018-11-02T00:00:00+09:00</updated>
-   <id>http://localhost:4000/pytorch/2018/11/02/pytorch-usage-00-references</id>
+   <id>http://localhost:4000/pytorch-usage-00-references</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://greeksharifa.github.io/pytorch/2018/11/02/pytorch-usage-00-references/&quot;&gt;PyTorch 사용법 - 00. References&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
@@ -15165,9 +15165,9 @@ concatenate하는 차원을 제외하고는 size가 같거나 empty여야 한다
  
  <entry>
    <title>RC task using CNN/Daily dataset</title>
-   <link href="http://localhost:4000/paper_review/2018/11/01/RC-task/"/>
+   <link href="http://localhost:4000/RC-task/"/>
    <updated>2018-11-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/11/01/RC-task</id>
+   <id>http://localhost:4000/RC-task</id>
    <content type="html">&lt;h3 id=&quot;a-thorough-examination-of-the-cnndaily-mail-reading-comprehension-task&quot;&gt;A Thorough Examination of the CNN/Daily Mail Reading Comprehension Task&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 글은 Danqi Chen, Jason Bolton, Christopher D. Manning가 2016년에 Publish한 위 논문을 리뷰한 것이다.&lt;/p&gt;
@@ -15250,9 +15250,9 @@ attention과 output 모수들은 균일분포로 초기화되었고, GRU weights
  
  <entry>
    <title>Self Attention</title>
-   <link href="http://localhost:4000/paper_review/2018/10/29/Self-Attention/"/>
+   <link href="http://localhost:4000/Self-Attention/"/>
    <updated>2018-10-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/10/29/Self Attention</id>
+   <id>http://localhost:4000/Self Attention</id>
    <content type="html">&lt;h3 id=&quot;a-structured-self-attentive-sentence-embedding&quot;&gt;A Structured Self-Attentive Sentence Embedding&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 글은 Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen Zhou, Yoshua Bengio가 2017년에 Publish한 위 논문을 리뷰한 것이다.&lt;br /&gt;
@@ -15271,9 +15271,9 @@ attention과 output 모수들은 균일분포로 초기화되었고, GRU weights
  
  <entry>
    <title>YOLOv2</title>
-   <link href="http://localhost:4000/paper_review/2018/10/26/YOLOv2/"/>
+   <link href="http://localhost:4000/YOLOv2/"/>
    <updated>2018-10-26T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/10/26/YOLOv2</id>
+   <id>http://localhost:4000/YOLOv2</id>
    <content type="html">&lt;h3 id=&quot;you-only-look-once-unified-real-time-object-detection&quot;&gt;You Only Look Once: Unified, Real-Time Object Detection&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 글은 Joseph Redmon, Santosh Divvala, Ross Girshick, Ali Farhadi가 2016년에 Publish한 위 논문을 리뷰한 것이며, 추가적으로 구현을 위한 Loss Function 설명과 코드를 첨부하였다.&lt;/p&gt;
@@ -15536,9 +15536,9 @@ $ S^2 $은 Grid Cell의 개수를 의미하며 본 예에서는 13 X 13을 의�
  
  <entry>
    <title>Attention</title>
-   <link href="http://localhost:4000/paper_review/2018/09/17/Attention/"/>
+   <link href="http://localhost:4000/Attention/"/>
    <updated>2018-09-17T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/09/17/Attention</id>
+   <id>http://localhost:4000/Attention</id>
    <content type="html">&lt;h3 id=&quot;neural-machine-translation-by-jointly-learning-to-align-and-translate&quot;&gt;Neural Machine Translation by Jointly Learning to Align and Translate&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 글은 Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio가 2014년에 Publish한 위 논문을 리뷰한 것이다.&lt;/p&gt;
@@ -15735,9 +15735,9 @@ $C_o$: ($2l$, 2n)&lt;br /&gt;
  
  <entry>
    <title>RNN Encoder-Decoder</title>
-   <link href="http://localhost:4000/paper_review/2018/09/10/RNN-Encoder-Decoder/"/>
+   <link href="http://localhost:4000/RNN-Encoder-Decoder/"/>
    <updated>2018-09-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/09/10/RNN Encoder-Decoder</id>
+   <id>http://localhost:4000/RNN Encoder-Decoder</id>
    <content type="html">&lt;h3 id=&quot;learning-phrase-representations-using-rnn-encoder-decoder-for-statistical-machine-translation&quot;&gt;Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 글은 Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio가 2014년에 Publish한 위 논문을 리뷰한 것이다.&lt;/p&gt;
@@ -15901,9 +15901,9 @@ Soon to be updated&lt;/p&gt;
  
  <entry>
    <title>Vehicle Color Recognition</title>
-   <link href="http://localhost:4000/paper_review/2018/09/07/Vehicle-Color-Recognition/"/>
+   <link href="http://localhost:4000/Vehicle-Color-Recognition/"/>
    <updated>2018-09-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/09/07/Vehicle Color Recognition</id>
+   <id>http://localhost:4000/Vehicle Color Recognition</id>
    <content type="html">&lt;h3 id=&quot;vehicle-color-recognition-using-cnn&quot;&gt;Vehicle Color Recognition using CNN&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 글은 Reza Fuad Rachmadi, I Ketut Eddy Purnama가 2018년에 Publish한 위 논문을 리뷰한 것이다.&lt;/p&gt;
@@ -15963,9 +15963,9 @@ https://technology.condenast.com/story/handbag-brand-and-color-detection&lt;/p&g
  
  <entry>
    <title>GRU</title>
-   <link href="http://localhost:4000/paper_review/2018/09/07/GRU/"/>
+   <link href="http://localhost:4000/GRU/"/>
    <updated>2018-09-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/09/07/GRU</id>
+   <id>http://localhost:4000/GRU</id>
    <content type="html">&lt;h3 id=&quot;empirical-evaluation-of-gated-recurrent-nn-on-sequence-modeling&quot;&gt;Empirical Evaluation of Gated Recurrent NN on Sequence Modeling&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 글은 Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, Yoshua Bengio가 2014년에 publish한 Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling을 리뷰한 것이다.&lt;/p&gt;
@@ -16064,9 +16064,9 @@ LSTM과 GRU가 기존의 traditional한 구조와 가장 차별화되는 포인�
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 09. 기타 기능</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions/"/>
+   <link href="http://localhost:4000/regex-usage-09-other-functions/"/>
    <updated>2018-08-24T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/24/regex-usage-09-other-functions</id>
+   <id>http://localhost:4000/regex-usage-09-other-functions</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -16210,9 +16210,9 @@ done
  
  <entry>
    <title>GitHub 사용법 - 08. Conflict</title>
-   <link href="http://localhost:4000/github/2018/08/19/github-usage-08-conflict/"/>
+   <link href="http://localhost:4000/github-usage-08-conflict/"/>
    <updated>2018-08-19T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/08/19/github-usage-08-conflict</id>
+   <id>http://localhost:4000/github-usage-08-conflict</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/github/2018/08/15/github-usage-07-diff-add-commit-gitignore-intermediate/&quot;&gt;저번 글&lt;/a&gt;에서 작업하던 것을 이어서 한다. 저번 글에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;diff&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;add&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;commit&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.gitignore&lt;/code&gt;에 대해서 알아보았다.&lt;/p&gt;
@@ -16457,9 +16457,9 @@ git merge 3rd-branch&lt;/p&gt;
  
  <entry>
    <title>BOJ 01000(A+B), 01001(A-B), 01002(터렛) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/08/16/PS-01000~01002/"/>
+   <link href="http://localhost:4000/PS-01000~01002/"/>
    <updated>2018-08-16T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/08/16/PS-01000~01002</id>
+   <id>http://localhost:4000/PS-01000~01002</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -16599,9 +16599,9 @@ git merge 3rd-branch&lt;/p&gt;
  
  <entry>
    <title>GitHub 사용법 - 07. diff, add, commit, .gitignore 중급</title>
-   <link href="http://localhost:4000/github/2018/08/15/github-usage-07-diff-add-commit-gitignore-intermediate/"/>
+   <link href="http://localhost:4000/github-usage-07-diff-add-commit-gitignore-intermediate/"/>
    <updated>2018-08-15T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/08/15/github-usage-07-diff-add-commit-gitignore-intermediate</id>
+   <id>http://localhost:4000/github-usage-07-diff-add-commit-gitignore-intermediate</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/github/2018/08/12/github-usage-06-branch-intermediate/&quot;&gt;저번 글&lt;/a&gt;에서 작업하던 것을 이어서 한다. 저번 글에서는 다른 local repo의 branch update까지 살펴보았다.&lt;/p&gt;
@@ -17080,9 +17080,9 @@ git push&lt;/p&gt;
  
  <entry>
    <title>Fast R-CNN</title>
-   <link href="http://localhost:4000/paper_review/2018/08/13/Fast_RCNN/"/>
+   <link href="http://localhost:4000/Fast_RCNN/"/>
    <updated>2018-08-13T00:00:00+09:00</updated>
-   <id>http://localhost:4000/paper_review/2018/08/13/Fast_RCNN</id>
+   <id>http://localhost:4000/Fast_RCNN</id>
    <content type="html">&lt;h3 id=&quot;fast-rcnn&quot;&gt;Fast RCNN&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;이 포스트는 Ross Girshick의 Fast R-CNN 논문을 리뷰하는 것을 목적으로 한다.&lt;/p&gt;
@@ -17162,9 +17162,9 @@ $L_{localizaion} = \sum_{i\in{x,y,w,h}}|x| - 0.5$ otherwise&lt;/p&gt;
  
  <entry>
    <title>GitHub 사용법 - 06. branch 관리</title>
-   <link href="http://localhost:4000/github/2018/08/12/github-usage-06-branch-intermediate/"/>
+   <link href="http://localhost:4000/github-usage-06-branch-intermediate/"/>
    <updated>2018-08-12T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/08/12/github-usage-06-branch-intermediate</id>
+   <id>http://localhost:4000/github-usage-06-branch-intermediate</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/github/2018/08/11/github-usage-05-branch-basic/&quot;&gt;저번 글&lt;/a&gt;에서 작업하던 것을 이어서 한다. 저번 글에서는 두 사람이 각각 브랜치를 만들어 자신의 브랜치에서 작업하는 상황을 가정하여 진행했었다.&lt;/p&gt;
@@ -17279,9 +17279,9 @@ type second.py&lt;/p&gt;
  
  <entry>
    <title>GitHub 사용법 - 05. branch 기본 2</title>
-   <link href="http://localhost:4000/github/2018/08/11/github-usage-05-branch-basic/"/>
+   <link href="http://localhost:4000/github-usage-05-branch-basic/"/>
    <updated>2018-08-11T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/08/11/github-usage-05-branch-basic</id>
+   <id>http://localhost:4000/github-usage-05-branch-basic</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/github/2018/08/07/github-usage-04-branch-basic/&quot;&gt;저번 글&lt;/a&gt;에서 작업하던 것을 이어서 한다. 저번 글에서 1st-branch를 만들고 master에 merge한 뒤 삭제하는 작업을 진행했었다.&lt;/p&gt;
@@ -17568,9 +17568,9 @@ Rebase: 이름 그대로 base를 바꾸는 것이다. base가 되는 커밋의 �
  
  <entry>
    <title>GitHub 사용법 - 04. branch 기본 1</title>
-   <link href="http://localhost:4000/github/2018/08/07/github-usage-04-branch-basic/"/>
+   <link href="http://localhost:4000/github-usage-04-branch-basic/"/>
    <updated>2018-08-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/08/07/github-usage-04-branch-basic</id>
+   <id>http://localhost:4000/github-usage-04-branch-basic</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/&quot;&gt;저번 글&lt;/a&gt;에서 작업하던 것을 이어서 한다. 그때 master branch란 말을 잠깐 언급했었다.&lt;/p&gt;
@@ -17855,9 +17855,9 @@ git fetch&lt;/p&gt;
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 08. 예제(단어, 행)</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example/"/>
+   <link href="http://localhost:4000/regex-usage-08-example/"/>
    <updated>2018-08-06T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-08-example</id>
+   <id>http://localhost:4000/regex-usage-08-example</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -18008,9 +18008,9 @@ git fetch&lt;/p&gt;
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 07. 예제(숫자)</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example/"/>
+   <link href="http://localhost:4000/regex-usage-07-example/"/>
    <updated>2018-08-06T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/06/regex-usage-07-example</id>
+   <id>http://localhost:4000/regex-usage-07-example</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -18196,9 +18196,9 @@ git fetch&lt;/p&gt;
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 06. 치환 함수, 양방탐색, 조건문</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced/"/>
+   <link href="http://localhost:4000/regex-usage-06-advanced/"/>
    <updated>2018-08-05T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/05/regex-usage-06-advanced</id>
+   <id>http://localhost:4000/regex-usage-06-advanced</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -18426,9 +18426,9 @@ Not exists
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 05. 주석, 치환, 분리</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate/"/>
+   <link href="http://localhost:4000/regex-usage-05-intermediate/"/>
    <updated>2018-08-04T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/08/04/regex-usage-05-intermediate</id>
+   <id>http://localhost:4000/regex-usage-05-intermediate</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -18710,9 +18710,9 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
  
  <entry>
    <title>LSTM1</title>
-   <link href="http://localhost:4000/deep_learning/2018/07/30/LSTM1/"/>
+   <link href="http://localhost:4000/LSTM1/"/>
    <updated>2018-07-30T00:00:00+09:00</updated>
-   <id>http://localhost:4000/deep_learning/2018/07/30/LSTM1</id>
+   <id>http://localhost:4000/LSTM1</id>
    <content type="html">&lt;h2 id=&quot;basic-lstm-with-airplane-passengers-data&quot;&gt;Basic LSTM with Airplane Passengers Data&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 포스트는 시계열 데이터를 예측하는 가장 기본적인 LSTM에 대해 다룬다.&lt;br /&gt;
@@ -18886,9 +18886,9 @@ html 태그 내에서 태그를 제외한 부분으로 split하는 예제이다.
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 04. 그룹, 캡처</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate/"/>
+   <link href="http://localhost:4000/regex-usage-04-intermediate/"/>
    <updated>2018-07-28T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/28/regex-usage-04-intermediate</id>
+   <id>http://localhost:4000/regex-usage-04-intermediate</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -19264,9 +19264,9 @@ string: xyx, 	 start/end position=(12, 15), 	 반복 부분: x
  
  <entry>
    <title>Text_Generation</title>
-   <link href="http://localhost:4000/deep_learning/2018/07/28/Text_Generation/"/>
+   <link href="http://localhost:4000/Text_Generation/"/>
    <updated>2018-07-28T00:00:00+09:00</updated>
-   <id>http://localhost:4000/deep_learning/2018/07/28/Text_Generation</id>
+   <id>http://localhost:4000/Text_Generation</id>
    <content type="html">&lt;h2 id=&quot;text-generation-with-lstm&quot;&gt;Text Generation with LSTM&lt;/h2&gt;
 
 &lt;blockquote&gt;
@@ -19515,9 +19515,9 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.&lt;br /&gt;
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 03. OR, 반복</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic/"/>
+   <link href="http://localhost:4000/regex-usage-03-basic/"/>
    <updated>2018-07-22T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/22/regex-usage-03-basic</id>
+   <id>http://localhost:4000/regex-usage-03-basic</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -19798,9 +19798,9 @@ return 값으로는 그 중 가장 큰 index를 반환하게 된다.&lt;br /&gt;
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 02. 문자, 경계, flags</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic/"/>
+   <link href="http://localhost:4000/regex-usage-02-basic/"/>
    <updated>2018-07-21T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/21/regex-usage-02-basic</id>
+   <id>http://localhost:4000/regex-usage-02-basic</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;br /&gt;
@@ -20352,9 +20352,9 @@ None
  
  <entry>
    <title>YOLO</title>
-   <link href="http://localhost:4000/deep_learning/2018/07/21/YOLO/"/>
+   <link href="http://localhost:4000/YOLO/"/>
    <updated>2018-07-21T00:00:00+09:00</updated>
-   <id>http://localhost:4000/deep_learning/2018/07/21/YOLO</id>
+   <id>http://localhost:4000/YOLO</id>
    <content type="html">&lt;h2 id=&quot;yolo-you-only-look-once&quot;&gt;YOLO: You Only Look Once&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;본 포스트는 아래의 논문, 코드와
@@ -20689,9 +20689,9 @@ image.save를 통해 자동으로 output 이미지를 저장할 수 있다.&lt;/
  
  <entry>
    <title>파이썬 정규표현식(re) 사용법 - 01. Basic</title>
-   <link href="http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/"/>
+   <link href="http://localhost:4000/regex-usage-01-basic/"/>
    <updated>2018-07-20T00:00:00+09:00</updated>
-   <id>http://localhost:4000/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic</id>
+   <id>http://localhost:4000/regex-usage-01-basic</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/&quot;&gt;파이썬 정규표현식(re) 사용법 - 01. Basic&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
@@ -20950,18 +20950,18 @@ match
  
  <entry>
    <title>It will update soon...</title>
-   <link href="http://localhost:4000/references/2018/07/13/it-will-update-soon/"/>
+   <link href="http://localhost:4000/it-will-update-soon/"/>
    <updated>2018-07-13T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2018/07/13/it-will-update-soon</id>
+   <id>http://localhost:4000/it-will-update-soon</id>
    <content type="html">&lt;p&gt;곧 업데이트됩니다…&lt;/p&gt;
 </content>
  </entry>
  
  <entry>
    <title>BOJ 06086(최대 유량) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/12/PS-06086/"/>
+   <link href="http://localhost:4000/PS-06086/"/>
    <updated>2018-07-12T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/12/PS-06086</id>
+   <id>http://localhost:4000/PS-06086</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -21058,9 +21058,9 @@ match
  
  <entry>
    <title>디닉 알고리즘(Dinic's Algorithm)</title>
-   <link href="http://localhost:4000/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic/"/>
+   <link href="http://localhost:4000/algorithm-dinic/"/>
    <updated>2018-07-11T00:00:00+09:00</updated>
-   <id>http://localhost:4000/algorithm%20&%20data%20structure/2018/07/11/algorithm-dinic</id>
+   <id>http://localhost:4000/algorithm-dinic</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -21322,9 +21322,9 @@ sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않�
  
  <entry>
    <title>BOJ 11658(구간 합 구하기 3) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/11/PS-11658/"/>
+   <link href="http://localhost:4000/PS-11658/"/>
    <updated>2018-07-11T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/11/PS-11658</id>
+   <id>http://localhost:4000/PS-11658</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -21426,9 +21426,9 @@ sparse graph일 경우를 대비해 edges를 2차원 배열로 표현하지 않�
  
  <entry>
    <title>BOJ 01280(나무 심기) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/11/PS-01280/"/>
+   <link href="http://localhost:4000/PS-01280/"/>
    <updated>2018-07-11T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/11/PS-01280</id>
+   <id>http://localhost:4000/PS-01280</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -21614,9 +21614,9 @@ $ c_i := i$번 나무를 심는 비용&lt;/p&gt;
  
  <entry>
    <title>TensorFlow 사용법 - 01. 소개 및 설치</title>
-   <link href="http://localhost:4000/references/2018/07/10/tensorflow-usage-01-Introduction/"/>
+   <link href="http://localhost:4000/tensorflow-usage-01-Introduction/"/>
    <updated>2018-07-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2018/07/10/tensorflow-usage-01-Introduction</id>
+   <id>http://localhost:4000/tensorflow-usage-01-Introduction</id>
    <content type="html">&lt;h2 id=&quot;텐서플로tensorflow란&quot;&gt;텐서플로(TensorFlow)란?&lt;/h2&gt;
 
 &lt;p&gt;텐서플로(TensorFlow)는 원애 머신러닝(ML)과 심층 신경망(Deep Neural Network) 연구를 수행하는 구글 브레인 팀에서 개발되었다.&lt;br /&gt;
@@ -21781,9 +21781,9 @@ CPU 버전을 설치했다면 중간에 &lt;code class=&quot;highlighter-rouge&q
  
  <entry>
    <title>BOJ 02042(구간 합 구하기) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/10/PS-02042/"/>
+   <link href="http://localhost:4000/PS-02042/"/>
    <updated>2018-07-10T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/10/PS-02042</id>
+   <id>http://localhost:4000/PS-02042</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -21875,9 +21875,9 @@ CPU 버전을 설치했다면 중간에 &lt;code class=&quot;highlighter-rouge&q
  
  <entry>
    <title>펜윅 트리(Fenwick Tree, Binary Indexed Tree, BIT)</title>
-   <link href="http://localhost:4000/algorithm%20&%20data%20structure/2018/07/09/algorithm-fenwick-tree/"/>
+   <link href="http://localhost:4000/algorithm-fenwick-tree/"/>
    <updated>2018-07-09T00:00:00+09:00</updated>
-   <id>http://localhost:4000/algorithm%20&%20data%20structure/2018/07/09/algorithm-fenwick-tree</id>
+   <id>http://localhost:4000/algorithm-fenwick-tree</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -22194,9 +22194,9 @@ $\Sigma_{j=7}^7{arr[j]} = data[7]$
  
  <entry>
    <title>GitHub 사용법 - 03. 프로젝트 clone, status check, .gitignore</title>
-   <link href="http://localhost:4000/github/2018/07/08/github-usage-03-clone-log-gitignore/"/>
+   <link href="http://localhost:4000/github-usage-03-clone-log-gitignore/"/>
    <updated>2018-07-08T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/07/08/github-usage-03-clone-log-gitignore</id>
+   <id>http://localhost:4000/github-usage-03-clone-log-gitignore</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://greeksharifa.github.io/github/2018/06/29/github-usage-02-create-project/&quot;&gt;저번 글&lt;/a&gt;에서 작업하던 것을 이어서 한다. 저번 글에서는 git_tutorial 디렉토리를 생성하는 것까지 했었다.&lt;/p&gt;
@@ -22468,9 +22468,9 @@ git push
  
  <entry>
    <title>BOJ 13277(큰 수 곱셈) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/08/PS-13277/"/>
+   <link href="http://localhost:4000/PS-13277/"/>
    <updated>2018-07-08T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/08/PS-13277</id>
+   <id>http://localhost:4000/PS-13277</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -22576,9 +22576,9 @@ cin.tie(NULL);&lt;/p&gt;
  
  <entry>
    <title>BOJ 10828(스택) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/08/PS-10828/"/>
+   <link href="http://localhost:4000/PS-10828/"/>
    <updated>2018-07-08T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/08/PS-10828</id>
+   <id>http://localhost:4000/PS-10828</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -22673,9 +22673,9 @@ cin.tie(NULL);&lt;/p&gt;
  
  <entry>
    <title>BOJ 09012(괄호) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/08/PS-09012/"/>
+   <link href="http://localhost:4000/PS-09012/"/>
    <updated>2018-07-08T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/08/PS-09012</id>
+   <id>http://localhost:4000/PS-09012</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -22778,9 +22778,9 @@ cin.tie(NULL);&lt;/p&gt;
  
  <entry>
    <title>greeksharifa's Library</title>
-   <link href="http://localhost:4000/algorithm%20&%20data%20structure/2018/07/07/algorithm-library/"/>
+   <link href="http://localhost:4000/algorithm-library/"/>
    <updated>2018-07-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/algorithm%20&%20data%20structure/2018/07/07/algorithm-library</id>
+   <id>http://localhost:4000/algorithm-library</id>
    <content type="html">&lt;h2 id=&quot;sharifa_headerh&quot;&gt;sharifa_header.h&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/greeksharifa/ps_code/blob/master/library/sharifa_header.h&quot;&gt;코드&lt;/a&gt;&lt;/p&gt;
@@ -22808,9 +22808,9 @@ bit 연산을 안다면 코드를 보고 이해할 수 있으므로 따로 설�
  
  <entry>
    <title>고속 푸리에 변환(Fast Fourier Theorem, FFT). 큰 수의 곱셈</title>
-   <link href="http://localhost:4000/algorithm%20&%20data%20structure/2018/07/07/algorithm-FFT/"/>
+   <link href="http://localhost:4000/algorithm-FFT/"/>
    <updated>2018-07-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/algorithm%20&%20data%20structure/2018/07/07/algorithm-FFT</id>
+   <id>http://localhost:4000/algorithm-FFT</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -22941,9 +22941,9 @@ fft 함수는 http://topology-blog.tistory.com/6 블로그를 참조한 것입�
  
  <entry>
    <title>BOJ 06549(히스토그램에서 가장 큰 직사각형) 문제 풀이</title>
-   <link href="http://localhost:4000/ps/2018/07/07/PS-06549/"/>
+   <link href="http://localhost:4000/PS-06549/"/>
    <updated>2018-07-07T00:00:00+09:00</updated>
-   <id>http://localhost:4000/ps/2018/07/07/PS-06549</id>
+   <id>http://localhost:4000/PS-06549</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -23211,9 +23211,9 @@ BOJ의 예시(2 1 4 5 1 3 3)를 적용해 보자. 아래 그림은 BOJ에서 가
  
  <entry>
    <title>행렬의 N 거듭제곱 빠르게 구하기</title>
-   <link href="http://localhost:4000/algorithm%20&%20data%20structure/2018/07/04/algorithm-matrix-power/"/>
+   <link href="http://localhost:4000/algorithm-matrix-power/"/>
    <updated>2018-07-04T00:00:00+09:00</updated>
-   <id>http://localhost:4000/algorithm%20&%20data%20structure/2018/07/04/algorithm-matrix-power</id>
+   <id>http://localhost:4000/algorithm-matrix-power</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -23457,9 +23457,9 @@ BOJ의 예시(2 1 4 5 1 3 3)를 적용해 보자. 아래 그림은 BOJ에서 가
  
  <entry>
    <title>Residual Neural Network with CNN</title>
-   <link href="http://localhost:4000/deep_learning/2018/07/01/Residual-Neural-Network/"/>
+   <link href="http://localhost:4000/Residual-Neural-Network/"/>
    <updated>2018-07-01T00:00:00+09:00</updated>
-   <id>http://localhost:4000/deep_learning/2018/07/01/Residual Neural Network</id>
+   <id>http://localhost:4000/Residual Neural Network</id>
    <content type="html">&lt;h2 id=&quot;resnet&quot;&gt;Resnet&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;이 글에서는 Vanishing Gradients를 해결하는 하나의 방안인 &lt;strong&gt;Residual Block&lt;/strong&gt;을 사용한
@@ -23736,9 +23736,9 @@ Andrew Ng의 Deep Learning Specialization 강좌의 Programmin Assignment 코드
  
  <entry>
    <title>Markdown 사용법</title>
-   <link href="http://localhost:4000/references/2018/06/29/markdown-usage/"/>
+   <link href="http://localhost:4000/markdown-usage/"/>
    <updated>2018-06-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2018/06/29/markdown-usage</id>
+   <id>http://localhost:4000/markdown-usage</id>
    <content type="html">&lt;p&gt;마크다운을 쓸 때는 메모장으로도 되지만 JetBrains의 Webstorm에 Markdown support plugins을 설치하는 것이 도움이 된다.&lt;/p&gt;
 
 &lt;p&gt;참조: &lt;a href=&quot;https://simhyejin.github.io/2016/06/30/Markdown-syntax/&quot;&gt;simhyejin.github.io&lt;/a&gt;&lt;/p&gt;
@@ -23987,9 +23987,9 @@ Content 2 | Content 4
  
  <entry>
    <title>GitHub 사용법 - 02. 프로젝트와 repository 생성</title>
-   <link href="http://localhost:4000/github/2018/06/29/github-usage-02-create-project/"/>
+   <link href="http://localhost:4000/github-usage-02-create-project/"/>
    <updated>2018-06-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/06/29/github-usage-02-create-project</id>
+   <id>http://localhost:4000/github-usage-02-create-project</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -24431,9 +24431,9 @@ ex) git remote add origin https://github.com/greeksharifa/git_tutorial.git&lt;/p
  
  <entry>
    <title>GitHub 사용법 - 01. 소개</title>
-   <link href="http://localhost:4000/github/2018/06/29/github-usage-01-introduction/"/>
+   <link href="http://localhost:4000/github-usage-01-introduction/"/>
    <updated>2018-06-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/06/29/github-usage-01-introduction</id>
+   <id>http://localhost:4000/github-usage-01-introduction</id>
    <content type="html">&lt;h2 id=&quot;git이란&quot;&gt;Git이란?&lt;/h2&gt;
 
 &lt;p&gt;Git은 버전 관리 시스템으로, 파일의 변경 내용을 계속 추적하도록 개발된 것이다.
@@ -24559,9 +24559,9 @@ Commit message란 이 commit이 어떤 수정사항을 담고 있는지를 알�
  
  <entry>
    <title>GitHub 사용법 - 00. Command List</title>
-   <link href="http://localhost:4000/github/2018/06/29/github-usage-00-command-list/"/>
+   <link href="http://localhost:4000/github-usage-00-command-list/"/>
    <updated>2018-06-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/github/2018/06/29/github-usage-00-command-list</id>
+   <id>http://localhost:4000/github-usage-00-command-list</id>
    <content type="html">&lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
@@ -24755,9 +24755,9 @@ Commit message란 이 commit이 어떤 수정사항을 담고 있는지를 알�
  
  <entry>
    <title>Github blog 수식 입력 방법</title>
-   <link href="http://localhost:4000/references/2018/06/29/equation-usage/"/>
+   <link href="http://localhost:4000/equation-usage/"/>
    <updated>2018-06-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/references/2018/06/29/equation-usage</id>
+   <id>http://localhost:4000/equation-usage</id>
    <content type="html">&lt;p&gt;이 글에서는 수식 입력방식을 설명한다.&lt;/p&gt;
 
 &lt;p&gt;참조: &lt;a href=&quot;https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference&quot;&gt;stackexchange.com&lt;/a&gt;&lt;/p&gt;
@@ -24952,9 +24952,9 @@ $ {x} {x} $&lt;/p&gt;
  
  <entry>
    <title>Stack(스택)</title>
-   <link href="http://localhost:4000/algorithm%20&%20data%20structure/2018/06/29/algorithm-stack/"/>
+   <link href="http://localhost:4000/algorithm-stack/"/>
    <updated>2018-06-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/algorithm%20&%20data%20structure/2018/06/29/algorithm-stack</id>
+   <id>http://localhost:4000/algorithm-stack</id>
    <content type="html">&lt;h2 id=&quot;참조&quot;&gt;참조&lt;/h2&gt;
 
 &lt;table&gt;
@@ -25136,9 +25136,9 @@ int와 같은 기본형을 넣을 때는 별 차이가 없다.&lt;/p&gt;
  
  <entry>
    <title>케라스 튜토리얼</title>
-   <link href="http://localhost:4000/keras/2018/06/29/Keras-Tutorial/"/>
+   <link href="http://localhost:4000/Keras-Tutorial/"/>
    <updated>2018-06-29T00:00:00+09:00</updated>
-   <id>http://localhost:4000/keras/2018/06/29/Keras-Tutorial</id>
+   <id>http://localhost:4000/Keras-Tutorial</id>
    <content type="html">&lt;h3 id=&quot;케라스-basic&quot;&gt;케라스 Basic&lt;/h3&gt;
 
 &lt;h4 id=&quot;1-케라스의-모델-정의-방법은-크게-2가지가-있다&quot;&gt;[1] 케라스의 모델 정의 방법은 크게 2가지가 있다.&lt;/h4&gt;

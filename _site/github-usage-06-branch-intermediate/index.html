@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      GitHub 사용법 - 06. branch 관리
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">GitHub 사용법 - 06. branch 관리</h1>
+  <span class="post-date">12 Aug 2018</span>
+   |
+  
+  <a href="/blog/tags/#github" class="post-tag">GitHub</a>
+  
+  <a href="/blog/tags/#usage" class="post-tag">usage</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#branch-naming">Branch naming</a></li>
+  <li><a href="#branch-update">Branch update</a></li>
+  <li><a href="#git-명령어">Git 명령어</a></li>
+</ul>
+
+    <p><strong><em>주의: 이 글을 읽는 여러분이, 만약 git을 많이 써 봐서 익숙한 것이 아니라면, 반드시 손으로 직접 따라 칠 것을 권한다. 눈으로만 보면 100% 잊어버린다.</em></strong></p>
+
+<p><a href="https://greeksharifa.github.io/github/2018/08/11/github-usage-05-branch-basic/">저번 글</a>에서 작업하던 것을 이어서 한다. 저번 글에서는 두 사람이 각각 브랜치를 만들어 자신의 브랜치에서 작업하는 상황을 가정하여 진행했었다.</p>
+
+<hr />
+
+<h2 id="branch-naming">Branch naming</h2>
+
+<p>Branch 관리는 사실 하기 나름이지만, <a href="https://nvie.com/posts/a-successful-git-branching-model/">다음의 방법</a>이 괜찮기에 추천한다.</p>
+
+<ol>
+  <li>기본적으로 <strong>master</strong> 브랜치에서 진행한다. 이건 아주 기본적인 사항이다. master branch는 곧 배포할 코드를 보관한다.</li>
+  <li>개발의 중심이 되는 브랜치는 <strong>develop</strong> 브랜치에서 진행한다. develop 브랜치에서는 지금까지 merge된 코드들이 오류 없이 안정적으로 동작하는지를 검사한다. 물론 develop 브랜치에 merge되기 전에도 다른 팀원들이 검사하는 것이 일반적이지만, 모든 것을 다 판별할 수는 없기 때문에 안정성을 검사하는 것이다.</li>
+  <li><strong>feature</strong> 브랜치는 새로운 기능을 추가할 때 사용된다. 기능을 새로이 개발해야 할 때 local에서 만든 다음, 개발이 끝나면 develop 브랜치로 merge된다. 일반적으로 local에서 진행되고 remote repo에 push되지 않으나, 여러 명이 한 기능을 동시에 개발하는 경우에는 push한다.</li>
+  <li><strong>release</strong> 브랜치는 실제 동작 환경과 유사한 곳에서 테스트를 한번 더 하는 브랜치인데, 서버 환경이거나 아주 큰 프로젝트같은 것이 아니라면 굳이 필요하지는 않다. develop 브랜치로부터 생성되고, 안정성 검사가 끝나면 master branch로 version number와 함께 merge된다. 일반적으로 release 관련 작업은 주기적(1주 등)으로 이루어진다.</li>
+  <li><strong>hotfix</strong> 브랜치는 배포 이후에 발견된 버그를 빠르게 고쳐 패치하기 위한 브랜치이다(hotfix 패치는 어디선가 많이 봤을 것이다). 대개 master 혹은 develop 브랜치에서 생성되며 버그를 고친 이후에는 둘 모두에 각각 merge된다.</li>
+</ol>
+
+<p>위의 경우는 큰 프로젝트 혹은 서버의 경우이고, 규모가 작은 프로젝트라면 master 브랜치와 개인 브랜치(feature 브랜치와 비슷), 그리고 필요하다면 develop 브랜치 정도까지만 있어도 괜찮다.</p>
+
+<hr />
+
+<h2 id="branch-update">Branch update</h2>
+
+<p>저번 글에서 master, 2nd-branch, 3rd-branch까지 만들어서 작업을 했었다. 그런데 이 모든 내용은 local repo에 절대 자동으로 업데이트되지 않는다.</p>
+
+<p>git_tutorial_clone 폴더로 이동한다. <a href="https://greeksharifa.github.io/github/2018/07/08/github-usage-03-clone-log-gitignore/#local-directory-%EC%83%9D%EC%84%B1">여기</a>에서 했었는데, 아마 기억하고 있을 것이다.</p>
+
+<p>그리고 브랜치 상태를 확인해 보자.</p>
+
+<blockquote>
+  <p>git status<br />
+git branch -a</p>
+</blockquote>
+
+<p><img src="/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/01_clone.PNG" alt="01_clone" /></p>
+
+<p>업데이트를 전혀 안 했기 때문에, <code class="highlighter-rouge">git pull</code>을 입력해 보자.</p>
+
+<p><img src="/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/02_pull.PNG" alt="02_pull" /></p>
+
+<p>remote repo는 업데이트되었다. 만약 잘 되지 않았다면 <code class="highlighter-rouge">git fetch</code>를 추가로 입력하라. 이 명령은 저번 글에서 설명하였다.<br />
+그러나 local branch 목록은 전혀 업데이트되지 않았다.</p>
+
+<p>업데이트하기 전에, 우선 브라우저로 가서 2nd-branch로 이동한다. 그리고 <code class="highlighter-rouge">second.py</code>를 수정한다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/03_browser.PNG" alt="03_browser" /></p>
+
+<p>마지막 줄에 다음을 추가한다. 이렇게 브라우저에서도 파일을 수정할 수 있다.<br />
+추천되는 방법은 아니지만, readme.md를 수정하는 용도로는 쓸 만하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Directly modified sentence"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/04_browser.PNG" alt="04_browser" /></p>
+
+<p>그리고 <strong>Commit changes</strong> 버튼을 누른다.</p>
+
+<p>다시 git_tutorial_clone/git_tutorial 폴더로 돌아오자.</p>
+
+<p>local branch 목록은 전혀 업데이트되지 않았다. 이는 git은 자동으로 모든 것을 복사해오지 않기 때문이다.</p>
+
+<p>remote branch를 local branch로 가져오는 방법은 다음과 같다.</p>
+
+<p>첫번째 방법:</p>
+
+<blockquote>
+  <p>git checkout -t origin/2nd-branch</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">-t</code> 옵션은 <code class="highlighter-rouge">--track</code>과 같다.<br />
+만약 이전 버전의 git을 쓰고 있다면, <code class="highlighter-rouge">-b</code> 옵션을 추가로 붙인다.</p>
+
+<p>두번째 방법:</p>
+
+<blockquote>
+  <p>git checkout 2nd-branch</p>
+</blockquote>
+
+<p>그리고 다음을 입력한다. 이는 checkout 하기 전 master 브랜치에서 진행해도 상관없다.</p>
+<blockquote>
+  <p>git pull<br />
+type second.py</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">type</code>은 윈도우 명령창에서 파일의 내용을 출력하는 명령어이다. Linux 환경에서는 <code class="highlighter-rouge">cat</code>이다.</p>
+
+<p><img src="/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/05_local.PNG" alt="05_local" /></p>
+
+<p>위의 방법은 branch를 직접 가져오는 것이다. git pull을 하면 파일 내용이 업데이트된다.</p>
+
+<p>그런데 remote branch를 가져오는 다른 방법이 있다. <em>detached HEAD</em> 상태로 가져오는 방법인데,</p>
+<ol>
+  <li>이는 branch의 내용을 갖고 오면서 직접 수정도 할 수 있지만,</li>
+  <li>commit이나 push를 할 수는 없고,</li>
+  <li>다른 branch로 checkout하면 사라진다.</li>
+</ol>
+
+<p><img src="/public/img/GitHub/2018_08_12_github_usage_06_branch-intermediate/06_detached.PNG" alt="06_detached" /></p>
+
+<hr />
+
+<p>지금까지 remote branch를 가져오는 법을 알아보았다. <a href="https://greeksharifa.github.io/github/2018/08/15/github-usage-07-diff-add-commit-gitignore-intermediate/">다음 글</a>에서는 <code class="highlighter-rouge">git diff</code>, <code class="highlighter-rouge">git add</code>, <code class="highlighter-rouge">git commit</code>, <code class="highlighter-rouge">.gitignore</code>의 더 자세한 사용 방법을 알아본다.</p>
+
+<hr />
+
+<h2 id="git-명령어">Git 명령어</h2>
+
+<p><a href="https://greeksharifa.github.io/github/2018/06/29/github-usage-00-command-list/">GitHub 사용법 - 00. Command List</a>에서 원하는 명령어를 찾아 볼 수 있다.</p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/github-usage-06-branch-intermediate/';
+    this.page.identifier = 'http://localhost:4000/github-usage-06-branch-intermediate/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>

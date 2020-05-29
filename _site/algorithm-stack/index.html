@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <head>
+  <!-- Description of Blog -->
+  <meta name="description" content="Python, Machine & Deep Learning">
+  <link rel="canonical" href="https://greeksharifa.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Python, Machine & Deep Learning">
+  <meta property="og:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta property="og:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta property="og:url" content="https://greeksharifa.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python, Machine & Deep Learning">
+  <meta name="twitter:description" content="Python, Machine Learning & Deep Learning 설명서">
+  <meta name="twitter:image" content="https://greeksharifa.github.io/public/img/icon-144x144.png">
+  <meta name="twitter:domain" content="https://greeksharifa.github.io/">
+
+  <!-- link -->
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Stack(스택)
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="icon-144x144" sizes="144x144" href="/public/img/icon-144x144.png">
+  <link rel="shortcut icon" href="/public/img/icon_32x32.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"> </script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes: true } });
+  </script>
+  
+
+  <!-- Ads -->
+  <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+</head>
+
+  <!-- for Google AdSense-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9951774327887666",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <style>blockquote {
+    font-size: 1em;
+    line-height: 1.4
+  }</style>
+  <link href='http://fonts.googleapis.com/css?family=Gill+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Consolas' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <div class="sidebar-personal-info">
+      <div class="sidebar-personal-info-section">
+        <a href="http://gravatar.com/3c2986ad7ac1f2230ea3596f44563328">
+          <img src="/public/img/maple_tree.jpg" title="Cover Photo" alt="Maple tree" />
+        </a>
+      </div>
+      <div class="sidebar-personal-info-section">
+        <p><strong>Developer and Analyst</strong>, YW & YY.</p>
+      </div>
+      
+      
+      
+      <div class="sidebar-personal-info-section">
+        <p> Follow me:
+        
+        
+        
+        <a href="https://github.com/greeksharifa">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+        
+        |
+        
+        
+        
+        <a href="mailto:greeksharifa@gmail.com">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </a>
+        
+        
+        
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/">
+          Home
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="foldable">
+        <a class="sidebar-nav-item " href="/blog/">
+          Blog
+        </a>
+
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/categories/">
+                Categories
+              </a>
+          
+        
+          
+            
+            
+            
+              <a class="sidebar-nav-item sidebar-nav-item-sub " href="/blog/tags/">
+                Tags
+              </a>
+          
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="/about/">
+          About
+        </a>
+
+        
+      </span>
+
+    
+      
+      
+      
+
+      
+
+      <span class="">
+        <a class="sidebar-nav-item " href="http://greeksharifa.github.io/">
+          Github Project
+        </a>
+
+        
+      </span>
+
+    
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+    &copy; 2020 YW & YY. This work is liscensed under <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.
+    </p>
+  </div>
+
+  <div class="sidebar-item">
+    <p>
+    Powered by <a href="http://jekyllrb.com">jekyll</a> and <a href="http://greeksharifa.github.io">YW & YY</a>
+    </p>
+  </div>
+</div>
+
+
+<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+     content to avoid any CSS collisions with our real content. -->
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h3 class="masthead-title" align="center">
+        <a href="/" title="Home" title="YW & YY">
+          <img class="masthead-logo" src="/public/img/logo.png"/>
+        </a>
+        <small>YW & YY's Python, Machine & Deep Learning</small>
+        <!-- HTML elements for search -->
+        <a href="/search/" id="search_icon">
+          <img src="/public/img/search.png" width="25" height="25"
+               align="right" style="margin-top:5px; margin-bottom:0;"
+               onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=0.5"
+               alt="search">
+        </a>
+      </h3>
+    </div>
+  </div>
+
+  <div class="container content">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/github.min.css"> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script> 
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수직형 디스플레이 광고1 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="7237421728"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div class="post">
+  <h1 class="post-title">Stack(스택)</h1>
+  <span class="post-date">29 Jun 2018</span>
+   |
+  
+  <a href="/blog/tags/#stack" class="post-tag">Stack</a>
+  
+  
+  <article>
+    <p><strong>목차</strong></p>
+    <ul>
+  <li><a href="#참조">참조</a></li>
+  <li><a href="#개요">개요</a>
+    <ul>
+      <li><a href="#시간복잡도--om-">시간복잡도: $ O(M) $</a></li>
+      <li><a href="#공간복잡도--on-">공간복잡도: $ O(N) $</a></li>
+    </ul>
+  </li>
+  <li><a href="#stack스택">Stack(스택)</a></li>
+  <li><a href="#stdstack-사용법">std::stack 사용법</a>
+    <ul>
+      <li><a href="#include">Include</a></li>
+      <li><a href="#선언">선언</a></li>
+      <li><a href="#pushe">push(e)</a></li>
+      <li><a href="#size">size()</a></li>
+      <li><a href="#top">top()</a></li>
+      <li><a href="#pop">pop()</a></li>
+      <li><a href="#empty">empty()</a></li>
+      <li><a href="#emplacee">emplace(e)</a></li>
+      <li><a href="#swapanother_stack">swap(another_stack)</a></li>
+    </ul>
+  </li>
+  <li><a href="#문제-풀이">문제 풀이</a>
+    <ul>
+      <li><a href="#boj-10828스택">BOJ 10828(스택)</a></li>
+      <li><a href="#boj-09012괄호">BOJ 09012(괄호)</a></li>
+      <li><a href="#스포일러-문제">스포일러 문제</a></li>
+    </ul>
+  </li>
+</ul>
+
+    <h2 id="참조">참조</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>분류</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>문제</td>
+      <td><a href="https://www.acmicpc.net/problem/10828">스택</a>, <a href="https://www.acmicpc.net/problem/9012">괄호</a></td>
+    </tr>
+    <tr>
+      <td>응용 문제</td>
+      <td><a href="https://www.acmicpc.net/problem/6549">스포일러 문제</a></td>
+    </tr>
+    <tr>
+      <td>이 글에서 설명하는 라이브러리</td>
+      <td><a href="http://www.cplusplus.com/reference/stack/stack/">std::stack</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="개요">개요</h2>
+
+<h3 id="시간복잡도--om-">시간복잡도: $ O(M) $</h3>
+<h3 id="공간복잡도--on-">공간복잡도: $ O(N) $</h3>
+<ul>
+  <li>N은 원소의 수, M은 연산의 수이다.</li>
+  <li>스택 자체는 알고리즘이 아닌 자료구조이지만, 스택을 쓰는 경우 복잡도는 위와 같이 나온다.</li>
+</ul>
+
+<p>이 글에서는 스택(stack)이라고 하는 자료구조와, 이를 활용한 문제들을 살펴볼 것이다.</p>
+
+<p>스택은 간단하면서도 매우 유용한 자료구조이다. 여러분의 실생활에서도 자주 볼 수 있는 개념이다.<br />
+그리고 알고리즘으로 적용하기에도 쉽다. 그럼 스택은 무엇인가?</p>
+
+<hr />
+
+<h2 id="stack스택">Stack(스택)</h2>
+
+<p>스택(<a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">stack</a>)의 사전적 의미는 더미(무더기)이다.</p>
+
+<p>스택은 다음 그림으로 설명된다.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Lifo_stack.png" alt="Stack" /></p>
+
+<p>책상 위에 책을 몇 권 쌓는 것과 같다. 1번 책을 쌓고, 2번 책을 쌓고, … , 6번 책까지 쌓았다고 하자.<br />
+그리고 책을 한 권을 집는다고 치자. 그러면 여러분은 (정상적이라면) 몇 번 책을 집겠는가?<br />
+사서 고생하는 사람이 아니라면 굳이 아래쪽 책을 힘들게 빼진 않을 것이다. 즉, 6번 책을 뺄 것이다. 위의 그림과 갈다.<br />
+첫 번째 pop(책을 빼는 것) 연산은 가장 마지막에 들어온 6번부터 행해진다.</p>
+
+<p>이것을 Last-In-First-Out이라 부른다. 즉 가장 나중에 들어온 것이 제일 먼저 나간다는 의미이다.<br />
+이것이 스택의 전부이다. 그리고 C++의 STL에는 이것이 친절히 구현되어 있다. 다음에서 살펴보자.</p>
+
+<h2 id="stdstack-사용법">std::stack 사용법</h2>
+
+<h3 id="include">Include</h3>
+
+<p>우선 include를 해야 한다. 특별히 큰 프로젝트에서 쓰는 것이 아니라면, <code class="highlighter-rouge">std::</code>를 매번 쓰기 귀찮으니 namespace도 써 주자.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stack&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="선언">선언</h3>
+
+<p>stack은 generic으로 구현된 template이다. 즉, stack에 들어갈 데이터 타입을 정해야 한다.<br />
+보통 int나 char 등을 사용하게 될 것이다. 물론 기본형 뿐만 아니라 사용자 정의 타입도 가능하다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">st</span><span class="p">;</span> <span class="c1">// 현재 비어 있다.</span>
+<span class="c1">// stack&lt;char&gt; st_c;</span>
+<span class="c1">// stack&lt;dot_2d&gt; st_person; // dot_2d는 알아서 정의하시길...</span>
+</code></pre></div></div>
+
+<h3 id="pushe">push(e)</h3>
+
+<p>스택에 무언가를 집어넣는(push) 연산이다. e는 집어넣을 원소이다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>  <span class="c1">// 10</span>
+<span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>  <span class="c1">// 10 20</span>
+<span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>  <span class="c1">// 10 20 30</span>
+<span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">777</span><span class="p">);</span> <span class="c1">// 10 20 30 777</span>
+</code></pre></div></div>
+
+<h3 id="size">size()</h3>
+
+<p>스택의 현재 size를 반환한다. 몇 개나 들어 있는지 알고 싶을 때 쓰면 된다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="s">"size: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">st</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>  <span class="c1">// size: 4</span>
+<span class="n">st</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">999</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"size: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">st</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>  <span class="c1">// size: 5</span>
+</code></pre></div></div>
+
+<h3 id="top">top()</h3>
+
+<p>스택의 맨 위 원소를 반환한다. 스택에서는 맨 위의 것만 빼낼 수 있다. 다른 원소에는 접근이 불가능하다.<br />
+물론 스택을 직접 구현한다면 접근 가능하게 할 수도 있지만, 스택을 쓰는 데 그렇게 할 이유가..?</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">top</span><span class="p">();</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"top: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>   <span class="c1">// top: 999</span>
+</code></pre></div></div>
+
+<h3 id="pop">pop()</h3>
+
+<p>스택의 맨 위 원소를 제거한다. 책을 하나 가져갔다고 생각하면 된다.<br />
+반환값이 <code class="highlighter-rouge">void</code>이므로 리턴값으로 top 값을 알아낼 수는 없다.<br />
+또, 비어 있는데 pop을 수행하려고 하면 런타임 에러를 발생시킨다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">st</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span> <span class="c1">// 999가 제거됨</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span> 
+<span class="c1">// 777, 30, 20이 차례로 제거됨</span>
+</code></pre></div></div>
+
+<h3 id="empty">empty()</h3>
+
+<p>스택이 비었는지를 검사한다. <code class="highlighter-rouge">size() == 0</code> 구문으로 체크할 수도 있지만, 이쪽이 더 직관적이다. 그리고 생각보다 자주 쓰게 된다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"stack is empty, 1</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="n">st</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>   <span class="c1">// 10이 제거됨</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"stack is empty, 2</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+<span class="c1">// stack is empty, 2</span>
+</code></pre></div></div>
+
+<h3 id="emplacee">emplace(e)</h3>
+
+<p>STL에서 emplace는 생성자를 호출하면서 <code class="highlighter-rouge">push</code>(혹은 <code class="highlighter-rouge">push_back</code>)하는 것과 동일하다.<br />
+이 기능은 stack에 기본형 말고 <code class="highlighter-rouge">dot_2d</code>와 같은 사용자 정의 함수나 생성자 호출이 필요한 데이터 타입을 넣었을 때 필요하다.<br />
+int와 같은 기본형을 넣을 때는 별 차이가 없다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">st</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"top: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">st</span><span class="p">.</span><span class="n">top</span><span class="p">());</span>  <span class="c1">// top: -3</span>
+</code></pre></div></div>
+
+<h3 id="swapanother_stack">swap(another_stack)</h3>
+
+<p>같은 데이터 타입을 담고 있는 다른 스택과 원소 전체를 swap한다.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">another_st</span><span class="p">;</span>
+<span class="n">st</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">another_st</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"stack is empty, 3</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="c1">// stack is empty, 3</span>
+</code></pre></div></div>
+
+<p>스택은 사실상 이게 전부이다. 그리고 생각보다 많은 문제를 풀 수 있다.<br />
+물론 대부분은 너무 뻔히 풀이가 스택이라는 것이 보이지만, 안 그런 것도 있다(스포일러 문제 참조)</p>
+
+<h2 id="문제-풀이">문제 풀이</h2>
+
+<h3 id="boj-10828스택">BOJ 10828(스택)</h3>
+
+<p>문제: <a href="https://www.acmicpc.net/problem/10828">스택</a></p>
+
+<p>풀이: <a href="https://greeksharifa.github.io/ps/2018/07/08/PS-10828/">BOJ 10828(스택) 문제 풀이</a></p>
+
+<h3 id="boj-09012괄호">BOJ 09012(괄호)</h3>
+
+<p>문제: <a href="https://www.acmicpc.net/problem/9012">괄호</a></p>
+
+<p>풀이: <a href="https://greeksharifa.github.io/ps/2018/07/08/PS-09012/">BOJ 09012(괄호) 문제 풀이</a></p>
+
+<h3 id="스포일러-문제">스포일러 문제</h3>
+
+<p>문제: <a href="https://www.acmicpc.net/problem/6549">스포일러 문제</a></p>
+
+<p>풀이: <a href="https://greeksharifa.github.io/ps/2018/07/07/PS-06549/">스포일러 풀이            </a></p>
+
+  </article>
+  <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+</div>
+
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-9951774327887666">
+</amp-auto-ads>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-9951774327887666"
+     data-ad-slot="6606866336"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/github-usage-09-overall/">
+          GitHub 사용법 - 09. Overall
+          <small>27 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/VAE/">
+          Variational AutoEncoder 설명
+          <small>25 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/AFM/">
+          추천 시스템의 기본 - 06. AFM 논문 리뷰 및 Tensorflow 구현
+          <small>01 May 2020</small>
+        </a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+<div id="disqus_thread"></div>
+<script>
+
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+  var disqus_config = function () {
+    this.page.url = 'http://localhost:4000/algorithm-stack/';
+    this.page.identifier = 'http://localhost:4000/algorithm-stack/';
+    //this.page.url = 'https://greeksharifa.github.com/';  // Replace PAGE_URL with your page's canonical URL variable
+    //this.page.identifier = 'greeksharifa'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://greeksharifa.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+  Disqus.</a></noscript>
+
+  </div>
+</div>
+
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+  (function (document) {
+    let toggle = document.querySelector('.sidebar-toggle');
+    let sidebar = document.querySelector('#sidebar');
+    let checkbox = document.querySelector('#sidebar-checkbox');
+
+    document.addEventListener('click', function (e) {
+      let target = e.target;
+
+      if (target === toggle) {
+        checkbox.checked = !checkbox.checked;
+        e.preventDefault();
+      } else if (checkbox.checked && !sidebar.contains(target)) {
+        /* click outside the sidebar when sidebar is open */
+        checkbox.checked = false;
+      }
+    }, false);
+  })(document);
+</script>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    };
+    i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-00000000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<!-- Naver Analytics -->	
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "18cbce78e94161";
+  wcs_do();
+</script>
+
+</body>
+
+<script id="dsq-count-scr" src="//greeksharifa-github-io.disqus.com/count.js" async></script>
+
+</html>
