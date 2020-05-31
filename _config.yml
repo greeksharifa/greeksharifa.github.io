@@ -9,14 +9,13 @@ logo: '/public/img/logo.webp'
 # Site configurations
 gems:
   - jekyll-paginate
-  - jekyll-redirect-from
-
-whitelist:
-    - jekyll-redirect-from
-
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
+  syntax_highlighter_opts:
+    default_lang: html
+    css_class   : 'base16.solarized'
 excerpt_separator: "<!-- more -->"
 sass:
   style: compressed
