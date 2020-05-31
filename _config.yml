@@ -9,6 +9,10 @@ logo: '/public/img/logo.webp'
 # Site configurations
 gems:
   - jekyll-paginate
+  - jekyll-redirect-from
+whitelist:
+  - jekyll-redirect-from
+
 markdown: kramdown
 highlighter: rouge
 kramdown:
