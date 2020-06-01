@@ -12,6 +12,63 @@ tags: [Markdown, usage]
 
 ---
 
+Python Code:
+
+```python
+# coding=utf-8 
+# 둥
+
+import torch
+from torch.utils.data import Dataset
+
+MSCOCO_IMGFEAT_ROOT = 1048576
+SPLIT2NAME = {
+    'train': 'train2014',
+    'valid': 'val2014',
+}
+
+class VQADataset:
+    """
+    A VQA data example in json file:
+            "answer_type": "other",
+    """
+    def __init__(self, splits: str):
+        self.name = splits
+        print('self.name = splits:', self.name, sep='\t')
+        self.splits = splits.split(',')
+
+        # Loading datasets
+        self.data = []
+        for split in self.splits:
+            self.data.extend(json.load(open("data/vqa/comn_sents_%s.json" % split)))
+        print("Load %d data from split(s) %s." % (len(self.data), self.name))
+
+        # Convert list to dict (for evaluation)
+        self.id2datum = {
+            datum['question_id']: datum
+            for datum in self.data
+        }
+
+        # Answers
+        self.ans2label = json.load(open("data/vqa/trainval_ans2label.json"))
+        self.label2ans = json.load(open("data/vqa/trainval_label2ans.json"))
+        assert len(self.ans2label) == len(self.label2ans)
+
+    @property
+    def num_answers(self):
+        return len(self.ans2label)
+
+    def __len__(self):
+        return len(self.data)
+```
+
+
+{% highlight python %}
+print('what?', end='\t')
+{% endhighlight %}
+
+---
+
 위의 글에 잘 설명되어 있지만,
 복사해 놓고 쓰기 편하도록 본 글에 정리해 두었다.
 
