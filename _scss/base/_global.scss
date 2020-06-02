@@ -29,3 +29,8 @@ h1, h2, h3, h4, h5, h6 {
 code {
   color: #666;
 }
+
+.math-container {
+  overflow-x: auto;
+  display: block; /* or use a <div> instead of a span */
+}
