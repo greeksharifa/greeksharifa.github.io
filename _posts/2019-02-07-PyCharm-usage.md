@@ -13,7 +13,7 @@ Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생 �
 
 글이 길기 때문에 사용법을 검색하고 싶다면 `Ctrl + F` 키를 누른 다음 검색해 보자.
 
-*2020.05.10 updated*
+*2020.06.10 updated*
 
 ---
 
@@ -116,6 +116,42 @@ git repository는 그냥 여러분의 git 계정에서 빈 거 하나 만든 다
 <center><img src="/public/img/2019-02-07-PyCharm-usage/48.png" width="100%"></center>
 
 여기에서 Keymap 설정을 변경해 주면 된다. 보통 처음 동기화를 시도하면 기본 설정이나 어떤 `Default Copy` 버전으로 동작하고 있는 경우가 많다.
+
+### File Encoding 설정
+
+코딩을 해 봤다면 알겠지만 한글이나 기타 UTF-8 인코딩 문자는 글자가 깨지는 경우가 흔하다. PyCharm의 기본 설정이 UTF-8이 아닌데, 이를 설정해주자. 
+
+모든 부분에서 글자가 안 깨지게 하려면 다음을 설정한다.
+
+- `File > New Projects Settings > Settings for New Projects` 메뉴로 들어가면 `Settings for New Projects` 창이 뜬다.
+    - 여기서 `Editor > File Encodings` 메뉴로 들어간 다음 `Global Encoding`, `Project Encoding`, `Project Files > Default Encoding for properties files` 의 설정을 모두 `UTF-8`로 바꿔준다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/76.png" width="100%"></center>
+
+- 이미 생성한 프로젝트에도 적용하려면 `File > Settings`로 대화창을 연 다음 같은 과정을 반복한다.
+
+- `Help > Edit Custom VM Options...` 메뉴를 클릭하면 `<version>.vmoptions` 파일이 열린다.
+    - 여기서 다음을 파일의 끝에 추가하고 저장한다.
+        ```
+        -Dfile.encoding=UTF-8
+        -Dconsole.encoding=UTF-8
+        ```
+    - 그리고 PyCharm을 재시작한다.
+
+여기까지 설정했으면 파일이나 터미널 등에서 문자가 깨지지 않을 것이다. 그럼에도 깨지는 게 있으면 UTF-8 인코딩이 아니거나, 설정을 빠뜨렸거나..일 것이다. 
+
+### PyCharm 메모리 설정(Heap Memory)
+
+간혹 PyCharm에 메모리가 너무 적게 할당되어 매우 느려지는 경우가 있다. 이 때도 위와 같이 `Help > Edit Custom VM Options...`를 클릭하여 설정 파일을 연다.
+
+그러면 맨 위 두 줄은 다음과 같이 되어 있을 것이다.
+```
+-Xms128m
+-Xmx750m
+-XX:ReservedCodeCacheSize=240m
+```
+
+위의 숫자 128, 750, 240(megabytes)를 본인의 컴퓨터 사양에 맞추어 적당히 몇 배 곱해서 올려준다. 램이 8G라면 4G 이상은 안 해도 된다.
 
 여기까지 초기 설정이 끝났다(원하는 부분만 진행해도 좋다). 이제 PyCharm 프로젝트 화면을 살펴보도록 하자.
 
@@ -336,6 +372,21 @@ PyCharm에서도 `.ipynb`파일을 사용할 수 있다. 웹브라우저에서 �
 <center><img src="/public/img/2019-02-07-PyCharm-usage/33.png" width="100%"></center>
 
 *아주 편리하다.*
+
+### Diff(Differences viewer for files)
+
+2개의 파일 코드가 어떤 차이가 있는지 알아보려면, Project 창(`Alt + 1`)에서 2개의 파일을 `Ctrl`키로 동시 선택하거나, 한 파일을 누르고 `Ctrl + D`를 누른다. 그러면 1개의 파일을 선택했다면 추가 파일을 선택하는 창이 나오고, 이것까지 선택하면 2개의 파일을 비교하는 창이 나온다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/75.png" width="100%"></center>
+
+- 파란색으로 표시된 부분은 2개의 파일이 다른 코드,
+- 회색으로 표시된 부분은 1번째 파일(왼쪽 파일)에만 있는 코드,
+- 초록색으로 표시된 부분은 2번째 파일(오른쪽 파일)에만 있는 코드
+
+를 나타낸다.
+
+중간의 `>>`나 `<<` 표시를 누르면 해당 코드가 화살표 방향으로 복사되어 덮어씌운다.
+
 
 ---
 
