@@ -2,7 +2,7 @@
 layout: post
 title: Gaussian Process 설명
 author: Youyoung
-categories: Bayesia_Statistics
+categories: Bayesian_Statistics
 tags: [Machine_Learning, Bayesian_Statistics]
 ---
 
