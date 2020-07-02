@@ -2,8 +2,8 @@
 layout: post
 title: Gaussian Process 설명
 author: Youyoung
-categories: Bayesian Statistics
-tags: [Machine_Learning, Bayesian Statistics]
+categories: Bayesia_Statistics
+tags: [Machine_Learning, Bayesian_Statistics]
 ---
 
 **Gaussian Process**는 Random(Stochastic) Process의 한 예이다. 이 때 Random Process는 시간이나 공간으로 인덱싱된 Random Variable의 집합을 의미한다. **GP**의 정의는 아래와 같다.  
