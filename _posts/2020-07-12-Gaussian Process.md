@@ -6,7 +6,7 @@ categories: Bayesian_Statistics
 tags: [Machine_Learning, Bayesian_Statistics]
 ---
 
-<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/01.PNG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/01.png" width="70%"></center>  
 
 **Gaussian Process**에 대해 알아보자!  
 
@@ -77,31 +77,31 @@ $$ k(x, x\prime) = \sigma_f^2 exp(- \frac{( x - x\prime)^2}{2l^2} ) + \sigma_n^2
 
 **Gaussian Process Regression**을 준비하기 위해 모든 존재하는 데이터포인트에 대해 아래와 같은 공분한 함수를 계산하도록 하자.  
 
-<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/02.JPG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/02.JPG" width="80%"></center>  
 
-$K$의 대각 원소는 $\sigma_f^2 + \sigma_n^2$이고, 비대각 원소 중 끝에 있는 원소들은 $x$가 충분히 큰 domain을 span할수록 0에 가까운 값을 갖게 된다.  
+$K$의 대각 원소는 $\sigma_f^2 + \sigma_n^2$ 이고, 비대각 원소 중 끝에 있는 원소들은 $x$ 가 충분히 큰 domain을 span할수록 0에 가까운 값을 갖게 된다.  
 
 ### 2.2. How to Regress using Gaussian Process  
 **GP**에서 가장 중요한 가정은 우리의 데이터가 다변량 정규 분포로부터 추출된 Sample로 표현된다는 것이므로 아래와 같이 표현할 수 있다.  
 
-$$ \begin{bmatrix} \bold{y} \\ y* \end{bmatrix} = \mathcal{N}(0,
+$$ \begin{bmatrix} \mathbf{y} \\ y* \end{bmatrix} = \mathcal{N}(0,
     \begin{bmatrix} K, K_*^T \\ K_*^T, K_{**} \end{bmatrix}) $$  
 
-우리는 물론 조건부 확률 $p(y_*|\bold{y})$를 알고 싶다. 이 확률은 데이터가 주어졌을 때 $y_*$에 대한 예측의 확실한 정도를 의미한다. 본 논문 원본 Appendix에는 앞으로의 과정에 대한 증명이 담겨 있다. 일단 진행하자.  
+우리는 물론 조건부 확률 $p(y_*|\mathbf{y})$를 알고 싶다. 이 확률은 데이터가 주어졌을 때 $y_*$ 에 대한 예측의 확실한 정도를 의미한다. 본 논문 원본 Appendix에는 앞으로의 과정에 대한 증명이 담겨 있다. 일단 진행하자.  
 
-$$ y_*|\bold{y} \sim \mathcal{N}( K_*K^{-1}\bold{y}, K_{**} - K_* K^{-1} K_*^T ) $$  
+$$ y_*|\mathbf{y} \sim \mathcal{N}( K_*K^{-1}\mathbf{y}, K_{**} - K_* K^{-1} K_*^T ) $$  
 
-정규분포이므로, $y_*$에 대한 Best Estimate는 평균이 될 것이다.  
+정규분포이므로, $y_*$ 에 대한 Best Estimate는 평균이 될 것이다.  
 
-$$ \bar{y}_* = K_*K^{-1}\bold{y} $$  
+$$ \bar{y}_* = K_*K^{-1}\mathbf{y} $$  
 
 그리고 분산 또한 아래와 같다.  
 
 $$ var(y_*) = K_{**} - K_* K^{-1} K_*^T $$  
 
-이제 본격적으로 예제를 사용해보자. Noise가 존재하는 데이터에서 다음 포인트 $x_*$에서의 예측 값은 얼마일까?  
+이제 본격적으로 예제를 사용해보자. Noise가 존재하는 데이터에서 다음 포인트 $x_*$ 에서의 예측 값은 얼마일까?  
 
-<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/03.JPG" width="50%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/03.JPG" width="80%"></center>  
 
 6개의 관측값이 다음과 같이 주어졌다.  
 
@@ -109,20 +109,29 @@ $$ var(y_*) = K_{**} - K_* K^{-1} K_*^T $$
 x = [-1.5, -1, -0.75, -0.4, -0.25, 0]
 ```
 
-Noise의 표준편차 $\sigma_n$이 0.3이라고 하자. $\sigma_f$와 $l$을 적절히 설정하였다면 아래와 같은 행렬 $K$를 얻을 수 있다.  
+Noise의 표준편차 $\sigma_n$ 이 0.3이라고 하자. $\sigma_f$ 와 $l$ 을 적절히 설정하였다면 아래와 같은 행렬 $K$를 얻을 수 있다.  
 
 <center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/04.JPG" width="50%"></center>  
 
-공분산 함수를 통해 $K_{**}=3$이고,  
-$K_* = [0.38, 0.79, 1.03, 1.35, 1.46, 1.58]$임을 알 수 있다.  
+공분산 함수를 통해 아래 사실을 알 수 있다.  
 
-$\bar{y}_*$는 0.95, $var(y_*)$는 0.21이다. 새로운 데이터 포인트인 $x*$값은 0.2이다.  
+$$K_{**} = 3$$  
 
-그런데 매번 이렇게 귀찮게 구할 필요는 없다. 엄청나게 많은 데이터 포인트가 존재하더라도 이를 한번에 큰 $K_*, K_{**}$를 통해 계산해보리면 그만이다. 만약 1000개의 Test Point라 존재한다면 $K_{**}$는 (1000, 1000)일 것이다.  
+$$K_* = [0.38, 0.79, 1.03, 1.35, 1.46, 1.58]$$  
 
-95% **Confidence Interval**은 $\bar{y}_* \pm 1.96\sqrt{var(y_*)}$을 통해 구할 수 있을 것이다. 이를 Graph로 나타내면 아래와 같다.  
+$$ \bar{y}_* = 0.95 $$  
 
-<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/05.JPG" width="50%"></center>  
+$$ var(y_*) = 0.21 $$  
+
+$$ x* = 0.2 $$  
+
+그런데 매번 이렇게 귀찮게 구할 필요는 없다. 엄청나게 많은 데이터 포인트가 존재하더라도 이를 한번에 큰 $K_*, K_{**}$ 를 통해 계산해보리면 그만이다. 만약 1000개의 Test Point라 존재한다면 $K_{**}$ 는 (1000, 1000)일 것이다.  
+
+95% **Confidence Interval**은 아래 식으로 구할 수 있고 이를 Graph로 표현하면 아래 그림과 같다.  
+
+$$ \bar{y}_* \pm 1.96\sqrt{var(y_*)}$$  
+
+<center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/05.JPG" width="80%"></center>  
 
 
 ### 2.3. GPR in the Real World  
