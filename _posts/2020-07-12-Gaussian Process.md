@@ -73,7 +73,7 @@ $$ k(x, x\prime) = \sigma_f^2 exp(- \frac{( x - x\prime)^2}{2l^2} ) + \sigma_n^2
 
 여기서 $\delta(x, x\prime)$은 `Kronecker Delta Function`이다.  
 
-많은 이들은 **GP**를 사용할 때 $\sigma_n$을 공분산 함수와 분리해서 생각하지만 사실 우리의 목적은 $y*$ 을 예측하는 것이지 정확한 $f(x*)$ 를 예측하는 것이 아니기 때문에 위와 같이 설정하는 것이 맞다.  
+많은 이들은 **GP**를 사용할 때 $\sigma_n$을 공분산 함수와 분리해서 생각하지만 사실 우리의 목적은 $y*$ 를 예측하는 것이지 정확한 $f*$ 를 예측하는 것이 아니기 때문에 위와 같이 설정하는 것이 맞다.  
 
 **Gaussian Process Regression**을 준비하기 위해 모든 존재하는 데이터포인트에 대해 아래와 같은 공분한 함수를 계산하도록 하자.  
 
@@ -85,7 +85,7 @@ $K$의 대각 원소는 $\sigma_f^2 + \sigma_n^2$ 이고, 비대각 원소 중 �
 **GP**에서 가장 중요한 가정은 우리의 데이터가 다변량 정규 분포로부터 추출된 Sample로 표현된다는 것이므로 아래와 같이 표현할 수 있다.  
 
 $$ \begin{bmatrix} \mathbf{y} \\ y* \end{bmatrix} = \mathcal{N}(0,
-    \begin{bmatrix} K, K_*^T \\ K_*^T, K_{**} \end{bmatrix}) $$  
+    \begin{bmatrix} K, K_*^T \\ K_*, K_{**} \end{bmatrix}) $$  
 
 우리는 물론 조건부 확률인 다음 식에 대해 알고 싶다.  
 
