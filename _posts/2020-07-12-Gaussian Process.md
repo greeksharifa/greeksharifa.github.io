@@ -48,7 +48,7 @@ $$ m(x) = 0 $$
 $$ k(x, x\prime) = \theta_1 exp( - \frac{\theta_2}{2} ( x - x\prime)^2 ) $$  
   
 
-여기서 공분한 함수로 **Squared Exponential**을 사용하였는데, $x$와 $x\prime$이 유사한 값을 가질 수록 1에 수렴하는 함수이다. (거리가 멀수록 0에 가까워짐) 평균 함수로는 0을 사용하였는데, 사실 평균 함수로 얻을 수 있는 정보는 별로 없기에 단순한 설정을 하는 것이 가장 편리하다.  
+여기서 공분산 함수로 **Squared Exponential**을 사용하였는데, $x$와 $x\prime$이 유사한 값을 가질 수록 1에 수렴하는 함수이다. (거리가 멀수록 0에 가까워짐) 평균 함수로는 0을 사용하였는데, 사실 평균 함수로 얻을 수 있는 정보는 별로 없기에 단순한 설정을 하는 것이 가장 편리하다.  
 
 유한한 데이터 포인트에 대해 **GP**는 위에서 설정한 평균과 공분산을 가진 다변량 정규분포가 된다.  
 
@@ -129,7 +129,7 @@ $$ L = logp(\mathbf{y}|\mathbf{x}, \theta) = -\frac{1}{2}log|\Sigma| - \frac{1}{
 
 또 중요한 문제점은 계산 복잡성이다. 공분산 행렬의 역행렬을 구하기 위해서는 메모리 상에서는 $\mathcal{O}(n^2$ 의 복잡도가, 계산 상에서는 $\mathcal{O}(n^3)$ 의 복잡도가 발생한다. 리소스에 따라 다르지만, 행이 10,000개만 넘어가도 직접적으로 역행렬을 계산하기에는 많은 무리가 따른다. 따라서 근사적인 방법이 요구되는데, 본 논문이 나온 시점이 2006년임을 고려하면, 이후에도 많은 연구가 진행되었음을 짐작할 수 있을 것이다.  
 
-대표적인 예로 이 [논문](https://arxiv.org/abs/1903.03571)이 있는데, 추후에 다루도록 할 것이다.  
+한 예로 이 [논문](https://arxiv.org/abs/1903.03571)이 있는데, 추후에 다루도록 할 것이다.  
   
 
 ---
@@ -173,7 +173,7 @@ $$ = \mathcal{N}(0, K) $$
 
 $$ p(\mathbf{y}|\mathbf{x}, \theta) = \mathcal{N}(0, K_{\theta}) $$  
 
-이 식에 Log를 위해서 다시 정리하면 **Log Marginal Likelihood**가 된다. ( $\theta$ subscript는 생략한다.)  
+이 식에 Log를 취해서 다시 정리하면 **Log Marginal Likelihood**가 된다. ( $\theta$ subscript는 생략한다.)  
 
 $$ logp(\mathbf{y}|\mathbf{x}, \theta) = -\frac{1}{2}log|K| - \frac{1}{2}\mathbf{y}^T K^{-1}\mathbf{y} - \frac{n}{2}log(2\pi) $$  
 
@@ -317,8 +317,7 @@ $$ k(x, x\prime) = \sigma_{f}^2 exp(- \frac{( x - x\prime)^2}{2l^2} ) + exp( -2s
 
 ---
 ## 4. Fitting Gaussian Process with Python  
-### 4.1. scikit-learn 이용  
-먼저 scikit-learn 라이브러리를 이용해보자.  
+베이지안 방법론을 위한 대표적인 라이브러리로 **PyMC3**가 있지만 본 글에서는 scikit-learn 라이브러리를 이용하겠다.  
 
 회귀 문제에서는 **공분산 함수**(kernel)를 명시함으로써 `GaussianProcessRegressor`를 사용할 수 있다. 이 때 적합은 주변 우도의 로그를 취한 값을 최대화하는 과정을 통해 이루어진다. 이 Class는 평균 함수를 명시할 수 없는데, 왜냐하면 평균 함수는 0으로 고정되어 있기 때문이다.  
 
@@ -348,7 +347,7 @@ noise = np.random.normal(0, dy)
 y += noise
 ```
 
-공분산 함수(kernal)를 정의하고 **GPR** 적합을 시작한다. 본 예시에는 kernel을 구성할 때의 Hyperparameter 최적화에 대한 내용은 포함되어 있지 않다.  
+공분산 함수(kernel)를 정의하고 **GPR** 적합을 시작한다. 본 예시에는 kernel을 구성할 때의 Hyperparameter 최적화에 대한 내용은 포함되어 있지 않다.  
 
 ```python
 from sklearn.gaussian_process import GaussianProcessRegressor
@@ -385,20 +384,11 @@ plt.show()
 <center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/11.png" width="70%"></center>  
 
 
-### 4.2. PyMC3  
-다음은 Bayesian 방법론을 위한 라이브러리, PyMC3를 이용해보자.  
-
-
-
-
-
-
 ---
 ## Reference  
 1) [GP 논문1](https://www.cs.ubc.ca/~hutter/EARG.shtml/earg/papers05/rasmussen_gps_in_ml.pdf)  
 2) [GP 논문2](https://arxiv.org/abs/1505.02965)  
 3) [GP 설명 블로그](https://blog.dominodatalab.com/fitting-gaussian-process-models-python/)  
 4) [scikit-learn 홈페이지](https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_gpr_noisy_targets.html)  
-
-
+5) [PyMC3 홈페이지](https://docs.pymc.io/Gaussian_Processes.html)
 
