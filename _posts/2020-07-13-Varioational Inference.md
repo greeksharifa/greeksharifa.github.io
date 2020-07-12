@@ -6,9 +6,7 @@ categories: Bayesian_Statistics
 tags: [Machine_Learning, Bayesian_Statistics]
 ---
 
-본 글에서는 정보 이론과 관련이 있는 **Kullback-Leibler Divergence**와 이를 기반으로 한 **Variational Inference**에 대해 간략히 정리해보고자 한다. 본 글의 내용의 대부분은 사실 베이지안 통계학으로 분류할 필요가 없다. 다만 이 글을 쓰는 목적이 이후 글에서 설명할 **VAE** 모델에서 등장하는 변분 추론을 이해하기 위함이기 때문에 베이지안 통계학 카테고리에 분류하였다.  
-
-시작에 앞서, 변분 추론은 근사 추정의 대표적인 방법이라는 점을 밝히고 싶다.  
+본 글에서는 정보 이론과 관련이 있는 **Kullback-Leibler Divergence**와 이를 기반으로 한 **Variational Inference**에 대해 간략히 정리해보고자 한다. 시작에 앞서, 변분 추론은 근사 추정의 대표적인 방법이라는 점을 밝히고 싶으며, 본 글에서 소개된 변분 추론 기법은 **Vanilla Variational Inference**라고 부를 수 있는 **CAVI**이다. **CAVI**의 단점을 보완한 다양한 변분 추론 기법들이 연구되었으며 이에 대한 내용은 후속 글에서 다루도록 할 것이다.  
 
 ## 1. Kullback-Leibler Divergence  
 정보이론에서 정보량은 불확실성이 커질수록 많아지는 것으로 정의한다. **Shannon Entropy**는 확률의 값에 $log_2$ 를 씌우고 -1을 곱해준 값으로, 모든 사건의 정보량의 Expectation을 의미한다. 확률 분포 P에 대한 섀넌 엔트로피는 아래와 같이 정의할 수 있다.  
@@ -93,11 +91,10 @@ $$ logp(x) = ELBO + D_{KL}(q(z)||p(z|x)) $$
   
 위 식을 보면 **Evidence**는 **ELBO**와 **쿨백-라이블리 발산**의 합으로 구성된다는 것을 알 수 있다. 이는 매우 중요한 수식이다. 일단은 쿨백-라이블리 발산을 최소화하는 것은 곧 **ELBO**를 최대화하는 것과 의미가 같다는 것은 쉽게 파악할 수 있다. 다만 **ELBO**와 쿨백-라이블리 발산 모두 *q* 함수에 의존적이기 때문에 단순히 한 쪽을 최소화하는 *q* 함수를 찾았다고 해서 이것이 반드시 **Evidence**의 값을 최소화한다고 말하기는 어렵다는 부분은 잊으면 안된다.  
   
-다음 Chapter 부터는 최적화 방법에 대해 설명할 것인데, 전통적인 방법인 **CAVI**와, 최근 연구 중 하나인 **CRVI**에 대해 설명하도록 하겠다.  
-
+다음 Chapter 부터는 최적화 방법에 대해 설명할 것인데, 전통적인 방법인 **CAVI**를 통해 설명을 진행하도록 하겠다.  
 
 ----
-### 2.2. CAVI: Cooridinate Ascent Variational Inference  
+### 2.2. CAVI: Cooridinate Ascent mean field Variational Inference  
 그렇다면 *q* 함수는 대체 어떤 함수인가? 아주 클래식한 방법으로 설명하자면, **Mean Field Variational Family**를 언급해야 할 것이다. 잠재 변수 $\mathbf{z}$ 가 모두 독립적이라고 할 때, *q* 함수는 아래와 같이 분해될 수 있다.  
 
 $$ q(\mathbf{z}) = \prod_j q_j(z_j) $$  
@@ -164,26 +161,7 @@ $$ D_{KL}(Q(x)||P(x)) = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$
 3) ELBO를 계산한다.  
 4) ELBO가 수렴할 때 까지 위 과정을 반복한다.  
 
-**CAVI**는 클래식하고 좋은 방법론이지만, Non-Convex 최적화 문제에서 `Global Optimum`에 도달할 것이라고 보장해주지는 못한다. 즉, 충분히 쿨백-라이블리 발산 값을 최소화하지 못할 수도 있다는 뜻이다. 이에 대한 보완책으로 다음 Chapter에서 소개할 **CRVI** 알고리즘을 참고할 수 있을 것이다.  
-
-____
-### 2.3. CRVI: Convex Relaxation for Variational Inference  
-
-
-
-
-
-
-----
-### 2.4. MCMC and Variational Inference  
-
-$$ D_{KL}(q(z)||p(z|x)) = D_{KL}(q(z)||p(z)) + logp(x) - E_{z \sim q(z)}[logp(x|z)] $$  
-
-$$ = E_{z \sim q(z)} [log \frac{q(z)}{p(z)}] + logp(x) - E_{z \sim q(z)}[logp(x|z)] $$  
-
-$$ \approx \frac{1}{K} \Sigma_{i=0}^K [log \frac{q(z_i)}{p(z_i)}]_{z_i \sim q(z)} + logp(x) - \frac{1}{K} \Sigma_{i=0}^K [log p(x|z_i)]_{z_i \sim q(z)}  $$  
-
-$$ = \frac{1}{K} \Sigma_{i=0}^K [logq(z_i) - logp(z_i) - logp(x|z_i)]_{z_i \sim q(z)} + logp(x)$$  
+**CAVI**는 클래식하고 좋은 방법론이지만, Non-Convex 최적화 문제에서 `Global Optimum`에 도달할 것이라고 보장해주지는 못한다. 즉, 충분히 쿨백-라이블리 발산 값을 최소화하지 못할 수도 있다는 뜻이다. 이에 대한 보완책으로 여러 방법론이 대두되었는데, Stochastic Gradient Descent, Convex Relaxation, Monte Carlo Sampling 등의 개념을 활용한 알고리즘들이 등장하였다. 글 서두에서도 밝혔듯이 이러한 알고리즘들에 대해서는 후속 글에서 다루도록 하겠다.  
 
 
 ---
