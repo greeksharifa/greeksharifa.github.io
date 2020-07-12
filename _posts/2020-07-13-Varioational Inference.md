@@ -83,7 +83,7 @@ $$ logp(x) \ge E_{z \sim q(z)}[logp(x|z)] - D_{KL}(q(z)||p(z)) $$
 
 우항을 **ELBO**(Evidence Lower BOund)라고 부른다. **Evidence**의 하한선이라는 의미이다. 
 
-**Variational Density** $q_(z)$ 와 **Posterior** 사이의 쿨백-라이블리 발산 값 부터 다시 표현해보면,  
+**Variational Density** $q(z)$ 와 **Posterior** 사이의 쿨백-라이블리 발산 값 부터 다시 표현해보면,  
 
 $$ D_{KL}(q(z)||p(z|x)) = D_{KL}(q(z)||p(z)) + logp(x) - E_{z \sim q(z)}[logp(x|z)] $$  
 
@@ -117,9 +117,9 @@ $$ logp(z_j|\mathbf{z}_{-j}, \mathbf{x}) $$
 
 $$ = logp(z_j, \mathbf{z}_{-j}, \mathbf{x}) $$  
 
-지금부터 이 사실을 염두에 두고 위에서 보았던 **ELBO** 식을 $q_j$ 의 관점에서 풀어쓸 것이다. 아래에서 나오는 $l$ 기호는 $j$ 가 아닌 Index를 의미한다. (j번째 잠재 변수가 아닌 Variational Vactors: $q_l(z_l)$ )  
+지금부터 이 사실을 염두에 두고 위에서 보았던 **ELBO** 식을 $q_j$ 의 관점에서 풀어쓸 것이다. 아래에서 나오는 $l$ 기호는 $j$ 가 아닌 Index를 의미한다. (j번째 잠재 변수가 아닌 나머지 Variational Factors: $q_l(\mathbf{z}_l)$ )  
 
-$$ ELBO = E_q[logp(\mathbf{x}, z_j, \mathbf{z}_{-j})] - \Sigma_{q_l}E_{q_l}[logq_l(z_l)] $$  
+$$ ELBO = E_q[logp(\mathbf{x}, z_j, \mathbf{z}_{-j})] - E_{q_l}[logq_l(\mathbf{z}_l)] $$  
 
 Iterative Expectation을 이용하면,  
 
@@ -149,11 +149,11 @@ $$ D_{KL}(Q(x)||P(x)) = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$
 
 위 쿨백-라이블리 발산의 개념을 적용해보면, $q_j$ 에 대한 **ELBO** 식은 $q^{*}_j z_j, q_j(z_j)$ 사이의 Negative 쿨백-라이블리 발산 값을 의미한다.  
 
-따라서 이를 해석해보면, **j번째 잠재변수의 Variational Density**를 **j번째 잠재변수의 최적화된 Variational Density**와 유사하게 만드는 것이 $q_j$ 의 **ELBO**를 최대화하는 것이고, 이러한 과정을 모든 j에 대해, 수렴할 때까지 반복한다면 우리가 원하는 *q* 함수를 얻을 수 있다는 의미로 귀결될 것이다.  
+따라서 이를 해석해보면, `j번째 잠재변수의 Variational Density`를 `j번째 잠재변수의 최적화된 Variational Density`와 유사하게 만드는 것이 $q_j$ 의 **ELBO**를 최대화하는 것이고, 이러한 과정을 모든 j에 대해, **ELBO**가 수렴할 때까지 반복한다면 우리가 원하는 *q* 함수를 얻을 수 있다는 의미가 된다.  
 
 지금까지 설명한 부분을 정리해보자.  
 
-<center><img src="/public/img/Machine_Learning/2020-07-13-Variational Inference/01.JPG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-13-Variational Inference/01.JPG" width="60%"></center>  
 
 **CAVI**의 일반적인 절차는 아래와 같다.  
 1) Variational 분포 q를 설정한다.  
@@ -167,6 +167,6 @@ $$ D_{KL}(Q(x)||P(x)) = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$
 ---
 ## Reference  
 1) [변분추론 설명 블로그1](https://ratsgo.github.io/generative%20model/2017/12/19/vi/)  
-2) [변분추론 설명 블로그2](https://zhiyzuo.github.io/VI/)
+2) [변분추론 설명 블로그2](https://zhiyzuo.github.io/VI/)  
 3) [패턴인식-머신러닝 책 정리 사이트](http://norman3.github.io/prml/docs/chapter09/4.html)  
 4) [변분추론 논문](https://arxiv.org/abs/1601.00670)
