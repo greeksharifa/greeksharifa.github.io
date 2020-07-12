@@ -8,7 +8,7 @@ tags: [Machine_Learning, Bayesian_Statistics]
 
 본 글에서는 정보 이론과 관련이 있는 **Kullback-Leibler Divergence**와 이를 기반으로 한 **Variational Inference**에 대해 간략히 정리해보고자 한다. 본 글의 내용의 대부분은 사실 베이지안 통계학으로 분류할 필요가 없다. 다만 이 글을 쓰는 목적이 이후 글에서 설명할 **VAE** 모델에서 등장하는 변분 추론을 이해하기 위함이기 때문에 베이지안 통계학 카테고리에 분류하였다.  
 
-시작에 앞서, 변분 추론은 MCMC와 더불어 근사 추정의 양대 산맥을 이루는 방법이라는 점을 밝히고 싶다.  
+시작에 앞서, 변분 추론은 근사 추정의 대표적인 방법이라는 점을 밝히고 싶다.  
 
 ## 1. Kullback-Leibler Divergence  
 정보이론에서 정보량은 불확실성이 커질수록 많아지는 것으로 정의한다. **Shannon Entropy**는 확률의 값에 $log_2$ 를 씌우고 -1을 곱해준 값으로, 모든 사건의 정보량의 Expectation을 의미한다. 확률 분포 P에 대한 섀넌 엔트로피는 아래와 같이 정의할 수 있다.  
@@ -50,7 +50,11 @@ $$ = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$
 ### 2.1. ELBO  
 $\mathbf{x}$ 란 확률 변수가 있고, 이 변수의 특성의 상당 부분은 잠재 변수인 $\mathbf{z}$ 에 의해 설명된다고 하자. 우리는 이 때 우리는 $\mathbf{x}$ 의 실현 값인 데이터가 존재할 때 $\mathbf{z}$ 의 분포, 즉 **Posterior** $p(\mathbf{z}|\mathbf{x})$ 를 알고 싶다. 그런데 **Posterior**는 많은 경우에 Numerical 계산이 불가능하다. 따라서 우리는 이 **Posterior**를 알기 쉬운 분포 $q(\mathbf{z})$ 로 바꾸고 싶다.  
 
-변분추론은 이렇게 **Posterior** $p(z|x)$ 를 다루기 쉬운 분포 $q(z)$ 로 근사하는 방법론을 의미한다. 이 때 $q(z)$ 는 어떤 함수의 집합 $Q$ 의 한 원소라고 생각할 수 있다.  
+$$ p(z|x) \to q(z) $$  
+
+변분추론은 이렇게 **Posterior**를 다루기 쉬운 분포로 근사하는 방법론을 의미한다.  
+
+이 때 $q(z)$ 는 어떤 함수의 집합 $Q$ 의 한 원소라고 생각할 수 있다.  
 
 용어를 잠시 정리해보자.  
 
@@ -81,7 +85,7 @@ $$ logp(x) \ge E_{z \sim q(z)}[logp(x|z)] - D_{KL}(q(z)||p(z)) $$
 
 우항을 **ELBO**(Evidence Lower BOund)라고 부른다. **Evidence**의 하한선이라는 의미이다. 
 
-$D_{KL}(q(z)||p(z|x))$ 부터 다시 표현해보면,  
+**Variational Density** $q_(z)$ 와 **Posterior** 사이의 쿨백-라이블리 발산 값 부터 다시 표현해보면,  
 
 $$ D_{KL}(q(z)||p(z|x)) = D_{KL}(q(z)||p(z)) + logp(x) - E_{z \sim q(z)}[logp(x|z)] $$  
 
@@ -93,7 +97,7 @@ $$ logp(x) = ELBO + D_{KL}(q(z)||p(z|x)) $$
 
 
 ----
-## 2.2. CAVI: Cooridinate Ascent Variational Inference  
+### 2.2. CAVI: Cooridinate Ascent Variational Inference  
 그렇다면 *q* 함수는 대체 어떤 함수인가? 아주 클래식한 방법으로 설명하자면, **Mean Field Variational Family**를 언급해야 할 것이다. 잠재 변수 $\mathbf{z}$ 가 모두 독립적이라고 할 때, *q* 함수는 아래와 같이 분해될 수 있다.  
 
 $$ q(\mathbf{z}) = \prod_j q_j(z_j) $$  
@@ -120,8 +124,9 @@ $$ = logp(z_j, \mathbf{z}_{-j}, \mathbf{x}) $$
 
 $$ ELBO = E_q[logp(\mathbf{x}, z_j, \mathbf{z}_{-j})] - \Sigma_{q_l}E_{q_l}[logq_l(z_l)] $$  
 
-Iterative Expectation( $E[A] = E[E[A|B]]$ )을 이용하여  
+Iterative Expectation을 이용하면,  
 
+$$ (E[A] = E[E[A|B]]) $$  
 
 $$ = E_j [E_{-j} [logp(\mathbf{x}, z_j, \mathbf{z}_{-j})|z_j]] - E_{q_j}[logq_j] + Const $$  
 
@@ -145,7 +150,9 @@ $$ q^*_j{z_j} \propto exp( E_{-j} [logp(\mathbf{x}, z_j, \mathbf{z}_{-j})] ) $$
 
 $$ D_{KL}(Q(x)||P(x)) = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$  
 
-위 쿨백-라이블리 발산의 개념을 적용해보면, $q_j$ 에 대한 **ELBO** 식은 $q^*_j{z_j}$ 와 $q_j(z_j)$ 사이의 Negative 쿨백-라이블리 발산 값을 의미한다. 따라서 이를 해석해보면, **j번째 잠재변수의 Variational Density**를 **j번째 잠재변수의 최적화된 Variational Density**와 유사하게 만드는 것이 $q_j$ 의 **ELBO**를 최대화하는 것이고, 이러한 과정을 모든 j에 대해, 수렴할 때까지 반복한다면 우리가 원하는 *q* 함수를 얻을 수 있다는 의미로 귀결될 것이다.  
+위 쿨백-라이블리 발산의 개념을 적용해보면, $q_j$ 에 대한 **ELBO** 식은 $q^{*}_j z_j, q_j(z_j)$ 사이의 Negative 쿨백-라이블리 발산 값을 의미한다.  
+
+따라서 이를 해석해보면, **j번째 잠재변수의 Variational Density**를 **j번째 잠재변수의 최적화된 Variational Density**와 유사하게 만드는 것이 $q_j$ 의 **ELBO**를 최대화하는 것이고, 이러한 과정을 모든 j에 대해, 수렴할 때까지 반복한다면 우리가 원하는 *q* 함수를 얻을 수 있다는 의미로 귀결될 것이다.  
 
 지금까지 설명한 부분을 정리해보자.  
 
@@ -160,7 +167,7 @@ $$ D_{KL}(Q(x)||P(x)) = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$
 **CAVI**는 클래식하고 좋은 방법론이지만, Non-Convex 최적화 문제에서 `Global Optimum`에 도달할 것이라고 보장해주지는 못한다. 즉, 충분히 쿨백-라이블리 발산 값을 최소화하지 못할 수도 있다는 뜻이다. 이에 대한 보완책으로 다음 Chapter에서 소개할 **CRVI** 알고리즘을 참고할 수 있을 것이다.  
 
 ____
-## 2.3. CRVI: Convex Relaxation for Variational Inference  
+### 2.3. CRVI: Convex Relaxation for Variational Inference  
 
 
 
@@ -168,14 +175,7 @@ ____
 
 
 ----
-
-우리의 목적은 $D_{KL}(q(z)||p(z|x))$ 을 줄이는 것이다. 따라서 $logp(x)$의 값은 작게 만들면서 **ELBO**의 값은 크게 만들어야 한다.  
-
-*q*함수 의 파라미터를 $\theta_q$ , *p* 함수의 파라미터를 $\theta_l$ 라고 해보자. 이를 **EM** 알고리즘을 통해 단계적으로 찾을 수 있다.  
-
-먼저, $\theta_l$ 을 고정($\theta^{old}$) 한다. $\theta_l$ 가 고정되었으므로 **ELBO**를 최대화하기 위해서는 쿨백-라이블리 발산을 최소화하는 *q* 함수를 찾으면 된다. (쿨백-라이블리 발산 값은 $q(*) \approx p(*)$ 일수록 작아진다.)  
-
-**몬테카를로** 방법을 적용하여 쿨백-라이블리 발산을 최소화해보자.
+### 2.4. MCMC and Variational Inference  
 
 $$ D_{KL}(q(z)||p(z|x)) = D_{KL}(q(z)||p(z)) + logp(x) - E_{z \sim q(z)}[logp(x|z)] $$  
 
@@ -184,12 +184,6 @@ $$ = E_{z \sim q(z)} [log \frac{q(z)}{p(z)}] + logp(x) - E_{z \sim q(z)}[logp(x|
 $$ \approx \frac{1}{K} \Sigma_{i=0}^K [log \frac{q(z_i)}{p(z_i)}]_{z_i \sim q(z)} + logp(x) - \frac{1}{K} \Sigma_{i=0}^K [log p(x|z_i)]_{z_i \sim q(z)}  $$  
 
 $$ = \frac{1}{K} \Sigma_{i=0}^K [logq(z_i) - logp(z_i) - logp(x|z_i)]_{z_i \sim q(z)} + logp(x)$$  
-
-다루기 쉬운 $q(z)$ 를 정규분포로 가정해보자. 이 정규분포에서 K개의 $z$ 를 샘플링하면, 위 쿨백-라이블리 발산의 근사 값을 계산할 수 있게 되고, 정규분포의 파라미터들을 조정하면서 이 근사 값을 최소화하는 파라미터를 찾으면 이것이 바로 $\theta_q$ 이다.  
-
-이렇게 $\theta_q$ 를 찾고 난 이후, 이 값을 고정한 후 이번에는 **ELBO**의 값을 최대화하는 $\theta_l$ 를 찾는다. 이전 단계(**E-step**)에서 $\theta_q$ 를 찾았으므로, **ELBO**에서 신경 써야할 것은 우도 함수이다. 이 우도 함수를 최대화하는 파라미터 $\theta_l$ 을 찾으면 모든 단계가 완료된다.  
-
-$q(z)$ 의 파라미터 $\theta_q$ 와, $p(x|z)$ 의 파라미터 $\theta_l$ 을 모두 찾았으므로 이제 
 
 
 ---
