@@ -65,6 +65,12 @@ hero:
   image: /public/img/Andre_Derain_Fishing_Boats_Collioure.jpg
   caption: Andre Derain, Fishing Boats Collioure, 1905. France.
 
+plugins:
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-redirect-from
+
 # Plugins
 mathjax: true # whether support mathjax
 google_analytics_token: 'UA-00000000-1' # leave blank if you don't want google analytics
