@@ -19,12 +19,8 @@ tags: [Machine_Learning, Recommendation System, Matrix Factorization, Latent Fac
 
 <center><img src="/public/img/Machine_Learning/2019-12-17-Recommendation System/01.JPG" width="80%"></center>  
 
-앞으로 총 4개의 시리즈로 이어질 추천 시스템에 관한 글들은, 위에서 언급한 `잠재 요인 협업 필터링`과 이 방법론에서 출발하여 발전된 알고리즘에 대해 다룰 예정이다. 간단히 순서를 보면 아래와 같다.  
+앞으로 여러 시리즈로 이어질 추천 시스템에 관한 글들은, 위에서 언급한 `잠재 요인 협업 필터링`과 이 방법론에서 출발하여 발전된 알고리즘에 대해 다룰 예정이다.  
 
-> 01. 잠재요인 협업필터링  
-> 02. Matrix Factorization Techiques for Recommender Systems 논문 리뷰  
-> 03. Factorization Machines 설명  
-> 04. Field-aware Factorization machines 설명  
 
 **Matrix Factorization** 개념에 **Support Vector Machine**의 개념을 결합한 것이 **Factorization Machines**이다. 여기서 더 나아가 개별 feature들의 메타정보(field)를 알고리즘에 반영한 것이 **Field-aware Factorization Machines**이다. 줄여서 각각 **FM**과 **FFM**이라고 부르는 것이 일반적이다.  
 
