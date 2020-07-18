@@ -95,6 +95,8 @@ $$ logp(x) = ELBO + D_{KL}(q(z)||p(z|x)) $$
 
 ----
 ### 2.2. CAVI: Cooridinate Ascent mean field Variational Inference  
+(**Mean-Field Variational Inference**)  
+
 그렇다면 *q* 함수는 대체 어떤 함수인가? 아주 클래식한 방법으로 설명하자면, **Mean Field Variational Family**를 언급해야 할 것이다. 잠재 변수 $\mathbf{z}$ 가 모두 독립적이라고 할 때, *q* 함수는 아래와 같이 분해될 수 있다.  
 
 $$ q(\mathbf{z}) = \prod_j q_j(z_j) $$  
@@ -161,7 +163,9 @@ $$ D_{KL}(Q(x)||P(x)) = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$
 3) ELBO를 계산한다.  
 4) ELBO가 수렴할 때 까지 위 과정을 반복한다.  
 
-**CAVI**는 클래식하고 좋은 방법론이지만, Non-Convex 최적화 문제에서 `Global Optimum`에 도달할 것이라고 보장해주지는 못한다. 즉, 충분히 쿨백-라이블리 발산 값을 최소화하지 못할 수도 있다는 뜻이다. 이에 대한 보완책으로 여러 방법론이 대두되었는데, Stochastic Gradient Descent, Convex Relaxation, Monte Carlo Sampling 등의 개념을 활용한 알고리즘들이 등장하였다. 글 서두에서도 밝혔듯이 이러한 알고리즘들에 대해서는 후속 글에서 다루도록 하겠다.  
+**CAVI**는 클래식하고 좋은 방법론이지만, Non-Convex 최적화 문제에서 `Global Optimum`에 도달할 것이라고 보장해주지는 못한다. 즉, 충분히 쿨백-라이블리 발산 값을 최소화하지 못할 수도 있다는 뜻이다. 또한 MCMC와 같은 Posterior Estimation 보다는 (최적화 방법이기에) 속도가 빠르지만 한 쪽을 고정하고 다른 쪽을 교대로 계산하는 방법을 채택하고 있기 때문에 기본적으로 속도가 아주 빠르지는 않다는 단점도 지니고 있다.  
+
+이에 대한 보완책으로 여러 방법론이 대두되었는데, Stochastic Gradient Descent, Convex Relaxation, Monte Carlo Sampling 등의 개념을 활용한 알고리즘들이 등장하였다. 글 서두에서도 밝혔듯이 이러한 알고리즘들에 대해서는 후속 글에서 다루도록 하겠다.  
 
 
 ---

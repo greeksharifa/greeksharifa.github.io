@@ -8,7 +8,7 @@ tags: [Machine Learning, Paper_Review]
 
 본 글의 주제는  2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다. **VAE**에 대해서 알기 위해서는 **Variational Inference** (변분 추론)에 대한 사전지식이 필요하다. 이에 대해 알고 싶다면 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)을 참조하길 바란다.  
 
-본 글은 크게 3가지 파트로 구성되어 있다. Chapter1에서는 VAE 논문을 리뷰할 것이다. Chapter2에서는 논문에서 언급되었던 몇 가지 개념에 대해 상세히 서술할 것이다. Chapter3에서는 Tensorflow를 통해 VAE를 구현할 것이다.  
+본 글은 크게 3가지 파트로 구성되어 있다. Chapter1에서는 VAE 논문을 리뷰할 것이다. Chapter2에서는 먼저 논문을 간단히 요약하고, 논문에서 언급되었던 몇 가지 개념에 대해 상세히 서술할 것이다. 요약본에 대해서 먼저 보고 싶다면 **2.1**을 먼저 보라. Chapter3에서는 Tensorflow를 통해 VAE를 구현할 것이다.  
 
 
 ---
@@ -16,7 +16,7 @@ tags: [Machine Learning, Paper_Review]
 ## 1.1. Introduction  
 연속형 잠재 변수와 파라미터가 다루기 힘든 사후 분포를 갖는 방향성 확률 모델에 대해 효율적인 근사 추론 및 학습을 수행할 수 있는 방법이 없을까? **Variational Bayesian** 접근법은 다루기 힘든 사후 분포에 대한 근사의 최적화를 내포한다.  
 
-불행히도, 일반적인 Mean-Field 접근법은 근사적 사후 분포에 대해 기댓값의 분석적 해결법을 요구하는데 이는 보통 굉장히 intractable한 방법이다. 본 논문은 **Variational Lower Bound**(ELBO)의 `Reparameterization`이 Lower Bound의 미분 가능한 불편향 estimator를 만드는 방법에 대해 보여줄 것이다. 이 **Stochastic Gradient Variational Bayes: SGVB estimator**는 연속형 잠재변수나 파라미터를 갖고 있는 대부분의 모델에 대해 효율적인 근사 사후 추론을 가능하게 하며, 표준 Stochastic Gradient Ascent 스킬을 사용하여 최적화하기에 굉장히 편리하다.  
+불행히도, 일반적인 Mean-Field 접근법은 근사적 사후 분포에 대해 기댓값의 analytic한 해결법을 요구하는데 이는 보통 굉장히 intractable한 방법이다. 본 논문은 **Variational Lower Bound**(ELBO)의 `Reparameterization`이 Lower Bound의 미분 가능한 불편향 estimator를 만드는 방법에 대해 보여줄 것이다. 이 **Stochastic Gradient Variational Bayes: SGVB estimator**는 연속형 잠재변수나 파라미터를 갖고 있는 대부분의 모델에 대해 효율적인 근사 사후 추론을 가능하게 하며, 표준 Stochastic Gradient Ascent 스킬을 사용하여 최적화하기에 굉장히 편리하다.  
 
 iid 데이터셋이고, 데이터 포인트 별로 연속형 잠재변수를 갖고 있는 경우에 대해 본 논문은 `Auto-Encoding VB` 알고리즘을 제안한다. 이 알고리즘에서는 **Simple Ancestral Sampling**을 이용하여 근사 사후 추론을 하는 인식 모델을 최적화하기 위해 **SGVB estimator**를 사용하여 추론과 학습을 효율적으로 해낸다. 이 과정은 MCMC와 같이 데이터포인트 별로 반복적인 추론을 행하여 많은 연산량을 요구하지 않는 장점을 가진다.  
 
@@ -24,7 +24,7 @@ iid 데이터셋이고, 데이터 포인트 별로 연속형 잠재변수를 갖
 
 ---
 ## 1.2. Method  
-본 섹션에서는 연속형 잠재 변수를 내포하는 다양한 방향성 그래픽 모델(DIrected Graphical Model)에서 Stochastic 목적 함수인 **Lower Bound Estimator**를 끌어내는 과정을 설명할 것이다. 데이터포인트 별 잠재변수는 iid한 상황이라는 가정 하에 본 논문에서는 (전역) 파라미터에 대해 Maximum Likelihood와 Maximum A Posteriori 추론을 수행하고 잠재변수에 대해 `Variational Inference`를 수행할 것이다. 이러한 방법은 온라인 러닝에도 사용될 수 있지만 본 논문에서는 간단히 하기 위해 고정된 데이터셋을 사용할 것이다.  
+본 섹션에서는 연속형 잠재 변수를 내포하는 다양한 방향성 그래픽 모델(Directed Graphical Model)에서 Stochastic 목적 함수인 **Lower Bound Estimator**를 끌어내는 과정을 설명할 것이다. 데이터포인트 별 잠재변수는 iid한 상황이라는 가정 하에 본 논문에서는 (전역) 파라미터에 대해 Maximum Likelihood와 Maximum A Posteriori 추론을 수행하고 잠재변수에 대해 `Variational Inference`를 수행할 것이다. 이러한 방법은 온라인 러닝에도 사용될 수 있지만 본 논문에서는 간단히 하기 위해 고정된 데이터셋을 사용할 것이다.  
 
 ### 1.2.1. Problem Scenario  
 N개의 Sample을 가진 $X$ 라는 데이터가 있다고 해보자. 본 논문은 이 데이터가 관측되지 않은 연속형 확률 변수 $\mathbf{z}$ 를 내포하는 어떤 Random Process에 의해 형성되었다고 가정한다.  
@@ -329,14 +329,35 @@ Predictive Sparse Decomposition과 같은 Encoder-Decoder 구조 역시 본 논�
 
 ---
 ## 1.5. Experiments  
+Soon to be updated...
 
 
+---
+## 1.6. Conclustion  
+본 논문에서 **Variational Lower Bound**의 새로운 추정량인 `SGVB`를 새롭게 소개하였다. 이 알고리즘은 연속적인 잠재 변수들에 대한 효율적인 근사적 추론을 가능하게 해준다. 제안된 추정량은 직접적으로 미분이 가능하고 표준적인 Stochastic Gradient 방법들을 사용하여 최적화될 수 있다.  
 
-
+iid 데이터셋과 연속적인 잠재 변수에 한해 본 논문에서는 효과적인 추론과 학습 방법인 `AEVB: Auto-Encoding VB = VAE`를 제안하였는데, 이 알고리즘은 SGVB 추정량을 사용하여 근사적인 추론을 행하는 모델이다. 이론적인 장점은 실험 결과에 반영되어 있다.  
 
 
 ---
 # 2. 이론에 대한 보충 설명  
+아주 직관적이거나 수식이 많지 않거나 실험이나 문헌 조사가 주를 이루는 많은 논문들에 비해 본 논문은 상당한 기반 지식을 요구하며 정확히 이해하는 데에도 꽤나 큰 노력을 기울여야 한다. 이번 Chapter에서는 본 논문에서 나온 기반 개념들의 일부를 때로는 간단하게, 때로는 상세하게 풀어볼 것이다.  
+
+## 2.1. VAE 요약  
+세부 주제에 대한 상세한 설명에 들어가기에 앞서, 본 논문의 내용을 요약해보자. 우리가 풀고 싶은 문제는 이것이다. 연속적인 잠재 변수가 존재한다고 할 때 데이터에 기반하여 이에 대한 효과적인 학습과 추론을 행하고 싶다. 그런데 문제가 존재한다.  
+
+$$ p_{\theta} (\mathbf{x}), p_{\theta} (\mathbf{z} | \mathbf{x}), p_{\theta} (\mathbf{x} | \mathbf{z}) $$  
+
+위와 같은 Evidence, Posterior, Likelihood가 intractable한 경우가 매우 흔하게 존재한다. 그리고 데이터셋이 크다면 이들에 대해 배치 최적화나 Monte-Carlo Sampling을 통한 추론을 행하기에는 시간이 너무 오래 걸린다.  
+
+이를 위해 아래와 같은 새로운 인식 모델이 제안된다. 이 모델은 True Posterior를 근사하기 위해 제안되었으며 이러한 방법론을 `Variational Inference` 혹은 `Variational Bayes`라고 부른다.  
+
+$$ q_{\phi} (\mathbf{z} | \mathbf{x}) $$  
+
+근사하기 위한 방법으로는 여러 방법이 있지만 analytic한 전통적인 방법은 **Coordinate Ascent Mean-Field Variational Inference**이다. 글 서두에서도 밝혔듯이 이에 대한 내용은 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)에서 확인할 수 있다. 이 방법은 여러 단점이 있는데, 그 중 하나는 factorial한 표현을 전제로 하기 때문에 본 논문에서와 같이 intractable한 Likelihood를 갖는 경우에는 사용이 불가능하다. 따라서 본 논문에서는 **SGVB** 추정량을 제안하고 있다.  
+
+
+
 
 
 
@@ -348,8 +369,9 @@ Predictive Sparse Decomposition과 같은 Encoder-Decoder 구조 역시 본 논�
 
 
 ---
-# Reference  
+# References  
 1) https://ratsgo.github.io/generative%20model/2018/01/27/VAE/  
 2) https://www.youtube.com/watch?v=SAfJz_uzaa8  
-3) https://taeu.github.io/paper/deeplearning-paper-vae/
-4) 
+3) https://taeu.github.io/paper/deeplearning-paper-vae/  
+4) https://dnddnjs.github.io/paper/2018/06/20/vae2/  
+5) .
