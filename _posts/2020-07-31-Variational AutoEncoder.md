@@ -297,7 +297,7 @@ $$ \mathbf{z}^{(i, l)} = g_{\phi} (\mathbf{x}^{(i)} , {\epsilon}^{(l)} ) = {\mu}
 
 이 모델에서 **Prior**와 **근사 Posterior**는 정규 분포를 따른다. 그러므로 우리는 이전 Chapter에서 보았던 추정량을 사용할 수 있는데, 이 때 쿨백-라이블리 발산 값은 추정 없이 계산되고 미분될 수 있다.  
 
-$$ \mathcal{L} (\theta, \phi, \mathbf{x}^{(i)}) \simeq \frac{1}{2} \Sigma_{j=1}^J (1 + log( \sigma_j^{(i)} )^2 - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2  ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
+$$ \mathcal{L} (\theta, \phi, \mathbf{x}^{(i)}) \simeq \frac{1}{2} \Sigma_{j=1}^J (1 + log( (\sigma_j^{(i)})^2 ) - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2  ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
 
 이 때  
 
@@ -332,7 +332,7 @@ Predictive Sparse Decomposition과 같은 Encoder-Decoder 구조 역시 본 논�
 (논문 참조)  
 
 
-## 1.6. Conclustion  
+## 1.6. Conclusion  
 본 논문에서 **Variational Lower Bound**의 새로운 추정량인 `SGVB`를 새롭게 소개하였다. 이 알고리즘은 연속적인 잠재 변수들에 대한 효율적인 근사적 추론을 가능하게 해준다. 제안된 추정량은 직접적으로 미분이 가능하고 표준적인 Stochastic Gradient 방법들을 사용하여 최적화될 수 있다.  
 
 iid 데이터셋과 연속적인 잠재 변수에 한해 본 논문에서는 효과적인 추론과 학습 방법인 `AEVB: Auto-Encoding VB = VAE`를 제안하였는데, 이 알고리즘은 SGVB 추정량을 사용하여 근사적인 추론을 행하는 모델이다. 이론적인 장점은 실험 결과에 반영되어 있다.  
@@ -341,7 +341,7 @@ iid 데이터셋과 연속적인 잠재 변수에 한해 본 논문에서는 효
 ---
 # 2. 보충 설명  
 ## 2.1. VAE 요약  
-세부 주제에 대한 상세한 설명에 들어가기에 앞서, 본 논문의 내용을 요약해보자. 우리가 풀고 싶은 문제는 이것이다. 연속적인 잠재 변수가 존재한다고 할 때 데이터에 기반하여 이에 대한 효과적인 학습과 추론을 행하고 싶다. 그런데 문제가 존재한다.  
+우리가 풀고 싶은 문제는 이것이다. 연속적인 잠재 변수가 존재한다고 할 때 데이터에 기반하여 이에 대한 효과적인 학습과 추론을 행하고 싶다. 그런데 문제가 존재한다.  
 
 $$ p_{\theta} (\mathbf{x}), p_{\theta} (\mathbf{z} | \mathbf{x}), p_{\theta} (\mathbf{x} | \mathbf{z}) $$  
 
@@ -383,9 +383,9 @@ $$ \tilde{\mathcal{L}}^B (\theta, \phi ; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (
 
 이 때  
 
-$$ \mathbf{z}^{(i, l)} = g_{\phi} (\epsilon^{(i, l)}, \mathbf{x}^{(i)}), \epsilon^{(l)} \sim p(\epsilon) $$  
+$$ \mathbf{z}^{(i, l)} = g_{\phi} (\epsilon^{(l)}, \mathbf{x}^{(i)}), \epsilon^{(l)} \sim p(\epsilon) $$  
 
-$\mathbf{z}^{(i, l)}$ 은 위 목적 함수(SGVB-B)의 두 번째 항의 Input이다. 이 데이터 포인트는 $g_{\phi} (\epsilon^{(i)}, \mathbf{x}^{(i)})$ 에서 Sampling 되는 것이며 이 $g_{\phi} (.)$ 라는 함수는 일반적으로 일변량 정규분포로 설정된다. 이렇게 하면, 위 목적함수를 최적화하고 역전파를 이용하여 학습을 진행할 수 있게 된다.  
+$\mathbf{z}^{(i, l)}$ 은 위 목적 함수(SGVB-B)의 두 번째 항의 Input이다. 이 데이터 포인트는 $g_{\phi} (\epsilon^{(i)}, \mathbf{x}^{(i)})$ 에서 Sampling 되는 것이며 이 $g_{\phi} (.)$ 라는 함수는 일반적으로 일변량 정규분포로 설정된다. ($g_{\phi} (\epsilon, x) = \mu + \sigma \epsilon$) 이렇게 하면, 위 목적함수를 최적화하고 역전파를 이용하여 학습을 진행할 수 있게 된다.  
 
 
 ## 2.2. Solution of Negative KL-Divergence  
@@ -397,23 +397,128 @@ $$ p_{\theta} (\mathbf{z}) = \mathcal{N} (0, \mathbf{I}), q_{\phi} (\mathbf{z} |
 
 $J$ 는 $\mathbf{z}$ 의 차원이라고 할 때, Negative 쿨백-라이블리 발산은 아래와 같이 정리할 수 있다.  
 
-$$ -D_{KL} (q_{\phi} (\mathbf{z}) || p_{\theta} (\mathbf{z}) ) = \int q_{\theta} (\mathbf{z}) (log p_{\theta}(\mathbf{z}) - log q_{\theta}(\mathbf{z})) d\mathbf{z} = \frac{1}{2} \Sigma_{j=1}^J (1 + log( \sigma_j^{(i)} )^2 - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2  ) $$  
+$$ -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) = \int q_{\theta} (\mathbf{z}) (log p_{\theta}(\mathbf{z}) - log q_{\theta}(\mathbf{z}|\mathbf{x}^{(i)})) d\mathbf{z} = \frac{1}{2} \Sigma_{j=1}^J (1 + log( (\sigma_j^{(i)})^2 ) - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2  ) $$  
 
 왜냐하면,  
 
-<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/01.JPG" width="90%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/01.JPG" width="60%"></center>  
 
-<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/02.JPG" width="90%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/02.JPG" width="60%"></center>  
+
+
+## 2.3. MLP’s as Probabilistic Encoders and Decoders  
+데이터의 종류에 따라 Decoder는 Gaussian Output을 반환할 수도, Bernoulli Output을 반환할 수도 있다. 두 경우 논문의 부록에 잘 설명되어 있다.  
+
+**베르누이 분포일 경우**  
+
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/05.JPG" width="55%"></center>  
+
+이 때 $f_{\sigma}(.)$ 함수는 elementwise sigmoid 활성화 함수이다.  
+
+**정규 분포일 경우**  
+
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/06.JPG" width="40%"></center>  
+
 
 ---
 # 3. Tensorflow로 VAE 구현  
+Tensorflow 홈페이지에는 (흔히 그렇듯) MNIST 예제로 VAE를 적용하는 방법에 대해 가이드를 제시하고 있다. 코드도 깔끔하고 설명도 어느 정도 되어 있기 때문에 참고하기를 추천하며, 이번 Chapter 역시 그 가이드에 기반하여 작성되었음을 밝힌다. 다만 Tensorflow 홈페이지에서 제시한 예시는 **SGVB-A**를 사용하고 있는데, 본문을 읽어보면 단순한 예시를 들기 위해 **ELBO** 전체에 대해 **Monte-Carlo** 추정을 시행하였다고 밝히고 있다. 이번 Chapter에서는 **SGVB-B**를 활용하여 Loss Function을 설계할 것이다.  
+
+먼저 모델을 정의해보자.  
+
+```python
+class CVAE(tf.keras.Model):
+    def __init__(self, latent_dim):
+        super(CVAE, self).__init__()
+        self.latent_dim = latent_dim
+        self.encoder = tf.keras.Sequential(
+            [
+                tf.keras.layers.InputLayer(input_shape=(28, 28, 1)),
+                tf.keras.layers.Conv2D(filters=32, kernel_size=3, strides=(2, 2), activation='relu'),
+                tf.keras.layers.Conv2D(filters=64, kernel_size=3, strides=(2, 2), activation='relu'),
+                tf.keras.layers.Flatten(),
+                # No activation
+                tf.keras.layers.Dense(latent_dim + latent_dim),
+            ])
+
+        self.decoder = tf.keras.Sequential(
+            [
+                tf.keras.layers.InputLayer(input_shape=(latent_dim, )),
+                tf.keras.layers.Dense(units=7*7*32, activation=tf.nn.relu),
+                tf.keras.layers.Reshape(target_shape=(7, 7, 32)),
+                tf.keras.layers.Conv2DTranspose(filters=64, kernel_size=3, strides=2, padding='same', activation='relu'),
+                tf.keras.layers.Conv2DTranspose(filters=32, kernel_size=3, strides=2, padding='same', activation='relu'),
+                # No activation
+                tf.keras.layers.Conv2DTranspose(filters=1, kernel_size=3, strides=1, padding='same'),
+            ])
+
+    @tf.function
+    def sample(self, eps=None):
+        if eps is None:
+            eps = tf.random.normal(shape=(100, self.latent_dim))
+        return self.decode(eps, apply_sigmoid=True)
+
+    def encode(self, x):
+        # encoder의 Output은 (batch_size, latent_dim * 2) 이다. 각 mini-batch에서 이를 반으로 쪼갠다.
+        # logvar = log variance로, Linear Layer를 통과한 후 음수의 값을 가질 수도 있기 때문에 이와 같이 표기한다.
+        mean, logvar = tf.split(self.encoder(x), num_or_size_splits=2, axis=1)
+        return mean, logvar
+
+    def reparameterize(self, mean, logvar):
+        # 보조 노이즈 변수: eps
+        eps = tf.random.normal(shape=mean.shape, mean=0, stddev=1)
+
+        # \tilde{z}
+        z = mean + eps * tf.exp(logvar * 0.5)
+        return z
+
+    def decode(self, z, apply_sigmoid=False):
+        logits = self.decoder(z)
+        if apply_sigmoid:
+            probs = tf.sigmoid(logits)
+            return probs
+        return logits
+```
+
+주석에도 설명이 되어 있지만 logvar 변수에 0.5를 곱하고 exp를 씌워주어야 우리가 원하는 $\sigma$ 가 반환된다. 모델의 구조는 아래와 같은 그림으로 이해하면 쉬울 것이다.  
+
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/04.JPG" width="90%"></center>  
+
+**Prior**와 **근사 Posterior**가 모두 정규 분포라는 가정 하에 `Negative KL-Divergence`는 아래와 같다.  
+
+$$ -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) = \frac{1}{2} \Sigma_{j=1}^J (1 + log( \sigma_j^{(i)} )^2 - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2 ) $$  
+
+그리고 **2.3**을 참고했을 때 다음과 같이 Log Likelihood를 얻을 수 있다.  
+
+$$ logp_{\theta} (\mathbf{x}|\mathbf{z}) = \Sigma_{i=1}^{D} x_i log y_i + (1-x_i) * log(1 - y_i) $$
+
+자 그럼 이제 **SGVB-B**를 정확히 구해보자. ($J$ 는 잠재 변수의 차원이다.)  
+
+$$ \tilde{\mathcal{L}}^B (\theta, \phi ; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
+
+$$ = \frac{1}{2} \Sigma_{j=1}^J (1 + log( (\sigma_j^{(i)})^2 ) - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2 ) + \frac{1}{L}\Sigma_{l=1}^L x_i log y_i + (1-x_i) * log(1 - y_i) $$  
+
+두 번째 항은 **Binary Cross Entropy**와 일치한다. 
+
+
+```python
+
+```
+
+
+```python
+
+```
+
 
 
 
 ---
 # References  
-1) https://ratsgo.github.io/generative%20model/2018/01/27/VAE/  
-2) https://www.youtube.com/watch?v=SAfJz_uzaa8  
-3) https://taeu.github.io/paper/deeplearning-paper-vae/  
-4) https://dnddnjs.github.io/paper/2018/06/20/vae2/  
-5) .
+1) https://arxiv.org/abs/1312.6114  
+2) https://ratsgo.github.io/generative%20model/2018/01/27/VAE/  
+3) https://www.youtube.com/watch?v=SAfJz_uzaa8  
+4) https://taeu.github.io/paper/deeplearning-paper-vae/  
+5) https://dnddnjs.github.io/paper/2018/06/20/vae2/  
+6) https://www.tensorflow.org/tutorials/generative/cvae  
+   
