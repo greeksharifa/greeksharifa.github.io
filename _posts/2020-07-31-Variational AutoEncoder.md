@@ -8,7 +8,7 @@ tags: [Machine Learning, Paper_Review]
 
 본 글의 주제는  2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다. **VAE**에 대해서 알기 위해서는 **Variational Inference** (변분 추론)에 대한 사전지식이 필요하다. 이에 대해 알고 싶다면 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)을 참조하길 바란다.  
 
-본 글은 크게 3가지 파트로 구성되어 있다. Chapter1에서는 VAE 논문을 리뷰할 것이다. Chapter2에서는 먼저 논문을 간단히 요약하고, 논문에서 언급되었던 몇 가지 개념에 대해 상세히 서술할 것이다. 요약본에 대해서 먼저 보고 싶다면 **2.1**을 먼저 보라. Chapter3에서는 Tensorflow를 통해 VAE를 구현할 것이다.  
+본 글은 크게 3가지 파트로 구성되어 있다. Chapter1에서는 VAE 논문을 리뷰할 것이다. Chapter2에서는 먼저 논문을 간단히 요약하고, 논문의 부록에 수록되어 있었던 미분 가능한 KL-Divergence에 대한 예시를 소개할 것이다. (요약본에 대해서 먼저 보고 싶다면 **2.1**을 먼저 보라.) Chapter3에서는 Tensorflow를 통해 VAE를 구현할 것이다.  
 
 
 ---
@@ -113,17 +113,17 @@ $$ log p_{\theta}(\mathbf{x}^{(1)}, ..., \mathbf{x}^{(N)}) = \sum_{i=1}^N log p_
 
 그런데 데이터 포인트 하나에 대한 Marginal Likelihood는 아래와 같이 재표현이 가능하다.  
 
-$$ log p_{\theta} (\mathbf{x}^{(i)}) = D_{KL} (q_{\phi}(\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}|\mathbf{x}^{(i)})) + L(\theta, \phi; \mathbf{x}^{(i)}) $$  
+$$ log p_{\theta} (\mathbf{x}^{(i)}) = D_{KL} (q_{\phi}(\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}|\mathbf{x}^{(i)})) + \mathcal{L} (\theta, \phi; \mathbf{x}^{(i)}) $$  
 
-우변의 첫 번째 항은 True Posterior의 근사 `KL Divergence`이다. 이 KL Divergence는 음수가 아니기 때문에, 두 번째 항인 $L(\theta, \phi; \mathbf{x}^{(i)})$ 는 i번째 데이터 포인트의 Marginal Likelihood의 `Varitaional Lower Bound`라고 한다. 변분 추론 글을 읽어보고 왔다면 알겠지만, 이는 Evidence의 하한 값을 뜻하기도 하기 때문에 `ELBO`라고 부르기도 한다.  
+우변의 첫 번째 항은 True Posterior의 근사 `KL Divergence`이다. 이 KL Divergence는 음수가 아니기 때문에, 두 번째 항인 $\mathcal{L}(\theta, \phi; \mathbf{x}^{(i)})$ 는 i번째 데이터 포인트의 Marginal Likelihood의 `Varitaional Lower Bound`라고 한다. 변분 추론 글을 읽어보고 왔다면 알겠지만, 이는 Evidence의 하한 값을 뜻하기도 하기 때문에 `ELBO`라고 부르기도 한다.  
 
 부등식으로 나타내면 아래와 같다.  
 
-$$ log p_{\theta} (\mathbf{x}^{(i)}) \geq L(\theta, \phi; \mathbf{x}^{(i)}) = E_{q_{\phi} (\mathbf{z}|\mathbf{x})} [-logq_{\phi}(\mathbf{z}|\mathbf{x}) + log p_{\theta}(\mathbf{x}, \mathbf{z})] $$  
+$$ log p_{\theta} (\mathbf{x}^{(i)}) \geq \mathcal{L}(\theta, \phi; \mathbf{x}^{(i)}) = E_{q_{\phi} (\mathbf{z}|\mathbf{x})} [-logq_{\phi}(\mathbf{z}|\mathbf{x}) + log p_{\theta}(\mathbf{x}, \mathbf{z})] $$  
 
 이 식은 또 아래와 같이 표현할 수 있다.  
 
-$$ \mathcal{L} (\bm{\theta}, \phi; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + E_{q_{\phi} (\mathbf{z} | \mathbf{x}^{(i)})} [log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}) ] $$  
+$$ \mathcal{L} (\theta, \phi; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + E_{q_{\phi} (\mathbf{z} | \mathbf{x}^{(i)})} [log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}) ] $$  
 
 우리는 **Lower Bound** $L(\theta, \phi; \mathbf{x}^{(i)})$ 를 Variational 파라미터와 생성 파라미터인 $\phi, \theta$ 에 대하여 미분하고 최적화하고 싶은데, 이 Lower Bound의 $\phi$ 에 대한 Gradient는 다소 복잡하다.  
 
@@ -157,9 +157,9 @@ $$ E_{q_{\phi} (\mathbf{z}|\mathbf{x})} [f(\mathbf{z})] = E_{p(\epsilon)} [f(g_{
 
 이제 이 테크닉을 **ELBO**에 대해 적용하면 **SGVB: Stochastic Gradient Variational Bayes** 추정량을 얻을 수 있다.  
 
-$$ \tilde{\mathcal{L}}^A (\theta, \phi, \mathbf{x}^{(i)}) \simeq \mathcal{L} (\theta, \phi, \mathbf{x}^{(i)}) $$  
+$$ \tilde{\mathcal{L}}^A (\theta, \phi ; \mathbf{x}^{(i)}) \simeq \mathcal{L} (\theta, \phi ; \mathbf{x}^{(i)}) $$  
 
-$$ \tilde{\mathcal{L}}^A (\theta, \phi, \mathbf{x}^{(i)}) = \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)}, \mathbf{z}^{(i, l)}) - logq_{\phi} (\mathbf{z}^{(i, l)}|\mathbf{x}^{(i)}) $$  
+$$ \tilde{\mathcal{L}}^A (\theta, \phi ; \mathbf{x}^{(i)}) = \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)}, \mathbf{z}^{(i, l)}) - logq_{\phi} (\mathbf{z}^{(i, l)}|\mathbf{x}^{(i)}) $$  
 
 $$ g_{\phi} (\epsilon^{(i, l)}, \mathbf{x}^{(i)}), \epsilon^{(l)} \sim p(\epsilon) $$  
 
@@ -173,11 +173,11 @@ $$ E_{q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)})} [ logp_{\theta} (\mathbf{x}^{(i)}|
 
 쿨백-라이블리 발산 항은 **근사 Posterior**를 **Prior** $p_{\theta}(z)$ 에 가깝게 만들어서 $\phi$ 를 규제하는 것으로 해석될 수 있다.  
 
-$$ KL: p_{\theta} (\mathbf{z}|\mathbf{x}) \to p_{\theta}(\mathbf{z}) $$
+$$ KL: q_{\phi} (\mathbf{z}|\mathbf{x}) \to p_{\theta}(\mathbf{z}) $$
 
 이러한 과정을 **SGVB** 추정량의 두 번째 버전으로 이어지는데, 이 추정량은 일반적인 추정량에 비해 작은 분산을 갖고 있다.  
 
-$$ \tilde{\mathcal{L}}^B (\theta, \phi, \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
+$$ \tilde{\mathcal{L}}^B (\theta, \phi ; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
 
 이 때  
 
@@ -185,7 +185,7 @@ $$ \mathbf{z}^{(i, l)} = g_{\phi} (\epsilon^{(i, l)}, \mathbf{x}^{(i)}), \epsilo
 
 $N$ 개의 데이터 포인트를 갖고 있는 데이터셋 $X$ 에서 복수의 데이터 포인트가 주어졌을 때 우리는 미니배치에 기반하여 전체 데이터셋에 대한 **Marginal Likelihood Lower Bound**의 추정량을 구성할 수 있다.  
 
-$$ \mathcal{L} (\theta, \phi, X) \simeq \tilde{\mathcal{L}}^M (\theta, \phi, X^M) = \frac{N}{M} \Sigma_{i=1}^M \tilde{\mathcal{L}} (\theta, \phi, \mathbf{x}^{(i)}) $$  
+$$ \mathcal{L} (\theta, \phi ; X) \simeq \tilde{\mathcal{L}}^M (\theta, \phi ; X^M) = \frac{N}{M} \Sigma_{i=1}^M \tilde{\mathcal{L}} (\theta, \phi ; \mathbf{x}^{(i)}) $$  
 
 이 때  
 
@@ -203,7 +203,7 @@ $$ \triangledown_{\theta, \phi} \tilde{\mathcal{L}} (\theta; X^M) $$
 
 아래 목적 함수를 보면 **Auto-Encoder**와의 연결성이 더욱 뚜렷해진다.  
 
-$$ \tilde{\mathcal{L}}^B (\theta, \phi, \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
+$$ \tilde{\mathcal{L}}^B (\theta, \phi ; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
 
 **Prior**로부터 나온 **근사 Posterior**에 대한 쿨백-라이블리 발산 값인 첫 번째 항은 `Regularizer`의 역할을 하며, 두 번째 항은 `Expected Negative Reconstruction Error`의 역할을 하게 된다.  
 
@@ -329,10 +329,9 @@ Predictive Sparse Decomposition과 같은 Encoder-Decoder 구조 역시 본 논�
 
 ---
 ## 1.5. Experiments  
-Soon to be updated...
+(논문 참조)  
 
 
----
 ## 1.6. Conclustion  
 본 논문에서 **Variational Lower Bound**의 새로운 추정량인 `SGVB`를 새롭게 소개하였다. 이 알고리즘은 연속적인 잠재 변수들에 대한 효율적인 근사적 추론을 가능하게 해준다. 제안된 추정량은 직접적으로 미분이 가능하고 표준적인 Stochastic Gradient 방법들을 사용하여 최적화될 수 있다.  
 
@@ -340,9 +339,7 @@ iid 데이터셋과 연속적인 잠재 변수에 한해 본 논문에서는 효
 
 
 ---
-# 2. 이론에 대한 보충 설명  
-아주 직관적이거나 수식이 많지 않거나 실험이나 문헌 조사가 주를 이루는 많은 논문들에 비해 본 논문은 상당한 기반 지식을 요구하며 정확히 이해하는 데에도 꽤나 큰 노력을 기울여야 한다. 이번 Chapter에서는 본 논문에서 나온 기반 개념들의 일부를 때로는 간단하게, 때로는 상세하게 풀어볼 것이다.  
-
+# 2. 보충 설명  
 ## 2.1. VAE 요약  
 세부 주제에 대한 상세한 설명에 들어가기에 앞서, 본 논문의 내용을 요약해보자. 우리가 풀고 싶은 문제는 이것이다. 연속적인 잠재 변수가 존재한다고 할 때 데이터에 기반하여 이에 대한 효과적인 학습과 추론을 행하고 싶다. 그런데 문제가 존재한다.  
 
@@ -354,14 +351,59 @@ $$ p_{\theta} (\mathbf{x}), p_{\theta} (\mathbf{z} | \mathbf{x}), p_{\theta} (\m
 
 $$ q_{\phi} (\mathbf{z} | \mathbf{x}) $$  
 
-근사하기 위한 방법으로는 여러 방법이 있지만 analytic한 전통적인 방법은 **Coordinate Ascent Mean-Field Variational Inference**이다. 글 서두에서도 밝혔듯이 이에 대한 내용은 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)에서 확인할 수 있다. 이 방법은 여러 단점이 있는데, 그 중 하나는 factorial한 표현을 전제로 하기 때문에 본 논문에서와 같이 intractable한 Likelihood를 갖는 경우에는 사용이 불가능하다. 따라서 본 논문에서는 **SGVB** 추정량을 제안하고 있다.  
+기본적으로 **ELBO**를 최대화하는 $\theta, \phi$ 를 찾는 것으로 근사가 이루어진다.  
+
+$$ \theta^*, \phi^* = argmax_{\theta, \phi} \Sigma_{i=1}^{N=1} \mathcal{L} (\theta, \phi ; \mathbf{x}^{(i)})  $$  
+
+최적화된 파라미터를 찾는 analytic한 전통적인 방법은 **Coordinate Ascent Mean-Field Variational Inference**이다. 글 서두에서도 밝혔듯이 이에 대한 내용은 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)에서 확인할 수 있다. 이 방법은 여러 단점이 있는데, 그 중 하나는 factorial한 표현을 전제로 하기 때문에 본 논문에서와 같이 intractable한 Likelihood를 갖는 경우에는 사용이 불가능하다. 따라서 본 논문에서는 **SGVB** 추정량을 제안하고 있다.  
+
+**SGVB**는 파라미터의 Gradient를 구해 Stochastic하게 업데이트하는 방식을 취하는데, **ELBO**에서 $\phi$ 의 Gradient를 얻는 것은 다소 복잡하다. 따라서 **Monte Carlo** 추정량을 얻는 것을 생각할 수 있는데, 이 또한 분산이 너무 커서 직접적으로 사용하기에는 무리가 있다.  
+
+그래서 최종적으로 채택한 방법이 **근사 Posterior**를 따르는 확률 변수 $\tilde{\mathbf{z}}$ 에 대해 `Reparameterization`을 행하는 것이다. **근사 Posterior**에서 직접 $\mathbf{z}$ 를 Sampling 하는 것이 아니라, 보조 Noise 변수 $\epsilon$ 을 사용하여 미분 가능한 분포에서 Deterministic하게 정해지는 것으로 파악하는 것이다.  
+
+$$ \tilde{\mathbf{z}} = g_{\phi} (\epsilon, x), \epsilon \sim p(\epsilon) $$  
+
+기존의 **ELBO**는 아래와 같다.  
+
+$$ \mathcal{L} (\theta, \phi; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + E_{q_{\phi} (\mathbf{z} | \mathbf{x}^{(i)})} [log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}) ] $$  
+
+지금부터 2가지 케이스가 존재한다. 만약 첫 번째 항인 쿨백-라이블리 발산이 analytic하게 적분이 되지 않는다면 위 식 전체를 **Monte-Carlo** 추정을 통해 구해야 한다. 만약 가능하다면, 오직 두 번째 항만을 **Monte-Carlo** 추정을 통해 구하면 된다. (방금 전 분산이 커져서 사용하기 어렵다고 했던 부분은, $\mathbf{z}$ 를 **근사 Posterior**로부터 직접 Sampling을 할 때의 이야기이다.)  
+
+첫 번째 케이스(A)를 살펴보자. **ELBO**는 아래와 같이 다시 표현할 수 있다.   
+
+$$ \mathcal{L}(\theta, \phi; \mathbf{x}^{(i)}) = E_{q_{\phi} (\mathbf{z}|\mathbf{x})} [-logq_{\phi}(\mathbf{z}|\mathbf{x}) + log p_{\theta}(\mathbf{x}, \mathbf{z})] $$  
+
+그대로 **Monte-Carlo** 추정을 시행하면 아래와 같은 **SGVB** 추정량을 얻을 수 있다.  
+
+$$ \mathcal{L} (\theta, \phi ; \mathbf{x}^{(i)}) \simeq \tilde{\mathcal{L}}^A (\theta, \phi ; \mathbf{x}^{(i)}) = \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)}, \mathbf{z}^{(i, l)}) - logq_{\phi} (\mathbf{z}^{(i, l)}|\mathbf{x}^{(i)}) $$  
+
+이제 두 번째 케이스(B)를 살펴보자. 쿨백-라이블리 발산이 적분이 가능하다고 하였으므로, 두 번째 항인 `Expected Reconstruction Error` 만이 Sampling에 의한 **Monte-Carlo** 추정을 필요로 하게 된다. 참고로 첫 번째 항은 `Regualizer`의 역할을 수행한다.  
+
+$$ \tilde{\mathcal{L}}^B (\theta, \phi ; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (\mathbf{z}|\mathbf{x}^{(i)}) || p_{\theta} (\mathbf{z}) ) + \frac{1}{L} \Sigma_{l=1}^L log p_{\theta} (\mathbf{x}^{(i)} | \mathbf{z}^{(i, l)}) $$  
+
+이 때  
+
+$$ \mathbf{z}^{(i, l)} = g_{\phi} (\epsilon^{(i, l)}, \mathbf{x}^{(i)}), \epsilon^{(l)} \sim p(\epsilon) $$  
+
+$\mathbf{z}^{(i, l)}$ 은 위 목적 함수(SGVB-B)의 두 번째 항의 Input이다. 이 데이터 포인트는 $g_{\phi} (\epsilon^{(i)}, \mathbf{x}^{(i)})$ 에서 Sampling 되는 것이며 이 $g_{\phi} (.)$ 라는 함수는 일반적으로 일변량 정규분포로 설정된다. 이렇게 하면, 위 목적함수를 최적화하고 역전파를 이용하여 학습을 진행할 수 있게 된다.  
 
 
+## 2.2. Solution of Negative KL-Divergence  
+이전 Chapter에서 SGVB-B를 구할 때, 쿨백-라이블리 발산 값이 analytic하게 적분될 수 있는 경우를 가정하였다.  
 
+**Prior**와 **근사 Posterior** 모두 정규분포로 설정해보자.  
 
+$$ p_{\theta} (\mathbf{z}) = \mathcal{N} (0, \mathbf{I}), q_{\phi} (\mathbf{z} | \mathbf{x}^{(i)}) \sim Normal $$  
 
+$J$ 는 $\mathbf{z}$ 의 차원이라고 할 때, Negative 쿨백-라이블리 발산은 아래와 같이 정리할 수 있다.  
 
+$$ -D_{KL} (q_{\phi} (\mathbf{z}) || p_{\theta} (\mathbf{z}) ) = \int q_{\theta} (\mathbf{z}) (log p_{\theta}(\mathbf{z}) - log q_{\theta}(\mathbf{z})) d\mathbf{z} = \frac{1}{2} \Sigma_{j=1}^J (1 + log( \sigma_j^{(i)} )^2 - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2  ) $$  
 
+왜냐하면,  
+
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/01.JPG" width="90%"></center>  
+
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/02.JPG" width="90%"></center>  
 
 ---
 # 3. Tensorflow로 VAE 구현  
