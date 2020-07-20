@@ -482,7 +482,7 @@ class CVAE(tf.keras.Model):
 
 주석에도 설명이 되어 있지만 logvar 변수에 0.5를 곱하고 exp를 씌워주어야 우리가 원하는 $\sigma$ 가 반환된다. 모델의 구조는 아래와 같은 그림으로 이해하면 쉬울 것이다.  
 
-<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/04.JPG" width="90%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/04.JPG" width="120%"></center>  
 
 **Prior**와 **근사 Posterior**가 모두 정규 분포라는 가정 하에 `Negative KL-Divergence`는 아래와 같다.  
 
