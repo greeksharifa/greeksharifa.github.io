@@ -427,6 +427,8 @@ Tensorflow 홈페이지에는 (흔히 그렇듯) MNIST 예제로 VAE를 적용�
 먼저 모델을 정의해보자.  
 
 ```python
+
+
 class CVAE(tf.keras.Model):
     def __init__(self, latent_dim):
         super(CVAE, self).__init__()
@@ -459,17 +461,17 @@ class CVAE(tf.keras.Model):
         return self.decode(eps, apply_sigmoid=True)
 
     def encode(self, x):
-        # encoder의 Output은 (batch_size, latent_dim * 2) 이다. 각 mini-batch에서 이를 반으로 쪼갠다.
-        # logvar = log variance로, Linear Layer를 통과한 후 음수의 값을 가질 수도 있기 때문에 이와 같이 표기한다.
+        # encoder의 Output은 (batch_size, latent_dim * 2) 이다. 
+        # 각 mini-batch에서 이를 반으로 쪼갠다.
+        # logvar: Linear Layer를 통과한 후 음수의 값을 가질 수도 있기 때문에 이와 같이 표기한다.
         mean, logvar = tf.split(self.encoder(x), num_or_size_splits=2, axis=1)
-        return mean, logvar
+        stddev = 1e-8 + tf.nn.softplus(logvar)
+        return mean, stddev
 
-    def reparameterize(self, mean, logvar):
+    def reparameterize(self, mean, stddev):
         # 보조 노이즈 변수: eps
-        eps = tf.random.normal(shape=mean.shape, mean=0, stddev=1)
-
-        # \tilde{z}
-        z = mean + eps * tf.exp(logvar * 0.5)
+        eps = tf.random.normal(shape=mean.shape)
+        z = mean + eps * stddev
         return z
 
     def decode(self, z, apply_sigmoid=False):
@@ -478,11 +480,13 @@ class CVAE(tf.keras.Model):
             probs = tf.sigmoid(logits)
             return probs
         return logits
+
+optimizer = tf.keras.optimizers.Adam(1e-4)
 ```
 
-주석에도 설명이 되어 있지만 logvar 변수에 0.5를 곱하고 exp를 씌워주어야 우리가 원하는 $\sigma$ 가 반환된다. 모델의 구조는 아래와 같은 그림으로 이해하면 쉬울 것이다.  
+모델의 구조는 아래와 같은 그림으로 이해하면 쉬울 것이다.  
 
-<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/04.JPG" width="120%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/04.JPG" width="150%"></center>  
 
 **Prior**와 **근사 Posterior**가 모두 정규 분포라는 가정 하에 `Negative KL-Divergence`는 아래와 같다.  
 
@@ -498,19 +502,104 @@ $$ \tilde{\mathcal{L}}^B (\theta, \phi ; \mathbf{x}^{(i)}) = -D_{KL} (q_{\phi} (
 
 $$ = \frac{1}{2} \Sigma_{j=1}^J (1 + log( (\sigma_j^{(i)})^2 ) - (\mu_j^{(i)})^2 - (\sigma_j^{(i)})^2 ) + \frac{1}{L}\Sigma_{l=1}^L x_i log y_i + (1-x_i) * log(1 - y_i) $$  
 
-두 번째 항은 **Binary Cross Entropy**와 일치한다. 
 
-
+이를 코드로 구현하면 아래와 같다.  
 ```python
+def compute_loss(model, x):
+    mean, stddev = model.encode(x)
+    z = model.reparameterize(mean, stddev)
+    x_logit = model.decode(z, True)
+    x_logit = tf.clip_by_value(x_logit, 1e-8, 1-1e-8)
 
+    # Loss
+    marginal_likelihood = tf.reduce_sum(x * tf.math.log(x_logit) + (1 - x) * tf.math.log(1 - x_logit), axis=[1, 2])
+    loglikelihood = tf.reduce_mean(marginal_likelihood)
+
+    kl_divergence = -0.5 * tf.reduce_sum(1 + tf.math.log(1e-8 + tf.square(stddev)) - tf.square(mean) - tf.square(stddev),
+                                         axis=[1])
+    kl_divergence = tf.reduce_mean(kl_divergence)
+
+    ELBO = loglikelihood - kl_divergence
+    loss = -ELBO
+
+    return loss
 ```
 
-
+학습 및 테스트 코드는 아래와 같다.  
 ```python
+@tf.function
+def train_step(model, x, optimizer):
+    with tf.GradientTape() as tape:
+        loss = compute_loss(model, x)
+    gradients = tape.gradient(loss, model.trainable_variables)
+    optimizer.apply_gradients(zip(gradients, model.trainable_variables))
 
+    return loss
+
+
+epochs = 50
+latent_dim = 2
+model = CVAE(latent_dim)
+
+# Train
+for epoch in range(1, epochs + 1):
+    train_losses = []
+    for train_x in train_dataset:
+        loss = train_step(model, train_x, optimizer)
+        train_losses.append(loss)
+
+    print('Epoch: {}, Loss: {:.2f}'.format(epoch, np.mean(train_losses)))
+
+    # metric = tf.keras.metrics.Mean()
+    # for test_x in test_dataset:
+    #     metric(compute_loss(model, test_x))
+    # elbo = -metric.result()
+
+
+# Test
+def generate_images(model, test_sample, random_sample=False):
+    mean, stddev = model.encode(test_sample)
+    z = model.reparameterize(mean, stddev)
+
+    if random_sample:
+        predictions = model.sample(z)
+    else:
+        predictions = model.decode(z, True)
+
+    predictions = tf.clip_by_value(predictions, 1e-8, 1 - 1e-8)
+
+    fig = plt.figure(figsize=(4, 4))
+
+    for i in range(predictions.shape[0]):
+        plt.subplot(4, 4, i + 1)
+        plt.imshow(predictions[i, :, :, 0], cmap='gray')
+        plt.axis('off')
+
+    plt.show()
+
+
+num_examples_to_generate = 16
+random_vector_for_generation = tf.random.normal(shape=[num_examples_to_generate, latent_dim])
+test_sample = next(iter(test_dataset))[0:num_examples_to_generate, :, :, :]
+
+for i in range(test_sample.shape[0]):
+    plt.subplot(4, 4, i + 1)
+    plt.imshow(test_sample[i, :, :, 0], cmap='gray')
+    plt.axis('off')
+
+plt.show()
+
+generate_images(model, test_sample, False)
 ```
 
+실제로 학습을 시켜보면, Loss가 155까지는 빠르게 떨어지고, 그 이후에는 아주 서서히 감소하는 것을 알 수 있다. 이렇게 구현한 **Convolutional VAE**의 경우 성능은 좀 아쉽다. 아주 미세하게 숫자를 구분해 내지는 못한다. 아래의 이미지는 Epoch 30 이후의 결과이다.  
 
+**원본**  
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/07.JPG" width="60%"></center>  
+
+
+**생성본**
+<center><img src="/public/img/Machine_Learning/2020-07-31-Variational AutoEncoder/08.JPG" width="60%"></center>  
 
 
 ---
