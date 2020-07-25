@@ -25,8 +25,6 @@ pip install jupyter
 
 ### 실행 및 종료
 
-<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 ```
 jupyter notebook
 ```
