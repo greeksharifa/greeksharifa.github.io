@@ -427,8 +427,6 @@ Tensorflow 홈페이지에는 (흔히 그렇듯) MNIST 예제로 VAE를 적용�
 먼저 모델을 정의해보자.  
 
 ```python
-
-
 class CVAE(tf.keras.Model):
     def __init__(self, latent_dim):
         super(CVAE, self).__init__()
