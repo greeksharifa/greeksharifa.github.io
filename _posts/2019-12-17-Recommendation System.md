@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 추천 시스템의 기본 - 01. 잠재요인 협업필터링 (Latent Factor Collaborative Filtering)
+title: 잠재요인 협업필터링 (Latent Factor Collaborative Filtering) 설명
 author: Youyoung
 categories: Machine_Learning
 tags: [Machine_Learning, Recommendation System, Matrix Factorization, Latent Factor Collaborative Filtering]
 ---
 
-## 1. Introduction
+## 1. Introduction  
 추천시스템은 이제는 너무 많은 산업에서 도입하고 있는 시스템이기에 웬만큼 참신하지 않은 이상 새롭게 들리지 않는 것이 현실이다. 그러나 소비자의 입장에서 추천시스템을 보는 것과, 이 시스템의 개발자가 추천시스템을 바라 보는 것에는 큰 차이가 있다. 성공적으로 추천 엔진을 도입한 산업, 기업들이 있는 반면 여러 가지 어려움으로 인해 실질적인 효과가 떨어지는 산업, 기업도 있기 마련이다.  
 
 사용자(User)의 행동 양식, 인구학적(Demographic) 정보, 아이템(Item)의 특성, 외부 변수 등 수많은 변인들을 관리하고 분석해서 사용자에게 가장 알맞는 아이템을 추천해주는 일은 분명 쉬운 일은 아니다. 이러한 어려움을 극복하기 위해 연구자들은 과거부터 여러 종류의 추천 시스템을 개발해왔는데, 지금부터 그에 대해 조금씩 알아보고자 한다.  

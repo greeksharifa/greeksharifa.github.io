@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 추천 시스템의 기본 - 02. Matrix Factorization 논문 리뷰
+title: Matrix Factorization 설명 및 논분 리뷰
 author: Youyoung
 categories: Machine_Learning
 tags: [Machine_Learning, Recommendation System, Matrix Factorization, Latent Factor Collaborative Filtering]

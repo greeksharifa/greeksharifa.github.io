@@ -6,7 +6,7 @@ categories: [Generative Model]
 tags: [Machine Learning, Paper_Review]
 ---
 
-본 글의 주제는  2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다. **VAE**에 대해서 알기 위해서는 **Variational Inference** (변분 추론)에 대한 사전지식이 필요하다. 이에 대해 알고 싶다면 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)을 참조하길 바란다.  
+본 글은 2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다. **VAE**에 대해서 알기 위해서는 **Variational Inference** (변분 추론)에 대한 사전지식이 필요하다. 이에 대해 알고 싶다면 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)을 참조하길 바란다.  
 
 본 글은 크게 3가지 파트로 구성되어 있다. Chapter1에서는 VAE 논문을 리뷰할 것이다. Chapter2에서는 먼저 논문을 간단히 요약하고, 논문의 부록에 수록되어 있었던 미분 가능한 KL-Divergence에 대한 예시를 소개할 것이다. (요약본에 대해서 먼저 보고 싶다면 **2.1**을 먼저 보라.) Chapter3에서는 Tensorflow를 통해 VAE를 구현할 것이다.  
 
