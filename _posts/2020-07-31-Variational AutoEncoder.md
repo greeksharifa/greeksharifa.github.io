@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Variational AutoEncoder 설명
+title: Variational AutoEncoder (VAE) 설명
 author: Youyoung
 categories: [Generative Model]
 tags: [Machine Learning, Paper_Review]
