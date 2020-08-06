@@ -6,7 +6,7 @@ categories: [Generative Model]
 tags: [Machine Learning, Paper_Review]
 ---
 
-본 글은 2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다. **VAE**에 대해서 알기 위해서는 **Variational Inference** (변분 추론)에 대한 사전지식이 필요하다. 이에 대해 알고 싶다면 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)을 참조하길 바란다.  
+본 글은 2014년에 발표된 생성 모델인 Variational AutoEncoder에 대해 설명하고 이를 코드로 구현하는 내용을 담고 있다. **VAE**에 대해서 알기 위해서는 **Variational Inference** (변분 추론)에 대한 사전지식이 필요하다. 이에 대해 알고 싶다면 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/14/Variational-Inference/)을 참조하길 바란다.  
 
 본 글은 크게 3가지 파트로 구성되어 있다. Chapter1에서는 VAE 논문을 리뷰할 것이다. Chapter2에서는 먼저 논문을 간단히 요약하고, 논문의 부록에 수록되어 있었던 미분 가능한 KL-Divergence에 대한 예시를 소개할 것이다. (요약본에 대해서 먼저 보고 싶다면 **2.1**을 먼저 보라.) Chapter3에서는 Tensorflow를 통해 VAE를 구현할 것이다.  
 
@@ -355,7 +355,7 @@ $$ q_{\phi} (\mathbf{z} | \mathbf{x}) $$
 
 $$ \theta^*, \phi^* = argmax_{\theta, \phi} \Sigma_{i=1}^{N=1} \mathcal{L} (\theta, \phi ; \mathbf{x}^{(i)})  $$  
 
-최적화된 파라미터를 찾는 analytic한 전통적인 방법은 **Coordinate Ascent Mean-Field Variational Inference**이다. 글 서두에서도 밝혔듯이 이에 대한 내용은 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/13/Variational-Inference/)에서 확인할 수 있다. 이 방법은 여러 단점이 있는데, 그 중 하나는 factorial한 표현을 전제로 하기 때문에 본 논문에서와 같이 intractable한 Likelihood를 갖는 경우에는 사용이 불가능하다. 따라서 본 논문에서는 **SGVB** 추정량을 제안하고 있다.  
+최적화된 파라미터를 찾는 analytic한 전통적인 방법은 **Coordinate Ascent Mean-Field Variational Inference**이다. 글 서두에서도 밝혔듯이 이에 대한 내용은 [이 글](https://greeksharifa.github.io/bayesian_statistics/2020/07/14/Variational-Inference/)에서 확인할 수 있다. 이 방법은 여러 단점이 있는데, 그 중 하나는 factorial한 표현을 전제로 하기 때문에 본 논문에서와 같이 intractable한 Likelihood를 갖는 경우에는 사용이 불가능하다. 따라서 본 논문에서는 **SGVB** 추정량을 제안하고 있다.  
 
 **SGVB**는 파라미터의 Gradient를 구해 Stochastic하게 업데이트하는 방식을 취하는데, **ELBO**에서 $\phi$ 의 Gradient를 얻는 것은 다소 복잡하다. 따라서 **Monte Carlo** 추정량을 얻는 것을 생각할 수 있는데, 이 또한 분산이 너무 커서 직접적으로 사용하기에는 무리가 있다.  
 

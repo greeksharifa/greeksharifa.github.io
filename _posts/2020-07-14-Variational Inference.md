@@ -155,7 +155,7 @@ $$ D_{KL}(Q(x)||P(x)) = E_{X \sim P}[-log \frac{Q(x)}{P(x)}] $$
 
 지금까지 설명한 부분을 정리해보자.  
 
-<center><img src="/public/img/Machine_Learning/2020-07-13-Variational Inference/01.JPG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2020-07-14-Variational Inference/01.JPG" width="60%"></center>  
 
 **CAVI**의 일반적인 절차는 아래와 같다.  
 1) Variational 분포 q를 설정한다.  
