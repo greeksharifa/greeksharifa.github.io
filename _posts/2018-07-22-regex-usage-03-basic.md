@@ -278,7 +278,7 @@ print(matchObj.group())
 
 <details>
     <summary>문제 3 정답보기</summary>
-    <p>r'\b\d*\.\d+(e\d+)?'</p>
+    <p>r'\b\d*\.\d+(e-?\d+)?'</p>
 </details>
 
 <br>
