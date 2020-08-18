@@ -142,7 +142,7 @@ Parameters | Layers | d_{model}
 
 GPT-2는 문자단위(byte level)로 되어 있어 손실이 있는 전처리나 토큰화 등이 필요하지 않으며, 어떤 언더 모델 benchmark에도 사용할 수 있다. 평가는 WebText 언어모델에 따른 dataset의 로그확률을 계산하는 방식으로 통일했다. WebText 언어모델은 일반 분포를 심하게 벗어난 것, 이를테면 대단히 규격화된 텍스트, 분리된 구두점이나 축약형, 섞인 문장에 대해 평가받으며, `<UNK>`는 WebText에 400억 byte 중 26번밖에 나타나지 않는다.  
 
-결과는 아래 표에 나와 있으며, 어떤 세부조정도 거치지 않고 zero-shot 환경에서 8개 중 7개에서 state-of-the-art를 달성하였다.
+결과는 아래 표에 나와 있으며, 어떤 미세조정도 거치지 않고 zero-shot 환경에서 8개 중 7개에서 state-of-the-art를 달성하였다.
 
 
 <center><img src="/public/img/2019-08-28-OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners/02.png" width="100%" alt="Results"></center>
@@ -166,7 +166,7 @@ GPT-2는 문자단위(byte level)로 되어 있어 손실이 있는 전처리나
 
 ### 3.5. Reading Comprehension
 
-CoQA(The Conversation Question Answering dataset)을 7개의 분야에서 가져온 문서에서 질문자-답변자의 자연어 대화로 이루어진 dataset이다. CoQA 테스트는 독해능력과 대화에 기반한 모델의 답변능력을 평가한다. GPT-2는 55 F1 score를 달성해 4개 중 3개의 다른 모델을 능가했는데 이는 심지어 주어진 127k 이상의 수동 수집된 질답 쌍으로 학습시키지 않은 것이다. 지도가 포함된 state-of-the-art인 BERT는 89 F1 score에 근접하였다. 그러나 어떤 세부조정 없이 55점을 달성했다는 것은 상당히 고무적인 일이다.
+CoQA(The Conversation Question Answering dataset)을 7개의 분야에서 가져온 문서에서 질문자-답변자의 자연어 대화로 이루어진 dataset이다. CoQA 테스트는 독해능력과 대화에 기반한 모델의 답변능력을 평가한다. GPT-2는 55 F1 score를 달성해 4개 중 3개의 다른 모델을 능가했는데 이는 심지어 주어진 127k 이상의 수동 수집된 질답 쌍으로 학습시키지 않은 것이다. 지도가 포함된 state-of-the-art인 BERT는 89 F1 score에 근접하였다. 그러나 어떤 미세조정 없이 55점을 달성했다는 것은 상당히 고무적인 일이다.
 
 ### 3.6. Summarization
 
@@ -208,7 +208,7 @@ WebText LM의 성능을 결정하는 또 다른 잠재적 방법은 암기(기�
 
 이 논문의 많은 부분은 더 큰 데이터셋으로 학습된 더 큰 언어모델의 성능을 측정하는 데 쓰였다. 다른 많은 연구들도 이와 비슷하다(scaled RNN based LM 등).
 
-iWeb Corpus와 같은 거대한 웹페이지의 텍스트 말뭉치를 필터링하고 구축하는 대안을 제시하거나, 언어문제를 위한 사전학습 방법, 벡터표현, seq2seq 등이 연구되었으며 최근 연구들은 언어모델의 사전학습이 잡담이나 대화 같은 어려운 생성문제에 맞춰 세부조정할 때 도움이 된다는 것을 밝혀내었다.
+iWeb Corpus와 같은 거대한 웹페이지의 텍스트 말뭉치를 필터링하고 구축하는 대안을 제시하거나, 언어문제를 위한 사전학습 방법, 벡터표현, seq2seq 등이 연구되었으며 최근 연구들은 언어모델의 사전학습이 잡담이나 대화 같은 어려운 생성문제에 맞춰 미세조정할 때 도움이 된다는 것을 밝혀내었다.
 
 ---
 
@@ -218,7 +218,7 @@ iWeb Corpus와 같은 거대한 웹페이지의 텍스트 말뭉치를 필터링
 
 GPT-2의 zero-shot 학습 성능은 독해 등에서 좋은 성능을 보였으나 요약과 같은 문제에서는 기본적인 성능만을 보여주었다. 꽤 괜찮긴 해도 실제 사용하기엔 여전히 무리이다.
 
-GPT-2의 성능이 많은 과제에서 괜찮긴 한데, 세부조정을 통한 그 한계가 얼마인지는 분명하지 않다. 그렇지만 이 논문의 저자들은 decaNLP나 GLUE와 갈은 벤치마크에서 세부조정(fine-tuning)할 것을 계획하고 있다고 한다.  
+GPT-2의 성능이 많은 과제에서 괜찮긴 한데, 미세조정을 통한 그 한계가 얼마인지는 분명하지 않다. 그렇지만 이 논문의 저자들은 decaNLP나 GLUE와 갈은 벤치마크에서 미세조정(fine-tuning)할 것을 계획하고 있다고 한다.  
 또 GPT-2의 학습데이터와 그 크기가 [BERT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/)에서 말한 단방향 표현의 비효율성을 극복할 수 있을 만큼 충분한지도 확실치 않다고 한다. 
 
 ---

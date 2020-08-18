@@ -37,7 +37,7 @@ BERT는 개념적으로 간단하고 경험적으로 강력하다. GLUE benchmar
 언어모델 사전학습은 자연어처리 과제들에서 효과적이다. 사전학습된 언어표현을 downstream task에 적용하는 데는 두 가지 전략이 있는데
 
 1. 사전학습된 표현을 특정과제에 특화된(task-specific) 모델구조에 추가하는 특성기반 접근법(feature-based approach), 예로 [ELMo](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/)가 있다.
-2. 특정과제에 특화된 parameter를 최소로 추가하여, 간단히 사전학습된 *모든* parameter를 세부조정(fine-tune)함으로써 downstream task에서 학습하는 방법, 예로 [Generative Pre-trained Transformer(OpenAI GPT)](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)가 있다.
+2. 특정과제에 특화된 parameter를 최소로 추가하여, 간단히 사전학습된 *모든* parameter를 미세조정(fine-tune)함으로써 downstream task에서 학습하는 방법, 예로 [Generative Pre-trained Transformer(OpenAI GPT)](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)가 있다.
 
 이 두 접근법은 범용언어표현을 학습하기 위해 단방향 언어모델을 사용하기 때문에 사전학습기간 동안 같은 목적함수를 공유한다.  
 그러나 이러한 방법은, 특히 fine-tuning 접근법은 사전학습된 표현의 능력을 제한시킨다. 가장 큰 한계는 표준언어모델은 단방향이며 이것이 사전학습하는 동안 모델구조의 선택권을 제한한다. 예로 [OpenAI GPT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)의 경우, 좌$\rightarrow$우 구조를 사용하였는데 이는 Transformer의 self-attention layer에서 모든 token이 이전 token에만 의존하게 만든다. 
@@ -72,7 +72,7 @@ ELMo와 그 이전 모델들은 전통적인 단어 embedding을 다른 차원�
 
 이 방법은 미분류된(unlabeled) 문자로부터 사전학습된 단어 embedding을 얻는 것부터 시작한다.
 
-더 최근에는, 문맥 token 표현을 생성하는 문장/문서 인코더가 미분류 문자로부터 사전학습되고 지도 downstream task에 맞춰 세부조정되었다. 이 접근법의 장점은 parameter의 수가 적다는 것이다.  
+더 최근에는, 문맥 token 표현을 생성하는 문장/문서 인코더가 미분류 문자로부터 사전학습되고 지도 downstream task에 맞춰 미세조정되었다. 이 접근법의 장점은 parameter의 수가 적다는 것이다.  
 [OpenAI GPT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/21/OpenAI-GPT-1-Improving-Language-Understanding-by-Generative-Pre-Training/)는 GLUE benchmark에서 높은 성능을 기록핬다. 좌$\rightarrow$우 언어모델링과 auto-encoder objective가 이러한 모델에 사용되었다.
 
 ### 2.3. Transfer Learning from Supervised Data
@@ -83,9 +83,9 @@ ELMo와 그 이전 모델들은 전통적인 단어 embedding을 다른 차원�
 
 ## 3. BERT
 
-이 framework에는 크게 두 가지 단계가 있다: *pre-training*(사전학습)과 *fine-tuning*(세부조정)이다.  
+이 framework에는 크게 두 가지 단계가 있다: *pre-training*(사전학습)과 *fine-tuning*(미세조정)이다.  
 *pre-training* 동안 모델은 다른 사전학습된 과제, 미분류된 데이터로 학습된다.  
-*fine-tuning* 동안 BERT 모델은 사전학습된 parameter로 초기화된 후, 모든 parameter가 downstream task로부터 분류된 데이터를 사용하여 세부조정된다. 각 downstream task는 그들이 같은 사전학습된 parameter로 초기화되었다 하더라도 독립된 fine-tuned 모델이다. 다음 Figure 1에 나오는 QA 예제로 설명이 이어질 것이다.
+*fine-tuning* 동안 BERT 모델은 사전학습된 parameter로 초기화된 후, 모든 parameter가 downstream task로부터 분류된 데이터를 사용하여 미세조정된다. 각 downstream task는 그들이 같은 사전학습된 parameter로 초기화되었다 하더라도 독립된 fine-tuned 모델이다. 다음 Figure 1에 나오는 QA 예제로 설명이 이어질 것이다.
 
 <center><img src="/public/img/2019-08-23-BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding/01.png" width="100%" alt="Architecture"></center>
 
@@ -161,7 +161,7 @@ Figure 1에 나와 있듯이 $C$는 NSP(Next Sentence Prediction)을 위해 사�
 문자 쌍을 포함하는 문제에 대해 일반적인 패턴은 양방향 교차 attention을 적용하기 전 문자 쌍을 독립적으로 encoding하는 것이다.  
 BERT는 이 두 단계를 통합하기 위해 self-attention mechanism을 사용했다. 이는 두 문장 간 *양방향* 교차 attention을 효과적으로 포함하는 self-attention으로 결합한 문자 쌍을 encoding하는 것으로 이루어진다.
 
-각 task마다, task-specific한 입출력을 BERT에 연결하고 모든 parameter를 end-to-end로 세부조정(fine-tune)했다. 
+각 task마다, task-specific한 입출력을 BERT에 연결하고 모든 parameter를 end-to-end로 미세조정(fine-tune)했다. 
 
 입력 단계에서, 사전학습에서 나온 문장 A와 문장 B는 
 
@@ -187,7 +187,7 @@ BERT는 이 두 단계를 통합하기 위해 self-attention mechanism을 사용
 ### 4.1. GLUE
 
 GLUE benchmark는 다양한 자연어이해 문제들을 모아놓은 것이다.  
-GLUE에 대해 세부조정하기 위해, 입력 sequence를 Section 3에서 언급한 대로 변환하고, 첫 번째 token(`[CLS]`)와 연관된 최종 은닉벡터 $C \in \mathbb{R}^H$를 총합 표현으로 사용한다. *fine-tuning* 단계에서 새로 도입하는 유일한 parameter는 분류 layer weights $W \in \mathbb{R}^{K \times H}$($K$는 분류의 수)이다. 이제 $C$와 $W$의 표준 분류 loss log(softmax($CW^T$))를 계산한다.  
+GLUE에 대해 미세조정하기 위해, 입력 sequence를 Section 3에서 언급한 대로 변환하고, 첫 번째 token(`[CLS]`)와 연관된 최종 은닉벡터 $C \in \mathbb{R}^H$를 총합 표현으로 사용한다. *fine-tuning* 단계에서 새로 도입하는 유일한 parameter는 분류 layer weights $W \in \mathbb{R}^{K \times H}$($K$는 분류의 수)이다. 이제 $C$와 $W$의 표준 분류 loss log(softmax($CW^T$))를 계산한다.  
 모든 GLUE task에 대해 batch size 32, 3 epochs으로 실험한 결과는 다음과 같다.
 
 <center><img src="/public/img/2019-08-23-BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding/03.png" width="100%" alt="GLUE Results"></center>
@@ -269,7 +269,7 @@ fine-tuning 접근법을 피하기 위해, BERT의 어떤 parameter에 대해서
 
 <center><img src="/public/img/2019-08-23-BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding/08.png" width="60%" alt="Feature-based Approach with BERT"></center>
 
-BERT_large는 거의 state-of-the-art 성능을 가지며, 이는 BERT가 세부조정과 특성기반 접근법 모두에서 효율적임을 보여준다.
+BERT_large는 거의 state-of-the-art 성능을 가지며, 이는 BERT가 미세조정과 특성기반 접근법 모두에서 효율적임을 보여준다.
 
 ---
 
