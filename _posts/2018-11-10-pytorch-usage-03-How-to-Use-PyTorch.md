@@ -34,6 +34,8 @@ Pytorch 사용법이 헷갈리는 부분이 있으면 [Q&A 절](https://greeksha
 
 # Import
 
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 ```python
 # preprocess, set hyperparameter
 import argparse

@@ -20,6 +20,8 @@ import argparse
 
 # argparse
 
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 ```
 python train.py --epochs 50 --batch-size 64 --save-dir weights
 ```

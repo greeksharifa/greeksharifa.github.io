@@ -13,6 +13,8 @@ Anaconda는 Continuum Analytics라는 곳에서 만든 파이썬 배포판으로
 
 ## 설치
 
+<script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 [Anaconda](https://www.anaconda.com/distribution/#download-section)를 설치하거나, [Miniconda](https://conda.io/en/latest/miniconda.html)를 설치한다. 설치하고 싶을 운영체제와 버전에 맞는 것을 골라 설치한다. 설치 방법은 공식 홈페이지에 따로 설명되어 있다.
 
 ![01_install](/public/img/conda/2019-02-01-Miniconda-usage/01.PNG)
