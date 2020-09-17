@@ -159,6 +159,14 @@ $K$는 모델의 context window이 허용하는 범위에 따라 $0 \sim \infty$
 
 ## 3. 결과(Results)
 
+아래 그림은 10만 개 정도의 parameter를 갖는 작은 모델을 포함한 결과를 보여 준다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/07.png" width="100%" alt="Examples"></center>
+
+언어모델링 성능은 학습 계산량의 효율에 따라 지수적으로 중가한다. 누군가는 cross-entropy loss에서 이러한 발전이 단지 겉만 그럴싸한 학습 말뭉치의 작은 차이로 인한 것이라 생각할 수 있지만, 그런 것이 아닌 일관된 개선을 의미함을 보일 수 있다.
+
+광범위한 데이터셋에 대해 Section 2에서 언급된 8개의 모델(GPT-3과 작은 모델들)을 테스트하였고, 비슷한 데이터셋끼리 묶어 9개로 나누었다.
+
 
 
 ### 3.1. Language Modeling, Cloze, and Completion Tasks
