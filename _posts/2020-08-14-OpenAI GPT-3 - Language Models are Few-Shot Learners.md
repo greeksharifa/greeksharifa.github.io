@@ -144,9 +144,15 @@ Section 2.1~2.3에서는 모델, 학습 데이터, 학습 과정을 자세히 �
 
 ### 2.3 Training Process
 
-
+일반적으로 큰 모델일수록 더 큰 batch를 쓰지만, learning rate는 더 작게 해야 한다. 학습하는 동안 gradient noise scale을 측정하고 이를 batch size를 선택하는 가이드로 사용하였다. Table 2.1에서 사용한 parameter setting을 보여 준다. 메모리 부족 없이 더 큰 모델을 학습시키기 위해, 각 행렬곱 내에서 모델 병렬화와 네트워크의 레이어에서 모델 병렬화를 섞어 사용하였다. 모든 모델은 고대역 클러스터의 일부분으로 V100 GPU에서 학습되었다. 자세한 학습 과정은 [부록 B](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2020/08/14/OpenAI-GPT-3-Language-Models-are-Few-Shot-Learners/#appendix-b-details-of-model-training)에 있다.
 
 ### 2.4 Evaluation
+
+few-shot learning에서, evaluation set의 각 예제에 대해 training set에서 조건으로 $K$개의 샘플을 뽑아 평가하였다(task에 따라 1~2개의 개행문자를 구분자로 사용함). LAMBADA와 StoryCloze에는 감독학습 셋이 없으므로 train-eval set 대신 dev-test set을 사용했다. Original Winograd는 set이 하나뿐이므로 그냥 같은 곳에서 뽑았다.
+
+$K$는 모델의 context window이 허용하는 범위에 따라 $0 \sim \infty$가 될 수 있는데, 모든 모델에 대해 $n_{ctx}=2048$이고 보통 $10 \sim 100$개의 샘플에 맞는다. 큰 $K$가 항상 좋지는 않기 때문에 분리된 dev/test set이 있다면 적은 $K$를 dev set에 사용하여 최고의 값을 test set에서 사용했다. 일부([부록 G](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2020/08/14/OpenAI-GPT-3-Language-Models-are-Few-Shot-Learners/#appendix-g-details-of-task-phrasing-and-specifications))에 대해서는 demonstration에 더해 자연어 지시(prompt)를 사용했다.
+
+각 모델 크기와 학습 세팅(zero, one, few-shot)에 따라 test set에서의 최종 결과가 나와 있다. test set이 비공개인 경우에는, 테스트를 위해 모델을 올리는 것은 모델이 너무 커서 불가능하기에 dev set으로 결과를 얻었다. 적은 수의 데이터셋에 대해서는 test 서버에 제출했고 단 200B개의 few-shot 결과만 제출하였으며, 다른 모든 것에 대해 dev set 결과를 얻었다.
 
 
 ---
