@@ -175,6 +175,18 @@ $K$는 모델의 context window이 허용하는 범위에 따라 $0 \sim \infty$
 
 ### 3.2. Closed Book Question Answering
 
+이 Section에서는 광범위한 사실적 지식(broad factual knowledge)에 대한 QA 능력을 측정한다. 가능한 질의가 방대하기 때문에, 이 task는 보통 연관된 텍스트를 찾는 정보 검색 시스템에 더해, 질문과 검색한 텍스트가 주어지면 답변을 생성하는 모델을 함께 사용하는 접근법을 사용해 왔다. 이러한 세팅은 "open-book" 과 같은 방식으로 쓸 수 있다. 최근에는 보조적인 정보라는 조건 없이도 질문에 대한 답변을 잘 생성하는 충분히 큰 모델이 제안되었다. 이러한 방식은 "closed book"으로 불린다.  
+여기서는 GPT-3을 *Natural Questions*, *WebQuestions*, *TriviaQA* 3개에 대해 측정하였다. 기존의 closed-book 세팅에 더해 few, one, zero-shot 평가를 진행(더 strict한 조건)하였다.
+
+아래에 결과가 있다. 
+
+- TriviaQA: zero-shot에서 64.3%, one-shot에서 68.0%, few-shot에서 71.2%를 달성하였다. zero-shot 결과는 T5-11B를 14.2% 차이로 능가하는 성능을 보여 주었다. one-shot에서도 3.7%의 차이로 SOTA를 제치는 등의 결과를 얻었다. 
+- WebQuestions(WebQs): fine-tune 모델에 비하면 조금 낮지만 비슷한 수준의 성능을 보여준다.
+- On Natural Questions(NQs): WebQs에서와 비슷하게 zero~few-shot에서의 큰 발전은 분포의 이동을 제안할 수 있으며, TriviaQA나 WebQS에 비해 더 낮은 경쟁력을 보여주는 것을 설명할 수 있다. 특히, NQs의 질문은 Wikipedia에서 아주 fine-grained한 지식을 물어보기에 특히 이는 GPT-3의 용량과 광범위 사전학습 분포의 한계를 테스트해볼 수 있다.
+
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/08.png" width="100%" alt="Examples"></center>
+
 
 
 ### 3.3. Translation
