@@ -163,50 +163,210 @@ $K$는 모델의 context window이 허용하는 범위에 따라 $0 \sim \infty$
 
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/07.png" width="100%" alt="Examples"></center>
 
-언어모델링 성능은 학습 계산량의 효율에 따라 지수적으로 중가한다. 누군가는 cross-entropy loss에서 이러한 발전이 단지 겉만 그럴싸한 학습 말뭉치의 작은 차이로 인한 것이라 생각할 수 있지만, 그런 것이 아닌 일관된 개선을 의미함을 보일 수 있다.
+언어모델링 성능은 학습 계산량의 효율에 따라 지수적으로 증가한다. 누군가는 cross-entropy loss에서 이러한 발전이 단지 겉만 그럴싸한 학습 말뭉치의 작은 차이로 인한 것이라 생각할 수 있지만, 그런 것이 아닌 일관된 개선을 의미함을 보일 수 있다.
 
 광범위한 데이터셋에 대해 Section 2에서 언급된 8개의 모델(GPT-3과 작은 모델들)을 테스트하였고, 비슷한 데이터셋끼리 묶어 9개로 나누었다.
 
 
+- Section 3.1에서는 전통적인 언어모델링 task와 비슷한 것들(Cloze 등), 문장/문단 완성 task에 대해 평가하였다.
+- Section 3.2에서는 "closed book" QA task를,
+- Section 3.3에서는 언어 간 번역능력을,
+- Section 3.4에서는 Winograd Schema와 같은 task를,
+- Section 3.5에서는 상식추론/질답을,
+- Section 3.6에서는 독해를,
+- Section 3.7에서는 SuperGLUE를,
+- Section 3.8에서는 자연어추론(NLI)를,
+- Section 3.9에서는 즉석 추론, 적응 기술, open-ended 텍스트 합성 등 문맥 내 학습능력을 탐색하는 추가적인 task를 개발하였다. 
+
 
 ### 3.1. Language Modeling, Cloze, and Completion Tasks
 
+전통적인 언어모델링 task에 대해 GPT-3의 성능을 측정하였다. 흥미있는(of interest) 한 개의 단어를 예측하거나, 문장/문단을 완성하거나, 텍스트를 완성시키는 가능한 것들 중 하나를 선택하는 task이다.
+
+**3.1.1 Language Modeling**
+
+Penn Tree Bank(PTB)에 대해 zero-shot perplexity를 계산했으나, Wikipedia와 연관된 4개의 task는 학습데이터에 포함된 부분이 있기 때문에 결과에서 생략하였다.   
+이전 SOTA보다 15 point 앞서는 20.50 Perplexity를 기록하였다. 여기서는 데이터셋의 명확한 구분이 없기 때문에 zero-shot만 테스트했다.
+
+
+> **Penn Tree Bank**  
+[Penn Tree Bank](https://catalog.ldc.upenn.edu/LDC99T42)는 말뭉치 주석(corpus annotation) 중 구문 주석(syntactic annotation) 말뭉치의 일종으로, 기존의 구조 분석보다 정교한 tree structure의 집합이다. 330만 어절 이상의 월스트리트 저널(Wall Street Journal (WSJ))의 문장들로 이루어져 있으며 공개되어 있는 데이터셋이다. Treebank-3은 1999년에 나왔으며 2499개의 story부터 만들어진 98732개의 syntactic annotation story를 포함한다.
+
+**3.1.2 LAMBADA**
+
+LAMBADA dataset은 텍스트에서 장거리 의존성 모델링을 테스트한다 - 모델은 문맥 문단을 읽어 문장의 마지막 단어를 예측해야 한다. 최근 **언어모델의 크기를 키우는 것은 이 어려운 벤치마크에 대한 성능을 경감시킨다는 것이 제안되어 왔다**. 모델을 두 배 키워도 1.5% 정도의 향상만이 있었다.  
+그러나 큰 모델은 여전히 유효한 연구 방향이다. GPT-3은 이전 SOTA보다 8% 향상된 76%의 정확도를 보였다.
+
+LAMBADA는 이 데이터셋에서 흔히 나타나는 문제를 다루는 방법으로 few-show learning의 유연성을 설명해줄 수도 있다. LAMBADA 문장의 완성은 언제나 문장의 마지막 단어이지만, 표준 언어모델은 이 부분을 알 수 없다. 이 문제는 과거에 stop-word로 다루어져 왔다. Few-shot learning 세팅은 대신 이 task를 cloze-test처럼 "frame"화 하여 언어모델이 딱 하나의 단어가 필요함을 알도록 할 수 있다. 여기서 '빈칸 채우기' 형식을 활용했다.
+
+```
+Alice was friends with Bob. Alice went to visit her friend _____. -> Bob
+George bought some baseball equipment, a ball, a glove, and a _____. -> 
+```
+
+이렇게 했을 때 GPT-3은 86.4%의 정확도를 보여 이전보다 18% 향상된 결과를 얻었다. 여기서 few-show 성능은 모델의 크기에 따라 크게 향상될 수 있다는 것을 알 수 있다. 
+
+> **LAMBADA dataset**  
+[LAMBADA dataset(LAnguage Modeling Broadened to Account for Discourse Aspects)](https://arxiv.org/abs/1606.06031)은 단어 예측 task로서 계산모델이 텍스트를 이해했는지를 판별할 수 있는 dataset이다. 이 데이터셋은 전체 문맥이 주어졌을 때 마지막 단어가 무엇일지를 사람이 맞추어 생성된 서술형 구절들로 이루어져 있다. 계산모델은 여기서 단지 지역적인 문맥뿐 아니라 더 넓은 범위의 담화에서 정보들을 얻어 사용할 수 있어야 한다.  
+
+예시:  
+> **Context**: “Yes, I thought I was going to lose the baby.” “I was scared too,” he stated, sincerity flooding his eyes. “You were ?” “Yes, of course. Why do you even ask?” “This baby wasn’t exactly planned for.”  
+**Target sentence**: “Do you honestly think that I would want you to have a ?”  
+**Target word**: miscarriage
+
+
+**3.1.3 HellaSwag**
+
+HellaSwag dataset은 어떤 이야기나 지시문 집합의 끝맺음 문장으로 어느 것이 가장 좋을지를 선택하는 문제를 다룬다. 사람에게도 살짝 어려운 문제이지만(95.6% 정확도), GPT-3은 78.1%(one-shot), 79.3%(few-shot)을  달성하며 종전의 미세조정된 15억 개의 parameter를 가진 모델(75.4%)를 뛰어넘었다. 그러나 여전히 미세조정된 multi-task 모델인 ALUM(85.6%)에 비하면 낮은 점수이다.
+
+> **HellaSwag**  
+[HellaSwag dataset](https://arxiv.org/abs/1905.07830)은 task를 다루는 데 있어 상식(commonsense)가 필요하다. video caption인 ActivityNet Captions dataset에서의 데이터만 사용한다(original SWAG dataset은  LSMDC의 caption 데이터도 포함한다). 시간정보를 포함하는 서술(temporal description)과 각 caption에 대한 activity label을 포함한다.
+
+
+예시:   
+> **Pick the best ending to the context.**
+How to catch dragonflies. Use a long-handled aerial net with a wide opening. Select an aerial net that is 18 inches (46 cm) in diameter or larger. Look for one with a nice long handle.  
+**a)** Loop 1 piece of ribbon over the handle. Place the hose or hose on your net and tie the string securely.  
+**b)** Reach up into the net with your feet. Move your body and head forward when you lift up your feet.          
+**c)** If possible, choose a dark-colored net over a light one. Darker nets are more difficult for dragonflies to see, making the net more difficult to avoid.  
+**d)** If it's not strong enough for you to handle, use a hand held net with one end shorter than the other. The net should have holes in the bottom of the net.  
+
+
+**3.1.4 StoryCloze**
+
+[StoryCloze 2016 dataset](https://www.cs.rochester.edu/nlp/rocstories/)에서는 few-shot에서 종전 기록보다 4.1% 낮은 87.7%을 기록하였으나, zero-shot에서는 거의 10%가량 향상되었다(83.2%).
+
+> **StoryCloze 2016 dataset**  
+5문장의 긴 story에서 가장 적절한 끝맺음 문장을 선택하는 문제로, 3744개의 test set을 보유하고 있다.  
+**Context**: Karen was assigned a roommate her first year of college. Her roommate asked her to go to a nearby city for a concert. Karen agreed happily. The show was absolutely exhilarating.  
+**Right Ending**: Karen became good friends with her roommate.  
+**Wrong Ending**: Karen hated her roommate.  
 
 
 ### 3.2. Closed Book Question Answering
 
 이 Section에서는 광범위한 사실적 지식(broad factual knowledge)에 대한 QA 능력을 측정한다. 가능한 질의가 방대하기 때문에, 이 task는 보통 연관된 텍스트를 찾는 정보 검색 시스템에 더해, 질문과 검색한 텍스트가 주어지면 답변을 생성하는 모델을 함께 사용하는 접근법을 사용해 왔다. 이러한 세팅은 "open-book" 과 같은 방식으로 쓸 수 있다. 최근에는 보조적인 정보라는 조건 없이도 질문에 대한 답변을 잘 생성하는 충분히 큰 모델이 제안되었다. 이러한 방식은 "closed book"으로 불린다.  
-여기서는 GPT-3을 *Natural Questions*, *WebQuestions*, *TriviaQA* 3개에 대해 측정하였다. 기존의 closed-book 세팅에 더해 few, one, zero-shot 평가를 진행(더 strict한 조건)하였다.
+여기서는 GPT-3을 *Natural Questions*, *WebQuestions*, *TriviaQA* 3개에 대해 측정하였다. 기존의 closed-book 세팅에 더해 few, one, zero-shot 평가를 진행(더 엄격한 조건)하였다.
 
 아래에 결과가 있다. 
 
-- TriviaQA: zero-shot에서 64.3%, one-shot에서 68.0%, few-shot에서 71.2%를 달성하였다. zero-shot 결과는 T5-11B를 14.2% 차이로 능가하는 성능을 보여 주었다. one-shot에서도 3.7%의 차이로 SOTA를 제치는 등의 결과를 얻었다. 
-- WebQuestions(WebQs): fine-tune 모델에 비하면 조금 낮지만 비슷한 수준의 성능을 보여준다.
-- On Natural Questions(NQs): WebQs에서와 비슷하게 zero~few-shot에서의 큰 발전은 분포의 이동을 제안할 수 있으며, TriviaQA나 WebQS에 비해 더 낮은 경쟁력을 보여주는 것을 설명할 수 있다. 특히, NQs의 질문은 Wikipedia에서 아주 fine-grained한 지식을 물어보기에 특히 이는 GPT-3의 용량과 광범위 사전학습 분포의 한계를 테스트해볼 수 있다.
+- [TriviaQA](https://www.aclweb.org/anthology/P17-1147.pdf): zero-shot에서 64.3%, one-shot에서 68.0%, few-shot에서 71.2%를 달성하였다. zero-shot 결과는 T5-11B를 14.2% 차이로 능가하는 성능을 보여 주었다. one-shot에서도 3.7%의 차이로 SOTA를 제치는 등의 결과를 얻었다. 
+- [WebQuestions(WebQs)](https://worksheets.codalab.org/worksheets/0xba659fe363cb46e7a505c5b6a774dc8a): fine-tune 모델에 비하면 조금 낮지만 비슷한 수준의 성능을 보여준다.
+- [Natural Questions(NQs)](https://ai.google.com/research/NaturalQuestions/visualization): WebQs에서와 비슷하게 zero~few-shot에서의 큰 발전은 분포의 이동을 제안할 수 있으며, TriviaQA나 WebQS에 비해 더 낮은 경쟁력을 보여주는 것을 설명할 수 있다. 특히, NQs의 질문은 Wikipedia에서 아주 fine-grained한 지식을 물어보기에 특히 이는 GPT-3의 용량과 광범위 사전학습 분포의 한계를 테스트해볼 수 있다.
 
 
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/08.png" width="100%" alt="Examples"></center>
 
+> **TriviaQA**  
+650k개의 질문-답변-증거(인용구) triple를 포함하는 독해를 위한 데이터셋이다. 95k개의 질문-답변 쌍을 포함한다. 답변을 하기 위해서는 문장 여럿을 살펴봐야 한다.  
+**Question**: The Dodecanese Campaign of WWII that was an attempt by the Allied forces to capture islands in the Aegean Sea was the inspiration for which acclaimed 1961 commando film?  
+**Answer**: The Guns of Navarone  
+**Excerpt**: The Dodecanese Campaign of World War II was an attempt by Allied forces to capture the Italianheld Dodecanese islands in the Aegean Sea following the surrender of Italy in September 1943, and use them as bases against the German-controlled Balkans. The failed campaign, and in particular the Battle of Leros, inspired the 1957 novel The Guns of Navarone and the successful 1961 movie of the same name.  
+
+> **WebQuestions([WebQs](https://www.microsoft.com/en-us/download/details.aspx?id=52763))**    
+Freebase를 사용하여 대답할 수 있는 6642개의 질문-답변 데이터셋이다. 2013년까지 웹에서 자주 질문이 이루어진 것들로 이루어져 있다.  
+**targetValue**: Jazmyn Bieber / Jaxon Bieber  
+**utterance**: What is the name of justin bieber brother?  
+
+> **Natural Questions(NQs)**  
+구글 검색엔진에서 모아진 익명으로 이루어진 질의들로, 5개의 상위 결과에서 Wikipedia와 연관한 질문, 일반적으로 문단 수준인 긴 답변, 1개 또는 그 이상의 객체로 이루어진 짧은 답변으로 구성되며, 없을 경우 None으로 표시된다. 307k/7.8k/7.8k개의 train/dev/test 데이터가 있다.  
+**Question**: where is blood pumped after it leaves the right ventricle?  
+**Short Answer**: None  
+**Long Answer**: From the right ventricle , blood is pumped through the semilunar pulmonary valve into the left and right main pulmonary arteries ( one for each lung ) , which branch into smaller pulmonary arteries that spread throughout the lungs.  
 
 
 ### 3.3. Translation
 
+GPT-2에서는 용량 문제 때문에 영어만 존재하는 데이터셋을 만들기 위한 필터를 사용하였다. 그럼에도 다언어 역량을 가질 수 있음을 보였는데, GPT-3에서는 훨씬 더 커진 크기 덕분에 실제로 여러 언어에 대한 표현(representation)을 얻을 수 있게 되었다(물론, 연구로 더 많은 향상이 있을 수 있다). GPT-3 학습을 위해 사용된 Common Crawl 데이터는 사실 93%가 영어이지만 7%는 다른 언어를 포함한다(자세한 것은 [여기](https://github.com/openai/gpt-3)서 볼 수 있음). 더 나은 번역 능력을 얻기 위해 분석을 영어 이외에도 널리 연구된 독일어와 루마니아어(Romanian)에 대해 수행했다.
 
+기존에는 두 언어를 연결하기 위해 단일 언어 데이터셋의 쌍을 back-translation으로 사전학습을 결합시켜 사용했다. 이에 반해 GPT-3은 여러 언어들이 단어, 문장, 문서 단위로 자연스레 섞인 데이터를 그냥 학습하였다. 또한 어느 특별한 문제만을 위해 특별 제작되지 않았다. 
+
+결과는 기존 NMT 모델에 비해 좋지 않지만, 단 한 개의 예시만이 주어지는 task에서는 7 BLEU score만큼 향상되었으며 이전 연구와 거의 근접한 성능을 보여준다. 아래 그림들에서 자세한 결과를 볼 수 있다.
+
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/09.png" width="100%" alt="Examples"></center>
+
+GPT-3은 다른 무감독 NMT에 비해 다른 언어 → 영어로의 번역은 아주 잘 하지만 그 반대는 상당히 성능이 낮다. 이는 GPT-2의 byte-level BPE tokenizer가 거의 영어에 맞춰져 있기 때문으로 보인다.
+
+그리고, 여전히 모델이 커질수록 성능이 증가함에는 변함이 없다.
 
 
 ### 3.4. Winograd-Style Tasks
 
+[Winograd Schemas Challenge](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.729.9814&rep=rep1&type=pdf)는 자연어 문장에서 특정 대명사가 어떤 대상을 지칭하는지를 판별하는 고전적인 자연어처리 문제로, 문법적으로는 (답이) 모호하지만 의미적으로는 (사람에게는) 명확한 문제이다. 최근에는 미세조정된 언어모델이 거의 사람 수준의 성능을 보였지만 더 어려운 버전인 [Winogrande dataset](https://arxiv.org/abs/1907.10641)에서는 여전히 사람에 비해 크게 뒤떨어지는 결과를 보였다.
+
+GPT-3은 273개의 Winograd Schemas의 원래 세트에 대해 테스트를 진행하였으며, [GPT-2](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/)에서 사용된 "partial evaluation" 방법을 사용했다. 이 세팅은 SuperGLUE benchmark와는 조금 다른데, 이진 분류로 표현되며 객체 추출이 필요하다.  
+Winograd에서, GPT-3은 zero/one/few-shot에서 각각 88.5%, 89.7%, 88.6%의 성능을 보였으며, 문맥 내 학습에서 크게 명확하진 않지만 모든 경우에서 SOTA 및 사람보다 조금의 차이밖에 나지 않는 결과를 얻었다.  
+여기서 약간의 데이터 오염 문제가 있었지만, 결과에 미친 영향은 미미하다.
+
+더 어려운 버전인 Winogrande dataset에서는, zero/one/few-shot에서 각각 70.2%, 73.2%, 77.7%의 정확도를 보였다. 비교를 하자면, 미세조정된 RoBERTa가 79%를, SOTA가 84.6%(T5), 사람이 94.0%이다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/10.png" width="100%" alt="Examples"></center>
+
+
+> **Winograd Schemas Challenge**  
+튜링 테스트의 약점을 보완하고자 나온 데이터셋으로 어떤 대상이 어떠한지를 물을 때 적절한 대상을 찾는 문제이다.
+**The trophy doesn’t fit in the brown suitcase because it’s too big. What is too big?**  
+**Answer 0**: the trophy  
+**Answer 1**: the suitcase  
+**Joan made sure to thank Susan for all the help she had given. Who had given the help?**  
+**Answer 0**: Joan  
+**Answer 1**: Susan  
+
+> **Winogrande dataset**  
+44k개의 문제를 포함하여 기존 WSC보다 더 어렵고 규모가 큰 데이터셋이다. 언어적으로 편향되어 있기 때문에(어떤 단어는 특정 단어들과 같이 나올 확률이 높은 등) 언어모델이 쉽게 판별할 수 있는 질문들은 제거되었다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/12.png" width="100%" alt="Examples"></center>
 
 
 
 ### 3.5. Common Sense Reasoning
 
+이제 문장 완성, 독해, 광범위한 지식 질답과는 다른 물리학적/과학적 추론을 다루고자 한다. [PhysicalQA(PIQA)](https://arxiv.org/abs/1911.11641)는 어떻게 물리학적으로 세계가 움젝이고 세상에 대한 현실 이해를 관찰하는 것을 목적으로 한 상식 질문을 묻는 데이터셋이다.  
+GPT-3은 zero/one/few-shot에서 81.0%, 80.5%, 82.8%의 성능을 보였으며, 이는 이전의 SOTA였던 미세조정된 RoBERTa의 79.4%보다 더 높은 수치이다.  
+PIQA는 상대적으로 모델 크기가 커져도 성능이 많이 향상되지 않으며 또한 사람에 비하면 10% 이상 낮지만, GPT-3의 zero-shot 결과는 현재 SOTA를 뛰어넘는다. 참고로 PhysicalQA에서도 데이터 오염 문제가 있었다.
+
+[ARC(AI2 Reasoning Challenge)](https://arxiv.org/abs/1803.05457)는 3~9학년(초등~중등)의 과학 시험에서 모은 7787개의 다지선다형 문제 데이터셋이다. 이 데이터셋의 "Challenge" 버전은 단순 통계적 혹은 정보 검색만으로는 맞게 답할 수 없는 것들만 필터링한 것으로서 GPT-3은 zero/one/few-shot에서 51.4%, 53.2%, 51.5%의 성능을 보였다. 이는 UnifiedQA에서 미세조정된 RoBERTa가 보인 55.9%와 견줄 수 있는 수준이다.  
+이 데이터셋의 "easy" 버전에서는 GPT-3은 zero/one/few-shot에서 68.8%, 71.2%, 70.1%의 성능을 보여 RoBERTa를 살짝 앞질렀다. 그러나 이는 UnifiedQA에 비하면 27%/22%만큼이나 낮은 수치이다.
+
+초등 수준의 과학적 사실을 다루는 질문으로 구성된 [OpenBookQA](https://arxiv.org/abs/1809.02789)에서는, zero~few-shot에서 상당한 발전을 보였으나 SOTA에 비하면 20점 이상 낮은 수치이다. few-shot 성능은 미세조정된 BERT Large와 비슷하다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/11.png" width="100%" alt="Examples"></center>
+
+전체적으로, PIQA, ARC에서는 큰 향상이 없었으나, OpenBookQA에서는 꽤 진전이 있었다. 
+
+
+> **PhysicalQA(PIQA)**  
+어떤 (실생활) 목표가 자연어로 주어지면, 모델은 적절한 해답을 선택해야 한다.  
+**Goal**: To separate egg whites from the yolk using a water bottle, you should…  
+**a.** Squeeze the water bottle and press it against the yolk. Release, which creates suction and lifts the yolk.  
+**b.** Place the water bottle and press it against the yolk. Keep pushing, which creates suction and lifts the yolk.  
+
+> **ARC(AI2 Reasoning Challenge)**    
+Challenge set과 Easy set으로 구분되어, Challenge set은 정보기반 알고리즘과 단어 co-occurence 알고리즘으로 제대로 답변할 수 없는 질문들로만 구성되어 있다.  
+What is a worldwide increase in temperature called?   
+**(A)** greenhouse effect   
+**(B)** global warming   
+**(C)** ozone depletion   
+**(D)** solar heating   
+
+> **OpenBookQA**    
+1326개의 초등 수준 과학적 사실에 기반하였으며 질문의 수는 6k 정도이다.   
+**Question**: Which of these would let the most heat travel through?  
+**A)** a new pair of jeans.  
+**B)** a steel spoon in a cafeteria.  
+**C)** a cotton candy at a store.  
+**D)** a calvin klein cotton hat.  
+**Science Fact**: Metal is a thermal conductor.  
+**Common Knowledge**: Steel is made of metal. Heat travels through a thermal conductor.  
 
 
 
 ### 3.6. Reading Comprehension
 
+추상적 / 다지선다 등 5개의 데이터셋에 대해 독해력을 측정한다. 여러 다른 답변 형식에서도 데이터셋간 장벽을 뛰어넘는 GPT-3의 범용성을 확인하였다.
 
+자유 형식 대화 데이터셋인 CoQA에서 최고의 성능(사람보다 3 point 낮음)과, 구조화된 대화와 교사-학생 상호작용의 답변 선택 모델링을 요구하는 QuAC에서는 ELMo 기준보다 13 F1 score가 낮은 나쁜 성능을 보여주었다. 
 
 
 ### 3.7. SuperGLUE
