@@ -34,7 +34,11 @@ ML 알고리즘은 주어진 데이터의 표현 형식(representation)에 크�
 
 Representation Learning의 대표적인 예는 **AutoEncoder**이다. AutoEncoder는 입력 데이터를 다른 표현으로 바꿔주는 **encoder**와 이 표현을 다시 원래 형식으로 바꾸는 **decoder**의 조합으로 이루어져 있다. AutoEncoder는 입력 데이터의 정보를 최대한 많이 저장하도록 학습하며, 다른 종류의 AutoEncoder는 다른 종류의 속성을 얻을 수 있게 한다.
 
-Feature나 알고리즘을 설계할 때, 목표는 관측된 데이터를 설명하는 **factors of variation**을 분리하는 것이다. 
+Feature나 알고리즘을 설계할 때, 목표는 관측된 데이터를 설명하는 **factors of variation**을 분리하는 것이다. 실생활에서 AI application의 어려운 점은 factors of variation이 우리가 관측할 수 있는 데이터의 모든 조각에 영향을 줄 수 있다는 것이다. 대부분의 application은 이 factors of variation을 *disentangle*하고 우리가 관심 없는 것을 무시하는 것을 요구한다.
+
+**Deep Learning**은 이러한 표현학습의 핵심 문제를 '표현'을 더 간단한 '표현'으로 변환함으로써 해결한다. Deep Learning은 컴퓨터가 복잡한 문제를 더 간단한 문제로 만들 수 있게 해 준다.   
+Deep Learning의 한 예시는 feedforward deep network, 또는 **MultiLayer Perceptron**이다. Multilayer Perceptron은 단지 어떤 입력값들을 출력값으로 바꾸는 수학적 함수이다.  이 함수는 간단한 여러 함수를 조합하여 만들어진다.  레이어를 쌓을수록 더 복잡한 문제를 다룰 수 있게 된다.
+
 
 
 
