@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python Selenium 사용법 (파이썬 셀레늄 사용법, 크롤링)
+title: Python Selenium 사용법 [파이썬 셀레늄 사용법, 크롤링]
 author: YouWon
 categories: References
 tags: [Python, Selenium, usage]
