@@ -95,7 +95,7 @@ $l(i, T\text{x}_i)$은 Transformed sample과 surrogate true lable $i$ 사이의 
 
 ---
 
-
+## [Unsupervised Learning of Visual Representations using Videos](http://www.cs.cmu.edu/~xiaolonw/papers/unsupervised_video.pdf)
 
 
 - [Code](http://www.cs.cmu.edu/~xiaolonw/unsupervise.html)
