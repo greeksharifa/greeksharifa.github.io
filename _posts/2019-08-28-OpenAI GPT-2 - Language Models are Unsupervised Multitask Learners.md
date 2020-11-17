@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners
+title: OpenAI GPT-2 - Language Models are Unsupervised Multitask Learners(GPT2 논문 설명)
 author: YouWon
 categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]

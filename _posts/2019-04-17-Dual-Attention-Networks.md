@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DANs(Dual Attention Networks for Multimodal Reasoning and Matching)
+title: DANs(Dual Attention Networks for Multimodal Reasoning and Matching, DANs 논문 설명)
 author: YouWon
 categories: [Computer Vision]
 tags: [Attention Mechanism, Paper_Review, VQA]

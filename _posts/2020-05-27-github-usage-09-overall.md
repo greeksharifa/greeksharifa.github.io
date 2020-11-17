@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GitHub 사용법 - 09. Overall(Git 명령어 정리)
+title: GitHub 사용법 - 09. Overall(Git 명령어 정리, Git 사용법)
 author: YouWon
 categories: GitHub
 tags: [GitHub, usage]

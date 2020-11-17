@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training
+title: OpenAI GPT-1 - Improving Language Understanding by Generative Pre-Training(GPT1 논문 설명)
 author: YouWon
 categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]

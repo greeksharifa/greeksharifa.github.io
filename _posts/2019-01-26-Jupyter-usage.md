@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Jupyter Notebook 사용법
+title: Jupyter Notebook 사용법(주피터 노트북 설치 및 사용법)
 author: YouWon
 categories: References
 tags: [Jupyter, Miniconda, usage]

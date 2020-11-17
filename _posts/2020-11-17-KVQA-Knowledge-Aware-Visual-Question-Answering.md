@@ -1,6 +1,6 @@
 ---
 layout: post
-title: KVQA - Knowledge-Aware Visual Question Answering
+title: KVQA - Knowledge-Aware Visual Question Answering(KVQA 논문 설명)
 author: YouWon
 categories: [Computer Vision]
 tags: [Paper_Review, VQA, Task_Proposal]

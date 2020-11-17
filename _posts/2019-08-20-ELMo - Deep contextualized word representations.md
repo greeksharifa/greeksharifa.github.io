@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ELMo - Deep contextualized word representations
+title: ELMo - Deep contextualized word representations(ELMo 논문 설명)
 author: YouWon
 categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]

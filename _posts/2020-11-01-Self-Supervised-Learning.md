@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Self-Supervised Learning(자기지도 학습)
+title: Self-Supervised Learning(자기지도 학습 설명)
 redirect_from:
   - deep learning/2020/11/01/Self-Supervised-Learning
   - deep learning/2020/11/01/Self-Supervised-Learning/
