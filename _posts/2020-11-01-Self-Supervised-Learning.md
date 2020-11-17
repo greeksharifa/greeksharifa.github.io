@@ -267,15 +267,92 @@ JULE는 deep representations와 image cluster의 **J**oint **U**nsupervised **LE
 - [Paper](https://arxiv.org/pdf/1711.09082.pdf)
 - [Code](https://github.com/jason718/game-feature-learning)
 
+*CVPR 2018*
+
 보다 일반적인 고수준의 시각표현을 얻기 위해 하나의 task가 아닌 여러 개의 task를 학습시키는 방법을 제안하는 이 논문은 합성된 이미지를 학습한다. 실제 이미지와 합성된 이미지의 도메인 차이를 극복하기 위해 적대적 학습 방법에 기초한 비지도 domain adaptation 방법을 사용한다. 합성된 RGB 이미지가 입력으로 들어오면 네트워크는 그 표면 normal, depth, 등고선 등을 동시 추정하며 실제와 합성된 이미지 domain 간의 차이를 최소화하려 한다.     
 
 <center><img src="/public/img/2020-11-01-Self-Supervised-Learning/21.png" width="80%" alt="Examples"></center>
 
 Depth prediction에서 기존 feature 학습 방법은 패치의 상대적 위치를 예측하능 등의 task를 **pretext task**로 한다. 이 논문에서, **pretext task**는 pixel prediction task를 채택하였다.
 
-<center><img src="/public/img/2020-11-01-Self-Supervised-Learning/22.png" width="80%" alt="Examples"></center>
+<center><img src="/public/img/2020-11-01-Self-Supervised-Learning/22.png" width="100%" alt="Examples"></center>
 
 이 논문에서, Instance contour detection(객체 등고선 탐지), Depth Prediction(깊이 추정), Surface normal estimation(표면 수직벡터 추정)이 multi-task를 구성한다.
+
+---
+
+## Self-Supervised Representation Learning by Rotation Feature Decoupling
+
+- [Paper](https://openaccess.thecvf.com/content_CVPR_2019/papers/Feng_Self-Supervised_Representation_Learning_by_Rotation_Feature_Decoupling_CVPR_2019_paper.pdf)
+- [Code](https://github.com/philiptheother/FeatureDecoupling)
+
+*ICML 2019*
+
+이 논문에서는 회전과 관련된 부분과 무관한 부분을 포함하는 split representation을 학습하는 모델을 제시한다. 이미지 회전과 각 instance를 동시에 식별하는데, 회전 식별과 instance 식별을 분리함으로써 회전의 noise 영향을 최소화하여 회전 각도 예측의 정확도를 높이고 이미지 회전과 관계없이 instance를 식별하는 것 역시 향상시키도록 한다. 
+
+<center><img src="/public/img/2020-11-01-Self-Supervised-Learning/23.png" width="80%" alt="Examples"></center>
+
+방법은 다음으로 구성된다:
+
+- Rotation Feature Decoupling
+    - 이미지 회전 예측
+    - Noisy한 회전된 이미지 식별
+    - Feature Decoupling
+        - 회전 분류
+        - 회전과 무관한 부분
+        - 이미지 instance 분류
+
+<center><img src="/public/img/2020-11-01-Self-Supervised-Learning/24.png" width="100%" alt="Examples"></center>
+
+
+---
+
+## Unsupervised Deep Learning by Neighbourhood Discovery
+
+- [Paper](http://proceedings.mlr.press/v97/huang19b/huang19b.pdf)
+- [Code](https://github.com/Raymond-sci/AND)
+
+*ICML 2019*
+
+
+
+
+---
+
+## 
+
+- [Paper]()
+- [Code]()
+
+
+
+---
+
+## 
+
+- [Paper]()
+- [Code]()
+
+
+
+---
+
+## 
+
+- [Paper]()
+- [Code]()
+
+
+
+---
+
+## 
+
+- [Paper]()
+- [Code]()
+
+
+
 
 ---
 
