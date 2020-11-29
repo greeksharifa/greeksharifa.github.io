@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN)
+title: GAN의 개선 모델들(catGAN, Semi-supervised GAN, LSGAN, WGAN, WGAN_GP, DRAGAN, EBGAN, BEGAN, ACGAN, infoGAN), GAN의 개선 모델 설명
 author: YouWon
 categories: [Generative Model]
 tags: [GAN, Machine Learning, CNN, Generative Model, Paper_Review]

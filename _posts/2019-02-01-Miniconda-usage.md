@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Miniconda(Anaconda) 사용법
+title: Miniconda(Anaconda) 사용법(conda 설치 및 사용법)
 author: YouWon
 categories: References
 tags: [Miniconda, usage]

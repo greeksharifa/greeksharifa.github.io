@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Weight & Biases(wandb) 사용법
+title: Weight & Biases(wandb) 사용법(wandb 설치 및 설명)
 author: YouWon
 categories: References
 tags: [wandb, usage]

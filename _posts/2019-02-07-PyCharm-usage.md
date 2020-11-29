@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PyCharm 사용법
+title: PyCharm 사용법(파이참 설치 및 사용법)
 author: YouWon
 categories: References
 tags: [PyCharm, usage]

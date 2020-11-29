@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OpenAI GPT-3 - Language Models are Few-Shot Learners
+title: OpenAI GPT-3 - Language Models are Few-Shot Learners(GPT3 논문 설명)
 author: YouWon
 categories: [NLP(Natural Language Processing) / RNNs]
 tags: [Paper_Review, NLP]
@@ -12,8 +12,7 @@ tags: [Paper_Review, NLP]
 
 [GPT-3을 이용한 API](https://beta.openai.com/)가 공개되어 있다.
 
-중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.  
-이 논문은 총 페이지수가 75페이지 정도는 된다..
+이 논문은 총 페이지수가 75페이지 정도는 된다.. 하지만 일부분을 제외하고 대부분 여기에 적었다.
 
 ---
 
@@ -189,8 +188,13 @@ Penn Tree Bank(PTB)에 대해 zero-shot perplexity를 계산했으나, Wikipedia
 이전 SOTA보다 15 point 앞서는 20.50 Perplexity를 기록하였다. 여기서는 데이터셋의 명확한 구분이 없기 때문에 zero-shot만 테스트했다.
 
 
+<<<<<<< HEAD
 > **Penn Tree Bank**  
 [Penn Tree Bank](https://catalog.ldc.upenn.edu/LDC99T42)는 말뭉치 주석(corpus annotation) 중 구문 주석(syntactic annotation) 말뭉치의 일종으로, 기존의 구조 분석보다 정교한 tree structure의 집합이다. 330만 어절 이상의 월스트리트 저널(Wall Street Journal (WSJ))의 문장들로 이루어져 있으며 공개되어 있는 데이터셋이다. Treebank-3은 1999년에 나왔으며 2499개의 story부터 만들어진 98732개의 syntactic annotation story를 포함한다.
+=======
+> **[Penn Tree Bank](https://catalog.ldc.upenn.edu/LDC99T42)**  
+말뭉치 주석(corpus annotation) 중 구문 주석(syntactic annotation) 말뭉치의 일종으로, 기존의 구조 분석보다 정교한 tree structure의 집합이다. 330만 어절 이상의 월스트리트 저널(Wall Street Journal (WSJ))의 문장들로 이루어져 있으며 공개되어 있는 데이터셋이다. Treebank-3은 1999년에 나왔으며 2499개의 story부터 만들어진 98732개의 syntactic annotation story를 포함한다.
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 
 **3.1.2 LAMBADA**
 
@@ -206,11 +210,17 @@ George bought some baseball equipment, a ball, a glove, and a _____. ->
 
 이렇게 했을 때 GPT-3은 86.4%의 정확도를 보여 이전보다 18% 향상된 결과를 얻었다. 여기서 few-show 성능은 모델의 크기에 따라 크게 향상될 수 있다는 것을 알 수 있다. 
 
+<<<<<<< HEAD
 > **LAMBADA dataset**  
 [LAMBADA dataset(LAnguage Modeling Broadened to Account for Discourse Aspects)](https://arxiv.org/abs/1606.06031)은 단어 예측 task로서 계산모델이 텍스트를 이해했는지를 판별할 수 있는 dataset이다. 이 데이터셋은 전체 문맥이 주어졌을 때 마지막 단어가 무엇일지를 사람이 맞추어 생성된 서술형 구절들로 이루어져 있다. 계산모델은 여기서 단지 지역적인 문맥뿐 아니라 더 넓은 범위의 담화에서 정보들을 얻어 사용할 수 있어야 한다.  
 
 예시:  
 > **Context**: “Yes, I thought I was going to lose the baby.” “I was scared too,” he stated, sincerity flooding his eyes. “You were ?” “Yes, of course. Why do you even ask?” “This baby wasn’t exactly planned for.”  
+=======
+> **[LAMBADA dataset(LAnguage Modeling Broadened to Account for Discourse Aspects)](https://arxiv.org/abs/1606.06031)**  
+단어 예측 task로서 계산모델이 텍스트를 이해했는지를 판별할 수 있는 dataset이다. 이 데이터셋은 전체 문맥이 주어졌을 때 마지막 단어가 무엇일지를 사람이 맞추어 생성된 서술형 구절들로 이루어져 있다. 계산모델은 여기서 단지 지역적인 문맥뿐 아니라 더 넓은 범위의 담화에서 정보들을 얻어 사용할 수 있어야 한다.  
+**Context**: “Yes, I thought I was going to lose the baby.” “I was scared too,” he stated, sincerity flooding his eyes. “You were ?” “Yes, of course. Why do you even ask?” “This baby wasn’t exactly planned for.”  
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 **Target sentence**: “Do you honestly think that I would want you to have a ?”  
 **Target word**: miscarriage
 
@@ -219,12 +229,18 @@ George bought some baseball equipment, a ball, a glove, and a _____. ->
 
 HellaSwag dataset은 어떤 이야기나 지시문 집합의 끝맺음 문장으로 어느 것이 가장 좋을지를 선택하는 문제를 다룬다. 사람에게도 살짝 어려운 문제이지만(95.6% 정확도), GPT-3은 78.1%(one-shot), 79.3%(few-shot)을  달성하며 종전의 미세조정된 15억 개의 parameter를 가진 모델(75.4%)를 뛰어넘었다. 그러나 여전히 미세조정된 multi-task 모델인 ALUM(85.6%)에 비하면 낮은 점수이다.
 
+<<<<<<< HEAD
 > **HellaSwag**  
 [HellaSwag dataset](https://arxiv.org/abs/1905.07830)은 task를 다루는 데 있어 상식(commonsense)가 필요하다. video caption인 ActivityNet Captions dataset에서의 데이터만 사용한다(original SWAG dataset은  LSMDC의 caption 데이터도 포함한다). 시간정보를 포함하는 서술(temporal description)과 각 caption에 대한 activity label을 포함한다.
 
 
 예시:   
 > **Pick the best ending to the context.**
+=======
+> **[HellaSwag dataset](https://arxiv.org/abs/1905.07830)**  
+다루는 데 있어 상식(commonsense)가 필요하다. video caption인 ActivityNet Captions dataset에서의 데이터만 사용한다(original SWAG dataset은  LSMDC의 caption 데이터도 포함한다). 시간정보를 포함하는 서술(temporal description)과 각 caption에 대한 activity label을 포함한다.  
+**Pick the best ending to the context.**
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 How to catch dragonflies. Use a long-handled aerial net with a wide opening. Select an aerial net that is 18 inches (46 cm) in diameter or larger. Look for one with a nice long handle.  
 **a)** Loop 1 piece of ribbon over the handle. Place the hose or hose on your net and tie the string securely.  
 **b)** Reach up into the net with your feet. Move your body and head forward when you lift up your feet.          
@@ -236,7 +252,11 @@ How to catch dragonflies. Use a long-handled aerial net with a wide opening. Sel
 
 [StoryCloze 2016 dataset](https://www.cs.rochester.edu/nlp/rocstories/)에서는 few-shot에서 종전 기록보다 4.1% 낮은 87.7%을 기록하였으나, zero-shot에서는 거의 10%가량 향상되었다(83.2%).
 
+<<<<<<< HEAD
 > **StoryCloze 2016 dataset**  
+=======
+> **[StoryCloze 2016 dataset](https://www.cs.rochester.edu/nlp/rocstories/)**  
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 5문장의 긴 story에서 가장 적절한 끝맺음 문장을 선택하는 문제로, 3744개의 test set을 보유하고 있다.  
 **Context**: Karen was assigned a roommate her first year of college. Her roommate asked her to go to a nearby city for a concert. Karen agreed happily. The show was absolutely exhilarating.  
 **Right Ending**: Karen became good friends with her roommate.  
@@ -257,7 +277,11 @@ How to catch dragonflies. Use a long-handled aerial net with a wide opening. Sel
 
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/08.png" width="100%" alt="Examples"></center>
 
+<<<<<<< HEAD
 > **TriviaQA**  
+=======
+> **[TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension](https://www.aclweb.org/anthology/P17-1147.pdf)**  
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 650k개의 질문-답변-증거(인용구) triple를 포함하는 독해를 위한 데이터셋이다. 95k개의 질문-답변 쌍을 포함한다. 답변을 하기 위해서는 문장 여럿을 살펴봐야 한다.  
 **Question**: The Dodecanese Campaign of WWII that was an attempt by the Allied forces to capture islands in the Aegean Sea was the inspiration for which acclaimed 1961 commando film?  
 **Answer**: The Guns of Navarone  
@@ -304,7 +328,11 @@ Winograd에서, GPT-3은 zero/one/few-shot에서 각각 88.5%, 89.7%, 88.6%의 �
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/10.png" width="100%" alt="Examples"></center>
 
 
+<<<<<<< HEAD
 > **Winograd Schemas Challenge**  
+=======
+> **[Winograd Schemas Challenge](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.729.9814&rep=rep1&type=pdf)**  
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 튜링 테스트의 약점을 보완하고자 나온 데이터셋으로 어떤 대상이 어떠한지를 물을 때 적절한 대상을 찾는 문제이다.
 **The trophy doesn’t fit in the brown suitcase because it’s too big. What is too big?**  
 **Answer 0**: the trophy  
@@ -313,7 +341,11 @@ Winograd에서, GPT-3은 zero/one/few-shot에서 각각 88.5%, 89.7%, 88.6%의 �
 **Answer 0**: Joan  
 **Answer 1**: Susan  
 
+<<<<<<< HEAD
 > **Winogrande dataset**  
+=======
+> **[Winogrande dataset](https://arxiv.org/abs/1907.10641)**  
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 44k개의 문제를 포함하여 기존 WSC보다 더 어렵고 규모가 큰 데이터셋이다. 언어적으로 편향되어 있기 때문에(어떤 단어는 특정 단어들과 같이 나올 확률이 높은 등) 언어모델이 쉽게 판별할 수 있는 질문들은 제거되었다.
 
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/12.png" width="100%" alt="Examples"></center>
@@ -336,13 +368,21 @@ PIQA는 상대적으로 모델 크기가 커져도 성능이 많이 향상되지
 전체적으로, PIQA, ARC에서는 큰 향상이 없었으나, OpenBookQA에서는 꽤 진전이 있었다. 
 
 
+<<<<<<< HEAD
 > **PhysicalQA(PIQA)**  
+=======
+> **[PhysicalQA(PIQA): Reasoning about Physical Commonsense in Natural Language](https://arxiv.org/abs/1911.11641)**  
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 어떤 (실생활) 목표가 자연어로 주어지면, 모델은 적절한 해답을 선택해야 한다.  
 **Goal**: To separate egg whites from the yolk using a water bottle, you should…  
 **a.** Squeeze the water bottle and press it against the yolk. Release, which creates suction and lifts the yolk.  
 **b.** Place the water bottle and press it against the yolk. Keep pushing, which creates suction and lifts the yolk.  
 
+<<<<<<< HEAD
 > **ARC(AI2 Reasoning Challenge)**    
+=======
+> **[ARC(AI2 Reasoning Challenge): Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge](https://arxiv.org/abs/1803.05457)**    
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 Challenge set과 Easy set으로 구분되어, Challenge set은 정보기반 알고리즘과 단어 co-occurence 알고리즘으로 제대로 답변할 수 없는 질문들로만 구성되어 있다.  
 What is a worldwide increase in temperature called?   
 **(A)** greenhouse effect   
@@ -350,7 +390,11 @@ What is a worldwide increase in temperature called?
 **(C)** ozone depletion   
 **(D)** solar heating   
 
+<<<<<<< HEAD
 > **OpenBookQA**    
+=======
+> **[OpenBookQA : Can a Suit of Armor Conduct Electricity A New Dataset for Open Book Question Answering](https://arxiv.org/abs/1809.02789)**    
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 1326개의 초등 수준 과학적 사실에 기반하였으며 질문의 수는 6k 정도이다.   
 **Question**: Which of these would let the most heat travel through?  
 **A)** a new pair of jeans.  
@@ -365,20 +409,209 @@ What is a worldwide increase in temperature called?
 ### 3.6. Reading Comprehension
 
 추상적 / 다지선다 등 5개의 데이터셋에 대해 독해력을 측정한다. 여러 다른 답변 형식에서도 데이터셋간 장벽을 뛰어넘는 GPT-3의 범용성을 확인하였다.
+<<<<<<< HEAD
+=======
+
+- 자유 형식 대화 데이터셋인 CoQA에서 최고의 성능(사람보다 3 point 낮음)과, 
+- 구조화된 대화와 교사-학생 상호작용의 답변 선택 모델링을 요구하는 QuAC에서는 ELMo baseline보다 13 F1 score가 낮은 나쁜 성능을 보여주었다. 
+- 독해 문맥에서 이산적 추론과 산술능력을 평가하는 데이터셋인 DROP에서는 GPT-3이 few-shot에서 미세조정된 BERT baseline을 뛰어넘었지만 SOTA나 사람에 비하면 아주 못 미치는 성적을 거두었다. 
+- SQuAD 2.0에서는 zero-shot에서 10 F1(69.8) score를 향상시켰고 이는 원 논문의 가장 좋은 미세조정 모델보다 약간 더 높은 점수이다. 
+- 중/고등 다지선다형 영어시험 문제를 모은 RACE에서는 상당히 약한 모습을 보였다(SOTA에 비해 45%나 낮음).
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/14.png" width="100%" alt="Examples"></center>
+
+> **[CoQA: A Conversational Question Answering Challenge](https://arxiv.org/abs/1808.07042)**  
+**Co**nversational **Q**uestion **A**nswering systems을 만드는 데 필요한 대규모 데이터셋으로 coca(코카)라 읽는다. 텍스트 구절을 이해하고 대화에서 나타나는 상호 연결된 질문들에 대답하는 능력을 측정한다. 127k개의 질문과 8k개의 대화문을 포함한다.  
+Jessica went to sit in her rocking chair. Today was her birthday and she was turning 80. Her granddaughter Annie was coming over in the afternoon and Jessica was very excited to see
+her. Her daughter Melanie and Melanie’s husband Josh were coming as well. Jessica had . . .
+**Q1**: Who had a birthday?  
+**A1**: Jessica  
+**R1**: Jessica went to sit in her rocking chair. Today was her birthday and she was turning 80.
+**Q2**: How old would she be?  
+**A2**: 80  
+**R2**: she was turning 80  
+...  
+**Q5**: Who?  
+**A5**: Annie, Melanie and Josh  
+**R5**: Her granddaughter Annie was coming over in the afternoon and Jessica was very excited to see her. Her daughter Melanie and Melanie’s husband Josh were coming as well.  
+
+> **[QuAC : Question Answering in Context](https://arxiv.org/abs/1808.07036)**  
+14k개의 정보를 찾는(information-seeking) QA 대화로 총 100k개의 질문을 포함하는 **Qu**estion
+**A**nswering in **C**ontext 데이터셋이다.  
+**Section: Daffy Duck, Origin & History**  
+**STUDENT**: What is the origin of Daffy Duck?  
+**TEACHER**: → first appeared in Porky’s Duck Hunt  
+**STUDENT**: What was he like in that episode?  
+**TEACHER**: → assertive, unrestrained, combative  
+**STUDENT**: Was he the star?  
+**TEACHER**: → **No**, barely more than an unnamed bit player in this short  
+**STUDENT**: Who was the star?  
+**TEACHER**: → **No answer**  
+
+> **[DROP: A Reading Comprehension Benchmark Requiring Discrete Reasoning Over Paragraphs](https://arxiv.org/abs/1903.00161)**  
+**D**iscrete **R**easoning **O**ver the content of **P**aragraphs의 약자로 문단 내용의 이산적 추론능력을 필요로 하는 독해력 측정용 benchmark dataset이다. Subtraction, Comparison, Selection, Addition, Count and Sort, Conference Resolution, Other Arithmetic, Set of spans, Other 등의 카테고리로 나뉘어 총 96k개의 질문을 포함한다.  
+**Reasoning**:  Subtraction (28.8%)  
+**Passage(some parts shortened)**: That year, his Untitled (1981), a painting of a haloed, black-headed man with a bright red skeletal body, depicted amid the artists signature scrawls, was sold by Robert Lehrman for \$16.3 million, well above its $12 million high estimate.   
+**Question**: How many more dollars was the Untitled (1981) painting sold for than the 12 million dollar estimation?  
+**Answer**: 4300000  
+**BiDAF**: \$16.3 million  
+
+> **[Know What You Don't Know: Unanswerable Questions for SQuAD](https://arxiv.org/abs/1806.03822)**:  
+SQuAD 2.0(**S**tanford **Qu**estion **A**nswering **D**ataset)은 기존 독해력 측정 데이터셋의 대답 가능한 질문이나 쉽게 판별할 수 있는 대답 불가능한 질문이라는 약점을 보완하여 사람이 생성한 질문으로 구성된다. 모델은 정답을 맞추는 것만 아니라 답변 중에 정답이 있는지도 판별해야 한다.  
+**Article**: Endangered Species Act  
+**Paragraph**: “...Other legislation followed, including the Migratory Bird Conservation Act of 1929, a 1937 treaty prohibiting the hunting of right and gray whales, and the Bald Eagle Protection Act of 1940. These later laws had a low cost to society—the species were relatively rare—and little opposition was raised.”  
+**Question 1**: “Which laws faced significant opposition?”  
+**Plausible Answer**: later laws  
+**Question 2**: “What was the name of the 1937 treaty?”  
+**Plausible Answer**: Bald Eagle Protection Act  
+
+> **[RACE: Large-scale ReAding Comprehension Dataset From Examinations](https://arxiv.org/abs/1704.04683)**:  
+중국의 중/고등(12~18세) 영어시험으로부터 모은 28k개의 구절(passages)와 100k 정도의 (영어교사가 만든) 질문들로 구성된 데이터셋으로 이해력과 추론 능력을 평가하기 위한 다양한 주제들로 구성되어 있다.  
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/13.png" width="100%" alt="Examples"></center>
+
+>>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 
 자유 형식 대화 데이터셋인 CoQA에서 최고의 성능(사람보다 3 point 낮음)과, 구조화된 대화와 교사-학생 상호작용의 답변 선택 모델링을 요구하는 QuAC에서는 ELMo 기준보다 13 F1 score가 낮은 나쁜 성능을 보여주었다. 
 
 
 ### 3.7. SuperGLUE
 
+조금 더 많은 NLP task에 대한 결과를 모으고 BERT와 RoBERTa와 더 체계적으로 비교하기 위해 [SuperBLUE benchmark](https://super.gluebenchmark.com/) 테스트도 진행하였다. few-shot에서는 모든 task에 대해 32개의 예제를 사용하였고 이는 training set에서 무작위로 선택하였다. WSC와 [MultiRC](https://cogcomp.seas.upenn.edu/multirc/)를 제외하고는 각 문제당 문맥에서 새로운 예제를 선택했다. 위 두 데이터셋에서는 training set에서 무작위로 선택한 것과 같은 세트를 사용했다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/15.png" width="100%" alt="Examples"></center>
+
+GPT-3으 몇몇 데이터셋에서는 SOTA에 근접한 결과를 얻었으나 그렇지 못한 데이터셋도 여럿 있는 것을 볼 수 있다. 특히 두 문장에서 사용된 동일한 철자의 단어가 같은 의미로 사용되었는지를 보는 [WiC dataset](https://arxiv.org/abs/1808.09121)에서는 49.4%로 찍는 거랑 다를 바가 없었다. 
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/16.png" width="100%" alt="Examples"></center>
+
+그리고 모델의 크기가 커질수록, few-shot에 사용되는 예제의 수가 많을수록 성능이 증가함을 볼 수 있다.
 
 
 ### 3.8. NLI
 
+[Natural Language Inference (NLI)](http://nlpprogress.com/english/natural_language_inference.html)은 두 문장 간의 관계를 이해하는 것을 측정한다. 실제로는, 보통 2~3개의 분류 문제로 모델은 두 번째 문장이 첫 번째 문장과 같은 논리를 따르는지, 모순되는지, 혹은 그럴지도 모를지(중립적)를 판별한다. SuperGLUE는 NLI dataset으로 이진 분류 [RTE](https://aclweb.org/aclwiki/Textual_Entailment_Resource_Pool#RTE_data_sets)를 포함한다. RTE에서는 가장 큰 모델인 GPT-3만 찍는 것보다 나은 56%를 기록하였으나 few-shot에서는 single-task 미세조정 [BERT Large](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/)와 비슷하다.
+
+그리고 ANLI 데이터셋에 대해서도 테스트를 진행하였는데, few-shot에서조차 GPT-3보다 작은 모델은 전부 형편없는 모습(~33%)을 보여준다. 전체 결과는 아래 그림과 [Appendix H](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2020/08/14/OpenAI-GPT-3-Language-Models-are-Few-Shot-Learners/#appendix-h-results-on-all-tasks-for-all-model-sizes)에서 볼 수 있다. 
+
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/18.png" width="100%" alt="Examples"></center>
+
+
+
+> **[Adversarial NLI: A New Benchmark for Natural Language Understanding](https://arxiv.org/abs/1910.14599)**:  
+적대적으로 만들어진 자연어 추론 문제를 3 round(R1, R2, R3)에 걸쳐 진행하는 데이터셋으로 Context, Hypothesis, Reason, Round, Labels(orig, pred, valid), Annotations으로 구성된다.  
+
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/17.png" width="100%" alt="Examples"></center>
 
 
 
 ### 3.9. Synthetic and Qualitative Tasks
+
+GPT-3의 few-shot(혹은 zero나 one) 능력의 범위를 보려면 즉석 계산적 추론이나, 새로운 패턴을 찾아내거나, 새 task에 빠르게 적응(적용)하는지를 측정해보면 된다.  
+그래서 세 가지를 측정한다: 산술능력, 단어 재조합, SAT 유추.
+
+**3.9.1 Arithmetic**
+
+10가지 경우를 테스트하였는데, 각 숫자는 각 범위 내에서 동일한 확률로 선택되었다.
+
+- 2자리 덧셈: “Q: What is 48 plus 76? A: 124.”
+- 2자리 뺄셈: “Q: What is 34 minus 53? A: -19”
+- 3, 4, 5자리 덧셈/뺄셈
+- 2자리 곱셈: “Q: What is 24 times 42? A: 1008”
+- 괄호를 포함한 1자리 복합연산: “Q: What is 6+(4*8)? A: 38”
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/19.png" width="100%" alt="Examples"></center>
+
+2/3자리 계산은 거의 100%에 가까운 정확도를 보여주지만, 자리수가 많아질수록 성능은 떨어졌다. 또한, 2자리 곱셈에서는 29.2%, 1자리 복합연산은 21.3%의 정확도를 얻었다(few-shot).  
+종합적으로, GPT-3은 보통 수준의 복잡한 산술연산에서 합리적인 수준의 성능을 보였다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/20.png" width="100%" alt="Examples"></center>
+
+**3.9.2 Word Scrambling and Manipulation Tasks**
+
+적은 수의 예로부터 새로운 symbolic manipulation을 학습하는 능력을 측정하기 위해 다음 5가지 "문자조합" task를 설정했다.
+
+- 단어 내 철자를 회전시켜 원래 단어를 만들기(Cycle letters in word (**CL**)). lyinevitab = inevitably
+- 처음과 마지막을 제외한 철자가 뒤섞여 있을 때 원래 단어 만들기(Anagrams of all but first and last characters (**A1**)). criroptuon = corruption
+- **A1**과 비슷하지만 처음/마지막 각 2글자가 섞이지 않음(Anagrams of all but first and last 2 characters (**A2**)). opoepnnt → opponent
+- 구두점들과 빈칸이 각 철자 사이에 올 때 원래 단어 만들기(Random insertion in word (**RI**)). s.u!c/c!e.s s i/o/n = succession
+- 거꾸로 된 단어에서 원래 단어 만들기(Reversed words (**RW**)). stcejbo → objects
+
+각 1만 개의 예제를 만들기 위해 4~15글자 사이의 가장 빈도가 높은 단어들을 선정하였다.  
+few-shot 결과는 아래와 같다. 모델의 크기가 커질수록 성능도 조금씩 증가한다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/21.png" width="100%" alt="Examples"></center>
+
+어떤 모델도 단어를 뒤집는 **RW** task에 성공하지 못했다. 또한 one/zero-shot에서는 성능이 매우 떨어진다. 
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/22.png" width="100%" alt="Examples"></center>
+
+여기서 "문맥 내 정보"는 큰 모델일수록 더 잘 활용한다는 것을 보였다.
+
+또한, 언어모델의 이러한 성공은 단지 BPE token을 잘 쓰는 것 뿐 아니라 그 하부구조를 잘 이해하고 분석하였음을 알 수 있다. 그리고 CL, A1, A2 task는 전단사상(bijective)이 아니기 때문에(즉, 하나로 결정된 것이 아니기에) 자명하지 않은 패턴매칭과 계산적인 능력에서 연관이 있다고 할 수 있다.
+
+**3.9.3 SAT Analogies**
+
+텍스트의 전형적인 분포와 연관된 무언가 흔치 않은 다른 task에 테스트하기 위해, 374개의 "SAT analogy" 문제를 모았다. 예시는 다음과 같다:
+
+> Audacious is to boldness as   
+**(a)** sanctimonious is to hypocrisy,   
+**(b)** anonymous is to identity,   
+**(c)** remorseful is to misdeed,   
+**(d)** deleterious is to result,   
+**(e)** impressionable is to temptation”  
+
+5개의 단어 쌍 중 주어진 단어 쌍과 같은 관계를 갖는 정답지를 골라야 한다(정답은 a이다).  
+여기서 GPT-3은 zero/one/few-shot에서 각각 53.7%, 59.1%, 65.2%의 성능을 보였고, 대학 졸업자 평균이 57%(찍으면 20%)이다.  
+아래 그림에서 보듯 1750억 개 짜리 모델은 130억 개의 모델보다 10% 가량 더 성능이 높다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/23.png" width="100%" alt="Examples"></center>
+
+**3.9.4 News Article Generation**
+
+생성적 언어모델을 질적으로 테스트하기 위한 방법으로 뉴스기사로 첫 문장을 준 뒤 이후 문장을 생성하는 식으로 측정해 왔다. GPT-3을 학습한 데이터셋은 뉴스기사에 별 비중을 두지 않읐으므로 무조건으로 뉴스기사를 생성하는 것은 비효율적이다. 그래서 GPT-3에서는 3개의 이전 뉴스기사를 모델의 문맥에 포함시켜 few-shot 학습능력을 측정했다. 제목과 부제목이 주어지면, 모델은 "뉴스" 장르에서 짧은 기사를 생성할 수 있다.
+
+GPT-3이 생성한 기사가 사람이 쓴 것과 구별되는지를 사람이 얼마나 잘 구별하는지를 측정하였다. 이를 통해 GPT-3의 뉴스기사 생성능력을 볼 수 있다.
+
+사람이 판별할 때는 '사람이 쓴 기사'와 '기계가 생성한 기사' 두 개를 보고, 다음 5가지 중에 고른다: 1) 확실히 사람이 썼다. 2) 사람이 쓴 것 같다. 3) 잘 모르겠다. 4) 기계가 쓴 것 같다. 5) 확실히 기계가 썼다.
+
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/24.png" width="100%" alt="Examples"></center>
+
+
+정답률이 50%에 근접하면 기계가 썼는지 사람이 썼는지 분간이 안 된다는 뜻이다(기계가 사람만큼 잘 썼다/또는 사람처럼 비슷하게 썼다). 
+
+물론 모델이 커질수록 구별하기는 점점 더 어려워진다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/25.png" width="100%" alt="Examples"></center>
+
+
+아래는 GPT-3이 생성한 기사이다. 구분하기 가장 어려운 것과 쉬운 것을 보여주고 있다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/26.png" width="100%" alt="Examples"></center>
+
+**3.9.5 Learning and Using Novel Words**
+
+발달적 언어학에서 연구되는 한 task는 새로운 단어를 학습하고 사용하는 능력을 측정한다(예를 들면 단 한 번 정의된 단어를 보고 나서 사용하거나, 한 번의 용례로 단어의 의미를 유추하는 것).  
+테스트는 다음과 같이 했다. "Gigamuru"와 같이 실제로 없는 단어를 정의하고, 이를 문장에서 사용해 보게 하였다. 1~5개의 없는 단어를 정의하고 문장에서 사용하여, 이 task는 one/few-shot 세팅으로 구성된다. 모든 정의는 사람이 직접 하였고, 첫 번째 답은 사람이 정의하였고, 나머지는 GPT-3이 한 것이다:
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/27.png" width="100%" alt="Examples"></center>
+
+모든 경우에서 정확하거나 합리적인 수준으로 사용하였음을 볼 수 있다. 적어도, GPT-3은 새로운 단어를 사용하는 능력은 꽤 수준이 있는 것 같다.
+
+**3.9.6 Correcting English Grammar**
+
+few-shot에 적합한 또 다른 task는 영문법을 교정하는 것이다. 다음과 같이 few-shot 예시를 주었다:
+
+```
+"Poor English Input: <sentence>\n Good English Output: <sentence>".
+```
+
+결과는 아래 그림에서 볼 수 있다.
+
+<center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/28.png" width="100%" alt="Examples"></center>
 
 
 

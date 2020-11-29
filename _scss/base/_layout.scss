@@ -39,4 +39,9 @@
     max-width: 38rem;
   }
 }
+@media (min-width: 80em) {
+  .container {
+    max-width: 56rem;
+  }
+}
 

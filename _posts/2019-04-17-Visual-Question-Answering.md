@@ -1,6 +1,6 @@
 ---
 layout: post
-title: VQA(Visual Question Answering)
+title: VQA(Visual Question Answering, VQA 논문 설명)
 author: YouWon
 categories: [Computer Vision]
 tags: [Paper_Review, VQA, Task_Proposal]
