@@ -55,6 +55,7 @@ Symbols 9         | \infty \aleph_0 \nabla \partial \Im \Re                     
 Symbols 10        | a\equiv b\pmod n                                               | $ a\equiv b\pmod n $
 Symbols 11        | \ldots, \cdots                                                 | $ \ldots, \cdots $
 Symbols 12        | \epsilon \varepsilon \phi \varphi \ell                         | $ \epsilon \varepsilon \phi \varphi \ell $
+Symbols 13         | \intercal \top \mid  | $ \intercal \top \mid $
 Double-lined      | \mathbb{E} \mathbb{R}                                          | $ \mathbb{E} \mathbb{R} $
 Style      | \mathcal{L} \mathcal{R}                                          | $ \mathcal{L} \mathcal{A} $
 Spaces            | 1 \ 2 \quad 3 \qquad 4                                         | $ 1 \ 2 \quad 3 \qquad 4 $

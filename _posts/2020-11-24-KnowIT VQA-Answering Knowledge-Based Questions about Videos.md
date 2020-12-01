@@ -188,7 +188,7 @@ $$ w_j^{'} = [\text{CLS}] + w_j + [\text{SEP}] $$
 
 $$ \mathbf{p}_j = \text{BERT}_{\mathbf{p}}(\tau_j) $$
 
-두 문장의 유사도는 cosine 유사도를 사용하였으며 다음과 같다.
+두 문장의 유사도는 cosine 유사도를 사용하였으며 다음과 같이 구해진다.
 
 $$ \beta_{i, j} = sim(\mathbf{p}_i, \mathbf{p}_j) $$
 
@@ -198,28 +198,93 @@ $$ V = \{w_j \vert j=1, ..., N\} $$
 
 ### Knowledge Retrieval Module
 
+전체 과정은 다음과 같다.  
 질문과 답안 선택지 $q_i, a_i^c, \quad c \in \{0, 1, 2, 3\}$를 사용하여 Knowledge base $K$에 질의를 한다.  
 그리고 연관도 점수 $s_{ij}$에 따라 $w_j \in K$의 순위를 매긴다. 
 
+먼저 입력이 될 표현 $x_{ij}$를 다음과 같이 문자열들을 이어 붙여 구한다.
 
+$$ x_{ij} = [\text{CLS}] + q_i + \sum_{k=0}^3  a_i^{\alpha_k} + [\text{SEP}] + w_j + [\text{SEP}] $$
+
+이전 연구들은 $a_i^c$의 순서는 별다른 영향이 없다고 하였지만, 불변성을 확보하기 위해 연관도가 높은 순($a_i^0 \rightarrow a_i^3$)으로 정렬하였다. 
+
+- 그리고 입력 표현을 $n$개의 단어로 이루어진 sequence $\textbf{x}_{ij}^{10}$으로 토큰화하고 BERT에 입력으로 준다.  
+- 점수를 매기기(scoring) 때문에 $\text{BERT}_{\text{S}}(\textbf{x}_{ij})$로 표기한다.  
+- $s_{ij}$를 계산하기 위해 fully connected layer를 사용하고 sigmoid를 붙인다.
+- $\textbf{w}, b$를 각각 FC Layer의 weight와 bias라 할 때
+
+$$ s_{ij} = \text{sigmoid} (\textbf{w}_{\text{S}}^{\top} \cdot \text{BERT}_S(\textbf{x}_{ij}) + b_{\text{S}} ) $$
+
+
+$\text{BERT}^{\text{S}}, \textbf{w}, b$는 매칭되거나 되지 않는 QA-knowledge 쌍과 다음의 Loss로 미세조정(fine-tuned)된다:
+
+$$ \mathcal{L} = -\sum_{i=j} \log(s_{ij}) -\sum_{i\neq j} \log(1 - s_{ij}) $$ 
+
+각 $q_i$에 대해 $K$ 안의 모든 $w_j$는 $s_{ij}$에 의해 순위가 매겨진다. 이중 상위 $k$개가 질의로 주어진 질문과 가장 연관 있는 것으로써 이것들이 얻어진다.
 
 
 ### Prior Score Computation
 
+모델이 다른 답변 후보에 대한 다른 출력을 내는 것을 막기 위해 답안들을 정렬함으로써 순서-불변 모델을 만들었다. prior score $\xi^c$에 따라
+
+$$ a^c, \quad c \in \{0, 1, 2, 3\}  $$
+
+질문 $q$가 주어지면, $\xi^c$는 정답에 대한 $a^c$의 점수를 예측함으로써 얻어진다. 먼저 입력문장 $e^c$를 문자열을 이어 붙여 얻는다:
+
+$$ e^c = [\text{CLS}] + q + [\text{SEP}] + a^c + [\text{SEP}] $$
+
+그리고 $e^c$를 120개의 토큰 $\mathbf{e}^c$로 토큰화한다. $\text{BERT}_{\text{E}}(\cdot)$를 output이 [CLS]인 BERT 네트워크라 한다면, 
+
+$$ \xi^c = \textbf{w}_{\text{E}}^{\top} \text{BERT}_{\text{E}}(\mathbf{e}^c) + b_E $$
+
+이제 모든 $\xi^c$를 내림차순으로 정렬한 후 이에 맞춰 답변 후보 $\alpha_c$를 재배열한다.
 
 
 ### Video Reasoning Module
 
+이 모듈에서는 얻어진 knowledge들이 영상 내영으로부터 얻은 multi-modal 표현과 함께 처리되어 정답을 예측한다. 이 과정은 다음 3가지 과정을 포함한다.
+
+1. Visual Representation
+2. Language Representation
+3. Answer Prediction
 
 
-### Language Representation
+#### Visual Representation
+
+각 video clip으로부터 $n_f$개의 프레임을 뽑아 영상 내용을 설명하기 위해 아래 4가지의 다른 과정을 거친다:
+
+1. **Image features**: 각 frame은 마지막 FC Layer가 없는 Resnet50에 들어가 2048차원의 벡터로 변환된다. 모든 frame에서 나온 벡터를 모아 새로운 FC Layer를 통과시켜 512차원으로 만든다.
+2. **Concepts features**: 주어진 frame에 대해, bottom-up object detector를 사용하여 object과 특성들의 리스트를 얻는다. 이를 전부 인코딩하여 $C$차원의 bag-of-concept 표현으로 만들고, FC Layer를 통해 512차원으로 변환된다. $C$는 가능한 모든 object와 특성들의 전체 수이다.
+3. **Facial features**: 주요 인물의 사진 3~18개를 사용하여 최신 얼굴인식 네트워크를 학습시켰다. 각 clip에 대해 $F$차원의 bag-of-faces 표현으로 인코딩하여, FC Layer를 통과시켜 512차원으로 만든다. $F$는 네트워크에서 학습되는 모든 사람의 수이다.
+4. **Caption features**: 각 frame에 대해 영상 내용을 설명하는 캡션을 [Xu et al. 2015](https://arxiv.org/abs/1502.03044)으로 만들었다. 각 clip으로부터 얻은 $n_f$개의 캡션은 언어표현 모델의 입력으로 사용된다.
+
+
+#### Language Representation
+
+텍스트는 미세조정된 BERT-reasoning을 통과한다. 언어입력은 다음과 같이 구해진다.
+
+$$ y^c = [\text{CLS}] + caps + subs + q + [\text{SEP}] + a^c + w +  [\text{SEP}] $$
+
+$caps$는 $n_f$개의 캡션을 시간순으로 이어 붙인 것이고 $subs$는 자막, $w$는 $k$개의 knowledge instance를 합친 것이다.  
+각 질문 $q$에 대해, 답변 후보 $a^c, \ c = \{0, 1, 2, 3\}$ 하나당 하나씩 총 4개개 생성된다.  
+
+$m$개의 단어로 이루어진 $\mathbf{y}^c$로 토큰화하고 언어표현 $\mathbf{u}^c = \text{BERT}_{\text{R}}(\mathbf{y}^c)$를 얻는다. (R은 reasoning)
 
 
 
+#### Answer Prediction
 
-### Answer Prediction
+정답을 예측하기 위해, 시각표현 $\textbf{v}$(images, concepts, facial features)를 언어표현 $\mathbf{u}^c$를 이어 붙인다:
 
+$$ \textbf{z}^c = [\mathbf{v}, \mathbf{u}^c] $$
 
+$ \textbf{z}^c$는 scalar로 사영된다.
+
+$$ o^c = \textbf{w}_{\text{R}}^{\top}\textbf{z}^c + b_R $$
+
+예측된 답안 $\hat{a} = a^{\text{argmax}_c\textbf{o}}$는 $\textbf{o} = (o^0, o^1, o^2, o^3)^\top$ 중 최댓값의 index로 구해진다. $c^*$를 정답이라고 하면 multi-class cross-entropy loss를 써서 미세조정한다:
+
+$$ \mathcal{L}(\mathbf{o}, c^*) = - \log \frac{\exp(o^{c^*})}{\Sigma_c \exp{(o^c)}} \qquad \text{for} \ \text{BERT}_{\text{R}}, \textbf{w}_{\text{R}}, b_{\text{R}} $$
 
 ---
 
@@ -260,9 +325,6 @@ $$ V = \{w_j \vert j=1, ..., N\} $$
 
 ## 결론(Conclusion)
 
-얼굴 식별과 VQA에서의 진전에도 불구하고 Knowledge-aware VQA에서 더 많은 연구가 필요함을 보였다. 기존의 Facenet이나 memory network는 수많은 distractor가 존재하거나 규모가 커진 경우에는 제대로 성능을 내지 못하였다.
-
-이 논문에서는 Knowledge-aware VQA인 KVQA를 제안하였고 평가방법과 baseline을 제시하였다. KVQA의 현재 버전은 KG의 중요 entity인 사람에만 국한되어 있다. 하지만 Wikidata와 같은 KG는 기념물이나 사건 등 여러 흥미로운 entity에 대한 정보도 갖고 있기 때문에 추후 확장할 수 있다. 이 분야에 많은 연구가 이루어지길 희망한다.
 
 **Acknowledgements**
 
