@@ -172,7 +172,11 @@ AMT를 사용하였고, worker를 1) 9개의 시즌 전부를 적어도 한 번�
 
 > Raj는 Missy에게 데이트하자고 요청하길 원했는데, Howard와 Leonard는 이미 그녀에게 물어봤지만 실패했기 때문이지만, (그가 먹었던) 약효가 사라졌고 그는 그럴(요청할) 수 없었다.
 
-Knowledge Graphs와 같은 복잡한 구조에서 어떻게 정보를 가져오는지 불분명하기에, KB를 만들어서, $K = \{w_j|j=1, ..., N \}$, knowledge instance $w$는 자연어 문장으로 표현된다. 거의 중복되는 instance를 제거하였고, $N$은 24,282에서 19,821로 줄어들었다.
+Knowledge Graphs와 같은 복잡한 구조에서 어떻게 정보를 가져오는지 불분명하기에, knowledge instance $w$는 자연어 문장으로 표현된다. 거의 중복되는 instance를 제거하였고, $N$은 24,282에서 19,821로 줄어들었다.
+
+Knowledge base $K$는 다음과 같다.
+
+$$K = \{w_j \vert j=1, ..., N \}$$
 
 ### Knowledge Base Cleaning
 
@@ -182,18 +186,22 @@ $$ w_j^{'} = [\text{CLS}] + w_j + [\text{SEP}] $$
 
 [CLS]는 문장의 시작을, [SEP]은 끝을 나타내는 token이다. 이를 60개의 token으로 나눈 뒤 BERT를 통과시켜 고차원의 projection을 얻었다. 
 
-$$ \bold{p}_j = \text{BERT}_{\bold{p}}(\tau_j) $$
+$$ \mathbf{p}_j = \text{BERT}_{\mathbf{p}}(\tau_j) $$
 
 두 문장의 유사도는 cosine 유사도를 사용하였으며 다음과 같다.
 
-$$ \beta_{i, j} = sim(\bold{p}_i, \bold{p}_j) $$
+$$ \beta_{i, j} = sim(\mathbf{p}_i, \mathbf{p}_j) $$
 
-그리고 무향 그래프 $V = \{w_j | j=1, ..., N\}$를 만들고 유사도 $\beta$가 0.998 초과인 경우에만 edge를 만들었다. 해당 그래프에서 크기 $L$ 이상의 clique를 찾아 임의로 1개만 남기고 나머지는 삭제하였다.
+그리고 무향 그래프 $V$를 만들고 유사도 $\beta$가 0.998 초과인 경우에만 edge를 만들었다. 해당 그래프에서 크기 $L$ 이상의 clique를 찾아 임의로 1개만 남기고 나머지는 삭제하였다.
+
+$$ V = \{w_j \vert j=1, ..., N\} $$
 
 ### Knowledge Retrieval Module
 
 질문과 답안 선택지 $q_i, a_i^c, \quad c \in \{0, 1, 2, 3\}$를 사용하여 Knowledge base $K$에 질의를 한다.  
 그리고 연관도 점수 $s_{ij}$에 따라 $w_j \in K$의 순위를 매긴다. 
+
+
 
 
 ### Prior Score Computation
