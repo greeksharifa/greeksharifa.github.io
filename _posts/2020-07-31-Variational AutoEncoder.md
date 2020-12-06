@@ -49,7 +49,7 @@ $$ p_{\theta}(\mathbf{z}), p_{\theta}(\mathbf{x}|\mathbf{z}) $$
 
 **1) Intractability**  
 
-$$ \int p_{\theta}(\mathbf{x}) p_{\theta}(\mathbf{x}|\mathbf{z}) d\mathbf{z} $$  
+$$ \int p_{\theta}(\mathbf{z}) p_{\theta}(\mathbf{x}|\mathbf{z}) d\mathbf{z} $$  
 
 (1) Marginal Likelihood $p_{\theta}(\mathbf{x})$ 의 적분은 위 식으로 표현되는데, 이 식이 intractable한 경우가 존재한다. 이 경우는 Evidence가 적분이 불가능한 경우를 의미한다.  
 
