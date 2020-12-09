@@ -14,7 +14,7 @@ tags: [Paper_Review, VQA, Task_Proposal, AAAI2020]
 
 KnowIT VQA는 VQA 중에서도 Video를 다루는 QA이며, 전통적인 VQA와는 달리 이미지 등 시각자료에서 주어지는 정보뿐만 아니라 외부 지식(상식 베이스, Knowledge Base)이 있어야만 문제를 풀 수 있는 질의들로 이루어진 새로운 task이다. 
 
-KVQA 홈페이지는 https://knowit-vqa.github.io/ 이다.  
+KnowIT VQA 홈페이지는 https://knowit-vqa.github.io/ 이다.  
 데이터셋 중 Annotation도 [같은 링크](https://knowit-vqa.github.io/)에서 다운받을 수 있다.
 
 중요한 부분만 적을 예정이므로 전체가 궁금하면 원 논문을 찾아 읽어보면 된다.
@@ -40,7 +40,7 @@ VQA는 자연어와 이미지 이해를 함께 평가하는 중요한 task로 �
 1. 이미지의 features는 오직 이미지의 정적인 정보만을 잡아낼 뿐 video에 대한 시간적인 일관성이나 연관성은 전혀 고려하지 않았다(예: 그들은 어떻게 대화를 끝내는가?).
 2. 시각 자료(이미지나 영상)는 그 자체로는 외부 지식을 필요로 하는 질문에 대답하는 충분한 정보를 포함하지 않는다.
 
-이러한 한계를 해결하기 위해 단순 이미지와 질문만을 사용하는 Visual QA에서 1) 영상을 사용하는 VideoQA, 외부 지식을 활용하는 KBVQA 등이 등장하였다. 하지만, 여러 종류의 질문을 다루는 일반적인 framework는 여전히 나오지 않았다.
+이러한 한계를 해결하기 위해 단순 이미지와 질문만을 사용하는 Visual QA에서 1) 영상을 사용하는 VideoQA, 2) 외부 지식을 활용하는 KBVQA 등이 등장하였다. 하지만, 여러 종류의 질문을 다루는 일반적인 framework는 여전히 나오지 않았다.
 
 이 논문의 기여하는 바는 여기서부터 출발한다. 영상에 대한 이해와, 외부 지식에 기반한 추론을 모두 활용하는 방법을 제안한다. 
 
@@ -60,7 +60,7 @@ VQA는 자연어와 이미지 이해를 함께 평가하는 중요한 task로 �
 - **Video Question Answering**은 행동인식, 줄거리 이해, 시간적 연관성을 추론하는 등의 시간적 정보를 해석하는 문제들을 다뤄 왔다. 영상의 출처에 따라 시각자료는 자막이나 대본 등 텍스트 자료와 연관되어 해석을 위한 추가 수준의 문맥을 제공한다. 대부분의 연구는 영상이나 텍스트 자체의 정보를 추출할 뿐 두 modality의 결합은 제대로 활용하지 않았다. MovieFIB, TGIF-QA, MarioVQA는 행동인식, Video Context QA는 시간적 일관성을 다룬다. 
     - 오직 몇 개의 데이터셋, PororoQA와 TVQA만이 multi-model video representation을 함께 해석하는 benchmark를 제안하였다. 하지만 영상자료를 넘어서는 추가 지식에 대한 고려는 이루어지지 않았다.
 - **Knowledge-Based Visual Question Answering**: 시각자료와 텍스트만 가지고서는 그 자체에 내재된 정보 외에 추가 지식은 전혀 쓸 수가 없다. 그래서 외부 지식을 포함하는 VQA가 여럿 제안되었다. KBVQA(Knowledge-based VQA)는 외부 지식을 활용하는 대표 VQA 중 하나이다. 이는 지식을 포함하는 데이터셋이지만 초기 단계에 머물러 있다. 
-    - 그 중 일부 dataset은 질문의 형태가 단순하거나 외부 지식이 정해진 형태로만 제공되었다. KB-VQA는 template에서 만들어진 질문-이미지 쌍을 활용했으며, R-VQA는 각 질문에 대한 relational facts만을 사용했다. FVQA는 entity 식별, OK-VQA는 자유형식의 질문을 사용하였으나 지식에 대한 annotatino이 없었다. 
+    - 그 중 일부 dataset은 질문의 형태가 단순하거나 외부 지식이 정해진 형태로만 제공되었다. KB-VQA는 template에서 만들어진 질문-이미지 쌍을 활용했으며, R-VQA는 각 질문에 대한 relational facts만을 사용했다. FVQA는 entity 식별, OK-VQA는 자유형식의 질문을 사용하였으나 지식에 대한 annotation이 없었다. 
     - KnowIT-VQA는 영상을 활용하며, 지식을 특정 데이터에서 직접 추출한 것이 아닌 일반지식을 가져왔기에 이러한 단점들을 해결하였다고 한다.
 
 
@@ -69,7 +69,7 @@ VQA는 자연어와 이미지 이해를 함께 평가하는 중요한 task로 �
 ## KnowIT VQA 데이터셋(KnowIT VQA Dataset)
 
 
-TV Show는 인물, 장면, 줄거리의 일반적인 내용들을 사전에 알 수 있기에 영상이해 task에서 현실 시나리오를 모델링하는 좋은 과제로 여겨진다. 그래서 이 논문에서는 유명 시트콤인 빅뱅이론을 선정하여 KnowIT VQA dataset으로 만덜었고, 이는 영상과 show에 대한 지식기반 질답을 포함한다. 
+TV Show는 인물, 장면, 줄거리의 일반적인 내용들을 사전에 알 수 있기에 영상이해 task에서 현실 시나리오를 모델링하는 좋은 과제로 여겨진다. 그래서 이 논문에서는 유명 시트콤인 빅뱅이론을 선정하여 KnowIT VQA dataset으로 만들었고, 이는 영상과 show에 대한 지식기반 질답을 포함한다. 
 
 
 
@@ -209,11 +209,11 @@ $$ x_{ij} = [\text{CLS}] + q_i + \sum_{k=0}^3  a_i^{\alpha_k} + [\text{SEP}] + w
 이전 연구들은 $a_i^c$의 순서는 별다른 영향이 없다고 하였지만, 불변성을 확보하기 위해 연관도가 높은 순($a_i^0 \rightarrow a_i^3$)으로 정렬하였다. 
 
 - 그리고 입력 표현을 $n$개의 단어로 이루어진 sequence $\textbf{x}_{ij}^{10}$으로 토큰화하고 BERT에 입력으로 준다.  
-- 점수를 매기기(scoring) 때문에 $\text{BERT}_{\text{S}}(\textbf{x}_{ij})$로 표기한다.  
+- 점수를 매기기(scoring) 때문에 $\text{BERT}^{\text{S}}(\textbf{x}_{ij})$로 표기한다.  
 - $s_{ij}$를 계산하기 위해 fully connected layer를 사용하고 sigmoid를 붙인다.
 - $\textbf{w}, b$를 각각 FC Layer의 weight와 bias라 할 때
 
-$$ s_{ij} = \text{sigmoid} (\textbf{w}_{\text{S}}^{\top} \cdot \text{BERT}_S(\textbf{x}_{ij}) + b_{\text{S}} ) $$
+$$ s_{ij} = \text{sigmoid} (\textbf{w}_{\text{S}}^{\top} \cdot \text{BERT}^\text{S}(\textbf{x}_{ij}) + b_{\text{S}} ) $$
 
 
 $\text{BERT}^{\text{S}}, \textbf{w}, b$는 매칭되거나 되지 않는 QA-knowledge 쌍과 다음의 Loss로 미세조정(fine-tuned)된다:
@@ -225,7 +225,7 @@ $$ \mathcal{L} = -\sum_{i=j} \log(s_{ij}) -\sum_{i\neq j} \log(1 - s_{ij}) $$
 
 ### Prior Score Computation
 
-모델이 다른 답변 후보에 대한 다른 출력을 내는 것을 막기 위해 답안들을 정렬함으로써 순서-불변 모델을 만들었다. prior score $\xi^c$에 따라
+모델이 다른 답변 후보에 대해 다른 출력을 내는 것을 막기 위해 답안들을 정렬함으로써 순서에 불변적인 모델을 만들었다. prior score $\xi^c$에 따라
 
 $$ a^c, \quad c \in \{0, 1, 2, 3\}  $$
 
@@ -242,7 +242,7 @@ $$ \xi^c = \textbf{w}_{\text{E}}^{\top} \text{BERT}_{\text{E}}(\mathbf{e}^c) + b
 
 ### Video Reasoning Module
 
-이 모듈에서는 얻어진 knowledge들이 영상 내영으로부터 얻은 multi-modal 표현과 함께 처리되어 정답을 예측한다. 이 과정은 다음 3가지 과정을 포함한다.
+이 모듈에서는 얻어진 knowledge들이 영상 내용으로부터 얻은 multi-modal 표현과 함께 처리되어 정답을 예측한다. 이 과정은 다음 3가지 과정을 포함한다.
 
 1. Visual Representation
 2. Language Representation
@@ -266,7 +266,7 @@ $$ \xi^c = \textbf{w}_{\text{E}}^{\top} \text{BERT}_{\text{E}}(\mathbf{e}^c) + b
 $$ y^c = [\text{CLS}] + caps + subs + q + [\text{SEP}] + a^c + w +  [\text{SEP}] $$
 
 $caps$는 $n_f$개의 캡션을 시간순으로 이어 붙인 것이고 $subs$는 자막, $w$는 $k$개의 knowledge instance를 합친 것이다.  
-각 질문 $q$에 대해, 답변 후보 $a^c, \ c = \{0, 1, 2, 3\}$ 하나당 하나씩 총 4개개 생성된다.  
+각 질문 $q$에 대해, 답변 후보 $a^c, \ c = \{0, 1, 2, 3\}$ 하나당 하나씩 총 4개가 생성된다.  
 
 $m$개의 단어로 이루어진 $\mathbf{y}^c$로 토큰화하고 언어표현 $\mathbf{u}^c = \text{BERT}_{\text{R}}(\mathbf{y}^c)$를 얻는다. (R은 reasoning)
 
@@ -290,41 +290,92 @@ $$ \mathcal{L}(\mathbf{o}, c^*) = - \log \frac{\exp(o^{c^*})}{\Sigma_c \exp{(o^c
 
 ## 실험 결과(Experimental Results)
 
+ROCK 모델을 여러 기준 모델과 비교하여 아래에 정리하였다. SGD를 사용하여 momentum 0.9, learning rate는 0.001을 사용하였으며 BERT는 사전학습된 초기값을 사용한 uncased based 모델을 사용하였다.
+
+
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/08.png" width="70%" alt="KnowIT VQA"></center>
 
 
 ### Answers
 
+데이터셋에 존재할 수 있는 잠재적 편향을 찾기 위해서 단지 답변 자체만을 고려하여 정답을 예측하는 평가를 진행하였다:
+
+- Longest / Shortest: 예측 답변이 가장 많거나 적은 단어를 포함하는 답을 선택한다.
+- word2vec / BERT sim: word2vec은 300차원의 사전학습된 벡터를 사용하였다. BERT에서는 3번째~마지막 layer의 출력을 사용하였다. 답변은 word representation의 평균으로 인코딩되었다. 예측은 가장 높은 코사인 유사도를 갖는 것을 선택한다.
+
+전체적으로, baseline은 매우 낮은 성능을 보였으며, Longest만이 찍는 것보다 간신히 나은 성능을 보였다. 정답이 긴 경우가 조금 많은 것을 제외하면 데이터셋에서는 특별한 편향은 발견되지 않았다.
+
+
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/09.png" width="80%" alt="KnowIT VQA"></center>
 
 
 ### QA
 
+오직 질문과 답변만을 고려하여 여러 baseline에 대해 실험을 진행하였다.
 
+- word2vec / BERT sim: 위의 **Answers**와 비슷하게 진행되었으며 질문이 고려 대상에 추가되었다.
+- TF IDF: tf-idf에 의한 단어벡터 가중으로 질문과 답변을 표현한 후 512차원으로 만들었다. 질문과 4개의 답변을 이어 붙여 4-class 분류기에 집어넣었다.
+- LSTM Emb. / BERT: 질문과 답변들의 단어를 사전학습된 BERT와 LSTM에 통과시킨다. LSTM의 마지막 layer는 512차원의 문장표현으로 사앵되었다. 역시 각각을 이어 붙여 4-class 분류기에 넣었다.
+- ROCK_QA: $m = 120$ token을 사용하는 ROCK 모델을 질문과 답변만으로 학습시켰다.
 
-### SUbs, QA
+유사도에 기반한 방법을 찍는 것보다 형편없지만, 분류기를 사용한 경우는 훨씬 더 나은 결과를 보이며, 사람보다 더 잘하기도 했다.
 
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/10.png" width="80%" alt="KnowIT VQA"></center>
+
+### Subs, QA
+
+자막, 질문, 답변을 사용한다.
+
+- LSTM Emb. / BERT: 자막은 LSTM에 의해 인코딩된 후 자막-질문-답변으로 이어 붙여 4-class 분류기에 넣는다.
+- TVQA_SQA: 언어는 LSTM layer에 의해 인코딩되며 다른 시각정보는 쓰지 않았다.
+- ROCK_SQA: $m = 120$ token을 사용하는 ROCK 모델을 자막, 질문, 답변만으로 학습시켰다.
+
+LSTM BERT와 ROCK_SQA는 질문과 답변만을 사용할 때보다 성능이 5.7% 향상되었다. LSTM Emb.는 전혀 향상되지 않았으며 자막의 긴 문장을 인코딩하는 데 한계가 있었기 때문이라 생각된다.
+
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/11.png" width="80%" alt="KnowIT VQA"></center>
 
 
 ### Vis, Sub, QA
 
+이제 언어와 시각 정보 둘 다에 기반한 Video QA 모델이다.
 
+- TVQA: SOTA VideoQA 방법이다. 언어는 LSTM layer로, 시각 데이터는 visual concepts으로 인코딩된다.
+- ROCK_VSQA: $m = 120$ token과 $n_f=5$ frame을 사용하는 ROCK 모델을 질문과 답변만으로 학습시켰다. 4개의 다른 시각표현이 사용되었다.
+
+ROCK_VSQA는 TVQA를 6.6%만큼 앞질렀다. 그러나, 어떤 visual 모델이든지 ROCK_SQA를 능가하는데 이는 현 영상모델링 기법의 큰 한계를 암시한다.
+
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/12.png" width="80%" alt="KnowIT VQA"></center>
 
 ### Knowledge
 
+모델이 이제 **Knowledge**를 정답을 예측하는 데 사용한다. 전체 버전의 ROCK 모델은 $n=128, k=5$의 지식검색 모듈과 $m=512$의 영상추론 모듈을 사용한다.  
+non-knowledge 모델과 비교하여, 지식검색 모듈을 포함함으로써 6.5%의 성능 향상이 있으며, 지식기반 접근법의 상당한 잠재력을 보인다(시각표현인 Image, Concepts, Facial과 같이). 그러나, 전문가인 사람과 비교하여, ROCK은 여전히 뒤처지며, 이는 향상시킬 여지가 충분하다는 것을 뜻한다. 지식검색 대신 딱 맞는 지식을 그대로 갖고 오는 모델(ROCK_GT)를 사용하면 정확도는 0.731까지 오르며, 지식검색 모듈도 개선할 여지가 있음을 보여준다. 
 
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/13.png" width="80%" alt="KnowIT VQA"></center>
+
+마지막으로 아래 그림에서 질적 평가 결과를 볼 수 있다.
+
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/14.png" width="100%" alt="KnowIT VQA"></center>
 
 
 ### Knowledge Retrieval Results
 
+지식검색 모듈에 대한 결과로, recall at K와 median rank(MR)에 대한 결과를 아래 표에서 볼 수 있다.
 
+- 질문만 있는 경우
+- QA parameter sharing: 같은 parameter가 4개의 후보 답변에 사용됨
+- QA prior score: prior score에 따라 순서를 배열하는 방법
 
+<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/15.png" width="80%" alt="KnowIT VQA"></center>
 
-
+질문만 사용하는 경우와 다른 두 경우에 큰 차이가 있는데 이는 후보 답변에 올바른 지식을 가져오는 데 필요한 정보가 포함되어 있음을 나타낸다. 가장 좋은 결과는 prior score에 따라 순서를 정한 것인데, 이는 모든 후보 답변을 전부 사용하는 것이 더 정확한 정보를 얻는 데 도움이 된다는 뜻이다.
 
 
 ---
 
 ## 결론(Conclusion)
 
+새로운 지식 필요 영상 VQA를 제시하였고 multi-modal 영상정보와 지식을 결합하여 사용하는 영상추론 모델을 제시하였다. 진행된 실험은 영상이해 문제에서 지식기반 접근법의 상당한 잠재력을 보였다. 그러나, 사람의 능력에 비하면 크게 뒤처지며, 이 데이터셋을 통해 더 강력한 모델의 개발을 장려하며 이를 바라는 바이다.
 
 **Acknowledgements**
 
@@ -338,5 +389,3 @@ New Energy and Industrial Technology Development Organization
 
 --- 
 
-
-<center><img src="/public/img/2020-11-24-KnowIT VQA-Answering Knowledge-Based Questions about Videos/0.png" width="100%" alt="KnowIT VQA"></center>
