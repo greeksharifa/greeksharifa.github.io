@@ -69,6 +69,36 @@ Node 임베딩을 생성하기 위한 대부분의 기존 접근은 본질적으
 실제 적용할 때, $K=2$ 와 $S_1 * S_2 <= 500$ 으로 했을 때 좋은 성능을 보였다. (자세한 사항은 1.4.4를 참조)  
 
 ### 1.3.2. Learning the Paremeters of GraphSAGE  
+완전한 비지도 학습 상황에서 유용하고 예측 능력이 있는 Representation을 학습하기 위해 우리는 Graph 기반의 Loss 함수를 $\mathbf{z}_u, \forall u \in \mathcal{V}$ 라는 Output Represnetation에 적용하고, Weight Matrices $\mathbf{W}^k, \forall k \in \{1, ..., K\}$ 및 Stochastic Gradient Descent를 통해 Aggregator Funciton의 파라미터를 튜닝해야 한다.  
+
+Graph 기반의 Loss 함수는 인접한 Node들이 유사한 Representation을 갖도록 하게 하고 서로 멀리 떨어져 있는 Node들은 다른 Representation을 갖게 만든다.  
+
+$$ J_{\mathcal{G}} = \log (\sigma (\mathbf{z}_u^T \mathbf{z}_v)) - Q \cdot \mathbb{E}_{v_n \sim P_n(v)} \log (\sigma (\mathbf{z}_u^T \mathbf{z}_{v_n}))  $$  
+
+이 때 $v$ 는 고정된 길이의 **Random Walk** 에서 $u$ 근처에서 동시에 발생한 Node를 의미한다. $P_n$ 은 Negative Sampling Distribution을 $Q$ 는 Negative Sample의 개수를 의미한다.  
+
+중요한 것은 이전의 여러 임베딩 방법론에서와는 다르게, Loss 함수에 집어넣는 Representation $\mathbf{z}_u$ 가 Embedding Look-up을 통해 각 Node를 위한 고유의 Embedding을 학습하는 방식으로 형성되지 않는다. Node의 지역 이웃 안에서 포함된 feature로 부터 생성된다. (the representations z are generated from the features contained within a node's local neighborhood)  
+
+이러한 비지도 학습 세팅은 Node Feature가 서비스 혹은 정적인 Repository에 있는 downstream 머신러닝 application에 적용될 때의 상황을 모방하게 된다. 위에서 설명한 Representation이 특정한, 구체적인 downstream task에 이용되어야 할 경우, 앞서 보았던 비지도 Loss는 그 일에 더욱 적합한 (예: cross-entropy loss) 목적함수로 대체되거나 변형될 수 있을 것이다.  
+
+### 1.3.3. Aggregator Architectures  
+N차원의 격자 구조 데이터를 이용한 머신러닝 예(텍스트, 이미지 등)들과 달리, Node의 이웃들은 자연적인 어떤 순서를 갖고 있지 않다. 따라서 알고리즘1에서 보았던 **Aggregator Function**은 반드시 순서가 정해져있지 않은 벡터의 집합에 대해 연산을 수행해야 한다.  
+
+이상적으로는 **Aggregator Function**이 여전히 학습이 가능하고 수준 높은 Representational Capacity를 갖고 있으면서도 대칭적인 형태를 띠고 있으면 좋을 것이다. Input이 순서를 바꿔도 상관 없게 말이다.  
+
+**Aggregator Funcion**의 대칭성은 우리의 신경망 모델이 임의의 순서를 갖고 있는 Node 이웃 feature 집합에도 학습/적용될 수 있게 한다. 본 논문은 이에 대해 3가지 후보를 검증해 보았다.  
+
+**1) Mean Aggregator**  
+단지 $h_u^{k-1}, \forall u \in \mathcal{N}(v)$ 에 있는 벡터의 원소 평균을 취한 함수이다.  
+
+Mean Aggregator는 Transductive GCN 프레임워크에서 사용되는 합성곱 순전파 규칙을 거의 따른다. 특히 우리는 알고리즘의 4~5줄을 다음과 같이 변형하면 GCN의 inductive한 변형 버전을 만들어낼 수 있다.  
+
+$$ h_v^k \leftarrow \sigma ( \mathbf{W} \cdot mean( \{ h_v^{k-1} \} \cup \{ h_u^{k-1} \} ), $$  
+
+$$ \forall u \in \mathcal{N}(v) $$  
+
+우리는 위 식이 `Localized Spectral Convolution`의 개략적인 선형 근사이기 때문에 이를 수정된 평균 기반 Aggregator Convolutional이라고 부를 것이다. (Modified Mean-based Aggregator Convolutional)  
+
 
 
 
