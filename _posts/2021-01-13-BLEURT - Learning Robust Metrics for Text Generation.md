@@ -52,9 +52,9 @@ NLG 연구자들은 이 문제를 *학습된* 구성 요소를 이 평가방법�
     - 학습 데이터가 적거나 없는 상황에서 좋은 결과를 얻을 수 있다.
     - train/test 데이터가 같은 분포에 존재한다는 가정을 하지 않는다.
 
-사실, IID 가정은 *domain drift* 문제에 의해 NLG 평가에서 특히 문제가 되었다. 이는 평가방법의 주 목적이지만, *quality drift* 때문이기도 하다: NLG 시스템은 시간이 지남에 따라 더 좋아지는 경향을 보이며, 따라서 2015년에 순위 데이터로 학습한 모델은 2019년의 최신 모델을 구별하지 못할 수 있다(특히 더 최근 것일수록). 이상적인 학습된 평가방법은 학습을 위해 이용가능한 순위 데이터를 완전히 활용하고, 분포의 이탈(drift)에 강간한 것을 모두 확보하는 것이다. 즉 *추론extrapolate*할 수 있어야 한다.
+사실, IID 가정은 *domain drift* 문제에 의해 NLG 평가에서 특히 문제가 되었다. 이는 평가방법의 주 목적이지만, *quality drift* 때문이기도 하다: NLG 시스템은 시간이 지남에 따라 더 좋아지는 경향을 보이며, 따라서 2015년에 rating data로 학습한 모델은 2019년의 최신 모델을 구별하지 못할 수 있다(특히 더 최근 것일수록). 이상적인 학습된 평가방법은 학습을 위해 이용가능한 rating data를 완전히 활용하고, 분포의 이탈(drift)에 강간한 것을 모두 확보하는 것이다. 즉 *추론extrapolate*할 수 있어야 한다.
 
-이 논문에서 통찰한 바는 표현능력과 강건성을 인간 순위에 미세조정하기 전 대량의 합성 데이터에서 사전학습하는 방식으로 결합하는 것이 가능하다는 것이다.  
+이 논문에서 통찰한 바는 표현능력과 강건성을 인간 rating에 미세조정하기 전 대량의 합성 데이터에서 사전학습하는 방식으로 결합하는 것이 가능하다는 것이다.  
 여기서 BERT에 기반한 텍스트 생성 평가방법으로 BLEURT를 제안한다. 핵심은 새로운 사전학습 방법으로, 어휘적 그리고 의미적으로 다양한 감독 신호(supervision signals)를 얻을 수 있는 다양한 Wikipedia 문장에서 임의의 변화(perturbation)을 준 문장들을 사용하는 방법이다.
 
 BLEURT를 영어에서 학습하고 다른 일반화 영역에서 테스트한다. 먼저 WMT Metrics Shared task의 모든 연도에서 state-of-the-art 결과를 보인다. 그리고 스트레스 테스트를 하여 WMT 2017에 기반한 종합평가에서 품질 이탈에 대처하는 능력을 측정한다. 마지막으로, data-to-text 데이터셋인 WebNLG 2017으로부터 얻는 3개의 task에서 다른 도메인으로 쉽게 조정할 수 있음을 보인다. Ablation 연구는 이 종합 사전학습 방법이 IID 세팅에서 그 성능을 증가시키며, 특히 학습 데이터가 편향되어 있거나, 부족하거나, 도메인을 벗어나는 경우에 더 강건함을 보인다. 
@@ -76,11 +76,11 @@ $$ \{(x_i, \tilde{x}_i, y_i)\}^N_{n=1} $$
 
 ## 3. 품질 평가를 위한 미세조정 BERT(Fine-Tuning BERT for Quality Evaluation)
 
-적은 양의 순위(rating) 데이터가 주어졌을 때, 이 task를 위해 비지도 표현을 사용하는 것이 자연스럽다. 이 모델에서는 텍스ㅌ 문장의 문맥화된 표현을 학습하는 [BERT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/)를 사용하였다. $x$와 $\tilde{x}$가 주어지면, BERT는 문맥화된 벡터의 sequence를 반환하는 [Transformer](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/)이다:
+적은 양의 rating(rating) 데이터가 주어졌을 때, 이 task를 위해 비지도 표현을 사용하는 것이 자연스럽다. 이 모델에서는 텍스ㅌ 문장의 문맥화된 표현을 학습하는 [BERT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/)를 사용하였다. $x$와 $\tilde{x}$가 주어지면, BERT는 문맥화된 벡터의 sequence를 반환하는 [Transformer](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/)이다:
 
 $$ v_{[\text{CLS}]}, v_{x_1}, ..., v_{x_r}, v_1, ..., v_{\tilde{x}_p} = \text{BERT}(x, \tilde{x})  $$
 
-$ v_{[\text{CLS}]}$는 특수 토큰 $\text{[CLS]}$의 표현이다. 여기서 순위를 예측하기 위해 $\text{[CLS]}$ 벡터에 선형 layer를 하나 추가했다:
+$ v_{[\text{CLS}]}$는 특수 토큰 $\text{[CLS]}$의 표현이다. 여기서 rating를 예측하기 위해 $\text{[CLS]}$ 벡터에 선형 layer를 하나 추가했다:
 
 $$ \hat{y} = f(x, \tilde{x}) = W\tilde{v}_{[\text{CLS}]} + b$$
 
@@ -88,27 +88,43 @@ $W$와 $b$는 각각 weight matrix와 bias이다. 위의 선형 layer와 BERT pa
 
 $$ l_{\text{supervised}} = \frac{1}{N} \Sigma^N_{n=1}\Vert y_i - \hat{y}\Vert^2 $$
 
-이 접근법이 상당히 간단하지만, Section 5에서 
+이 접근법은 상당히 간단하지만, [Section 5](https://greeksharifa.github.io/machine%20learning/2021/01/13/BLEURT-Learning-Robust-Metrics-for-Text-Generation/#5-%EC%8B%A4%ED%97%98experiments)에서 WMT Metrics Shared Task 17-19에서 state-of-the-art 결과를 얻을 수 있음을 보인다. 하지만, 미세조정 BERT는 많은 양의 IID data를 필요로 하며, 이는 다양한 task와 모델의 변형에 일반화할 수 있는 평가 방법으로는 아주 이상적이지는 않다.
 
 ---
 
 ## 4. 합성 데이터에서 사전학습(Pre-Training on Synthetic Data)
 
+이 접근법의 핵심 부분은 rating data에 미세조정하기 전 BERT를 "warm up"하기 위해 사전학습 기술을 사용했다는 것이다. 많은 양의 참조-후보 쌍 $(z, \tilde{z})$을 생성하여, 여러 어휘적 & 의미적 수준의 감독 신호를 multi-task loss를 사용하여 BERT를 학습시켰다. 실험이 보여주덧이, BLEURT는 이 단계 이후로 매우 성능이 좋아지며, 특히 데이터가 부족할 때에 더욱 그렇다.
 
+어떤 사전학습 접근법이든지 데이터셋과 사전학습 task 뭉치가 필요하다. 이상적으로, 이러한 구조는 최종 NLG 평가 task(i.e., 문장 쌍은 비슷하게 분포되어야 하고 사전학습 신호는 사람의 판단과 연관되어 있어야 한다)와 비슷할 수밖에 없다. 안타깝게도, 우리는 우리가 미래에 평가할 NLG 모델에 접근할 수 없다.  
+따라서, 우리는 일반성을 위해 방법을 다음 3가지 요구사항으로 최적화했다:
+
+1. 참조 문장 집합은 반드시 크고 다양성을 가져야 하며, 이는 BLEURT가 다양한 NLG domain과 task를 처리할 수 있을 만큼 충분해야 한다.
+2. 문장 쌍은 매우 다양한 의미적, 구문론적, 의미적 차이점을 포함해야 한다.
+3. 사전학습 objective는 BLEURT가 식별할 수 있을 만큼 효과적으로 그 현상들을 잡아내야 한다.
+
+아래 섹션들에서 상세히 설명한다.
 
 ### 4.1. 문장 쌍 생성(Generating Sentence Pairs)
 
+BLEURT를 매우 다양한 문장에 노출시키기 위한 하나의 방법은 존재하는 문장 쌍 데이터셋(Bowman et al., 2015; Williams et al., 2018; Wang et al., 2019)을 사용하는 것이다. 이 데이터셋들은 다양한 출처의 연관된 문장들을 포함하지만 NLG 시스템이 만드는 오류와 변형을 잡아내지 못할 수 있다(생략, 반복, 터무니없는 대체 등). 대신 자동적 접근법을 선택하여, 이는 임의로 늘일 수 있고 또한 적은 비용으로 실행핬 수 있다: 우리는 합성 문장 쌍 $(z, \tilde{z})$를 Wikipedia에서 가져온 문장에 180만 개의 부분 perturbing을 수행하여 얻었다. 여기서는 BERT에서 mask-filling, 역 번역, 단어를 임의로 빼는 세 가지 기술이 사용되었다. 이를 살펴보자.
 
 **Mask-filling with BERT:**
 
+BERT의 초기 학습 task는 토큰화된 문장에서 masked 토큰을 채우는 task이다. 이 기술은 Wikipedia 문장의 임의의 위치에 mask를 삽입한 후 언어 모델로 이를 채우는 과정이다. 따라서, 문장의 유창성을 유지하면서 어휘적 변형을 모델에 소개하였다. Masking 전략은 두 가지가 있는데, 문장의 임의의 위치에 mask를 만들거나, masked 토큰에 근접한 문장을 만드는 것이다. 더 자세한 내용은 부록 참조.
+
 **Backtranslation:**
+
+역 번역을 통해 문단과 문장 동요(perturbation)을 생성하였고, 이는 번역 모델을 사용하여 영어를 다른 언어로 번역했다가 다시 영어로 바꾸는 왕복 과정이다. 주 목표는 의미를 유지하는 참조 문장에 변형을 추가하는 것이다. 추가적으로, 역 번역 모델의 예측 실패한 것을 현실적 변형의 출처로 사용하였다.
 
 **Dropping words:**
 
-<center><img src="/public/img/2021-01-13-BLEURT - Learning Robust Metrics for Text Generation/01.png" width="80%" alt="Examples"></center>
+위의 합성 예시에서 단어를 무작위로 삭제하여 다른 예시를 만드는 것이 실험에서 유용하다는 것을 알아내었다. 이 방법은 BLEURT가 "병적인" 행동이나 NLG 시스템: 의미없는 예측, 문장 절단 등에 대비할 수 있게 한다.
 
 
 ### 4.2. 사전학습 신호(Pre-Training Signals)
+
+다음 단계는 각 문장 쌍 $(z, \tilde{z})$과 사전학습 신호 집합 $\{\tau_k\}$ 을 늘리는 것이다. $\tau_k$는 사적학습 task $k$의 목표 벡터이다.
 
 **Automatic Metrics:**
 
@@ -123,6 +139,8 @@ $$ l_{\text{supervised}} = \frac{1}{N} \Sigma^N_{n=1}\Vert y_i - \hat{y}\Vert^2 
 
 
 
+
+<center><img src="/public/img/2021-01-13-BLEURT - Learning Robust Metrics for Text Generation/01.png" width="80%" alt="Examples"></center>
 
 
 
