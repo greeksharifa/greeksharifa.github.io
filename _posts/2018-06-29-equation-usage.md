@@ -14,19 +14,16 @@ tags: [Equation, usage]
 
 수식 입력은
 
-inline style: `$ a^2 + b^2 = c^2 $`
+inline style: `$ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $`
 
-$ a^2 + b^2 = c^2 $
+$ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $
 
-display style: `$$ a^2 + b^2 = c^2 $$`
+display style: `$$ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $$`
 
-$$ a^2 + b^2 = c^2 $$
+$$ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $$
 
 로 한다.
 
-$ x {x} {{x}} \{ x \} $
-$ x $$ $
-$ {x} \{x\} $
 
 Equation          | Code                                                           | Display
 -------           | --------                                                       | --------
@@ -45,20 +42,23 @@ Sigma             | \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}                  
 Signs             | \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x}        | $ \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x} $
 Special functions | \lim_{x\to 0} \sin \max \ln \log \argmax                       | $ \lim_{x\to 0} \sin \max \ln \log \argmax $
 Inequality        | \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  | $ \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  $
-Approxmiate       | \approx \sim \simeq \cong \equiv \prec \lhd                    | $ \approx \sim \simeq \cong \equiv \prec \lhd $
+Approximate       | \approx \sim \simeq \cong \equiv \prec \lhd                    | $ \approx \sim \simeq \cong \equiv \prec \lhd $
 Set Inclusion     | \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing | $ \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing $
-Logic             | \land \lor \lnot \forall \exists \top \bot \vdash \vDash       | $ \land \lor \lnot \forall \exists \top \bot \vdash \vDash $
+Logic             | \land \lor \lnot \forall \exists \nexists \top \bot \vdash \vDash \complement       | $ \land \lor \lnot \forall \exists \nexists \top \bot \vdash \vDash \complement $
 Operations 1      | \times \div \pm \mp x \cdot y                                  | $ \times \div \pm \mp x \cdot y $
-Operations 2      | \star \ast \oplus \circ \bullet                                | $ \star \ast \oplus \circ \bullet $
-Arrows            | \to \rightarrow \leftarrow \leftrightarrow \Rightarrow \Leftarrow \Leftrightarrow \mapsto      | $ \to \rightarrow \leftarrow \leftrightarrow \Rightarrow \Leftarrow \Leftrightarrow  \mapsto $
+Operations 2      | \star \ast \oplus \otimes \Box \boxtimes \circ \bullet                                | $ \star \ast \oplus \otimes \Box \boxtimes \circ \bullet $
+Arrows 1          | \to \rightarrow \leftarrow \leftrightarrow   \mapsto \longmapsto   | $ \to \rightarrow \leftarrow \leftrightarrow   \mapsto \longmapsto $
+Arrows 2          | \leftharpoonup \rightharpoonup \leftharpoondown \rightharpoondown \rightleftharpoons   | $ \leftharpoonup \rightharpoonup \leftharpoondown \rightharpoondown \rightleftharpoons  $
+Arrows 3          | \uparrow \downarrow \nearrow \searrow \swarrow \nwarrow     | $ \uparrow \downarrow \nearrow \searrow \swarrow \nwarrow  $
+Arrows 4          | \Rightarrow \Leftarrow \Leftrightarrow \Uparrow \Downarrow \Updownarrow  | $ \Rightarrow \Leftarrow \Leftrightarrow \Uparrow \Downarrow \Updownarrow $
 Modulo            | a\equiv b\pmod n                                               | $ a\equiv b\pmod n $
 Ellipsis          | \ldots, \cdots                                                 | $ \ldots, \cdots $
 Transpose         | \intercal \top \mid  | $ \intercal \top \mid $
 Spaces            | 1 \ 2 \quad 3 \qquad 4                                         | $ 1 \ 2 \quad 3 \qquad 4 $
 Accents           | \hat{x} \widehat{xy} \bar{x} \overline{xyz} \vec{x} \overrightarrow{xy} \overleftrightarrow{xy} \dot{x} \ddot{x} | $ \hat{x} \widehat{xy} \bar{x} \overline{xyz} \vec{x} \overrightarrow{xy} \overleftrightarrow{xy} \dot{x} \ddot{x} $
-Special Characters| `\{ \_ \}`                                                     | $ \{\_\} $
+Special Characters 1| `\_ \{ \}`                                                     | $ \_ \{ \} $
 Plain text        | \text{text…}                                                       | $ \text{text…} $
-Symbols 9         | \infty \aleph_0 \nabla \partial \Im \Re                        | $ \infty \aleph_0 \nabla \partial \Im \Re $
+Special Characters 2 | \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare   | $ \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare $
 **Fonts**         | \ell  | $ \ell $
 mathbb            | \mathbb{Aa}      | $ \mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
 mathbf            | \mathbf{Aa}      | $ \mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
