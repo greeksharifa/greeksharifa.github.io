@@ -40,7 +40,7 @@ Combinations      | {n+1 \choose 2k} , \binom{n+1}{2k}                          
 Fraction          | \frac{(n^2+n)(2n+1)}{6}, {a+1\over b+1}, \cfrac{a}{b}          | $ \frac{(n^2+n)(2n+1)}{6}, {a+1\over b+1}, \cfrac{a}{b} $
 Sigma             | \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}                     | $ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $
 Signs             | \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x}        | $ \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x} $
-Special functions | \lim_{x\to 0} \sin \max \ln \log \argmax                       | $ \lim_{x\to 0} \sin \max \ln \log \argmax $
+Special functions | \lim_{x\to 0} \sin \max \ln \log                        | $ \lim_{x\to 0} \sin \max \ln \log $
 Inequality        | \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  | $ \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  $
 Approximate       | \approx \sim \simeq \cong \equiv \prec \lhd                    | $ \approx \sim \simeq \cong \equiv \prec \lhd $
 Set Inclusion     | \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing | $ \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing $
@@ -60,12 +60,21 @@ Special Characters 1| `\_ \{ \}`                                                
 Plain text        | \text{text…}                                                       | $ \text{text…} $
 Special Characters 2 | \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare   | $ \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare $
 **Fonts**         | \ell  | $ \ell $
-mathbb            | \mathbb{Aa}      | $ \mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
-mathbf            | \mathbf{Aa}      | $ \mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
-mathtt            | \mathtt{Aa}      | $ \mathtt{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
-mathrm            | \mathrm{Aa}      | $ \mathrm{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
-mathsf            | \mathsf{Aa}      | $ \mathsf{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
-mathcal           | \mathcal{Aa}     | $ \mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
-mathscr           | \mathscr{Aa}     | $ \mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
-mathfrak          | \mathfrak{Aa}    | $ \mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ \quad abcdefghijklmnopqrstuvwxyz} $
+mathbb            | \mathbb{A}      | $ \mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathbb            | \mathbb{a}      | $ \mathbb{abcdefghijklmnopqrstuvwxyz} $
+mathbf            | \mathbf{A}      | $ \mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathbf            | \mathbf{a}      | $ \mathbf{abcdefghijklmnopqrstuvwxyz} $
+mathtt            | \mathtt{A}      | $ \mathtt{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathtt            | \mathtt{a}      | $ \mathtt{abcdefghijklmnopqrstuvwxyz} $
+mathrm            | \mathrm{A}      | $ \mathrm{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathrm            | \mathrm{a}      | $ \mathrm{abcdefghijklmnopqrstuvwxyz} $
+mathsf            | \mathsf{A}      | $ \mathsf{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathsf            | \mathsf{a}      | $ \mathsf{abcdefghijklmnopqrstuvwxyz} $
+mathcal           | \mathcal{A}     | $ \mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathcal           | \mathcal{a}     | $ \mathcal{abcdefghijklmnopqrstuvwxyz} $
+mathscr           | \mathscr{A}     | $ \mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathscr           | \mathscr{a}     | $ \mathscr{abcdefghijklmnopqrstuvwxyz} $
+mathfrak          | \mathfrak{A}    | $ \mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
+mathfrak          | \mathfrak{a}    | $ \mathfrak{abcdefghijklmnopqrstuvwxyz} $
+
 
