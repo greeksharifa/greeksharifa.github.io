@@ -55,7 +55,7 @@ NLG 연구자들은 이 문제를 *학습된* 구성 요소를 이 평가방법�
 사실, IID 가정은 *domain drift* 문제에 의해 NLG 평가에서 특히 문제가 되었다. 이는 평가방법의 주 목적이지만, *quality drift* 때문이기도 하다: NLG 시스템은 시간이 지남에 따라 더 좋아지는 경향을 보이며, 따라서 2015년에 rating data로 학습한 모델은 2019년의 최신 모델을 구별하지 못할 수 있다(특히 더 최근 것일수록). 이상적인 학습된 평가방법은 학습을 위해 이용가능한 rating data를 완전히 활용하고, 분포의 이탈(drift)에 강간한 것을 모두 확보하는 것이다. 즉 *추론extrapolate*할 수 있어야 한다.
 
 이 논문에서 통찰한 바는 표현능력과 강건성을 인간 rating에 미세조정하기 전 대량의 합성 데이터에서 사전학습하는 방식으로 결합하는 것이 가능하다는 것이다.  
-여기서 BERT에 기반한 텍스트 생성 평가방법으로 BLEURT를 제안한다. 핵심은 새로운 사전학습 방법으로, 어휘적 그리고 의미적으로 다양한 감독 신호(supervision signals)를 얻을 수 있는 다양한 Wikipedia 문장에서 임의의 변화(perturbation)을 준 문장들을 사용하는 방법이다.
+여기서 BERT에 기반한 텍스트 생성 평가방법으로 BLEURT를 제안한다. 핵심은 새로운 사전학습 방법으로, 어휘적 그리고 의미적으로 다양한 감독 signal(supervision signals)를 얻을 수 있는 다양한 Wikipedia 문장에서 임의의 변화(perturbation)을 준 문장들을 사용하는 방법이다.
 
 BLEURT를 영어에서 학습하고 다른 일반화 영역에서 테스트한다. 먼저 WMT Metrics Shared task의 모든 연도에서 state-of-the-art 결과를 보인다. 그리고 스트레스 테스트를 하여 WMT 2017에 기반한 종합평가에서 품질 이탈에 대처하는 능력을 측정한다. 마지막으로, data-to-text 데이터셋인 WebNLG 2017으로부터 얻는 3개의 task에서 다른 도메인으로 쉽게 조정할 수 있음을 보인다. Ablation 연구는 이 종합 사전학습 방법이 IID 세팅에서 그 성능을 증가시키며, 특히 학습 데이터가 편향되어 있거나, 부족하거나, 도메인을 벗어나는 경우에 더 강건함을 보인다. 
 
@@ -94,9 +94,9 @@ $$ l_{\text{supervised}} = \frac{1}{N} \Sigma^N_{n=1}\Vert y_i - \hat{y}\Vert^2 
 
 ## 4. 합성 데이터에서 사전학습(Pre-Training on Synthetic Data)
 
-이 접근법의 핵심 부분은 rating data에 미세조정하기 전 BERT를 "warm up"하기 위해 사전학습 기술을 사용했다는 것이다. 많은 양의 참조-후보 쌍 $(z, \tilde{z})$을 생성하여, 여러 어휘적 & 의미적 수준의 감독 신호를 multi-task loss를 사용하여 BERT를 학습시켰다. 실험이 보여주덧이, BLEURT는 이 단계 이후로 매우 성능이 좋아지며, 특히 데이터가 부족할 때에 더욱 그렇다.
+이 접근법의 핵심 부분은 rating data에 미세조정하기 전 BERT를 "warm up"하기 위해 사전학습 기술을 사용했다는 것이다. 많은 양의 참조-후보 쌍 $(z, \tilde{z})$을 생성하여, 여러 어휘적 & 의미적 수준의 감독 signal를 multi-task loss를 사용하여 BERT를 학습시켰다. 실험이 보여주덧이, BLEURT는 이 단계 이후로 매우 성능이 좋아지며, 특히 데이터가 부족할 때에 더욱 그렇다.
 
-어떤 사전학습 접근법이든지 데이터셋과 사전학습 task 뭉치가 필요하다. 이상적으로, 이러한 구조는 최종 NLG 평가 task(i.e., 문장 쌍은 비슷하게 분포되어야 하고 사전학습 신호는 사람의 판단과 연관되어 있어야 한다)와 비슷할 수밖에 없다. 안타깝게도, 우리는 우리가 미래에 평가할 NLG 모델에 접근할 수 없다.  
+어떤 사전학습 접근법이든지 데이터셋과 사전학습 task 뭉치가 필요하다. 이상적으로, 이러한 구조는 최종 NLG 평가 task(i.e., 문장 쌍은 비슷하게 분포되어야 하고 사전학습 signal는 사람의 판단과 연관되어 있어야 한다)와 비슷할 수밖에 없다. 안타깝게도, 우리는 우리가 미래에 평가할 NLG 모델에 접근할 수 없다.  
 따라서, 우리는 일반성을 위해 방법을 다음 3가지 요구사항으로 최적화했다:
 
 1. 참조 문장 집합은 반드시 크고 다양성을 가져야 하며, 이는 BLEURT가 다양한 NLG domain과 task를 처리할 수 있을 만큼 충분해야 한다.
@@ -122,22 +122,50 @@ BERT의 초기 학습 task는 토큰화된 문장에서 masked 토큰을 채우�
 위의 합성 예시에서 단어를 무작위로 삭제하여 다른 예시를 만드는 것이 실험에서 유용하다는 것을 알아내었다. 이 방법은 BLEURT가 "병적인" 행동이나 NLG 시스템: 의미없는 예측, 문장 절단 등에 대비할 수 있게 한다.
 
 
-### 4.2. 사전학습 신호(Pre-Training Signals)
+### 4.2. 사전학습 signal(Pre-Training Signals)
 
-다음 단계는 각 문장 쌍 $(z, \tilde{z})$과 사전학습 신호 집합 $\{\tau_k\}$ 을 늘리는 것이다. $\tau_k$는 사적학습 task $k$의 목표 벡터이다.
+다음 단계는 각 문장 쌍 $(z, \tilde{z})$과 사전학습 signal 집합 $\{\tau_k\}$ 을 늘리는 것이다. $\tau_k$는 사적학습 task $k$의 목표 벡터이다. 좋은 사전학습 signal는 매우 다양한 어휘적, 의미적 차이점을 잡아내야 한다. 이는 또한 얻기 쉬워야 하며, 따라서 이 접근법은 대량의 합성 데이터에도 크기를 늘려 사용할 수 있어야 한다. 다음 섹션에서는 표 1에 요약한 9가지 학습 task를 소개한다. 추가 구현 세부는 부록을 참조한다.
 
 **Automatic Metrics:**
 
+문장 BLEU, ROUGE, BERTscore와 연관하여 3가지 signal $\tau_{\text{BLEU}}$, $\tau_{\text{ROUGE}}$, $\tau_{\text{BERTscore}}$를 만들었다. precision을 사용하며 뒤의 2개는 recall과 F-score를 사용한다.
 
 **Backtranslation Likelihood:**
 
+이 signal의 아이디어는 존재하는 번역 모델을 의미적 동등을 측정하는 도구로 사용하는 것이다. 문장 쌍 $(z, \tilde{z})$이 주어지면, 이 학습 signal은 $\tilde{z}$가 그 length로 정규화되었을 때 $z$의 역 번역일 확률 $P(\tilde{z}\vert z)$를 측정한다. 
+
+아래 식의 첫 번째 항을 영어 문장 $z$을 조건으로 하여 프랑스어 문장 $z_{fr}$일 확률을 할당하는 번역 모델이라 하자.  
+두 번째 항은 프랑스어 $\rightarrow$ 영어에 대한 번역 모델이다.
+
+$$ P_{en \rightarrow fr}(z_{fr} \vert z) , P_{fr \rightarrow en}(z \vert z_{fr}) $$
+
+만약 $\vert \tilde{z} \vert$가 $\tilde{z}$ 안의 토큰의 수라면, 점수를 다음과 같이 정의한다.
+
+$$\tau_{en-fr, \tilde{z} \vert z} = \frac{\log P(\tilde{z} \vert z)}{\vert \tilde{z} \vert} , P(\tilde{z} \vert z) = \sum_{z_{fr}} P_{fr \rightarrow en}(z \vert z_{fr})  \ P_{en \rightarrow fr}(z_{fr} \vert z)$$
+
+모든 가능한 프랑스어 문장에 대해 합을 계산하는 것은 불가능하기 때문에, 합은 다음과 같이 근사한다:
+
+$$ \text{assume}: P_{en \rightarrow fr}(z_{fr} \vert z) \approx 1 $$
+
+$$ P(\tilde{z} \vert z) \approx P_{fr \rightarrow en}(\tilde{z} \vert z^*_{fr}) , where \ z^*_{fr} = \argmax P_{en \rightarrow fr}(z_{fr} \vert z) $$
+
+$P(z \vert \tilde{z})$를 계산하는 것은 자명하게도 과정을 역으로만 하면 되므로 영어 $\leftrightarrow$ 독일어와 영어 $\leftrightarrow$ 프랑스어 간 다음 4개의 사전학습 signal을 만들었다.
+
+$$ \tau_{\text{en-fr}, z \vert \tilde{z}}, \ \tau_{\text{en-fr}, \tilde{z} \vert z}, \ \tau_{\text{en-de}, z \vert \tilde{z}}, \ \tau_{\text{en-de}, \tilde{z} \vert z} $$
+
 **Textual Entailment:**
 
+signal $\tau_{\text{entail}}$은 $z$가 $\tilde{z}$를 수반하는지 혹은 상충하는지를 분류기를 통해 표현한다. 이와 관련하여 수반 데이터셋 MNLI에서 미세조정된 BERT를 사용하여 가능성을 수반(*Entail*),  모순(*Contradict*), 중립(*Neutral*)으로 분류하였다.
 
+**Backtranslation flag:**
+
+signal $\tau_{\text{backtran\_flag}}$는 perturbation이 역 번역에 의해 생성되었는지 혹은 mask-filling에 의해 생성되었는지를 나타내는 Boolean 값이다.
 
 ### 4.3. 모델링(Modeling)
 
+각 사전학습 task에서, 모델은 회귀 또는 분류 loss를 사용한다. 그리고 task 수준의 loss의 가중합을 구한다.
 
+$\tau_k$를 각 task에 대한 목표 벡터라 하자(*Entail, Contradict, Neutral*, precision, recall, ROUGE F-score 등). 만약 $\tau_k$가 회귀 task이면, loss는 $\ell_2$
 
 
 <center><img src="/public/img/2021-01-13-BLEURT - Learning Robust Metrics for Text Generation/01.png" width="80%" alt="Examples"></center>
