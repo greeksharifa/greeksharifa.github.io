@@ -46,7 +46,12 @@ Node 임베딩을 생성하기 위한 대부분의 기존 접근은 본질적으
 
 첫 번째로, 각 Node $v$ 는 그것의 바로 이웃(Immediate Neighborhood)에 속하는 Node들의 Representation을 하나의 벡터 $\mathbf{h}_{\mathcal{N}(v)}^{k-1}$ 로 합산한다. 이 때 이 합산 단계는 바깥 Loop의 이전 반복 단계(k-1)에서 생성된 Representation에 의존하고 $k=0$ 일 때는 Input Node Feature가 Base Representation의 역할을 하게 된다.  
 
-이웃한 Feature 벡터들을 모두 통합한 다음, 모델은 Node의 현재 Representation $\mathbf{h}_v^{k-1}$ 과 $\mathbf{h}_{\mathcal{N}(v)}^{k-1}$ 을 쌓은 뒤 비선형 활성화 함수를 통과시킨다. 최종적으로 depth $K$ 에 도달하였을 때의 Representation은 $\mathbf{z}_v = \mathbf{h}_v^K, \forall v \in \mathcal{V}$ 이라고 표현하겠다.  
+이웃한 Feature 벡터들을 모두 통합한 다음, 모델은 Node의 현재 Representation $\mathbf{h}_v^{k-1}$ 과 $\mathbf{h}_{\mathcal{N}(v)}^{k-1}$ 을 쌓은 뒤 비선형 활성화 함수를 통과시킨다.  
+
+최종적으로 depth $K$ 에 도달하였을 때의 Representation은 아래와 같이 표현할 수 있다.  
+
+$$ \mathbf{z}_v = \mathbf{h}_v^K, \forall v \in \mathcal{V} $$
+  
 
 사실 **Aggregator Function**은 다양하게 변형될 수 있으며, 여러 방법에 대해서는 1.3.3에서 다루도록 하겠다.  
 
@@ -100,6 +105,37 @@ $$ \forall u \in \mathcal{N}(v) $$
 우리는 위 식이 `Localized Spectral Convolution`의 개략적인 선형 근사이기 때문에 이를 수정된 평균 기반 Aggregator Convolutional이라고 부를 것이다. (Modified Mean-based Aggregator Convolutional)  
 
 
+**2) LSTM Aggregator**  
+앞서 확인한 형태에 비해 조금 더 복잡한 형태의 함수이다. LSTM의 경우 표현력에 있어서 장점을 지니지만 본질적으로 대칭적이지 않기 때문에 permutation invariant 하지 않다.  
+
+따라서 본 논문에서는 LSTM을 Node의 이웃의 Random Permutation에 적용함으로써 순서가 없는 벡터 집합에 대해서도 LSTM이 잘 동작하도록 하였다.  
+
+
+**3) Pooling Aggregator**  
+Pooling Aggregator는 대칭적이면서도 학습 가능하다. 각 이웃의 벡터는 독립적으로 fully-connected된 신경망에 투입된다. 이후 이웃 집합에 **Elementwise max-pooling** 연산이 적용되어 정보를 통합한다.  
+
+$$ AGGREGATE^{pool}_k = max(\{ \sigma (\mathbf{W}_{pool} \mathbf{h}_{u_i}^k + \mathbf{b}) \}) $$  
+
+$$ \forall u_i \in \mathcal{N}(v) $$  
+
+이론 상으로 max-pooling 이전에 여러 겹의 layer를 쌓을 수도 있지만, 본 논문에서는 간단히 1개의 layer 만을 사용하였는데, 이 방법은 효율성 측면에서 더 나은 모습을 보여준다.  
+
+계산된 각 피쳐에 대해 max-pooling 연산을 적용함으로써 모델은 이웃 집합의 다른 측면을 효과적으로 잡아내게 된다. 물론 이 때 어떠한 대칭 벡터 함수든지 max 연산자 대신 사용할 수 있다.  
+
+본 논문에서는 max-pooling과 mean-pooling 사이에 있어 큰 차이를 발견하지 못하였고 이후 논문에서는 max-pooling을 적용하는 것으로 과정을 통일하였다.  
+
+
+## 1.4. Experiments  
+
+
+## 1.5. Theoretical Analysis  
+
+
+## 1.6. Conclusion  
+
+
+----
+# 2. Appendix: 이론적 배경  
 
 
 
