@@ -46,7 +46,10 @@ Node 임베딩을 생성하기 위한 대부분의 기존 접근은 본질적으
 
 첫 번째로, 각 Node $v$ 는 그것의 바로 이웃(Immediate Neighborhood)에 속하는 Node들의 Representation을 하나의 벡터 $\mathbf{h}_{\mathcal{N}(v)}^{k-1}$ 로 합산한다. 이 때 이 합산 단계는 바깥 Loop의 이전 반복 단계(k-1)에서 생성된 Representation에 의존하고 $k=0$ 일 때는 Input Node Feature가 Base Representation의 역할을 하게 된다.  
 
-이웃한 Feature 벡터들을 모두 통합한 다음, 모델은 Node의 현재 Representation $\mathbf{h}_v^{k-1}$ 과 $\mathbf{h}_{\mathcal{N}(v)}^{k-1}$ 을 쌓은 뒤 비선형 활성화 함수를 통과시킨다.  
+이웃한 Feature 벡터들을 모두 통합한 다음, 모델은 Node의 현재 Representation과 통합된 이웃 벡터를 결합한 뒤 비선형 활성화 함수를 통과시킨다.  
+
+$$ \mathbf{h}_v^{k-1}, \mathbf{h}_{\mathcal{N}(v)}^{k-1} $$  
+  
 
 최종적으로 depth $K$ 에 도달하였을 때의 Representation은 아래와 같이 표현할 수 있다.  
 
