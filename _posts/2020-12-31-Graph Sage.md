@@ -129,7 +129,25 @@ $$ \forall u_i \in \mathcal{N}(v) $$
 
 
 ## 1.4. Experiments  
+본 논문에서 GraphSAGE의 성능은 총 3가지의 벤치마크 task에서 평가되었다.  
 
+(1) Web of Science citation 데이터셋을 활용하여 학술 논문을 여러 다른 분류하는 것  
+
+(2) Reddit에 있는 게시물들이 속한 커뮤니티를 구분하는 것  
+
+(3) 다양한 생물학적 Protein-protein interaction 그래프 속에서 protein 함수를 구별하는 것  
+
+본 챕터의 경우 논문을 직접 참고하길 바라며, 몇 가지 포인트에 대해서만 정리를 하도록 하겠다.  
+
+일단, GraphSAGE의 비교 군으로 총 4가지 방법론이 사용되었다. 완전 무작위, 그래프 구조를 고려하지 않고 raw feature만을 사용한 로지스틱 회귀, DeepWalk 그리고 마지막으로 DeepWalk + raw features, 이렇게 4가지이다.  
+
+GraphSAGE도 총 4가지 스타일을 실험하였다. GCN구조, mean aggregator 구조, LSTM aggregator 구조, pooling aggregator 구조 이렇게 4가지이다. vanilla Gradient Descent Optimizer를 사용한 DeepWalk를 제외하고는 모두 **Adam Opimizer**를 적용하였다. 또한 공평한 비교를 위해 모든 모델은 동일한 미니배치 환경에서 작동하였다.  
+
+아래는 테스트 결과이다.  
+
+<center><img src="/public/img/Machine_Learning/2020-12-31-Graph Sage/03.JPG" width="80%"></center>  
+
+LSTM, Pooling 기반의 Aggregator가 가장 좋은 성능을 보여주었다. K=2로 설정하는 것이 효율성 측면에서 좋은 모습을 보여주었고, 이웃 개체들을 sub-sampling하는 것은 비록 분산을 크게 만들지만 시간을 크게 단축되기 때문에 꼭 필요한 단계라고 할 수 있겠다. 
 
 ## 1.5. Theoretical Analysis  
 
@@ -148,3 +166,6 @@ $$ \forall u_i \in \mathcal{N}(v) $$
 ---
 # Reference  
 1) [논문 원본](https://arxiv.org/abs/1706.02216)  
+2) [논문 원본 내 참고 사이트](https://snap.stanford.edu/graphsage/)  
+3) [논문 저자 깃헙](https://github.com/williamleif/GraphSAGE)  
+4) 
