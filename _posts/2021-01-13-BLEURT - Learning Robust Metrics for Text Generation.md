@@ -1,8 +1,11 @@
 ---
 layout: post
 title: BLEURT - Learning Robust Metrics for Text Generation(BLEU 개선 버전, BLEURT 논문 설명)
+redirect_from:
+  - machine%20learning/2021/01/13
+  - machine%20learning/2021/01/13/
 author: YouWon
-categories: [Machine Learning]
+categories: [Machine_Learning]
 tags: [Paper_Review, NLP, Evaluation_Metric]
 ---
 
