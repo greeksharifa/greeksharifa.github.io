@@ -6,11 +6,11 @@ categories: [Machine_Learning]
 tags: [Machine_Learning, Recommendation System, Paper_Review]
 ---
 
-본 글에서는 2017년에 발표된 **Inductive Representation Learning on Large Graphs**란 논문에 대한 Review를 진행할 것이다. 논문 리뷰가 끝난 후에는 [Uber Engineering 블로그 글](https://eng.uber.com/uber-eats-graph-learning/?fbclid=IwAR2Ow1M7gZi2KjL7t2aecLV8-db0Ph3BioJtUOXGLk6s2ekurbLXdOuEUi4)에서 **Graph Sage**를 어떻게 추천 시스템에 적용하였는지에 대해서도 다루도록 하겠다. 
+본 글에서는 2017년에 발표된 **Inductive Representation Learning on Large Graphs**란 논문에 대한 Review를 진행할 것이다. 다음 글에서는 [Uber Engineering 블로그 글](https://eng.uber.com/uber-eats-graph-learning/?fbclid=IwAR2Ow1M7gZi2KjL7t2aecLV8-db0Ph3BioJtUOXGLk6s2ekurbLXdOuEUi4)에서 **Graph Sage**를 어떻게 추천 시스템에 적용하였는지에 대해서도 다루도록 할 것이며, 추후에는 `GraphSAGE`를 Tensorflow로 구현하는 방법에 대해서도 소개할 계획이다.  
 
 ---
-# 1. Inductive Representation Learning on Large Graphs Paper Review  
-## 1.1. Introduction  
+# Inductive Representation Learning on Large Graphs Paper Review  
+## 1. Introduction  
 큰 Graph에서 Node의 저차원 벡터 임베딩은 다양한 예측 및 Graph 분석 과제를 위한 Feature Input으로 굉장히 유용하다는 것이 증명되어 왔다. Node 임베딩의 기본적인 아이디어는 Node의 Graph 이웃에 대한 고차원적 정보를 Dense한 벡터 임베딩으로 만드는 차원 축소 기법을 사용하는 것이다. 이러한 Node 임베딩은 Downstream 머신러닝 시스템에 적용될 수 있고 Node 분류, 클러스터링, Link 예측 등의 문제에 도움이 될 수 있다.  
 
 하지만 이전의 연구들은 고정된 단일 Graph로부터 Node를 임베딩하는 것에 집중하였는데 실제 현실에서는 새로운 Node와 (sub) Graph가 빠르게 생성되는 것이 일반적이다. (Youtube를 생각해보라!) 고정된 Graph에서 추론을 행하는 것을 **transductive**한 경우라고 부르고 틀에서 벗어나 새로운 Node에 대해서도 합리적인 추론을 행할 수 있는 경우를 **inductive**라고 부른다. Node 임베딩을 생성하기 위한 **inductive**한 접근은 또한 같은 형태의 feature가 존재할 때 Graph 전체에 대해 **일반화된 결과**를 제공하게 된다.  
@@ -28,10 +28,10 @@ Node 임베딩을 생성하기 위한 대부분의 기존 접근은 본질적으
 각 Node에 대한 고유의 임베딩 벡터를 학습하는 대신에, 우리는 Node의 지역 이웃으로부터 Feature 정보를 규합하는 **Aggregator Function**의 집합을 학습한다. 중요한 포인트이다. 왜냐하면 이 컨셉을 통해 각 Node에 귀속된 임베딩 벡터의 한계를 돌파할 수 있기 때문이다. 
 
 
-## 1.3. Proposed method: GraphSAGE  
+## 3. Proposed method: GraphSAGE  
 우리의 접근법의 가장 중요한 아이디어는 Node의 지역 이웃으로부터 Feature Information을 통합하는 방법에 대해 학습한다는 것이다. 먼저 1.3.1에서는 `GraphSAGE` 모델의 파라미터가 이미 학습되어 있다고 가정하고  `GraphSAGE`의 임베딩 생성 알고리즘에 대해 설명할 것이다. 이후 1.3.2에서는 `Stochastic Gradient Descent`와 `Backpropagation` 기술을 통해 모델이 어떻게 학습되는지 설명할 것이다.  
 
-### 1.3.1. Embedding Generation (i.e. forward propagation) Algorithm  
+### 3.1. Embedding Generation (i.e. forward propagation) Algorithm  
 본 섹션에서는 일단 모델의 파라미터가 모드 학습되었고 고정되어 있다고 가정하고 Embedding Generation 혹은 Propgation 알고리즘에 대해 설명할 것이다. 일단 2종류의 파라미터가 있다.  
 
 첫 번째는 $K$ 개의 **Aggregator Function**으로, $AGGREGATE_k, \forall k \in \{1, ..., K\}$ 라고 표현되며, 이 함수는 Node 이웃으로부터 정보를 통합하는 역할을 수행한다.  
@@ -61,7 +61,7 @@ $$ \mathbf{z}_v = \mathbf{h}_v^K, \forall v \in \mathcal{V} $$
 알고리즘1을 Mini-batch 환경으로 확장하기 위해서는 우리는 먼저 depth $K$ 까지 필요한 이웃 집합을 추출해야 한다. 이후 안쪽 Loop(알고리즘1의 3번째 줄)를 실행하는데, 이 때 모든 Node를 반복하는 것이 아니라 각 depth에서의 반복(recursion)을 만족하는데 필요한 Represention에 대해서만 계산한다. (Appendix A 참조)  
 
 **Relation to the Weisfeiler-Lehman Isomorphism Test**  
-`GraphSAGE` 알고리즘은 개념적으로 Graph Isomorphism(동형 이성)을 테스트하는 고전적일 알고리즘에서 영감을 얻어 만들어졌다. 만약 위에서 확인한 알고리즘1에서 $K= \vert \mathcal{V} \vert$ 로 세팅하고 **Weight Matrices**를 단위 행렬로 설정하고 비선형적이지 않은 적절한 Hash 함수를 Aggregator로 사용한다면, 알고리즘1은 `Naive Vertex Refinement`라고 불리는 **Weisfeiler-Lehman: WL Isomorphism Test**의 Instace라고 생각할 수 있다.  
+`GraphSAGE` 알고리즘은 개념적으로 Graph Isomorphism(동형 이성)을 테스트하는 고전적일 알고리즘에서 영감을 얻어 만들어졌다. 만약 위에서 확인한 알고리즘1에서 $K= \vert \mathcal{V} \vert$ 로 세팅하고 **Weight Matrices**를 단위 행렬로 설정하고 비선형적이지 않은 적절한 Hash 함수를 Aggregator로 사용한다면, 알고리즘1은 `Naive Vertex Refinement`라고 불리는 **Weisfeiler-Lehman: WL Isomorphism Test**의 Instance라고 생각할 수 있다.  
 
 이 테스트는 몇몇 경우에는 들어맞지 않지만, 여러 종류의 Graph에서는 유효하다. `GraphSAGE`는 Hash 함수를 학습 가능한 신경망 Aggregator로 대체한 WL Test의 연속형 근사에 해당한다. 물론 `GraphSAGE`는 Graph Isomorphism을 테스트하기 위해서 만들어진 것이 아니라 유용한 Node 표현을 생성하기 위함이다. 그럼에도 불구하고 `GraphSAGE`와 고전적인 WL Test 사이의 연결성은 Node 이웃들의 위상적인 구조를 학습하기 위한 본 알고리즘의 디자인의 기저에 깔려 있는 이론적 문맥을 이해하는 데에 있어 큰 도움을 준다.  
 
@@ -76,7 +76,7 @@ $$ \mathbf{z}_v = \mathbf{h}_v^K, \forall v \in \mathcal{V} $$
 
 실제 적용할 때, $K=2$ 와 $S_1 * S_2 <= 500$ 으로 했을 때 좋은 성능을 보였다. (자세한 사항은 1.4.4를 참조)  
 
-### 1.3.2. Learning the Paremeters of GraphSAGE  
+### 3.2. Learning the Paremeters of GraphSAGE  
 완전한 비지도 학습 상황에서 유용하고 예측 능력이 있는 Representation을 학습하기 위해 우리는 Graph 기반의 Loss 함수를 $\mathbf{z}_u, \forall u \in \mathcal{V}$ 라는 Output Represnetation에 적용하고, Weight Matrices $\mathbf{W}^k, \forall k \in \{1, ..., K\}$ 및 Stochastic Gradient Descent를 통해 Aggregator Funciton의 파라미터를 튜닝해야 한다.  
 
 Graph 기반의 Loss 함수는 인접한 Node들이 유사한 Representation을 갖도록 하게 하고 서로 멀리 떨어져 있는 Node들은 다른 Representation을 갖게 만든다.  
@@ -89,7 +89,7 @@ $$ J_{\mathcal{G}} = \log (\sigma (\mathbf{z}_u^T \mathbf{z}_v)) - Q \cdot \math
 
 이러한 비지도 학습 세팅은 Node Feature가 서비스 혹은 정적인 Repository에 있는 downstream 머신러닝 application에 적용될 때의 상황을 모방하게 된다. 위에서 설명한 Representation이 특정한, 구체적인 downstream task에 이용되어야 할 경우, 앞서 보았던 비지도 Loss는 그 일에 더욱 적합한 (예: cross-entropy loss) 목적함수로 대체되거나 변형될 수 있을 것이다.  
 
-### 1.3.3. Aggregator Architectures  
+### 3.3. Aggregator Architectures  
 N차원의 격자 구조 데이터를 이용한 머신러닝 예(텍스트, 이미지 등)들과 달리, Node의 이웃들은 자연적인 어떤 순서를 갖고 있지 않다. 따라서 알고리즘1에서 보았던 **Aggregator Function**은 반드시 순서가 정해져있지 않은 벡터의 집합에 대해 연산을 수행해야 한다.  
 
 이상적으로는 **Aggregator Function**이 여전히 학습이 가능하고 수준 높은 Representational Capacity를 갖고 있으면서도 대칭적인 형태를 띠고 있으면 좋을 것이다. Input이 순서를 바꿔도 상관 없게 말이다.  
@@ -128,8 +128,8 @@ $$ \forall u_i \in \mathcal{N}(v) $$
 본 논문에서는 max-pooling과 mean-pooling 사이에 있어 큰 차이를 발견하지 못하였고 이후 논문에서는 max-pooling을 적용하는 것으로 과정을 통일하였다.  
 
 
-## 1.4. Experiments  
-본 논문에서 GraphSAGE의 성능은 총 3가지의 벤치마크 task에서 평가되었다.  
+## 4. Experiments  
+본 논문에서 `GraphSAGE`의 성능은 총 3가지의 벤치마크 task에서 평가되었다.  
 
 (1) Web of Science citation 데이터셋을 활용하여 학술 논문을 여러 다른 분류하는 것  
 
@@ -139,9 +139,9 @@ $$ \forall u_i \in \mathcal{N}(v) $$
 
 본 챕터의 경우 논문을 직접 참고하길 바라며, 몇 가지 포인트에 대해서만 정리를 하도록 하겠다.  
 
-일단, GraphSAGE의 비교 군으로 총 4가지 방법론이 사용되었다. 완전 무작위, 그래프 구조를 고려하지 않고 raw feature만을 사용한 로지스틱 회귀, DeepWalk 그리고 마지막으로 DeepWalk + raw features, 이렇게 4가지이다.  
+일단, `GraphSAGE`의 비교 군으로 총 4가지 방법론이 사용되었다. 완전 무작위, 그래프 구조를 고려하지 않고 raw feature만을 사용한 로지스틱 회귀, DeepWalk 그리고 마지막으로 DeepWalk + raw features, 이렇게 4가지이다.  
 
-GraphSAGE도 총 4가지 스타일을 실험하였다. GCN구조, mean aggregator 구조, LSTM aggregator 구조, pooling aggregator 구조 이렇게 4가지이다. vanilla Gradient Descent Optimizer를 사용한 DeepWalk를 제외하고는 모두 **Adam Opimizer**를 적용하였다. 또한 공평한 비교를 위해 모든 모델은 동일한 미니배치 환경에서 작동하였다.  
+`GraphSAGE`도 총 4가지 스타일을 실험하였다. GCN구조, mean aggregator 구조, LSTM aggregator 구조, pooling aggregator 구조 이렇게 4가지이다. vanilla Gradient Descent Optimizer를 사용한 DeepWalk를 제외하고는 모두 **Adam Opimizer**를 적용하였다. 또한 공평한 비교를 위해 모든 모델은 동일한 미니배치 환경에서 작동하였다.  
 
 아래는 테스트 결과이다.  
 
@@ -149,18 +149,30 @@ GraphSAGE도 총 4가지 스타일을 실험하였다. GCN구조, mean aggregato
 
 LSTM, Pooling 기반의 Aggregator가 가장 좋은 성능을 보여주었다. K=2로 설정하는 것이 효율성 측면에서 좋은 모습을 보여주었고, 이웃 개체들을 sub-sampling하는 것은 비록 분산을 크게 만들지만 시간을 크게 단축되기 때문에 꼭 필요한 단계라고 할 수 있겠다. 
 
-## 1.5. Theoretical Analysis  
+## 5. Theoretical Analysis  
+본 Chapter에서는 어떻게 `GraphSAGE`가 내재적으로는 feature에 의존하면서도 Graph 구조에 대해 학습할 수 있는지에 대해 설명하도록 하겠다.  
 
+케이스 스터디의 일환으로, 본 논문에서는 `GraphSAGE`가 Node의 `Clustering Coefficient`를 예측할 수 있는지에 대해 알아보았다. `Clustering Coefficient`는 Node의 지역 이웃들이 얼마나 잘 모여있는지를 측정하는 기준이며 더욱 복잡한 구조적 모티프를위한 토대 역할을 한다.  
 
-## 1.6. Conclusion  
+우리는 `GraphSAGE`의 임베딩 생성 알고리즘(1.3.1의 알고리즘1)이 `Clustering Coefficient`를 근사할 수 있음을 증명할 수 있다.  
 
+**Theorem 1**  
+$x_v$ 가 알고리즘1에서의 feature input을 의미한다고 하자. 모든 Node 쌍에 대해 아래와 같은 조건을 만족하는 고정된 양의 상수 $C$ 가 존재한다고 가정한다.  
 
-----
-# 2. Appendix: 이론적 배경  
+$$ C \in \mathbb{R}^+, \Vert x_v - x_{v^{'}} \Vert_2 > C $$  
 
+$K = 4$ 반복 후에 알고리즘1에 대한 파라미터 학습이 이루어졌을 때 $\forall \epsilon > 0$ 에 대해 아래 식이 존재한다.  
 
+$$ \vert z_v - c_v \vert < \epsilon, \forall v \in \mathcal{V} $$  
 
+이 때 $z_v$ 는 알고리즘1에 의해 생성된 최종 아웃풋 벡터, 즉 Embedding 벡터이고 $c_v$ 는 `Clustering Coefficient`을 의미한다.  
 
+위 정리는, 만약 모든 Node의 feature가 고유한 값을 가질 때, Graph 속에서 `Clustering Coefficient`을 근사할 수 있는 파라미터 세팅이 존재함을 의미한다. 이에 대한 증명은 Appendix에서 확인할 수 있다.  
+
+증명의 기본적인 아이디어는, 각 Node가 고유한 feature representation을 갖고 있다면 우리는 Node를 indicator 벡터로 연결시키고 이 Node의 이웃을 찾는 방법에 대해 학습할 수 있다는 것이다. 또한 이 증명을 통해 위 정리는 **Pooling Aggregator**의 몇몇 특징에 의존적임을 밝혔는데, 이를 통해 **Pooling**을 이용한 GraphSAGE가 다른 GCN이나 Mean-based Aggregator에 비해 더 좋은 성능을 보여준다는 인사이트를 얻을 수 있다.  
+
+## 6. Conclusion  
+`GraphSAGE`는 directed 혹은 multi-model graph를 통합하는 것과 같이 무궁무진한 발전 가능성이 있는 모델이다. 최적화를 위해 Non-uniform Neighborhood Sampling 함수를 연구해보는 것과 같이 굉장히 흥미로운 주제들도 남아있다.  
 
 
 ---
@@ -168,4 +180,3 @@ LSTM, Pooling 기반의 Aggregator가 가장 좋은 성능을 보여주었다. K
 1) [논문 원본](https://arxiv.org/abs/1706.02216)  
 2) [논문 원본 내 참고 사이트](https://snap.stanford.edu/graphsage/)  
 3) [논문 저자 깃헙](https://github.com/williamleif/GraphSAGE)  
-4) 
