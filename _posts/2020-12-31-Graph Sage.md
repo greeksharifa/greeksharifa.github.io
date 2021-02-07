@@ -6,7 +6,7 @@ categories: [Machine_Learning]
 tags: [Machine_Learning, Recommendation System, Paper_Review]
 ---
 
-본 글에서는 2017년에 발표된 **Inductive Representation Learning on Large Graphs**란 논문에 대한 Review를 진행할 것이다. 다음 글에서는 [Uber Engineering 블로그 글](https://eng.uber.com/uber-eats-graph-learning/?fbclid=IwAR2Ow1M7gZi2KjL7t2aecLV8-db0Ph3BioJtUOXGLk6s2ekurbLXdOuEUi4)에서 **Graph Sage**를 어떻게 추천 시스템에 적용하였는지에 대해서도 다루도록 할 것이며, 추후에는 `GraphSAGE`를 Tensorflow로 구현하는 방법에 대해서도 소개할 계획이다.  
+본 글에서는 2017년에 발표된 **Inductive Representation Learning on Large Graphs**란 논문에 대한 Review를 진행할 것이다.  
 
 ---
 # Inductive Representation Learning on Large Graphs Paper Review  
@@ -27,7 +27,11 @@ Node 임베딩을 생성하기 위한 대부분의 기존 접근은 본질적으
 
 각 Node에 대한 고유의 임베딩 벡터를 학습하는 대신에, 우리는 Node의 지역 이웃으로부터 Feature 정보를 규합하는 **Aggregator Function**의 집합을 학습한다. 중요한 포인트이다. 왜냐하면 이 컨셉을 통해 각 Node에 귀속된 임베딩 벡터의 한계를 돌파할 수 있기 때문이다. 
 
+---
+## 2. Related Work  
+논문 참조  
 
+---
 ## 3. Proposed method: GraphSAGE  
 우리의 접근법의 가장 중요한 아이디어는 Node의 지역 이웃으로부터 Feature Information을 통합하는 방법에 대해 학습한다는 것이다. 먼저 1.3.1에서는 `GraphSAGE` 모델의 파라미터가 이미 학습되어 있다고 가정하고  `GraphSAGE`의 임베딩 생성 알고리즘에 대해 설명할 것이다. 이후 1.3.2에서는 `Stochastic Gradient Descent`와 `Backpropagation` 기술을 통해 모델이 어떻게 학습되는지 설명할 것이다.  
 
@@ -128,6 +132,7 @@ $$ \forall u_i \in \mathcal{N}(v) $$
 본 논문에서는 max-pooling과 mean-pooling 사이에 있어 큰 차이를 발견하지 못하였고 이후 논문에서는 max-pooling을 적용하는 것으로 과정을 통일하였다.  
 
 
+---
 ## 4. Experiments  
 본 논문에서 `GraphSAGE`의 성능은 총 3가지의 벤치마크 task에서 평가되었다.  
 
@@ -149,6 +154,7 @@ $$ \forall u_i \in \mathcal{N}(v) $$
 
 LSTM, Pooling 기반의 Aggregator가 가장 좋은 성능을 보여주었다. K=2로 설정하는 것이 효율성 측면에서 좋은 모습을 보여주었고, 이웃 개체들을 sub-sampling하는 것은 비록 분산을 크게 만들지만 시간을 크게 단축되기 때문에 꼭 필요한 단계라고 할 수 있겠다. 
 
+---
 ## 5. Theoretical Analysis  
 본 Chapter에서는 어떻게 `GraphSAGE`가 내재적으로는 feature에 의존하면서도 Graph 구조에 대해 학습할 수 있는지에 대해 설명하도록 하겠다.  
 
@@ -171,6 +177,7 @@ $$ \vert z_v - c_v \vert < \epsilon, \forall v \in \mathcal{V} $$
 
 증명의 기본적인 아이디어는, 각 Node가 고유한 feature representation을 갖고 있다면 우리는 Node를 indicator 벡터로 연결시키고 이 Node의 이웃을 찾는 방법에 대해 학습할 수 있다는 것이다. 또한 이 증명을 통해 위 정리는 **Pooling Aggregator**의 몇몇 특징에 의존적임을 밝혔는데, 이를 통해 **Pooling**을 이용한 GraphSAGE가 다른 GCN이나 Mean-based Aggregator에 비해 더 좋은 성능을 보여준다는 인사이트를 얻을 수 있다.  
 
+---
 ## 6. Conclusion  
 `GraphSAGE`는 directed 혹은 multi-model graph를 통합하는 것과 같이 무궁무진한 발전 가능성이 있는 모델이다. 최적화를 위해 Non-uniform Neighborhood Sampling 함수를 연구해보는 것과 같이 굉장히 흥미로운 주제들도 남아있다.  
 
