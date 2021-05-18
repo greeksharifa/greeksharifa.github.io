@@ -1,0 +1,12 @@
+Markdown Enhanced Preview가 작동하지 않을 때: 플러그인 삭제, 아래 파일 삭제, 재실행 및 재설치하면 됨.
+
+Uninstall the extension.
+It says "requires reload" after uninstalling, so I clicked that.
+Close vscode.
+Delete C:/Users/bert2/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.5.1/.
+Open vscode.
+Install the extension.
+Restart vscode.
+
+--------------------------------------------------------------------------------------------------------
+
