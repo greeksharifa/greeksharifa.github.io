@@ -80,7 +80,7 @@ Node $v$ 에 대하여 $M I$ 는 $v$ 의 연산 그래프가 explanation subgrap
 
 식1을 다시 보자. 우리는 **entropy term** $H(Y)$ 가 상수임을 알 수 있는데, 왜냐하면 GNN을 학습할 때 $\Phi$ 는 고정되어 있기 때문이다. 따라서 결과적으로 예측된 Label 분포 $Y$ 와 explanation $(G_S, X_S)$ 사이의 공통 정보를 최대화하는 것은 결국 아래와 같은 조건부 **entropy**를 최소화하는 것과 같다. (식2)  
 
-$$ H(Y \vert G=G_S, X=X_S) = -\mathbb{E_{Y \vert G_S, X_S}} [log P_{\Phi} (Y \vert G=G_S, X=X_S)] $$  
+$$ H(Y \vert G=G_S, X=X_S) = -\mathbb{E}_{Y \vert G_S, X_S} [log P_{\Phi} (Y \vert G=G_S, X=X_S)] $$  
 
 예측 값 $\hat{y}$ 을 위한 explanation은 결국 GNN 연산 그래프가 $G_S$ 로 한정될 때 발생하는 $\Phi$ 의 불확실성을 최소화하는 $G_S$ 라고 할 수 있다. 즉, $G_S$ 가 $\hat{y}$ 의 확률을 최대화하는 것이다.  
 
