@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Graph Sage (Inductive Representation Learning on Large Graphs) 설명
+title: GraphSAGE (Inductive Representation Learning on Large Graphs) 설명
 author: Youyoung
 categories: [Machine_Learning]
 tags: [Machine_Learning, Recommendation System, Paper_Review]
