@@ -188,13 +188,8 @@ Penn Tree Bank(PTB)에 대해 zero-shot perplexity를 계산했으나, Wikipedia
 이전 SOTA보다 15 point 앞서는 20.50 Perplexity를 기록하였다. 여기서는 데이터셋의 명확한 구분이 없기 때문에 zero-shot만 테스트했다.
 
 
-<<<<<<< HEAD
 > **Penn Tree Bank**  
 [Penn Tree Bank](https://catalog.ldc.upenn.edu/LDC99T42)는 말뭉치 주석(corpus annotation) 중 구문 주석(syntactic annotation) 말뭉치의 일종으로, 기존의 구조 분석보다 정교한 tree structure의 집합이다. 330만 어절 이상의 월스트리트 저널(Wall Street Journal (WSJ))의 문장들로 이루어져 있으며 공개되어 있는 데이터셋이다. Treebank-3은 1999년에 나왔으며 2499개의 story부터 만들어진 98732개의 syntactic annotation story를 포함한다.
-=======
-> **[Penn Tree Bank](https://catalog.ldc.upenn.edu/LDC99T42)**  
-말뭉치 주석(corpus annotation) 중 구문 주석(syntactic annotation) 말뭉치의 일종으로, 기존의 구조 분석보다 정교한 tree structure의 집합이다. 330만 어절 이상의 월스트리트 저널(Wall Street Journal (WSJ))의 문장들로 이루어져 있으며 공개되어 있는 데이터셋이다. Treebank-3은 1999년에 나왔으며 2499개의 story부터 만들어진 98732개의 syntactic annotation story를 포함한다.
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 
 **3.1.2 LAMBADA**
 
@@ -210,17 +205,11 @@ George bought some baseball equipment, a ball, a glove, and a _____. ->
 
 이렇게 했을 때 GPT-3은 86.4%의 정확도를 보여 이전보다 18% 향상된 결과를 얻었다. 여기서 few-show 성능은 모델의 크기에 따라 크게 향상될 수 있다는 것을 알 수 있다. 
 
-<<<<<<< HEAD
 > **LAMBADA dataset**  
 [LAMBADA dataset(LAnguage Modeling Broadened to Account for Discourse Aspects)](https://arxiv.org/abs/1606.06031)은 단어 예측 task로서 계산모델이 텍스트를 이해했는지를 판별할 수 있는 dataset이다. 이 데이터셋은 전체 문맥이 주어졌을 때 마지막 단어가 무엇일지를 사람이 맞추어 생성된 서술형 구절들로 이루어져 있다. 계산모델은 여기서 단지 지역적인 문맥뿐 아니라 더 넓은 범위의 담화에서 정보들을 얻어 사용할 수 있어야 한다.  
 
 예시:  
 > **Context**: “Yes, I thought I was going to lose the baby.” “I was scared too,” he stated, sincerity flooding his eyes. “You were ?” “Yes, of course. Why do you even ask?” “This baby wasn’t exactly planned for.”  
-=======
-> **[LAMBADA dataset(LAnguage Modeling Broadened to Account for Discourse Aspects)](https://arxiv.org/abs/1606.06031)**  
-단어 예측 task로서 계산모델이 텍스트를 이해했는지를 판별할 수 있는 dataset이다. 이 데이터셋은 전체 문맥이 주어졌을 때 마지막 단어가 무엇일지를 사람이 맞추어 생성된 서술형 구절들로 이루어져 있다. 계산모델은 여기서 단지 지역적인 문맥뿐 아니라 더 넓은 범위의 담화에서 정보들을 얻어 사용할 수 있어야 한다.  
-**Context**: “Yes, I thought I was going to lose the baby.” “I was scared too,” he stated, sincerity flooding his eyes. “You were ?” “Yes, of course. Why do you even ask?” “This baby wasn’t exactly planned for.”  
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 **Target sentence**: “Do you honestly think that I would want you to have a ?”  
 **Target word**: miscarriage
 
@@ -229,18 +218,12 @@ George bought some baseball equipment, a ball, a glove, and a _____. ->
 
 HellaSwag dataset은 어떤 이야기나 지시문 집합의 끝맺음 문장으로 어느 것이 가장 좋을지를 선택하는 문제를 다룬다. 사람에게도 살짝 어려운 문제이지만(95.6% 정확도), GPT-3은 78.1%(one-shot), 79.3%(few-shot)을  달성하며 종전의 미세조정된 15억 개의 parameter를 가진 모델(75.4%)를 뛰어넘었다. 그러나 여전히 미세조정된 multi-task 모델인 ALUM(85.6%)에 비하면 낮은 점수이다.
 
-<<<<<<< HEAD
 > **HellaSwag**  
 [HellaSwag dataset](https://arxiv.org/abs/1905.07830)은 task를 다루는 데 있어 상식(commonsense)가 필요하다. video caption인 ActivityNet Captions dataset에서의 데이터만 사용한다(original SWAG dataset은  LSMDC의 caption 데이터도 포함한다). 시간정보를 포함하는 서술(temporal description)과 각 caption에 대한 activity label을 포함한다.
 
 
 예시:   
 > **Pick the best ending to the context.**
-=======
-> **[HellaSwag dataset](https://arxiv.org/abs/1905.07830)**  
-다루는 데 있어 상식(commonsense)가 필요하다. video caption인 ActivityNet Captions dataset에서의 데이터만 사용한다(original SWAG dataset은  LSMDC의 caption 데이터도 포함한다). 시간정보를 포함하는 서술(temporal description)과 각 caption에 대한 activity label을 포함한다.  
-**Pick the best ending to the context.**
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 How to catch dragonflies. Use a long-handled aerial net with a wide opening. Select an aerial net that is 18 inches (46 cm) in diameter or larger. Look for one with a nice long handle.  
 **a)** Loop 1 piece of ribbon over the handle. Place the hose or hose on your net and tie the string securely.  
 **b)** Reach up into the net with your feet. Move your body and head forward when you lift up your feet.          
@@ -252,12 +235,8 @@ How to catch dragonflies. Use a long-handled aerial net with a wide opening. Sel
 
 [StoryCloze 2016 dataset](https://www.cs.rochester.edu/nlp/rocstories/)에서는 few-shot에서 종전 기록보다 4.1% 낮은 87.7%을 기록하였으나, zero-shot에서는 거의 10%가량 향상되었다(83.2%).
 
-<<<<<<< HEAD
 > **StoryCloze 2016 dataset**  
-=======
-> **[StoryCloze 2016 dataset](https://www.cs.rochester.edu/nlp/rocstories/)**  
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
-5문장의 긴 story에서 가장 적절한 끝맺음 문장을 선택하는 문제로, 3744개의 test set을 보유하고 있다.  
+**[StoryCloze 2016 dataset](https://www.cs.rochester.edu/nlp/rocstories/)**은 5문장의 긴 story에서 가장 적절한 끝맺음 문장을 선택하는 문제로, 3744개의 test set을 보유하고 있다.  
 **Context**: Karen was assigned a roommate her first year of college. Her roommate asked her to go to a nearby city for a concert. Karen agreed happily. The show was absolutely exhilarating.  
 **Right Ending**: Karen became good friends with her roommate.  
 **Wrong Ending**: Karen hated her roommate.  
@@ -277,12 +256,8 @@ How to catch dragonflies. Use a long-handled aerial net with a wide opening. Sel
 
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/08.png" width="100%" alt="Examples"></center>
 
-<<<<<<< HEAD
 > **TriviaQA**  
-=======
-> **[TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension](https://www.aclweb.org/anthology/P17-1147.pdf)**  
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
-650k개의 질문-답변-증거(인용구) triple를 포함하는 독해를 위한 데이터셋이다. 95k개의 질문-답변 쌍을 포함한다. 답변을 하기 위해서는 문장 여럿을 살펴봐야 한다.  
+**[TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension](https://www.aclweb.org/anthology/P17-1147.pdf)**은 650k개의 질문-답변-증거(인용구) triple를 포함하는 독해를 위한 데이터셋이다. 95k개의 질문-답변 쌍을 포함한다. 답변을 하기 위해서는 문장 여럿을 살펴봐야 한다.  
 **Question**: The Dodecanese Campaign of WWII that was an attempt by the Allied forces to capture islands in the Aegean Sea was the inspiration for which acclaimed 1961 commando film?  
 **Answer**: The Guns of Navarone  
 **Excerpt**: The Dodecanese Campaign of World War II was an attempt by Allied forces to capture the Italianheld Dodecanese islands in the Aegean Sea following the surrender of Italy in September 1943, and use them as bases against the German-controlled Balkans. The failed campaign, and in particular the Battle of Leros, inspired the 1957 novel The Guns of Navarone and the successful 1961 movie of the same name.  
@@ -328,12 +303,8 @@ Winograd에서, GPT-3은 zero/one/few-shot에서 각각 88.5%, 89.7%, 88.6%의 �
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/10.png" width="100%" alt="Examples"></center>
 
 
-<<<<<<< HEAD
 > **Winograd Schemas Challenge**  
-=======
-> **[Winograd Schemas Challenge](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.729.9814&rep=rep1&type=pdf)**  
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
-튜링 테스트의 약점을 보완하고자 나온 데이터셋으로 어떤 대상이 어떠한지를 물을 때 적절한 대상을 찾는 문제이다.
+**[Winograd Schemas Challenge](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.729.9814&rep=rep1&type=pdf)**은 튜링 테스트의 약점을 보완하고자 나온 데이터셋으로 어떤 대상이 어떠한지를 물을 때 적절한 대상을 찾는 문제이다.
 **The trophy doesn’t fit in the brown suitcase because it’s too big. What is too big?**  
 **Answer 0**: the trophy  
 **Answer 1**: the suitcase  
@@ -341,12 +312,8 @@ Winograd에서, GPT-3은 zero/one/few-shot에서 각각 88.5%, 89.7%, 88.6%의 �
 **Answer 0**: Joan  
 **Answer 1**: Susan  
 
-<<<<<<< HEAD
 > **Winogrande dataset**  
-=======
-> **[Winogrande dataset](https://arxiv.org/abs/1907.10641)**  
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
-44k개의 문제를 포함하여 기존 WSC보다 더 어렵고 규모가 큰 데이터셋이다. 언어적으로 편향되어 있기 때문에(어떤 단어는 특정 단어들과 같이 나올 확률이 높은 등) 언어모델이 쉽게 판별할 수 있는 질문들은 제거되었다.
+**[Winogrande dataset](https://arxiv.org/abs/1907.10641)**은 44k개의 문제를 포함하여 기존 WSC보다 더 어렵고 규모가 큰 데이터셋이다. 언어적으로 편향되어 있기 때문에(어떤 단어는 특정 단어들과 같이 나올 확률이 높은 등) 언어모델이 쉽게 판별할 수 있는 질문들은 제거되었다.
 
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/12.png" width="100%" alt="Examples"></center>
 
@@ -368,34 +335,22 @@ PIQA는 상대적으로 모델 크기가 커져도 성능이 많이 향상되지
 전체적으로, PIQA, ARC에서는 큰 향상이 없었으나, OpenBookQA에서는 꽤 진전이 있었다. 
 
 
-<<<<<<< HEAD
 > **PhysicalQA(PIQA)**  
-=======
-> **[PhysicalQA(PIQA): Reasoning about Physical Commonsense in Natural Language](https://arxiv.org/abs/1911.11641)**  
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
-어떤 (실생활) 목표가 자연어로 주어지면, 모델은 적절한 해답을 선택해야 한다.  
+**[PhysicalQA(PIQA): Reasoning about Physical Commonsense in Natural Language](https://arxiv.org/abs/1911.11641)**은 어떤 (실생활) 목표가 자연어로 주어지면, 모델은 적절한 해답을 선택해야 한다.  
 **Goal**: To separate egg whites from the yolk using a water bottle, you should…  
 **a.** Squeeze the water bottle and press it against the yolk. Release, which creates suction and lifts the yolk.  
 **b.** Place the water bottle and press it against the yolk. Keep pushing, which creates suction and lifts the yolk.  
 
-<<<<<<< HEAD
 > **ARC(AI2 Reasoning Challenge)**    
-=======
-> **[ARC(AI2 Reasoning Challenge): Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge](https://arxiv.org/abs/1803.05457)**    
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
-Challenge set과 Easy set으로 구분되어, Challenge set은 정보기반 알고리즘과 단어 co-occurence 알고리즘으로 제대로 답변할 수 없는 질문들로만 구성되어 있다.  
+**[ARC(AI2 Reasoning Challenge): Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge](https://arxiv.org/abs/1803.05457)**은 Challenge set과 Easy set으로 구분되어, Challenge set은 정보기반 알고리즘과 단어 co-occurence 알고리즘으로 제대로 답변할 수 없는 질문들로만 구성되어 있다.  
 What is a worldwide increase in temperature called?   
 **(A)** greenhouse effect   
 **(B)** global warming   
 **(C)** ozone depletion   
 **(D)** solar heating   
 
-<<<<<<< HEAD
 > **OpenBookQA**    
-=======
-> **[OpenBookQA : Can a Suit of Armor Conduct Electricity A New Dataset for Open Book Question Answering](https://arxiv.org/abs/1809.02789)**    
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
-1326개의 초등 수준 과학적 사실에 기반하였으며 질문의 수는 6k 정도이다.   
+**[OpenBookQA : Can a Suit of Armor Conduct Electricity A New Dataset for Open Book Question Answering](https://arxiv.org/abs/1809.02789)**은 1326개의 초등 수준 과학적 사실에 기반하였으며 질문의 수는 6k 정도이다.   
 **Question**: Which of these would let the most heat travel through?  
 **A)** a new pair of jeans.  
 **B)** a steel spoon in a cafeteria.  
@@ -409,8 +364,6 @@ What is a worldwide increase in temperature called?
 ### 3.6. Reading Comprehension
 
 추상적 / 다지선다 등 5개의 데이터셋에 대해 독해력을 측정한다. 여러 다른 답변 형식에서도 데이터셋간 장벽을 뛰어넘는 GPT-3의 범용성을 확인하였다.
-<<<<<<< HEAD
-=======
 
 - 자유 형식 대화 데이터셋인 CoQA에서 최고의 성능(사람보다 3 point 낮음)과, 
 - 구조화된 대화와 교사-학생 상호작용의 답변 선택 모델링을 요구하는 QuAC에서는 ELMo baseline보다 13 F1 score가 낮은 나쁜 성능을 보여주었다. 
@@ -470,7 +423,6 @@ SQuAD 2.0(**S**tanford **Qu**estion **A**nswering **D**ataset)은 기존 독해�
 
 <center><img src="/public/img/2020-08-14-OpenAI GPT-3 - Language Models are Few-Shot Learners/13.png" width="100%" alt="Examples"></center>
 
->>>>>>> b23e0bec1f4e9f561217548d035879eb1b1d3519
 
 자유 형식 대화 데이터셋인 CoQA에서 최고의 성능(사람보다 3 point 낮음)과, 구조화된 대화와 교사-학생 상호작용의 답변 선택 모델링을 요구하는 QuAC에서는 ELMo 기준보다 13 F1 score가 낮은 나쁜 성능을 보여주었다. 
 
@@ -704,5 +656,19 @@ few-shot에 적합한 또 다른 task는 영문법을 교정하는 것이다. �
 
 논문 참조. 많은 레퍼런스가 있다.
 
+---
+
+## Citation
+
+```
+@misc{brown2020language,
+      title={Language Models are Few-Shot Learners}, 
+      author={Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+      year={2020},
+      eprint={2005.14165},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
 
 ---

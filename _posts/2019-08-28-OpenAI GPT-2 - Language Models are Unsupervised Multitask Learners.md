@@ -239,6 +239,17 @@ GPT-2의 성능이 많은 과제에서 괜찮긴 한데, 미세조정을 통한 
 
 논문 참조. 많은 레퍼런스가 있다.
 
+---
+
+## Citation
+
+```
+@article{radford2019language,
+  title={Language Models are Unsupervised Multitask Learners},
+  author={Radford, Alec and Wu, Jeff and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya},
+  year={2019}
+}
+```
 
 ---
 
