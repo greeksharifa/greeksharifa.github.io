@@ -71,9 +71,80 @@ Latex를 사용해야 한다면, 무료이며 여러 명이 웹상에서 동시 
 ```
 
 
+
+---
+
+## Table
+
+https://ko.overleaf.com/learn/latex/Tables
+https://bskyvision.com/823
+
+### 한 줄 전체
+
+
+
+```latex
+\begin{table*}[t]
+  \centering
+  \begin{tabular}{lcr}
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+    7 & 8 & 9
+  \end{tabular}
+  \caption{Blabla}
+  \label{tab:1}
+\end{table*}
 ```
+
 
 ---
 
 
 <center><img src="/public/img/2020-12-16-Latex-usage/0.png" width="80%" alt="KnowIT VQA"></center>
+
+---
+
+
+## equation
+
+### 수식 정렬 
+
+```latex
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{equation}
+  \begin{aligned}
+    A & = B + C\\
+      & = D + E + F\\
+      & = G
+  \end{aligned}
+\end{equation}
+
+\end{document}
+```
+
+
+```latex
+\begin{multline}
+    first part of the equation \\
+    = second part of the equation
+\end{multline}
+```
+
+```latex
+\begin{equation}
+    \begin{split}
+        first part &= second part #1 \\
+        &= second part #2
+    \end{split}
+\end{equation}
+```
+
+
+
+```latex
+
+```
