@@ -264,7 +264,7 @@ class 말고도 선택하는 방법은 많다. 위에서 `class_name`로 끝나�
 <html>
 ```
 
-여기서 다음 코드로 찾은 수 있다.
+여기서 다음 코드로 찾을 수 있다.
 
 ```python
 continue_link = driver.find_element_by_link_text('Continue')

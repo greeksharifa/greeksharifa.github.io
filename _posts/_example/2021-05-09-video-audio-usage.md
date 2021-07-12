@@ -61,6 +61,3 @@ import moviepy
 - [ffmpeg]()
 
 
-
-
-https://jybaek.tistory.com/813
