@@ -48,7 +48,9 @@ find . -type f | wc -l
 
 ### 여러 파일 압축 한 번에 풀기
 
-`unzip <zipfiles> [-d <dir>]`의 형식이다.
+`unzip '<zipfiles>' [-d <dir>]`의 형식이다.
+
+따옴표를 쓰지 않으면 `filename not matched` 에러가 뜬다.
 
 ```bash
 unzip '*.zip' -d data/
@@ -98,7 +100,7 @@ sudo kill -9 $PID
 watch -d -n 0.5 nvidia-smi
 ```
 
-
+---
 
 # PATH 확인
 
@@ -111,6 +113,21 @@ locate cuda | grep /cuda$
 # or
 find / -type d -name cuda 2>/dev/null
 ```
+
+---
+
+# 기타
+
+## 오류 해결 
+
+### `\r command not found`
+
+파일에 '\r'이 포함되어 코드가 제대로 작동하지 않는 오류(보통 운영체제의 차이로 인해 발생). 다음 코드를 수행하면 해결된다.
+
+```bash
+sed -i 's/\r$//' <filename>
+```
+
 
 
 (지속 업데이트 예정)
