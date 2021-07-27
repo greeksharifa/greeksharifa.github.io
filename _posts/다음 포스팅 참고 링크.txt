@@ -4,13 +4,15 @@ https://www.jetbrains.com/help/pycharm/working-with-source-code.html#code_foldin
 북마크
 
 
-
 # torch.hub.load
 https://jybaek.tistory.com/813
 
 
 # print
 https://velog.io/@janeljs/python-print-sep-end-file-flush
+
+# pathlib
+https://blog.naver.com/PostView.nhn?isHttpsRedirect=true&blogId=hankrah&logNo=221838907175&categoryNo=65&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
 
 
 # wandb
@@ -22,3 +24,11 @@ https://zeddios.tistory.com/120
 https://goddaehee.tistory.com/254
 https://gentlesark.tistory.com/86
 https://github.com/settings/keys
+
+
+# latex
+https://ko.overleaf.com/learn/latex/Tables
+https://m.blog.naver.com/ljy5995/221692661617
+https://bskyvision.com/439
+
+
