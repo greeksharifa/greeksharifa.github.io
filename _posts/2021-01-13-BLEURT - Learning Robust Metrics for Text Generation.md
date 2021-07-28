@@ -91,7 +91,7 @@ $W$와 $b$는 각각 weight matrix와 bias이다. 위의 선형 레이어와 BER
 
 $$ l_{\text{supervised}} = \frac{1}{N} \Sigma^N_{n=1}\Vert y_i - \hat{y}\Vert^2 $$
 
-이 접근법은 상당히 간단하지만, [Section 5](https://greeksharifa.github.io/machine%20learning/2021/01/13/BLEURT-Learning-Robust-Metrics-for-Text-Generation/#5-%EC%8B%A4%ED%97%98experiments)에서 WMT Metrics Shared Task 17-19에서 state-of-the-art 결과를 얻을 수 있음을 보인다. 하지만, 미세조정 BERT는 많은 양의 IID data를 필요로 하며, 이는 다양한 task와 모델의 변형에 일반화할 수 있는 평가 방법으로는 아주 이상적이지는 않다.
+이 접근법은 상당히 간단하지만, [Section 5](https://greeksharifa.github.io/machine_learning/2021/01/13/BLEURT-Learning-Robust-Metrics-for-Text-Generation/#5-%EC%8B%A4%ED%97%98experiments)에서 WMT Metrics Shared Task 17-19에서 state-of-the-art 결과를 얻을 수 있음을 보인다. 하지만, 미세조정 BERT는 많은 양의 IID data를 필요로 하며, 이는 다양한 task와 모델의 변형에 일반화할 수 있는 평가 방법으로는 아주 이상적이지는 않다.
 
 ---
 
