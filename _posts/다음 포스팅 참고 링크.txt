@@ -32,3 +32,5 @@ https://m.blog.naver.com/ljy5995/221692661617
 https://bskyvision.com/439
 
 
+# Task 설명
+ERNIE 3.0 8~12page에 각 설명들이 많다.

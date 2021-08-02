@@ -48,6 +48,12 @@
   article {
     line-height: 1.4rem;
   }
+
+  img {
+    min-height: 150px;
+    max-height: 800px;
+    height:  auto !important;
+  }
 }
 
 /* Related posts */
