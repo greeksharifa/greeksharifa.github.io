@@ -27,7 +27,7 @@ $$ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $$
 
 Equation          | Code                                                           | Display
 -------           | --------                                                       | --------
-NewLine           | \\\\                                                             | $ \\ $
+NewLine           | \\\\  \newline                                                   | $ \\ $
 Greek small Letters 1    | \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta,  \iota, \kappa, \lambda, \mu        | $ \alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \iota, \kappa, \lambda, \mu $
 Greek small Letters 2    | \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega   | $ \nu, \xi, \pi, \rho, \varrho, \sigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega $
 Greek Capital Letters | \Gamma, \Delta, \Theta, \Lambda, \Xi, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega | $ \Gamma, \Delta, \Theta, \Lambda, \Xi, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega $
@@ -59,7 +59,7 @@ Accents           | \hat{x} \widehat{xy} \bar{x} \overline{xyz} \vec{x} \overrig
 Special Characters 1| `\backslash \_ \{ \}`                                                     | $\backslash$ _ { } 
 Plain text        | \text{text…}                                                       | $ \text{text…} $
 Special Characters 2 | \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare   | $ \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare $
-**Fonts**         | \ell  | $ \ell $
+**Fonts**         | l \ell \bold{l} \bm{l}  | $l \quad \ell \quad \bold{l} \quad \bm{l} $
 mathbb            | \mathbb{A}      | $ \mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
 mathbb            | \mathbb{a}      | $ \mathbb{abcdefghijklmnopqrstuvwxyz} $
 mathbf            | \mathbf{A}      | $ \mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ} $
