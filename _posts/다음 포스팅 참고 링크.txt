@@ -34,3 +34,18 @@ https://bskyvision.com/439
 
 # Task 설명
 ERNIE 3.0 8~12page에 각 설명들이 많다.
+
+
+
+
+
+
+[ELMo](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/)
+
+[OpenAI GPT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/28/OpenAI-GPT-2-Language-Models-are-Unsupervised-Multitask-Learners/)
+
+[BERT](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/23/BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/)
+
+[ERNIE 1.0](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2021/06/14/ERNIE/)
+
+[Transformer](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/)
