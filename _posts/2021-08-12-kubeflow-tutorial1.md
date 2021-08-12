@@ -6,7 +6,7 @@ categories: [MLOps]
 tags: [MLOps, Kubernetes, Minikube, Kubeflow]
 ---
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/logo.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/logo.PNG" width="70%"></center>  
 
 본 글은 Local 환경에서 Standard 모드로 설치한 Kubeflow에 대한 튜토리얼 내용을 담고 있다. WSL2-Ubuntu 환경에서의 Kubeflow 설치 방법에 대해 확인하고 싶다면 [이전 글](https://velog.io/@youyoung/Windows10%EC%97%90%EC%84%9C-Kubeflow-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0)을 참고하길 바란다.  
 
@@ -15,27 +15,27 @@ tags: [MLOps, Kubernetes, Minikube, Kubeflow]
 ### 1.1. 노트북 생성  
 노트북 서버는 Kubernetes 위에서 실행되는 Jupyter Notebook 서버를 의미한다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/01.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/01.PNG" width="70%"></center>  
 
 `+NEW SERVER`를 눌러 필요한 설정에 맞게 항목을 입력해준 뒤, Launch 버튼을 클릭하면 노트북 생성이 시작된다.  
 
 생성 완료 후 화면은 아래와 같다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/02.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/02.PNG" width="70%"></center>  
 
 필자는 Dashboar에 처음 접속할 당시 Namespace를 `Youyoung`으로 지정하였다. 따라서 방금 생성한 노트북은 이 Namespace 아래에 생성된다. 확인해보자.  
 
 > kubectl get pods --all-namespaces  
 > kubectl get pods -n Youyoung  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/03.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/03.PNG" width="70%"></center>  
 방금 생성한 `testgraph`가 보인다.  
 
 
 ### 1.2. 노트북 사용  
 위 화면에서 `CONNECT`를 클릭하면 익숙한 Jupyter 환경이 보인다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/04.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/04.PNG" width="70%"></center>  
 
 
 ----  
@@ -43,19 +43,19 @@ tags: [MLOps, Kubernetes, Minikube, Kubeflow]
 ### 2.1. Data Passing in python components 튜토리얼 실행  
 Kubeflow 파이프라인은 컨테이너 기반의 ML 워크플로우를 생성/배포할 수 있게 해주는 툴이다. 확장성과 재사용성이 좋아 편리하게 사용할 수 있다. 첫 튜토리얼을 위해서는 [공식 문서 가이드](https://www.kubeflow.org/docs/components/pipelines/pipelines-quickstart/)에 친절한 설명을 따라가면 된다. 튜토리얼 파이프라인을 클릭해보자.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/05.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/05.PNG" width="70%"></center>  
 
 이후 `+Create Experiment` 버튼을 클릭하고 Experiment Name에 `My experiment`를 입력해주자. 다음 화면에서 `Run Name`을 `My First Run`으로 해준 후, `Start` 버튼을 누르자. 
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/06.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/06.PNG" width="70%"></center>  
 
 잠시 기다린 후 Run name을 클릭하면 아래와 같이 실행된 Graph의 Component들을 확인할 수 있다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/07.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/07.PNG" width="70%"></center>  
 
 Config 탭을 누르면 세부 사항을 확인할 수 있다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/08.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/08.PNG" width="70%"></center>  
 
 ### 2.2. Source 코드 확인  
 [소스코드](https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/Data%20passing%20in%20python%20components/Data%20passing%20in%20python%20components%20-%20Files.py) 페이지를 확인해보고 넘어가자. 먼저 서두의 주석을 확인하자.  
@@ -74,7 +74,7 @@ Small Data는 string으로 serialized 되었다가 커맨드 라인 인자로 �
 
 자 이제 Bigger Data를 쓰기/읽기 해볼 것인데, 먼저 이전에 확인했던 예제 Graph의 구조를 다시 한 번 확인해보자.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/09.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/09.PNG" width="70%"></center>  
 
 Repeat line, Print Text 부분을 먼저 살펴보자.    
 
@@ -198,7 +198,7 @@ if __name__ == '__main__':
 ### 2.3. pods status 확인  
 만약 어떤 pipeline을 실행하고 있는 과정에서 아래와 같이 Status가 **Pending execution**이라면 Container를 생성하고 있는 중일 것이다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/10.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/10.PNG" width="70%"></center>  
 
 아래 명령어를 통해 본인이 생성한 Kubeflow의 Namespace에 있는 pods의 상태를 확인할 수 있다.  
 
@@ -206,7 +206,7 @@ if __name__ == '__main__':
 kubectl get pods -n {YOUR_NAMESPACE}
 ```
 
-<center><img src="/public/img/Machine_Learning/2021-08-12-kubeflow-tutorial1/11.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/11.PNG" width="70%"></center>  
 
 시간이 지나면 위와 같이 running 상태로 바뀔 것이다.  
 
