@@ -8,6 +8,8 @@ tags: [Machine_Learning, Recommendation System, Paper_Review]
 
 본 글에서는 2017년에 발표된 **Inductive Representation Learning on Large Graphs**란 논문에 대한 Review를 진행할 것이다.  
 
+**torch_geomectric**에서 `GraphSAGE`를 사용하는 방법에 대해서 간단하게 [Github](https://github.com/ocasoyy/pytorch_graph_neural_networks)에 올려두었으니 참고해도 좋을 것이다.  
+
 ---
 # Inductive Representation Learning on Large Graphs Paper Review  
 ## 1. Introduction  

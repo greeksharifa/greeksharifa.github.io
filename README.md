@@ -1,9 +1,18 @@
-본 사이트와 동일한 템플릿을 사용하는 것은 아무 상관이 없으나, 같은 템플릿을 사용하고자 한다면 테마를 바꾸시기 바랍니다(그대로 사용하는 사이트가 있음을 확인함).
+# Gorio Learning  
+## Descriptions  
+본 Repository는 [ML, 알고리즘, 투자아이디어 등을 기록한 리서치 블로그](https://greeksharifa.github.io/blog/categories/)를 위해 생성되었습니다.  
 
-Using the same template as this site has nothing to do with it, but if you want to use the same template, change the theme(I chekced some pages are using  exactly same theme with this site).
+----
+## Authors  
+[Youwon Jang](https://github.com/greeksharifa), [Youyoung Jang](https://github.com/ocasoyy)  
 
-# Codinfox-Lanyon
+----
+## Notes  
+본 사이트와 동일한 템플릿을 사용하는 것은 허용되나, 같은 템플릿을 사용하고자 한다면 테마를 바꾸시기 바랍니다.  
+Using the same template as this site is okay, but if you want to use the same template, please change the theme.  
 
+----
+## Codinfox-Lanyon
 This is a jekyll template based on [Lanyon](https://github.com/poole/lanyon). See a live demo [here](http://codinfox.github.io).
 
 **If you like this project, PLEASE give it a star.**
@@ -19,7 +28,7 @@ The theme supports:
 3. Integration of FontAwesome, MathJax, Disqus and Google Analytics
 4. and numerous improvements over original Lanyon
 
-
+----
 ## License
 
 Open sourced under the [MIT license](LICENSE.md).
