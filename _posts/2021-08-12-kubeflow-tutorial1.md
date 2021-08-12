@@ -55,7 +55,7 @@ Kubeflow 파이프라인은 컨테이너 기반의 ML 워크플로우를 생성/
 
 Config 탭을 누르면 세부 사항을 확인할 수 있다.  
 
-<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/08.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/08.PNG" width="55%"></center>  
 
 ### 2.2. Source 코드 확인  
 [소스코드](https://github.com/kubeflow/pipelines/blob/master/samples/tutorials/Data%20passing%20in%20python%20components/Data%20passing%20in%20python%20components%20-%20Files.py) 페이지를 확인해보고 넘어가자. 먼저 서두의 주석을 확인하자.  
@@ -74,7 +74,7 @@ Small Data는 string으로 serialized 되었다가 커맨드 라인 인자로 �
 
 자 이제 Bigger Data를 쓰기/읽기 해볼 것인데, 먼저 이전에 확인했던 예제 Graph의 구조를 다시 한 번 확인해보자.  
 
-<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/09.PNG" width="70%"></center>  
+<center><img src="/public/img/mlops/2021-08-12-kubeflow-tutorial1/09.PNG" width="80%"></center>  
 
 Repeat line, Print Text 부분을 먼저 살펴보자.    
 
