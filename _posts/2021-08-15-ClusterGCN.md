@@ -87,7 +87,7 @@ $\bar{A}$ 를 정규화하면 $A^{\prime} = D^{-1} A$ 가 된다.
 
 최종 Embedding Matrix는 아래와 같이 구성된다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/01.PNG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/01.PNG" width="60%"></center>  
 
 Loss 함수는 아래와 같이 작성할 수 있다.  
 
@@ -97,7 +97,7 @@ $$
 
 그렇다면 $c$ 개의 그룹으로 나누는 기준은 무엇일까? 본 논문에서는 within-clusters links가 between-cluster links 보다 더 많도록 클러스터를 나누기 위해 `METIS`라는 Graph 군집화 방법론을 적용했다고 밝히고 있다. 원문은 [이 곳](https://www.researchgate.net/publication/242479489_Kumar_V_A_Fast_and_High_Quality_Multilevel_Scheme_for_Partitioning_Irregular_Graphs_SIAM_Journal_on_Scientific_Computing_201_359-392)에서 확인할 수 있다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/02.PNG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/02.PNG" width="60%"></center>  
 
 위 그림을 보면 더 깊은 Layer로 진행하면서도 설정한 Cluster의 범위를 벗어나지 않는 `ClusterGCN`의 특성을 확인할 수 있다.  
 
@@ -113,14 +113,29 @@ $$
 
 이를 해결하기 위해 **Stochastic Multiple Partitions**라는 방법론을 도입한다. Graph를 $p$ 개로 나눈다고 하면, 여기서 1개를 선택해서 Batch로 돌리는 것이 아니라 이 중 $q$ 개를 다시 선택해서 이들을 통합한 뒤 하나의 Batch로 취급한다. 즉, 원래 1개만 쓸 것을 여러 개를 합쳐서 쓴다는 의미이다. 이를 통해 Batch 사이의 분산은 줄이면서 between-cluster links는 통합하는 효과를 거둘 수 있다. 실제로 아래 그림을 보면 이와 같은 방법이 효과적이라는 것을 알 수 있다.  
 
-<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/03.PNG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/03.PNG" width="55%"></center>  
 
 ---
 ## 4. Issues of training deeper GCNs  
-본 논문에서는 더욱 깊은 GCN을 학습시키기 위한 간단한 방법을 제시한다. 
+본 논문에서는 더욱 깊은 GCN을 학습시키기 위한 간단한 방법을 제시한다. 직관적으로 생각했을 때, 인접한 위치에 있는 node는 멀리 떨어진 node보다 더 큰 영향력을 행사해야 하므로, 각 GCN Layer에서 사용되는 Adjacency Matrix의 대각 원소의 영향력을 더 확대하는 방안이 도입될 수 있다. 즉, 각 GCN Layer의 통합 과정에서 이전 layer에서 넘어온 representation에 더욱 큰 가중치를 부여하는 것이다. 그런데 이 때 그냥 Identity Matrix를 더하면 layer가 증가함에 따라 numerical instability가 지수 함수적으로 커질 수 있기 때문에 이를 고려햐여 아래와 같은 방법이 제안된다.  
 
+$$ \tilde{A} = (D + I)^{-1} (A + I) $$  
 
+$$ X^{(l+1)} = \sigma ( (\tilde{A} + \lambda diag (\tilde{A})) X^l W^l ) $$
 
+최종적으로 `ClusterGCN` 알고리즘을 정리해보면 아래와 같다.  
 
+<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/04.PNG" width="70%"></center>  
 
+학습 과정과 실험 과정의 경우 논문 원본을 직접 참고하길 바란다. 특징적인 부분은, 실험 데이터셋으로 새롭게 **Amazon2M**이라는 데이터가 추가적으로 사용되었다는 것이다. 이 데이터 속에서 node는 상품이고, 같은 장바구니에서 구매되었으면 상품 끼리의 link가 존재한다는 설정이 도입되었다.  
+
+0.01의 Learning Rate을 가진 Adam Optimizer와 0.2의 Drop Rate, 그리고 512의 Batch Size를 사용했다는 점은 기억해둘 필요가 있으며, 모든 실험은 NVIDIA Tesla V100 GPU (16GB Memory), 20-core Intel Xeon CPU와 192GB의 RAM 환경에서 이루어졌다. Memory 사용량을 확인하기 위해서 Tensorflow의 경우 `tf.contrib.memory_stats.BytesInUse()`, Pytorch의 경우 `torch.cuda.memory_allocated()` 함수를 사용하였다고 밝히고 있다.  
+
+<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/05.PNG" width="60%"></center>  
+
+<center><img src="/public/img/Machine_Learning/2021-08-15-ClusterGCN/06.PNG" width="60%"></center>  
+
+마지막으로 언급할 부분은 구현할 때 고려해야할 부분이다. `ClusterGCN`이 기반으로 하고 있는 Layer의 경우 $D^{-1}AX$ 를 첫 번째 Layer에서 미리 계산해두면 이후에 재사용함으로써 시간을 크게 절약할 수 있기에 이 부분은 반드시 구현하는 것이 필요하다. 그리고 학습 시에는 테스트용 node의 경우 Adjacency Matrix 및 subgraph에서 아예 제거하고, 최종적으로 Test Performance를 확인할 때 다시 삽입하는 방식으로 진행되었다. 
+
+그리고 `ClusterGCN`은 그 구조적 특징 때문에 새로운 node가 들어오는 **Inductive**한 예측 환경에서는 유연하게 대처할 수 없다는 한계는 지니고 있다.  
 
