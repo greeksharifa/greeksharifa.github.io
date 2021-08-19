@@ -58,7 +58,7 @@ Ellipsis          | \ldots, \cdots                                              
 Transpose         | \intercal \top \mid  | $ \intercal \top \mid $
 Spaces            | 1 \ 2 \quad 3 \qquad 4                                         | $ 1 \ 2 \quad 3 \qquad 4 $
 Accents           | \hat{x} \widehat{xy} \bar{x} \overline{xyz} \vec{x} \overrightarrow{xy} \overleftrightarrow{xy} \dot{x} \ddot{x} | $ \hat{x} \widehat{xy} \bar{x} \overline{xyz} \vec{x} \overrightarrow{xy} \overleftrightarrow{xy} \dot{x} \ddot{x} $
-Special Characters 1| `\backslash \_ \{ \}`                                                     | $\backslash$ _ { } 
+Special Characters 1| `\backslash \_ \lrace \rbrace`                                                     | $\backslash$ _ $\lbrace \rbrace$ 
 Plain text        | \text{text…}                                                       | $ \text{text…} $
 Special Characters 2 | \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare   | $ \infty \aleph_0 \nabla \partial \Im \Re \surd \triangle \square \blacksquare $
 **Fonts**         | l \ell \it{l} \boldsymbol{l} \pmb{l}         | $ l \quad \ell \quad \it{l} \quad \boldsymbol{l} \quad \pmb{l} $
