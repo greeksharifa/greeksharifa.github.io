@@ -176,7 +176,7 @@ Knowledge Graphs와 같은 복잡한 구조에서 어떻게 정보를 가져오�
 
 Knowledge base $K$는 다음과 같다.
 
-$$K = \{w_j \vert j=1, ..., N \}$$
+$$K = \lbrace w_j \vert j=1, ..., N \rbrace$$
 
 ### Knowledge Base Cleaning
 
@@ -194,12 +194,12 @@ $$ \beta_{i, j} = sim(\mathbf{p}_i, \mathbf{p}_j) $$
 
 그리고 무향 그래프 $V$를 만들고 유사도 $\beta$가 0.998 초과인 경우에만 edge를 만들었다. 해당 그래프에서 크기 $L$ 이상의 clique를 찾아 임의로 1개만 남기고 나머지는 삭제하였다.
 
-$$ V = \{w_j \vert j=1, ..., N\} $$
+$$ V = \lbrace w_j \vert j=1, ..., N\rbrace $$
 
 ### Knowledge Retrieval Module
 
 전체 과정은 다음과 같다.  
-질문과 답안 선택지 $q_i, a_i^c, \quad c \in \{0, 1, 2, 3\}$를 사용하여 Knowledge base $K$에 질의를 한다.  
+질문과 답안 선택지 $q_i, a_i^c, \quad c \in \lbrace 0, 1, 2, 3\rbrace$를 사용하여 Knowledge base $K$에 질의를 한다.  
 그리고 연관도 점수 $s_{ij}$에 따라 $w_j \in K$의 순위를 매긴다. 
 
 먼저 입력이 될 표현 $x_{ij}$를 다음과 같이 문자열들을 이어 붙여 구한다.
@@ -227,7 +227,7 @@ $$ \mathcal{L} = -\sum_{i=j} \log(s_{ij}) -\sum_{i\neq j} \log(1 - s_{ij}) $$
 
 모델이 다른 답변 후보에 대해 다른 출력을 내는 것을 막기 위해 답안들을 정렬함으로써 순서에 불변적인 모델을 만들었다. prior score $\xi^c$에 따라
 
-$$ a^c, \quad c \in \{0, 1, 2, 3\}  $$
+$$ a^c, \quad c \in \lbrace 0, 1, 2, 3\rbrace  $$
 
 질문 $q$가 주어지면, $\xi^c$는 정답에 대한 $a^c$의 점수를 예측함으로써 얻어진다. 먼저 입력문장 $e^c$를 문자열을 이어 붙여 얻는다:
 
@@ -266,7 +266,7 @@ $$ \xi^c = \textbf{w}_{\text{E}}^{\top} \text{BERT}_{\text{E}}(\mathbf{e}^c) + b
 $$ y^c = [\text{CLS}] + caps + subs + q + [\text{SEP}] + a^c + w +  [\text{SEP}] $$
 
 $caps$는 $n_f$개의 캡션을 시간순으로 이어 붙인 것이고 $subs$는 자막, $w$는 $k$개의 knowledge instance를 합친 것이다.  
-각 질문 $q$에 대해, 답변 후보 $a^c, \ c = \{0, 1, 2, 3\}$ 하나당 하나씩 총 4개가 생성된다.  
+각 질문 $q$에 대해, 답변 후보 $a^c, \ c = \lbrace 0, 1, 2, 3\rbrace$ 하나당 하나씩 총 4개가 생성된다.  
 
 $m$개의 단어로 이루어진 $\mathbf{y}^c$로 토큰화하고 언어표현 $\mathbf{u}^c = \text{BERT}_{\text{R}}(\mathbf{y}^c)$를 얻는다. (R은 reasoning)
 
