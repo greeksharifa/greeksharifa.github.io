@@ -8,6 +8,8 @@ tags: [Machine_Learning, Recommendation System, Paper_Review]
 
 이번 글에서는 ClusterGCN이란 알고리즘에 대해 다뤄보겠다. 상세한 내용을 원하면 [논문 원본](https://arxiv.org/abs/1905.07953)을 참고하길 바라며, 본 글에서는 핵심적인 부분에 대해 요약 정리하도록 할 것이다.  
 
+**torch_geomectric**을 이용하여 `ClusterGCN`를 사용하는 방법에 대해서 간단하게 [Github](https://github.com/ocasoyy/pytorch-gnn-research)에 올려두었으니 참고해도 좋을 것이다.  
+
 ---
 # Cluster-GCN: An Efficient Algorithm for Training Deep and Large Graph Convolutional Networks 설명  
 ## 1. Background  
