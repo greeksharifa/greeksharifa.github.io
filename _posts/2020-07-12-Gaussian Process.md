@@ -85,7 +85,7 @@ $$ \mathbf{f_*}|\mathbf{f} \sim \mathcal{N}(\mu_* + \Sigma_*^T \Sigma^{-1}(\math
 
 <center><img src="/public/img/Machine_Learning/2020-07-12-Gaussian Process/08.JPG" width="70%"></center>  
 
-이 때 $\Sigma(X, x)$ 는 모든 학습 데이터와 $x$ 의 공분산 벡터를 의미한다. 이제 위 식을 자세히 뜯어보자. **Posterior Process**의 공분산 함수는 **Prior**의 공분산 함수에서 양의 값을 뺀 것과 같다. 즉 **Posterior Process**의 공분산 함수는 **Prior**의 그것보다 언제나 큰 값을 가진다는 의미이다. 이것은 논리적인데, 데이터가 우리에게 정보를 제공하였기 때문에 **Posterior**의 분산이 감소하는 것이다.  
+이 때 $\Sigma(X, x)$ 는 모든 학습 데이터와 $x$ 의 공분산 벡터를 의미한다. 이제 위 식을 자세히 뜯어보자. **Posterior Process**의 공분산 함수는 **Prior**의 공분산 함수에서 양의 값을 뺀 것과 같다. 즉 **Posterior Process**의 공분산 함수는 **Prior**의 그것보다 언제나 작은 값을 가진다는 의미이다. 이것은 논리적인데, 데이터가 우리에게 정보를 제공하였기 때문에 **Posterior**의 분산이 감소하는 것이다.  
 
 자 이제 학습 데이터의 **Noise**를 고려해야 한다. 이에 대해서 정규 분포를 설정하는 것이 일반적이다. Noise를 고려한 후 다시 정리하면 아래와 같다.  
 
