@@ -6,7 +6,7 @@ categories: [Machine_Learning]
 tags: [Machine_Learning, Paper_Review]
 ---
 
-본 글에서는 총 3가지의 **Graph Pooling**에 대해 정리해보겠다. `gPool`, `DiffPool`, `EigenPool`이 그 주인공들이며, 상세한 내용은 글 하단에 있는 논문 원본 링크를 참조하길 바란다.  
+본 글에서는 총 3가지의 **Graph Pooling**에 대해 핵심 부분을 추려서 정리해 볼 것이다. `gPool`, `DiffPool`, `EigenPool`이 그 주인공들이며, 상세한 내용은 글 하단에 있는 논문 원본 링크를 참조하길 바란다.  
 
 [Github](https://github.com/ocasoyy/pytorch-gnn-research)에 관련 코드 또한 정리해서 업데이트할 예정이다.  
 
@@ -16,7 +16,7 @@ graph pooling은 간단하게 말하자면 full graph에서 (목적에 맞게) �
 
 단순한 그림 예시는 아래와 같다.  
 
-<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/01.PNG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/01.PNG" width="65%"></center>  
 
 locality 정보를 갖고 있는 grid 형식의 2D 이미지를 다룬 CNN과 달리 그래프 데이터에 바로 pooling과 up-sampling을 수행하는 것은 어려운 작업이다. 본 논문에서는 U-net의 구조를 차용하여 그래프 구조의 데이터에 pooling과 up-sampling(unpooling) 과정을 적용하는 방법에 대해 소개하고 있다.  
 
@@ -31,10 +31,15 @@ $\mathbf{x_i}$ 는 node feature 벡터이고, 이 벡터는 학습 가능한 pro
 참고로 논문에서 모든 계산은 full graph 기준으로 이루어진다. 계산 과정은 아래와 같다.  
 
 $$ \mathbf{y} = \frac{X^l \mathbf{p}^l}{\Vert \mathbf{p}^l \Vert} $$  
+
 $$ idx = rank(\mathbf{y}, k) $$  
+
 $$ \tilde{\mathbf{y}} = \sigma(\mathbf{y}(idx)) $$  
+
 $$ \tilde{X^l} = X^l(idx, :) $$  
+
 $$ A^{l+1} = A^l (idx, idx) $$  
+
 $$ X^{l+1} = \tilde{X}^l \odot (\tilde{\mathbf{y}} \mathbf{1}_C^T) $$  
 
 $\tilde{X}^l$ 이 $(k, C)$ 의 형상을 가졌고, $\tilde{\mathbf{y}}$ 는 $(k, 1)$ 의 형상을, $\mathbf{1}$ 은 $(C, 1)$ 의 형상을 갖고 있다.  
@@ -49,7 +54,9 @@ y_k \dots y_k
 \end{bmatrix}
 $$
 
-<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/02.PNG" width="70%"></center>  
+과정을 그림으로 보면 아래와 같다.  
+
+<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/02.PNG" width="90%"></center>  
 
 `gUnpooling` 과정은 아래와 같이 extracted feature 행렬과 선택된 node의 위치 정보를 바탕으로 graph를 복원하는 방식으로 이루어진다.  
 
@@ -59,9 +66,9 @@ $$ X^{l+1} = distribute(0_{N, C}, X^l, idx) $$
 
 지금까지 설명한 `gPooling`과 `gUnpooling`, 그리고 GCN을 결합하면 **Graph U-Nets**가 완성된다.  
 
-<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/03.PNG" width="70%"></center>  
+<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/04.PNG" width="70%"></center>  
 
-이 모델은 node 분류 및 그래프 분류에서 사용될 수도 있으며, task에 따라 graph에서 중요한 정보를 추출하는 등의 목적으로 사용될 수 있다.   
+이 모델은 node 분류 및 그래프 분류에서 사용될 수도 있으며, task에 따라 graph에서 중요한 정보를 추출하는 등의 목적으로 사용될 수 있다.  
 
 ---
 # DiffPool(Hierarchical Graph Representation Learning with Differentiable Pooling) 설명  
