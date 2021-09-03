@@ -72,11 +72,55 @@ $$ X^{l+1} = distribute(0_{N, C}, X^l, idx) $$
 
 ---
 # DiffPool(Hierarchical Graph Representation Learning with Differentiable Pooling) 설명  
+`DiffPool` 알고리즘은 많은 GNN 모델들이 graph-level classification 문제 상황에서 graph의 계층적 표현 정보를 학습하지 못한다는 한계점을 극복하기 위해 고안되었다. 왜냐하면 대다수의 pooling 방법들은 node embedding을 단순한 합 연산이나 신경망을 통해 globally pool하여 여러 계층 정보의 손실을 야기하기 때문이다.  
+
+`DiffPool`은 미분 가능한 graph pooling 모듈을 의미한다. nodes를 여러 클러스터에 mapping한 후, coarsened input으로 만들어 GNN layer의 input으로 취하는 과정을 통해 `DiffPool`의 update는 이루어진다. 이 때 클러스터는 input graph에서 잘 정의된 커뮤니티 정도로 생각할 수 있겠다. 이를 그림으로 나타내면 아래와 같다.  
+
+<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/05.PNG" width="70%"></center>  
+
+위 그림에서 유추할 수 있듯이, 본 방법론은 여러 GNN과 DiffPool layer를 쌓는(stacking) 방식을 통해 구현된다.  
+
+`DiffPool`에서 가장 중요한 요소 중 하나는 **Assignment Matrix**이다.  
+
+$$ S^l \in \mathcal{R}^{n_l, n_{l+1}} $$  
+
+이 행렬은 layer $l$ 에서의 학습된 cluster assignment matrix인데, 이 행렬의 행은 $n_l$ nodes/clusters 중 하나로, 이 행렬의 열은 $n_{l+1}$ clusters의 하나에 해당한다. 즉, 이 행렬을 통해 2개의 layer를 연결하는 셈이다.  
+
+node features(embeddings)와 adjacency matrix는 아래와 같이 업데이트된다. 이 과정을 통해 점점 graph의 표현은 거칠어지고 압축되는 효과를 가져올 것이다.  
+
+$$ X^{l+1} = S^{l^T} Z^l, A^{l+1} = S^{l^T} A^l S^l $$  
+
+학습은 2개의 구분된 GNN에 의해 이루어진다. 먼저 **embedding GNN**은 아래와 같다.  
+
+$$ Z^l = GNN_{l, embed} (A^l, X^l) $$  
+
+논문에서는 GNN으로 **GraphSAGE**를 사용하였다.  
+
+**pooling GNN**은 아래와 같다.  
+
+$$ S^l = softmax(GNN_{l, pool}(A^l, X^l)) $$  
+
+이 때 softmax는 row-wise 함수이다. 두 GNN은 같은 input을 받지만 구분된 파라미터를 통해 학습한다. 
+
+다시 정리하면, $A^l, X^l$ 이 존재할 때, 이를 통해 먼저 $S^l, Z^l$ 을 학습시킬 수 있다. 그러면 이를 바탕으로 $X^{l+1}, A^{l+1}$ 을 업데이트하는 것이다.  
+
+최종적으로 1개의 클러스터를 형성하여 graph embedding을 수행하고 downstream task를 수행하게 된다.  
+
+논문에서는 2가지 문제점을 밝히고 있다. 일단 연산량이 상당하다는 점이 있는데 이 부분은 추후 연구 주제로 남겨두었다. 두 번째는 수렴이 어렵다는 점이다. 이 부분은 실제 적용에 있어 난제가 될 가능성이 높아 보이는데 논문에서는 이에 대해서 **Regularization** 항을 추가하는 방안을 제시하고 있다.  
+
+$$ L_{LP} = \Vert \Vert A^l, S^l S^{l^t} \Vert \Vert_F, L_E = \frac{1}{n} \Sigma_{i=1}^n H(S_i) $$ 
+
+이 때 $H$ 는 entropy 함수를 의미한다. 첫 번째는 link prediction objective를 추가한 것에 해당하고, 두 번째는 cluster assignment 행렬의 entropy 항을 추가한 것에 해당한다.  
+
+cluster의 수는 node 수의 10% 또는 25% 정도를 사용하였다고 나와있지만, 이 부분의 경우 학습으로 정할 수 있다고 밝히고 있다. cluster의 수가 많으면 계층적 구조를 더욱 잘 모델링할 수 있지만 noise가 발생하고 효율이 떨어질 수 있다고 한다.  
+
+<center><img src="/public/img/Machine_Learning/2021-09-09-GraphPooling/06.PNG" width="70%"></center>  
 
 
 ---
 # EigenPool(Graph Convolutional Networks with EigenPooling) 설명  
 
+to be updated...
 
 ---
 # References  
