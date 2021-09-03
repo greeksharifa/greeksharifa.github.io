@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MMDetection 사용법
+title: MMDetection 사용법 1(Quick Run)
 author: YouWon
 categories: References
 tags: [Linux, Ubuntu, open-mmlab, usage]
@@ -12,6 +12,8 @@ tags: [Linux, Ubuntu, open-mmlab, usage]
 - [Github](https://github.com/open-mmlab/mmdetection)
 
 - [Colab Tutorial](https://colab.research.google.com/github/ZwwWayne/mmdetection/blob/update-colab/demo/MMDet_Tutorial.ipynb#scrollTo=Wuwxw1oZRtVZ)
+
+
 
 ---
 
@@ -356,7 +358,7 @@ python tools/test.py \
 
 --- 
 
-### Train predefined models on standard datasets
+## 1. Train predefined models on standard datasets
 
 - [공식 문서](https://mmdetection.readthedocs.io/en/latest/1_exist_data_model.html#train-predefined-models-on-standard-datasets)
 
@@ -403,9 +405,9 @@ config 파일만 지정하면 알아서 학습이 진행된다. 실행 환경 �
 
 다른 데이터셋을 가져와서 학습하는 방법을 설명하는데, 다음 단계를 따르면 된다.
 
-- 사용할 데이터셋을 준비한다. annotation을 COCO format으로 변환하면 편하다.
-- Config  파일을 수정한다.
-- 준비한 데이터셋에서 학습과 추론을 진행한다.
+1. 사용할 데이터셋을 준비한다. annotation을 COCO format으로 변환하면 편하다.
+2. Config  파일을 수정한다.
+3. 준비한 데이터셋에서 학습과 추론을 진행한다.
 
 여기서는 [balloon dataset](https://github.com/matterport/Mask_RCNN/releases/download/v2.1/balloon_dataset.zip)을 COCO format으로 변환한 다음 학습하는 방법을 설명한다.
 
@@ -595,11 +597,13 @@ data = dict(
 load_from = 'checkpoints/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth'
 ```
 
-현재 디렉토리 구조는 다음과 같다. 위치가 다르다면 경로를 수정해도 된다.
+### 학습 및 추론하기
 
 Checkpoint 파일을 받아서 `checkpoints/` 안에 둔다.
 
 - [mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco checkpoint file](https://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth)
+
+현재 디렉토리 구조는 다음과 같다. 위치가 다르다면 경로를 수정해도 된다.
 
 ```
 mmdetection
@@ -691,4 +695,136 @@ OrderedDict([
 이제 `mmdetection/results/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon` 디렉토리에 들어가보면 `data/balloon/val` 안에 있던 13개의 이미지에 대해 bbos를 친 결과를 확인할 수 있다.
 
 <center><img src="/public/img/2021-08-30-MMDetection/balloon_results_3825919971_93fb1ec581_b.jpg" width="60%" alt="balloon_result.jpg"></center>
+
+---
+
+## 3: Train with customized models and standard datasets
+
+CityScapes와 같은 표준 데이터셋에 사용자 모델을 학습시키려면 다음 과정을 따른다.
+
+1. 표준 데이터셋을 준비한다.
+2. 사용자 모델을 준비한다.
+3. Config 파일을 생성한다.
+4. 표준 데이터셋에서 사용자 모델을 학습 및 추론한다.
+
+**CityScapes 데이터셋 준비**
+
+- 참고: 이 부분은 미구현된 부분이 있어서 그대로는 동작하지 않는다.
+
+먼저 다운로드를 해야 한다. 학교 이메일 등으로만 회원가입이 된다(gmail 불가).
+
+- [CityScapes Homepage](https://www.cityscapes-dataset.com/downloads/)
+
+홈페이지에서 다음을 받으면 된다.
+
+- leftImg8bit_trainvaltest.zip (11GB)
+- gtFine_trainvaltest.zip (241MB) 
+
+참고로 annotations은 각각의 데이터셋 안에 들어 있으니 따로 추가로 받아야 할 것은 없다.
+
+CityScapes는 위에서 설명했던 것과 같이 데이터셋은 다음과 같은 구조로 둔다. 
+
+```
+mmdetection
+├── mmdet
+├── tools
+├── configs
+├── data
+│   ├── coco
+│   │   ├── annotations
+│   │   ├── train2017
+│   │   ├── val2017
+│   │   ├── test2017
+│   ├── cityscapes
+│   │   ├── annotations
+│   │   ├── leftImg8bit
+│   │   │   ├── train
+│   │   │   ├── val
+│   │   ├── gtFine
+│   │   │   ├── train
+│   │   │   ├── val
+│   ├── VOCdevkit
+│   │   ├── VOC2007
+│   │   ├── VOC2012
+```
+
+CityScapes류 데이터셋은 COCO format으로 변환하는 과정이 필요하다.
+
+```bash
+pip install cityscapesscripts
+python tools/dataset_converters/cityscapes.py ./data/cityscapes --nproc 8 --out-dir ./data/cityscapes/annotations
+```
+
+그러면 간단히 변환이 완료된다.
+
+```
+Converting train into instancesonly_filtered_gtFine_train.json
+Loaded 2975 images from ./data/cityscapes/leftImg8bit/train
+Loading annotation images
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 2975/2975, 30.1 task/s, elapsed: 99s, ETA:     0s
+It took 100.40516328811646s to convert Cityscapes annotation
+```
+
+**사용자 모델 준비**
+
+여기서는  Cascade Mask R-CNN R50 모델을 기반으로 하는 모델을 사용자 모델로 쓴다. 이 모델을 그대로 쓰는 것은 아니고 `FPN`을 `AugFPN`으로, training time auto augmentation으로 `Rotate`나 `Translate`를 추가하는 변형을 가한다.
+
+새 파일 `mmdet/models/necks/augfpn.py`을 만든다. 
+
+```python
+from ..builder import NECKS
+
+@NECKS.register_module()
+class AugFPN(nn.Module):
+
+    def __init__(self,
+                in_channels,
+                out_channels,
+                num_outs,
+                start_level=0,
+                end_level=-1,
+                add_extra_convs=False):
+        pass
+
+    def forward(self, inputs):
+        # implementation is ignored
+        pass
+```
+
+그리고 `mmdet/models/necks/__init__.py` 파일에 `from .augfpn import AugFPN` 코드를 추가하거나,
+
+config 파일에 다음을 추가하면 된다.
+
+```python
+custom_imports = dict(
+    imports=['mmdet.models.necks.augfpn.py'],
+    allow_failed_imports=False)
+```
+
+`__init__.py` 파일은 다음과 같이 생겼다.
+
+
+
+사용자 모델을 설계하는 방법이나 학습 세팅에 대한 더 자세한 정보는 다음 링크를 참고하자.
+
+- [Tutorial 4. Customize Models](https://mmdetection.readthedocs.io/en/latest/tutorials/customize_models.html)
+- [Tutorial 5. Customize Runtime Settings](https://mmdetection.readthedocs.io/en/latest/tutorials/customize_runtime.html)
+
+
+**Config 파일 준비**
+
+이제 `configs/cityscapes/cascade_mask_rcnn_r50_augfpn_autoaug_10e_cityscapes.py` 파일을 생성하자.
+
+config 파일의 코드는 [여기](https://mmdetection.readthedocs.io/en/latest/3_exist_data_new_model.html#prepare-a-config)를 참조하자.
+
+**학습 및 추론**
+
+```bash
+python tools/train.py configs/cityscapes/cascade_mask_rcnn_r50_augfpn_autoaug_10e_cityscapes.py
+python tools/test.py configs/cityscapes/cascade_mask_rcnn_r50_augfpn_autoaug_10e_cityscapes.py work_dirs/cascade_mask_rcnn_r50_augfpn_autoaug_10e_cityscapes.py/latest.pth --eval bbox segm
+```
+
+---
+
+Tutorials에 대한 설명은 [다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서..
 
