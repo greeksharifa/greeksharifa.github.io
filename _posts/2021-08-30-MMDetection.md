@@ -140,11 +140,22 @@ Supported methods:
 
 Docker 설치방법 안내에 나와 있지만, `data/` 디렉토리는 자신이 사용하는 환경에서 데이터를 모아놓는 디렉토리에 연결해놓으면 좋다.
 
-그리고 설치 방법에 나와 있는 것처럼 repository를 다운받아 놓자.(이미 되어있으면 상관없다)
+```bash
+docker run --name openmmlab --gpus all --shm-size=8g -it -v {DATA_DIR}:/mmdetection/data mmdetection
+```
+
+그리고 설치 방법에 나와 있는 것처럼 repository를 다운받아 놓자.(Docker는 이미 되어 있다)
 
 ```bash
 git clone https://github.com/open-mmlab/mmdetection
 cd mmdetection
+```
+
+Docker를 쓰기로 했으면 Docker 내에서 다음 명령어를 입력해서 설치를 진행하자.
+
+```bash
+apt-get update
+apt-get install git vim wget
 ```
 
 ---
@@ -158,7 +169,7 @@ cd mmdetection
 
 우선 `checkpoints` 디렉토리를 만들고 다음 모델 파일을 받자.
 
-- [faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth](https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth)
+- [faster_rcnn_r50_fpn_1x_coco checkpoint file](https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth)
 
 현재 worktree는 다음과 같다. 
 
@@ -384,7 +395,300 @@ config 파일만 지정하면 알아서 학습이 진행된다. 실행 환경 �
 
 ---
 
-이외에도 여러 개의 job을 동시에 돌리는 법, Slurm으로 돌리는 방법 등이 공식 홈페이지에 있으니 쓸 생각이 있으면 참조하면 된다.
+[위에서 설명한 페이지](https://mmdetection.readthedocs.io/en/latest/1_exist_data_model.html) 아래쪽에는 이외에도 여러 개의 job을 동시에 돌리는 법, Slurm으로 돌리는 방법 등이 공식 홈페이지에 있으니 쓸 생각이 있으면 참조하면 된다.
 
 ---
+
+## 2: Train with customized datasets
+
+다른 데이터셋을 가져와서 학습하는 방법을 설명하는데, 다음 단계를 따르면 된다.
+
+- 사용할 데이터셋을 준비한다. annotation을 COCO format으로 변환하면 편하다.
+- Config  파일을 수정한다.
+- 준비한 데이터셋에서 학습과 추론을 진행한다.
+
+여기서는 [balloon dataset](https://github.com/matterport/Mask_RCNN/releases/download/v2.1/balloon_dataset.zip)을 COCO format으로 변환한 다음 학습하는 방법을 설명한다.
+
+
+### Annotation 파일을 COCO format으로 변환
+
+Balloon dataset의 annotation 파일은 대충 다음과 같이 생겼다.
+
+```
+{'base64_img_data': '',
+ 'file_attributes': {},
+ 'filename': '34020010494_e5cb88e1c4_k.jpg',
+ 'fileref': '',
+ 'regions': {'0': {'region_attributes': {},
+   'shape_attributes': {'all_points_x': [1020,
+     1000,
+     994,
+     ...
+     1020],
+    'all_points_y': [963,
+     899,
+     841,
+     ...
+     963],
+    'name': 'polygon'}}},
+ 'size': 1115004}
+ ```
+
+ COCO format은 다음과 같다.
+
+ ```
+ {
+    "images": [image],
+    "annotations": [annotation],
+    "categories": [category]
+}
+
+
+image = {
+    "id": int,
+    "width": int,
+    "height": int,
+    "file_name": str,
+}
+
+annotation = {
+    "id": int,
+    "image_id": int,
+    "category_id": int,
+    "segmentation": RLE or [polygon],
+    "area": float,
+    "bbox": [x,y,width,height],
+    "iscrowd": 0 or 1,
+}
+
+categories = [{
+    "id": int,
+    "name": str,
+    "supercategory": str,
+}]
+```
+
+그러니 Balloon dataset의 annotation 파일(json 파일)을 COCO format으로 변환하는 코드가 필요하다. 
+
+- 참고: 공식 홈페이지 코드에는 어째 `import mmcv`가 빠져 있다.
+
+```python
+import os.path as osp
+import mmcv
+
+def convert_balloon_to_coco(ann_file, out_file, image_prefix):
+    data_infos = mmcv.load(ann_file)
+    
+    annotations = []
+    images = []
+    obj_count = 0
+    for idx, v in enumerate(mmcv.track_iter_progress(data_infos.values())):
+        filename = v['filename']
+        img_path = osp.join(image_prefix, filename)
+        height, width = mmcv.imread(img_path).shape[:2]
+        
+        images.append(dict(
+            id=idx,
+            file_name=filename,
+            height=height,
+            width=width))
+        
+        bboxes = []
+        labels = []
+        masks = []
+        for _, obj in v['regions'].items():
+            assert not obj['region_attributes']
+            obj = obj['shape_attributes']
+            px = obj['all_points_x']
+            py = obj['all_points_y']
+            poly = [(x + 0.5, y + 0.5) for x, y in zip(px, py)]
+            poly = [p for x in poly for p in x]
+            
+            x_min, y_min, x_max, y_max = (
+                min(px), min(py), max(px), max(py))
+            
+            
+            data_anno = dict(
+                image_id=idx,
+                id=obj_count,
+                category_id=0,
+                bbox=[x_min, y_min, x_max - x_min, y_max - y_min],
+                area=(x_max - x_min) * (y_max - y_min),
+                segmentation=[poly],
+                iscrowd=0)
+            annotations.append(data_anno)
+            obj_count += 1
+    
+    coco_format_json = dict(
+        images=images,
+        annotations=annotations,
+        categories=[{'id':0, 'name': 'balloon'}])
+    mmcv.dump(coco_format_json, out_file)
+
+
+convert_balloon_to_coco('train/via_region_data.json',
+                        'train/annotation_coco.json',
+                        'train')
+
+convert_balloon_to_coco('val/via_region_data.json',
+                        'val/annotation_coco.json',
+                        'val')
+```
+
+위의 코드를 다음과 같이 놓고 실행하면 변환이 완료된다.
+
+```
+balloon
+├── convert_annotations.py
+├── train
+│   ├── *.jpg
+│   ├── via_region_data.json
+│   ├── annotation_coco.json
+├── val
+│   ├── *.jpg
+│   ├── via_region_data.json
+│   ├── annotation_coco.json
+```
+
+결과:
+
+```
+root@0d813b2889d8:/mmdetection/data/balloon# python convert_annotation.py 
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 61/61, 49.4 task/s, elapsed: 1s, ETA:     0s
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 48.6 task/s, elapsed: 0s, ETA:     0s
+```
+
+### Config 파일 준비
+
+`mmdetection/configs/balloon/` 디렉토리를 만들고 `mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py` 파일을 생성한다. Mask R-CNN with FPN 모델을 사용하기 때문에 이러한 이름을 가진다.
+
+파일 내용은 다음과 같다.
+
+```python
+# The new config inherits a base config to highlight the necessary modification
+_base_ = '../mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco.py'
+
+# We also need to change the num_classes in head to match the dataset's annotation
+model = dict(
+    roi_head=dict(
+        bbox_head=dict(num_classes=1),
+        mask_head=dict(num_classes=1)))
+
+# Modify dataset related settings
+dataset_type = 'COCODataset'
+classes = ('balloon',)
+data = dict(
+    train=dict(
+        img_prefix='data/balloon/train/',
+        classes=classes,
+        ann_file='data/balloon/train/annotation_coco.json'),
+    val=dict(
+        img_prefix='data/balloon/val/',
+        classes=classes,
+        ann_file='data/balloon/val/annotation_coco.json'),
+    test=dict(
+        img_prefix='data/balloon/val/',
+        classes=classes,
+        ann_file='data/balloon/val/annotation_coco.json'))
+
+# We can use the pre-trained Mask RCNN model to obtain higher performance
+load_from = 'checkpoints/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth'
+```
+
+현재 디렉토리 구조는 다음과 같다. 위치가 다르다면 경로를 수정해도 된다.
+
+Checkpoint 파일을 받아서 `checkpoints/` 안에 둔다.
+
+- [mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco checkpoint file](https://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth)
+
+```
+mmdetection
+├── mmdet
+├── tools
+├── configs
+│   ├── balloon
+│   │   ├── mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py
+│   ├── mask_rcnn
+│   │   ├── mask_rcnn_r50_caffe_fpn_1x_coco.py
+│   │   ├── mask_rcnn_r50_fpn_1x_coco.py'
+│   │   ├── ...
+├── checkpoints
+│   ├── faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
+│   ├── mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth
+├── data
+│   ├── balloon
+│   │   ├── convert_annotations.py
+│   │   ├── train
+│   │   │   ├── *.jpg
+│   │   │   ├── annotation_coco.json
+│   │   ├── val
+│   │   │   ├── *.jpg
+│   │   │   ├── annotation_coco.json
+```
+
+이제 학습을 진행하면 된다.
+
+```bash
+python tools/train.py configs/balloon/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py
+```
+
+결과:
+
+```
+...
+2021-09-03 06:37:20,209 - mmdet - INFO - Saving checkpoint at 12 epochs
+2021-09-03 06:37:20,690 - mmdet - INFO - Exp name: mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py
+2021-09-03 06:37:20,690 - mmdet - INFO - Epoch(val) [12][13]    bbox_mAP: 0.7080, 
+bbox_mAP_50: 0.8280, bbox_mAP_75: 0.7820, bbox_mAP_s: 0.2020, bbox_mAP_m: 0.4750, 
+bbox_mAP_l: 0.8110, bbox_mAP_copypaste: 0.708 0.828 0.782 0.202 0.475 0.811, 
+segm_mAP: 0.7460, segm_mAP_50: 0.8190, segm_mAP_75: 0.7740, segm_mAP_s: 0.4040, 
+segm_mAP_m: 0.4850, segm_mAP_l: 0.8350, segm_mAP_copypaste: 0.746 0.819 0.774 0.404 0.485 0.835
+```
+
+이제 work_dirs에는 다음과 같이 파일들이 생성되어 있다. 명령창에서 `--work-dirs` 옵션을 주었다면 해당 디렉토리로 들어가면 된다.
+
+```
+mmdetection
+├── work_dirs
+│   ├── mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon
+│   │   ├── 20210903_061911.log  
+│   │   ├── ...
+│   │   ├── 20210903_062541.log  
+│   │   ├── 20210903_063427.log.json  
+│   │   ├── epoch_1.pth   
+│   │   ├── epoch_2.pth  
+│   │   ├── ...
+│   │   ├── epoch_12.pth  
+│   │   ├── latest.pth
+│   │   ├── mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py
+```
+
+`latest.pth` 파일을 이용해서 테스트를 진행하려면 다음과 같이 입력한다.
+
+```bash
+python tools/test.py \
+    configs/balloon/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py \
+    work_dirs/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon/latest.pth \
+    --eval bbox segm \
+    --show-dir results/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon
+```
+
+- 참고: 공식 코드에는 어째서인지 디렉토리 이름을 `...balloon.py\latest.path`로 적어 놨다... 대규모 프로젝트의 코드치고 자잘한 오류가 많다.
+
+대략 다음과 같은 결과를 얻을 수 있다.
+
+```
+OrderedDict([
+    ('bbox_mAP', 0.708), ('bbox_mAP_50', 0.828), ('bbox_mAP_75', 0.782),
+    ('bbox_mAP_s', 0.202), ('bbox_mAP_m', 0.475), ('bbox_mAP_l', 0.811), 
+    ('bbox_mAP_copypaste', '0.708 0.828 0.782 0.202 0.475 0.811'), ('segm_mAP', 0.746), 
+    ('segm_mAP_50', 0.819), ('segm_mAP_75', 0.774), ('segm_mAP_s', 0.404), 
+    ('segm_mAP_m', 0.485), ('segm_mAP_l', 0.835), 
+    ('segm_mAP_copypaste', '0.746 0.819 0.774 0.404 0.485 0.835')
+])
+```
+
+이제 `mmdetection/results/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon` 디렉토리에 들어가보면 `data/balloon/val` 안에 있던 13개의 이미지에 대해 bbos를 친 결과를 확인할 수 있다.
+
+<center><img src="/public/img/2021-08-30-MMDetection/balloon_results_3825919971_93fb1ec581_b.jpg" width="60%" alt="balloon_result.jpg"></center>
 
