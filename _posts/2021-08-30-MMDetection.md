@@ -826,5 +826,5 @@ python tools/test.py configs/cityscapes/cascade_mask_rcnn_r50_augfpn_autoaug_10e
 
 ---
 
-Tutorials에 대한 설명은 [다음 글](https://greeksharifa.github.io/references/2018/07/13/it-will-update-soon/)에서..
+Tutorials에 대한 설명은 [다음 글](https://greeksharifa.github.io/references/2021/09/05/MMDetection02/)에서..
 
