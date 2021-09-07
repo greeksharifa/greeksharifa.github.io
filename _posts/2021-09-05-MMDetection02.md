@@ -30,8 +30,32 @@ tags: [Linux, Ubuntu, open-mmlab, usage]
 먼저 config 파일의 구조는 다음과 같다.
 
 - 기본이 되는 config 파일이 `configs/_base_/` 디렉토리에 있다. 해당 디렉토리는 dataset, model, schedule, default_runtime 총 4개로 구성되며 사용되는 config들은 이들을 base로 한다. `_base_` 안에 있는 config로만 구성된 config를 *primitive*라 한다.
-- 실제로 사용할 config는 `_base_` 내의 기본 config 또는 다른 config를 상속하여 구성할 수 있다. 이를테면 하나의 primitive를 상속한 뒤 적당한 수정을 가해서 사용하는 방식이다.
+- 실제로 사용할 config는 `_base_` 내의 기본 config 또는 다른 config를 상속받아 구성할 수 있다. 이를테면 하나의 primitive를 상속받은 뒤 적당한 수정을 가해서 사용하는 방식이다.
     - 만약 아예 새로운 config를 만들고 싶다면 `configs/`에다 새로운 디렉토리를 만들고 작성하면 된다.
+
+config 디렉토리의 구조는 대략 다음과 같음을 기억하자.
+
+```
+mmdetection
+├── configs
+│   ├── _base_
+│   │   ├── datasets
+|   │   │   ├── coco_detection.py
+|   │   │   ├── ...
+│   │   ├── models
+|   │   │   ├── faster_rcnn_r50_fpn.py
+|   │   │   ├── ...
+│   │   ├── schedules
+|   │   │   ├── schedule_1x.py
+|   │   │   ├── ...
+│   │   ├── default_runtime.py
+|   |
+│   ├── faster_rcnn
+|   │   ├── faster_rcnn_r50_fpn_1x_coco.py
+|   │   ├── ...
+│   ├── mask_rcnn
+│   ├── ...
+```
 
 *primitive*의 한 예시는 `configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py`이다.
 
@@ -426,7 +450,7 @@ MMDetection의 모델은 크게 다섯 부분으로 나누어진다.
 4. RoI extractor: RoI Align과 같이 feature map으로부터 RoI feature를 추출하는 부분이다.
 5. Loss: Head에서 손실함수를 계산하는 부분이다. FocalLoss, L1Loss, GHMLoss 등
 
-### 사용자 Backbone 만들기
+### 사용자 backbone 만들기
 
 3개의 과정을 거치면 된다.
 
@@ -444,6 +468,7 @@ class MobileNet(nn.Module):
 
     def forward(self, x):  # should return a tuple
         pass
+    # 구현하는 방법은 이미 구현되어 있는 다른 파일들을 보는 것도 도움이 된다.(그러나 보통 복잡함)
 ```
 
 2. `mmdet/models/backbones/__init__.py`에다가 import문을 추가하거나,
@@ -456,40 +481,212 @@ custom_imports = dict(
     allow_failed_imports=False)
 ```
 
+3. config 파일에서 방금 만든 backbone을 사용하면 끝!
+
+```python
+model = dict(
+    ...
+    backbone=dict(
+        type='MobileNet',
+        arg1=xxx,
+        arg2=xxx),
+    ...
+```
+
+
+### 사용자 neck 만들기
+
+backbone 만드는 것과 매우 비슷하다.  
+`mmdet/models/necks/` 디렉토리에 `pafpn.py`와 같이 파일을 만들고, 
+
+```python
+from ..builder import NECKS
+
+@NECKS.register_module()
+class PAFPN(nn.Module):
+
+    def __init__(self,
+                in_channels,
+                out_channels,
+                num_outs,
+                start_level=0,
+                end_level=-1,
+                add_extra_convs=False):
+        pass
+
+    def forward(self, inputs):
+        # implementation is ignored
+        pass
+```
+
+`mmdet/models/necks/__init__.py`에 
+
+```python
+from .pafpn import PAFPN
+```
+
+을 추가하거나 config 파일에
+
+```python
+custom_imports = dict(
+    imports=['mmdet.models.necks.pafpn.py'],
+    allow_failed_imports=False)
+```
+
+를 추가한다.
+
+다음 config 파일에
+
+```python
+neck=dict(
+    type='PAFPN',
+    in_channels=[256, 512, 1024, 2048],
+    out_channels=256,
+    num_outs=5)
+```
+
+로 사용하면 끝이다.
+
+### 사용자 head, RoI head, Loss 만들기
+
+`mmdet/models/roi_heads/bbox_heads/`, `mmdet/models/bbox_heads/` 혹은 `mmdet/models/losses/`에다가 파일을 만들고 비슷하게 작업하면 된다.
+
+import문을 추가해야 하는 파일은 `mmdet/models/bbox_heads/__init__.py`, `mmdet/models/roi_heads/__init__.py` 혹은 `mmdet/models/losses/__init__.py`이다.
+
+config 파일에다가는 다음을 추가하면 된다.
+
+```python
+custom_imports=dict(
+    imports=['mmdet.models.roi_heads.double_roi_head', 
+            'mmdet.models.bbox_heads.double_bbox_head',
+            'mmdet.models.losses.my_loss'])
+```
+
+loss의 사용은 다음과 같다.
+
+```python
+loss_bbox=dict(type='MyLoss', loss_weight=1.0))
+```
+
+---
+
+## Tutorial 5: Customize Runtime Settings
+
+- [공식 문서](https://mmdetection.readthedocs.io/en/latest/tutorials/customize_runtime.html)
+
+Optimizer를 변경하려면 config 파일에서 그냥 바꿔주면 된다.
+
+```python
+optimizer = dict(type='Adam', lr=0.0003, weight_decay=0.0001)
+# or
+optimizer = dict(type='MyOptimizer', a=a_value, b=b_value, c=c_value)
+```
+
+사용자 Opitimizer를 추가하려면 우선 `mmdet/core/optimizer/my_optimizer.py`와 같이 파일을 만들고,
+
+
+```python
+from .registry import OPTIMIZERS
+from torch.optim import Optimizer
+
+
+@OPTIMIZERS.register_module()
+class MyOptimizer(Optimizer):
+
+    def __init__(self, a, b, c)
+```
+
+다른 모듈을 추가할 때처럼 `mmdet/core/optimizer/__init__.py`에다가 import문을 추가하거나
+
+```python
+from .my_optimizer import MyOptimizer
+```
+
+config 파일에 다음을 추가한다.
+
+```python
+custom_imports = dict(imports=['mmdet.core.optimizer.my_optimizer'], allow_failed_imports=False)
+```
+
+여기까지 읽어 보았다면 무언가 사용자 모듈과 같은 것을 추가할 때는
+
+1. 기존 것을 상속받은 다음 구현하고
+2. `__init__.py` 혹은 config 파일에 import문을 추가하고
+3. config 파일에 custom_imports문을 추가하거나 사용자 모듈을 추가하는 과정
+
+을 거치면 된다. 거의 모든 과정이 비슷하다.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- weight decay for BatchNorm layers와 같은 trick(?)을 사용하기 위해서는 optimizer constructor를 구현해야 한다. 공식 문서 참조.
 
 
 ---
 
-<center><img src="/public/img/2021-08-30-MMDetection/000000000139.jpg" width="70%" alt="faster_rcnn_result.jpg"></center>
+## Tutorial 7: Finetuning Models
+
+Tutorial 6은 Loss를 만드는 부분인데 생략하였다.
+
+COCO 데이터셋에서 사전학습된 detector들은 다른 데이터셋에서 미세조정하기 전 괜찮은 사전학습 모델로 사용할 수 있다. 
+
+이를 위해서는 다음 과정을 거쳐야 한다.
+
+
+**[Tutorial 2](https://greeksharifa.github.io/references/2021/09/05/MMDetection02/#tutorial-2-customize-datasets)에서와 같이 사용자 데이터셋 준비**
+
+위 과정을 따라하면 된다.
+
+**config 상속**
+
+config 항목에서와 같이 기본 모델, dataset config, runtime setting config를 상속받으면 된다. 아래는 cityscapes 데이터셋을 예시로 한 것이다.
+
+```python
+_base_ = [
+    '../_base_/models/mask_rcnn_r50_fpn.py',
+    '../_base_/datasets/cityscapes_instance.py', '../_base_/default_runtime.py'
+]
+```
+
+**head 수정**
+
+그리고 config 파일에서 `num_classes` 항목을 새 데이터셋의 class 개수로 맞춰 준다.
+
+
+**training schedule 수정**
+
+미세조정 hyperparameter는 기본값과 많이 다를 수 있다. 보통 작은 lr와 더 적은 epoch을 쓴다.
+
+```python
+# optimizer
+# lr is set for a batch size of 8
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer_config = dict(grad_clip=None)
+# learning policy
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[7])
+# the max_epochs and step in lr_config need specifically tuned for the customized dataset
+runner = dict(max_epochs=8)
+log_config = dict(interval=100)
+```
+
+**사전학습 모델 사용**
+
+동적으로 사전학습된 model checkpoint를 가져올 수도 있지만, 미리 다운로드하는 것을 좀 더 추천한다고 한다.
+
+```python
+load_from = 'https://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco/mask_rcnn_r50_caffe_fpn_mstrain-poly_3x_coco_bbox_mAP-0.408__segm_mAP-0.37_20200504_163245-42aa3d00.pth'  # noqa
+```
+
+faster_rcnn_r50_fpn_1x_coco의 경우 아래 링크에서 받을 수 있다.
+
+- [faster_rcnn_r50_fpn_1x_coco checkpoint file](https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth)
+
+
+faster rcnn의 다른 버전은  [github](https://github.com/open-mmlab/mmdetection/tree/master/configs/faster_rcnn)에서 확인하자.
+
+다른 모델들은 [여기](https://github.com/open-mmlab/mmdetection/tree/master/configs)에서 config 및 checkpoint 파일, log를 확인할 수 있다.
+
