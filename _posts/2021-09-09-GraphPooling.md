@@ -108,7 +108,7 @@ $$ S^l = softmax(GNN_{l, pool}(A^l, X^l)) $$
 
 논문에서는 2가지 문제점을 밝히고 있다. 일단 연산량이 상당하다는 점이 있는데 이 부분은 추후 연구 주제로 남겨두었다. 두 번째는 수렴이 어렵다는 점이다. 이 부분은 실제 적용에 있어 난제가 될 가능성이 높아 보이는데 논문에서는 이에 대해서 **Regularization** 항을 추가하는 방안을 제시하고 있다.  
 
-$$ L_{LP} = \Vert \Vert A^l, S^l S^{l^t} \Vert \Vert_F, L_E = \frac{1}{n} \Sigma_{i=1}^n H(S_i) $$ 
+$$ L_{LP} = \Vert A^l, S^l S^{l^t} \Vert_F, L_E = \frac{1}{n} \Sigma_{i=1}^n H(S_i) $$ 
 
 이 때 $H$ 는 entropy 함수를 의미한다. 첫 번째는 link prediction objective를 추가한 것에 해당하고, 두 번째는 cluster assignment 행렬의 entropy 항을 추가한 것에 해당한다.  
 
