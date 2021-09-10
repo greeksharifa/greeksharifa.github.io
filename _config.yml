@@ -26,8 +26,8 @@ sass:
   sass_dir: _scss
 paginate: 5
 paginate_path: '/blog/page:num'
-permalink: pretty
-# permalink: /:title/
+# permalink: pretty
+permalink: /:title/
 
 version: 1.0.0
 
@@ -55,7 +55,7 @@ nav:
   About:
     - '/about/'
   Github Project:
-    - 'http://greeksharifa.github.io/'
+    - 'https://github.com/greeksharifa/greeksharifa.github.io'
 
 # Where are tags and categories displayed
 tag_page: '/blog/tags/'
@@ -73,5 +73,20 @@ whitelist:
 
 # Plugins
 mathjax: true # whether support mathjax
-google_analytics_token: 'UA-00000000-1' # leave blank if you don't want google analytics
+google_analytics_token: 'G-XEE6P4YHK9' # leave blank if you don't want google analytics
 disqus_short_name: 'greeksharifa-github-io' # leave blank if you don't want disqus
+
+comments:
+  provider    : "disqus"                                # comment 처리 사이트 명칭 기재
+              # false (default), "disqus", "discourse", "facebook"
+              # "staticman", "staticman_v2", "utterances", "custom"
+  disqus:
+    shortname : "greeksharifa-github-io"                    # disqus의 shortname 기재
+
+# Analytics
+analytics:
+  provider               : "google-universal" 
+                          # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id          : "G-XEE6P4YHK9"
+    anonymize_ip         : # true, false (default)
