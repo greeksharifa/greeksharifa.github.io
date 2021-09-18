@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python os, platform 사용법(Python os 다루기)
+title: Python glob, os, platform, shutil 사용법(Python os 다루기)
 author: YouWon
 categories: References
 tags: [os, platform, usage]
@@ -13,9 +13,22 @@ tags: [os, platform, usage]
 ## Import
 
 ```python
+import glob
 import os
 import platform
 ```
+
+--
+
+## glob
+
+### glob.glob
+
+
+### glob.iglob
+
+
+### glob.glob('**/*.jpg', recursive=True)
 
 ---
 
@@ -24,6 +37,22 @@ import platform
 
 ### os.getcwd()
 
+---
+
+## shutil
+
+shutil.copy
+
+shutil.copy2
+
+shutil.copyfile
+
+shutil.copytree
+
+```python
+from distutils.dir_util import copy_tree
+copy_tree("./test1", "./test2")
+```
 
 
 ---
