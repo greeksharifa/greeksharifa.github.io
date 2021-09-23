@@ -9,7 +9,7 @@ tags: [Machine_Learning, Bayesian_Statistics]
 본 글에서는 정보 이론과 관련이 있는 **Kullback-Leibler Divergence**와 이를 기반으로 한 **Variational Inference**에 대해 간략히 정리해보고자 한다. 시작에 앞서, 변분 추론은 근사 추정의 대표적인 방법이라는 점을 밝히고 싶으며, 본 글에서 소개된 변분 추론 기법은 **Vanilla Variational Inference**라고 부를 수 있는 **CAVI**이다. **CAVI**의 단점을 보완한 다양한 변분 추론 기법들이 연구되었으며 이에 대한 내용은 후속 글에서 다루도록 할 것이다.  
 
 ## 1. Kullback-Leibler Divergence  
-정보이론에서 정보량은 불확실성이 커질수록 많아지는 것으로 정의한다. **Shannon Entropy**는 확률의 값에 $log_2$ 를 씌우고 -1을 곱해준 값으로, 모든 사건의 정보량의 Expectation을 의미한다. 확률 분포 P에 대한 섀넌 엔트로피는 아래와 같이 정의할 수 있다.  
+정보이론에서 정보량은 불확실성이 커질수록 많아지는 것으로 정의한다. **Shannon Entropy**는 확률의 값에 $log$ 를 씌우고 -1을 곱해준 값으로, 모든 사건의 정보량의 Expectation을 의미한다. 확률 분포 P에 대한 섀넌 엔트로피는 아래와 같이 정의할 수 있다.  
 
 $$ H(P) = E_{X \sim P}[-logP(x)] $$  
 
