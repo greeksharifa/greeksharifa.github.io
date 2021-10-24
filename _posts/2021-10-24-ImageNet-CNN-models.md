@@ -168,7 +168,7 @@ ResNet의 출발점은 다음과 같다. 어떤 shallow 모델이 있고, 여기
 
 버전별 ResNet 구조는 다음과 같다.
 
-<center><img src="/public/img/2021-10-24-ImageNet-CNN-models/Resnet.png" width="100%"></center>
+<center><img src="/public/img/2021-10-24-ImageNet-CNN-models/ResNet.png" width="100%"></center>
 
 - Xavier Initialization을 사용하였다.
 - 모든 conv layer 이후 batch norm이 사용되었다.
