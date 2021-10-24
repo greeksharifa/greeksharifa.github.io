@@ -178,8 +178,7 @@ ResNet의 출발점은 다음과 같다. 어떤 shallow 모델이 있고, 여기
 
 # InceptionNet v2,3, v4
 
-논문 링크: **[Inception v2, 3](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf)**
-논문 링크: **[Inception v4](https://arxiv.org/pdf/1602.07261.pdf)**
+논문 링크: **[Inception v2, 3](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf)**, **[Inception v4](https://arxiv.org/pdf/1602.07261.pdf)**
 
 
 기존의 InceptionNet(GoogLeNet)을 발전시킨 모델이다. 
