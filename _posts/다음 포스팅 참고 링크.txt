@@ -2,6 +2,7 @@
 코드블럭 접기
 https://www.jetbrains.com/help/pycharm/working-with-source-code.html#code_folding
 북마크
+Ctrl + Shift + A : find action. 여기서 make directory 단축키도 지정 가능.
 
 
 # torch.hub.load
