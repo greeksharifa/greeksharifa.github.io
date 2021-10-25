@@ -1,8 +1,10 @@
 ---
 layout: post
-title: Margin-based Loss
+title: Margin-based Loss 설명
 redirect_from:
   - /computer%20vision/2021/10/24/Margin-Based-Loss
+  - /computer vision/2021/10/24/Margin-Based-Loss
+  - computer vision/2021/10/24/Margin-Based-Loss
 author: YouWon
 categories: [Machine_Learning]
 tags: [Machine Learning]
