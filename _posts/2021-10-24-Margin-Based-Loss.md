@@ -1,9 +1,11 @@
 ---
 layout: post
 title: Margin-based Loss
+redirect_from:
+  - /computer%20vision/2021/10/24/Margin-Based-Loss
 author: YouWon
-categories: [Computer Vision]
-tags: [CNN, Paper_Review, ImageNet]
+categories: [Machine_Learning]
+tags: [Machine Learning]
 ---
 
 ---
