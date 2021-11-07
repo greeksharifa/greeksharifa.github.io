@@ -44,7 +44,7 @@ Sigma             | \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}                  
 Signs             | \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x}        | $ \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x} $
 Special functions | \lim_{x\to 0} \sin \max \ln \log                               | $ \lim_{x\to 0} \sin \max \ln \log $
 Matrix            | \begin{pmatrix}a & b\\\ c & d\end{pmatrix}$$                   | $\begin{pmatrix}a & b\\\ c & d\end{pmatrix}$
-Multi-lines       | \begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray}    | $\begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray}$
+Multi-lines       | \begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray}    | $$\begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray}$$
 Inequality        | \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  | $ \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  $
 Approximate       | \approx \sim \simeq \cong \equiv \prec \lhd                    | $ \approx \sim \simeq \cong \equiv \prec \lhd $
 Set Inclusion     | \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing | $ \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing $
