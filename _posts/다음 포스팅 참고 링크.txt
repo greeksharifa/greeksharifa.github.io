@@ -50,3 +50,7 @@ ERNIE 3.0 8~12page에 각 설명들이 많다.
 [ERNIE 1.0](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2021/06/14/ERNIE/)
 
 [Transformer](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/)
+
+
+error 해결
+https://suho413.tistory.com/entry/venv-returned-non-zero-exit-status-1-%EC%97%90%EB%9F%AC
