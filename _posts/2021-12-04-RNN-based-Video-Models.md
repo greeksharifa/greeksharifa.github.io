@@ -12,7 +12,7 @@ tags: [RNN, Paper_Review]
 
 RNN 기반 모델은 single embedding으로 전체 seq를 인코딩하므로 정보의 손실이 입력이 길어질수록 커진다. 또 처음에 들어온 입력에 대한 정보는 점점 잊혀지는 단점이 있다.
 
-이는 [Attention Is All You Need](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/) 이후 발표되는 Attention 기반 모델에서 개선된다.
+이는 [Attention Is All You Need](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/) 이후 발표되는 [Attention 기반 모델](https://greeksharifa.github.io/computer%20vision/2021/12/06/Attention-based-Video-Models/)에서 개선된다.
 
 ---
 
