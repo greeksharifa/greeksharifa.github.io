@@ -3,7 +3,7 @@ layout: post
 title: Action Recognition Models(Two-stream, TSN, C3D, R3D, T3D, I3D, S3D, SlowFast, X3D)
 author: YouWon
 categories: [Computer Vision]
-tags: [CNN, Paper_Review, ImageNet]
+tags: [CNN, Paper_Review]
 ---
 
 ---
