@@ -3,7 +3,7 @@ layout: post
 title: Contrastive Learning, SimCLR 논문 설명(SimCLRv1, SimCLRv2)
 author: YouWon
 categories: [Machine_Learning]
-tags: [Contrastive Learning, Computer Vision, SimCLR]
+tags: [Contrastive Learning, Computer Vision, SimCLR, Google Research]
 ---
 
 ---

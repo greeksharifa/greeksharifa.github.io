@@ -3,18 +3,22 @@ layout: post
 title: VideoBERT - A Joint Model for Video and Language Representation Learning, CBT(Learning Video Representations using Contrastive Bidirectional Transformer) 논문 설명
 author: YouWon
 categories: [Computer Vision]
-tags: [Transformer, BERT]
+tags: [Transformer, BERT, Google Research]
 ---
 
 ---
 
-이 글에서는 Google Research에서 발표한 VideoBERT 논문을 간략하게 정리한다.
+이 글에서는 Google Research에서 발표한 VideoBERT(와 CBT) 논문을 간략하게 정리한다.
 
 ---
 
 # VideoBERT: A Joint Model for Video and Language Representation Learning
 
 논문 링크: **[VideoBERT: A Joint Model for Video and Language Representation Learning](https://arxiv.org/abs/1904.01766)**
+
+- 2019년 9월(Arxiv), ICCV 2019
+- Google Research
+- Chen Sun, Austin Myers, Carl Vondrick, Kevin Murphy, and Cordelia Schmid
 
 Video에다가 BERT를 적용한 논문이다. Visual info는 Video의 frame를 1.5초마다 하나씩 뽑아 S3D embedding을 만들고, Audio는 ASR을 사용하여 텍스트로 변환하여 사용했다.
 
@@ -52,6 +56,10 @@ Downstream task로
 # CBT(Learning Video Representations using Contrastive Bidirectional Transformer)
 
 논문 링크: **[Learning Video Representations using Contrastive Bidirectional Transformer](https://arxiv.org/abs/1906.05743)**
+
+- 2019년 9월
+- Google Research
+- Chen Sun1 Fabien Baradel1;2 Kevin Murphy1 Cordelia Schmid1
 
 (거의) 갈은 저자들이 위의 VideoBERT 논문에서 end-to-end 학습을 막는 Clustering을 대체하는 방법을 제안한 논문이다.
 

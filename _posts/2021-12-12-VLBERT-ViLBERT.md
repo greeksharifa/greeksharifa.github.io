@@ -16,6 +16,13 @@ tags: [Transformer, ViT]
 
 논문 링크: **[VL-BERT: Pre-training of Generic Visual-Linguistic Representations](https://arxiv.org/abs/1908.08530)**
 
+Github: https://github.com/jackroos/VL-BERT
+
+- 2020년 2월(Arxiv), ICLR 2020
+- University of Science and Technology of China, **Microsoft Research Asia**
+- Weijie Su, Xizhou Zhu, Yue Cao, Bin Li, Lewei Lu, Furu Wei, Jifeng Dai 
+
+
 Visual-Language BERT로, Visual info와 Language info를 BERT에다가 넣는 방법론을 제시한다.
 
 - 학습 샘플은 image + 이미지를 설명하는 sentence 쌍으로 이루어진다.
@@ -66,6 +73,12 @@ VCR, VQA, Reffering Expression Comprehension) downstream task에 대한 결과�
 # ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations for Vision-and-Language Tasks
 
 논문 링크: **[ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations for Vision-and-Language Tasks](https://arxiv.org/abs/1908.02265)**
+
+Github: https://github.com/facebookresearch/vilbert-multi-task
+
+- 2019년 8월(Arxiv), NIPS 2020
+- Georgia Institute of Technology, **Facebook AI Research**, Oregon State University
+- Jiasen Lu, Dhruv Batra, Devi Parikh, Stefan Lee
 
 위의 VL-BERT와 거의 같은 방식인데(이름도 비슷하다), Cross-modal Attention을 썼다는 점이 가장 중요한 차이이다.
 
