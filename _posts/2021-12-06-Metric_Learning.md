@@ -144,7 +144,7 @@ $\alpha$는 margin을 나타낸다.
 
 여기서 사용할 수 있는 방법으로 **Online Negative Mining**이 있다.
 
-이는 batch를 크게 잡아서, 현재 sample인 anchor-positive-negative에서 negative를 다른 sample의 anchor/positive/negative를 대체하여 계산할 수 있다. 이러면 학습이 조금 더 되지만, batch size가 커야 되고, 계산량이 매우 많아지는 단점이 존재한다.
+이는 batch를 크게 잡아서, 현재 sample인 anchor-positive-negative에서 다른 sample의 anchor/positive/negative 중 anchor와 positive 관계인 것을 제외하고 가장 가까운 것부터 선택하여 negative를 대체하여 계산할 수 있다. 이러면 학습이 조금 더 되지만, batch size가 커야 되고, 계산량이 매우 많아지는 단점이 존재한다.
 
 학습을 더 잘 하기 위해서 생각해야 할 방법은 semi-hard negative mining이다.
 
@@ -164,9 +164,7 @@ A와 P는 고정이라 할 때, 아래 3개의 Negative 중 어느 것을 선택
 ---
 
 
-# Example
-
-## FaceNet: A Unified Embedding for Face Recognition and Clustering
+# FaceNet: A Unified Embedding for Face Recognition and Clustering
 
 
 논문 링크: **[FaceNet: A Unified Embedding for Face Recognition and Clustering](https://arxiv.org/abs/1503.03832)**

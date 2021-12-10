@@ -3,7 +3,7 @@ layout: post
 title: Action Recognition Models(Two-stream, TSN, C3D, R3D, T3D, I3D, S3D, SlowFast, X3D)
 author: YouWon
 categories: [Computer Vision]
-tags: [CNN, Paper_Review]
+tags: [CNN, Paper_Review, 3DCNN]
 ---
 
 ---
@@ -14,7 +14,7 @@ tags: [CNN, Paper_Review]
 - **3D CNN 계열:** CNN은 3D로 확장하여 (iamge $\rightarrow$ video) 사용한 모델. Facebook이 주도해 왔다.
 
 
-<center><img src="/public/img/2021-12-04-Action-Recogntion-Mdoels/fig00.png" width="100%"></center>
+<center><img src="/public/img/2021-12-04-Action-Recogntion-Mdoels/fig01.png" width="100%"></center>
 
 
 
