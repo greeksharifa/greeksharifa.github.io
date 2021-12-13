@@ -1,7 +1,6 @@
 ---
 layout: post
-title: Swin Transformer - Hierarchical Vision Transformer using Shifted Windows
- 논문 설명
+title: Swin Transformer - Hierarchical Vision Transformer using Shifted Windows 논문 설명
 author: YouWon
 categories: [Computer Vision]
 tags: [Transformer, Swin Transformer, Microsoft Research]
@@ -9,7 +8,7 @@ tags: [Transformer, Swin Transformer, Microsoft Research]
 
 ---
 
-이 글에서는 Microsoft Research Asia에서 발표한 Swin Transformer, Swin Transformer v2, Video Swin Transformer 논문을 간략하게 정리한다.
+이 글에서는 Microsoft Research Asia에서 발표한 Swin Transformer 논문을 간략하게 정리한다.
 
 ---
 
@@ -19,7 +18,7 @@ tags: [Transformer, Swin Transformer, Microsoft Research]
 
 Github: https://github.com/microsoft/Swin-Transformer
 
-- 2021년 3월(Arxiv), ICCV 2021
+- 2021년 3월(Arxiv), ICCV 2021 best paper
 - Microsoft Research Asia
 - Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, Baining Guo
 
@@ -87,8 +86,8 @@ Swin Transformer는 4가지 버전이 있는데(Tiny, Small, Base, Large) 아래
     - 각 patch는 하나의 "token"과 같으며 그 feature는 raw pixel RGB 값을 이어붙인 것이다.
     - 이 논문에서는 각 patch의 크기는 $4 \times 4$이며, 따라서 feature는 $4 \times 4 \times 3 = 48$이 된다.
 - Stage 1:
-    - 이후 Linear Layer를 통해 $H/4 \times W/4 \times 48$ 텐서를 $H/4 \times W/4 \times C$ 텐서로 변환한다. 생긴 걸 보면 $1 \times 1$ conv 같지만 FC가 맞다.
-    - Swin Transformer Block이 이제 등장한다. 얘는 위 그림의 (b)에서 볼 수 있는데, 일반적인 **MSA**(Multi-head Self Attention) 대신 **W-MSA**(Window MSA)와 **SW-MSA***(Shifted Window MSA)라는 것을 사용한다. 이건 다음 섹션에서 설명한다. Activation function으로는 GELU를 사용한다.
+    - 이후 Linear Layer를 통해 $H/4 \times W/4 \times 48$ 텐서를 $H/4 \times W/4 \times C$ 텐서로 변환한다. 생긴 걸 보면 $1 \times 1$ conv 같지만 Linear Layer가 맞다.
+    - Swin Transformer Block이 이제 등장한다. 얘는 위 그림의 (b)에서 볼 수 있는데, 일반적인 **MSA**(Multi-head Self Attention) 대신 **W-MSA**(Window MSA)와 **SW-MSA**(Shifted Window MSA)라는 것을 사용한다. 이건 다음 섹션에서 설명한다. Activation function으로는 GELU를 사용한다.
 - Stage 2~4에서는 Patch Merging이 있다.
     - 이건 맨 처음 $4 \times 4$ 크기의 작은 patch들을 점점 합쳐가면서 더 넓은 부분을 한번에 보려는 과정이다.
     - 먼저 인접한 $2 \times 2$개의 patch를 concat한다. 그러면 채널 수가 4배로 된다.
