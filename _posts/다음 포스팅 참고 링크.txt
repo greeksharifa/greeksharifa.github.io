@@ -40,6 +40,7 @@ ERNIE 3.0 8~12page에 각 설명들이 많다.
 
 
 
+[Transformer](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/)
 
 [ELMo](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/20/ELMo-Deep-contextualized-word-representations/)
 
@@ -49,7 +50,7 @@ ERNIE 3.0 8~12page에 각 설명들이 많다.
 
 [ERNIE 1.0](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2021/06/14/ERNIE/)
 
-[Transformer](https://greeksharifa.github.io/nlp(natural%20language%20processing)%20/%20rnns/2019/08/17/Attention-Is-All-You-Need/)
+[ViT](https://greeksharifa.github.io/computer%20vision/2021/12/10/ViT-ViViT/#vitan-image-is-worth-16x16-words-transformers-for-image-recognition-at-scale)
 
 
 error 해결
