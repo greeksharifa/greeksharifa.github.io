@@ -92,7 +92,7 @@ Swin Transformer는 4가지 버전이 있는데(Tiny, Small, Base, Large) 아래
     - 이건 맨 처음 $4 \times 4$ 크기의 작은 patch들을 점점 합쳐가면서 더 넓은 부분을 한번에 보려는 과정이다.
     - 먼저 인접한 $2 \times 2$개의 patch를 concat한다. 그러면 채널 수가 4배로 된다.
     - 이를 linear layer를 써서 2C로 맞춘다. 따라서 Patch Merging을 통과하면 해상도는 $2 \times 2$배 줄고 채널은 2배로 늘어난다.
-- 이렇게 hierarchical한 구조로 각 단계마다 representatino을 갖기 때문에 다양한 scale의 entity를 다루어야 하는 image 분야에서 괜찮은 성능을 낼 수 있는 것이다. 어떻게 보면 생긴 게 [VGGNet](https://greeksharifa.github.io/computer%20vision/2021/10/24/ImageNet-CNN-models/#vggnet)이나 [ResNet](https://greeksharifa.github.io/computer%20vision/2021/10/24/ImageNet-CNN-models/#resnet)과 비슷하므로, 여러 vision task에서 이 Swin Transformer를 backbone으로 사용할 수 있다.
+- 이렇게 hierarchical한 구조로 각 단계마다 representation을 갖기 때문에 다양한 scale의 entity를 다루어야 하는 image 분야에서 괜찮은 성능을 낼 수 있는 것이다. 어떻게 보면 생긴 게 [VGGNet](https://greeksharifa.github.io/computer%20vision/2021/10/24/ImageNet-CNN-models/#vggnet)이나 [ResNet](https://greeksharifa.github.io/computer%20vision/2021/10/24/ImageNet-CNN-models/#resnet)과 비슷하므로, 여러 vision task에서 이 Swin Transformer를 backbone으로 사용할 수 있다.
 - 참고로, (b)는 거의 비슷한 Swin Transformer를 2개 붙여 놓은 것이기 때문에, (a) 부분에서 $\times2$, $\times6$이라 되어 있는 부분은 각각 (b)를 1번, 3번 붙여 놓은 것이다.
 
 ### 3.2. Shifted Window based SelfAttention
