@@ -50,7 +50,7 @@ $$ L(W, (Y, \vec{X_1}, \vec{X_2})^i) = (1-Y)\frac{1}{2}(D_W)^2 + (Y)\frac{1}{2}(
 
 논문 링크: **[A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709)**
 
-Github: https://github.com/google-research/simclr
+Github: [https://github.com/google-research/simclr](https://github.com/google-research/simclr)
 
 - 2020년 2월(Arxiv), ICML
 - Google Research
@@ -121,7 +121,7 @@ ImageNet 말고 다른 dataset에서 평가한 결과는 아래와 같다. Super
 
 논문 링크: **[A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2006.10029)**
 
-Github: https://github.com/google-research/simclr
+Github: [https://github.com/google-research/simclr](https://github.com/google-research/simclr)
 
 - 2020년 6월(Arxiv), NIPS
 - Google Research

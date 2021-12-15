@@ -16,7 +16,7 @@ tags: [Transformer, Swin Transformer, Microsoft Research]
 
 논문 링크: **[Swin Transformer V2: Scaling Up Capacity and Resolution](https://arxiv.org/abs/2111.09883)**
 
-Github: https://github.com/microsoft/Swin-Transformer
+Github: [https://github.com/microsoft/Swin-Transformer](https://github.com/microsoft/Swin-Transformer)
 
 - 2021년 11월(Arxiv)
 - Microsoft Research Asia

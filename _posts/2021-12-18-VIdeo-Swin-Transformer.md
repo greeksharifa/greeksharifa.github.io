@@ -8,7 +8,7 @@ tags: [Transformer, Swin Transformer, Microsoft Research]
 
 ---
 
-이 글에서는 Microsoft Research Asia에서 발표한 Swin Transformer 논문을 간략하게 정리한다.
+이 글에서는 Microsoft Research Asia에서 발표한 Video Swin Transformer 논문을 간략하게 정리한다.
 
 ---
 
@@ -16,7 +16,7 @@ tags: [Transformer, Swin Transformer, Microsoft Research]
 
 논문 링크: **[Video Swin Transformer](https://arxiv.org/abs/2106.13230)**
 
-Github: https://github.com/SwinTransformer/Video-Swin-Transformer
+Github: [https://github.com/SwinTransformer/Video-Swin-Transformer](https://github.com/SwinTransformer/Video-Swin-Transformer)
 
 - 2021년 6월(Arxiv)
 - **Microsoft Research Asia**, University of Science and Technology of China, Huazhong University of Science and Technology, Tsinghua University

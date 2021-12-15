@@ -16,7 +16,7 @@ tags: [Transformer, ViT]
 
 논문 링크: **[VL-BERT: Pre-training of Generic Visual-Linguistic Representations](https://arxiv.org/abs/1908.08530)**
 
-Github: https://github.com/jackroos/VL-BERT
+Github: [https://github.com/jackroos/VL-BERT](https://github.com/jackroos/VL-BERT)
 
 - 2020년 2월(Arxiv), ICLR 2020
 - University of Science and Technology of China, **Microsoft Research Asia**
@@ -74,7 +74,7 @@ VCR, VQA, Reffering Expression Comprehension) downstream task에 대한 결과�
 
 논문 링크: **[ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations for Vision-and-Language Tasks](https://arxiv.org/abs/1908.02265)**
 
-Github: https://github.com/facebookresearch/vilbert-multi-task
+Github: [https://github.com/facebookresearch/vilbert-multi-task](https://github.com/facebookresearch/vilbert-multi-task)
 
 - 2019년 8월(Arxiv), NIPS 2020
 - Georgia Institute of Technology, **Facebook AI Research**, Oregon State University

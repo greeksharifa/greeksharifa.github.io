@@ -16,6 +16,8 @@ tags: [Transformer, BERT, Google Research]
 
 논문 링크: **[VideoBERT: A Joint Model for Video and Language Representation Learning](https://arxiv.org/abs/1904.01766)**
 
+Github: maybe, [https://github.com/ammesatyajit/VideoBERT](https://github.com/ammesatyajit/VideoBERT)
+
 - 2019년 9월(Arxiv), ICCV 2019
 - Google Research
 - Chen Sun, Austin Myers, Carl Vondrick, Kevin Murphy, and Cordelia Schmid
