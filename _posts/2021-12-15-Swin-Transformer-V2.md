@@ -8,6 +8,11 @@ tags: [Transformer, Swin Transformer, Microsoft Research]
 
 ---
 
+- [Swin Transformer](https://greeksharifa.github.io/computer%20vision/2021/12/14/Swin-Transformer/)
+- **[Swin Transformer V2](https://greeksharifa.github.io/computer%20vision/2021/12/15/Swin-Transformer-V2/)**
+- [Video Swin Transformer](https://greeksharifa.github.io/computer%20vision/2021/12/18/VIdeo-Swin-Transformer/)
+
+
 이 글에서는 Microsoft Research Asia에서 발표한 Swin Transformer의 개선 버전, Swin Transformer v2 논문을 간략하게 정리한다.
 
 ---
@@ -66,7 +71,7 @@ Github: [https://github.com/microsoft/Swin-Transformer](https://github.com/micro
 또 고해상도 이미지를 처리하려면 GPU 사용량이 크게 증가하는데, 이를 줄이기 위해 다음 테크닉을 사용한다.
 
 1. Zero-Optimizer
-2. Activatino Check Pointing
+2. Activation Check Pointing
 3. a Novel implementation of sequential self-attention computation
 
 위의 방법들을 사용하여, 더 큰 모델을 안정적으로 학습, 더 좋은 성능을 얻을 수 있다. [Swin Transformer v1](https://greeksharifa.github.io/computer%20vision/2021/12/14/Swin-Transformer/)와 마찬가지로 Image Classification, Object Detection, Semantic Segmentation task에서 실험하였고, 기존보다 더 좋은 결과를 얻었다.
@@ -84,9 +89,9 @@ BERT-340M, Megatron-Turing-530B, Switch-Transformer-1.6T 등이 제안되었다.
 
 **Transferring across window / kernel resolution**
 
-- 기존의 CNN 논문들은 고정된 크기의 kernal(ex. 1, 3, 5)만을 사용하였다.
+- 기존의 CNN 논문들은 고정된 크기의 kernel(ex. 1, 3, 5)만을 사용하였다.
 - [ViT](https://greeksharifa.github.io/computer%20vision/2021/12/10/ViT-ViViT/#vitan-image-is-worth-16x16-words-transformers-for-image-recognition-at-scale)와 같은 global vision transformer에서는 이미지 전체에 attention을 적용하며 입력 이미지의 해상도에 따라 window size가 정비례하여 증가한다.
-- [Swin Transformer v1](https://greeksharifa.github.io/computer%20vision/2021/12/14/Swin-Transformer/)와 같은 local visino transformer는 window size가 고정되어 있거나 fine-tuning 중에 변화할 수 있다.
+- [Swin Transformer v1](https://greeksharifa.github.io/computer%20vision/2021/12/14/Swin-Transformer/)와 같은 local vision transformer는 window size가 고정되어 있거나 fine-tuning 중에 변화할 수 있다.
 - 다양한 scale의 이미지를 처리하기 위해서는 아무래도 window size가 가변적인 것이 편하다. 여기서는 log-CPB를 통해 전이학습이 좀 더 부드럽게 가능하게 한다.
 
 **Study on bias terms, Continuous convolution and variants**
@@ -110,11 +115,11 @@ BERT-340M, Megatron-Turing-530B, Switch-Transformer-1.6T 등이 제안되었다.
 
 ### 3.2. Scaling Up Model Capacity
 
-역시 갈은 내용이 나온다. ViT를 일부 계승한 Swin Transformer는 Laer norm을 각 block의 처음 부분에서 적용하는데 이는 깊은  layer로 갈수록 activation이 점점 극적으로 커지게 된다. 
+역시 같은 내용이 나온다. ViT를 일부 계승한 Swin Transformer는 Layer norm을 각 block의 처음 부분에서 적용하는데 이는 깊은 layer로 갈수록 activation이 점점 극적으로 커지게 된다. 
 
 **Post normalization**
 
-그래서 이 *post normalization*을 적용하는 것이다. 서론 부분에서도 말했듯이, layer norm을 block의 처음에서 끝으로 옮긴다(그림 1). 그러면 layer를 계속 통과해도 activation이 크게 커지지 않는다. 아래 그림에서 pre- 방식과 post- 방식의 activation amplitude 차이를 볼 수 있다.
+그래서 이 *post normalization*을 적용하는 것이다. 서론 부분에서도 말했듯이, layer norm을 block의 처음에서 끝으로 옮긴다(그림 1). 그러면 layer를 계속 통과해도 activation 진폭이 크게 커지지 않는다. 아래 그림에서 pre- 방식과 post- 방식의 activation amplitude 차이를 볼 수 있다.
 
 
 <center><img src="/public/img/2021-12-15-Swin-Transformer-V2/02.png" width="80%"></center>
