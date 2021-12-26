@@ -89,7 +89,7 @@ Vision 분야에서는 CNN이 전통적인 강자이다. 2D CNN을 시간 축으
 <center><img src="/public/img/2021-12-18-VIdeo-Swin-Transformer/01.png" width="100%"></center>
 
 - [Swin Transformer](https://greeksharifa.github.io/computer%20vision/2021/12/14/Swin-Transformer/)를 거의 그대로 계승한다.
-- 시간 차원이 추가된 것을 알 수 있다. 단, 공간 차원과 달리 시간 차원은 맨 처음 반으로 줄이는 것 와에 더 건드리지 않는다.
+- 시간 차원이 추가된 것을 알 수 있다. 단, 공간 차원과 달리 시간 차원은 맨 처음 반으로 줄이는 것 외에 더 건드리지 않는다.
 - 시간 차원 외에는 거의 같다. Patch Partition 이후 시간 차원이 반으로 줄어드는데 feature가 48이 96으로 2배 증가한다.
 - 위의 그림은 마찬가지로 Tiny 버전이다.
 - W-MSA와 SW-MSA가 각각 3D 버전으로 변경되었다.
@@ -117,7 +117,7 @@ Video Swin Transformer Block은 수식으로 나타내봐도 3D 버전으로 변
 
 **3D Relative Position Bias**
 
-Relative Position Bias를 쓰는 것이 여러 논문을 통해 입증되었으므로 이를 따른다. 3D relative position bias $B \in \mathbb{R}^{P^2 \times M^2 \times M^2}$를 각 head에 더하여 attention을 수행한다. 
+Relative Position Bias를 쓰는 것이 낫다는 것이 여러 논문을 통해 입증되었으므로 이를 따른다. 3D relative position bias $B \in \mathbb{R}^{P^2 \times M^2 \times M^2}$를 각 head에 더하여 attention을 수행한다. 
 
 
 $$ \text{Attention}(Q, K, V) = \text{SoftMax}(QK^T / \sqrt{d} + B)V $$

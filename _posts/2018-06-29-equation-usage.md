@@ -26,7 +26,13 @@ $$ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $$
 
 참고: newline은 display style에서만 유효하다.
 
+`$$ \begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray} $$`
+
 $$ \begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray} $$
+
+`$$ \Delta s =  \Biggl\{ \begin{matrix}  A  \\ B \end{matrix} $$`
+
+$$ \Delta s =  \Biggl\{ \begin{matrix}  A+B  \\ C \end{matrix} $$
 
 
 Equation          | Code                                                           | Display
@@ -40,12 +46,15 @@ Parentheses 1     | (\frac{1}{2}), \left(\frac{1}{2}\right)                     
 Parentheses 2     | (x) {x} [x] \|x\| \vert x \vert \Vert x \Vert                  | $ (x) {x} [x] \|x\| \vert x \vert \Vert x \Vert $
 Parentheses 3     | \langle x \rangle \lceil x \rceil \lfloor x \rfloor            | $ \langle x \rangle \lceil x \rceil \lfloor x \rfloor $
 Parentheses 4     | \Biggl(\biggl(\Bigl(\bigl((x)\bigr)\Bigr)\biggr)\Biggr)        | $ \Biggl(\biggl(\Bigl(\bigl((x)\bigr)\Bigr)\biggr)\Biggr) $
+Parentheses 5     | \Biggl\{\biggl\{\Bigl\{\bigl\{ \lbrace x \rbrace \bigr\}\Bigr\}\biggr\}\Biggr\}        | $ \Biggl\{\biggl\{\Bigl\{\bigl\{ \lbrace x \rbrace \bigr\}\Bigr\}\biggr\}\Biggr\} $
+Parentheses 6     | \Biggl[\biggl[\Bigl[\bigl[[x]\bigr]\Bigr]\biggr]\Biggr]        | $ \Biggl[\biggl[\Bigl[\bigl[[x]\bigr]\Bigr]\biggr]\Biggr] $
 Combinations      | {n+1 \choose 2k} , \binom{n+1}{2k}                             | $ {n+1 \choose 2k} , \binom{n+1}{2k} $
 Fraction          | \frac{(n^2+n)(2n+1)}{6}, {a+1\over b+1}, \cfrac{a}{b}          | $ \frac{(n^2+n)(2n+1)}{6}, {a+1\over b+1}, \cfrac{a}{b} $
 Sigma             | \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}                     | $ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $
 Signs             | \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x}        | $ \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x} $
 Special functions | \lim_{x\to 0} \sin \max \ln \log                               | $ \lim_{x\to 0} \sin \max \ln \log $
-Matrix            | \begin{pmatrix}a & b\\\ c & d\end{pmatrix}$$                   | $\begin{pmatrix}a & b\\\ c & d\end{pmatrix}$
+Matrix 1          | \begin{matrix}a & b \\ c & d\end{matrix}                       | $\begin{matrix}a & b \\ c & d\end{matrix}$
+Matrix 2          | \begin{pmatrix}a & b & c \\ d & e & f \\ g \end{pmatrix}       | $\begin{pmatrix}a & b & c \\ d & e & f \\ g \end{pmatrix}$
 Multi-lines       | \begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray}    | 표 위쪽 참조.
 Inequality        | \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  | $ \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  $
 Approximate       | \approx \sim \simeq \cong \equiv \prec \lhd                    | $ \approx \sim \simeq \cong \equiv \prec \lhd $
