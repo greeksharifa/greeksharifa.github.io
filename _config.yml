@@ -1,6 +1,6 @@
 # Site Info
 title: YW & YY
-tagline: "YW & YY's Python, Machine & Deep Learning"
+tagline: "세상의 변화에 대해 관심이 많은 이들의 Tech Blog"
 description: "YW & YY's ML blog powered by jekyll theme"
 baseurl: ""
 url: https://greeksharifa.github.io
@@ -34,7 +34,7 @@ version: 1.0.0
 # About/contact
 author:
   name: YW & YY
-  description: <strong>Developer and Analyst</strong>, YW & YY.
+  description: <strong>AI Researcher & Data Scientist</strong>, YW & YY.
   gravatar: 3c2986ad7ac1f2230ea3596f44563328 # md5 hash of your email address
   contact:
     # linkedin:  <hide>
