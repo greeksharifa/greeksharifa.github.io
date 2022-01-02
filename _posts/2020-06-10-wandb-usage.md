@@ -411,6 +411,20 @@ plt.ylabel('some interesting numbers')
 wandb.log({"chart": plt})
 ```
 
+그런데 이 때 wandb의 내부 동작 과정에서 matplotlib의 제거된 method를 사용하는 경우 에러가 발생하는데, 이 때는 다음과 같이 **Image**를 이용해주면 된다.  
+
+```python
+import matplotlib as plt
+import seaborn
+
+fig, ax = plt.subplots(figsize=(12, 12))
+sns.scatterplot(
+    x="x", y="y", hue=df.label.tolist(), legend="full",
+    palette="Paired_r",
+    data=df)
+
+wandb.log({'plot': wandb.Image(fig)})
+```
 
 ---
 
