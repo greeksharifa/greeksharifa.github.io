@@ -58,7 +58,7 @@ $$ A_{ij} = \frac{(h_i W_Q)(h_j W_K)^T}{\sqrt{d}} + b_{\phi(v_i, v_j)} $$
 
 $$ A_{ij} = \frac{(h_i W_Q)(h_j W_K)^T}{\sqrt{d}} + b_{\phi(v_i, v_j)} + c_{ij} $$  
 
-$$ c_{ij} = \frac{1}{N} \Sigma_{n=1}^N x_{e_n} (w_n^E)^T) $$  
+$$ c_{ij} = \frac{1}{N} \Sigma_{n=1}^N x_{e_n} (w_n^E)^T $$  
 
 ## 3. How Powerful is Graphormer?  
 이제 생각해보아야 할 부분은 이전 chapter에서 설명한 3가지의 주요 구조가 정말로 `Graphomer`를 powerful하게 만들어주느냐 입니다. 결론적으로 말하면 `Graphomer`는 그래프 데이터에서 **expressive power**를 증명하기 위해 비교 대상으로 사용되는 **1-Weisfeiler-Lehman Test**가 구분하기 실패하는 케이스에서도 그 차이를 구분할 수 있다고 논문에서는 설명합니다. 부록 A에 이에 대한 설명이 나와있으니 참고하시길 바랍니다.  
@@ -69,7 +69,7 @@ $$ c_{ij} = \frac{1}{N} \Sigma_{n=1}^N x_{e_n} (w_n^E)^T) $$
 
 ## 4. Conclusion  
 
-<center><img src="/public/img/Machine_Learning/2022-01-30-Graphormer/01.PNG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2022-01-30-Graphormer/01.PNG" width="70%"></center>  
 
 논문에서는 여러 실험에 대한 결과를 상세히 밝히고 있으며 이에 직접 논문을 참고하시길 바랍니다. 기본적으로 `Graphormer`는 다른 알고리즘에 비해 파라미터 수가 많고 무거운 편이나 여러 변형 버전도 존재하는 것으로 보입니다.  
 
