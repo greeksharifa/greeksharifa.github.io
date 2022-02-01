@@ -28,7 +28,7 @@ pre-train 전략의 핵심은 GNN을 개별 node-level 및 graph-level 모두에
 
 2가지 방법이 존재합니다. `Context Prediction` 과 `Attribute Masking`이 바로 그것입니다.  
 
-<center><img src="/public/img/Machine_Learning/2022-02-02/img.PNG" width="80%"></center>  
+<center><img src="/public/img/Machine_Learning/2022-02-01-pretrain-gnn/img.PNG" width="80%"></center>  
 
 `Context Prediction`은 이웃 정보를 활용하여 해당 node 주위에 존재하는 그래프 구조를 예측하는 것이고 이 때 subgraph를 추출하여 학습이 진행됩니다. 그림에서처럼 context graph는 2가지 hyperparameter로 정의됩니다.  
 
