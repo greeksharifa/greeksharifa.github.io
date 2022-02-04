@@ -8,7 +8,7 @@ tags: [Multimodal, OpenAI]
 
 ---
 
-이 글에서는 2021년 1월 OpenAI에서 발표한 CLIP 논문을 간략하게 정리한다.
+이 글에서는 2021년 3월 발표된 StyleCLIP 논문을 간략하게 정리한다.
 
 ---
 
@@ -16,7 +16,7 @@ tags: [Multimodal, OpenAI]
 
 논문 링크: **[StyleCLIP: Text-Driven Manipulation of StyleGAN Imagery](https://arxiv.org/abs/2103.17249)**
 
-Github: [https://github.com/openai/CLIP](https://github.com/orpatashnik/StyleCLIP)
+Github: [https://github.com/orpatashnik/StyleCLIP](https://github.com/orpatashnik/StyleCLIP)
 
 - 2021년 3월(Arxiv), ICCV 2021
 - Hebrew University of Jerusalem,  Tel-Aviv University,  **Adobe Research**
