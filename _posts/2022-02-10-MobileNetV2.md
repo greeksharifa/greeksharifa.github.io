@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MobileNetV2 논문 설명(MobileNets - Inverted Residuals and Linear Bottlenecks 리뷰)
+title: MobileNetV2 논문 설명(MobileNetsV2 - Inverted Residuals and Linear Bottlenecks 리뷰)
 author: YouWon
 categories: [Computer Vision]
 tags: [MobileNet, Google]
@@ -9,11 +9,11 @@ tags: [MobileNet, Google]
 ---
 
 
-이 글에서는 Google Inc.에서 발표한 MobileNet V1 논문을 간략하게 정리한다.
+이 글에서는 Google Inc.에서 발표한 MobileNet V2 논문을 간략하게 정리한다.
 
 ---
 
-# MobileNets: Inverted Residuals and Linear Bottlenecks
+# MobileNetsV2: Inverted Residuals and Linear Bottlenecks
 
 논문 링크: **[MobileNets: Inverted Residuals and Linear Bottlenecks](https://arxiv.org/abs/1801.04381)**
 
