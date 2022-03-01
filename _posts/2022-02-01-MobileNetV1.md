@@ -8,6 +8,10 @@ tags: [MobileNet, Google]
 
 ---
 
+- **[MobileNet V1](https://greeksharifa.github.io/computer%20vision/2022/02/01/MobileNetV1/)**
+- [MobileNet V2](https://greeksharifa.github.io/computer%20vision/2022/02/10/MobileNetV2/)
+- [MobileNet V3](https://greeksharifa.github.io/computer%20vision/2022/02/23/MobileNetV3/)
+
 
 이 글에서는 Google Inc.에서 발표한 MobileNet V1 논문을 간략하게 정리한다.
 

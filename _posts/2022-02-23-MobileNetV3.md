@@ -8,6 +8,11 @@ tags: [MobileNet, Google]
 
 ---
 
+- [MobileNet V1](https://greeksharifa.github.io/computer%20vision/2022/02/01/MobileNetV1/)
+- [MobileNet V2](https://greeksharifa.github.io/computer%20vision/2022/02/10/MobileNetV2/)
+- **[MobileNet V3](https://greeksharifa.github.io/computer%20vision/2022/02/23/MobileNetV3/)**
+
+
 
 이 글에서는 Google Inc.에서 발표한 MobileNet V3 논문을 간략하게 정리한다.
 
@@ -153,7 +158,7 @@ network search에 더해 몇 가지 component를 소개한다.
 
 - 마지막 몇 개의 layer가 최종 feature를 효율적으로 생성하기 위해 어떻게 상호작용해야 하는지에 대한 재작업: 1x1 conv로 고차원으로 보내는 작업은 rich feature를 얻는 데 필수적이지만 latency를 증가시킨다.
     - 그래서 7x7 spatial resolution 대신 1x1 spatial resolution을 사용하였다. 
-- feature 생성 layer의 연산량을 좀 줄이고 난 다음에르 할 일은 이전 bottleneck projection layer가 더 이상 계산량을 증가시키지 않는다는 것에서 착안하여 projection과 filtering을 이전 bottleneck layer에서 없애는 것이다.
+- feature 생성 layer의 연산량을 좀 줄이고 난 다음으로 할 일은 이전 bottleneck projection layer가 더 이상 계산량을 증가시키지 않는다는 것에서 착안하여 projection과 filtering을 이전 bottleneck layer에서 없애는 것이다.
 - 이전 모델은 expansive layer에서 32개의 3x3 layer를 썼는데 이 filter는 종종 좌우 반전의 image를 갖는(처리하는) 경우가 있다. 그래서 중복을 줄일 수 있게 filter 수를 16개로 줄였다.
 
 <center><img src="/public/img/2022-02-23-MobileNetV3/fig05.png" width="70%"></center>
@@ -181,7 +186,7 @@ $$ \text{h-swish}[x] = x \frac{\text{ReLU6}(x+3)}{6} $$
 
 ### 5.3. Large squeeze-and-excite
 
-이전 연구에서 squeeze-and-excite bottleneck은 conv bottleneck의 것에 비례했으나 이 논문에서는 expansion layer의 채널 수의 1/4로 고정하였다. 이는 약간의 parameter 수 증가만으로 정확도 향상을 이끌어내었다.
+이전 연구([SENet](https://arxiv.org/abs/1709.01507))에서 squeeze-and-excite bottleneck은 conv bottleneck의 것에 비례했으나 이 논문에서는 expansion layer의 채널 수의 1/4로 고정하였다. 이는 약간의 parameter 수 증가만으로 정확도 향상을 이끌어내었다.
 
 ### 5.4. MobileNetV3 Definitions
 
