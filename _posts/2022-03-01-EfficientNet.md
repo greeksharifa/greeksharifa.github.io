@@ -84,58 +84,126 @@ AlexNet 이후 ImageNet competition에서 더 깊어지고 커지면서 정확�
 
 ## 3. Compound Model Scaling
 
-
-
 ### 3.1. Problem Formulation
 
+뭔가 괜히 복잡하게 써 놨는데 그냥 ConvNet을 수식화해 정리해놓은 부분이다.  $H, W, C$를 입력 tensor의 크기, $F$를 Conv layer라 하면 ConvNet은
+
+<center><img src="/public/img/2022-03-01-EfficientNet/eq01.png" width="70%"></center>
+
+로 표현 가능하다.
+
+모델이 사용하는 자원이 제한된 상태에서 모델의 정확도를 최대화하는 문제를 풀고자 하는 것이므로, 이 문제는 다음과 같이 정리할 수 있다.
+
+<center><img src="/public/img/2022-03-01-EfficientNet/eq02.png" width="70%"></center>
 
 
 ### 3.2. Scaling Dimensions
 
+- **Depth**: 네트워크의 깊이가 증가할수록 모델의 capacity가 커지고 더 복잡한 feature를 잡아낼 수 있지만, vanishing gradient의 문제로 학습시키기가 더 어려워진다. 이를 해결하기 위해 Batch Norm, Residual Connection 등의 여러 기법들이 등장하였다.
+- **Width**: 각 레이어의 width를 키우면 정확도가 높아지지만 계산량이 제곱에 비례하여 증가한다.
+- **Resolution**: 입력 이미지의 해상도를 키우면 더 세부적인 feature를 학습할 수 있어 정확도가 높아지지만 마찬가지로 계산량이 제곱에 비례해 증가한다.
 
+<center><img src="/public/img/2022-03-01-EfficientNet/fig03.png" width="100%"></center>
+
+공통적으로, 어느 정도 이상 증가하면 모델의 크기가 커짐에 따라 얻는 정확도 증가량이 매우 적어진다.
 
 ### 3.3. Compound Scaling
 
 
+직관적으로, 더 높은 해상도의 이미지에 대해서는, 
+
+- 네트워크를 깊게 만들어서 더 넓은 영역에 걸쳐 있는 feature(by larger receptive fields)를 더 잘 잡아낼 수 있도록 하는 것이 유리하다. 
+- 또, 더 큰 이미지일수록 세부적인 내용도 많이 담고 있어서, 이를 잘 잡아내기 위해서는 layer의 width를 증가시킬 필요가 있다.
+
+즉, 이 depth, width, resolution이라는 세 가지 변수는 밀접하게 연관되어 있으며, 이를 같이 움직이는 것이 도움이 될 것이라고 생각할 수 있다. 
+
+계산량은 깊이에 비례하고, 나머지 두 변수에 대해서 그 제곱에 비례하므로 다음과 같은 비율로 변수들이 움직이게 정할 수 있다.
+
  
+<center><img src="/public/img/2022-03-01-EfficientNet/eq03.png" width="70%"></center>
+
+
+이 논문에서는 $\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2$로 맞춰서 전체 계산량은 $2^\phi$에 비례하게 잡았다.
 
 ---
 
 ## 4. EfficientNet Architecture
 
+MnasNet에 기반한 baseline network를 사용한다. 구체적인 모양은 다음과 같다.
+
+<center><img src="/public/img/2022-03-01-EfficientNet/tab01.png" width="70%"></center>
+
+이 baseline network에 기반해서 시작한다.
+
+- STEP 1: $\phi=1$로 고정하고, $\alpha, \beta, \gamma$에 대해서 작게 grid search를 수행한다. 찾은 값은 $\alpha=1.2, \beta=1.1, \gamma=1.15$로 $\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2$이다.
+- STEP 2: 이제 $\alpha, \beta, \gamma$를 고정하고 $\phi$를 변화시키면서 전체적인 크기를 키운다.
+
+$\alpha, \beta, \gamma$를 직접 갖고 큰 모델에 실험해서 더 좋은 결과를 얻을 수도 있지만 큰 모델에 대해서는 그 실험에 들어가는 자원이 너무 많다. 그래서 작은 baseline network에 대해서 먼저 좋은 $\alpha, \beta, \gamma$를 찾고(STEP 1) 그 다음에 전체적인 크기를 키운다(STEP 2).
+
 ---
 
 ## 5. Experiments
 
-
-
-
 ### 5.1. Scaling Up MobileNets and ResNets
 
+결과부터 보자.
 
+
+<center><img src="/public/img/2022-03-01-EfficientNet/tab02.png" width="100%"></center>
+
+Efficient하다.
+
+depth, width, resolution을 어떻게 늘리는지에 대한 비교도 진행해 보았다. 섹션 3의 직관적인 설명과 같은 결과를 보이고 있다.
+
+<center><img src="/public/img/2022-03-01-EfficientNet/tab03.png" width="70%"></center>
 
 
 ### 5.2. ImageNet Results for EfficientNet
 
+추론 latency에 대한 결과를 기록해 놓았다.
 
+<center><img src="/public/img/2022-03-01-EfficientNet/tab04.png" width="70%"></center>
+
+8.4배 적은 연산량으로 더 높은 정확도를 갖는다는 것은 꽤 고무적이다. 결과에 따라서 18배 적거나, 아니면 5.7배, 6.1배 더 빠른 추론 시간을 보여주기도 한다. (표 1, 5 등)
+
+<center><img src="/public/img/2022-03-01-EfficientNet/fig06.png" width="100%"></center>
 
 
 ### 5.3. Transfer Learning Results for EfficientNet
 
+전이학습 dataset에 대한 결과를 기록해 놓았다.
 
+<center><img src="/public/img/2022-03-01-EfficientNet/tab05.png" width="100%"></center>
+
+여기도 비슷하게 몇 배 더 작고 적은 연산량으로 더 좋은 정확도를 갖는다는 내용이다. 
+
+데이터셋에 대한 정보이다.
+
+<center><img src="/public/img/2022-03-01-EfficientNet/tab06.png" width="70%"></center>
+
+baseline 모델에 대해서 어떻게 scaling을 할지를 테스트해 보았다. 표 3과 같은 결과를 보여준다.
+
+<center><img src="/public/img/2022-03-01-EfficientNet/fig08.png" width="70%"></center>
 
 ---
 
 ## 6. Discussion
 
+어떻게 scaling을 해야 하는지 아래 그림이 단적으로 보여준다. depth, width, resolution은 서로 긴밀히 연관되어 있으며 이들을 같이 키우는 것이 자원을 더 효율적으로 쓰는 방법이다.
 
+<center><img src="/public/img/2022-03-01-EfficientNet/fig08.png" width="70%"></center>
+
+어쨰서 compound scaling method라 다른 방법에 비해 더 좋은지를 나타내는 그림이 아래에 있다. 이미지의 어디에 집중하고 있는지를 보여준다. (근데 attention을 딱히 적용하진 않았다.)
+
+<center><img src="/public/img/2022-03-01-EfficientNet/fig07.png" width="100%"></center>
+
+<center><img src="/public/img/2022-03-01-EfficientNet/tab07.png" width="70%"></center>
 
 ---
 
 ## 7. Conclusion
 
-
-
+한정된 자원을 갖고 있는 상황에서 Depth, Width, Resolution을 어떻게 적절히 조절하여 모델의 크기와 연산량을 줄이면서도 성능은 높일 수 있는지에 대한 연구를 훌륭하게 수행하였다.
 
 
 ---
