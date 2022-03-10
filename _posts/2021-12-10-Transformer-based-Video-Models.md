@@ -22,7 +22,7 @@ Github: [https://github.com/google-research/vision_transformer](https://github.c
 - Google Research, Brain Team
 - Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, et al.
 
-ViT에 대한 설명은 [여기]를 참고하자.
+ViT에 대한 설명은 [여기](https://greeksharifa.github.io/computer%20vision/2021/12/10/ViT-ViViT/)를 참고하자.
 
 
 ---
@@ -153,4 +153,4 @@ MViT는 scratch로부터 학습된 video recognition 모델로 spatio-temporal �
 ---
 
 
-위의 Transformer 기반 Video 모델들은 global self-attention 모듈에 기초한다. 이렇게 하는 대신 [Swin Transformer](https://greeksharifa.github.io/computer%20vision/2021/12/14/Swin-Transformer/를 기반으로 [문제를 해결하는 논문](https://greeksharifa.github.io/computer%20vision/2021/12/18/VIdeo-Swin-Transformer/)이 최근 올라와 있다.
+위의 Transformer 기반 Video 모델들은 global self-attention 모듈에 기초한다. 이렇게 하는 대신 [Swin Transformer](https://greeksharifa.github.io/computer%20vision/2021/12/14/Swin-Transformer/)를 기반으로 [문제를 해결하는 논문](https://greeksharifa.github.io/computer%20vision/2021/12/18/VIdeo-Swin-Transformer/)이 최근 올라와 있다.
