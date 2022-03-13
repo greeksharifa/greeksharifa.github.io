@@ -28,7 +28,7 @@ tabular 데이터에 대해 tree-based 모델이 뛰어난 성능을 보이는 �
 
 
 ## 2. TabTransformer  
-<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/str.PNG" width="80%"></center>  
+<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/str.PNG" width="60%"></center>  
 
 전체적인 구조 자체는 어렵지 않기 때문에 컨셉만 잘 이해하면 됩니다. `DLRM` 처럼 연속형 변수와 범주형 변수의 처리 방법 자체가 아예 다릅니다. 연속형 변수는 **layer normalization**를 거치고 난 후 최종 layer로 바로 투입되는 형태이지만, 범주형 변수의 경우 **Column Embedding** 과정을 거친 후 **Transformer** 구조를 통과 한 후에 최종 layer로 투입됩니다.  
 
@@ -60,19 +60,19 @@ top MLP를 거치면 최종 output이 산출되게 됩니다.
 
 기본적인 MLP와의 성능 비교는 아래와 같습니다.  
 
-<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/01.PNG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/01.PNG" width="40%"></center>  
 
 noisy 데이터와 결측값이 있는 데이터에 대해서도 `TabTransformer`는 기본적인 MLP 보다 더 높은 성능을 보여줍니다. (robust)  
 
-<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/02.PNG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/TWO.PNG" width="70%"></center>  
 
 지도 학습 상의 모델 성능을 보면, `TabTransformer`는 GBDT에 필적하는 성능을 보임을 알 수 있습니다.  
 
-<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/03.PNG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/03.PNG" width="40%"></center>  
 
 부록에 보면 Column Embedding에서 $\mathbf{c}_{\phi_i}$ 의 비율에 대한 실험이 나옵니다. Transformer Layer의 수에 따라 조금씩 다르지만 보통 1/4 ~ 1/8의 비율이 높은 성능을 보여줌을 알 수 있습니다. Column Embedding이 아예 없는 경우가 제일 좋지 않은 성능을 보여준 것도 확인해 보아야 할 대목입니다.  
 
-<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/04.PNG" width="60%"></center>  
+<center><img src="/public/img/Machine_Learning/2022-03-13-tab-transformer/04.PNG" width="85%"></center>  
 
 
 ## 4. Conclusion  
