@@ -110,7 +110,7 @@ Vision 분야에서는 CNN이 전통적인 강자이다. 2D CNN을 시간 축으
 
 <center><img src="/public/img/2021-12-18-VIdeo-Swin-Transformer/03.png" width="100%"></center>
 
-Video Swin Transformer Block은 수식으로 나타내봐도 3D 버전으로 변경된 것 외에 똑갈이 생겼다.
+Video Swin Transformer Block은 수식으로 나타내봐도 3D 버전으로 변경된 것 외에 똑같이 생겼다.
 
 <center><img src="/public/img/2021-12-18-VIdeo-Swin-Transformer/eq01.png" width="100%"></center>
 
