@@ -12,7 +12,7 @@ tags: [파이썬]
 
 ---
 # Python 프로젝트 생성하기  
-## Poetry  
+## 1. Poetry 설명  
 `poetry`는 의존성 관리와 빌드를 책임지는 라이브러리입니다.  
 
 `poetry`를 설치한 후, 아래 명령어를 입력합니다.  
@@ -83,7 +83,7 @@ poetry show --outdate (-o)
 poetry show --tree
 ```
 
-가상 환경에 대한 정보는 아래 명령어르 확인할 수 있습니다.  
+가상 환경에 대한 정보는 아래 명령어로 확인할 수 있습니다.  
 
 ```bash
 # 가상 환경 정보 확인
@@ -93,7 +93,10 @@ poetry env info
 poetry env list
 ```
 
-## Github Action  
+
+---
+
+## 2. Github Action 설명  
 **Github Action**은 github에서 제공하는 CI/CD 도구이며, 소프트웨어 개발의 workflow를 자동화해줍니다.  
 
 **Github Action**에는 반드시 알아야 할 개념들이 있습니다. [이 문서](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)를 확인하는 것이 가장 정확합니다.  
@@ -202,7 +205,7 @@ workflow yaml 파일에서 `steps.uses` 키워드에 사용하고자 하는 acti
 ```yaml
 steps:
   - name: Checkout
-  - uses: actions/checkout@v3
+      uses: actions/checkout@v3
 ```
 
 내부적으로는 git init/config/fetch/checkout/log 등의 명령어를 수행한다고 합니다. 가장 최신 버전의 checkout action에 대해서는 [이 repository](https://github.com/actions/checkout)에서 확인할 수 있습니다.  
@@ -216,8 +219,6 @@ steps:
         with:
             python-version: 3.9
 ```
-
-
 
 `jobs.<job_id>.steps[*].run`은 운영체제의 shell을 이용하여 command-line 프로그램을 실행시킨다. 아래와 같이 single-line command를 입력할 수도 있고,  
 
@@ -249,10 +250,128 @@ steps:
 
 그 외에도 `steps` 아래에는 `args`, `entrypoint`, `env` 등 여러 속성을 정의할 수 있습니다.  
 
+---
 
+## 3. 정리  
+이번 chapter에서는 위 내용과 더불어 publishing까지 전체 flow 진행에 대해 알아보겠습니다.  
+
+pycharm을 이용한다면 다음과 같이 처음부터 poetry를 이용해서 편리하게 프로젝트를 시작할 수 있습니다.  
+
+<center><img src="/public/img/2022-07-31-python-project/03.PNG" width="60%"></center>  
+
+이전에 *init* 을 통해 생성되었던 **poetry.lock** 및 **pyproject.toml** 파일이 생성되었을 것입니다.  
+
+사용하는 library 들을 **poetry add {library}** 를 통해 추가해줍니다. 
+
+이제 github action을 이용하여 **CI/CD** 환경을 구축해줄 차례입니다. 아래와 같이 **.github** 디렉토리 아래에 2개의 yaml 파일을 생성해 줍니다.    
+
+<center><img src="/public/img/2022-07-31-python-project/structure.PNG" width="60%"></center>  
+
+먼저 **CI** 부분부터 살펴보겠습니다. 아래는 ci.yaml 파일의 예시입니다.  
+
+```yaml
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci-test:
+    name: ci-test
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+      - name: Install dev-dependencies
+        run: pip3 install -r requirements-dev.txt
+      - name: Lint
+        run: make check
+```
+
+조건은 간단합니다. main branch에 PR이 생성되었을 경우 **make check** 명령문을 실행하게 됩니다. 이 부분은 아래와 같이 작성하였습니다.  
+(pylint, isort, black 모두 poetry add를 통해 의존성 추가를 해주어야 합니다.)  
+
+```
+.PHONY: init format check requirements
+
+init:
+		pip install poetry
+		poetry install
+
+format:
+		isort --profile black -l 119 {library} lint.py
+		black -S -l 119 {library} lint.py
+
+check:
+		isort --check-only --profile black -l 119 {library}
+		black -S -l 119 --check {library}
+
+requirements:
+		poetry export -f requirements.txt -o requirements.txt --without-hashes
+		poetry export --dev -f requirements.txt -o requirements-dev.txt --without-hashes
+```
+
+참고로 Windows 환경에서 Makefile을 작성하기 위한 방법은 [이 곳](https://ndb796.tistory.com/381)에 잘 설명되어 있습니다.  
+
+위 파일 작성을 마쳤다면, PR을 생성하기 이전에 코드 정리가 잘 되어 있는지, requirements 파일은 생성했는지 확인해 주면 됩니다.  
+
+**PR**이 closed 되었을 때, **CD** 구조가 진행되도록 해보겠습니다. 아래는 publish.yaml 파일의 예시입니다.  
+
+```yaml
+name: PUBLISH LIBRARY
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  build:
+    name: build-library
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+      - name: Install requirements
+        run: pip3 install poetry
+      - name: Bump version
+        run: poetry version patch
+      - name: Publish library
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          poetry build
+          poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}  
+```
+
+**Install requirements** 까지는 추가적인 설명이 필요하지 않아 보입니다.  
+
+**Bump version**은 패키징하고자 하는 library의 version을 자동적으로 upgrade하는 부분입니다. library를 0.1.0에서 0.1.1로 올릴지, 0.2.0으로 올릴지, 1.0.0으로 올릴지 선택할 수 있습니다.  
+[이 곳](https://python-poetry.org/docs/cli/#version)을 참고하면 자세한 정보를 확인할 수 있습니다.  
+
+다음은 여러 token을 읽고 build -> publish까지 이어지는 부분입니다. 일단 secrets가 무엇인지부터 확인해 보겠습니다. github repository의 **Actions Secrets**은 환경 변수를 암호화해서 저장할 수 있는 기능입니다. Settings-Security-Secrets를 통해 접근할 수 있습니다.  
+
+[PYPI 홈페이지](https://pypi.org/manage/account/token/)에서 본인의 repository에서 사용할 token을 추가해줍니다. 그리고 생성한 값을 복사한 뒤, **PYPI_TOKEN** secrets에 저장해줍니다. 마찬가지로 **PYPI_USERNAME**과 **PYPI_PASSWORD**도 추가해줍니다.  
+
+<center><img src="/public/img/2022-07-31-python-project/token.PNG" width="60%"></center>  
+
+이렇게 추가된 token들은 인증과정에 사용됩니다.  
+
+이제 CI/CD 구축은 끝났습니다. library 코드를 정리하고, PR 과정을 정상적으로 거치면 프로젝트 생성부터 패키징, 배포까지 편리하게 진행할 수 있습니다.  
 
 
 ## References  
 - [Github Docs](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell)  
+- [Github Docs](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)  
 - [참고 블로그](https://blog.gyus.me/2020/introduce-poetry/)  
 - [참고 블로그](https://www.daleseo.com/github-actions-checkout/)  
+- [참고 블로그](https://ndb796.tistory.com/381)  
