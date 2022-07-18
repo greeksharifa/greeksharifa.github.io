@@ -105,7 +105,7 @@ poetry env list
 
 | PR 생성과 같이 repository에 특정 `event`가 발생하면 트리거되는 Github Action `workflow`를 구성할 수 있습니다. `workflow`는 순차적 혹은 병렬적으로 동작하는 1개 이상의 `job`을 갖고 있습니다. 각각의 `job`은 할당된 가상 머신 `runner` 내부 혹은 container 내부에서 동작하며 `action` 혹은 script를 실행하도록 되어 있습니다.  
 
-<center><img src="/public/img/2022-07-31-python-project/01.PNG" width="60%"></center>  
+<center><img src="/public/img/2022-07-18-python-project/01.PNG" width="60%"></center>  
 
 **workflow**  
 - 1개 이상의 job을 실행시키는 자동화된 프로세스  
@@ -257,7 +257,7 @@ steps:
 
 pycharm을 이용한다면 다음과 같이 처음부터 poetry를 이용해서 편리하게 프로젝트를 시작할 수 있습니다.  
 
-<center><img src="/public/img/2022-07-31-python-project/03.PNG" width="60%"></center>  
+<center><img src="/public/img/2022-07-18-python-project/03.PNG" width="60%"></center>  
 
 이전에 *init* 을 통해 생성되었던 **poetry.lock** 및 **pyproject.toml** 파일이 생성되었을 것입니다.  
 
@@ -265,7 +265,7 @@ pycharm을 이용한다면 다음과 같이 처음부터 poetry를 이용해서 
 
 이제 github action을 이용하여 **CI/CD** 환경을 구축해줄 차례입니다. 아래와 같이 **.github** 디렉토리 아래에 2개의 yaml 파일을 생성해 줍니다.    
 
-<center><img src="/public/img/2022-07-31-python-project/structure.PNG" width="60%"></center>  
+<center><img src="/public/img/2022-07-18-python-project/structure.PNG" width="60%"></center>  
 
 먼저 **CI** 부분부터 살펴보겠습니다. 아래는 ci.yaml 파일의 예시입니다.  
 
@@ -362,7 +362,7 @@ jobs:
 
 [PYPI 홈페이지](https://pypi.org/manage/account/token/)에서 본인의 repository에서 사용할 token을 추가해줍니다. 그리고 생성한 값을 복사한 뒤, **PYPI_TOKEN** secrets에 저장해줍니다. 마찬가지로 **PYPI_USERNAME**과 **PYPI_PASSWORD**도 추가해줍니다.  
 
-<center><img src="/public/img/2022-07-31-python-project/token.PNG" width="60%"></center>  
+<center><img src="/public/img/2022-07-18-python-project/token.PNG" width="60%"></center>  
 
 이렇게 추가된 token들은 인증과정에 사용됩니다.  
 
