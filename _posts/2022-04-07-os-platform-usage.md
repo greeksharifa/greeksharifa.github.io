@@ -174,17 +174,22 @@ os.listdir('.')
 
 ```python
 os.path.isfile('readme.md')
-
+os.path.split('./data/1.jpg')
+os.path.splitext('./data/1.jpg')
 # result
 True
+('./data', '1.jpg')
+('./data/1', '.jpg')
 ```
 
 함수명 | 설명 
 -------- | --------
-basename(path) | path에서 앞의 디렉토리 경로는 다 떼고 파일명만 반환한다.
-dirname(path) | path에서 파일명은 떼고 디렉토리 경로만 반환한다.
-isdir(path) |  주어진 경로가 디렉토리이면 True를 반환한다.
-isfile(path) | 주어진 경로가 파일이면 True를 반환한다.
+basename(path) | path에서 앞의 디렉토리 경로는 다 떼고 파일명만 반환
+dirname(path) | path에서 파일명은 떼고 디렉토리 경로만 반환
+isdir(path) |  주어진 경로가 디렉토리이면 True를 반환
+isfile(path) | 주어진 경로가 파일이면 True를 반환
+split(path) | 주어진 경로를 디렉토리 경로와 파일명으로 분리한 tuple 반환
+splitext(path) | 주어진 경로를 확장자와 나머지로 분리한 `(경로, 확장자)` tuple 반환
 
 
 ---
