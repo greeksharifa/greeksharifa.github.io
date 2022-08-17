@@ -33,7 +33,7 @@ poetry init
 poetry config virtualenvs.create false # 기본 값은 true
 ```
 
-| [이 링크](https://python-poetry.org/docs/configuration/#virtualenvscreate)를 참조하셔도 좋습니다.  
+[이 링크](https://python-poetry.org/docs/configuration/#virtualenvscreate)를 참조하셔도 좋습니다.  
 
 프로젝트 내부에 `.venv` 폴더를 생성하는 옵션은 아래와 같습니다.
 
@@ -103,7 +103,7 @@ poetry env list
 
 가장 기본적인 설명은 이러합니다.  
 
-| PR 생성과 같이 repository에 특정 `event`가 발생하면 트리거되는 Github Action `workflow`를 구성할 수 있습니다. `workflow`는 순차적 혹은 병렬적으로 동작하는 1개 이상의 `job`을 갖고 있습니다. 각각의 `job`은 할당된 가상 머신 `runner` 내부 혹은 container 내부에서 동작하며 `action` 혹은 script를 실행하도록 되어 있습니다.  
+PR 생성과 같이 repository에 특정 `event`가 발생하면 트리거되는 Github Action `workflow`를 구성할 수 있습니다. `workflow`는 순차적 혹은 병렬적으로 동작하는 1개 이상의 `job`을 갖고 있습니다. 각각의 `job`은 할당된 가상 머신 `runner` 내부 혹은 container 내부에서 동작하며 `action` 혹은 script를 실행하도록 되어 있습니다.  
 
 <center><img src="/public/img/2022-07-18-python-project/01.PNG" width="60%"></center>  
 
