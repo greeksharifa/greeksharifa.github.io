@@ -61,7 +61,7 @@ Approximate       | \approx \sim \simeq \cong \equiv \prec \lhd                 
 Set Inclusion     | \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing | $ \cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing $
 Logic             | \land \lor \lnot \forall \exists \nexists \top \bot \vdash \vDash \complement       | $ \land \lor \lnot \forall \exists \nexists \top \bot \vdash \vDash \complement $
 Operations 1      | \times \div \pm \mp x \cdot y                                  | $ \times \div \pm \mp x \cdot y $
-Operations 2      | \star \ast \oplus \otimes \Box \boxtimes \circ \bullet                                | $ \star \ast \oplus \otimes \Box \boxtimes \circ \bullet $
+Operations 2      | \star \ast \odot \oslash \oplus \otimes \Box \boxtimes \circ \bullet                                | $ \star \ast \odot \oslash \oplus \otimes \Box \boxtimes \circ \bullet $
 Arrows 1          | \to \rightarrow \leftarrow \leftrightarrow   \mapsto \longmapsto   | $ \to \rightarrow \leftarrow \leftrightarrow   \mapsto \longmapsto $
 Arrows 2          | \leftharpoonup \rightharpoonup \leftharpoondown \rightharpoondown \rightleftharpoons   | $ \leftharpoonup \rightharpoonup \leftharpoondown \rightharpoondown \rightleftharpoons  $
 Arrows 3          | \uparrow \downarrow \nearrow \searrow \swarrow \nwarrow     | $ \uparrow \downarrow \nearrow \searrow \swarrow \nwarrow  $
