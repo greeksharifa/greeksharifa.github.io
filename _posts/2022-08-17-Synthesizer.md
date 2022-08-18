@@ -19,7 +19,7 @@ tags: [Machine_Learning, Paper_Review]
 
 $$ Y_{h, l} = softmax(B_{h, l}) G_{h, l}(X_{h, l}) $$  
 
-대단히 복잡한 식이 아닙니다. 사실 $G$ 함수는 linear transformation 역할을 수행하며 기존에 dot-product attention matrix를 단지 $B$ 라는 parameter matrix로 대체하는 것일 뿐입니다. 이 $B$ 를 계산하기 위해 input token에 의존적으로 학습된다면 이를 `Dense Synthesizer`라고 하며 어떠한 input token에도 영향 받지 않는 attention weight를 구성한다면 이를 `Random Synthesizer`라고 합니다. 이 때 이 행렬은 trainable 할 수도 있고, 그저 고정된 상수 값일 수도 있습니다. 논문에서는 행렬을 factorize 한 버전 역시 제시합니다.  
+대단히 복잡한 식이 아닙니다. 사실 $G$ 함수는 linear transformation 역할을 수행하며 기존의 dot-product attention matrix를 단지 $B$ 라는 parameter matrix로 대체하는 것일 뿐입니다. 이 $B$ 를 계산하기 위해 input token에 의존적으로 학습된다면 이를 `Dense Synthesizer`라고 하며 어떠한 input token에도 영향 받지 않는 attention weight를 구성한다면 이를 `Random Synthesizer`라고 합니다. 이 때 이 행렬은 trainable 할 수도 있고, 그저 고정된 상수 값일 수도 있습니다. 논문에서는 행렬을 factorize 한 버전 역시 제시합니다.  
 
 <center><img src="/public/img/Paper_Review/synthesizer.PNG" width="70%"></center>  
 
