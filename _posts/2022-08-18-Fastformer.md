@@ -29,7 +29,7 @@ $$ \mathbf{q} = \Sigma_{i=1}^N \alpha_i \mathbf{q}_i $$
 
 $$ \alpha_i = \frac{exp(\mathbf{w}_q^t / \sqrt{d})}{\Sigma_{j=1}^N exp(\mathbf{w}_q^T \mathbf{q}_j / \sqrt{d})} $$  
 
-그런데 이는 사실 상 self-attention 메커니즘을 구현한 것과 다름 없습니다. 같은 방식으로 **global key vector**도 구하고 최종적으로 value vector들과 곱합니다. 마지막 output vector를 만들기 이전에 query vecotr 값들을 다시 더합니다. 이는 일종의 residual connection 역할을 하는 것으로 보이는데 이러한 구조가 만들어진 것에 대한 논리적 설명이 없는 부분은 매우 아쉽습니다.  
+그런데 이는 사실 상 self-attention 메커니즘을 구현한 것과 다름 없습니다. 같은 방식으로 **global key vector**도 구하고 최종적으로 value vector들과 곱합니다. 마지막 output vector를 만들기 이전에 query vector 값들을 다시 더합니다. 이는 일종의 residual connection 역할을 하는 것으로 보이는데 이러한 구조가 만들어진 것에 대한 논리적 설명이 없는 부분은 매우 아쉽습니다.  
 
 일단 연산의 구조로 보았을 때 Vanilla Transformer보다 속도는 빠를 가능성이 높다고 추론해 볼 수 있습니다. 논문에서 제시한 실험 결과도 이를 뒷받침합니다. 그리도 만약 token 사이의 순서가 아주 중요하지 않고 일종의 global context가 중요한 역할을 수행하는, 예를 들어 classificaion task에서는 이러한 구조가 더 적합할 수도 있겠다는 판단이 듭니다. 물론 실제 실험을 진행해봐야 아는 부분이겠지만 구현 자체가 까다로운 알고리즘이 아니기 때문에 하나의 옵션으로 고려할 수 있을 것으로 보입니다.  
 
