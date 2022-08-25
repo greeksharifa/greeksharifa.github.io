@@ -244,10 +244,12 @@ $$ H_{t+1}^{(i)} = H_t^{(i)} \cup \lbrace(q_{t+1}^{*(i)}, a_{t+1}^{*(i)}) \rbrac
 
 로 추가되며 $t+2$ round도 비슷하게 진행된다.
 
-- 여기서 $\mathcal{D}_{t+1}$는  
-$\mathcal{D}_{t}$에 의존하므로 질문을 생성할 때는 이전 history를 고려하며 생성하게 된다. 
-    - 즉 각 round마다 이전 기록을 고려하며 가장 informative한 질문을 생성할 수 있게 된다.  
-- 여기서 $\mathcal{D}_1 \cup \mathcal{D}_2 \cup ... \cup \mathcal{D}_M $은  
+여기서 $\mathcal{D}_{t+1} $는  
+
+$\mathcal{D}_{t}$에 의존하므로 질문을 생성할 때는 이전 history를 고려하며 생성하게 된다.  
+즉 각 round마다 이전 기록을 고려하며 가장 informative한 질문을 생성할 수 있게 된다.  
+
+또 $\mathcal{D}_1 \cup \mathcal{D}_2 \cup ... \cup \mathcal{D}_M $은  
 question generator($\text{BART}_q$)의 *supervised* 데이터셋으로 작용한다.
 
 
