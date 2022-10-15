@@ -1,10 +1,10 @@
 # Gorio Learning  
 ## Descriptions  
-본 Repository는 [ML, 알고리즘, 투자아이디어 등을 기록한 리서치 블로그](https://greeksharifa.github.io/blog/categories/)를 위해 생성되었습니다.  
+본 Repository는 [ML, 알고리즘 등을 기록한 리서치 블로그](https://greeksharifa.github.io/blog/categories/)를 위해 생성되었습니다.  
 
 ----
 ## Authors  
-[Youwon Jang](https://github.com/greeksharifa), [Youyoung Jang](https://github.com/ocasoyy)  
+[Youwon Jang](https://github.com/greeksharifa), [Youyoung Jang](https://github.com/youyoungjang)  
 
 ----
 ## Notes  

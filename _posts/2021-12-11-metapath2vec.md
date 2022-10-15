@@ -8,7 +8,7 @@ tags: [Machine_Learning, Recommendation System, Paper_Review]
 
 이번 글에서는 Heterogenous Network에서 node representation을 학습하는 `metapath2vec`이란 논문에 대해 다뤄보겠습니다. 논문 원본은 [이 곳](https://ericdongyx.github.io/papers/KDD17-dong-chawla-swami-metapath2vec.pdf)에서 확인할 수 있습니다. 본 글에서는 핵심적인 부분에 대해서만 살펴보겠습니다.  
 
-그리고 관련하여 학습/분석 코드는 [이 곳](https://github.com/hoopoes/metapath2vec)에 작성해두었으니 참고하셔도 좋을 것 같습니다.  
+그리고 관련하여 학습/분석 코드는 [이 곳](https://github.com/youyoungjang/metapath2vec)에 작성해두었으니 참고하셔도 좋을 것 같습니다.  
 
 ---
 # metapath2vec: Scalable Representation Learning for Heterogeneous Networks 설명  

@@ -8,7 +8,7 @@ tags: [Machine_Learning, Paper_Review]
 
 본 글에서는 총 3가지의 **Graph Pooling**에 대해 핵심 부분을 추려서 정리해 볼 것이다. `gPool`, `DiffPool`, `EigenPool`이 그 주인공들이며, 상세한 내용은 글 하단에 있는 논문 원본 링크를 참조하길 바란다.  
 
-[Github](https://github.com/ocasoyy/pytorch-gnn-research)에 관련 코드 또한 정리해서 업데이트할 예정이다.  
+[Github](https://github.com/youyoungjang/pytorch-gnn-research)에 관련 코드 또한 정리해서 업데이트할 예정이다.  
 
 ---
 # gPool(Graph U-nets) 설명  

@@ -70,7 +70,7 @@ fork는 포크로 다른 사람의 repo를 푹 찍어와서 자신의 계정에 
 그리고 위에서 설명했듯 복제해온 repo를 마음껏 수정해도 원래 repo에는 영향을 미치지 않는다. 또 그 사람의 repo에 무언가 기여하고 싶다면 코드를 잘 짜서 pull request를 보내면, 해당 사람이 잘 검토해서 merge를 해줄 수도 있다.  
 그리고 실제로 이렇게 진행되는 것이 open-source 프로젝트이다.
 
-포크를 떠오는 방법은 간단하다. [다른 사람의 repo](https://github.com/ocasoyy/Deep_Learning)를 적당히 찾아서 들어가자.
+포크를 떠오는 방법은 간단하다. [다른 사람의 repo](https://github.com/youyoungjang/Deep_Learning)를 적당히 찾아서 들어가자.
 
 그리고 Fork 버튼을 누른다. fork를 떠올 때는 보통 바로 옆의 Star를 눌러주는 것이 예의라고 한다.
 
