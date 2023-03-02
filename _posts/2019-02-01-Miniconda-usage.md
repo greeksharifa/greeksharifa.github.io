@@ -31,7 +31,13 @@ conda list
 ![03_install](/public/img/conda/2019-02-01-Miniconda-usage/03.PNG)
 ![04_install](/public/img/conda/2019-02-01-Miniconda-usage/04.PNG)
 
-윈도우10, Miniconda3인 경우 `C:\ProgramData\Miniconda3\Scripts`를 PATH에 등록해 준다.
+윈도우10, Miniconda3인 경우 `C:\ProgramData\Miniconda3\Scripts`를 PATH에 등록해 준다.  
+경우에 따라 등록이 안 될 수도 있는데, 다음도 추가해 주면 확실히 잘 된다.
+
+- C:\ProgramData\Miniconda3\Library
+- C:\ProgramData\Miniconda3\
+
+설치 경로를 기본 경로에서 바꿨으면 당연히 `Miniconda` 앞 경로를 바꿔줘야 한다.
 
 설치 패키지 목록은 다를 것이지만 다음과 같이 뜬다. `conda list`는 현재 환경(기본 환경의 이름은 base이다)에서 설치된 패키지 목록을 나타내는 명령이다.
 
