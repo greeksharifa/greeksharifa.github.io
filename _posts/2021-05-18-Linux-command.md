@@ -16,10 +16,19 @@ tags: [Linux, Ubuntu, usage]
 
 ## ls 기본 옵션
 
+심심하면 입력하는 기본 명령
+
+```bash
+ls
+```
+
 ### 상세히 출력하기 
 
 ```bash
-ls -l
+# -l 옵션은 파일 권한, 생성/수정한 user, 파일 크기, 수정 시각 등의 자세한 옵션을 표시한다.
+# -h 옵션은 -l과 같이 쓰면 파일 크기를 알아보기 쉽게 표시해준다.
+# -a 옵션은 숨겨진 파일 혹은 링크까지 같이 표시해준다.
+ls -ahl
 ```
 
 ### 출력 개수 제한
@@ -184,6 +193,24 @@ df -h
 
 ## zip, unzip
 
+### 압축하기
+
+```bash
+zip <압축파일명.zip> [-r] <압축할 파일or디렉토리 path 1> [ <압축할 파일or디렉토리 path 2> ...]
+zip gorio.zip gorio1.txt gorio2.txt
+zip gorio.zip -r gorio_dir/
+zip gorio.zip -r ./Downloads/*
+# ...
+```
+
+### 압축풀기
+
+```bash
+unzip <filename>
+# 해제된 파일들이 저장될 디렉토리를 지정하고 싶으면 -d 옵션을 사용한다.(d=directory)
+unzip <filename> -d <path>
+```
+
 ### 여러 파일 압축 한 번에 풀기
 
 `unzip '<zipfiles>' [-d <dir>]`의 형식이다.
@@ -191,6 +218,9 @@ df -h
 따옴표를 쓰지 않으면 `filename not matched` 에러가 뜬다.
 
 ```bash
+# 여러 압축 파일을 지정해도 된다.
+unzip a.zip b.zip c.zip
+# 전부를 지정할 수도 있다. 이때는 따옴표를 꼭 써 줘야 한다.
 unzip '*.zip' -d data/
 ```
 
