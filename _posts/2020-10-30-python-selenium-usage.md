@@ -27,7 +27,7 @@ conda install selenium
 
 브라우저별로 selenium webdriver를 다운로드해야 한다. 필자는 크롬을 추천한다:
 
-- [Google Chrome](https://sites.google.com/a/chromium.org/chromedriver/downloads)
+- [Google Chrome](https://sites.google.com/chromium.org/driver/downloads?authuser=0)
 - [Firefox](https://github.com/mozilla/geckodriver/releases)
 - [Microsoft Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 - [Safari](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)

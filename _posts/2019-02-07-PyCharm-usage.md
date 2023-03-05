@@ -239,6 +239,59 @@ print('Hello Pycharm!')
 - 편집 창에서도 파일명 탭을 `우클릭 > Run (파일명)`해도 된다. 실행 방법은 많다.
 - Terminal에서 Local Environment에서 실행되는 대신, Remote SSH session에서 실행시키는 방법은 [여기](https://greeksharifa.github.io/references/2019/02/07/PyCharm-usage/#terminal%EC%97%90%EC%84%9C-ssh-session%EC%9C%BC%EB%A1%9C-%EC%97%B4%EA%B8%B0)를 참고하면 된다.
 
+
+### 고급 설정: working directory
+
+working directory란 말 그대로 작업 중인 directory로, 작업 중인 환경의 path 또는 실행하려는 파일의 경로를 의미한다.
+
+현재 실행하는 python 파일 또는 code가 working directory에서 진행되며, 상대 경로는 모두 이 working directory에서 출발한다.
+
+PyCharm에서 코드를 실행하다 보면 경로가 자꾸 안 맞아서 오류가 나는 경우가 꽤 있는데, 이는 working directory가 잘 지정되지 않아서 생기는 문제이다.
+
+현재 코드 혹은 파일의 working directory가 어딘지 알려면 다음 코드를 넣어서 실행해보자.
+
+```python
+import os
+print(os.getcwd())
+```
+
+이제 PyCharm에서 working directory를 설정하는 방법을 살펴보자.
+
+PyCharm에는 기본적으로 3가지의 실행 방법이 존재한다.
+
+- `Ctrl + Enter`로 interpreter에서 실행
+- Terminal에서 `python <filename>`으로 실행 또는 `python` 명령어로 interpreter 실행
+- Run 메뉴로 실행
+
+각각의 경우에 working directory를 설정하는 방법이 조금 다르다.
+
+먼저, `Ctrl + Enter`로 interpreter에서 실행하는 경우를 보면:
+
+Settings에서 working directory를 검색하자.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/79.png" width="80%"></center>
+
+그리고 `Build, Execution, Deployment > Console > Python Console` 메뉴를 보면 `Working directory`를 설정하는 메뉴가 보인다. 이 경로를 바꿔준 후 Python Console을 재시작하면 working directory가 변경된다.
+
+다음으로 Terminal에서 실행하는 경우는 간단하다. `cd <path>`명령어를 terminal에 입력하여 시작 경로를 바꿔준 다음 `python <filename>`이나 `python`을 실행하면 현재 위치가 working directory가 된다.
+
+
+마지막으로, `Run` 메뉴로 실행할 때를 보면:
+
+`Ctrl + Shift + F5`으로 run configuration을 생성하면, 기본적으로 해당 파일이 위치한 디렉토리가 working directory로 지정된다.
+
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/77.png" width="80%"></center>
+
+해당 configuration만 바꿀 생각이라면 중간의 `Working directory`를 원하는 path로 변경해주면 된다.
+
+만약 지금 다루는 프로젝트 전체의 default working directory 설정을 하고 싶다면 위 그림의 왼쪽 아래에 있는 `Edit configuration templates...`를 클릭한다.
+
+그 다음에 아래 그림처럼 `Working directory` 항목을 변경하면 된다. 프로젝트 파일에 넣으려면 오른쪽 위 박스의 `Store as project file`을 체크하자.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/78.png" width="80%"></center>
+
+
 ---
 
 ## 편집 창(코드 편집기)
@@ -796,6 +849,16 @@ Interpreter 경로 지정은 오른쪽의 디렉토리 아이콘을 누르면 �
 <center><img src="/public/img/2019-02-07-PyCharm-usage/68.png" width="100%"></center>
 
 그러면 위 그림과 같이 `SSH Session` 대화창이 뜬다. 여기서 보통 ssh 연결할 때처럼 서버 주소, 사용자명, 비밀번호 등을 입력하고 `OK`를 누르면 Terminal 창에서 로컬 환경 대신 SSH 환경에서 열리게 된다. 파일 접속은 물론이고 실행까지 원격 ssh 서버 상에서 이루어지게 된다. 
+
+---
+
+## 오류 해결법
+
+### 파이썬 가상환경 보안 에러(오류): about_Execution_Policies PSSecurityException
+
+윈도우에서 powershell을 관리자 권한으로 실행한다.
+
+Set-ExecutionPolicy Unrestricted을 입력한 다음에 Y(대문자)를 누르고 enter 입력하면 해결 완료된다.
 
 ---
 
