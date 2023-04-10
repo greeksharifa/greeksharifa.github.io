@@ -169,29 +169,143 @@ credential과 관련해 더 자세한 내용은 [여기](https://docs.gspread.or
 스프레드시트는 시트의 제목, 또는 url로부터 고유 id를 가져오거나, 그냥 url 전체를 복붙하면 된다.
 
 ```python
-worksheet = gc.open('gorio_test_spread')
-worksheet = gc.open_by_key('1kXGuatJwOmkMAat38UZ7OLdGBjt3HS1AobTGmlOuDns')
-worksheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1kXGuatJwOmkMAat38UZ7OLdGBjt3HS1AobTGmlOuDns/edit#gid=0')
+sh = gc.open('gorio_test_spread')
+sh = gc.open_by_key('1kXGuatJwOmkMAat38UZ7OLdGBjt3HS1AobTGmlOuDns')
+sh = gc.open_by_url('https://docs.google.com/spreadsheets/d/1kXGuatJwOmkMAat38UZ7OLdGBjt3HS1AobTGmlOuDns/edit#gid=0')
 ```
 단, 제목으로 하면 같은 제목을 가진 스프레드시트가 여러 개 있을 경우에 그냥 마지막으로 수정된 시트가 열린다. 가능하면 url이라도 쓰자.
 
 스프레드시트는 다음과 같이 생성할 수 있다.
 
 ```python
-worksheet = gc.create('A new spreadsheet')
+sh = gc.create('A new spreadsheet')
 ```
 
 공유하는 방법도 어렵지 않다.
 ```python
-worksheet.share('otto@example.com', perm_type='user', role='writer')
+sh.share('otto@example.com', perm_type='user', role='writer')
 ```
 
 ### Sheet select, create, delete
 
+가장 많이 쓰는 경우는 첫 번째 시트를 선택하는 경우이므로 아예 따로 지정되어 있다. 물론 다른 방법으로도 선택 가능하다.
+
+```python
+worksheet = sh.sheet1
+```
+
+worksheet 번호로 선택할 수 있다. 물론 번호는 0부터 시작한다.
+
+```python
+worksheet = sh.get_worksheet(0)
+```
+
+시트 제목으로 선택할 수도 있다.
+
+```python
+worksheet = sh.worksheet("Gorio")
+```
+
+전체 시트 목록을 얻으려면 다음과 같이 하면 된다.
+
+```python
+worksheet_list = sh.worksheets()
+```
+
+worksheet를 추가하거나 삭제하는 법도 간단하다.
+
+```python
+# 추가
+worksheet = sh.add_worksheet(title="New gorio worksheet", rows=50, cols=26)
+# 삭제
+sh.del_worksheet(worksheet)
+```
 
 
+### 셀 값 얻기
 
-###
+특정 1개의 셀 값을 얻는 방법은 여러 가지가 있다.
+
+```python
+# 1행 3열의 셀 값 얻기
+val = worksheet.cell(1, 3).value
+val = worksheet.acell('C1').value
+val = worksheet.get('C1') # 사실 get은 범위 연산도 가능하다. 출력되는 결과를 보면 2차원 리스트로 조금 다르게 생겼다.
+# 결과:
+# 'MR-full-mAP'
+# 'MR-full-mAP'
+# [['MR-full-mAP']]
+
+
+# cell formula를 사용하는 방법도 있다.
+cell = worksheet.acell('C1', value_render_option='FORMULA').value  # 또는
+cell = worksheet.cell(1, 3, value_render_option='FORMULA').value
+```
+
+특정 행이나 열 전체의 셀 값을 가져올 수 있다.
+
+```python
+values_list = worksheet.row_values(1)
+values_list = worksheet.col_values(1)
+```
+
+이외에도 범위를 지정해서 셀 값을 가져올 수 있다.
+
+- `get_all_values()`는 worksheet 전체의 값을 가져온다.
+- `get()`는 지정한 범위의 셀 값을 전부 가져온다.
+- `batch_get()`는 1번의 api call로 여러 범위의 셀 값을 가져올 수 있다.
+- `update()`는 값을 가져오는 것이 아니라 원하는 값으로 셀을 수정할 수 있다. 
+- 이제 `batch_update()`는 무슨 함수인지 알 것이다.
+
+참고로 api call을 너무 많이 날리면 `429 RESOURCE_EXHAUSTED` APIError가 뜰 수 있다. 그래서 위에 소개한 범위 함수를 잘 쓰는 것이 중요하다.
+
+api call limit은 다음과 같다.
+
+- 한 프로젝트당, 60초간 300회
+- 1명의 유저당, 60초간 60회
+
+
+```python
+from collections import OrderedDict
+
+import gspread
+
+gc = gspread.service_account()
+worksheet = gc.open("NIPS2023mjjung")
+sheet = worksheet.sheet1
+# print(sh.sheet1.get('A1'))
+# val = worksheet.acell('B1').value
+# val = worksheet.cell(1, 2).value
+# print(sh.sheet1.update('B1', opt.lr))
+# worksheet.update_cell(1, 2, 'Bingo!')
+
+column = 3
+while sheet.cell(1, column).value != None:
+    print(column, sheet.cell(1, column).value)
+    column += 1
+
+sheet.update_cell(1, column, 0.000111)
+sheet.update_cell(2, column, 222)
+
+
+column = 3
+while sheet.cell(3, column).value != None:
+    print(column, sheet.cell(1, column).value)
+    column += 1
+
+results = OrderedDict([   ('MR-full-R1@0.3', 68.15),
+('MR-full-R1@0.5', 55.65),
+('MR-full-R1@0.7', 34.09),
+('MR-full-mAP', 34.75),
+('MR-full-mAP@0.5', 65.16),
+('MR-full-mAP@0.75', 32.0),
+('MR-middle-mAP', 38.17),
+('MR-short-mAP', 33.78)])
+
+for i, (k, v) in enumerate(results.items()):
+    print('k, v:', k, v)
+    print(sheet.update_cell(i+3, column, v))
+```
 
 ---
 
