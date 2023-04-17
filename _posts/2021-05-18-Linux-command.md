@@ -189,6 +189,44 @@ df -h
 
 ---
 
+# Symbolic link 관련
+
+hard link과 symbolic link 두 종류가 존재하는데, 둘 다 바로가기 같은 개념이지만 차이가 조금 있다.
+
+- `ln` 뒤에 `-s` 옵션을 주면 symbolic link로 생성된다.
+- 원본 파일과 hard link 파일은 디스크에서 완전히 동일한 파일이다.
+- symbolic link 파일은 원본과는 다른 파일이고 링크만 가지고 있다.
+
+
+## link 생성
+
+```bash
+# 원본 경로는 파일일 수도, directory일 수도 있다.
+ln -s <원본 경로> <link 경로>
+ln -s ~/data/Charades/Charades_v1_480/  dataset/ag/videos
+# hard link는 -s 옵션을 붙이지 않는다.
+ln <원본 경로> <link 경로>
+```
+
+## 링크 삭제
+
+```bash
+rm -f <link 경로>
+rm -f dataset/ag/videos
+# 경로 마지막에 /를 붙이면 삭제가 되지 않는다.
+```
+
+폴더에 대한 삭제나 파일에 대한 삭제 모두 `rm -f`로 삭제할 수 있다. 원본은 삭제되지 않는다.  
+단 `rm -rf`로 삭제하면 원본이 삭제된다.
+
+참고로, symbolic link의 원본을 삭제하면 link는 존재하지만 실제로 파일에 접근할 수는 없다.  
+`ls` 등의 명령어로 확인하면 빨간색으로 표시된다.
+
+hard link의 경우에는 원본을 삭제해도 (원본의 복사본) 파일에 접근 가능하다.
+
+
+---
+
 # 압축 관련
 
 ## zip, unzip
@@ -288,7 +326,7 @@ find / -type d -name cuda 2>/dev/null
 
 ## 오류 해결 
 
-### `\r command not found`
+### \r command not found
 
 파일에 '\r'이 포함되어 코드가 제대로 작동하지 않는 오류(보통 운영체제의 차이로 인해 발생). 다음 코드를 수행하면 해결된다.
 
