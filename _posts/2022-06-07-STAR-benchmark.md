@@ -195,50 +195,78 @@ STAR hypergraph에 기반한 functional program으로 정확한 답을 자동으
 
 ## 4. Baseline Evaluation
 
+4지선다형 문제에 정답을 맞추는 비율로 여러 모델을 테스트했다.  
+사용한 모델들은 아래 표와 같다. Q-type random과 frequent는 각각 완전 임의선택, 가장 자주 나타나는 답만 선택하는 모델이다.  
+Blind Model은 언어 정보만 가지고 추론하는 모델이다.
 
-
+<center><img src="/public/img/2022-06-07-STAR-benchmark/tab02.png" width="80%"></center>
 
 ### 4.1. Comparison Analysis
 
-
-
+위 표 결과에서 보듯이 STAR는 질문이 여러 타입을 가져 꽤 어려운 문제임을 알 수 있다.  object 상호작용이나(LGCN) 더 나은 visual representation을 얻을 수 있는 HCRN, ClipBERT 등의 모델이 성능이 좀 낫다.
 
 ---
 
 ## 5. Diagnostic Model Evaluation
 
+neuro-symbolic framework인 **Neuro-Symbolic Situated Reasoning(NS-SR)**을 diagnostic model로 제안한다.
+
 ### 5.1. Model Design
 
+<center><img src="/public/img/2022-06-07-STAR-benchmark/fig03.png" width="80%"></center>
 
 **Video Parser**
 
+사람 또는 물체 중심 상호작용 정보를 얻는 detector로 구성된다. 
+
+- object는 Faster R-CNN, X101-FPN
+- relationships는 VCTree with TDE-sum, GloVe
+- pose는 AlphaPose
+- action은 MoViNets
+
+를 사용했다.
 
 **Transformers-based Action Transition Model**
 
+- **Situation Hypergraph Encoder**: 추출한 entity나 relation을 연결하여 "초기" situation hypergraph를 생성한다.
+- **Dynamics Transformer Model**:  dynamic하게 action state나 relationship을 예측하도록 설계되었다. transformer block은 VisualBERT로 구현하였다.
+- **Graph Sequence Decoder**
 
 **Language Parser**
 
-
+attention 기반 Seq2Seq 모델로 질문을 대응되는 program으로 parsing한다. 데이터셋의 질문이 single-select이므로 질문 및 선택지를 각각 parsing하는 2개의 모델을 사용했다. 각각 bidirectional LSTM encoder와 LSTM decoder로 구성된다. 
 
 **Program Executor**
 
-
+hypergraph 위에서 program을 실행하는 Program Executor를 설계했다. 질문을 parsing한 program을 그대로 hypergraph 위에서 따라가며 추론하는 방식이라고 생각하면 된다.
 
 
 ### 5.2. Result Analysis
 
+<center><img src="/public/img/2022-06-07-STAR-benchmark/tab03.png" width="80%"></center>
 
-**Situation Abstraction**
-**Visual Perception**
-**Language Understanding**
-**Without Ground-Truths**
+완벽한 GT를 가지고 program을 수행하면 당연하게도 100% 정답률을 보인다. (데이터셋이 그렇게 만들어졌으므로)
+
+아래는 각 요소가 없는 경우를 분석한 것이다.
+
+**Situation Abstraction**: 완벽한 시각적 인식과 추론 논리를 가지지만 완벽한 구조화된 상황 추상화 능력이 없어 성능이 많이 떨어진다.
+**Visual Perception**: 시각적 정보를 처리하는 것이 중요함을 나타낸다. 성능이 더 떨어졌다.
+**Language Understanding**: 완벽한 프로그램을 사용하지 않는 경우 성능은 1% 이내로 약간 감소한다. 이는 STAR의 언어 인식이 어렵지 않다는 것을 의미한다.
+**Without Ground-Truths**: 이 결과는 그리 좋지 못한데 추가 연구가 많이 이루어질 수 있다. visual perception과 situation abstraction을 개선하는 데 초점을 맞춰야 한다.
 
 
 ---
 
 ## 6. Conclusion
 
-한정된 자원을 갖고 있는 상황에서 Depth, Width, Resolution을 어떻게 적절히 조절하여 모델의 크기와 연산량을 줄이면서도 성능은 높일 수 있는지에 대한 연구를 훌륭하게 수행하였다.
+- 실제 상황에서의 추론을 위해 새로운 벤치마크 STAR를 도입하여 그에 맞는 추론 방법을 모색하였다.
+- 지각 외에도 상향식 상황 추상화와 논리적 추론을 통합합니다. 
+    - 상황 추상화는 동적 상황에 대한 통합적이고 구조화된 추상화를 제공하며, 논리적 추론은 정렬된 질문, 프로그램 및 데이터 유형을 채택합니다. 
+- 시스템이 동적 상황에서 학습하고 특정 상황에서 네 가지 유형의 질문(상호작용, 순서, 예측, 실현 가능성)에 대한 합리적인 답을 찾아야 하는 상황 추론 과제를 설계하였다.
+- 실험을 통해 상황적 추론이 최첨단 방법으로는 여전히 어려운 과제임을 입증하였다.
+- 또한 neuro-symbolic architecture로 새로운 진단 모델을 설계하여 상황적 추론을 탐구하였다. 
+- 상황 추론 메커니즘이 완전히 개발되지는 않았지만, 이 결과는 벤치마크의 도전과제를 보여주고 향후 유망한 방향을 제시하였다. 
+- STAR 벤치마크가 실제 상황 추론에 대한 새로운 기회를 열어줄 것으로 믿는다고 한다.
 
 
 ---
