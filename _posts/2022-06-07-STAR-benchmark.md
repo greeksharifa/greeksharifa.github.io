@@ -128,28 +128,68 @@ Situation은 STAR의 핵심 컨셉으로 entity, event, moment, environment를 �
 
 **Situation Hypergraph**
 
+Situation video를 잘 표현하기 위해, situation의 추상적인 표현을 얻기 위해 hypergraph 형태의 실세계 situation에서의 dynamic process를 기술한다. hypergraph는 action과 그 관계, 계층적 구조를 포함한다. 그림 1에서와 같이 각 situation video는 person 및 object node와, 한 frame 내의 person-object 또는 object-object 관계를 표현하는 edge를 포함하는 subgraph 여러 개로 구성된다. 한편 각 actino hyperedge는 여러 subgraph를 연결한다. 몇몇 경우에 여서 action이 겹치며 subgraph 안의 node들이 서로 공유된다.
 
+수식으로 나타내면, $H = (X, E)$ : situation hypergraph $H$는 situation frame에 나타나는 person 또는 object를 나타내는 node들의 집합 $X$와 action들에 대한 subgraphs $S_i$의 hyperedge들의 공집합이 아닌 집합 $E$로 구성된다.
+
+다른 spatio-temporal graph와 달리 action을 frame 수준 subgraph 대신 hyperedge로 나타낸다. 
+
+situation hypergraph의 annotation 작업은 다음과 같다:
+
+- action temporal duration과 나타난 object들에 대한 annotation에 기반하여 one-to-many connection을 action hyperedge로 생성한다. 
+- action annotation은 Charades에서 얻었으며 person-object relationships(Rel1), objects/persons annotation은 ActionGenome에서 얻었다.
+- object-object relationships(Rel2)는 detector VCTree(with TDE)를 사용하여 추출하였다.
+- Rel1과 Rel2에 더하여 person-object relations(Rel3)을 추가하였다.
+    - 예를 들어 `<person, on, chair>`과 `<chair, on the left of, table>`이라는 관계가 존재하면, `<person, on the left of, table>` 또한 존재한다.
+- 모든 모델은 video를 입력으로 사용하지만, **hypergraph annotation(entities, relationships, actions, or entire graphs)**는 더 나은 visual perception이나 structured abstraction을 학습하는데 사용될 수 있다.
 
 
 ### 3.2. Questions and Answers Designing
 
+QA 엔진은 모든 질문, 답변, 옵션들을 situation hypergraph에 기반하여 생성한다.
+
 **Question Generation**
 
+situation reasoning에서 여러 난이도를 다루고 각각 다른 목적을 가지는 여러 타입의 질문을 설계하였다.
+
+- **Interaction Question** (What did a person do ...): 주어진 상황에서 사람과 물체 간 상호작용을 이해하는 기본 테스트이다.
+- **Sequence Question** (What did the person do before/after ...): dynamic situation에서 연속적인 action이 있을 때 시간적 관계를 추론하는 능력을 측정한다.
+- **Prediction Question** ( What will the person do next with...): 현 상황에서 다음 행동으로 타당한 것을 예측하는 능력을 측정한다. 주어진 상황은 action의 첫 1/4만큼만 보여지며 질문은 나머지 action이나 결과에 대한 것이다.
+- **Feasibility Question** (What is the person able to do/Which object is possible to be ...): 특정 상황 조건에서 실현 가능한 action을 추론하는 능력을 평가한다. 상황 통제를 위해 spatial/temporal prompt를 사용한다.
+
+일관성을 위해 모든 질문은 잘 설계된 template과 hypergraph의 data로부터 생성되었다. `[P], [O], [V], [R]`로 각각 person, objects, action verbs, relationships을 나타내고 생성 과정은 다음과 같다:
+
+- situation annotations과 hypergraphs로부터 데이터를 추출한다.
+- 추출한 데이터로 question template을 채운다.
+- 어구 조합(phrase collocation)이나 형태론(morphology) 등으로 확장한다.
 
 **Answer Generation**
 
+STAR hypergraph에 기반한 functional program으로 정확한 답을 자동으로 만든다. Suppl. figure 5에서 자세한 과정을 볼 수 있다.
 
 **Distractor Generation**
 
+정말 추론을 잘하는지 아니면 단순 확률만 추정하는 건지 확인하기 위한 작업으로 다음 3가지 distractor 전략을 설계했다.
+
+1. **Compositional Option**: 주어진 상황과 반대되는 옵션을 주는 가장 어려운 옵션이다. 또한 잘 어울리는 verb-object이며(합성성compositionality를 만족) 같은 상황에서 일어나는 사실을 기반으로 만든다.
+- **Random Option**: 이 옵션 역시 합성성을 만족하지만 다른 임의의 situation hypergraph에서 선택된다.
+- **Frequent Option**: 모델을 확률로 속이는 옵션인데 각 질문 그룹에서 가장 자주 일어나는 옵션을 고른다.
+
+모든 옵션은 각 질문에 대해 랜덤 순서로 배치된다.
 
 **Debiasing and Balancing Strategies**
 
+`옷을 입는다`나 `문손잡이를 잡는다`같이 자주 나타나는 단어쌍 등이 있는데 모델은 이를 통해 영상을 보지도 않고 답을 맞출 수도 있다. 이런 것을 막기 위해 다른 여러 단어들과 좋바될 수 있는 동사나 명사를 선택하여 남겨두었다. 즉 편향 제거 작업이다.
+
+<center><img src="/public/img/2022-06-07-STAR-benchmark/fig02.png" width="80%"></center>
 
 **Grammar Correctness and Correlation**
 
+문법 체크기를 사용해서 정확성을 87%에서 98%로 올렸다.
 
 **Rationality and Consistency**
 
+생성된 situation video, 질문, 선택지의 품질과 상관성을 확보하기 위해 AMT를 사용, rationality와 consistency를 확보한 데이터만 남겼다.
 
 ---
 
