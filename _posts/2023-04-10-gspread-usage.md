@@ -11,6 +11,8 @@ tags: [gspread, usage]
 
 이 글에서는 python **gspread**를 이용해 자동으로 구글 스프레드시트에 값을 기록하는 방법을 정리한다.
 
+코드의 일부는 [gspread docs](https://docs.gspread.org/en/latest/user-guide.html)에서 가져왔다.
+
 ---
 
 ## gspread 설치
@@ -265,50 +267,171 @@ api call limit은 다음과 같다.
 - 1명의 유저당, 60초간 60회
 
 
+worksheet의 모든 값을 list의 list 또는 dict의 list 형태로 가져올 수 있다.
+
 ```python
-from collections import OrderedDict
-
-import gspread
-
-gc = gspread.service_account()
-worksheet = gc.open("NIPS2023mjjung")
-sheet = worksheet.sheet1
-# print(sh.sheet1.get('A1'))
-# val = worksheet.acell('B1').value
-# val = worksheet.cell(1, 2).value
-# print(sh.sheet1.update('B1', opt.lr))
-# worksheet.update_cell(1, 2, 'Bingo!')
-
-column = 3
-while sheet.cell(1, column).value != None:
-    print(column, sheet.cell(1, column).value)
-    column += 1
-
-sheet.update_cell(1, column, 0.000111)
-sheet.update_cell(2, column, 222)
-
-
-column = 3
-while sheet.cell(3, column).value != None:
-    print(column, sheet.cell(1, column).value)
-    column += 1
-
-results = OrderedDict([   ('MR-full-R1@0.3', 68.15),
-('MR-full-R1@0.5', 55.65),
-('MR-full-R1@0.7', 34.09),
-('MR-full-mAP', 34.75),
-('MR-full-mAP@0.5', 65.16),
-('MR-full-mAP@0.75', 32.0),
-('MR-middle-mAP', 38.17),
-('MR-short-mAP', 33.78)])
-
-for i, (k, v) in enumerate(results.items()):
-    print('k, v:', k, v)
-    print(sheet.update_cell(i+3, column, v))
+list_of_lists = worksheet.get_all_values()
+list_of_dicts = worksheet.get_all_records()
 ```
+
+### 셀 값 찾기
+
+기본적으로, 셀은 다음과 같은 값들을 attribute로 갖는다.
+```python
+value = cell.value
+row_number = cell.row
+column_number = cell.col
+```
+
+특정 문자열을 가지는 셀을 하나 또는 전부 찾는 방법은 아래와 같다.
+
+```python
+cell = worksheet.find("Gorio")
+print("'Gorio' is at R%sC%s" % (cell.row, cell.col))
+
+# 전부 찾기
+cell_list = worksheet.findall("Gorio")
+```
+
+
+[정규표현식](https://greeksharifa.github.io/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D(re)/2018/07/20/regex-usage-01-basic/)을 사용할 수도 있다.
+```python
+amount_re = re.compile(r'(Big|Enormous) dough')
+cell = worksheet.find(amount_re)
+
+# 전부 찾기
+cell_list = worksheet.findall(amount_re)
+```
+
+### 셀 값 업데이트하기
+
+먼저, 선택한 범위의 셀 내용을 지우는 방법은 다음과 같다.
+
+```python
+# 리스트 안에 요소로 셀 범위나 이름을 부여한 named range를 넣을 수 있다.
+worksheet.batch_clear(["A1:B1", "C2:E2", "named_range"])
+
+# 전체를 지울 수도 있다.
+worksheet.clear()
+```
+
+특정 1개 또는 특정 범위의 셀을 지정한 값으로 업데이트할 수 있다.
+
+```python
+worksheet.update('B1', 'Gorio')
+
+# 1행 2열, 즉 B1
+worksheet.update_cell(1, 2, 'Gorio')
+
+# 범위 업데이트
+worksheet.update('A1:B2', [[1, 2], [3, 4]])
+```
+
+### 서식 지정
+
+셀 값을 단순히 채우는 것 말고도 서식을 지정할 수도 있다.
+
+```python
+# 볼드체로 지정
+worksheet.format('A1:B1', {'textFormat': {'bold': True}})
+```
+
+여러가지 설정을 같이 할 수도 있다. dict에 원하는 값을 지정하여 업데이트하면 된다.
+
+```python
+worksheet.format("A2:B2", {
+    "backgroundColor": {
+      "red": 0.0,
+      "green": 0.0,
+      "blue": 0.0
+    },
+    "horizontalAlignment": "CENTER",
+    "textFormat": {
+      "foregroundColor": {
+        "red": 1.0,
+        "green": 1.0,
+        "blue": 1.0
+      },
+      "fontSize": 12,
+      "bold": True
+    }
+})
+```
+
+어떤 서식을 지정할 수 있는지는 [여기](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/cells#cellformat)를 참고하자.
+
+
+또한, 셀 서식뿐만 아니라 워크시트의 일부 서식을 지정할 수도 있다.
+
+예를 들어 행 또는 열 고정은 다음과 같이 값을 얻거나 지정할 수 있다.
+
+```python
+get_frozen_row_count(worksheet)
+get_frozen_column_count(worksheet)
+set_frozen(worksheet, rows=1)
+set_frozen(worksheet, cols=1)
+set_frozen(worksheet, rows=1, cols=0)
+```
+
+셀의 높이나 너비를 지정하거나 데이터 유효성 검사, 조건부 서식 등을 지정할 수도 있다.
+
+
+설치 방법 및 사용법은 다음을 참고하자.
+
+- https://gspread-formatting.readthedocs.io/en/latest/
+
+
+
+
+
+### numpy, pandas와 같이 사용하기
+
+
+워크시트 전체를 numpy array로 만들 수 있다.
+
+```python
+import numpy as np
+array = np.array(worksheet.get_all_values())
+
+# 시트에 있는 header를 떼고 싶으면 그냥 [1:]부터 시작하면 된다.
+array = np.array(worksheet.get_all_values()[1:])
+```
+
+물론 numpy array를 시트에 올릴 수도 있다.
+
+```python
+import numpy as np
+
+array = np.array([[1, 2, 3], [4, 5, 6]])
+worksheet.update('A2', array.tolist())
+```
+
+
+
+워크시트 전체를 불러와 pandas dataframe으로 만들고 싶으면 다음과 같이 쓰면 된다.
+
+```python
+import pandas as pd
+dataframe = pd.DataFrame(worksheet.get_all_records())
+```
+
+dataframe의 header와 value를 전부 worksheet에 쓰는 코드 예시는 다음과 같다.
+
+```python
+import pandas as pd
+worksheet.update([dataframe.columns.values.tolist()] + dataframe.values.tolist())
+```
+
+더 많은 기능은 다음 github을 참고하자.
+
+- https://github.com/aiguofer/gspread-pandas
+- https://github.com/robin900/gspread-dataframe
+
 
 ---
 
 ## References
 
 - https://docs.gspread.org/en/latest/oauth2.html#enable-api-access
+- https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/cells#cellformat
+- https://gspread-formatting.readthedocs.io/en/latest/
