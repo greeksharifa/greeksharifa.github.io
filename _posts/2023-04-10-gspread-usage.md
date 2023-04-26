@@ -120,7 +120,7 @@ sh = gc.open("gorio_test_spread") # 스프레드시트 제목으로 설정할 �
 print(sh.sheet1.get('A1'))
 ```
 
-service account는 credential을 따로 또는 dictionary 형태롤 받을 수 있다.
+service account는 credential을 사용하거나 dictionary 형태로 받을 수 있다.
 
 ```python
 from google.oauth2.service_account import Credentials
