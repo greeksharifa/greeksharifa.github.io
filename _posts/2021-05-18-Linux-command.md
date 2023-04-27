@@ -249,7 +249,7 @@ unzip <filename>
 unzip <filename> -d <path>
 ```
 
-### 여러 파일 압축 한 번에 풀기
+### 여러 압축파일 한 번에 풀기
 
 `unzip '<zipfiles>' [-d <dir>]`의 형식이다.
 
@@ -262,6 +262,59 @@ unzip a.zip b.zip c.zip
 unzip '*.zip' -d data/
 ```
 
+
+## tar, tar.gz
+
+용량을 줄이는 압축 방법은 `tar.gz` 형식으로 압축하는 것이고, `tar` 형식은 단지 하나의 파일로 합치는 archiving 방식이다.
+
+`tar.gz`로 처리하려면 옵션에 `z`를 더 붙이면 된다.
+
+옵션 설명은 아래와 같다.
+- -c : 파일을 tar로 묶음
+- -x : tar 압축을 풀때 사용함
+- -v : 묶거나 파일을 풀때 과정을 화면에 출력
+- -f : 파일이름을 지정
+- -z : gzip으로 압축하거나 해제
+- -C : 경로를 지정
+- -p : 파일 권한을 저장
+
+### 압축하기: tar -cvf, tar -zcvf
+
+```bash
+# 디렉토리를 tar로 압축하기
+tar -cvf [압축파일명.tar] [압축하기위한 디렉토리]
+# 파일들을 tar로 압축하기
+tar -cvf [압축파일명.tar] [파일1] [파일2] [...]
+
+# 디렉토리를 tar.gz로 압축하기
+tar -zcvf [압축파일명.tar.gz] [압축하기위한 디렉토리]
+# 파일 tar.gz 압축하기
+tar -zcvf [압축파일명.tar.gz] [파일1] [파일2] [...]
+```
+
+### 압축풀기: tar -xvf, tar -zxvf
+
+`-c` 옵션을 `-x`로 바꿔주기만 하면 된다.
+
+```bash
+# tar 파일 압축풀기
+tar -xvf [압축파일명.tar]
+
+# tar.gz 파일 압축풀기
+tar -zxvf [압축파일명.tar.gz] 
+```
+
+
+### 여러 압축파일 한 번에 풀기
+
+`tar` 또는 `tar.gz` 확장자를 갖는 파일들을 찾고 위의 압축풀기 명령을 각각에 대해 수행하는 코드이다.
+
+```bash
+# tar 형식
+find . -name '*.tar' -exec tar -xvf {} \;
+# tar.gz 형식
+find . -name '*.tar.gz' -exec tar zxvf {} \;
+```
 
 ---
 

@@ -13,7 +13,7 @@ Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생 �
 
 글이 길기 때문에 사용법을 검색하고 싶다면 `Ctrl + F` 키를 누른 다음 검색해 보자.
 
-*2020.06.10 updated*
+*2023.03.07 updated*
 
 ---
 
@@ -21,11 +21,13 @@ Professional 버전은 돈을 주고 구입하거나, 학생이라면 [학생 �
 
 PyCharm 홈페이지에서 설치 파일을 다운받는다. 
 
+또는 [Jetbrains Toolbox](https://www.jetbrains.com/ko-kr/toolbox-app/)를 받은 다음 PyCharm을 받아도 된다. 
+
 <script data-ad-client="ca-pub-9951774327887666" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 [Windows](https://www.jetbrains.com/pycharm/download/#section=windows), [Mac](https://www.jetbrains.com/pycharm/download/#section=mac), [Linux](https://www.jetbrains.com/pycharm/download/#section=linux)
 
-유료 버전을 구매했거나 [학생 인증](https://www.jetbrains.com/student/)이 가능하다면, Professional 버전을 다운받도록 한다.
+유료 버전을 구매했거나 [학생 인증](https://www.jetbrains.com/student/)이 가능하다면, Professional(혹은 Education) 버전을 다운받도록 한다.
 
 ### Settings
 
@@ -76,7 +78,7 @@ Go to Declaration or Usages | | Ctrl + Button1 Click
 
 
 
-필자의 경우 나머지 설정은 그대로 두는 편이나, `Ctrl + Enter`로 바꿀 때는 다른 곳에 할당된 것을 지운다(Already assigned 경고창에서 Leave 대신 Remove를 선택). 안 그러면 선택한 부분이 Python Console(대화형)에서 실행되지 않는다.
+필자의 경우 나머지 설정은 그대로 두는 편이나, `Ctrl + Enter`로 바꿀 때는 다른 곳에 할당된 것을 지운다(Already assigned 경고창에서 Keep 대신 Remove를 선택). 안 그러면 선택한 부분이 Python Console(대화형)에서 실행되지 않는다.
 
 <center><img src="/public/img/2019-02-07-PyCharm-usage/07.png" width="100%"></center>
 
@@ -98,6 +100,21 @@ PyCharm에서 코드 실행을 대화형으로 하면 Python Console에 자꾸 `
 프로젝트 이름은 기본적으로 Untitled 이므로 바꿔주고, 아래쪽의 Project Interpreter를 설정해 둔다. 미리 설정했다면 목록이 보일 것이고, 아니라면 새로 생성하거나 `python.exe` 위치를 찾아 지정해준다.
 
 ### Sync Settings
+
+2022.3 버전 기준으로 오른쪽 상단에 `Settings Sync`라는 기능이 생겼다. 클릭해보자(원래는 off로 되어 있을 것이다).
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/80.png" width="30%"></center>
+
+그리고 `Enable Settings Sync...`를 눌러 활성화한 다음 어떤 세팅을 동기화할지 선택하면 된다.
+
+<center><img src="/public/img/2019-02-07-PyCharm-usage/81.png" width="100%"></center>
+
+제일 아래쪽에는 지금과 같은 설정 동기화 방식을 PyCharm에만 적용할지, 다른 모든 Jetbrains 제품군에 적용할지 선택하는 설정이 들어 있다.
+
+---
+
+예전 버전 설정 방법은 아래에 설명하고 있다.
+
 
 시작 화면에서 `Configure` > `Settings Repository...`, 또는 프로젝트 생성 후 `File` > `Settings Repository...` 를 클릭하면 지금까지 설정한 설정들을 git repository에 저장할 수 있다. git을 알고 있다면, Merge, Overwrite Local, Overwrite Remote의 뜻을 알 것이라 믿는다. git repository에 저장하면 컴퓨터를 옮겨도 동일한 설정을 쉽게 지정할 수 있다.
 
@@ -121,6 +138,8 @@ git repository는 그냥 여러분의 git 계정에서 빈 거 하나 만든 다
 
 코딩을 해 봤다면 알겠지만 한글이나 기타 UTF-8 인코딩 문자는 글자가 깨지는 경우가 흔하다. PyCharm의 기본 설정이 UTF-8이 아닌데, 이를 설정해주자. 
 
+아래 과정은 `Settings`을 열고 `Encoding`을 검색한 다음 나오는 모든 설정을 'UTF-8'로 바꾸는 과정과 같다.
+
 모든 부분에서 글자가 안 깨지게 하려면 다음을 설정한다.
 
 - `File > New Projects Settings > Settings for New Projects` 메뉴로 들어가면 `Settings for New Projects` 창이 뜬다.
@@ -138,7 +157,7 @@ git repository는 그냥 여러분의 git 계정에서 빈 거 하나 만든 다
         ```
     - 그리고 PyCharm을 재시작한다.
 
-여기까지 설정했으면 파일이나 터미널 등에서 문자가 깨지지 않을 것이다. 그럼에도 깨지는 게 있으면 UTF-8 인코딩이 아니거나, 설정을 빠뜨렸거나..일 것이다. 
+여기까지 설정했으면 파일이나 터미널 등에서 문자가 깨지지 않을 것이다. 그럼에도 깨지는 게 있으면 UTF-8 인코딩이 아니거나, 설정을 빠뜨렸거나..일 것이다. 위에서 설명한 대로 `Settings`에서 `Encoding`이라고 검색해 보자.
 
 ### PyCharm 메모리 설정(Heap Memory)
 
@@ -170,19 +189,19 @@ git repository는 그냥 여러분의 git 계정에서 빈 거 하나 만든 다
 <center><img src="/public/img/2019-02-07-PyCharm-usage/14.png" width="70%"></center>
 
 각 옵션을 대략 설명하면,
-- New: File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 단축키 설정하는 방법은 다음과 같다.
+- **New:** File, Directory, Python File(`.py`), Jupyter Notebook(`.ipynb`) 등을 생성한다. 단축키 설정하는 방법은 다음과 같다.
     - 새 Python 파일을 생성할 때는 `New > Python File`을 선택하면 된다. 단축키를 설정하는 방법은 `Settings > Keymap`의 검색창에서 `Python File`을 검색하면 아무 단축키가 지정되어 있지 않은 것을 볼 수 있다. `Add Keyboard Shortcut`을 눌러 원하는 키를 설정해주자.
-- Cut, Copy, Paste 등은 설명하지 않겠다.
-- Copy Path, Copy Relative Path: 각각 해당 디렉토리 또는 파일의 절대/상대 경로를 복사한다. 이미지나 데이터 파일 등의 경로를 써야 할 때 유용하게 쓸 수 있다. 단, 사용 환경에 따라 디렉토리 구분자가 `/`, `\`, `//` 등으로 달라지는 경우가 있으니 주의.
-- Refactor: 해당 디렉토리 또는 파일의 이름을 변경한다. 이때 이 파일명을 사용하는 코드(file open 등)이 있으면 그 코드를 자동으로 수정하게 할 수 있다.
-- Find Usages: 해당 파일을 참조하는 코드를 살펴볼 수 있다. Refactor와 같이 사용하면 좋다.
-- Show in Explorer: 해당 디렉토리나 파일이 있는 디렉토리를 탐색기나 Finder 등에서 열 수 있다.
-- Mark Directory as: 디렉토리의 속성을 설정한다. 세부 옵션이 4개 있다.
-    - Sources Root: 프로젝트에서 코드의 최상위 폴더를 지정한다. 코드를 짜다 보면 프로젝트 루트 폴더에 직속된 파일이 아닌 경우 패키지나 파일 reference를 찾지 못하는 경우가 많은데, 그럴 때는 해당 코드를 포함하는 파일 바로 상위의 디렉토리를 Sources Root로 설정하면 빨간 줄이 사라지는 것을 볼 수 있다.
-    - Excluded: PyCharm 색인(Index)에서 제외시킨다. PyCharm은 Find Usages와 같은 기능을 지원하기 위해 프로젝트 내 모든 파일과 코드에 대해 indexing을 수행하는데(목차를 생성하는 거랑 비슷함), 프로젝트 크기가 크면 굳이 필요 없는 수많은 파일들까지 indexing해야 한다. 이는 PyCharm 성능 저하와 함께 색인 파일의 크기가 매우 커지므로(임시 파일까지 포함하여 수 GB까지 되기도 함) 너무 많으면 적당히 제외시키도록 하자.
-    - Resource Root: 말 그대로 Resource Root로 지정한다. 
-    - Template Folder: 템플릿이 있는 폴더에 지정하면 된다. Pure Python을 쓸 때에는 별 의미 없다.
-- Add to Favorites: Favorites창에 해당 디렉토리나 파일을 추가한다. 즐겨찾기 기능이랑 같다. 프로젝트 창 아래에서 창을 찾을 수 있고, `Alt + 2` 단축키로 토글할 수 있다.
+- **Cut, Copy, Paste** 등은 설명하지 않겠다.
+- **Copy Path, Copy Relative Path:** 각각 해당 디렉토리 또는 파일의 절대/상대 경로를 복사한다. 이미지나 데이터 파일 등의 경로를 써야 할 때 유용하게 쓸 수 있다. 단, 사용 환경에 따라 디렉토리 구분자가 `/`, `\`, `//` 등으로 달라지는 경우가 있으니 주의.
+- **Refactor:** 해당 디렉토리 또는 파일의 이름을 변경한다. 이때 이 파일명을 사용하는 코드(file open 등)이 있으면 그 코드를 자동으로 수정하게 할 수 있다.
+- **Find Usages:** 해당 파일을 참조하는 코드를 살펴볼 수 있다. Refactor와 같이 사용하면 좋다.
+- **Show in Explorer:** 해당 디렉토리나 파일이 있는 디렉토리를 탐색기나 Finder 등에서 열 수 있다.
+- **Mark Directory as:** 디렉토리의 속성을 설정한다. 세부 옵션이 4개 있다.
+    - **Sources Root: **프로젝트에서 코드의 최상위 폴더를 지정한다. 코드를 짜다 보면 프로젝트 루트 폴더에 직속된 파일이 아닌 경우 패키지나 파일 reference를 찾지 못하는 경우가 많은데, 그럴 때는 해당 코드를 포함하는 파일 바로 상위의 디렉토리를 Sources Root로 설정하면 빨간 줄이 사라지는 것을 볼 수 있다.
+    - **Excluded:** PyCharm 색인(Index)에서 제외시킨다. PyCharm은 Find Usages와 같은 기능을 지원하기 위해 프로젝트 내 모든 파일과 코드에 대해 indexing을 수행하는데(목차를 생성하는 거랑 비슷함), 프로젝트 크기가 크면 굳이 필요 없는 수많은 파일들까지 indexing해야 한다. 이는 PyCharm 성능 저하와 함께 색인 파일의 크기가 매우 커지므로(임시 파일까지 포함하여 수 GB까지 되기도 함) 너무 많으면 적당히 제외시키도록 하자.
+    - **Resource Root:** 말 그대로 Resource Root로 지정한다. 
+    - **Template Folder:** 템플릿이 있는 폴더에 지정하면 된다. Pure Python을 쓸 때에는 별 의미 없다.
+- **Add to Favorites:** Favorites창에 해당 디렉토리나 파일을 추가한다. 즐겨찾기 기능이랑 같다. 프로젝트 창 아래에서 창을 찾을 수 있고, `Alt + 2` 단축키로 토글할 수 있다.
 
 <center><img src="/public/img/2019-02-07-PyCharm-usage/14_1.png" width="70%"></center>
 
@@ -331,7 +350,7 @@ PyCharm에서도 `.ipynb`파일을 사용할 수 있다. 웹브라우저에서 �
 아래는 일부 코드 블록을 간편하게 입력할 수 있는 방법을 소개한 것이다.
 
 - 클래스 내부의 함수를 작성할 때는 `(`를 입력하는 순간 `self` 인자가 자동으로 추가된다. 기본적으로 써야 하는 인자이기 때문에 자동 추가되며, 이를 비활성화하고 싶으면 `File > Settings > Editor > General > Smart Keys`에서 바꿀 수 있다.
-- 함수나 클래스를 작성할 때, 삼중따옴표를 함수 prototype 정의 바로 밑에 써 주면 깔끔하게 함수 사용법을 정리할 수 있는 주석이 나타난다. 
+- 함수나 클래스를 작성할 때, 삼중큰따옴표를 함수 prototype 정의 바로 밑에 써 주면 깔끔하게 함수 사용법을 정리할 수 있는 주석이 나타난다. 
     - 빈 줄에 함수 설명을, `param`에는 각 인자의 설명을, `return`에는 이 함수의 반환값에 대한 설명을 써 주자.
 
 <center><img src="/public/img/2019-02-07-PyCharm-usage/34.png" width="60%"></center>
