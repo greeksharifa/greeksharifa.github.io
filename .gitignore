@@ -6,3 +6,5 @@ algorithm/
 *vcxproj*
 
 Gemfile.lock
+
+test.ipynb

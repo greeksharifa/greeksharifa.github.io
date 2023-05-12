@@ -241,7 +241,7 @@ val = worksheet.get('C1') # 사실 get은 범위 연산도 가능하다. 출력�
 
 # cell formula를 사용하는 방법도 있다.
 cell = worksheet.acell('C1', value_render_option='FORMULA').value  # 또는
-cell = worksheet.cell(1, 3, value_render_option='FORMULA').value
+cell = worksheet.cell(1, 3, value_render_option='FORMULA').value # 1행 3열 -> C1
 ```
 
 특정 행이나 열 전체의 셀 값을 가져올 수 있다.
