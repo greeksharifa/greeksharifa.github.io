@@ -53,8 +53,8 @@ Fraction          | \frac{(n^2+n)(2n+1)}{6}, {a+1\over b+1}, \cfrac{a}{b}       
 Sigma             | \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}                     | $ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6} $
 Signs             | \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x}        | $ \infty \prod \int \bigcup \bigcap \iint \iiint \sqrt{x} $
 Special functions | \lim_{x\to 0} \sin \max \ln \log                               | $ \lim_{x\to 0} \sin \max \ln \log $
-Matrix 1          | \begin{matrix}a & b \\ c & d\end{matrix}                       | $\begin{matrix}a & b \\ c & d\end{matrix}$
-Matrix 2          | \begin{pmatrix}a & b & c \\ d & e & f \\ g \end{pmatrix}       | $\begin{pmatrix}a & b & c \\ d & e & f \\ g \end{pmatrix}$
+Matrix 1          | `\begin{matrix}a & b \\ c & d\end{matrix}`                       | $\begin{matrix}a & b \\ c & d\end{matrix}$
+Matrix 2          | `\begin{pmatrix}a & b & c \\ d & e & f \\ g \end{pmatrix}`       | $\begin{pmatrix}a & b & c \\ d & e & f \\ g \end{pmatrix}$
 Multi-lines       | \begin{eqnarray} a^2 + b^2 &=& c^2 \\ &=& 5  \end{eqnarray}    | 표 위쪽 참조.
 Inequality        | \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  | $ \lt \gt \le \leq \leqq \leqslant \ge \geq \geqq \geqslant \neq \gg \ll \ggg \lll  $
 Approximate       | \approx \sim \simeq \cong \equiv \prec \lhd                    | $ \approx \sim \simeq \cong \equiv \prec \lhd $

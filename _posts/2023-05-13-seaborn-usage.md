@@ -23,6 +23,7 @@ data = pd.DataFrame(data={
 
 ---
 
+
 ## seaborn 설치
 
 설치는 꽤 간단하다.
@@ -37,6 +38,17 @@ import는 관례적으로 다음과 같이 한다.
 import seaborn as sns
 ```
 
+---
+
+## 막대 그래프(barplot)
+
+```python
+sns.barplot(data=data)
+```
+<center><img src="/public/img/2023-05-13-seaborn-usage/15.png" width="60%"></center>
+
+
+
 
 ---
 
@@ -50,14 +62,14 @@ import seaborn as sns
 sns.set() 
 plt.scatter(x=data.index, y=data['A'])
 ```
-<center><img src="/public/img/2023-05-13-seaborn-usage/01.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/01.png" width="60%"></center>
 
 
 ```python
 sns.set_style('dark')
 plt.scatter(x=data.index, y=data['A'])
 ```
-<center><img src="/public/img/2023-05-13-seaborn-usage/02.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/02.png" width="60%"></center>
 
 
 ---
@@ -67,7 +79,7 @@ plt.scatter(x=data.index, y=data['A'])
 ```python
 sns.heatmap(data)
 ```
-<center><img src="/public/img/2023-05-13-seaborn-usage/03.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/03.png" width="60%"></center>
 
 ### 눈금 값 설정(xticks, yticks)
 
@@ -77,7 +89,7 @@ heatmap을 구성하는 각 box의 중심 좌표는 제일 왼쪽 아래가 `(0.
 sns.heatmap(data)
 plt.xticks([0.5, 1.5, 2.9], ["A class", "B class", "C class"])
 ```
-<center><img src="/public/img/2023-05-13-seaborn-usage/04.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/04.png" width="60%"></center>
 
 
 ### 데이터 값 표시(annot, fmt)
@@ -88,7 +100,7 @@ plt.xticks([0.5, 1.5, 2.9], ["A class", "B class", "C class"])
 ```python
 sns.heatmap(data, annot = True, fmt = ".2f")
 ```
-<center><img src="/public/img/2023-05-13-seaborn-usage/05.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/05.png" width="60%"></center>
 
 
 ### 선 스타일 설정
@@ -98,7 +110,7 @@ sns.heatmap(data, annot = True, fmt = ".2f")
 ```python
 sns.heatmap(data, annot = True, fmt = ".1f", linewidth = 2, linecolor = "black")
 ```
-<center><img src="/public/img/2023-05-13-seaborn-usage/06.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/06.png" width="60%"></center>
 
 
 ### Colormap 설정
@@ -106,16 +118,16 @@ sns.heatmap(data, annot = True, fmt = ".1f", linewidth = 2, linecolor = "black")
 ```python
 sns.heatmap(data, annot = True, fmt = ".2f", cmap = "Blues", linewidth = 1, linecolor = "black")
 ```
-<center><img src="/public/img/2023-05-13-seaborn-usage/07.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/07.png" width="60%"></center>
 
 cmap은 아래 그림들을 참조하자.
-<center><img src="/public/img/2023-05-13-seaborn-usage/08.png" width="70%"></center>
-<center><img src="/public/img/2023-05-13-seaborn-usage/09.png" width="70%"></center>
-<center><img src="/public/img/2023-05-13-seaborn-usage/10.png" width="70%"></center>
-<center><img src="/public/img/2023-05-13-seaborn-usage/11.png" width="70%"></center>
-<center><img src="/public/img/2023-05-13-seaborn-usage/12.png" width="70%"></center>
-<center><img src="/public/img/2023-05-13-seaborn-usage/13.png" width="70%"></center>
-<center><img src="/public/img/2023-05-13-seaborn-usage/14.png" width="70%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/08.png" width="60%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/09.png" width="60%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/10.png" width="60%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/11.png" width="60%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/12.png" width="60%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/13.png" width="60%"></center>
+<center><img src="/public/img/2023-05-13-seaborn-usage/14.png" width="60%"></center>
 
 
 위 그림은 [아래 코드](https://matplotlib.org/3.7.1/tutorials/colors/colormaps.html)로 생성할 수 있다.
