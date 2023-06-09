@@ -12,6 +12,11 @@ tags: [Python, Selenium, usage]
 
 예시 코드의 일부는 [Selenium Documentation](https://selenium-python.readthedocs.io/index.html)의 코드를 참조하였음을 밝혀둔다.
 
+selenium 4 버전부터는 사용법이 바뀐 부분이 있다. 버전 4 이후 바뀐 점을 먼저 보면 좋다.  
+이전 버전을 사용해야 한다면 **버전 4 이후 바뀐 점**을 보고 적용하면 된다.
+
+*2023.06.09 updated*
+
 ---
 
 # Install
@@ -64,12 +69,36 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 ---
 
+# 버전 4 이후 바뀐 점
+
+- driver를 만들 때 `executable_path` 인자를 주지 않는다.
+```python
+# selenium 4 이상에서는 executable_path를 인자로 주지 않는다.
+driver = webdriver.Chrome()
+
+# 이전 버전에서는 아래와 같이 쓴다.
+driver = webdriver.Chrome(executable_path='chromedriver')
+```
+
+- `find_element`류 함수들의 사용법이 함수명에 `by_xxx`를 쓰는 대신 `By.XXX` 인자를 주는 것으로 바뀌었다.
+
+```python
+# selenium 4 이상에서는 By.XXX를 인자로 준다.
+search_box = driver.find_element(By.XPATH, '//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
+
+# 이전 버전에서는 아래와 같이 쓴다.
+search_box = driver.find_element_by_xpath('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
+```
+
+---
+
 # 불러오기(Driver & Web Load)
 
 ```python
 URL = 'https://www.miraeassetdaewoo.com/hki/hki3028/r01.do'
 
-driver = webdriver.Chrome(executable_path='chromedriver')
+driver = webdriver.Chrome()
+
 driver.get(url=URL)
 ```
 
@@ -85,6 +114,12 @@ driver.get(url=URL)
 
 ```python
 print(driver.current_url)
+```
+
+## 현재 브라우저 title 얻기
+
+```python
+print(driver.title)
 ```
 
 ## 브라우저 닫기
@@ -112,16 +147,19 @@ driver.implicitly_wait(time_to_wait=5)
 아래 코드를 살펴보자.
 
 ```python
+from selenium import webdriver
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome('chromedriver')
+driver = webdriver.Chrome()
 driver.get(url='https://www.google.com/')
 try:
     element = WebDriverWait(driver, 5).until(
-        EC.presence_of_element_located((By.CLASS_NAME , 'gLFyf'))
+        EC.presence_of_element_located((By.CLASS_NAME, 'gLFyf'))
     )
+    print(element)
 finally:
     driver.quit()
 ```
@@ -165,23 +203,24 @@ Custom으로 조건을 설정하는 것도 가능한데, `__init__` 함수와 `_
 
 ```python
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
 options = webdriver.ChromeOptions()
 options.add_argument('window-size=1920,1080')
 
-driver = webdriver.Chrome('chromedriver', options=options)
+driver = webdriver.Chrome(options=options)
 driver.implicitly_wait(5)
 
 driver.get(url='https://www.google.com/')
 
-search_box = driver.find_element_by_xpath('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
+search_box = driver.find_element(By.XPATH, '//*[@id="APjFqb"]')
 
 search_box.send_keys('greeksharifa.github.io')
 search_box.send_keys(Keys.RETURN)
 
-elements = driver.find_elements_by_xpath('//*[@id="rso"]/div[*]/div/div[1]/a/h3/span')
+elements = driver.find_elements(By.XPATH, '//*[@id="rso"]/div[*]')
 
 for element in elements:
     print(element.text)
@@ -224,7 +263,10 @@ data-ved="0ahUKEwjsxYnKytzsAhUVQd4KHXjpCvsQ39UDCAQ">
 class로 찾는 방법은 다음과 같다.
 
 ```python
-search_box = driver.find_element_by_class_name('gLFyf')
+search_box = driver.find_element(By.CLASS_NAME, 'gLFyf')
+# 이전 버전
+# search_box = driver.find_element_by_class_name('gLFyf')
+
 # 아래는 키보드 입력을 해 주는 코드이다. 나중에 설명하겠지만 한번 해 보자.
 search_box.send_keys('gorio')
 ```
@@ -236,11 +278,13 @@ class 말고도 선택하는 방법은 많다. 위에서 `class_name`로 끝나�
 
 <center><img src="/public/img/2020-10-30-python-selenium-usage/04.png" width="100%" alt="Examples"></center>
 
-총 18개의 함수를 지원한다. 9개의 쌍이 있는데, `find_element`로 시작하는 함수는 조건에 맞는 요소를 하나만 반환하고, `find_elements`로 시작하는 함수는 해당 조건을 만족하는 모든 요소를 반복가능한(iterable) 형태로 반환한다.
+selenium 버전 4 이후 알아야 하는 함수는 `find_element`와 `find_elements` 뿐이다.
+
+총 18개의 함수를 지원한다. 9개의 쌍이 있는데, `find_element`로 시작하는 함수는 조건에 맞는 요소를 하나만 반환하고, `find_elements`로 시작하는 함수는 해당 조건을 만족하는 모든 요소를 반복가능한(iterable) 형태로 반환한다. 버전 4 이후로는 기본 함수 2개 외에는 전부 deprecated되었다.
 
 위에서 볼 수 있듯이 class나, css selector, id, name, tag_name, xpath, link_text, partial_link_text 등으로 선택 가능하다. 
 
-맨 위의 함수인 그냥 `find_element` 함수의 경우만 인자를 3개 받는다. self는 설명할 필요 없고, by는 조금 전 explicit_waits에서 보았던 그 `selenium.webdriver.common.by`이다. `by`도 CLASS_NAME 등으로 속성을 지정 가능하다. 
+맨 위의 함수인 `find_element` 함수는 인자를 3개 받는다. self는 설명할 필요 없고, by는 조금 전 explicit_waits에서 보았던 그 `selenium.webdriver.common.by`이다. `by`도 CLASS_NAME 등으로 속성을 지정 가능하다. 
 
 - ID = "id"
 - XPATH = "xpath"
@@ -267,29 +311,30 @@ class 말고도 선택하는 방법은 많다. 위에서 `class_name`로 끝나�
 여기서 다음 코드로 찾을 수 있다.
 
 ```python
-continue_link = driver.find_element_by_link_text('Continue')
-continue_link = driver.find_element_by_partial_link_text('Conti')
+continue_link = driver.find_element(By.LINK_TEXT, 'Continue')
+continue_link = driver.find_element(By.PARTIAL_LINK_TEXT, 'Conti')
+
+# 이전 버전
+# continue_link = driver.find_element_by_link_text('Continue')
+# continue_link = driver.find_element_by_partial_link_text('Conti')
 ```
 
 CSS Selector는 다음 코드를 쓰면 된다.
 
 ```python
-content = driver.find_element_by_css_selector('p.content')
+content = driver.find_element(By.CSS_SELECTOR, 'p.content')
+# 이전 버전
+# content = driver.find_element_by_css_selector('p.content')
 ```
 
 여기서 `find_element_by_xpath`는 매우 강력한 찾기 기능을 제공한다. 말하자면 웹페이지 상에서 해당 요소의 전체경로(혹은 상대경로)를 갖고 찾기 기능을 수행할 수 있는데, 원하는 요소에서 `Copy XPath`만 한 다음 그대로 갖다 쓰면 해당 요소를 정확히 찾아준다.
 
 ```python
-search_box = driver.find_element_by_xpath('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
-```
-
-똑같은 효과를 갖는 코드는 다음과 같다.
-
-```python
-from selenium.webdriver.common.by import By
-
 search_box = driver.find_element(By.XPATH, '//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
+# 이전 버전
+# search_box = driver.find_element_by_xpath('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
 ```
+
 
 ## XPath로 요소 찾기
 
@@ -334,7 +379,7 @@ nodename | `nodename`을 name으로 갖는 모든 요소 선택
 어떤 요소를 `find_element...` 함수를 통해 선택했다고 하자.
 
 ```python
-search_box = driver.find_element_by_xpath('//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
+search_box = driver.find_element(By.XPATH, '//*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input')
 ```
 
 선택한 요소에 키보드 입력을 명령으로 주어 텍스트 입력 등을 수행할 수 있다.  
@@ -446,7 +491,9 @@ search_box.clear()
 파일을 받는 `<input>`을 선택한 뒤, `send_keys(file_path)`를 호출하면 된다.
 
 ```python
-upload = driver.find_element_by_tag('input')
+upload = driver.find_element(By.TAG_NAME, 'input')
+# 이전 버전
+# upload = driver.find_element_by_tag('input')
 upload.send_keys(file_path)
 ```
 
@@ -465,13 +512,15 @@ upload.send_keys(file_path)
 이제 첫 번째 검색 결과를 클릭해 보자. `Ctrl + Shift + C`을 누른 뒤 제목 부분을 클릭하고, 위에서 설명한 `Copy XPath`를 이용하여 XPath를 얻자. XPath는 다음과 같다.
 
 ```
-//*[@id="rso"]/div[1]/div/div[1]/a/h3/span
+//*[@id="rso"]/div[1]/div/div/div[1]/div/div/div[1]/div/a/h3
 ```
 
 다음 코드를 써 보자.
 
 ```python
-posting = driver.find_element_by_xpath('//*[@id="rso"]/div[1]/div/div[1]/a/h3/span')
+posting = driver.find_element(By.XPATH, '//*[@id="rso"]/div[1]/div/div/div[1]/div/div/div[1]/div/a/h3')
+# 이전 버전
+# posting = driver.find_element_by_xpath('//*[@id="rso"]/div[1]/div/div/div[1]/div/div/div[1]/div/a/h3')
 posting.click()
 ```
 
@@ -489,7 +538,8 @@ XPath 등으로 `select` 요소를 선택한 다음에 각 옵션을 선택할 �
 ```python
 from selenium.webdriver.support.ui import Select
 
-select = Select(driver.find_element_by_name('select_name'))
+select = Select(driver.find_element(By.NAME, 'select_name'))
+# select = Select(driver.find_element_by_name('select_name'))
 
 select.select_by_index(index=2)
 select.select_by_visible_text(text="option_text")
@@ -620,7 +670,8 @@ driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
 ```python
 from selenium.webdriver import ActionChains
 
-some_tag = driver.find_element_by_id('gorio')
+some_tag = driver.find_element(By.ID, 'gorio')
+# some_tag = driver.find_element_by_id('gorio')
 
 ActionChains(driver).move_to_element(some_tag).perform()
 ```
@@ -692,8 +743,10 @@ options.add_experimental_option('debuggerAddress', '127.0.0.1:9222')
 ```python
 from selenium.webdriver import ActionChains
 
-menu = driver.find_element_by_css_selector('.nav')
-hidden_submenu = driver.find_element_by_css_selector('.nav #submenu1')
+menu = driver.find_element(By.CSS_SELECTOR, '.nav')
+hidden_submenu = driver.find_element(By.CSS_SELECTOR, '.nav #submenu1')
+# menu = driver.find_element_by_css_selector('.nav')
+# hidden_submenu = driver.find_element_by_css_selector('.nav #submenu1')
 
 ActionChains(driver).move_to_element(menu).click(hidden_submenu).perform()
 
