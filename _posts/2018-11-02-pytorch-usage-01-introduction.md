@@ -15,7 +15,7 @@ tags: [PyTorch, TensorFlow, usage]
 
 ---
 
-*2021.07.12 updated*
+*2023.06.13 updated*
 
 ## 간단한 소개
 
@@ -23,7 +23,7 @@ PyTorch는 유연성과 속도를 모두 갖춘 딥러닝 연구 플랫폼이다
 또 입문 난이도가 높지 않은 편이고 코드가 간결하다.  
 
 - [공식 홈페이지](https://pytorch.org/)
-- [Documentatino](https://pytorch.org/docs/stable/index.html)
+- [Documentation](https://pytorch.org/docs/stable/index.html)
 
 ---
 
@@ -53,6 +53,8 @@ print(x)
 
 GPU 사용을 위한 필수 절차는 다음과 같다. 
 
+> 추천 조합: torch 2.0.1, nvidia-driver-515, cuda 11.7
+
 Ubuntu의 경우 [여기](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)를 참조해도 된다.
 
 1. **호환성 체크**
@@ -65,7 +67,7 @@ Ubuntu의 경우 [여기](https://docs.nvidia.com/cuda/cuda-installation-guide-l
         - CUDA toolkit 호환성 확인은 [여기](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html)에서
     4. Pytorch와 CUDA의 호환성 확인
         - 설치하고자 하는 PyTorch(또는 Tensorflow)가 지원하는 최신 CUDA 버전이 있다. 이보다 상위 버전의 CUDA를 설치하면 PyTorch 코드가 제대로 돌아가지 않는다.
-        - [Pytorch 홈페이지](https://pytorch.org/)에서 정해주는 CUDA 버전을 설치하는 쪽이 편하다. 2020.02.13 기준 최신 버전은 10.1이다.
+        - [Pytorch 홈페이지](https://pytorch.org/)에서 정해주는 CUDA 버전을 설치하는 쪽이 편하다. 2023.06.13 기준 추천 최신 버전은 11.7이다.
     5. CUDA에 맞는 cuDNN 버전 확인
         - [여기](https://developer.nvidia.com/rdp/cudnn-archive)에서 확인할 수 있다.
 2. **이전 버전의 CUDA 제거**
@@ -74,20 +76,21 @@ Ubuntu의 경우 [여기](https://docs.nvidia.com/cuda/cuda-installation-guide-l
         2. Ubuntu의 경우 살짝 까다로운데, 터미널에 다음 코드를 입력한다.
             ```bash
             sudo apt-get purge nvidia*
+            # sudo apt-get remove --purge '^nvidia-.*'
             sudo apt-get autoremove
             sudo apt-get autoclean
             sudo rm -rf /usr/local/cuda*
             ```
         3. 혹시 오류가 뜨면 아래 **7. 오류 해결법**을 참조하자.
     2. 예전엔 어땠는지 잘 모르겠지만 최근 CUDA 설치 시 그에 맞는 nvidia-driver가 같이 설치된다. 따로 특정 버전의 driver를 요구하는 것이 아니라면 그대로 설치하자.
-3. Nvidia Driver 설치
+3. **Nvidia Driver 설치**
     1. Windows의 경우 Geforce Experience 혹은 [Nvidia](https://www.nvidia.co.kr/Download/index.aspx?lang=kr)에서 적절한 버전의 Driver를 설치한다.
     2. Ubuntu의 경우 다음 코드를 입력해 본다. 
         ```bash
         # 가능 드라이버 확인 
-        sudo apt search nvidia-driver 
+        sudo apt search nvidia-driver   # 또는 ubuntu-drivers devices
         # 특정 드라이버 설치 
-        sudo apt-get install nvidia-driver-455
+        sudo apt-get install nvidia-driver-515
         ```
 4. **CUDA 설치**
     1. Windows
@@ -106,6 +109,7 @@ Ubuntu의 경우 [여기](https://docs.nvidia.com/cuda/cuda-installation-guide-l
             wget http://developer.download.nvidia.com/compute/cuda/11.0.2/local_installers/cuda_11.0.2_450.51.05_linux.run
             chmod +x cuda_11.0.2_450.51.05_linux.run
             sudo sh cuda_11.0.2_450.51.05_linux.run
+            # 참고로 위 커맨드에 --silent 옵션을 주면 nvidia-driver, toolkit, docs 등이 조용히 다 설치된다. 
             ```
         4. 아래 줄까지 실행하면 안내 페이지가 뜬다. 
             1. 드라이버가 이전에 설치된 게 있다고 뜨는데, 미리 제거해 두는 것이 편하긴 하다. 그러나 제거하지 않아도 될 때도 있다. 엔터키를 누르면 X 표시가 토글된다.
@@ -225,6 +229,16 @@ Ubuntu의 경우 [여기](https://docs.nvidia.com/cuda/cuda-installation-guide-l
         다시 `lsmod | grep nvidia`를 하고 아무 것도 안 뜬다면 완료된 것이다.
         
 
+### 에러 해결법
+
+서버에서 gpu사용을 위한 설치를 진행하다 보면 수많은 에러를 마주하게 될 수도 있다...
+
+- `Command not found: nvidia-smi`
+    - CUDA를 설치 또는 재설치한다.
+- `couldn't communicate with the nvidia-driver`
+    - nvidia-driver를 재설치한다.
+
+
 
 ---
 
@@ -248,7 +262,7 @@ Python이 여러 개 설치되어 터미널에 `python`을 입력했을 때 원�
 # 최신 버전의 경우 '/usr/bin/python*` 또는 `/usr/local/bin/python*` 경로에 존재한다.
 alias python='/usr/bin/python3.9'
 
-# python 2 대신 3을 사용하고 싶은 경우
+# 오래된 서버에서 python 2 대신 3을 사용하고 싶은 경우
 alias python=python3
 alias pip=pip3
 ```
