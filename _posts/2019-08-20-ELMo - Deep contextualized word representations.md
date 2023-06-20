@@ -19,7 +19,7 @@ Section 3에서 나오는 이 모델은 **E**mbeddings from **L**anguage **Mo**d
 
 # ELMo - Deep contextualized word representations
 
-논문 링크: **[Deep contextualized word representations](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf)**
+논문 링크: **[Deep contextualized word representations](https://arxiv.org/abs/1802.05365)**
 
 홈페이지: **[OpenAI Blog](https://openai.com/blog/language-unsupervised/)**
 
