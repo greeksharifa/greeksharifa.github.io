@@ -108,18 +108,18 @@ origin
 * remote origin
   Fetch URL: https://github.com/greeksharifa/git_tutorial.git
   Push  URL: https://github.com/greeksharifa/git_tutorial.git
-  HEAD branch: master
+  HEAD branch: main
   Remote branches:
     2nd-branch    tracked
     3rd-branch    tracked
     fourth-branch tracked
-    master        tracked
+    main          tracked
   Local branches configured for 'git pull':
     2nd-branch merges with remote 2nd-branch
-    master     merges with remote master
+    main       merges with remote main
   Local refs configured for 'git push':
     2nd-branch pushes to 2nd-branch (up to date)
-    master     pushes to master     (local out of date)
+    main       pushes to main     (local out of date)
 ```
 
 해당 원격 저장소의 url은 무엇인지, 어떤 branch가 있는지, 로컬 branch는 원격 저장소의 어떤 branch와 연결되어 있는지 등을 확인할 수 있다.
@@ -321,8 +321,8 @@ Below, is for detailed message.
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
 #
-# On branch master
-# Your branch is up to date with 'origin/master'.
+# On branch main
+# Your branch is up to date with 'origin/main'.
 #
 # Changes to be committed:
 #       modified:   .gitignore
@@ -385,7 +385,7 @@ Counting objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 200 bytes | 200.00 KiB/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/greeksharifa/gitgitgit.git
- * [new branch]      master -> master
+ * [new branch]      main -> main
 ```
 
 그러나 매번 git address를 인자로 주어가며 변경사항을 저장하는 것은 매우 귀찮으니, 다음 명령을 통해 upstream 연결을 지정할 수 있다. 이는 `git remote add` 명령을 통해 원격 저장소의 이름을 이미 지정한 경우의 얘기이다.
@@ -397,12 +397,12 @@ git push --set-upstream <remote-name> <branch-name>
 git push -u <remote-name> <branch-name>
 
 # 명령어 예시
-git push --set-upstream origin master
-git push -u origin master
+git push --set-upstream origin main
+git push -u origin main
 
 # 결과 예시
 Everything up-to-date
-Branch 'master' set up to track remote branch 'master' from 'origin'.
+Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
 
 `git push --set-upstream <remote-name> <branch-name>` 명령은 `<branch-name>` branch의 upstream을 원격 저장소 `<remote-name>`로 지정하는 것으로, 앞으로 `git push`나 `git pull` 명령 등을 수행할 때 `<branch name>`과 `<remote name>`을 지정할 필요가 없도록 지정하는 역할을 한다. 즉, 앞으로는 commit을 원격 저장소에 반영할 때 `git push`만 입력하면 된다.
@@ -433,7 +433,7 @@ git push -d origin ticket-branch
 git push <remote-name> <branch-name>
 
 # 명령어 예시
-git push origin master
+git push origin main
 ```
 
 위에서 `--set-upstream` 옵션을 사용해 업로드 branch와 장소를 지정했다면 `git push`만으로도 원격 저장소에 업로드가 가능하다.
@@ -468,19 +468,19 @@ git push --all <remote-name>
 다음 상황을 가정하자:
 
 ```cmd
-	  A---B---C master on origin
+	  A---B---C main on origin
 	 /
-    D---E---F---G master
+    D---E---F---G main
 	^
-	origin/master in your repository
+	origin/main in your repository
 ```
 
-현재 로컬 저장소의 master branch에는 A, B, C commit이 존재하지 않는다. 이를 로컬에 반영하려면 `git pull`을 입력한다. 어디서 받아올지 지정되어 있지 않다면 `git pull <remote-name> <remote-branch-name>`을 입력한다.
+현재 로컬 저장소의 main branch에는 A, B, C commit이 존재하지 않는다. 이를 로컬에 반영하려면 `git pull`을 입력한다. 어디서 받아올지 지정되어 있지 않다면 `git pull <remote-name> <remote-branch-name>`을 입력한다.
 
 ```cmd
-	  A---B---C origin/master
+	  A---B---C origin/main
 	 /         \
-    D---E---F---G---H master
+    D---E---F---G---H main
 ```
 
 수정사항 사이에 충돌이 없다면 자동으로 진행된다. 만약 충돌이 일어났다면, 먼저 충돌 사항을 해결한 다음 add/commit/push 과정을 거치면 된다.
@@ -498,15 +498,15 @@ git push --all <remote-name>
 git status
 
 # 결과 예시 1:
-On branch master
-Your branch is up to date with 'origin/master'.
+On branch main
+Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
 
 # 결과 예시 2:
 
-On branch master
-Your branch is up to date with 'origin/master'.
+On branch main
+Your branch is up to date with 'origin/main'.
 
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
@@ -605,7 +605,7 @@ git config --global core.excludesfile C:\.gitignore
 git log
 
 # 결과 예시
-commit da446019230a010bf333db9d60529e30bfa3d4e3 (HEAD -> master, origin/master, origin/HEAD)
+commit da446019230a010bf333db9d60529e30bfa3d4e3 (HEAD -> main, origin/main, origin/HEAD)
 Merge: 4a521c5 2eae048
 Author: greeksharifa <greeksharifa@gmail.com>
 Date:   Sun Aug 19 20:59:24 2018 +0900
@@ -654,7 +654,7 @@ index 2d61b9f..c73f054 100644
 현재 branch가 아닌 다른 branch의 log를 보고 싶다면 `<branch-name>`을 추가 입력해 준다.
 
 ```diff
-git log -p origin/master
+git log -p origin/main
 
 # 결과 예시
 commit 2eae048f725c1d843cad359d655c193d9fd632b4
@@ -685,7 +685,7 @@ commit의 대표 메시지와 같은 핵심 내용만 보고자 한다면 다음
 git log --oneline
 
 # 결과 예시
-da44601 (HEAD -> master, origin/master, origin/HEAD) Merge branch '3rd-branch'
+da44601 (HEAD -> main, origin/main, origin/HEAD) Merge branch '3rd-branch'
 2eae048 Unwanted commit from 2nd-branch
 4a521c5 Desired commit from 2nd-branch
 ```
@@ -695,7 +695,7 @@ da44601 (HEAD -> master, origin/master, origin/HEAD) Merge branch '3rd-branch'
 git log --pretty=oneline
 
 # 결과 예시
-da446019230a010bf333db9d60529e30bfa3d4e3 (HEAD -> master, origin/master, origin/HEAD) Merge branch '3rd-branch'
+da446019230a010bf333db9d60529e30bfa3d4e3 (HEAD -> main, origin/main, origin/HEAD) Merge branch '3rd-branch'
 2eae048f725c1d843cad359d655c193d9fd632b4 Unwanted commit from 2nd-branch
 4a521c56a6c2e50ffa379a7f2737b5e90e9e6df3 Desired commit from 2nd-branch
 ```
@@ -711,7 +711,7 @@ git log --oneline -5
 git log --graph
 
 # 결과 예시
-* commit e8a20c960cfcd3f444d93b735f6bed7bd40ed7c5 (HEAD -> master, origin/master, origin/HEAD)
+* commit e8a20c960cfcd3f444d93b735f6bed7bd40ed7c5 (HEAD -> main, origin/main, origin/HEAD)
 | Author: greeksharifa <greeksharifa@gmail.com>
 | Date:   Fri May 29 23:25:35 2020 +0900
 |
@@ -755,9 +755,9 @@ git log -G <regex-expression>
 git reflog
 
 # 결과 예시:
-87ab51e (HEAD -> master, tag: specific_tag) HEAD@{0}: commit: All text in first line will be showed at --onel
+87ab51e (HEAD -> main, tag: specific_tag) HEAD@{0}: commit: All text in first line will be showed at --onel
 ine
-da44601 (origin/master, origin/HEAD) HEAD@{1}: clone: from https://github.com/greeksharifa/git_tutorial.git
+da44601 (origin/main, origin/HEAD) HEAD@{1}: clone: from https://github.com/greeksharifa/git_tutorial.git
 ```
 
 위와 같이 `HEAD@{0}`: commit과 `HEAD@{1}`: clone 이라는 변화를 볼 수 있다. `git reflog`는 commit 뿐 아니라 commit이 삭제되었는지, 재배치했는지, clone이나 rebase 같은 변화가 있었는지 등등 git에서 일어난 모든 변화를 기록한다. 
@@ -819,7 +819,7 @@ index 4c8cfb6..e69de29 100644
 `<branch-name-1>`에서 `<branch-name-2>`로 이동할 때의 변화를 기준으로 `+`, `-`가 보여진다. 즉 `<branch-name-1>`에는 없고 `<branch-name-2>`에는 있는 코드라면 `+`로 표시된다.
 
 ```diff
-git diff master 2nd-branch
+git diff main 2nd-branch
 
 # 결과 예시
 diff --git a/.gitignore b/.gitignore
@@ -906,8 +906,8 @@ HEAD는 현 branch history의 가장 끝을 의미한다. 여기서 끝은 가�
 git log --oneline -3
 
 # 결과 예시 1
-87ab51e (HEAD -> master) All text in first line will be showed at --oneline
-da44601 (origin/master, origin/HEAD) Merge branch '3rd-branch'
+87ab51e (HEAD -> main) All text in first line will be showed at --oneline
+da44601 (origin/main, origin/HEAD) Merge branch '3rd-branch'
 2eae048 Unwanted commit from 2nd-branch
 
 # 명령어 예시 2
@@ -915,7 +915,7 @@ git log 87ab51e --max-count=1
 git show 87ab51e
 
 # 결과 예시 2
-commit 87ab51eecef1a526cb504846ddcaed0459f685c8 (HEAD -> master)
+commit 87ab51eecef1a526cb504846ddcaed0459f685c8 (HEAD -> main)
 Author: greeksharifa <greeksharifa@gmail.com>
 Date:   Thu May 28 14:49:13 2020 +0900
 
@@ -977,7 +977,7 @@ git show <tag-name>
 git show specific_tag
 
 # 결과 예시
-commit 87ab51eecef1a526cb504846ddcaed0459f685c8 (HEAD -> master, tag: specific_tag)
+commit 87ab51eecef1a526cb504846ddcaed0459f685c8 (HEAD -> main, tag: specific_tag)
 Author: greeksharifa <greeksharifa@gmail.com>
 Date:   Thu May 28 14:49:13 2020 +0900
 
@@ -1029,7 +1029,7 @@ git branch --list
 git branch -l
 
 # 결과 예시
-* master
+* main
 ```
 
 branch 목록을 보여주는 모든 명령에서, 현재 branch(작업 중인 branch)는 맨 앞에 asterisk(`*`)가 붙는다.
@@ -1041,11 +1041,11 @@ git branch --all
 git branch -a
 
 # 결과 예시
-* master
+* main
   remotes/origin/2nd-branch
   remotes/origin/3rd-branch
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/master
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
 ```
 
 `remotes/`가 붙은 것은 원격 branch라는 뜻이며, branch의 실제 이름에는 `remotes/`가 포함되지 않는다.
@@ -1056,15 +1056,15 @@ git branch --all --verbose
 
 # 결과 예시
   2nd-branch                   1be03c8 Remove files that were uploaded incorrectly
-* master                       94d511c [ahead 3] fourth ticket
+* main                       94d511c [ahead 3] fourth ticket
   remotes/origin/2nd-branch    1be03c8 Remove files that were uploaded incorrectly
   remotes/origin/3rd-branch    90ce4f2 Merge branch '3rd-branch'
-  remotes/origin/HEAD          -> origin/master
+  remotes/origin/HEAD          -> origin/main
   remotes/origin/fourth-branch 94d511c fourth tickek
-  remotes/origin/master        da44601 Merge branch '3rd-branch'
+  remotes/origin/main        da44601 Merge branch '3rd-branch'
 ```
 
-`master` branch의 설명에 붙어 있는 `[ahead 3]`이라는 문구는 현재 로컬 저장소에는 3개의 commit이 있지만 아직 원격 저장소에 psuh되지 않았음을 의미한다. 
+`main` branch의 설명에 붙어 있는 `[ahead 3]`이라는 문구는 현재 로컬 저장소에는 3개의 commit이 있지만 아직 원격 저장소에 psuh되지 않았음을 의미한다. 
 
 원격 branch 목록만 보기:
 
@@ -1075,9 +1075,35 @@ git branch -r
 # 결과 예시
   origin/2nd-branch
   origin/3rd-branch
-  origin/HEAD -> origin/master
-  origin/master
+  origin/HEAD -> origin/main
+  origin/main
 ```
+
+### branch 이름 변경
+
+먼저 현재 branch의 이름 변경하는 방법은 다음과 같다.
+
+```vim
+git checkout <old-branch-name>
+git branch -m <new-branch-name>
+```
+
+지금 branch가 main(master)이라면 다른 branch의 이름을 바로 변경할 수 있다.
+
+```vim
+git branch -m <old-branch-name> <new-branch-name>
+```
+
+#### branch 이름 변경 시 로컬 저장소의 branch 이름도 변경
+
+아래 예시는 master를 main으로 바꿨을 때의 코드이다.
+```vim
+git branch -m main main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
+
 
 ### 원격 branch 목록 업데이트
 
@@ -1102,13 +1128,13 @@ branch를 전환하려면 저장되지 않은 수정사항이 없어야 한다.
 git checkout <branch-name>
 
 # 명령어 예시
-git checkout master
+git checkout main
 
 # 결과 예시
-Switched to branch 'master'
+Switched to branch 'main'
 M       .gitignore
 D       second.py
-Your branch is ahead of 'origin/master' by 1 commit.
+Your branch is ahead of 'origin/main' by 1 commit.
   (use "git push" to publish your local commits)
 ```
 
@@ -1153,7 +1179,7 @@ git branch fourth-branch
 git checkout -b <new-branch-name> <parent-branch-name>
 
 # 명령어 예시
-git checkout -b fourth-branch master
+git checkout -b fourth-branch main
 
 # 결과 예시
 Switched to a new branch 'fourth-branch'
@@ -1173,12 +1199,12 @@ git branch
 
 # 결과 예시
   2nd-branch
-* master
+* main
   remotes/origin/2nd-branch
   remotes/origin/3rd-branch
-  remotes/origin/HEAD -> origin/master
+  remotes/origin/HEAD -> origin/main
   remotes/origin/fourth-branch
-  remotes/origin/master
+  remotes/origin/main
 
 
 Switched to a new branch '3rd-branch'
@@ -1187,7 +1213,7 @@ Branch '3rd-branch' set up to track remote branch '3rd-branch' from 'origin'.
 
   2nd-branch
 * 3rd-branch
-  master
+  main
 ```
 
 
@@ -1296,7 +1322,7 @@ commit하지 않았다면, 다음 두 가지 경우가 있다. `git status`를 �
 git status
 
 #결과 예시
-On branch master
+On branch main
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -1378,7 +1404,7 @@ git reset <commit>
 
 ```
 # 결과 예시
-c8c731b (HEAD -> master, origin/master, origin/HEAD) doong commit
+c8c731b (HEAD -> main, origin/main, origin/HEAD) doong commit
 87ab51e (tag: specific_tag) All text in first line will be showed at --oneline
 da44601 Merge branch '3rd-branch'
 2eae048 Unwanted commit from 2nd-branch
@@ -1403,7 +1429,7 @@ rebase는 일반적으로 history rearrange의 역할을 한다. 즉, 여러 com
 
 그러나 rebase와 같은 기존 작업을 취소 또는 변경하는 명령은 일반적으로 충돌(conflict)이 일어나는 경우가 많다. 충돌이 발생하면 git은 작업을 일시 중지하고 사용자에게 충돌을 처리하라고 한다.
 
-#### master branch의 commit을 topic branch로 가져오기
+#### main branch의 commit을 topic branch로 가져오기
 
 다음과 같은 상황을 가정하자. 각 알파벳은 하나의 commit이며, 각 이름은 branch의 이름을 나타낸다.  
 아래 각 예시는 `git help`에 나오는 도움말을 이용하였다. 
@@ -1411,7 +1437,7 @@ rebase는 일반적으로 history rearrange의 역할을 한다. 즉, 여러 com
 ```cmd
           A---B---C topic
          /
-    D---E---F---G master
+    D---E---F---G main
 ```
 
 commit F, G를 topic branch에 반영(포함)시키려 한다면,
@@ -1419,7 +1445,7 @@ commit F, G를 topic branch에 반영(포함)시키려 한다면,
 ```cmd
                   A'--B'--C' topic
                  /
-    D---E---F---G master
+    D---E---F---G main
 ```
 
 commit A'와 A는 프로젝트에 동일한 수정사항을 적용시키지만, 16진수로 된 commit의 고유 id(`da44601` 같은)는 다르다. 즉, 엄밀히는 다른 commit이다.
@@ -1427,34 +1453,34 @@ commit A'와 A는 프로젝트에 동일한 수정사항을 적용시키지만, 
 commit을 재배열하는 명령어는 다음과 같다. 현재 branch는 topic이라 가정한다.
 
 ```vim
-git rebase master
-git rebase master topic
+git rebase main
+git rebase main topic
 ```
 
 commit A, B, C가 F, G와 코드 상으로 동일한 파일 또는 다른 일부분을 수정하지 않았다면, 이 rebase 작업은 자동으로 완료된다.  
 
 
-만약 topic branch에 이미 master branch로부터 가져온 commit이 일부 존재하면, 이 commit들은 새로 배치되지 않는다.
+만약 topic branch에 이미 main branch로부터 가져온 commit이 일부 존재하면, 이 commit들은 새로 배치되지 않는다.
 
 ```cmd
           A---B---C topic
          /
-    D---E---A'---F master
+    D---E---A'---F main
 ```
 에서
 ```cmd
                    B'---C' topic
                   /
-    D---E---A'---F master
+    D---E---A'---F main
 ```
 로 바뀐다.
 
 #### branch의 parent 바꾸기: --onto
 
-topic을 next가 아닌 master에서 분기된 것처럼 바꾸고자 한다. 즉,
+topic을 next가 아닌 main에서 분기된 것처럼 바꾸고자 한다. 즉,
 
 ```cmd
-    o---A---B---o---C  master
+    o---A---B---o---C  main
          \
           D---o---o---o---E  next
                            \
@@ -1464,7 +1490,7 @@ topic을 next가 아닌 master에서 분기된 것처럼 바꾸고자 한다. �
 이걸 아래와 같이 바꿔보자.
 
 ```cmd
-    o---A---B---o---C  master
+    o---A---B---o---C  main
         |            \
         |             o'--o'--o'  topic
          \
@@ -1476,7 +1502,7 @@ topic branch의 history에는 이제 commit D~E 대신 commit A~B가 포함되�
 이는 다음과 같은 명령어로 수행할 수 있다:
 
 ```
-git rebase --onto master next topic
+git rebase --onto main next topic
 ```
 
 다른 예시는:
@@ -1486,11 +1512,11 @@ git rebase --onto master next topic
                            /
                   E---F---G  topicA
                  /
-    A---B---C---D  master
+    A---B---C---D  main
 ```
 
 ```vim
-git rebase --onto master topicA topicB
+git rebase --onto main topicA topicB
 ```
 
 ```cmd
@@ -1498,7 +1524,7 @@ git rebase --onto master topicA topicB
                 /
                 | E---F---G  topicA
                 |/
-    A---B---C---D  master
+    A---B---C---D  main
 ```
 
 #### 특정 범위의 commit들 제거하기
@@ -1552,7 +1578,7 @@ git rebased --abort
 다음과 같은 history가 있다고 하자.
 
 ```vim
-c3eace0 (HEAD -> master, origin/master, origin/HEAD) git checkout, reset, rebase
+c3eace0 (HEAD -> main, origin/main, origin/HEAD) git checkout, reset, rebase
 f6c56ef what igt
 bd80626 github hem
 b7801a2 github overall
@@ -1574,7 +1600,7 @@ git rebase -i HEAD~4
 
 # 결과 예시
 
-pick c3eace0 (HEAD -> master, origin/master, origin/HEAD) git checkout, reset, rebase
+pick c3eace0 (HEAD -> main, origin/main, origin/HEAD) git checkout, reset, rebase
 pick f6c56ef what igt
 pick bd80626 github hem
 pick b7801a2 github overall
@@ -1609,7 +1635,7 @@ pick b7801a2 github overall
 수정한 예시는 다음과 같다. 약어를 써도 되고 안 써도 된다.
 
 ```vim
-pick c3eace0 (HEAD -> master, origin/master, origin/HEAD) git checkout, reset, rebase
+pick c3eace0 (HEAD -> main, origin/main, origin/HEAD) git checkout, reset, rebase
 f f6c56ef what igt
 f bd80626 github hem
 fixup b7801a2 github overall
@@ -1645,7 +1671,7 @@ git revert <commit>
 git revert 4a521c5
 
 # 결과 예시
-[master 4a521c5] Revert "specific_commit_description"
+[main 4a521c5] Revert "specific_commit_description"
 ```
 
 ---
@@ -1658,7 +1684,7 @@ git revert 4a521c5
 git log --merges
 
 # 결과 예시
-commit da446019230a010bf333db9d60529e30bfa3d4e3 (origin/master, origin/HEAD)
+commit da446019230a010bf333db9d60529e30bfa3d4e3 (origin/main, origin/HEAD)
 Merge: 4a521c5 2eae048
 Author: greeksharifa <greeksharifa@gmail.com>
 Date:   Sun Aug 19 20:59:24 2018 +0900
@@ -1749,7 +1775,7 @@ git stash save
 git stash save "stash message"
 
 # 결과 예시
-Saved working directory and index state WIP on master: 94d511c fourth ticket
+Saved working directory and index state WIP on main: 94d511c fourth ticket
 ```
 
 commit message처럼 간략한 메시지를 적고 싶다면 `git stash save "<stash-message>"`로 사용한다.
@@ -1769,8 +1795,8 @@ stash로 저장한 목록을 보려면 다음 명령을 입력한다.
 git stash list
 
 #결과 예시
-stash@{0}: WIP on master: 94d511c fourth ticket
-stash@{1}: WIP on master: 94d511c fourth ticket
+stash@{0}: WIP on main: 94d511c fourth ticket
+stash@{1}: WIP on main: 94d511c fourth ticket
 ```
 
 stash의 내용이 기억나지 않으면 `git stash stash@{<number>}` 명령을 쓴다.
@@ -1782,7 +1808,7 @@ Merge: 94d511c 7060e4d f4a6d7f
 Author: greeksharifa <greeksharifa@gmail.com>
 Date:   Sat May 30 13:51:23 2020 +0900
 
-    WIP on master: 94d511c fourth tickek
+    WIP on main: 94d511c fourth tickek
 
 diff --cc .gitignore
 index 15c8c56,15c8c56,0000000..f6f1686
@@ -1804,8 +1830,8 @@ diff --cc doonggoos.py
 git stash apply stash@{0}
 
 # 결과 예시
-On branch master
-Your branch and 'origin/master' have diverged,
+On branch main
+Your branch and 'origin/main' have diverged,
 and have 3 and 2 different commits each, respectively.
   (use "git pull" to merge the remote branch into yours)
 
@@ -1889,11 +1915,11 @@ bisect 세션을 끝내고 원래 상태로 돌아가려면 `git bisect reset`�
 
 ## branch에서 특정 commit만 다른 branch로 적용하기: git cherry-pick
 
-`git cherry-pick <commit>` 명령은 branch의 병합 없이도 다른 branch의 특정 commit을 가져올 수 있다. `ticket` branch에 있는 `96c99dc`라는 commit을 `master` branch로 가져오고자 한다.
+`git cherry-pick <commit>` 명령은 branch의 병합 없이도 다른 branch의 특정 commit을 가져올 수 있다. `ticket` branch에 있는 `96c99dc`라는 commit을 `main` branch로 가져오고자 한다.
 
 ```vim
 # 명령어 예시
-git checkout master
+git checkout main
 git cherry-pick 96c99dc
 
 # 결과 예시
