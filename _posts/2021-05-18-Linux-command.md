@@ -38,6 +38,25 @@ ls -ahl
 ls | head -4
 ```
 
+### 절대 경로 출력
+```bash
+# 현재 위치에서 절대 경로 출력
+pwd
+
+# Use this for dirs (the / after ** is needed in bash to limit it to directories):
+ls -d -1 "$PWD/"**/
+
+# this for files and directories directly under the current directory, whose names contain a .:
+ls -d -1 "$PWD/"*.*
+
+# this for everything:
+ls -d -1 "$PWD/"**/*
+
+# Taken from here http://www.zsh.org/mla/users/2002/msg00033.html
+# In bash, ** is recursive if you enable shopt -s globstar.
+```
+
+
 ## 개수 세기
 
 ### 현재 위치에 있는 디렉토리 개수
