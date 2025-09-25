@@ -2,7 +2,7 @@
 layout: post
 title: Generating Sequences With Recurrent Neural Networks
 author: YouWon
-categories: [NLP(Natural Language Processing) / RNNs]
+categories: NLP
 tags: [Paper_Review, NLP]
 ---
 

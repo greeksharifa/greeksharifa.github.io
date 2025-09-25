@@ -2,7 +2,7 @@
 layout: post
 title: OpenAI GPT-3 - Language Models are Few-Shot Learners(GPT3 논문 설명)
 author: YouWon
-categories: [NLP(Natural Language Processing) / RNNs]
+categories: NLP
 tags: [Paper_Review, NLP]
 ---
 

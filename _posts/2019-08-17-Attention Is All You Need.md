@@ -2,7 +2,7 @@
 layout: post
 title: Attention Is All You Need(Attention 논문 설명)
 author: YouWon
-categories: [NLP(Natural Language Processing) / RNNs]
+categories: NLP
 tags: [Paper_Review, NLP]
 ---
 

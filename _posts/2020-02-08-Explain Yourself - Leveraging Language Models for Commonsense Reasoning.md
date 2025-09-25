@@ -2,7 +2,7 @@
 layout: post
 title: Explain Yourself! Leveraging Language Models for Commonsense Reasoning
 author: YouWon
-categories: [NLP(Natural Language Processing) / RNNs]
+categories: NLP
 tags: [Paper_Review, NLP]
 ---
 
