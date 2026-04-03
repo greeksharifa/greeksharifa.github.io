@@ -12,6 +12,17 @@
 Using the same template as this site is okay, but if you want to use the same template, please change the theme.  
 
 ----
+## Local Development
+로컬 빌드와 서버 실행은 저장소 스크립트를 사용합니다.
+
+```bash
+scripts/jekyll-build.sh
+scripts/jekyll-serve.sh
+```
+
+개발 서버 기본 주소는 `http://127.0.0.1:4001/` 입니다. 포트를 바꾸려면 `JEKYLL_PORT=4002 scripts/jekyll-serve.sh` 처럼 실행하면 됩니다.
+
+----
 ## Codinfox-Lanyon
 This is a jekyll template based on [Lanyon](https://github.com/poole/lanyon). See a live demo [here](http://codinfox.github.io).
 

@@ -7,9 +7,6 @@ url: https://greeksharifa.github.io
 logo: '/public/img/logo.webp'
 
 # Site configurations
-gems:
-  - jekyll-paginate
-  - jekyll-redirect-from
 whitelist:
   - jekyll-redirect-from
 
@@ -66,6 +63,7 @@ hero:
   caption: Andre Derain, Fishing Boats Collioure, 1905. France.
 
 plugins:
+  - jekyll-paginate
   - jekyll-redirect-from
 
 whitelist:

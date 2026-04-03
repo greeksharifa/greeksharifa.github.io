@@ -174,15 +174,18 @@ jobs:
 
 `steps` 아래에 `if` 조건을 추가하게 되면 반드시 이전의 조건이 만족되어야 연속적으로 실행되도록 만들 수 있습니다. context를 이용한다면 아래 예시를 보면 됩니다.  
 
+{% raw %}
 ```yaml
 steps:
  - name: My first step
    if: ${{ github.event_name == 'pull_request' && github.event.action == 'unassigned' }}
    run: echo This event is a pull request that had an assignee removed.
 ```
+{% endraw %}
 
 status check function을 이용해 보겠습니다. My backup step이라는 task는 오직 이전 task가 실패해야만 실행될 것입니다.  
 
+{% raw %}
 ```yaml
 steps:
   - name: My first step
@@ -191,6 +194,7 @@ steps:
     if: ${{ failure() }}
     uses: actions/heroku@1.0.0
 ```
+{% endraw %}
 
 `steps`의 구성 요소를 좀 더 살펴보겠습니다. `jobs.<job_id>.steps[*].name`은 github UI에 표시될 name을 의미합니다.  
 
