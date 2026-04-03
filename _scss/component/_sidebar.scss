@@ -220,7 +220,7 @@ a.sidebar-nav-item:focus {
   .sidebar-contact-links {
     display: flex;
     align-items: center;
-    gap: .6rem;
+    gap: .5em;
     margin-top: .5rem;
   }
 
@@ -228,11 +228,12 @@ a.sidebar-nav-item:focus {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1em;
+    height: 1em;
     color: $white;
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1em;
+    line-height: 1;
 
     &:hover,
     &:focus {
@@ -241,8 +242,8 @@ a.sidebar-nav-item:focus {
   }
 
   .sidebar-contact-link-image {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1em;
+    height: 1em;
 
     img {
       display: block;
