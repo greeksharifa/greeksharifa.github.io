@@ -13,34 +13,21 @@
     margin-top: 1.5rem;
     display: flex;
     justify-content: center;
+    gap: 2rem;
     flex-wrap: wrap;
   }
 
-  .hero-link-spaced {
-    margin-left: 1.75rem;
-  }
-
   .hero-link {
-    display: inline-block;
-    padding: 0.7rem 1.2rem;
-    border: 1px solid #313131;
-    border-radius: 999px;
     color: #313131;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: color 0.2s ease, opacity 0.2s ease;
   }
 
   .hero-link:hover,
   .hero-link:focus {
-    background-color: #313131;
-    color: #fff;
-  }
-
-  @media (max-width: 30em) {
-    .hero-link-spaced {
-      margin-left: 1rem;
-    }
+    color: #8e2046;
+    opacity: 0.9;
   }
 }
