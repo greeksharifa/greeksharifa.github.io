@@ -89,6 +89,22 @@ class JekyllScriptsTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual("", result.stdout)
 
+    def test_env_script_initializes_rbenv_when_available(self):
+        command = (
+            'export PATH="/usr/bin:/bin"; '
+            "source scripts/jekyll-env.sh; "
+            'printf "%s" "$PATH"'
+        )
+        result = subprocess.run(
+            ["bash", "-lc", command],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(".rbenv/shims", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

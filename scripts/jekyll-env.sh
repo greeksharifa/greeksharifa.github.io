@@ -7,6 +7,12 @@ REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
 DEFAULT_BUNDLE_PATH="${HOME}/.bundle-jekyll-gsh"
 DEFAULT_JEKYLL_HOST="127.0.0.1"
 DEFAULT_JEKYLL_PORT="4001"
+RBENV_BIN="${HOME}/.rbenv/bin/rbenv"
+
+if [[ -x "${RBENV_BIN}" ]]; then
+  export PATH="${HOME}/.rbenv/bin:${PATH}"
+  eval "$("${RBENV_BIN}" init - bash)"
+fi
 
 if [[ -n "${BUNDLER_USER_BIN:-}" ]]; then
   export PATH="${BUNDLER_USER_BIN}:${PATH}"

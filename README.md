@@ -15,6 +15,8 @@ Using the same template as this site is okay, but if you want to use the same te
 ## Local Development
 로컬 빌드와 서버 실행은 저장소 스크립트를 사용합니다.
 
+저장소는 `.ruby-version`으로 `Ruby 3.3.11`을 고정합니다. `rbenv`가 설치되어 있으면 이 디렉터리에서 자동으로 해당 버전을 사용합니다.
+
 ```bash
 scripts/jekyll-build.sh
 scripts/jekyll-serve.sh
