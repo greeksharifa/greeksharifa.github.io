@@ -1,10 +1,37 @@
 .hero {
   text-align: center;
   font-size: 0.75rem;
+
   img {
     height: 28rem;
     width: auto;
     display: inline;
     margin-top: -1rem;
+  }
+
+  .hero-links {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-link {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid #313131;
+    border-radius: 999px;
+    color: #313131;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .hero-link:hover,
+  .hero-link:focus {
+    background-color: #313131;
+    color: #fff;
   }
 }
