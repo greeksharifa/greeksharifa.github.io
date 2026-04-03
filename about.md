@@ -124,7 +124,7 @@ padding-left: 0;
     <div class="contact-info">
         <a href="mailto:greeksharifa@email.com">Email</a> |
         <a href="https://scholar.google.com/citations?user=ulMB96AAAAAJ" target="_blank">Google Scholar</a> |
-        <a href="https://www.linkedin.com/in/youwon-jang-9bb883214/" target="_blank">LinkedIn</a> |
+        <a href="https://www.linkedin.com/in/you-won-jang-greeksharifa" target="_blank">LinkedIn</a> |
         <a href="https://github.com/greeksharifa" target="_blank">GitHub</a>
     </div>
 </div>
