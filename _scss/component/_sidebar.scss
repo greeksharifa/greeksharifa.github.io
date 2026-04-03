@@ -221,18 +221,29 @@ a.sidebar-nav-item:focus {
     display: flex;
     align-items: center;
     gap: .5em;
-    margin-top: .5rem;
+  }
+
+  .sidebar-contact-row {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-contact-label {
+    margin: 0;
+    line-height: 1.25rem;
   }
 
   .sidebar-contact-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1em;
-    height: 1em;
+    width: 1.25rem;
+    height: 1.25rem;
     color: $white;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 1.25rem;
     line-height: 1;
 
     &:hover,
@@ -242,13 +253,11 @@ a.sidebar-nav-item:focus {
   }
 
   .sidebar-contact-link-image {
-    width: 1em;
-    height: 1em;
-
     img {
       display: block;
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 }

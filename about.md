@@ -7,92 +7,110 @@ title: About Authors
 <style>
 .container {
 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-line-height: 1.6;
+line-height: 1.4;
 color: #333;
-max-width: 900px;
+max-width: 820px;
 margin: 0 auto;
-padding: 40px 20px;
+padding: 28px 20px;
 }
 .header {
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-bottom: 40px;
+margin-bottom: 24px;
 text-align: center;
 }
 .profile-pic {
-width: 150px;
-height: 150px;
+width: 128px;
+height: 128px;
 border-radius: 50%;
 object-fit: cover;
-margin-bottom: 20px;
+margin-bottom: 16px;
 }
 .header h1 {
-font-size: 2.0em;
+font-size: 1.7em;
 margin: 0;
 color: #2c3e50;
 }
 .quote {
 font-style: italic;
 color: #7f8c8d;
-margin: 10px 0;
+font-size: 0.9em;
+margin: 8px 0;
 }
 .contact-info {
-font-size: 0.9em;
+font-size: 0.84em;
 color: #7f8c8d;
 }
 .contact-info a {
 color: #3498db;
 text-decoration: none;
-margin: 0 10px;
+margin: 0 8px;
 }
 .contact-info a:hover {
 text-decoration: underline;
 }
 .section h2 {
-font-size: 1.35em;
+font-size: 1.12em;
 color: #e74c3c;
 text-transform: uppercase;
 border-bottom: 2px solid #e74c3c;
-padding-bottom: 8px;
-margin-bottom: 20px;
+padding-bottom: 6px;
+margin-bottom: 12px;
 }
 .entry {
-margin-bottom: 20px;
+margin-bottom: 12px;
 }
 .entry-header {
 display: flex;
 justify-content: space-between;
 align-items: flex-start;
-margin-bottom: 5px;
+margin-bottom: 3px;
 }
 .entry-title {
 font-weight: bold;
-font-size: 0.95em;
+font-size: 0.9em;
 color: #2c3e50;
 }
 .entry-meta {
 text-align: right;
-font-size: 0.8em;
+font-size: 0.75em;
 color: #7f8c8d;
 flex-shrink: 0;
-padding-left: 20px;
+padding-left: 12px;
 }
 .entry-subtitle {
-font-size: 0.85em;
+font-size: 0.8em;
 color: #555;
-margin-bottom: 8px;
+margin-bottom: 4px;
 }
 .entry-description {
-font-size: 0.95em;
+font-size: 0.9em;
 color: #555;
-padding-left: 15px;
+padding-left: 10px;
 border-left: 2px solid #ecf0f1;
+}
+.entry-description p {
+margin: 0;
 }
 .pub-authors {
 font-style: italic;
 color: #777;
-font-size: 0.85em;
+font-size: 0.8em;
+}
+
+@media (max-width: 680px) {
+.container {
+padding: 24px 16px;
+}
+.entry-header {
+flex-direction: column;
+gap: 4px;
+}
+.entry-meta {
+text-align: left;
+padding-left: 0;
+}
 }
 </style>
 
