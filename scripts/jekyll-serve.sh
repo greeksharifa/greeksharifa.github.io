@@ -12,9 +12,9 @@ Runs:
   bundle exec jekyll serve --host 127.0.0.1 --port 4001
 
 Environment overrides:
-  BUNDLER_USER_BIN         Defaults to ~/.gem/ruby/2.6.0/bin
+  BUNDLER_USER_BIN         Optional bin path prepended before execution
   BUNDLE_PATH              Defaults to ~/.bundle-jekyll-gsh
-  JEKYLL_BUNDLER_VERSION   Defaults to 2.4.22
+  JEKYLL_BUNDLER_VERSION   Optional exact Bundler version override
   JEKYLL_HOST              Defaults to 127.0.0.1
   JEKYLL_PORT              Defaults to 4001
   JEKYLL_BIN               Optional direct command override for testing

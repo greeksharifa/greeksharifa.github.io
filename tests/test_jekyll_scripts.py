@@ -73,6 +73,22 @@ class JekyllScriptsTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertNotIn(".gem/ruby/2.6.0/bin", result.stdout)
 
+    def test_env_script_does_not_pin_bundler_version_by_default(self):
+        command = (
+            "unset JEKYLL_BUNDLER_VERSION; "
+            "source scripts/jekyll-env.sh; "
+            'printf "%s" "${JEKYLL_BUNDLER_VERSION:-}"'
+        )
+        result = subprocess.run(
+            ["bash", "-lc", command],
+            cwd=ROOT,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual("", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()
