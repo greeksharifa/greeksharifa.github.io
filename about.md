@@ -7,11 +7,15 @@ title: About Authors
 <style>
 .container {
 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+font-size: 0.94rem;
 line-height: 1.4;
 color: #333;
 max-width: 820px;
 margin: 0 auto;
 padding: 28px 20px;
+}
+.page-title {
+text-align: center;
 }
 .header {
 display: flex;
@@ -72,6 +76,12 @@ font-weight: bold;
 font-size: 0.9em;
 color: #2c3e50;
 }
+.compact-section .entry-title {
+font-size: 0.84em;
+}
+.publication-section .entry-title {
+font-size: 0.84em;
+}
 .entry-meta {
 text-align: right;
 font-size: 0.75em;
@@ -79,10 +89,21 @@ color: #7f8c8d;
 flex-shrink: 0;
 padding-left: 12px;
 }
+.compact-section .entry-meta {
+font-size: 0.71em;
+}
 .entry-subtitle {
 font-size: 0.8em;
 color: #555;
 margin-bottom: 4px;
+}
+.compact-section .entry-subtitle,
+.compact-section .entry-description {
+font-size: 0.71em;
+}
+.publication-section .pub-authors,
+.publication-section .entry-subtitle {
+font-size: 0.71em;
 }
 .entry-description {
 font-size: 0.9em;
@@ -133,7 +154,7 @@ padding-left: 0;
 
 <!-- ===================================================================== -->
 <!-- Education -->
-<div class="section">
+<div class="section compact-section">
     <h2>Education</h2>
     <div class="entry">
         <div class="entry-header">
@@ -162,7 +183,7 @@ padding-left: 0;
 
 <!-- ===================================================================== -->
 <!-- Internship -->
-<div class="section">
+<div class="section compact-section">
     <h2>Internships</h2>
     <div class="entry">
         <div class="entry-header">
@@ -198,7 +219,7 @@ padding-left: 0;
 </div>
 
 
-<div class="section">
+<div class="section publication-section">
     <!-- ===================================================================== -->
     <!-- =                        International Papers                       = -->
     <!-- ===================================================================== -->
@@ -213,6 +234,14 @@ padding-left: 0;
         <div class="entry-subtitle">Conference</div>
     </div> 
     -->
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title"><a href="https://openaccess.thecvf.com/content/WACV2026/html/Choi_Hybrid_State_Representation_for_Video_Procedure_Planning_WACV_2026_paper.html">Hybrid State Representation for Video Procedure Planning</a></span>
+            <span class="entry-meta">2026</span>
+        </div>
+        <div class="pub-authors">WS Choi, <strong>YW Jang</strong>, M Lee, BT Zhang</div>
+        <div class="entry-subtitle">IEEE/CVF Winter Conference on Applications of Computer Vision (WACV 2026)</div>
+    </div>
     <div class="entry">
         <div class="entry-header">
             <span class="entry-title"><a href="#">The Losing Winner: An LLM Agent that Predicts the Market but Loses Money</a></span>
@@ -291,32 +320,48 @@ padding-left: 0;
     <h2>Patents</h2>
     <div class="entry">
         <div class="entry-header">
-            <span class="entry-title"><a href="https://doi.org/10.8080/1020210102621">Method for understanding video story with multi-level character attention, and apparatus for performing the same</a></span>
-            <span class="entry-meta">2024</span>
+            <span class="entry-title"><a href="https://patents.justia.com/patent/12536454">Toddler-Inspired Bayesian Learning Method and Computing Apparatus for Performing the Same</a></span>
+            <span class="entry-meta">2026</span>
         </div>
-        <div class="pub-authors">B Zhang, S Choi, ON Kyoung-Woon, YJ Heo, <strong>YW Jang</strong>, SEO Ahjeong, Minsu Leediv>
-        <div class="entry-subtitle">https://doi.org/10.8080/1020210102621</div>
+        <div class="pub-authors">BT Zhang, Y Lee, J Park, K Park, H Oh, <strong>YW Jang</strong></div>
+        <div class="entry-subtitle">US Patent 12,536,454 | US Patent App. 17/467,971</div>
     </div>
     <div class="entry">
         <div class="entry-header">
-            <span class="entry-title"><a href="https://patentimages.storage.googleapis.com/e5/c0/83/baff0ae378f155/US20220164689A1.pdf">Toddler-inspired bayesian learning method and computing apparatus for performing the same</a></span>
-            <span class="entry-meta">2022</span>
+            <span class="entry-title"><a href="https://doi.org/10.8080/1020250108505">Apparatus and Method for Visual Question Answering Based on Self-Questioning Framework</a></span>
+            <span class="entry-meta">2025</span>
         </div>
-        <div class="pub-authors">B Zhang, Y Lee, J Park, K PARK, H Oh, <strong>YW Jang</strong></div>
-        <div class="entry-subtitle">US Patent App. 17/467,971 | https://doi.org/10.8080/1020210013224</div>
+        <div class="pub-authors"><strong>YW Jang</strong>, M Lee, BT Zhang, YJ Heo, JS Kim, DS Chang</div>
+        <div class="entry-subtitle">KR Patent App. 10-2025-0108505 | https://doi.org/10.8080/1020250108505</div>
+    </div>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title"><a href="https://doi.org/10.8080/1020210102621">Method for understanding video story with multi-level character attention, and apparatus for performing the same</a></span>
+            <span class="entry-meta">2024</span>
+        </div>
+        <div class="pub-authors">B Zhang, S Choi, ON Kyoung-Woon, YJ Heo, <strong>YW Jang</strong>, SEO Ahjeong, Minsu Lee</div>
+        <div class="entry-subtitle">https://doi.org/10.8080/1020210102621</div>
     </div>
     <div class="entry">
         <div class="entry-header">
             <span class="entry-title"><a href="https://patentimages.storage.googleapis.com/2b/8a/4b/f7970cec1cf14f/US12050632.pdf">Question answering apparatus and method</a></span>
             <span class="entry-meta">2024</span>
         </div>
-        <div class="pub-authors">B Zhang, S Choi, ON Kyoung-Woon, YJ Heo, <strong>YW Jang</strong>, SEO Ahjeong, Minsu Leediv>
+        <div class="pub-authors">B Zhang, S Choi, ON Kyoung-Woon, YJ Heo, <strong>YW Jang</strong>, SEO Ahjeong, Minsu Lee</div>
         <div class="entry-subtitle">US Patent 12,050,632 | https://doi.org/10.8080/1020200131339</div>
     </div>
     <!-- ===================================================================== -->
     <!-- =                          Domestic Papers                          = -->
     <!-- ===================================================================== -->
     <h2>Domestic Papers</h2>
+    <div class="entry">
+        <div class="entry-header">
+            <span class="entry-title"><a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12606880">The Impact of Likert Scale Design on Judgment Reliability in Korean and English LLM-as-a-Judge</a></span>
+            <span class="entry-meta">2026</span>
+        </div>
+        <div class="pub-authors"><strong>장유원</strong>, 최우석, 이민수, 장병탁</div>
+        <div class="entry-subtitle">정보과학회 컴퓨팅의 실제 논문지</div>
+    </div>
     <div class="entry">
         <div class="entry-header">
             <span class="entry-title"><a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12318424">거대언어모델을 활용한 응답 자동평가에서 모델 및 리커트 척도 설정이 미치는 영향</a></span>
