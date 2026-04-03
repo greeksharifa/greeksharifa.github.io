@@ -1,10 +1,33 @@
 .hero {
   text-align: center;
   font-size: 0.75rem;
+
   img {
     height: 28rem;
     width: auto;
     display: inline;
     margin-top: -1rem;
+  }
+
+  .hero-links {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-link {
+    color: #313131;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .hero-link:hover,
+  .hero-link:focus {
+    color: #8e2046;
+    opacity: 0.9;
   }
 }

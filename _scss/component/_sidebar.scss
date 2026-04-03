@@ -216,4 +216,39 @@ a.sidebar-nav-item:focus {
       text-decoration: none;
     }
   }
+
+  .sidebar-contact-links {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    margin-top: .5rem;
+  }
+
+  .sidebar-contact-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    color: $white;
+    text-decoration: none;
+    font-size: 1em;
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+      opacity: .8;
+    }
+  }
+
+  .sidebar-contact-link-image {
+    width: 1em;
+    height: 1em;
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
 }
