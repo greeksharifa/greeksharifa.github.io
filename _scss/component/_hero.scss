@@ -13,8 +13,11 @@
     margin-top: 1.5rem;
     display: flex;
     justify-content: center;
-    gap: 1.1rem;
     flex-wrap: wrap;
+  }
+
+  .hero-link-spaced {
+    margin-left: 1.75rem;
   }
 
   .hero-link {
@@ -33,5 +36,11 @@
   .hero-link:focus {
     background-color: #313131;
     color: #fff;
+  }
+
+  @media (max-width: 30em) {
+    .hero-link-spaced {
+      margin-left: 1rem;
+    }
   }
 }
