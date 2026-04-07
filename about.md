@@ -140,7 +140,7 @@ padding-left: 0;
 <div class="header">
     <!-- 본인 사진 URL을 여기에 넣어주세요 -->
     <img src="/public/img/시현하다.jpg" alt="Profile Picture" class="profile-pic">
-    <h1>Youwon Jang (장유원)</h1>
+    <h1>You Won Jang (장유원)</h1>
     <p class="quote">update in progress by greeksharifa</p>
     <div class="contact-info">
         <a href="mailto:greeksharifa@email.com">Email</a> |
